@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YViewController">
+            <connections>
+                <outlet property="searchResultsTableView" destination="66" id="84"/>
+                <outlet property="startBtn" destination="8" id="hfm-xC-WMU"/>
+                <outlet property="studySearchPickerView" destination="11" id="21"/>
+                <outlet property="view" destination="6" id="7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="studySearch" id="6">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                    <rect key="frame" x="77" y="266" width="166" height="35"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="开始查询">
+                        <color key="titleColor" red="0.078127416409999997" green="0.43520248119999999" blue="0.83854874319999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnTest:" destination="-1" eventType="touchUpInside" id="17"/>
+                    </connections>
+                </button>
+                <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                    <rect key="frame" x="0.0" y="50" width="320" height="216"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="216" id="12"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="18"/>
+                        <outlet property="delegate" destination="-1" id="19"/>
+                    </connections>
+                </pickerView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="66">
+                    <rect key="frame" x="43" y="309" width="234" height="259"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="82"/>
+                        <outlet property="delegate" destination="-1" id="83"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZL-05-Iy5">
+                    <rect key="frame" x="0.0" y="23" width="40" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="back.png"/>
+                    <connections>
+                        <action selector="backToStart:" destination="-1" eventType="touchUpInside" id="922-Rm-iyd"/>
+                    </connections>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T6n-NQ-SMT">
+                    <rect key="frame" x="63" y="29" width="194" height="29"/>
+                    <segments>
+                        <segment title="今天"/>
+                        <segment title="明天"/>
+                        <segment title="后天"/>
+                    </segments>
+                    <connections>
+                        <action selector="toggleControls:" destination="-1" eventType="valueChanged" id="Ewd-xa-2A7"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="66" secondAttribute="trailing" constant="43" id="2dU-QY-6lr"/>
+                <constraint firstItem="66" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="8" id="Ela-O7-dOw"/>
+                <constraint firstAttribute="bottom" secondItem="66" secondAttribute="bottom" id="hq9-r6-5fG"/>
+                <constraint firstItem="66" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="43" id="l5z-gK-FBO"/>
+                <constraint firstItem="8" firstAttribute="top" secondItem="T6n-NQ-SMT" secondAttribute="bottom" constant="209" id="p5q-pQ-OEp"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back.png" width="80" height="80"/>
+    </resources>
+</document>
