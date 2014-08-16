@@ -22,6 +22,7 @@
 //@property (strong, nonatomic) IBOutlet UILabel *avgText;
 @property (strong, nonatomic) IBOutlet UIImageView *noLoginImg;
 @property (strong, nonatomic) YTrendChartView *chart;
+@property (strong, nonatomic) IBOutlet UIButton *backBtn;
 
 - (IBAction)openActionSheet:(id)sender;
 - (IBAction)backToHomeBtn:(id)sender;

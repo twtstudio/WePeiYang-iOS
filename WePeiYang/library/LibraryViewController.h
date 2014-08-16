@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIView *headerBackView;
 
 - (IBAction)backgroundTap:(id)sender;
 //- (IBAction)search:(id)sender;

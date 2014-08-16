@@ -93,6 +93,7 @@
             if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
             {
                 //NSString *msg = [dic objectForKey:@"msg"];
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
             }
             else
             {

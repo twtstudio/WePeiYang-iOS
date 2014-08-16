@@ -108,7 +108,7 @@
     NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resultData options:NSJSONReadingMutableLeaves error:nil];
     NSMutableDictionary *callBackDic = [[NSMutableDictionary alloc]init];
     [callBackDic setObject:statusCode forKey:@"statusCode"];
-    [callBackDic setObject:resultDic forKey:@"content"];
+    if (![statusCode isEqualToString:@"500"]) [callBackDic setObject:resultDic forKey:@"content"];
     if (finishCallbackBlock)
     {
         finishCallbackBlock(callBackDic);

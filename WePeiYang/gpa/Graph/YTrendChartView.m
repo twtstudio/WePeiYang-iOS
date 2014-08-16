@@ -95,7 +95,7 @@
     
     // 开始画图
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:255 green:0 blue:0 alpha:0.33].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:255 green:0 blue:0 alpha:0.43].CGColor);
     //CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5].CGColor);
     CGContextSetLineWidth(context, 5.0f);
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GPAViewController">
             <connections>
+                <outlet property="backBtn" destination="sQh-7H-tf1" id="i7a-v2-zfP"/>
                 <outlet property="loginBtn" destination="I26-nc-NRa" id="IHb-b5-mBq"/>
                 <outlet property="moreBtn" destination="379-jO-4Ra" id="cMI-Es-ONL"/>
                 <outlet property="noLoginImg" destination="nIg-WY-hFx" id="5wd-gn-UlM"/>
@@ -20,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-wA-iB1">
-                    <rect key="frame" x="0.0" y="61" width="320" height="507"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-wA-iB1">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -29,10 +30,6 @@
                         <outlet property="delegate" destination="-1" id="AHE-rn-2p5"/>
                     </connections>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="libraryHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="ktQ-ej-fGA">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I26-nc-NRa">
                     <rect key="frame" x="90" y="253" width="140" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -69,18 +66,13 @@
                     <rect key="frame" x="55" y="322" width="210" height="125"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GPA查询" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxu-qT-sAC">
-                    <rect key="frame" x="122" y="30" width="76" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="i3k-wA-iB1" firstAttribute="top" secondItem="1" secondAttribute="top" constant="61" id="40A-SD-pxg"/>
-                <constraint firstAttribute="bottom" secondItem="i3k-wA-iB1" secondAttribute="bottom" id="MVV-Yy-Od1"/>
+                <constraint firstItem="i3k-wA-iB1" firstAttribute="top" secondItem="1" secondAttribute="top" id="C7y-Qe-i6M"/>
+                <constraint firstItem="i3k-wA-iB1" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Mlu-py-eOZ"/>
+                <constraint firstAttribute="bottom" secondItem="i3k-wA-iB1" secondAttribute="bottom" id="UAP-Mv-bKQ"/>
+                <constraint firstAttribute="trailing" secondItem="i3k-wA-iB1" secondAttribute="trailing" id="lAJ-N1-Xb2"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -88,7 +80,6 @@
     </objects>
     <resources>
         <image name="back.png" width="80" height="80"/>
-        <image name="libraryHeader.png" width="320" height="164"/>
         <image name="moreBtn.png" width="80" height="80"/>
         <image name="pujie.png" width="210" height="125"/>
     </resources>

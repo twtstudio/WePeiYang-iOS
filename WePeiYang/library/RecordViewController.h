@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) IBOutlet UIImageView *noLoginImg;
 @property (strong, nonatomic) IBOutlet UIButton *continueBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *headerBackView;
 
 - (IBAction)back:(id)sender;
 - (IBAction)continueLend:(id)sender;

@@ -57,7 +57,7 @@
         {
             if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
             {
-                
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
             }
             else
             {

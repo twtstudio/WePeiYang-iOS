@@ -48,6 +48,7 @@
 @synthesize loginBtn;
 @synthesize continueBtn;
 @synthesize noLoginImg;
+@synthesize headerBackView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +64,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
     
     title = [[NSMutableArray alloc]initWithObjects: nil];
     status = [[NSMutableArray alloc]initWithObjects: nil];
@@ -78,6 +80,8 @@
     
     [loginBtn primaryStyle];
     [self checkLoginStatus];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -376,6 +380,10 @@
     [headerView addSubview:headerLabel];
     [headerView setBackgroundColor:[UIColor whiteColor]];
     return headerView;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

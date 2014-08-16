@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *studySearchPickerView;
 @property (retain, nonatomic) IBOutlet UITableView *searchResultsTableView;
 @property (strong, nonatomic) IBOutlet UIButton *startBtn;
+@property (strong, nonatomic) IBOutlet UIView *headerBackView;
 
 @property (strong, nonatomic) NSMutableArray *searchResultsArray;
 //@property (strong, nonatomic) NSMutableData *received;

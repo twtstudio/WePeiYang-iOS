@@ -64,7 +64,7 @@
         {
             if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
             {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹~"];
             }
             else
             {
@@ -84,8 +84,9 @@
     
     //[self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"];
     [wpyStringProcessor convertToWebViewByString:detailContent withFinishCallbackBlock:^(NSString *load){
-        [self.webView loadHTMLString:load baseURL:baseURL];
+    [self.webView loadHTMLString:load baseURL:baseURL];
     }];
+    //[self.webView loadHTMLString:detailContent baseURL:baseURL];
     self.webView.scalesPageToFit = YES;
 }
 

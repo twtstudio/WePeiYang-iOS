@@ -54,6 +54,7 @@
     unameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入天外天账号" attributes:@{NSForegroundColorAttributeName: color}];
     passwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSForegroundColorAttributeName: color}];
     [[UITextField appearance]setTintColor:color];
+    self.view.backgroundColor = [UIColor colorWithRed:49/255.0f green:154/255.0f blue:207/255.0f alpha:1.0f];
 }
 
 - (void)didReceiveMemoryWarning

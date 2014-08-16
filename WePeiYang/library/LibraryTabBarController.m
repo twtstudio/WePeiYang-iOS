@@ -49,10 +49,10 @@
     
     UIColor *libTintColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
     [[UITabBar appearance]setTintColor: libTintColor];
-    [[UIButton appearance]setTintColor:libTintColor];
-    [[UISearchBar appearance]setTintColor:libTintColor];
-    [[UITextField appearance]setTintColor:libTintColor];
-    [[UISegmentedControl appearance]setTintColor:libTintColor];
+    [[UIButton appearance]setTintColor:[UIColor whiteColor]];
+    [[UISearchBar appearance]setTintColor:[UIColor whiteColor]];
+    [[UITextField appearance]setTintColor:[UIColor whiteColor]];
+    [[UISegmentedControl appearance]setTintColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning

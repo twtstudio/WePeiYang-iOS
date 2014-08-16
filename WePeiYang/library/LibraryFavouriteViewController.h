@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UILabel *noFavLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *headerBackView;
 
 - (IBAction)backToHome:(id)sender;
 

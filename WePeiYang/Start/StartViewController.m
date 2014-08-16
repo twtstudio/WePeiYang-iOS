@@ -29,7 +29,10 @@
 #import "wpyEncryption.h"
 #import "twtSecretKeys.h"
 
+//#import "WePeiYang-Swift.h"
+
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
+#define DEVICE_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 @interface StartViewController ()
 

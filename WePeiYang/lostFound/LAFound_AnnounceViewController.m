@@ -141,6 +141,8 @@
                 [self.nameTextField setText:@""];
                 [self.phoneTextField setText:@""];
                 [self.contentTexeView setText:@""];
+            } else {
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
             }
         }
     }];

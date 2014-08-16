@@ -32,9 +32,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    //可以改变modalViewControllerTransition时的背景颜色
-    self.window.backgroundColor = [UIColor whiteColor];
-    
     //ShareSDK appKey
     [ShareSDK registerApp:[twtSecretKeys getShareSDKAppKey]];
     
@@ -76,10 +73,13 @@
     
     //……
     
+
     
     StartViewController *start = [[StartViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:start];
+    
     self.window.rootViewController = nav;
+    self.window.backgroundColor = [UIColor whiteColor];
 
     [self.window makeKeyAndVisible];
     

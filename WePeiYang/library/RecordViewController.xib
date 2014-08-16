@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
             <connections>
                 <outlet property="continueBtn" destination="mYU-Jh-5Ld" id="V6L-K8-AMA"/>
+                <outlet property="headerBackView" destination="vwu-R7-vZl" id="t5M-Uh-lsG"/>
                 <outlet property="loginBtn" destination="7Ik-xC-yqq" id="Dqc-1y-8cR"/>
                 <outlet property="noLoginImg" destination="DVL-lA-OoF" id="fF3-8k-Sgm"/>
                 <outlet property="noLoginLabel" destination="KS8-Rx-Zac" id="ILg-Pg-LeY"/>
@@ -19,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vSc-gU-4jo">
-                    <rect key="frame" x="0.0" y="63" width="320" height="456"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vSc-gU-4jo">
+                    <rect key="frame" x="0.0" y="59" width="320" height="460"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="qVR-Q7-pA0"/>
@@ -39,8 +40,8 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="libraryHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="vwu-R7-vZl">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vwu-R7-vZl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYU-Jh-5Ld">
                     <rect key="frame" x="256" y="26" width="64" height="30"/>
@@ -55,26 +56,24 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sc3-3i-2Yf">
                     <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="back.png"/>
+                    <state key="normal" image="backForNav.png"/>
                     <connections>
                         <action selector="back:" destination="-1" eventType="touchUpInside" id="ZRe-YQ-XSX"/>
                     </connections>
                 </button>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="pujie.png" translatesAutoresizingMaskIntoConstraints="NO" id="DVL-lA-OoF">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="pujie.png" translatesAutoresizingMaskIntoConstraints="NO" id="DVL-lA-OoF">
                     <rect key="frame" x="55" y="381" width="210" height="125"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgx-uk-82t">
                     <rect key="frame" x="102" y="30" width="117" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="vSc-gU-4jo" secondAttribute="bottom" constant="49" id="RU6-FL-QBa"/>
                 <constraint firstAttribute="bottom" secondItem="DVL-lA-OoF" secondAttribute="bottom" constant="62" id="Xs0-4G-oPO"/>
-                <constraint firstItem="vSc-gU-4jo" firstAttribute="top" secondItem="1" secondAttribute="top" constant="63" id="huZ-4k-Uh2"/>
                 <constraint firstAttribute="trailing" secondItem="vSc-gU-4jo" secondAttribute="trailing" id="nRB-uf-KlX"/>
                 <constraint firstItem="vSc-gU-4jo" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="sjU-98-DU8"/>
             </constraints>
@@ -84,8 +83,7 @@
         </view>
     </objects>
     <resources>
-        <image name="back.png" width="80" height="80"/>
-        <image name="libraryHeader.png" width="320" height="164"/>
+        <image name="backForNav.png" width="20" height="20"/>
         <image name="pujie.png" width="210" height="125"/>
     </resources>
 </document>

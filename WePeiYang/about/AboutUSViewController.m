@@ -9,6 +9,7 @@
 #import "AboutUSViewController.h"
 //#import "eggViewController.h"
 #import "VWWWaterView.h"
+#import "data.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -80,7 +81,8 @@
     [self.view addSubview:imgView];
     
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 190, 320, 40)];
-    [nameLabel setText:@"微北洋 1.2.1"];
+    NSString *nameStr = [NSString stringWithFormat:@"微北洋 %@",[data shareInstance].appVersion];
+    [nameLabel setText:nameStr];
     [nameLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:nameLabel];
     
@@ -96,11 +98,7 @@
     NSString *path2 = [[NSBundle mainBundle]pathForResource:@"zhanshanlogo@2x" ofType:@"png"];
     UIImage *image2 = [UIImage imageWithContentsOfFile:path2];
     UIImageView *imgView2 = [[UIImageView alloc]initWithImage:image2];
-    int imgheight = 240;
-    if (DEVICE_IS_IPHONE5)
-        imgheight = 240;
-    else
-        imgheight = 240*0.6;
+    int imgheight = DEVICE_IS_IPHONE5 ? 240 : 240*0.6;
     [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width - 320*imgheight/240), self.view.frame.size.height - imgheight, 320*imgheight/240, imgheight)];
     [self.view addSubview:imgView2];
     

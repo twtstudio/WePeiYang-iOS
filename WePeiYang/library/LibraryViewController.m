@@ -51,6 +51,7 @@
 
 @synthesize tableView;
 @synthesize typeSegmentedControl;
+@synthesize headerBackView;
 
 @synthesize label1;
 @synthesize label2;
@@ -76,6 +77,8 @@
     //self.view.backgroundColor = [[UIColor alloc]initWithPatternImage:[UIImage imageNamed:@"librarybg.png"]];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
+    
     //初始化
     type = 0;
 
@@ -86,6 +89,12 @@
     
     [tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
     [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+    searchField.textColor = [UIColor whiteColor];
+    [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    UIImageView *nilView = [[UIImageView alloc]initWithImage:nil];
+    searchField.leftView = nilView;
 }
 
 - (IBAction)backToHome:(id)sender
@@ -178,11 +187,12 @@
         NSString *url = @"http://push-mobile.twtapps.net/lib/search";
         NSString *body = [NSString stringWithFormat:@"page=%d&query=%@&type=%ld",currentPage,searchStr,(long)type];
         [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
+            [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
             if (dic!=nil)
             {
                 if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
                 {
-                    
+                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
                 }
                 else
                 {
@@ -193,7 +203,6 @@
             }
             else
             {
-                [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
             }
@@ -329,7 +338,7 @@
         {
             if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
             {
-                
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
             }
             else
             {
@@ -487,6 +496,10 @@
             button.titleLabel.textColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
         }
     }];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

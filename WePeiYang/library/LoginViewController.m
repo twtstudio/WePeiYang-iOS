@@ -92,9 +92,10 @@
 
 - (void)dealWithReceivedData:(NSDictionary *)loginDic
 {
-    if (![[loginDic objectForKey:@"statusCode"] isEqualToString:@"200"])
+    NSString *statusCode = [loginDic objectForKey:@"statusCode"];
+    if (![statusCode isEqualToString:@"200"])
     {
-        if ([[loginDic objectForKey:@"statusCode"] isEqualToString:@"401"])
+        if ([statusCode isEqualToString:@"401"])
         {
             [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
             //NSString *msg = [[loginDic objectForKey:@"content"] objectForKey:@"error"];

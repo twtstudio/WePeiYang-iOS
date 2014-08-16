@@ -49,10 +49,14 @@
     UIColor *gpaTintColor;
     
     gpaHeaderView *gpaHeader;
+    
+    //Instances
+    NSInteger gpaHeaderViewHeight;
 }
 
 @synthesize tableView;
 @synthesize moreBtn;
+@synthesize backBtn;
 @synthesize loginBtn;
 @synthesize noLoginLabel;
 @synthesize chart;
@@ -76,13 +80,16 @@
     
     //[self.navigationController setNavigationBarHidden:YES];
     
+    //INSTANCES
+    gpaHeaderViewHeight = 150;
+    
     self.title = @"GPA查询";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    gpaTintColor = [UIColor colorWithRed:255/255.0f green:125/255.0f blue:124/255.0f alpha:1.0f];
-    [[UIButton appearance] setTintColor:gpaTintColor];
-    [[UIBarButtonItem appearance] setTintColor:gpaTintColor];
+    gpaTintColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
+    [[UIButton appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UIToolbar appearance]setTintColor:gpaTintColor];
     
     gpaData = [[NSMutableArray alloc]initWithObjects: nil];
@@ -91,7 +98,7 @@
     
     [loginBtn primaryStyle];
     
-    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, 320, 106)];
+    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, 320, gpaHeaderViewHeight)];
     
     //tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height - 60)];
     
@@ -99,6 +106,7 @@
     //[tableView setDelegate:self];
     
     //[self.view addSubview:tableView];
+    
     
     [self reloadArraysInTable];
     [self checkLoginStatus];
@@ -198,6 +206,8 @@
             [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
             [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
             [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([[dic objectForKey:@"statusCode"] isEqualToString:@"500"]) {
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
         }
     }
     else
@@ -273,9 +283,9 @@
 
 - (void)processGpaData:(NSDictionary *)gpaDic
 {
-    NSDictionary *termsDic = [gpaDic objectForKey:@"terms"];
+    NSArray *termsDataArr = [gpaDic objectForKey:@"terms"];
     
-    for (NSDictionary *termDic in termsDic)
+    for (NSDictionary *termDic in termsDataArr)
     {
         for (NSDictionary *temp in termDic)
         {
@@ -311,8 +321,8 @@
     }
     
     everyArr = [[NSMutableArray alloc]initWithObjects: nil];
-    NSDictionary *everyDic = [[gpaDic objectForKey:@"data"]objectForKey:@"every"];
-    for (NSDictionary *tmp in everyDic)
+    NSArray *everyDataArr = [[gpaDic objectForKey:@"data"]objectForKey:@"every"];
+    for (NSDictionary *tmp in everyDataArr)
     {
         [everyArr addObject:[tmp objectForKey:@"score"]];
     }
@@ -340,12 +350,12 @@
     [self compareWithPreviousResult];
     
     chart = [[YTrendChartView alloc]init];
-    [chart setFrame:CGRectMake(20, 106, 280, 130)];
-    [chart setBackgroundColor:[UIColor clearColor]];
+    [chart setFrame:CGRectMake(20, gpaHeaderViewHeight+20, 280, 130)];
+    [chart setBackgroundColor:[UIColor whiteColor]];
     //[self.view addSubview:chart];
     chart.delegate = self;
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 250)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+150)];
     [headerView addSubview:gpaHeader];
     [headerView addSubview:chart];
     
@@ -407,6 +417,7 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"操作失败" message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
          */
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
     }
     else
     {
@@ -675,11 +686,18 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float offsetY = [scrollView contentOffset].y;
-    gpaHeader.alpha = 1-offsetY/70;
+    //NSLog([NSString stringWithFormat:@"%f",offsetY]);
+    gpaHeader.alpha = 1-offsetY/150;
     if (offsetY > 100)
     {
-        chart.alpha = 1-(offsetY-100)/130;
+        chart.alpha = 1-(offsetY-150)/130;
     }
+    backBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
+    moreBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

@@ -27,6 +27,7 @@
 
 @synthesize tableView;
 @synthesize noFavLabel;
+@synthesize headerBackView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +46,7 @@
     self.title = @"收藏夹";
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
+    headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -150,6 +152,10 @@
 - (IBAction)backToHome:(id)sender
 {
     [self.tabBarController.navigationController popViewControllerAnimated:YES];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 

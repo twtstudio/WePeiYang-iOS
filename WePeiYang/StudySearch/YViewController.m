@@ -32,15 +32,14 @@
 @synthesize studySearchPickerView;
 @synthesize searchResultsArray;
 @synthesize startBtn;
-
+@synthesize headerBackView;
 
 -(void)loadView
 {
     [super loadView];
     
     //设置背景颜色
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"studysearchbg.png"]]];
-    [startBtn primaryStyle];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidLoad
@@ -52,8 +51,9 @@
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     }
     studyTintColor = [UIColor colorWithRed:0/255.0f green:127/255.0f blue:191/255.0f alpha:1.0f];;
-    [[UISegmentedControl appearance]setTintColor:studyTintColor];
-    [[UIButton appearance]setTintColor:studyTintColor];
+    [[UISegmentedControl appearance]setTintColor:[UIColor whiteColor]];
+    [[UIButton appearance]setTintColor:[UIColor whiteColor]];
+    headerBackView.backgroundColor = studyTintColor;
     
     //初始化可变数组
     self.searchResultsArray = [[NSMutableArray alloc] initWithObjects:nil];
@@ -356,6 +356,7 @@
     [label setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
     [label setTextAlignment:UITextAlignmentCenter];
     [label setBackgroundColor:[UIColor clearColor]];
+    label.textColor = [UIColor whiteColor];
     
     return label;    
 }
@@ -491,6 +492,10 @@
 - (IBAction)backToStart:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 //关于后台
