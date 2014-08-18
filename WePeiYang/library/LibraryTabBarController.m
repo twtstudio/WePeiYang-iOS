@@ -39,12 +39,13 @@
     NSArray *viewControllerArr = @[library,libraryFavourite,record];
     self.viewControllers = viewControllerArr;
     
-    [[self.tabBar.items objectAtIndex:0]setTitle:@"图书检索"];
-    [[self.tabBar.items objectAtIndex:0]setImage:[UIImage imageNamed:@"l_search.png"]];
-    [[self.tabBar.items objectAtIndex:1]setTitle:@"收藏夹"];
-    [[self.tabBar.items objectAtIndex:1]setImage:[UIImage imageNamed:@"l_fav.png"]];
-    [[self.tabBar.items objectAtIndex:2]setTitle:@"记录"];
-    [[self.tabBar.items objectAtIndex:2]setImage:[UIImage imageNamed:@"l_record.png"]];
+    NSArray *imgNameArr = @[@"l_search@2x", @"l_fav@2x", @"l_record@2x"];
+    NSArray *tabBarItemTitleArr = @[@"图书检索", @"收藏夹", @"记录"];
+    for (int i = 0; i <3; i++) {
+        [[self.tabBar.items objectAtIndex:i]setTitle:tabBarItemTitleArr[i]];
+        NSString *tabBarIconPath = [[NSBundle mainBundle]pathForResource:imgNameArr[i] ofType:@"png"];
+        [[self.tabBar.items objectAtIndex:i]setImage:[UIImage imageWithContentsOfFile:tabBarIconPath]];
+    }
     self.selectedIndex = 0;
     
     UIColor *libTintColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];

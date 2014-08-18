@@ -102,8 +102,8 @@
     // 先画线
     for (int i = 0; i < [self.weightedScores count]; i++) {
         if (i != 0) {
-            CGContextMoveToPoint(context, 40+self.widthSpace*(i-1), height-20-(relativeScores[i-1]*self.heightSpace));
-            CGContextAddLineToPoint(context, 40+self.widthSpace*i, height-20-(relativeScores[i]*self.heightSpace));
+            CGContextMoveToPoint(context, 40+self.widthSpace*(i-1), height-20-(relativeScores[i-1] * self.heightSpace));
+            CGContextAddLineToPoint(context, 40+self.widthSpace*i, height-20-(relativeScores[i] * self.heightSpace));
             CGContextStrokePath(context);
         }
     }
@@ -116,14 +116,14 @@
     for (int i = 0; i < [self.weightedScores count]; i++) {
         
         if (i == self.selectedItem) {
-            CGRect tempRect = CGRectMake(48+self.widthSpace*i-pointSelected.size.width, height-24-relativeScores[i]*self.heightSpace-pointSelected.size.height/6, pointSelected.size.width, pointSelected.size.height);
+            CGRect tempRect = CGRectMake(48+self.widthSpace*i-pointSelected.size.width, height-24-relativeScores[i] * self.heightSpace-pointSelected.size.height/6, pointSelected.size.width, pointSelected.size.height);
             CGContextDrawImage(context, tempRect, pointSelected.CGImage);
             CGContextStrokePath(context);
             NSString *selectedTerm = [self.terms objectAtIndex:i];
             if(![selectedTerm isEqualToString:selectedLastly]) [delegate selectTermForString:selectedTerm];
             selectedLastly = selectedTerm;
         } else {
-            CGRect tempRect = CGRectMake(48+self.widthSpace*i-pointUnselected.size.width, height-24-relativeScores[i]*self.heightSpace-pointUnselected.size.height/6, pointUnselected.size.width, pointUnselected.size.height);
+            CGRect tempRect = CGRectMake(48+self.widthSpace*i-pointUnselected.size.width, height-24-relativeScores[i] * self.heightSpace-pointUnselected.size.height/6, pointUnselected.size.width, pointUnselected.size.height);
             CGContextDrawImage(context, tempRect, pointUnselected.CGImage);
             CGContextStrokePath(context);
         }
@@ -150,7 +150,7 @@
     }
     
     for (int i = 0; i < [self.weightedScores count]; i++) {
-        if (fabsf(point.x-(50+self.widthSpace*i)) <= 40 && fabsf(point.x-(50+self.widthSpace*i)) >= 0 && fabsf(point.y-(self.frame.size.height-40-relativeScores[i]*self.heightSpace)) <= 40 && fabsf(point.y-(self.frame.size.height-40-relativeScores[i]*self.heightSpace)) >= 0)
+        if (fabsf(point.x-(50+self.widthSpace * i)) <= 40 && fabsf(point.x-(50+self.widthSpace*i)) >= 0 && fabsf(point.y-(self.frame.size.height - 40 - relativeScores[i] * self.heightSpace)) <= 40 && fabsf(point.y-(self.frame.size.height-40-relativeScores[i] * self.heightSpace)) >= 0)
         {
             self.selectedItem = i;
         }

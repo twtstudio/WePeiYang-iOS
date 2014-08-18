@@ -375,6 +375,7 @@
     }
     
     cell.textLabel.text = [self.searchResultsArray objectAtIndex:[indexPath row]];
+    //cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }

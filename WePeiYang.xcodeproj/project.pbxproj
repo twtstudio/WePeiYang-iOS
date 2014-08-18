@@ -42,7 +42,6 @@
 		1841D830187D5FE3006DDA17 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1841D82F187D5FE3006DDA17 /* button-background@2x.png */; };
 		18607AE918DC21DD00C5C665 /* noticeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18607AE818DC21DD00C5C665 /* noticeTabBarController.m */; };
 		1863608B18E503C400ACE2AF /* CSNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863608918E503C400ACE2AF /* CSNotificationView.m */; };
-		18699D17188C403100EC604E /* eggViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18699D16188C403100EC604E /* eggViewController.m */; };
 		188842131846E6F4007B92CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842121846E6F4007B92CB /* Foundation.framework */; };
 		188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842141846E6F4007B92CB /* CoreGraphics.framework */; };
 		188842171846E6F4007B92CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842161846E6F4007B92CB /* UIKit.framework */; };
@@ -85,8 +84,6 @@
 		18C322BC1861B9EB00CE035D /* AboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322BB1861B9EB00CE035D /* AboutUSViewController.m */; };
 		18C87D6A1887F0EF009AF085 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C87D681887F0EF009AF085 /* DetailViewController.xib */; };
 		18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C87D6D1887F1B7009AF085 /* DetailViewController.m */; };
-		18CFC83118900C7200A51F01 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CFC7DB18900C7200A51F01 /* FontAwesome.ttf */; };
-		18CFC83218900C7200A51F01 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CFC7DD18900C7200A51F01 /* NSString+FontAwesome.m */; };
 		18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CFC7DF18900C7200A51F01 /* UIButton+Bootstrap.m */; };
 		18D63E2118571196004E75AA /* GPAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D63E1F18571196004E75AA /* GPAViewController.m */; };
 		18D63E2218571196004E75AA /* GPAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D63E2018571196004E75AA /* GPAViewController.xib */; };
@@ -102,7 +99,6 @@
 		18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FDB26618B50065000ED037 /* JobFavViewController.m */; };
 		2502C16718FEB8DC00C5759F /* LAFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2502C16618FEB8DC00C5759F /* LAFTabBarController.m */; };
 		250551B7191BA309007C1F90 /* corp_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 250551B6191BA309007C1F90 /* corp_icon@2x.png */; };
-		2514EAF2191A83AF008CC0C7 /* send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2514EAF1191A83AF008CC0C7 /* send@2x.png */; };
 		2514EAF4191A8425008CC0C7 /* sendForNav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2514EAF3191A8425008CC0C7 /* sendForNav@2x.png */; };
 		25229479191DBAB300B04998 /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25229478191DBAB300B04998 /* gpaHeaderView.m */; };
 		2522947B191DBACB00B04998 /* gpaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2522947A191DBACB00B04998 /* gpaHeaderView.xib */; };
@@ -259,8 +255,6 @@
 		18607AE818DC21DD00C5C665 /* noticeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = noticeTabBarController.m; path = Notice/noticeTabBarController.m; sourceTree = "<group>"; };
 		1863608818E503C400ACE2AF /* CSNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNotificationView.h; sourceTree = "<group>"; };
 		1863608918E503C400ACE2AF /* CSNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSNotificationView.m; sourceTree = "<group>"; };
-		18699D15188C403100EC604E /* eggViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eggViewController.h; path = WePeiYang/about/eggViewController.h; sourceTree = "<group>"; };
-		18699D16188C403100EC604E /* eggViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = eggViewController.m; path = WePeiYang/about/eggViewController.m; sourceTree = "<group>"; };
 		1888420F1846E6F4007B92CB /* WePeiYang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WePeiYang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188842121846E6F4007B92CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		188842141846E6F4007B92CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -328,9 +322,6 @@
 		18C87D681887F0EF009AF085 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = news/DetailViewController.xib; sourceTree = "<group>"; };
 		18C87D6C1887F1B7009AF085 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = news/DetailViewController.h; sourceTree = "<group>"; };
 		18C87D6D1887F1B7009AF085 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = news/DetailViewController.m; sourceTree = "<group>"; };
-		18CFC7DB18900C7200A51F01 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		18CFC7DC18900C7200A51F01 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
-		18CFC7DD18900C7200A51F01 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		18CFC7DE18900C7200A51F01 /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		18CFC7DF18900C7200A51F01 /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
 		18D63E1E18571196004E75AA /* GPAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAViewController.h; path = gpa/GPAViewController.h; sourceTree = "<group>"; };
@@ -356,7 +347,6 @@
 		2502C16518FEB8DC00C5759F /* LAFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFTabBarController.h; sourceTree = "<group>"; };
 		2502C16618FEB8DC00C5759F /* LAFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFTabBarController.m; sourceTree = "<group>"; };
 		250551B6191BA309007C1F90 /* corp_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "corp_icon@2x.png"; sourceTree = "<group>"; };
-		2514EAF1191A83AF008CC0C7 /* send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send@2x.png"; sourceTree = "<group>"; };
 		2514EAF3191A8425008CC0C7 /* sendForNav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendForNav@2x.png"; sourceTree = "<group>"; };
 		25229477191DBAB300B04998 /* gpaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpaHeaderView.h; path = gpa/gpaHeaderView.h; sourceTree = "<group>"; };
 		25229478191DBAB300B04998 /* gpaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gpaHeaderView.m; path = gpa/gpaHeaderView.m; sourceTree = "<group>"; };
@@ -808,8 +798,6 @@
 				18C322AF1861AAA400CE035D /* Feedback */,
 				18C322BA1861B9EB00CE035D /* AboutUSViewController.h */,
 				18C322BB1861B9EB00CE035D /* AboutUSViewController.m */,
-				18699D15188C403100EC604E /* eggViewController.h */,
-				18699D16188C403100EC604E /* eggViewController.m */,
 				E998D6DD199E027500A0F442 /* WePeiYang-Bridging-Header.h */,
 			);
 			name = About;
@@ -842,9 +830,6 @@
 		18CFC7DA18900C7200A51F01 /* customButtons */ = {
 			isa = PBXGroup;
 			children = (
-				18CFC7DB18900C7200A51F01 /* FontAwesome.ttf */,
-				18CFC7DC18900C7200A51F01 /* NSString+FontAwesome.h */,
-				18CFC7DD18900C7200A51F01 /* NSString+FontAwesome.m */,
 				18CFC7DE18900C7200A51F01 /* UIButton+Bootstrap.h */,
 				18CFC7DF18900C7200A51F01 /* UIButton+Bootstrap.m */,
 			);
@@ -932,7 +917,6 @@
 			isa = PBXGroup;
 			children = (
 				2514EAF3191A8425008CC0C7 /* sendForNav@2x.png */,
-				2514EAF1191A83AF008CC0C7 /* send@2x.png */,
 				25C1EB51191918D30042C84D /* error_cross@2x.png */,
 				25340FB1191CE70F00AFDE7D /* place_job_icon@2x.png */,
 				25340FB2191CE70F00AFDE7D /* time_job_icon@2x.png */,
@@ -1218,7 +1202,6 @@
 				182155BC18BF6E0A008A1D1A /* GPACalculatorViewController.xib in Resources */,
 				2597677D190B5046002CCAFA /* libraryHeader@2x.png in Resources */,
 				18114E7B18585A64007455E2 /* JobDetailViewController.xib in Resources */,
-				18CFC83118900C7200A51F01 /* FontAwesome.ttf in Resources */,
 				25C0A45218FA2D24008D56F6 /* HringTableCell.xib in Resources */,
 				18114E6C18584376007455E2 /* chart_selected@2x.png in Resources */,
 				25768ABC18FEB7F400F75817 /* LAFound_QueryDetailViewController.xib in Resources */,
@@ -1272,7 +1255,6 @@
 				25976777190B5046002CCAFA /* library@2x.png in Resources */,
 				25976780190B5046002CCAFA /* newSubjectMark@2x.png in Resources */,
 				182155D818BF8ED4008A1D1A /* g3@2x.jpg in Resources */,
-				2514EAF2191A83AF008CC0C7 /* send@2x.png in Resources */,
 				25976782190B5046002CCAFA /* college@2x.png in Resources */,
 				E983B4A3199FBF1F00C08B2E /* WeiboSDK.bundle in Resources */,
 				2522948B191DD23600B04998 /* signin@2x.jpg in Resources */,
@@ -1305,7 +1287,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CFC83218900C7200A51F01 /* NSString+FontAwesome.m in Sources */,
 				1888429D1846F73B007B92CB /* RecordTableCell.m in Sources */,
 				25A5F78118EC2F0000D6EE4E /* NoticeFavViewController.m in Sources */,
 				25768ABF18FEB7F400F75817 /* LAFound_QueryListViewController.m in Sources */,
@@ -1334,7 +1315,6 @@
 				E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */,
 				18D63E2118571196004E75AA /* GPAViewController.m in Sources */,
 				25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */,
-				18699D17188C403100EC604E /* eggViewController.m in Sources */,
 				18ACB786187EB5670073998E /* StartViewController.m in Sources */,
 				18114E7A18585A64007455E2 /* JobDetailViewController.m in Sources */,
 				252C101B19176FA900C2B636 /* wpyEncryption.m in Sources */,

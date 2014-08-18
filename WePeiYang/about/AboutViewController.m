@@ -67,10 +67,10 @@
     aboutArr = @[@"关于我们",@"欢迎页面"];
     webArr = @[@"访问天外天网站"];
     feedbackArr = @[@"发送反馈",@"联系我们"];
-    self.title = @"关于";
+    //self.title = @"关于";
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     //[self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     
     //对于iOS 7.1 应该这样……
     scaleTransition = [[DMScaleTransition alloc]init];
@@ -78,6 +78,16 @@
     [[UIButton appearance]setTintColor:[UIColor darkGrayColor]];
     [[UITextView appearance]setTintColor:[UIColor darkGrayColor]];
     [[UITextField appearance]setTintColor:[UIColor darkGrayColor]];
+    [[UINavigationBar appearance]setTintColor:[UIColor darkGrayColor]];
+    
+    UINavigationBar *navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
+    UINavigationItem *navigationItem = [[UINavigationItem alloc]init];
+    NSString *backIconPath = [[NSBundle mainBundle]pathForResource:@"backForNav@2x" ofType:@"png"];
+    UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithContentsOfFile:backIconPath] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome:)];
+    [navigationBar pushNavigationItem:navigationItem animated:YES];
+    [navigationItem setTitle:@"关于"];
+    [navigationItem setLeftBarButtonItem:backBarBtn];
+    [self.view addSubview:navigationBar];
 }
 
 - (void)viewDidAppear:(BOOL)animated

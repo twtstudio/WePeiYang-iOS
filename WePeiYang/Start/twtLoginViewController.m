@@ -13,6 +13,7 @@
 #import "UIButton+Bootstrap.h"
 #import "CSNotificationView.h"
 #import "wpyEncryption.h"
+#import "GuideViewController.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -187,9 +188,11 @@
 
 - (IBAction)cancelLogin:(id)sender
 {
-    UIViewController *guide = self.presentingViewController;
+    UIViewController *presentingVC = self.presentingViewController;
     [self dismissViewControllerAnimated:YES completion:^{
-        [guide dismissViewControllerAnimated:YES completion:nil];
+        if ([presentingVC isKindOfClass:[GuideViewController class]]) {
+            [presentingVC dismissViewControllerAnimated:YES completion:nil];
+        }
     }];
 }
 
@@ -197,9 +200,13 @@
 {
     if (alertView == successAlert)
     {
-        UIViewController *guide = self.presentingViewController;
+        UIViewController *presentingVC = self.presentingViewController;
         [self dismissViewControllerAnimated:YES completion:^{
-            [guide dismissViewControllerAnimated:YES completion:nil];
+            if ([presentingVC isKindOfClass:[GuideViewController class]]) {
+                [presentingVC dismissViewControllerAnimated:YES completion:nil];
+            } else if ([presentingVC isKindOfClass:[GPAViewController class]]) {
+                //
+            }
         }];
     }
 }

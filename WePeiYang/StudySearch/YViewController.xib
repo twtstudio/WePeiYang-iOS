@@ -18,22 +18,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6et-PE-3pW">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="309"/>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6et-PE-3pW">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="301"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                            <rect key="frame" x="77" y="259" width="166" height="42"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="开始查询">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnTest:" destination="-1" eventType="touchUpInside" id="17"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                    <rect key="frame" x="77" y="266" width="166" height="35"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <state key="normal" title="开始查询">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnTest:" destination="-1" eventType="touchUpInside" id="17"/>
-                    </connections>
-                </button>
                 <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11">
                     <rect key="frame" x="0.0" y="50" width="320" height="216"/>
                     <constraints>
@@ -45,7 +47,7 @@
                     </connections>
                 </pickerView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="66">
-                    <rect key="frame" x="43" y="309" width="234" height="259"/>
+                    <rect key="frame" x="56" y="301" width="264" height="267"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="82"/>
@@ -60,7 +62,7 @@
                         <action selector="backToStart:" destination="-1" eventType="touchUpInside" id="922-Rm-iyd"/>
                     </connections>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T6n-NQ-SMT">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T6n-NQ-SMT">
                     <rect key="frame" x="63" y="29" width="194" height="29"/>
                     <segments>
                         <segment title="今天"/>
@@ -74,11 +76,8 @@
             </subviews>
             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="66" secondAttribute="trailing" constant="43" id="2dU-QY-6lr"/>
-                <constraint firstItem="66" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="8" id="Ela-O7-dOw"/>
-                <constraint firstAttribute="bottom" secondItem="66" secondAttribute="bottom" id="hq9-r6-5fG"/>
-                <constraint firstItem="66" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="43" id="l5z-gK-FBO"/>
-                <constraint firstItem="8" firstAttribute="top" secondItem="T6n-NQ-SMT" secondAttribute="bottom" constant="209" id="p5q-pQ-OEp"/>
+                <constraint firstItem="66" firstAttribute="top" secondItem="6et-PE-3pW" secondAttribute="bottom" id="34e-Qn-kre"/>
+                <constraint firstAttribute="bottom" secondItem="66" secondAttribute="bottom" id="Y0g-Or-1do"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

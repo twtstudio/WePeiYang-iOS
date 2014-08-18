@@ -58,6 +58,17 @@
     }
     
     //self.title = @"发送反馈";
+    UINavigationBar *navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
+    UINavigationItem *navigationItem = [[UINavigationItem alloc]init];
+    NSString *backIconPath = [[NSBundle mainBundle]pathForResource:@"backForNav@2x" ofType:@"png"];
+    UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithContentsOfFile:backIconPath] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome:)];
+    NSString *sendIconPath = [[NSBundle mainBundle]pathForResource:@"sendForNav@2x" ofType:@"png"];
+    UIBarButtonItem *sendBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithContentsOfFile:sendIconPath] style:UIBarButtonItemStylePlain target:self action:@selector(sendFeedback:)];
+    [navigationBar pushNavigationItem:navigationItem animated:YES];
+    [navigationItem setTitle:@"发送反馈"];
+    [navigationItem setLeftBarButtonItem:backBarBtn];
+    [navigationItem setRightBarButtonItem:sendBarBtn];
+    [self.view addSubview:navigationBar];
     
     [wpyDeviceStatus getDeviceStatusWithFinishCallbackBlock:^(NSDictionary *device){
         deviceStatus = [device objectForKey:@"model"];

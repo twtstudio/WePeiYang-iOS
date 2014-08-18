@@ -98,15 +98,7 @@
     
     [loginBtn primaryStyle];
     
-    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, 320, gpaHeaderViewHeight)];
-    
-    //tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height - 60)];
-    
-    //[tableView setDataSource:self];
-    //[tableView setDelegate:self];
-    
-    //[self.view addSubview:tableView];
-    
+    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight)];
     
     [self reloadArraysInTable];
     [self checkLoginStatus];
@@ -119,6 +111,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     if ([[data shareInstance].gpaLoginStatus isEqualToString:@"Changed"])
     {
+        self.loginBtn.userInteractionEnabled = NO;
         [self checkLoginStatus];
     }
 }
@@ -180,6 +173,8 @@
     if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
     {
         //出错
+        backBtn.tintColor = gpaTintColor;
+        
         if ([[dic objectForKey:@"statusCode"] isEqualToString:@"401"])
         {
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"验证出错…请重新登录~"];
@@ -203,6 +198,7 @@
             [loginBtn setHidden:NO];
             [noLoginImg setHidden:NO];
             [noLoginLabel setText:@"您尚未绑定办公网账号"];
+            loginBtn.userInteractionEnabled = YES;
             [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
             [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
             [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
@@ -213,6 +209,7 @@
     else
     {
         //未出错
+        loginBtn.userInteractionEnabled = YES;
         [moreBtn setHidden:NO];
         [chart setHidden:NO];
         [tableView setHidden:NO];
@@ -222,61 +219,42 @@
         NSDictionary *contentDic = [dic objectForKey:@"content"];
         [self processGpaData:contentDic];
         [data shareInstance].gpaLoginStatus = @"";
+        backBtn.tintColor = [UIColor whiteColor];
         
         NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaCacheData"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ([fileManager fileExistsAtPath:plistPath])
-        {
+        if ([fileManager fileExistsAtPath:plistPath]) {
             [fileManager removeItemAtPath:plistPath error:nil];
-        }
-        else
-        {
+        } else {
             [contentDic writeToFile:plistPath atomically:YES];
         }
     }
 }
 
-- (void)bindTju
-{
+- (void)bindTju {
     GPALoginViewController *gpaLogin = [[GPALoginViewController alloc]initWithNibName:nil bundle:nil];
     [gpaLogin setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:gpaLogin animated:YES completion:nil];
 }
     
-- (IBAction)openActionSheet:(id)sender
-{
+- (IBAction)openActionSheet:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"更多" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"一键评价",@"手动评价",@"分享GPA", nil];
     [actionSheet showInView:self.view];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == [actionSheet cancelButtonIndex])
-    {
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == [actionSheet cancelButtonIndex]) {
         nil;
-    }
-    else if (buttonIndex == 0)
-    {
+    } else if (buttonIndex == 0) {
         [self oneKeyToEvaluate];
-    }
-    else if (buttonIndex == 1)
-    {
+    } else if (buttonIndex == 1) {
         [self selfEvaluate];
-    }
-    else if (buttonIndex == 2)
-    {
+    } else if (buttonIndex == 2) {
         [self shareGPA];
     }
-    /*
-    else if (buttonIndex == 3)
-    {
-        [self pushGPACalculator];
-    }
-    */
 }
 
-- (void)selfEvaluate
-{
+- (void)selfEvaluate {
     NSURL *url = [NSURL URLWithString:@"http://e.tju.edu.cn"];
     [[UIApplication sharedApplication] openURL:url];
 }
@@ -350,7 +328,7 @@
     [self compareWithPreviousResult];
     
     chart = [[YTrendChartView alloc]init];
-    [chart setFrame:CGRectMake(20, gpaHeaderViewHeight+20, 280, 130)];
+    [chart setFrame:CGRectMake(0, gpaHeaderViewHeight+20, self.view.frame.size.width, 130)];
     [chart setBackgroundColor:[UIColor whiteColor]];
     //[self.view addSubview:chart];
     chart.delegate = self;

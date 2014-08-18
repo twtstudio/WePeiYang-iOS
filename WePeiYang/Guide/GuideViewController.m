@@ -45,46 +45,21 @@
     [guideView setShowsHorizontalScrollIndicator:NO];
     [guideView setDelegate:self];
     
-    UIImageView *gImg1;
-    NSString *imagePath;
-    if (DEVICE_IS_IPHONE5)
-    {
-        imagePath = [[NSBundle mainBundle]pathForResource:@"g1-568h@2x" ofType:@"jpg"];
-    }
-    else
-    {
-        imagePath = [[NSBundle mainBundle]pathForResource:@"g1@2x" ofType:@"jpg"];
-    }
-    gImg1 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
+    NSString *img1Name = DEVICE_IS_IPHONE5 ? @"g1-568h@2x" : @"g1@2x";
+    NSString *imagePath = [[NSBundle mainBundle]pathForResource:img1Name ofType:@"jpg"];
+    UIImageView *gImg1 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
     [gImg1 setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg1];
     
-    
-    UIImageView *gImg2;
-    NSString *imagePath2;
-    if (DEVICE_IS_IPHONE5)
-    {
-        imagePath2 = [[NSBundle mainBundle]pathForResource:@"g2-568h@2x" ofType:@"jpg"];
-    }
-    else
-    {
-        imagePath2 = [[NSBundle mainBundle]pathForResource:@"g2@2x" ofType:@"jpg"];
-    }
-    gImg2 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath2]];
+    NSString *img2Name = DEVICE_IS_IPHONE5 ? @"g2-568h@2x" : @"g2@2x";
+    NSString *imagePath2 = [[NSBundle mainBundle]pathForResource:img2Name ofType:@"jpg"];
+    UIImageView *gImg2 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath2]];
     [gImg2 setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg2];
     
-    UIImageView *gImg3;
-    NSString *imagePath3;
-    if (DEVICE_IS_IPHONE5)
-    {
-        imagePath3 = [[NSBundle mainBundle]pathForResource:@"g3-568h@2x" ofType:@"jpg"];
-    }
-    else
-    {
-        imagePath3 = [[NSBundle mainBundle]pathForResource:@"g3@2x" ofType:@"jpg"];
-    }
-    gImg3 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath3]];
+    NSString *img3Name = DEVICE_IS_IPHONE5 ? @"g3-568h@2x" : @"g3@2x";
+    NSString *imagePath3 = [[NSBundle mainBundle]pathForResource:img3Name ofType:@"jpg"];
+    UIImageView *gImg3 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath3]];
     [gImg3 setFrame:CGRectMake(2 * self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg3];
     

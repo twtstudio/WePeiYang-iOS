@@ -62,24 +62,6 @@
     [self setBackgroundImage:[self buttonImageFromColor:[UIColor colorWithRed:210/255.0 green:48/255.0 blue:51/255.0 alpha:1]] forState:UIControlStateHighlighted];
 }
 
-- (void)addAwesomeIcon:(FAIcon)icon beforeTitle:(BOOL)before
-{
-    NSString *iconString = [NSString stringFromAwesomeIcon:icon];
-    self.titleLabel.font = [UIFont fontWithName:@"FontAwesome"
-                                           size:self.titleLabel.font.pointSize];
-    
-    NSString *title = [NSString stringWithFormat:@"%@", iconString];
-    
-    if(self.titleLabel.text) {
-        if(before)
-            title = [title stringByAppendingFormat:@" %@", self.titleLabel.text];
-        else
-            title = [NSString stringWithFormat:@"%@  %@", self.titleLabel.text, iconString];
-    }
-    
-    [self setTitle:title forState:UIControlStateNormal];
-}
-
 - (UIImage *) buttonImageFromColor:(UIColor *)color {
     CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     UIGraphicsBeginImageContext(rect.size);
