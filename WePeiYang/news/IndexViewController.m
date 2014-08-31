@@ -10,7 +10,7 @@
 #import "data.h"
 #import "DetailViewController.h"
 #import "CollectionViewController.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "CSNotificationView.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -171,7 +171,21 @@
      */
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=%@",(long)currentPage,type];
+    //NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=%@",(long)currentPage,type];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"ctype":@"news",
+                                 @"page":[NSString stringWithFormat:@"%d", currentPage],
+                                 @"ntype":type,
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processIndexData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻列表失败~"];
+    }];
+    
+    /*
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
         {
@@ -182,7 +196,7 @@
             else
             {
                 NSDictionary *contentDic = [dic objectForKey:@"content"];
-                /*
+                //-----------------------已注释过
                 NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"newsType%@CacheData",type]];
                 NSFileManager *fileManager = [NSFileManager defaultManager];
                 if ([fileManager fileExistsAtPath:plistPath])
@@ -193,7 +207,7 @@
                 {
                     [contentDic writeToFile:plistPath atomically:YES];
                 }
-                 */
+                //-----------------------已注释过
                 
                 [self processIndexData:contentDic];
             }
@@ -202,16 +216,16 @@
         {
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
             [self.refreshControl endRefreshing];
-            /*
+            //-----------------------已注释过
             NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"newsType%@CacheData",type]];
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if ([fileManager fileExistsAtPath:plistPath])
             {
                 [self processIndexData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
             }
-             */
+            //-----------------------已注释过
         }
-    }];
+    }];*/
 }
 
 - (void)processIndexData:(NSDictionary *)newsDic
@@ -274,6 +288,7 @@
 {
     currentPage = currentPage + 1;
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=%@",(long)currentPage,type];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -289,6 +304,20 @@
             }
         }
     }];
+     */
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"ctype":@"news",
+                                 @"page":[NSString stringWithFormat:@"%d", currentPage],
+                                 @"ntype":type,
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processIndexData:responseObject];
+        [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻列表失败~"];
+    }];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

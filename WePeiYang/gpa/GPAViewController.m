@@ -12,7 +12,8 @@
 #import "GPACalculatorViewController.h"
 #import "GPATableCell.h"
 #import <ShareSDK/ShareSDK.h>
-#import "wpyWebConnection.h"
+//#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "CSNotificationView.h"
@@ -140,7 +141,31 @@
     else
     {
         NSString *url = @"http://push-mobile.twtapps.net/gpa/get";
-        NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",[data shareInstance].userId,[data shareInstance].userToken];
+        //NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",[data shareInstance].userId,[data shareInstance].userToken];
+        NSDictionary *parameters = @{@"id":[data shareInstance].userId,
+                                     @"token":[data shareInstance].userToken,
+                                     @"platform":@"ios",
+                                     @"version":[data shareInstance].appVersion};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            //Successful
+            loginBtn.userInteractionEnabled = YES;
+            [moreBtn setHidden:NO];
+            [chart setHidden:NO];
+            [tableView setHidden:NO];
+            [loginBtn setHidden:YES];
+            [noLoginLabel setHidden:YES];
+            [noLoginImg setHidden:YES];
+            [data shareInstance].gpaLoginStatus = @"";
+            backBtn.tintColor = [UIColor whiteColor];
+            
+            [self processGpaData:responseObject];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSInteger statusCode = operation.response.statusCode;
+            [self processErrorWithStatusCode:statusCode];
+        }];
+        
+        /*
         [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
             if (dic!=nil) [self processWithPostData:dic];
             else
@@ -156,6 +181,7 @@
                 }
             }
         }];
+         */
     }
 }
 
@@ -168,6 +194,49 @@
     }];
 }
 
+- (void)processErrorWithStatusCode:(NSInteger)statusCode {
+    backBtn.tintColor = gpaTintColor;
+    switch (statusCode) {
+        case 401:
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"验证出错…请重新登录~"];
+            [moreBtn setHidden:YES];
+            [chart setHidden:YES];
+            [tableView setHidden:YES];
+            [noLoginLabel setHidden:NO];
+            [loginBtn setHidden:NO];
+            [noLoginImg setHidden:NO];
+            [noLoginLabel setText:@"您尚未登录天外天账号"];
+            [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
+            [loginBtn removeTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
+            [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+
+            break;
+            
+        case 403:
+            [moreBtn setHidden:YES];
+            [chart setHidden:YES];
+            [tableView setHidden:YES];
+            [noLoginLabel setHidden:NO];
+            [loginBtn setHidden:NO];
+            [noLoginImg setHidden:NO];
+            [noLoginLabel setText:@"您尚未绑定办公网账号"];
+            loginBtn.userInteractionEnabled = YES;
+            [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
+            [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+            [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
+            
+            break;
+            
+        case 500:
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+/*
 - (void)processWithPostData:(NSDictionary *)dic
 {
     if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
@@ -230,6 +299,7 @@
         }
     }
 }
+ */
 
 - (void)bindTju {
     GPALoginViewController *gpaLogin = [[GPALoginViewController alloc]initWithNibName:nil bundle:nil];
@@ -344,9 +414,31 @@
 
 - (void)oneKeyToEvaluate
 {
-    NSString *userId = [data shareInstance].userId;
-    NSString *userToken = [data shareInstance].userToken;
     NSString *url = @"http://push-mobile.twtapps.net/gpa/auto";
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    NSDictionary *parameters = @{@"id":[data shareInstance].userId,
+                                 @"token":[data shareInstance].userToken,
+                                 @"platform":@"ios",
+                                 @"version":appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"一键评价成功！"];
+        [self checkLoginStatus];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSInteger statusCode = operation.response.statusCode;
+        switch (statusCode) {
+            case 403:
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"没有可以评价的科目"];
+                break;
+                
+            default:
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"无法一键评价T^T"];
+                break;
+        }
+    }];
+    
+    /*
     NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",userId,userToken];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -383,33 +475,7 @@
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
         }
     }];
-}
-
-- (void)processEvaluateData:(NSDictionary *)evaDic
-{
-    NSString *info;
-    if (![[evaDic objectForKey:@"statusCode"] isEqualToString:@"200"])
-    {
-        /*
-        info = [evaDic objectForKey:@"info"];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"操作失败" message:info delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-         */
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-    }
-    else
-    {
-        info = [evaDic objectForKey:@"info"];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"操作成功" message:@"如仍有未评价课程，请选择“手动评价”至办公网进行课程评价~" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        
-        gpaData = [[NSMutableArray alloc]initWithObjects: nil];
-        
-        [self reloadArraysInTable];
-        [self checkLoginStatus];
-        [tableView reloadData];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }
+     */
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

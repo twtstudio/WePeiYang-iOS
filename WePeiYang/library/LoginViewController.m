@@ -9,7 +9,8 @@
 #import "LoginViewController.h"
 #import "data.h"
 #import "UIButton+Bootstrap.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
+#import "CSNotificationView.h"
 
 @interface LoginViewController ()
 
@@ -82,14 +83,43 @@
         [waitingAlert show];
         //NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/lib_account.php?user_id=%@&password=%@&platform=ios&version=%@",username,password,[data shareInstance].appVersion];
         NSString *url = @"http://push-mobile.twtapps.net/user/bindLib";
+        NSDictionary *parameters = @{@"id":[data shareInstance].userId,
+                                     @"token":[data shareInstance].userToken,
+                                     @"libname":username,
+                                     @"libpasswd":password,
+                                     @"platform":@"ios",
+                                     @"version":[data shareInstance].appVersion};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
+            successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定图书馆账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [successAlert show];
+            [data shareInstance].libLogin = @"Changed";
+            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindLib"];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSInteger statusCode = operation.response.statusCode;
+            [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
+            if (statusCode == 401) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"绑定图书馆帐号失败T^T"];
+            }
+        }];
+        
+        /*
         NSString *body = [NSString stringWithFormat:@"id=%@&token=%@&libuname=%@&libpasswd=%@",[data shareInstance].userId,[data shareInstance].userToken,username,password];
         [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
             if (dic!=nil) [self dealWithReceivedData:dic];
             [loginBtn setUserInteractionEnabled:YES];
-        }];
+        }];*/
     }
+    [loginBtn setUserInteractionEnabled:YES];
 }
 
+/*
 - (void)dealWithReceivedData:(NSDictionary *)loginDic
 {
     NSString *statusCode = [loginDic objectForKey:@"statusCode"];
@@ -98,14 +128,12 @@
         if ([statusCode isEqualToString:@"401"])
         {
             [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
-            //NSString *msg = [[loginDic objectForKey:@"content"] objectForKey:@"error"];
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
     }
     else
     {
-        //NSString *msg = [loginDic objectForKey:@"content"];
         [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
         successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定图书馆账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [successAlert show];
@@ -115,6 +143,7 @@
         [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
     }
 }
+ */
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

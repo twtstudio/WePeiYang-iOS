@@ -7,7 +7,7 @@
 //
 
 #import "HiringDetailViewController.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import <ShareSDK/ShareSDK.h>
 #import "data.h"
 #import "CSNotificationView.h"
@@ -38,6 +38,18 @@
     [self.navigationItem setRightBarButtonItem:share];
     
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
+    NSDictionary *parameters = @{@"ctype":@"fair",
+                                 @"index":[data shareInstance].hiringId,
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processContentDic:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error]];
+    }];
+    
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=fair&index=%@",[data shareInstance].hiringId];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -57,6 +69,7 @@
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
         }
     }];
+    */
 }
 
 - (void)processContentDic:(NSDictionary *)dic

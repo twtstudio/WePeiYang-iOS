@@ -8,7 +8,7 @@
 
 #import "HiringViewController.h"
 #import "HringTableCell.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "data.h"
 #import "CSNotificationView.h"
 #import "HiringDetailViewController.h"
@@ -78,6 +78,19 @@
     dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSDictionary *parameters = @{@"ctype":@"fair",
+                                 @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processContentDic:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error]];
+    }];
+    [self.refreshControl endRefreshing];
+    
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic != nil)
@@ -87,9 +100,24 @@
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
             [self.refreshControl endRefreshing];
         }
-    }];
+    }];*/
+    
 }
 
+- (void)processContentDic:(NSDictionary *)dic {
+    for (NSDictionary *tmp in dic)
+    {
+        [hiringData addObject:tmp];
+    }
+    
+    dataInTable = hiringData;
+    [dataInTable addObject:@"点击加载更多..."];
+    
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
+}
+
+/*
 - (void)processContentDic:(NSDictionary *)dic
 {
     if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
@@ -110,15 +138,21 @@
         [self.refreshControl endRefreshing];
         [self.tableView reloadData];
     }
-}
+*/
 
 - (void)nextPage
 {
     currentPage ++;
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        [self processContentDic:dic];
+    //NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
+    NSDictionary *parameters = @{@"ctype":@"fair", @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processContentDic:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error]];
     }];
 }
 
@@ -139,14 +173,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if (row!=[dataInTable count]-1)
-    {
-        return 112;
-    }
-    else
-    {
-        return 64;
-    }
+    return (row!=[dataInTable count]-1) ? 112 : 64;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -9,7 +9,7 @@
 #import "JobDetailViewController.h"
 #import "data.h"
 #import <ShareSDK/ShareSDK.h>
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "CSNotificationView.h"
 
@@ -51,6 +51,17 @@
     [self.navigationItem setRightBarButtonItem:share];
     
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
+    NSDictionary *body = @{@"ctype":@"job",
+                           @"index":[data shareInstance].jobId,
+                           @"platform":@"ios",
+                           @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:body success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self dealWithReceivedData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取详情失败T^T"];
+    }];
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=job&index=%@",[data shareInstance].jobId];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -66,6 +77,7 @@
             }
         }
     }];
+     */
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)contentDic

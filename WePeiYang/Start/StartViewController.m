@@ -18,7 +18,7 @@
 #import "DMScaleTransition.h"
 #import "data.h"
 #import "wpyDeviceStatus.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "twtLoginViewController.h"
 
 #import "indexTabBarController.h"
@@ -65,8 +65,6 @@
     
     self.title = @"微北洋";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard_bg.png"]];
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"studysearchbg.png"]];
-    //self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = YES;
     
     //[self sendInstallData];
@@ -305,13 +303,24 @@
         [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss"];
         date = [formatter stringFromDate:[NSDate date]];
         
-        NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/install_record.php?time=%@&version=%@&brand=Apple&model=%@&system=%@&size=%@&id=%@",date,[data shareInstance].appVersion,deviceStatus,deviceVersion,deviceSize,deviceUdid];
+        //NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/install_record.php?time=%@&version=%@&brand=Apple&model=%@&system=%@&size=%@&id=%@",date,[data shareInstance].appVersion,deviceStatus,deviceVersion,deviceSize,deviceUdid];
         
-        [wpyWebConnection postDataToURLStr:urlStr withFinishCallbackBlock:^(NSDictionary *dic){
+        NSString *url = @"http://service.twtstudio.com/phone/android/install_record.php";
+        NSDictionary *parameters = @{@"time":   date,
+                                     @"version":[data shareInstance].appVersion,
+                                     @"brand":  @"Apple",
+                                     @"model":  deviceStatus,
+                                     @"system": deviceVersion,
+                                     @"size":   deviceSize,
+                                     @"id":     [data shareInstance].deviceToken};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSFileManager *fileManager = [NSFileManager defaultManager];
             NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"InstallDataSent"];
             [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
             NSLog(@"Install Data Sent Success.");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Install Data Sent Failed");
         }];
     }];
 }

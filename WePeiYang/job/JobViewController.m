@@ -12,7 +12,7 @@
 #import "JobDetailViewController.h"
 #import "JobFavViewController.h"
 #import "CSNotificationView.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -110,6 +110,19 @@
     currentPage = 0;
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSDictionary *parameters = @{@"ctype":@"job",
+                                 @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self dealWithReceivedData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取列表失败T^T"];
+    }];
+    [self.refreshControl endRefreshing];
+    
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=job&page=%d",currentPage];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -130,6 +143,7 @@
             [self.refreshControl endRefreshing];
         }
     }];
+     */
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)jobsDic
@@ -138,23 +152,9 @@
     {
         for (NSDictionary *temp in jobsDic)
         {
-            //[jobTitles addObject:[temp objectForKey:@"title"]];
-            //[jobCorporations addObject:[temp objectForKey:@"corporation"]];
-            //[jobDates addObject:[temp objectForKey:@"date"]];
-            //[jobIds addObject:[temp objectForKey:@"id"]];
             [jobData addObject:temp];
         }
     }
-    
-    //[jobTitles addObject:@"点击加载更多..."];
-    //[jobCorporations addObject:@""];
-    
-    //[jobDates addObject:@""];
-    //[jobIds addObject:@""];
-    
-    //titleInTable = jobTitles;
-    //corpInTable = jobCorporations;
-    //dateInTable = jobDates;
     
     dataInTable = jobData;
     [dataInTable addObject:@"点击加载更多..."];
@@ -192,9 +192,6 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    //cell.titleLabel.text = [titleInTable objectAtIndex:row];
-    //cell.corporationLabel.text = [corpInTable objectAtIndex:row];
-    //cell.dateLabel.text = [dateInTable objectAtIndex:row];
     if (row == [dataInTable count]-1)
     {
         cell.titleLabel.text = [dataInTable objectAtIndex:row];
@@ -219,14 +216,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if (row == [dataInTable count]-1)
-    {
-        return 64;
-    }
-    else
-    {
-        return 90;
-    }
+    return (row == [dataInTable count]-1) ? 64 : 90;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,10 +225,6 @@
     if (row == [dataInTable count] - 1)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        //[jobTitles removeObject:[jobTitles lastObject]];
-        //[jobCorporations removeObject:[jobCorporations lastObject]];
-        //[jobDates removeObject:[jobDates lastObject]];
-        //[jobIds removeObject:[jobIds lastObject]];
         [dataInTable removeObject:[dataInTable lastObject]];
         [self nextPage:self];
     }
@@ -261,6 +247,18 @@
     currentPage = currentPage + 1;
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSDictionary *parameters = @{@"ctype":@"job",
+                                 @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self dealWithReceivedData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取列表失败T^T"];
+    }];
+    
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=job&page=%d",currentPage];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -276,6 +274,7 @@
             }
         }
     }];
+     */
 }
 
 - (void)pushFav

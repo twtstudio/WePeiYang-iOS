@@ -9,7 +9,7 @@
 #import "GPALoginViewController.h"
 #import "data.h"
 #import "UIButton+Bootstrap.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "CSNotificationView.h"
 
 @interface GPALoginViewController ()
@@ -79,15 +79,32 @@
     }
     else
     {
-        /*
-        NSString *urlStr = [NSString stringWithFormat:@"http://service.twtstudio.com/phone/android/gpa.php?username=%@&pwd=%@&platform=ios&version=%@",username,password,[data shareInstance].appVersion];
-        [wpyWebConnection getDataFromURLStr:urlStr withFinishCallbackBlock:^(NSDictionary *dic){
-            if (dic!=nil) [self processGpaData:dic];
-            else [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
-        }];
-         */
-        
         NSString *url = @"http://push-mobile.twtapps.net/user/bindTju";
+        NSDictionary *parameters = @{@"id":[data shareInstance].userId,
+                                     @"token":[data shareInstance].userToken,
+                                     @"tjuuname":username,
+                                     @"tjupasswd":password,
+                                     @"platform":@"ios",
+                                     @"version":[data shareInstance].appVersion};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [successAlert show];
+            [data shareInstance].gpaLoginStatus = @"Changed";
+            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindTju"];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSInteger statusCode = operation.response.statusCode;
+            if (statusCode == 401) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"绑定办公网帐号失败T^T"];
+            }
+        }];
+        
+        /*
         NSString *body = [NSString stringWithFormat:@"id=%@&token=%@&tjuuname=%@&tjupasswd=%@",[data shareInstance].userId,[data shareInstance].userToken,username,password];
         [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
             if (dic!=nil)
@@ -125,58 +142,10 @@
             }
             [loginBtn setUserInteractionEnabled:YES];
         }];
-        
+        */
     }
+    [loginBtn setUserInteractionEnabled:YES];
 }
-
-/*
-- (void)processGpaData:(NSDictionary *)gpaDic
-{
-    //NSInteger termsCount = 0;
-    //NSDictionary *lastDic;
-    if (gpaDic != nil)
-    {
- 
-        for (NSDictionary *temp in gpaDic)
-        {
-            termsCount ++;
-            lastDic = temp;
-        }
-        if ([lastDic objectForKey:@"every"] == nil)
-        {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Sorry" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        }
-        else
-        {
-            [self writeLoginStatusToPlist];
-        }
- 
-        //[self writeLoginStatusToPlist];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Sorry" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }
-}
-
-- (void)writeLoginStatusToPlist
-{
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpa"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
-    NSMutableDictionary *gpaLogin = [[NSMutableDictionary alloc]init];
-    [gpaLogin setObject:username forKey:@"username"];
-    [gpaLogin setObject:password forKey:@"password"];
-    [gpaLogin writeToFile:plistPath atomically:YES];
-    successAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"登陆成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [successAlert show];
-    [data shareInstance].gpaLoginStatus = @"Login Successed";
-}
- */
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

@@ -9,7 +9,7 @@
 #import "FeedbackViewController.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "wpyDeviceStatus.h"
 #import "UIButton+Bootstrap.h"
 #import "CSNotificationView.h"
@@ -106,6 +106,21 @@
      */
     
     NSString *url = @"http://push-mobile.twtapps.net/suggest/wepeiyang";
+    NSDictionary *parameters = @{@"email":username,
+                                 @"content":feedback,
+                                 @"info":[NSString stringWithFormat:@"%@_%@",deviceStatus,deviceVersion],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        thxAlert = [[UIAlertView alloc]initWithTitle:@"Thanks" message:@"感谢您的反馈！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [thxAlert show];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"发送反馈失败，请稍后再试"];
+    }];
+    
+    /*
     NSString *body = [[NSString alloc]initWithFormat:@"email=%@&content=%@_deviceToken=%@&info=%@_%@",username,feedback,[data shareInstance].deviceToken,deviceStatus,deviceVersion];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -122,6 +137,7 @@
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
         }
     }];
+     */
 }
 
 - (void)didReceiveMemoryWarning

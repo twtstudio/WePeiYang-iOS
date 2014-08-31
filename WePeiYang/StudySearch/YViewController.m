@@ -10,7 +10,7 @@
 #import "YStudySearchConst.h"
 #import "UIButton+Bootstrap.h"
 #import "data.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "CSNotificationView.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -181,13 +181,26 @@
         
         //NSString *urlStr = [NSString stringWithFormat:@"http://service.twtstudio.com/phone/android/studyroom.php?day=%@&class=%@&building=%@&platform=ios&version=%@",[YStudySearchConst shareInstance].daySelected, timeConvertResult, buildingConvertResult,[data shareInstance].appVersion];
         NSString *url = @"http://push-mobile.twtapps.net/studyrooms";
-        NSString *body = [NSString stringWithFormat:@"day=%@&class=%@&building=%@",[YStudySearchConst shareInstance].daySelected,timeConvertResult,buildingConvertResult];
+        //NSString *body = [NSString stringWithFormat:@"day=%@&class=%@&building=%@",[YStudySearchConst shareInstance].daySelected,timeConvertResult,buildingConvertResult];
         
         //用这种方法调用劳资封装好的东西
-        [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *resultDic){
+        //[wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *resultDic){
             
             //封装好的以后 直接在这个block里写对数据的处理操作
-            [self processReceivedData:resultDic];
+            //[self processReceivedData:resultDic];
+        //}];
+        
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *parameters = @{@"day":        [YStudySearchConst shareInstance].daySelected,
+                                     @"class":      timeConvertResult,
+                                     @"building":   buildingConvertResult,
+                                     @"platform":   @"ios",
+                                     @"version":    [data shareInstance].appVersion};
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self processReceivedContentData:responseObject];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取自习室失败T^T"];
         }];
         
         /*
@@ -220,6 +233,35 @@
     }
 }
 
+- (void)processReceivedContentData:(NSDictionary *)convertData {
+    if ([convertData count] > 0)
+    {
+        for (NSDictionary *temp in convertData)
+        {
+            [self.searchResultsArray addObject:[temp objectForKey:@"room"]];
+        }
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.searchResultsTableView reloadData];
+            //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"这个时间段里这儿没有自习室了~" delegate:nil cancelButtonTitle:@"好吧" otherButtonTitles:nil];
+            //[alert show];
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"这个时间段里这儿没有自习室了~"];
+        });
+    }
+    
+    if ([self.searchResultsArray count] > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.searchResultsTableView reloadData];
+            [self.searchResultsTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            [self.searchResultsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+        });
+    }
+}
+
+/*
 - (void)processReceivedData:(NSDictionary *)resultDic
 {
     if (resultDic != nil)
@@ -263,6 +305,7 @@
         [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
     }
 }
+*/
 
 /*
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data

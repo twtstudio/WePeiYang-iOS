@@ -10,7 +10,7 @@
 #import "data.h"
 #import "Social/Social.h"
 #import <ShareSDK/ShareSDK.h>
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "CSNotificationView.h"
 
@@ -50,14 +50,18 @@
     UIBarButtonItem *openInSafari = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionActionSheet:)];
     self.navigationItem.rightBarButtonItem = openInSafari;
     
-    /*
-    NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/get_news_detail.php?id=%@&platform=ios&version=%@",detailId,[data shareInstance].appVersion];
-    [wpyWebConnection getDataFromURLStr:urlStr withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil) [self processDetailData:dic];
-    }];
-     */
-    
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"ctype":@"news",
+                                 @"index":detailId,
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processDetailData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻失败T^T"];
+    }];
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=news&index=%@",detailId];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -72,6 +76,7 @@
             }
         }
     }];
+     */
 }
 
 - (void)processDetailData:(NSDictionary *)contentDic

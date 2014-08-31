@@ -9,9 +9,10 @@
 #import "LAFound_QueryListViewController.h"
 #import "LAFound_QueryDetailViewController.h"
 #import "LAFound_QueryListTableViewCell.h"
-#import "wpyWebConnection.h"
 #import "CSNotificationView.h"
 #import "LAFound_AnnounceViewController.h"
+
+#import "LAFound_DataManager.h"
 
 @interface LAFound_QueryListViewController ()
 
@@ -185,30 +186,22 @@
 
 #pragma mark 取得数据
 
+
 - (void)loadData
 {
-    //_waitingAlert = [[UIAlertView alloc] initWithTitle:@"正在载入" message:@"请耐心等待" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-    //[_waitingAlert show];
-    NSString *postBody = [NSString stringWithFormat:@"type=%d&page=%d", _type, _currentPage];
-    [wpyWebConnection getDataFromURLStr:@"http://push-mobile.twtapps.net/lostfound/getList" andBody:postBody withFinishCallbackBlock:^(NSDictionary *dic) {
-        if (dic!=nil) [self processWithData:dic];
-        //[_waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            [self.refreshControl endRefreshing];
-        }
+
+    
+    [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
+        [self processWithData:responseObject];
+    } failure:^(NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
     }];
+    
+    
 }
 
-- (void)processWithData:(NSDictionary *)dic{
-    if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-    {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"出错啦~请稍后重试…"];
-    }
-    else
-    {
-        NSArray *newDataArray = [dic objectForKey:@"content"];
+- (void)processWithData:(NSArray *)newDataArray{
+    if (newDataArray) {
         if (_type == 0) {
             if ([newDataArray count] == 0 && _pageLost > 0) {
                 _pageLost--;
@@ -227,26 +220,35 @@
             }
         }
         [self.tableView reloadData];
+    } else {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"出错啦~请稍后重试…"];
     }
 }
 
-- (void)processWithDataPassRefresh:(NSDictionary *)dic
+
+- (void)processWithDataPassRefresh:(NSArray *)newDataArray
 {
-    NSArray *newDataArray = [dic objectForKey:@"content"];
-    if (_type == 0) {
-        _pageLost = _currentPage;
-        [_currentDataArray removeAllObjects];
-        [_currentDataArray addObjectsFromArray:newDataArray];
-        _dataArrayLost = _currentDataArray;
-    } else if (_type == 1){
-        _pageLost = _currentPage;
-        [_currentDataArray removeAllObjects];
-        [_currentDataArray addObjectsFromArray:newDataArray];
-        _dataArrayFound = _currentDataArray;
+    if (newDataArray) {
+        if (_type == 0) {
+            _pageLost = _currentPage;
+            [_currentDataArray removeAllObjects];
+            [_currentDataArray addObjectsFromArray:newDataArray];
+            _dataArrayLost = _currentDataArray;
+        } else if (_type == 1){
+            _pageLost = _currentPage;
+            [_currentDataArray removeAllObjects];
+            [_currentDataArray addObjectsFromArray:newDataArray];
+            _dataArrayFound = _currentDataArray;
+        }
+        [self.tableView reloadData];
+    } else {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"出错啦~请稍后重试…"];
     }
-    [self.tableView reloadData];
-
+    
+    
 }
+
+
 
 #pragma mark segmentedcontrol触发的事件
 
@@ -274,17 +276,19 @@
 }
 
 #pragma mark 下拉刷新
+
 - (void)refreshTableview
 {
-    _currentPage = 0;
-    NSString *postBody = [NSString stringWithFormat:@"type=%d&page=%d", _type, _currentPage];
-    [wpyWebConnection getDataFromURLStr:@"http://push-mobile.twtapps.net/lostfound/getList" andBody:postBody withFinishCallbackBlock:^(NSDictionary *dic) {
-        if (dic!=nil) [self processWithDataPassRefresh:dic];
-        else [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
-    }];
     
+    [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
+        [self processWithDataPassRefresh:responseObject];
+    } failure:^(NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
+    }];
     [self.refreshControl endRefreshing];
+    
 }
+
 
 - (void)backToHome
 {

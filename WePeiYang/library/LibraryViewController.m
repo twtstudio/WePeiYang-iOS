@@ -16,8 +16,7 @@
 #import "UIButton+Bootstrap.h"
 #import "DMSlideTransition.h"
 #import "CSNotificationView.h"
-#import "wpyWebConnection.h"
-#import <QuartzCore/QuartzCore.h>
+#import "AFNetworking.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -176,15 +175,22 @@
         waitingAlert = [[UIAlertView alloc]initWithTitle:@"请稍候" message:@"正在加载..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [waitingAlert show];
         
-        /*
-        NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/lib.php?type=%d&query=%@&page=%d&platform=ios&version=%@",type,searchStr,currentPage,[data shareInstance].appVersion];
-        [wpyWebConnection getDataFromURLStr:urlStr withFinishCallbackBlock:^(NSDictionary *searchDic){
-            if (searchDic != nil) [self dealWithReceivedSearchData:searchDic];
-            else [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
-        }];
-         */
-        
         NSString *url = @"http://push-mobile.twtapps.net/lib/search";
+        NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
+                                     @"query":searchStr,
+                                     @"type":[NSString stringWithFormat:@"%d",type],
+                                     @"platform":@"ios",
+                                     @"version":[data shareInstance].appVersion};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *resultDic = [responseObject objectForKey:@"books"];
+            totalBooks = [[responseObject objectForKey:@"total"]integerValue];
+            [self dealWithReceivedSearchData:resultDic];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取书目失败T^T"];
+        }];
+        
+        /*
         NSString *body = [NSString stringWithFormat:@"page=%d&query=%@&type=%ld",currentPage,searchStr,(long)type];
         [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
             [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
@@ -207,6 +213,7 @@
                 [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
             }
         }];
+         */
     }
 }
 
@@ -332,6 +339,7 @@
     [waitingAlert show];
     
     NSString *url = @"http://push-mobile.twtapps.net/lib/search";
+    /*
     NSString *body = [NSString stringWithFormat:@"page=%d&query=%@&type=%ld",currentPage,searchStr,(long)type];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -347,6 +355,21 @@
             }
         }
     }];
+     */
+    NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"query":searchStr,
+                                 @"type":[NSString stringWithFormat:@"%d",type],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *resultDic = [responseObject objectForKey:@"books"];
+        totalBooks = [[responseObject objectForKey:@"total"]integerValue];
+        [self dealWithReceivedNextData:resultDic];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取书目失败T^T"];
+    }];
+
 }
 
 - (void)dealWithReceivedNextData:(NSDictionary *)resultDic

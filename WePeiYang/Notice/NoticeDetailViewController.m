@@ -9,7 +9,7 @@
 #import "NoticeDetailViewController.h"
 #import "data.h"
 #import <ShareSDK/ShareSDK.h>
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "CSNotificationView.h"
 
@@ -47,6 +47,15 @@
     [self.navigationItem setRightBarButtonItem:share];
     
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
+    NSDictionary *parameters = @{@"ctype":@"news",@"index":noticeId};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self dealWithReceivedData:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"无法获取公告T^T"];
+    }];
+    
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=news&index=%@",noticeId];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -60,7 +69,7 @@
                 [self dealWithReceivedData:[dic objectForKey:@"content"]];
             }
         }
-    }];
+    }];*/
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)contentDic

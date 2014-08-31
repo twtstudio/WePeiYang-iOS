@@ -7,8 +7,8 @@
 //
 
 #import "LAFound_AnnounceViewController.h"
-#import "wpyWebConnection.h"
 #import "CSNotificationView.h"
+#import "LAFound_DataManager.h"
 
 
 @interface LAFound_AnnounceViewController ()
@@ -126,27 +126,32 @@
     }
 }
 
+
 - (void)announceInfo
 {
-    NSString *postBody = [self packPostBody];
-    [wpyWebConnection getDataFromURLStr:@"http://push-mobile.twtapps.net/lostfound/new" andBody:postBody withFinishCallbackBlock:^(NSDictionary *dic) {
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"statusCode"]isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"消息发布成功！"];
-                [self.titleTextField setText:@""];
-                [self.placeTextField setText:@""];
-                [self.timeTextField setText:@""];
-                [self.nameTextField setText:@""];
-                [self.phoneTextField setText:@""];
-                [self.contentTexeView setText:@""];
-            } else {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-            }
+
+    
+    [LAFound_DataManager announceItemInfoWithType:_type title:self.titleTextField.text place:self.placeTextField.text time:self.timeTextField.text phone:self.phoneTextField.text name:self.nameTextField.text content:self.contentTexeView.text success:^(id responseObject) {
+        if ([responseObject isEqualToString:@"发布成功"]) {
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"消息发布成功！"];
+            [self.titleTextField setText:@""];
+            [self.placeTextField setText:@""];
+            [self.timeTextField setText:@""];
+            [self.nameTextField setText:@""];
+            [self.phoneTextField setText:@""];
+            [self.contentTexeView setText:@""];
+
+            
+        } else  if([responseObject isEqualToString:@"发布失败"]){
+            [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"消息发布失败！"];
         }
+    } failure:^(NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
     }];
+    
+    
 }
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -165,13 +170,11 @@
     NSInteger index = seg.selectedSegmentIndex;
     if (index == 0) {
         _type = 0;
-        //self.textViewPlaceHolderLabel.text = @"例如:昨天我在学三吃饭的时候,将随身携带的雨伞放在了座位旁边,临走时我忘了带上,座位在.....(以下省略)";
         self.titleTextField.placeholder = @"标题（丢失物品、特点）";
         self.placeTextField.placeholder = @"丢失地点";
         self.timeTextField.placeholder = @"丢失时间";
     }else if(index == 1){
         _type = 1;
-        //self.textViewPlaceHolderLabel.text = @"例如:昨天我在学三吃饭的时候,拾取了一把蓝色雨伞,就放在了食堂的座位上,应该是有人临走时忘了带,座位在.....(以下省略)";
         self.titleTextField.placeholder = @"标题（拾取物品、特点）";
         self.placeTextField.placeholder = @"拾取地点";
         self.timeTextField.placeholder = @"拾取时间";
@@ -224,14 +227,6 @@
     return YES;
 }
 
-
-#pragma mark 网络
-
-- (NSString *)packPostBody
-{
-    NSString *postBody = [NSString stringWithFormat:@"type=%d&title=%@&place=%@&time=%@&phone=%@&name=%@&content=%@", _type, self.titleTextField.text, self.placeTextField.text, self.timeTextField.text, self.phoneTextField.text, self.nameTextField.text, self.contentTexeView.text];
-    return postBody;
-}
 
 #pragma mark 手势触发
 

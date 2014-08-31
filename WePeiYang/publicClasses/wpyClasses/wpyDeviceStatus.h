@@ -17,5 +17,6 @@
 @property (strong) void (^finishCallbackBlock)(NSDictionary *);
 
 + (void)getDeviceStatusWithFinishCallbackBlock:(void(^)(NSDictionary *))block;
++ (NSString *)getAppVersion;
 
 @end

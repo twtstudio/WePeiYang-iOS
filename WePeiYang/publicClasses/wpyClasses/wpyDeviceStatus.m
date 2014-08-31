@@ -105,5 +105,11 @@
 
 }
 
++ (NSString *)getAppVersion {
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    return appVersion;
+}
+
 
 @end

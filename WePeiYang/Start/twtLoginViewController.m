@@ -8,7 +8,7 @@
 
 #import "twtLoginViewController.h"
 #import "GPAViewController.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "data.h"
 #import "UIButton+Bootstrap.h"
 #import "CSNotificationView.h"
@@ -89,6 +89,24 @@
     else
     {
         NSString *url = @"http://push-mobile.twtapps.net/user/login";
+        NSDictionary *parameters = @{@"twtuname":uname,
+                                     @"twtpasswd":passwd,
+                                     @"platform":@"ios",
+                                     @"version":[data shareInstance].appVersion};
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self processLoginData:responseObject];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSInteger statusCode = operation.response.statusCode;
+            if (statusCode == 401) {
+                UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"出错" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [errorAlert show];
+            } else {
+                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前无法登录哦T^T"];
+            }
+        }];
+        
+        /*
         NSString *body = [NSString stringWithFormat:@"twtuname=%@&twtpasswd=%@",uname,passwd];
         [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
             if (dic!=nil) [self processReceivedData:dic];
@@ -98,9 +116,70 @@
                 [loginBtn setUserInteractionEnabled:YES];
             }
         }];
+         */
     }
+    [loginBtn setUserInteractionEnabled:YES];
 }
 
+- (void)processLoginData:(NSDictionary *)contentDic {
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:plistPath])
+    {
+        [fileManager removeItemAtPath:plistPath error:nil];
+    }
+    [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+    
+    NSString *twtId = [contentDic objectForKey:@"id"];
+    NSString *twtToken = [contentDic objectForKey:@"token"];
+    NSString *key = @"TWT224studio";
+    NSData *plainId = [twtId dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *secretId = [plainId AES256EncryptWithKey:key];
+    NSData *plainToken = [twtToken dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *secretToken = [plainToken AES256EncryptWithKey:key];
+    
+    NSMutableData *saveData = [[NSMutableData alloc]init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:saveData];
+    [archiver encodeObject:secretId forKey:@"id"];
+    [archiver encodeObject:secretToken forKey:@"token"];
+    [archiver finishEncoding];
+    
+    [saveData writeToFile:plistPath atomically:YES];
+    
+    [data shareInstance].userId = [contentDic objectForKey:@"id"];
+    [data shareInstance].userToken = [contentDic objectForKey:@"token"];
+    
+    NSString *tjuuname = [contentDic objectForKey:@"tjuuname"];
+    NSString *libuname = [contentDic objectForKey:@"libuname"];
+    if (![tjuuname isEqualToString:@""])
+    {
+        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindTju"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+    }
+    if (![libuname isEqualToString:@""])
+    {
+        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindLib"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+    }
+    
+    if (twtLoginType == twtLoginTypeGPA)
+    {
+        [data shareInstance].gpaLoginStatus = @"Changed";
+        successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [successAlert show];
+    }
+    else if (twtLoginType == twtLoginTypeLibrary)
+    {
+        [data shareInstance].libLogin = @"Changed";
+        successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！\n图书馆系统加载速度较慢\n请耐心等待哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [successAlert show];
+    }
+    [loginBtn setUserInteractionEnabled:YES];
+}
+
+/*
 - (void)processReceivedData:(NSDictionary *)loginDic
 {
     if ([[loginDic objectForKey:@"statusCode"]isKindOfClass:[NSString class]])
@@ -185,6 +264,7 @@
     }
     [loginBtn setUserInteractionEnabled:YES];
 }
+ */
 
 - (IBAction)cancelLogin:(id)sender
 {

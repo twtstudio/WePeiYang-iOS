@@ -9,7 +9,7 @@
 #import "NoticeViewController.h"
 #import "data.h"
 #import "NoticeDetailViewController.h"
-#import "wpyWebConnection.h"
+#import "AFNetworking.h"
 #import "CSNotificationView.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -86,6 +86,15 @@
     currentPage = 0;
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSDictionary *parameters = @{@"ctype":@"news",@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],@"ntype":@"2"};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self dealWithReceivedDictionary:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取公告失败T^T"];
+    }];
+    [self.refreshControl endRefreshing];
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=2",(long)currentPage];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -107,7 +116,7 @@
             [self.refreshControl endRefreshing];
         }
     }];
-
+     */
 }
 
 - (void)tableViewEndReloading
@@ -161,6 +170,15 @@
     currentPage = currentPage + 1;
 
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSDictionary *parameters = @{@"ctype":@"news",@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],@"ntype":@"2"};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self dealWithReceivedDictionary:responseObject];
+        [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error.localizedDescription]];
+    }];
+    /*
     NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=2",(long)currentPage];
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
         if (dic!=nil)
@@ -175,7 +193,7 @@
                 [self dealWithReceivedDictionary:contentDic];
             }
         }
-    }];
+    }];*/
 }
 
 - (void)dealWithReceivedDictionary:(NSDictionary *)noticeDic
