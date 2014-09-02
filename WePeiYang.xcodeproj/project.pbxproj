@@ -197,6 +197,9 @@
 		E9952B8819A72214001641A2 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7D19A72214001641A2 /* AFURLRequestSerialization.m */; };
 		E9952B8919A72214001641A2 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7F19A72214001641A2 /* AFURLResponseSerialization.m */; };
 		E9952B8A19A72214001641A2 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B8119A72214001641A2 /* AFURLSessionManager.m */; };
+		E9A2B2F619B5C0080083FB2C /* RavenClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2B2F019B5C0080083FB2C /* RavenClient.m */; };
+		E9A2B2F719B5C0080083FB2C /* RavenConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2B2F319B5C0080083FB2C /* RavenConfig.m */; };
+		E9A2B2F819B5C0080083FB2C /* RavenJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2B2F519B5C0080083FB2C /* RavenJSONUtilities.m */; };
 		E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B0EB64197571F80000B951 /* twtSecretKeys.m */; };
 		E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4363D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m */; };
 		E9D4364E19B2285C0042A9F1 /* LAFound_AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D4363E19B2285C0042A9F1 /* LAFound_AnnounceViewController.xib */; };
@@ -482,6 +485,13 @@
 		E9952B8019A72214001641A2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		E9952B8119A72214001641A2 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E998D6DD199E027500A0F442 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WePeiYang-Bridging-Header.h"; path = "WePeiYang/WePeiYang-Bridging-Header.h"; sourceTree = "<group>"; };
+		E9A2B2EF19B5C0080083FB2C /* RavenClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RavenClient.h; sourceTree = "<group>"; };
+		E9A2B2F019B5C0080083FB2C /* RavenClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RavenClient.m; sourceTree = "<group>"; };
+		E9A2B2F119B5C0080083FB2C /* RavenClient_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RavenClient_Private.h; sourceTree = "<group>"; };
+		E9A2B2F219B5C0080083FB2C /* RavenConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RavenConfig.h; sourceTree = "<group>"; };
+		E9A2B2F319B5C0080083FB2C /* RavenConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RavenConfig.m; sourceTree = "<group>"; };
+		E9A2B2F419B5C0080083FB2C /* RavenJSONUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RavenJSONUtilities.h; sourceTree = "<group>"; };
+		E9A2B2F519B5C0080083FB2C /* RavenJSONUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RavenJSONUtilities.m; sourceTree = "<group>"; };
 		E9B0EB63197571F80000B951 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = twtSecretKeys.h; path = ../twtSecretKeys.h; sourceTree = "<group>"; };
 		E9B0EB64197571F80000B951 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = twtSecretKeys.m; path = ../twtSecretKeys.m; sourceTree = "<group>"; };
 		E9D4363C19B2285C0042A9F1 /* LAFound_AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_AnnounceViewController.h; sourceTree = "<group>"; };
@@ -849,6 +859,7 @@
 		18CFC7D918900C7200A51F01 /* publicClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E9A2B2EE19B5C0080083FB2C /* Raven */,
 				E9952B6E19A72214001641A2 /* AFNetworking */,
 				E983B464199FBF1F00C08B2E /* ShareSDK */,
 				18BB2ECA18E1ACDF0084AD16 /* wpyClasses */,
@@ -1136,6 +1147,20 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		E9A2B2EE19B5C0080083FB2C /* Raven */ = {
+			isa = PBXGroup;
+			children = (
+				E9A2B2EF19B5C0080083FB2C /* RavenClient.h */,
+				E9A2B2F019B5C0080083FB2C /* RavenClient.m */,
+				E9A2B2F119B5C0080083FB2C /* RavenClient_Private.h */,
+				E9A2B2F219B5C0080083FB2C /* RavenConfig.h */,
+				E9A2B2F319B5C0080083FB2C /* RavenConfig.m */,
+				E9A2B2F419B5C0080083FB2C /* RavenJSONUtilities.h */,
+				E9A2B2F519B5C0080083FB2C /* RavenJSONUtilities.m */,
+			);
+			path = Raven;
+			sourceTree = "<group>";
+		};
 		E9D4363B19B2285C0042A9F1 /* newLAFound */ = {
 			isa = PBXGroup;
 			children = (
@@ -1351,11 +1376,13 @@
 				25A5F78118EC2F0000D6EE4E /* NoticeFavViewController.m in Sources */,
 				E9952B8319A72214001641A2 /* AFHTTPRequestOperationManager.m in Sources */,
 				E9D4365119B2285C0042A9F1 /* LAFound_QueryDetailViewController.m in Sources */,
+				E9A2B2F719B5C0080083FB2C /* RavenConfig.m in Sources */,
 				E9952B8919A72214001641A2 /* AFURLResponseSerialization.m in Sources */,
 				188842771846F723007B92CB /* CollectionViewController.m in Sources */,
 				18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */,
 				18C322BC1861B9EB00CE035D /* AboutUSViewController.m in Sources */,
 				18C322B91861AAEE00CE035D /* AboutViewController.m in Sources */,
+				E9A2B2F819B5C0080083FB2C /* RavenJSONUtilities.m in Sources */,
 				E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */,
 				18A761A918CD95F8001A9314 /* ReceivedNotificationViewController.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
@@ -1395,6 +1422,7 @@
 				18114E71185850DA007455E2 /* JobViewController.m in Sources */,
 				1841D821187D5AD1006DDA17 /* GuideViewController.m in Sources */,
 				E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */,
+				E9A2B2F619B5C0080083FB2C /* RavenClient.m in Sources */,
 				18D63E2A185766B0004E75AA /* GPATableCell.m in Sources */,
 				1825E18B1878644D004976EA /* LibraryFavouriteViewController.m in Sources */,
 				18F586211859B21800410E81 /* NoticeViewController.m in Sources */,

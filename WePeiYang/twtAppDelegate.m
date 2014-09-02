@@ -16,6 +16,7 @@
 #import "ReceivedNotificationViewController.h"
 #import "DMSlideTransition.h"
 #import "twtSecretKeys.h"
+#import "RavenClient.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -31,6 +32,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // Configure the Sentry client
+    [RavenClient clientWithDSN:@"http://4bdecbe73bac4899acd3f0cbf9e55b91:59f4ecc64de94659acbb88422e64494e@sentry-ops.twtapps.net/5"];
+    
+    // Install the global error handler
+    [[RavenClient sharedClient] setupExceptionHandler];
     
     //ShareSDK appKey
     [ShareSDK registerApp:[twtSecretKeys getShareSDKAppKey]];
