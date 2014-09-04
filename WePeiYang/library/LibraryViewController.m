@@ -17,6 +17,7 @@
 #import "DMSlideTransition.h"
 #import "CSNotificationView.h"
 #import "AFNetworking.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -39,7 +40,6 @@
     NSString *password;
 
     UIAlertView *detailAlert;
-    UIAlertView *waitingAlert;
     
     UIActionSheet *loginActionSheet;
     UIActionSheet *recordActionSheet;
@@ -172,8 +172,7 @@
         
         currentPage = 1;
         
-        waitingAlert = [[UIAlertView alloc]initWithTitle:@"请稍候" message:@"正在加载..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [waitingAlert show];
+        [SVProgressHUD showWithStatus:@"加载速度较慢\n请耐心等待..."];
         
         NSString *url = @"http://push-mobile.twtapps.net/lib/search";
         NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
@@ -186,8 +185,10 @@
             NSDictionary *resultDic = [responseObject objectForKey:@"books"];
             totalBooks = [[responseObject objectForKey:@"total"]integerValue];
             [self dealWithReceivedSearchData:resultDic];
+            [SVProgressHUD dismiss];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取书目失败T^T"];
+            [SVProgressHUD dismiss];
         }];
         
         /*
@@ -219,7 +220,6 @@
 
 - (void)dealWithReceivedSearchData:(NSDictionary *)resultDic
 {
-    [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
     if ([resultDic count]>0)
     {
         
@@ -334,28 +334,8 @@
 {
     
     currentPage = currentPage + 1;
-    
-    waitingAlert = [[UIAlertView alloc]initWithTitle:@"请稍候" message:@"正在加载..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [waitingAlert show];
-    
+    [SVProgressHUD showWithStatus:@"加载速度较慢\n请耐心等待..."];
     NSString *url = @"http://push-mobile.twtapps.net/lib/search";
-    /*
-    NSString *body = [NSString stringWithFormat:@"page=%d&query=%@&type=%ld",currentPage,searchStr,(long)type];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-            }
-            else
-            {
-                NSDictionary *resultDic = [[dic objectForKey:@"content"] objectForKey:@"books"];
-                [self dealWithReceivedNextData:resultDic];
-            }
-        }
-    }];
-     */
     NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
                                  @"query":searchStr,
                                  @"type":[NSString stringWithFormat:@"%d",type],
@@ -366,15 +346,16 @@
         NSDictionary *resultDic = [responseObject objectForKey:@"books"];
         totalBooks = [[responseObject objectForKey:@"total"]integerValue];
         [self dealWithReceivedNextData:resultDic];
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取书目失败T^T"];
+        [SVProgressHUD dismiss];
     }];
 
 }
 
 - (void)dealWithReceivedNextData:(NSDictionary *)resultDic
 {
-    [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
     if ([resultDic count]>0)
     {
         for (NSDictionary *temp in resultDic)

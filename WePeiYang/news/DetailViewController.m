@@ -58,6 +58,7 @@
                                  @"version":[data shareInstance].appVersion};
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processDetailData:responseObject];
+        [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻失败T^T"];
     }];

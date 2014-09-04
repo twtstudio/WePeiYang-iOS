@@ -197,6 +197,8 @@
 		E9952B8819A72214001641A2 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7D19A72214001641A2 /* AFURLRequestSerialization.m */; };
 		E9952B8919A72214001641A2 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7F19A72214001641A2 /* AFURLResponseSerialization.m */; };
 		E9952B8A19A72214001641A2 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B8119A72214001641A2 /* AFURLSessionManager.m */; };
+		E999800C19B857DA001C8B60 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E999800919B857DA001C8B60 /* SVProgressHUD.bundle */; };
+		E999800D19B857DA001C8B60 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E999800B19B857DA001C8B60 /* SVProgressHUD.m */; };
 		E9A2B2F619B5C0080083FB2C /* RavenClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2B2F019B5C0080083FB2C /* RavenClient.m */; };
 		E9A2B2F719B5C0080083FB2C /* RavenConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2B2F319B5C0080083FB2C /* RavenConfig.m */; };
 		E9A2B2F819B5C0080083FB2C /* RavenJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2B2F519B5C0080083FB2C /* RavenJSONUtilities.m */; };
@@ -485,6 +487,9 @@
 		E9952B8019A72214001641A2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		E9952B8119A72214001641A2 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E998D6DD199E027500A0F442 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WePeiYang-Bridging-Header.h"; path = "WePeiYang/WePeiYang-Bridging-Header.h"; sourceTree = "<group>"; };
+		E999800919B857DA001C8B60 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		E999800A19B857DA001C8B60 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		E999800B19B857DA001C8B60 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		E9A2B2EF19B5C0080083FB2C /* RavenClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RavenClient.h; sourceTree = "<group>"; };
 		E9A2B2F019B5C0080083FB2C /* RavenClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RavenClient.m; sourceTree = "<group>"; };
 		E9A2B2F119B5C0080083FB2C /* RavenClient_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RavenClient_Private.h; sourceTree = "<group>"; };
@@ -859,6 +864,7 @@
 		18CFC7D918900C7200A51F01 /* publicClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E999800719B857DA001C8B60 /* SVProgressHUD */,
 				E9A2B2EE19B5C0080083FB2C /* Raven */,
 				E9952B6E19A72214001641A2 /* AFNetworking */,
 				E983B464199FBF1F00C08B2E /* ShareSDK */,
@@ -1147,6 +1153,16 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		E999800719B857DA001C8B60 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E999800919B857DA001C8B60 /* SVProgressHUD.bundle */,
+				E999800A19B857DA001C8B60 /* SVProgressHUD.h */,
+				E999800B19B857DA001C8B60 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		E9A2B2EE19B5C0080083FB2C /* Raven */ = {
 			isa = PBXGroup;
 			children = (
@@ -1320,6 +1336,7 @@
 				25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */,
 				25340FB0191CD1B200AFDE7D /* call_phone@2x.png in Resources */,
 				18114E7618585807007455E2 /* JobTableCell.xib in Resources */,
+				E999800C19B857DA001C8B60 /* SVProgressHUD.bundle in Resources */,
 				25340FAE191CA73E00AFDE7D /* HiringDetailViewController.xib in Resources */,
 				2514EAF4191A8425008CC0C7 /* sendForNav@2x.png in Resources */,
 				25976779190B5046002CCAFA /* notice@2x.png in Resources */,
@@ -1413,6 +1430,7 @@
 				E9952B8819A72214001641A2 /* AFURLRequestSerialization.m in Sources */,
 				18114E7A18585A64007455E2 /* JobDetailViewController.m in Sources */,
 				E9952B8519A72214001641A2 /* AFNetworkReachabilityManager.m in Sources */,
+				E999800D19B857DA001C8B60 /* SVProgressHUD.m in Sources */,
 				252C101B19176FA900C2B636 /* wpyEncryption.m in Sources */,
 				1888425F1846E86D007B92CB /* YStudySearchConst.m in Sources */,
 				E9952B8419A72214001641A2 /* AFHTTPSessionManager.m in Sources */,

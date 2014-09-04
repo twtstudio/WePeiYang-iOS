@@ -7,9 +7,9 @@
 //
 
 #import "AboutUSViewController.h"
-//#import "eggViewController.h"
 #import "VWWWaterView.h"
 #import "data.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -20,9 +20,7 @@
 @implementation AboutUSViewController
 
 {
-    BOOL btn1Pressed;
-    BOOL btn2Pressed;
-    BOOL btn3Pressed;
+    NSInteger timesThatTheLogoWasTouched;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,38 +37,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"关于我们";
-	// Do any additional setup after loading the view.
-    //btn1Pressed = NO;
-    //btn2Pressed = NO;
-    //btn3Pressed = NO;
+    
+    timesThatTheLogoWasTouched = 0;
     
     //UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     //scroll.delegate = self;
     //scroll.pagingEnabled = NO;
-    /*
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"aboutUS@2x" ofType:@"jpg"];
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:image];
-    [scroll setContentSize:[image size]];
-    [scroll addSubview:imgView];
-     */
-    
-    /*
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn1 setFrame:CGRectMake(55, 893, 32, 32)];
-    [btn1 addTarget:self action:@selector(btn1Press) forControlEvents:UIControlEventTouchDown];
-    [scroll addSubview:btn1];
-    
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn2 setFrame:CGRectMake(100, 893, 32, 32)];
-    [btn2 addTarget:self action:@selector(btn2Press) forControlEvents:UIControlEventTouchDown];
-    [scroll addSubview:btn2];
-    
-    UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn3 setFrame:CGRectMake(231, 893, 32, 32)];
-    [btn3 addTarget:self action:@selector(btn3Press) forControlEvents:UIControlEventTouchDown];
-    [scroll addSubview:btn3];
-     */
     
     //[scroll setContentSize:CGSizeMake(self.view.frame.size.width, 750)];
     
@@ -107,10 +79,14 @@
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [backBtn setFrame:CGRectMake(0, 20, 40, 40)];
-    //[backBtn setTitle:@"返回" forState:UIControlStateNormal];
     [backBtn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
+    
+    UIButton *eggBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [eggBtn setFrame:imgView.frame];
+    [eggBtn addTarget:self action:@selector(eggEvent) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:eggBtn];
     
     /*
     UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
@@ -122,39 +98,6 @@
     
 }
 
-/*
-- (void)btn1Press
-{
-    btn1Pressed = YES;
-}
-
-- (void)btn2Press
-{
-    if (btn1Pressed == YES)
-    {
-        btn2Pressed = YES;
-    }
-}
-
-- (void)btn3Press
-{
-    if (btn1Pressed == YES && btn2Pressed == YES)
-    {
-        [self pushEgg];
-        btn1Pressed = NO;
-        btn2Pressed = NO;
-        btn3Pressed = NO;
-    }
-}
-
-- (void)pushEgg
-{
-    eggViewController *twtEgg = [[eggViewController alloc]init];
-    [twtEgg setModalTransitionStyle:UIModalTransitionStylePartialCurl];
-    [self presentViewController:twtEgg animated:YES completion:nil];
-}
-*/
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -165,6 +108,14 @@
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)eggEvent {
+    timesThatTheLogoWasTouched++;
+    if (timesThatTheLogoWasTouched == 10) {
+        [SVProgressHUD showSuccessWithStatus:@"This is an egg:)"];
+        timesThatTheLogoWasTouched = 0;
+    }
 }
 
 @end

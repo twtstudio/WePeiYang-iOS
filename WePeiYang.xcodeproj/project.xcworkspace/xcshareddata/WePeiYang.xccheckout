@@ -10,29 +10,29 @@
 	<string>WePeiYang</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>199A1E7C-A2AB-4CA8-B5EE-7E45D0443275</key>
+		<key>18F6BE23FA0E5D5DDCF195BAC16DEFDE66456693</key>
 		<string>https://github.com/xnth97/WePeiYang_iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>WePeiYang.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>199A1E7C-A2AB-4CA8-B5EE-7E45D0443275</key>
+		<key>18F6BE23FA0E5D5DDCF195BAC16DEFDE66456693</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/xnth97/WePeiYang_iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>199A1E7C-A2AB-4CA8-B5EE-7E45D0443275</string>
+	<string>18F6BE23FA0E5D5DDCF195BAC16DEFDE66456693</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>199A1E7C-A2AB-4CA8-B5EE-7E45D0443275</string>
+			<string>18F6BE23FA0E5D5DDCF195BAC16DEFDE66456693</string>
 			<key>IDESourceControlWCCName</key>
 			<string>WePeiYang_iOS</string>
 		</dict>

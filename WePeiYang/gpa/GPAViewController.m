@@ -12,12 +12,12 @@
 #import "GPACalculatorViewController.h"
 #import "GPATableCell.h"
 #import <ShareSDK/ShareSDK.h>
-//#import "wpyWebConnection.h"
 #import "AFNetworking.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "CSNotificationView.h"
 #import "gpaHeaderView.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -146,6 +146,9 @@
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
+        
+        [SVProgressHUD showWithStatus:@"请稍候"];
+        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             //Successful
@@ -158,11 +161,12 @@
             [noLoginImg setHidden:YES];
             [data shareInstance].gpaLoginStatus = @"";
             backBtn.tintColor = [UIColor whiteColor];
-            
             [self processGpaData:responseObject];
+            [SVProgressHUD dismiss];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSInteger statusCode = operation.response.statusCode;
             [self processErrorWithStatusCode:statusCode];
+            [SVProgressHUD dismiss];
         }];
         
         /*
