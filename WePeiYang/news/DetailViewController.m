@@ -62,22 +62,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻失败T^T"];
     }];
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=news&index=%@",detailId];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹T^T"];
-            }
-            else
-            {
-                [self processDetailData:[dic objectForKey:@"content"]];
-            }
-        }
-    }];
-     */
 }
 
 - (void)processDetailData:(NSDictionary *)contentDic
@@ -88,11 +72,10 @@
         detailContent = [contentDic objectForKey:@"content"];
     }
     
-    //[self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"];
     [wpyStringProcessor convertToWebViewByString:detailContent withFinishCallbackBlock:^(NSString *load){
-    [self.webView loadHTMLString:load baseURL:baseURL];
+        [self.webView loadHTMLString:load baseURL:baseURL];
     }];
-    //[self.webView loadHTMLString:detailContent baseURL:baseURL];
     self.webView.scalesPageToFit = YES;
 }
 

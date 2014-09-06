@@ -71,11 +71,8 @@
 		188842A01846F73B007B92CB /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188842921846F73B007B92CB /* RecordViewController.xib */; };
 		188842A41846F79F007B92CB /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842A31846F79F007B92CB /* data.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
-		18A761A918CD95F8001A9314 /* ReceivedNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A761A718CD95F8001A9314 /* ReceivedNotificationViewController.m */; };
-		18A761AA18CD95F8001A9314 /* ReceivedNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A761A818CD95F8001A9314 /* ReceivedNotificationViewController.xib */; };
 		18ACB786187EB5670073998E /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ACB785187EB5670073998E /* StartViewController.m */; };
 		18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5EF4918DB059400B14FE8 /* indexTabBarController.m */; };
-		18BB2ECD18E1ACDF0084AD16 /* wpyWebConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB2ECC18E1ACDF0084AD16 /* wpyWebConnection.m */; };
 		18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */; };
 		18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322B11861AAB600CE035D /* FeedbackViewController.m */; };
 		18C322B51861AAB600CE035D /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C322B21861AAB600CE035D /* FeedbackViewController.xib */; };
@@ -315,15 +312,10 @@
 		188842A21846F79F007B92CB /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
 		188842A31846F79F007B92CB /* data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = data.m; sourceTree = "<group>"; };
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		18A761A618CD95F8001A9314 /* ReceivedNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReceivedNotificationViewController.h; path = Notice/ReceivedNotificationViewController.h; sourceTree = "<group>"; };
-		18A761A718CD95F8001A9314 /* ReceivedNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReceivedNotificationViewController.m; path = Notice/ReceivedNotificationViewController.m; sourceTree = "<group>"; };
-		18A761A818CD95F8001A9314 /* ReceivedNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReceivedNotificationViewController.xib; path = Notice/ReceivedNotificationViewController.xib; sourceTree = "<group>"; };
 		18ACB784187EB5670073998E /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartViewController.h; path = WePeiYang/Start/StartViewController.h; sourceTree = "<group>"; };
 		18ACB785187EB5670073998E /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartViewController.m; path = WePeiYang/Start/StartViewController.m; sourceTree = "<group>"; };
 		18B5EF4818DB059400B14FE8 /* indexTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = indexTabBarController.h; path = news/indexTabBarController.h; sourceTree = "<group>"; };
 		18B5EF4918DB059400B14FE8 /* indexTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = indexTabBarController.m; path = news/indexTabBarController.m; sourceTree = "<group>"; };
-		18BB2ECB18E1ACDF0084AD16 /* wpyWebConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyWebConnection.h; sourceTree = "<group>"; };
-		18BB2ECC18E1ACDF0084AD16 /* wpyWebConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyWebConnection.m; sourceTree = "<group>"; };
 		18BB2ECE18E1AD0C0084AD16 /* wpyStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyStringProcessor.h; sourceTree = "<group>"; };
 		18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyStringProcessor.m; sourceTree = "<group>"; };
 		18C322B01861AAB600CE035D /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = WePeiYang/about/feedback/FeedbackViewController.h; sourceTree = "<group>"; };
@@ -821,8 +813,6 @@
 			children = (
 				E9B0EB63197571F80000B951 /* twtSecretKeys.h */,
 				E9B0EB64197571F80000B951 /* twtSecretKeys.m */,
-				18BB2ECB18E1ACDF0084AD16 /* wpyWebConnection.h */,
-				18BB2ECC18E1ACDF0084AD16 /* wpyWebConnection.m */,
 				18BB2ECE18E1AD0C0084AD16 /* wpyStringProcessor.h */,
 				18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */,
 				252655D718ED4EB500C7F8D3 /* wpyDeviceStatus.h */,
@@ -918,9 +908,6 @@
 				18F586281859B6C100410E81 /* NoticeDetailViewController.xib */,
 				25A5F77F18EC2F0000D6EE4E /* NoticeFavViewController.h */,
 				25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */,
-				18A761A618CD95F8001A9314 /* ReceivedNotificationViewController.h */,
-				18A761A718CD95F8001A9314 /* ReceivedNotificationViewController.m */,
-				18A761A818CD95F8001A9314 /* ReceivedNotificationViewController.xib */,
 				18607AE718DC21DD00C5C665 /* noticeTabBarController.h */,
 				18607AE818DC21DD00C5C665 /* noticeTabBarController.m */,
 			);
@@ -1324,7 +1311,6 @@
 				188842A01846F73B007B92CB /* RecordViewController.xib in Resources */,
 				E983B49F199FBF1F00C08B2E /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				25340FB4191CE70F00AFDE7D /* time_job_icon@2x.png in Resources */,
-				18A761AA18CD95F8001A9314 /* ReceivedNotificationViewController.xib in Resources */,
 				E983B4A7199FBF1F00C08B2E /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				25976773190B5046002CCAFA /* about@2x.png in Resources */,
 				182155D518BF8ED4008A1D1A /* g2-568h@2x.jpg in Resources */,
@@ -1401,7 +1387,6 @@
 				18C322B91861AAEE00CE035D /* AboutViewController.m in Sources */,
 				E9A2B2F819B5C0080083FB2C /* RavenJSONUtilities.m in Sources */,
 				E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */,
-				18A761A918CD95F8001A9314 /* ReceivedNotificationViewController.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
 				E9D4365319B2285C0042A9F1 /* LAFound_QueryListTableViewCell.m in Sources */,
 				E9952B8A19A72214001641A2 /* AFURLSessionManager.m in Sources */,
@@ -1409,7 +1394,6 @@
 				E9D4365019B2285C0042A9F1 /* LAFound_DataManager.m in Sources */,
 				25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */,
 				2525F65018F691BF00918714 /* LibraryTabBarController.m in Sources */,
-				18BB2ECD18E1ACDF0084AD16 /* wpyWebConnection.m in Sources */,
 				1888429A1846F73B007B92CB /* LoginViewController.m in Sources */,
 				18114E611858322A007455E2 /* YTrendChartView.m in Sources */,
 				18F6E4F718CF4F430041E425 /* DMScaleTransition.m in Sources */,

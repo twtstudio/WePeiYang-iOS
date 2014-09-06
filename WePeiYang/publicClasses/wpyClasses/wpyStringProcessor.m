@@ -23,7 +23,7 @@
                       "</style> \n"
                       "</head> \n"
                       "<body>%@</body> \n"
-                      "</html>", @"宋体", @"48",@"000000",contentStr];
+                      "</html>", @"serif", @"48",@"000000",contentStr];
     
     if (wpySP.finishCallbackBlock)
     {

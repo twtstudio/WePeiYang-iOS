@@ -113,7 +113,7 @@
 - (void)eggEvent {
     timesThatTheLogoWasTouched++;
     if (timesThatTheLogoWasTouched == 10) {
-        [SVProgressHUD showSuccessWithStatus:@"This is an egg:)"];
+        [SVProgressHUD showSuccessWithStatus:@"青春无下限~\n天外更有天:)"];
         timesThatTheLogoWasTouched = 0;
     }
 }

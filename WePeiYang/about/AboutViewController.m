@@ -11,12 +11,12 @@
 #import "AboutUSViewController.h"
 #import "GuideViewController.h"
 #import "DMScaleTransition.h"
-#import "wpyWebConnection.h"
 #import "twtLoginViewController.h"
 #import "data.h"
 #import "CSNotificationView.h"
 #import "LoginViewController.h"
 #import "GPALoginViewController.h"
+#import "AFNetworking.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -414,29 +414,16 @@
 - (void)logout
 {
     NSString *url = @"http://push-mobile.twtapps.net/user/logout";
-    NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",[data shareInstance].userId,[data shareInstance].userToken];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                //NSString *msg = [dic objectForKey:@"msg"];
-                //UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                //[alert show];
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"注销账号成功！"];
-            }
-            else
-            {
-                //NSString *msg = [[dic objectForKey:@"content"] objectForKey:@"msg"];
-                //UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"成功" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                //[alert show];
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"注销账号失败QAQ"];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-        }
+    NSDictionary *parameters = @{@"id": [data shareInstance].userId,
+                                 @"token": [data shareInstance].userToken,
+                                 @"platform":@"ios",
+                                 @"version": [data shareInstance].appVersion};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"注销账号成功！"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"注销账号失败QAQ"];
     }];
     
     [data shareInstance].userId = @"";
@@ -456,69 +443,49 @@
 
 - (void)jbTju
 {
-    NSString *userId = [data shareInstance].userId;
-    NSString *userToken = [data shareInstance].userToken;
     NSString *url = @"http://push-mobile.twtapps.net/user/unbindTju";
-    NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",userId,userToken];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
+    NSDictionary *parameters = @{@"id": [data shareInstance].userId,
+                                 @"token": [data shareInstance].userToken,
+                                 @"platform":@"ios",
+                                 @"version": [data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"解除绑定成功！"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *files = @[@"gpa",@"gpaResult",@"gpaCacheData",@"bindTju"];
+        for (NSString *fileName in files)
         {
-            if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"解除绑定成功！"];
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                NSArray *files = @[@"gpa",@"gpaResult",@"gpaCacheData",@"bindTju"];
-                for (NSString *fileName in files)
-                {
-                    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
-                    [fileManager removeItemAtPath:plistPath error:nil];
-                    NSLog(@"Plist file %@ deleted.",fileName);
-                }
-                [self.tableView reloadData];
-            }
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"解除绑定失败！"];
-            }
+            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:plistPath error:nil];
+            NSLog(@"Plist file %@ deleted.",fileName);
         }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-        }
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"解除绑定失败！"];
     }];
 }
 
 - (void)jbLib
 {
-    NSString *userId = [data shareInstance].userId;
-    NSString *userToken = [data shareInstance].userToken;
     NSString *url = @"http://push-mobile.twtapps.net/user/unbindLib";
-    NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",userId,userToken];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
+    NSDictionary *parameters = @{@"id": [data shareInstance].userId,
+                                 @"token": [data shareInstance].userToken,
+                                 @"platform":@"ios",
+                                 @"version": [data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"解除绑定成功！"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *files = @[@"login",@"libraryRecordCache",@"bindLib"];
+        for (NSString *fileName in files)
         {
-            if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"解除绑定成功！"];
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                NSArray *files = @[@"login",@"libraryRecordCache",@"bindLib"];
-                for (NSString *fileName in files)
-                {
-                    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
-                    [fileManager removeItemAtPath:plistPath error:nil];
-                    NSLog(@"Plist file %@ deleted.",fileName);
-                }
-                [self.tableView reloadData];
-            }
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"解除绑定失败！"];
-            }
+            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:plistPath error:nil];
+            NSLog(@"Plist file %@ deleted.",fileName);
         }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-        }
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"解除绑定失败！"];
     }];
 }
 

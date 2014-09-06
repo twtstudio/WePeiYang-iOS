@@ -14,6 +14,7 @@
 #import "CSNotificationView.h"
 #import "wpyEncryption.h"
 #import "GuideViewController.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -71,6 +72,7 @@
 
 - (IBAction)login:(id)sender
 {
+    [SVProgressHUD showWithStatus:@"登录中..." maskType:SVProgressHUDMaskTypeBlack];
     [loginBtn setUserInteractionEnabled:NO];
     if (moved)
     {
@@ -95,8 +97,10 @@
                                      @"version":[data shareInstance].appVersion};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
             [self processLoginData:responseObject];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
             NSInteger statusCode = operation.response.statusCode;
             if (statusCode == 401) {
                 UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"出错" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

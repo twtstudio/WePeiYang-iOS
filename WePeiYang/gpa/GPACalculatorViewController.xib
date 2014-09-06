@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GPACalculatorViewController">
@@ -16,40 +16,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8wp-xr-22A">
-                    <rect key="frame" x="0.0" y="39" width="320" height="529"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="jug-uM-ymD"/>
                         <outlet property="delegate" destination="-1" id="Hml-D9-i1K"/>
                     </connections>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="libraryHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="gHs-2e-BaJ">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHN-hv-oxC">
-                    <rect key="frame" x="-5" y="31" width="69" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="〈 返回">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="A8j-y4-Vf0"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8wp-xr-22A" secondAttribute="bottom" id="3qv-Cg-Gqu"/>
                 <constraint firstItem="8wp-xr-22A" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="CMI-DI-RNK"/>
                 <constraint firstItem="8wp-xr-22A" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="HcC-hB-yTG"/>
-                <constraint firstItem="8wp-xr-22A" firstAttribute="top" secondItem="1" secondAttribute="top" constant="39" id="IuS-jL-op0"/>
+                <constraint firstItem="8wp-xr-22A" firstAttribute="top" secondItem="1" secondAttribute="top" constant="64" id="vb5-Xt-aRD"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="libraryHeader.png" width="320" height="164"/>
-    </resources>
 </document>

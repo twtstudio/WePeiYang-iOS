@@ -13,7 +13,6 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "StartViewController.h"
 #import "data.h"
-#import "ReceivedNotificationViewController.h"
 #import "DMSlideTransition.h"
 #import "twtSecretKeys.h"
 #import "RavenClient.h"
@@ -104,12 +103,12 @@
         [data shareInstance].pushId = pushId;
         [data shareInstance].newsTitle = [data shareInstance].pushMsg;
         [data shareInstance].newsId = [data shareInstance].pushId;
-        ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
-        slideTrans = [[DMSlideTransition alloc]init];
-        [receivedNotificationViewController setTransitioningDelegate:slideTrans];
-        [self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
-        [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
-        [[UIApplication sharedApplication]cancelAllLocalNotifications];
+        //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
+        //slideTrans = [[DMSlideTransition alloc]init];
+        //[receivedNotificationViewController setTransitioningDelegate:slideTrans];
+        //[self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
+        //[[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
+        //[[UIApplication sharedApplication]cancelAllLocalNotifications];
     }
     
     return YES;
@@ -155,10 +154,10 @@
         {
             [data shareInstance].newsTitle = [data shareInstance].pushMsg;
             [data shareInstance].newsId = [data shareInstance].pushId;
-            ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
-            DMSlideTransition *trans = [[DMSlideTransition alloc]init];
-            [receivedNotificationViewController setTransitioningDelegate:trans];
-            [self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
+            //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
+            //DMSlideTransition *trans = [[DMSlideTransition alloc]init];
+            //[receivedNotificationViewController setTransitioningDelegate:trans];
+            //[self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
         }
     }
 }

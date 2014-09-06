@@ -172,7 +172,7 @@
         
         currentPage = 1;
         
-        [SVProgressHUD showWithStatus:@"加载速度较慢\n请耐心等待..."];
+        [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
         
         NSString *url = @"http://push-mobile.twtapps.net/lib/search";
         NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
@@ -334,7 +334,7 @@
 {
     
     currentPage = currentPage + 1;
-    [SVProgressHUD showWithStatus:@"加载速度较慢\n请耐心等待..."];
+    [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
     NSString *url = @"http://push-mobile.twtapps.net/lib/search";
     NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
                                  @"query":searchStr,

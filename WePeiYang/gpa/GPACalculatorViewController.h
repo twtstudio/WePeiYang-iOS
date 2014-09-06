@@ -9,19 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "data.h"
 
-typedef enum
-{
+typedef enum {
     gpaCalcRuleJasso,
     gpaCalcRuleStandard,
     gpaCalcRuleFourPt,
+    gpaCalcRuleImprovedFourPt,
+    gpaCalcRuleCanada,
 } gpaCalcRule;
 
-@interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 //@property (strong, nonatomic) IBOutlet UIButton *calculateBtn;
-
-- (IBAction)goBack:(id)sender;
-//- (IBAction)calculateGPA:(id)sender;
 
 @end

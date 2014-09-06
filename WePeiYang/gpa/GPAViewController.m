@@ -91,7 +91,6 @@
     gpaTintColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
     [[UIButton appearance] setTintColor:[UIColor whiteColor]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    [[UIToolbar appearance]setTintColor:gpaTintColor];
     
     gpaData = [[NSMutableArray alloc]initWithObjects: nil];
     
@@ -147,7 +146,7 @@
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
         
-        [SVProgressHUD showWithStatus:@"请稍候"];
+        [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -169,23 +168,6 @@
             [SVProgressHUD dismiss];
         }];
         
-        /*
-        [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-            if (dic!=nil) [self processWithPostData:dic];
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-                
-                NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaCacheData"];
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                if ([fileManager fileExistsAtPath:plistPath])
-                {
-                    NSDictionary *gpaCache = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-                    [self processGpaData:gpaCache];
-                }
-            }
-        }];
-         */
     }
 }
 
@@ -240,71 +222,6 @@
     }
 }
 
-/*
-- (void)processWithPostData:(NSDictionary *)dic
-{
-    if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-    {
-        //出错
-        backBtn.tintColor = gpaTintColor;
-        
-        if ([[dic objectForKey:@"statusCode"] isEqualToString:@"401"])
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"验证出错…请重新登录~"];
-            [moreBtn setHidden:YES];
-            [chart setHidden:YES];
-            [tableView setHidden:YES];
-            [noLoginLabel setHidden:NO];
-            [loginBtn setHidden:NO];
-            [noLoginImg setHidden:NO];
-            [noLoginLabel setText:@"您尚未登录天外天账号"];
-            [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-            [loginBtn removeTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
-            [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-        }
-        else if ([[dic objectForKey:@"statusCode"] isEqualToString:@"403"])
-        {
-            [moreBtn setHidden:YES];
-            [chart setHidden:YES];
-            [tableView setHidden:YES];
-            [noLoginLabel setHidden:NO];
-            [loginBtn setHidden:NO];
-            [noLoginImg setHidden:NO];
-            [noLoginLabel setText:@"您尚未绑定办公网账号"];
-            loginBtn.userInteractionEnabled = YES;
-            [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
-            [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-            [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
-        } else if ([[dic objectForKey:@"statusCode"] isEqualToString:@"500"]) {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-        }
-    }
-    else
-    {
-        //未出错
-        loginBtn.userInteractionEnabled = YES;
-        [moreBtn setHidden:NO];
-        [chart setHidden:NO];
-        [tableView setHidden:NO];
-        [loginBtn setHidden:YES];
-        [noLoginLabel setHidden:YES];
-        [noLoginImg setHidden:YES];
-        NSDictionary *contentDic = [dic objectForKey:@"content"];
-        [self processGpaData:contentDic];
-        [data shareInstance].gpaLoginStatus = @"";
-        backBtn.tintColor = [UIColor whiteColor];
-        
-        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaCacheData"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ([fileManager fileExistsAtPath:plistPath]) {
-            [fileManager removeItemAtPath:plistPath error:nil];
-        } else {
-            [contentDic writeToFile:plistPath atomically:YES];
-        }
-    }
-}
- */
-
 - (void)bindTju {
     GPALoginViewController *gpaLogin = [[GPALoginViewController alloc]initWithNibName:nil bundle:nil];
     [gpaLogin setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
@@ -312,7 +229,7 @@
 }
     
 - (IBAction)openActionSheet:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"更多" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"一键评价",@"手动评价",@"分享GPA", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"更多" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"一键评价",@"手动评价",@"分享GPA",@"GPA计算器", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -325,6 +242,8 @@
         [self selfEvaluate];
     } else if (buttonIndex == 2) {
         [self shareGPA];
+    } else if (buttonIndex == 3) {
+        [self pushGPACalculator];
     }
 }
 
@@ -442,44 +361,6 @@
         }
     }];
     
-    /*
-    NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",userId,userToken];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"statusCode"]isKindOfClass:[NSString class]])
-            {
-                if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-                {
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"一键评价成功！"];
-                    [self checkLoginStatus];
-                }
-                else
-                {
-                    if ([[dic objectForKey:@"statusCode"] isEqualToString:@"403"])
-                    {
-                        if ([[[dic objectForKey:@"content"] objectForKey:@"error"] integerValue] == 410)
-                        {
-                            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"没有需要评价的科目~"];
-                        }
-                    }
-                    else
-                    {
-                        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错了QAQ"];
-                    }
-                }
-            }
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"Error"];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-        }
-    }];
-     */
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

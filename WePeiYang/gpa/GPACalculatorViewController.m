@@ -16,12 +16,6 @@
 @implementation GPACalculatorViewController
 
 {
-    /*
-    NSMutableArray *namesArray;
-    NSMutableArray *termsArray;
-    NSMutableArray *scoresArray;
-    NSMutableArray *creditsArray;
-     */
     NSMutableArray *calculatorArray;
 }
 
@@ -44,20 +38,20 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-    //[calculateBtn primaryStyle];
+    UIColor *gpaTintColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
+    [[UIButton appearance] setTintColor:gpaTintColor];
+    [[UINavigationBar appearance] setTintColor:gpaTintColor];
     
-    UIBarButtonItem *calcJasso = [[UIBarButtonItem alloc]initWithTitle:@"JASSO" style:UIBarButtonItemStylePlain target:self action:@selector(calcGpaWithJasso)];
-    UIBarButtonItem *calcStandard = [[UIBarButtonItem alloc]initWithTitle:@"标准" style:UIBarButtonItemStylePlain target:self action:@selector(calcGpaWithStandard)];
-    UIBarButtonItem *calcFourPt = [[UIBarButtonItem alloc]initWithTitle:@"四分制" style:UIBarButtonItemStylePlain target:self action:@selector(calcGpaWithFourPt)];
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    NSArray *arr = @[calcJasso, flexItem, calcStandard, flexItem, calcFourPt];
-    [self setToolbarItems:arr animated:YES];
-    [self.navigationController setToolbarHidden:NO animated:YES];
-    
-    //scoresArray = [[NSMutableArray alloc]initWithArray:[data shareInstance].scoresArray];
-    //namesArray = [[NSMutableArray alloc]initWithArray:[data shareInstance].namesArray];
-    //creditsArray = [[NSMutableArray alloc]initWithArray:[data shareInstance].creditsArray];
-    //termsArray = [[NSMutableArray alloc]initWithArray:[data shareInstance].termsArray];
+    UINavigationBar *navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+    UINavigationItem *navigationItem = [[UINavigationItem alloc]init];
+    NSString *backIconPath = [[NSBundle mainBundle]pathForResource:@"backForNav@2x" ofType:@"png"];
+    UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithContentsOfFile:backIconPath] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
+    UIBarButtonItem *actionBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openActionSheet)];
+    [navigationItem setTitle:@"GPA计算器"];
+    [navigationItem setLeftBarButtonItem:backBarBtn];
+    [navigationItem setRightBarButtonItem:actionBtn];
+    [navigationBar pushNavigationItem:navigationItem animated:YES];
+    [self.view addSubview:navigationBar];
     
     NSArray *gpaData = [data shareInstance].gpaDataArray;
     
@@ -70,10 +64,6 @@
         [tmp setValue:[gpaTmp objectForKey:@"name"] forKey:@"name"];
         [tmp setValue:[gpaTmp objectForKey:@"credit"] forKey:@"credit"];
         [tmp setValue:[gpaTmp objectForKey:@"term"] forKey:@"term"];
-        //[tmp setValue:[scoresArray objectAtIndex:i] forKey:@"score"];
-        //[tmp setValue:[namesArray objectAtIndex:i] forKey:@"name"];
-        //[tmp setValue:[creditsArray objectAtIndex:i] forKey:@"credit"];
-        //[tmp setValue:[termsArray objectAtIndex:i] forKey:@"term"];
         if ([[tmp objectForKey:@"score"] floatValue] <= 100)
         {
             [tmp setValue:@"YES" forKey:@"selected"];
@@ -85,24 +75,48 @@
         [calculatorArray addObject:tmp];
         
         //用来去除过去重复的科目 这里有Bug
+        
         for (NSDictionary *prevDic in calculatorArray)
         {
-            if ([[prevDic objectForKey:@"name"] isEqualToString:[tmp objectForKey:@"name"]])
-            {
-                NSLog([prevDic objectForKey:@"name"]);
-                float prevScore = [[prevDic objectForKey:@"score"] floatValue];
-                float thisScore = [[tmp objectForKey:@"score"] floatValue];
-                if (prevScore <= thisScore)
+            if (prevDic != tmp) {
+                if ([[prevDic objectForKey:@"name"] isEqualToString:[tmp objectForKey:@"name"]])
                 {
-                    [calculatorArray removeObject:prevDic];
-                    break;
-                }
-                else
-                {
-                    [calculatorArray removeObject:tmp];
-                    break;
+                    float prevScore = [[prevDic objectForKey:@"score"] floatValue];
+                    float thisScore = [[tmp objectForKey:@"score"] floatValue];
+                    if (prevScore < thisScore)
+                    {
+                        [calculatorArray removeObject:prevDic];
+                        break;
+                    }
+                    else
+                    {
+                        [calculatorArray removeObject:tmp];
+                        break;
+                    }
                 }
             }
+        }
+        
+    }
+}
+
+- (void)openActionSheet {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择计算规则" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"标准",@"四分制",@"JASSO",@"改进四分制",@"加拿大4.3分制", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [actionSheet cancelButtonIndex]) {
+        if (buttonIndex == 0) {
+            [self calcGpaWithStandard];
+        } else if (buttonIndex == 1) {
+            [self calcGpaWithFourPt];
+        } else if (buttonIndex == 2) {
+            [self calcGpaWithJasso];
+        } else if (buttonIndex == 3) {
+            [self calcGpaWithImprovedFourPt];
+        } else if (buttonIndex == 4) {
+            [self calcGpaWithCanada];
         }
     }
 }
@@ -122,13 +136,21 @@
     [self calculateGPAwithCalcRule:gpaCalcRuleFourPt];
 }
 
+- (void)calcGpaWithImprovedFourPt {
+    [self calculateGPAwithCalcRule:gpaCalcRuleImprovedFourPt];
+}
+
+- (void)calcGpaWithCanada {
+    [self calculateGPAwithCalcRule:gpaCalcRuleCanada];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)goBack:(id)sender
+- (void)goBack:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
@@ -136,18 +158,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    /*
-    NSString *sectionTerm = [[data shareInstance].term objectAtIndex:section];
-    int i = 0;
-    for (NSDictionary *tmp in calculatorArray)
-    {
-        if ([[tmp objectForKey:@"term"]isEqualToString:sectionTerm])
-        {
-            i++;
-        }
-    }
-    return i;
-     */
     return [calculatorArray count];
 }
 
@@ -287,6 +297,56 @@
             }
             gpa = sumScorexCredit / sumCredit;
             alertStr = [[NSString alloc]initWithFormat:@"您的GPA为%.3f\n（按照四分制计算规则）",gpa];
+            break;
+        }
+        case gpaCalcRuleImprovedFourPt:
+        {
+            for (int j = 0; j < [scoreInCalc count]; j++)
+            {
+                float score = [[scoreInCalc objectAtIndex:j]floatValue];
+                float credit = [[creditInCalc objectAtIndex:j]floatValue];
+                if (score >= 85 && score <= 100)
+                    score = 4;
+                else if (score >=70)
+                    score = 3;
+                else if (score >= 60)
+                    score = 2;
+                else
+                    score = 0;
+                sumCredit = sumCredit + credit;
+                sumScorexCredit = sumScorexCredit + score * credit;
+            }
+            gpa = sumScorexCredit / sumCredit;
+            alertStr = [[NSString alloc]initWithFormat:@"您的GPA为%.3f\n（按照改进四分制计算规则）",gpa];
+            break;
+        }
+        case gpaCalcRuleCanada:
+        {
+            for (int j = 0; j < [scoreInCalc count]; j++)
+            {
+                float score = [[scoreInCalc objectAtIndex:j]floatValue];
+                float credit = [[creditInCalc objectAtIndex:j]floatValue];
+                if (score >= 90 && score <= 100)
+                    score = 4.3;
+                else if (score >=85)
+                    score = 4;
+                else if (score >= 80)
+                    score = 3.7;
+                else if (score >= 75)
+                    score = 3.3;
+                else if (score >=70)
+                    score = 3;
+                else if (score >= 65)
+                    score = 2.7;
+                else if (score >= 60)
+                    score = 2.3;
+                else
+                    score = 0;
+                sumCredit = sumCredit + credit;
+                sumScorexCredit = sumScorexCredit + score * credit;
+            }
+            gpa = sumScorexCredit / sumCredit;
+            alertStr = [[NSString alloc]initWithFormat:@"您的GPA为%.3f\n（按照加拿大4.3分制计算规则）",gpa];
             break;
         }
         default:
