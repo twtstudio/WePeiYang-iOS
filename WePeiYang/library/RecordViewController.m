@@ -458,7 +458,7 @@
 {
     UIView *headerView = [[UIView alloc]init];
     [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, 32)];
-    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 32)];
+    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 32)];
     [headerLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
     headerLabel.text = [data shareInstance].welcomeLabelString;
     [headerLabel setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];

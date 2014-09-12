@@ -83,12 +83,12 @@
     
     float y=_currentLinePointY;
     CGPathMoveToPoint(path, NULL, 0, y);
-    for(float x=0;x<=320;x++){
+    for(float x=0;x <= self.frame.size.width; x++){
         y= a * sin( x/180*M_PI + 4*b/M_PI ) * 5 + _currentLinePointY;
         CGPathAddLineToPoint(path, nil, x, y);
     }
     
-    CGPathAddLineToPoint(path, nil, 320, rect.size.height);
+    CGPathAddLineToPoint(path, nil, self.frame.size.width, rect.size.height);
     CGPathAddLineToPoint(path, nil, 0, rect.size.height);
     CGPathAddLineToPoint(path, nil, 0, _currentLinePointY);
     

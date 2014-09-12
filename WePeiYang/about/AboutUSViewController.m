@@ -49,16 +49,16 @@
     NSString *path = [[NSBundle mainBundle]pathForResource:@"wpyicon@2x" ofType:@"png"];
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     UIImageView *imgView = [[UIImageView alloc]initWithImage:image];
-    [imgView setFrame:CGRectMake(115, 80, 90, 90)];
+    [imgView setFrame:CGRectMake(0.5*(self.view.frame.size.width-90), 80, 90, 90)];
     [self.view addSubview:imgView];
     
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 190, 320, 40)];
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 190, self.view.frame.size.width, 40)];
     NSString *nameStr = [NSString stringWithFormat:@"微北洋 %@",[data shareInstance].appVersion];
     [nameLabel setText:nameStr];
     [nameLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:nameLabel];
     
-    UILabel *twtLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 230, 320, 40)];
+    UILabel *twtLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 230, self.view.frame.size.width, 40)];
     [twtLabel setTextAlignment:NSTextAlignmentCenter];
     [twtLabel setText:@"天外天工作室"];
     [self.view addSubview:twtLabel];
@@ -71,7 +71,7 @@
     UIImage *image2 = [UIImage imageWithContentsOfFile:path2];
     UIImageView *imgView2 = [[UIImageView alloc]initWithImage:image2];
     int imgheight = DEVICE_IS_IPHONE5 ? 240 : 240*0.6;
-    [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width - 320*imgheight/240), self.view.frame.size.height - imgheight, 320*imgheight/240, imgheight)];
+    [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width - self.view.frame.size.width*imgheight/240), self.view.frame.size.height - imgheight, self.view.frame.size.width*imgheight/240, imgheight)];
     [self.view addSubview:imgView2];
     
     

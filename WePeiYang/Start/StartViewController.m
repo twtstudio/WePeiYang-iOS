@@ -13,8 +13,6 @@
 #import "GPAViewController.h"
 #import "JobViewController.h"
 #import "NoticeViewController.h"
-#import "AboutViewController.h"
-//#import "Animations.h"
 #import "DMScaleTransition.h"
 #import "data.h"
 #import "wpyDeviceStatus.h"
@@ -29,7 +27,7 @@
 #import "wpyEncryption.h"
 #import "twtSecretKeys.h"
 
-//#import "WePeiYang-Swift.h"
+#import "WePeiYang-Swift.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 #define DEVICE_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -58,6 +56,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    NSLog(@"%f",self.view.frame.size.width);
+    
     //获取当前App版本
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
@@ -79,7 +79,7 @@
     
     UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     scroll.delegate = self;
-    [scroll setContentSize:CGSizeMake(320, heightOfContentSize)];
+    [scroll setContentSize:CGSizeMake(self.view.frame.size.width, heightOfContentSize)];
     
     UIButton *studySearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [studySearchBtn setFrame:CGRectMake(20, 40+addedSpace, 80, 120)];
@@ -274,7 +274,8 @@
 
 - (void)pushAbout
 {
-    AboutViewController *about = [[AboutViewController alloc]initWithNibName:nil bundle:nil];
+    AboutViewController *about = [[AboutViewController alloc]init];
+    //AboutViewController *about = [[AboutViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:about animated:YES];
 }
 

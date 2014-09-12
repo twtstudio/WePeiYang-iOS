@@ -77,7 +77,6 @@
 		18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322B11861AAB600CE035D /* FeedbackViewController.m */; };
 		18C322B51861AAB600CE035D /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C322B21861AAB600CE035D /* FeedbackViewController.xib */; };
 		18C322B61861AAB600CE035D /* FeedbackViewController3.5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C322B31861AAB600CE035D /* FeedbackViewController3.5.xib */; };
-		18C322B91861AAEE00CE035D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322B81861AAEE00CE035D /* AboutViewController.m */; };
 		18C322BC1861B9EB00CE035D /* AboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322BB1861B9EB00CE035D /* AboutUSViewController.m */; };
 		18C87D6A1887F0EF009AF085 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C87D681887F0EF009AF085 /* DetailViewController.xib */; };
 		18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C87D6D1887F1B7009AF085 /* DetailViewController.m */; };
@@ -144,7 +143,6 @@
 		2597678C190B5046002CCAFA /* news_n@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25976768190B5046002CCAFA /* news_n@2x.png */; };
 		2597678E190B5046002CCAFA /* maimeng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597676B190B5046002CCAFA /* maimeng@2x.png */; };
 		2597678F190B5046002CCAFA /* pujie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597676C190B5046002CCAFA /* pujie@2x.png */; };
-		25976791190B84ED002CCAFA /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25976790190B84ED002CCAFA /* AboutViewController.xib */; };
 		25A5F78118EC2F0000D6EE4E /* NoticeFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */; };
 		25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44C18FA20B6008D56F6 /* HiringViewController.m */; };
 		25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44F18FA2D24008D56F6 /* HringTableCell.m */; };
@@ -158,6 +156,7 @@
 		E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */; };
 		E95CDC821966D4D90083C1B7 /* wpyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */; };
 		E95CDC841966D58A0083C1B7 /* zhanshanlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */; };
+		E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9638CC919C326C300898350 /* AboutViewController.swift */; };
 		E983B48F199FBF1F00C08B2E /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E983B466199FBF1F00C08B2E /* CopyConnection.framework */; };
 		E983B490199FBF1F00C08B2E /* FacebookConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E983B467199FBF1F00C08B2E /* FacebookConnection.framework */; };
 		E983B491199FBF1F00C08B2E /* PrintConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E983B468199FBF1F00C08B2E /* PrintConnection.framework */; };
@@ -322,8 +321,6 @@
 		18C322B11861AAB600CE035D /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = WePeiYang/about/feedback/FeedbackViewController.m; sourceTree = "<group>"; };
 		18C322B21861AAB600CE035D /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = WePeiYang/about/feedback/FeedbackViewController.xib; sourceTree = "<group>"; };
 		18C322B31861AAB600CE035D /* FeedbackViewController3.5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedbackViewController3.5.xib; path = WePeiYang/about/feedback/FeedbackViewController3.5.xib; sourceTree = "<group>"; };
-		18C322B71861AAEE00CE035D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = WePeiYang/about/AboutViewController.h; sourceTree = "<group>"; };
-		18C322B81861AAEE00CE035D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = WePeiYang/about/AboutViewController.m; sourceTree = "<group>"; };
 		18C322BA1861B9EB00CE035D /* AboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutUSViewController.h; path = WePeiYang/about/AboutUSViewController.h; sourceTree = "<group>"; };
 		18C322BB1861B9EB00CE035D /* AboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutUSViewController.m; path = WePeiYang/about/AboutUSViewController.m; sourceTree = "<group>"; };
 		18C87D681887F0EF009AF085 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = news/DetailViewController.xib; sourceTree = "<group>"; };
@@ -406,7 +403,6 @@
 		25976768190B5046002CCAFA /* news_n@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news_n@2x.png"; sourceTree = "<group>"; };
 		2597676B190B5046002CCAFA /* maimeng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maimeng@2x.png"; sourceTree = "<group>"; };
 		2597676C190B5046002CCAFA /* pujie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pujie@2x.png"; sourceTree = "<group>"; };
-		25976790190B84ED002CCAFA /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutViewController.xib; path = WePeiYang/about/AboutViewController.xib; sourceTree = "<group>"; };
 		25A5F77F18EC2F0000D6EE4E /* NoticeFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeFavViewController.h; path = Notice/NoticeFavViewController.h; sourceTree = "<group>"; };
 		25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeFavViewController.m; path = Notice/NoticeFavViewController.m; sourceTree = "<group>"; };
 		25C0A44B18FA20B6008D56F6 /* HiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiringViewController.h; path = job/HiringViewController.h; sourceTree = "<group>"; };
@@ -427,6 +423,8 @@
 		E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VWWWaterView.m; path = WePeiYang/about/VWWWaterView.m; sourceTree = "<group>"; };
 		E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wpyicon@2x.png"; sourceTree = "<group>"; };
 		E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhanshanlogo@2x.png"; sourceTree = "<group>"; };
+		E9638CC919C326C300898350 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = WePeiYang/about/AboutViewController.swift; sourceTree = "<group>"; };
+		E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WePeiYang-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E983B466199FBF1F00C08B2E /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		E983B467199FBF1F00C08B2E /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		E983B468199FBF1F00C08B2E /* PrintConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PrintConnection.framework; sourceTree = "<group>"; };
@@ -478,7 +476,6 @@
 		E9952B7F19A72214001641A2 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		E9952B8019A72214001641A2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		E9952B8119A72214001641A2 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		E998D6DD199E027500A0F442 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WePeiYang-Bridging-Header.h"; path = "WePeiYang/WePeiYang-Bridging-Header.h"; sourceTree = "<group>"; };
 		E999800919B857DA001C8B60 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		E999800A19B857DA001C8B60 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		E999800B19B857DA001C8B60 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
@@ -705,6 +702,7 @@
 				18C322AE1861AA9C00CE035D /* About */,
 				188842211846E6F4007B92CB /* twtAppDelegate.h */,
 				188842221846E6F4007B92CB /* twtAppDelegate.m */,
+				E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */,
 				188842241846E6F4007B92CB /* Images.xcassets */,
 				188842191846E6F4007B92CB /* Supporting Files */,
 			);
@@ -828,13 +826,10 @@
 			children = (
 				E95CDC7E1966D4210083C1B7 /* VWWWaterView.h */,
 				E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */,
-				18C322B71861AAEE00CE035D /* AboutViewController.h */,
-				18C322B81861AAEE00CE035D /* AboutViewController.m */,
-				25976790190B84ED002CCAFA /* AboutViewController.xib */,
+				E9638CC919C326C300898350 /* AboutViewController.swift */,
 				18C322AF1861AAA400CE035D /* Feedback */,
 				18C322BA1861B9EB00CE035D /* AboutUSViewController.h */,
 				18C322BB1861B9EB00CE035D /* AboutUSViewController.m */,
-				E998D6DD199E027500A0F442 /* WePeiYang-Bridging-Header.h */,
 			);
 			name = About;
 			path = ..;
@@ -1233,7 +1228,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = twt;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Qin Yubo";
 				TargetAttributes = {
 					1888420E1846E6F4007B92CB = {
@@ -1301,7 +1296,6 @@
 				25976786190B5046002CCAFA /* l_record@2x.png in Resources */,
 				E983B49C199FBF1F00C08B2E /* Resource.bundle in Resources */,
 				25340FB3191CE70F00AFDE7D /* place_job_icon@2x.png in Resources */,
-				25976791190B84ED002CCAFA /* AboutViewController.xib in Resources */,
 				25340FB8191CE78A00AFDE7D /* time_laf_icon@2x.png in Resources */,
 				E95CDC841966D58A0083C1B7 /* zhanshanlogo@2x.png in Resources */,
 				2597676E190B5046002CCAFA /* back@2x.png in Resources */,
@@ -1384,7 +1378,6 @@
 				188842771846F723007B92CB /* CollectionViewController.m in Sources */,
 				18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */,
 				18C322BC1861B9EB00CE035D /* AboutUSViewController.m in Sources */,
-				18C322B91861AAEE00CE035D /* AboutViewController.m in Sources */,
 				E9A2B2F819B5C0080083FB2C /* RavenJSONUtilities.m in Sources */,
 				E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
@@ -1414,6 +1407,7 @@
 				E9952B8819A72214001641A2 /* AFURLRequestSerialization.m in Sources */,
 				18114E7A18585A64007455E2 /* JobDetailViewController.m in Sources */,
 				E9952B8519A72214001641A2 /* AFNetworkReachabilityManager.m in Sources */,
+				E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */,
 				E999800D19B857DA001C8B60 /* SVProgressHUD.m in Sources */,
 				252C101B19176FA900C2B636 /* wpyEncryption.m in Sources */,
 				1888425F1846E86D007B92CB /* YStudySearchConst.m in Sources */,
@@ -1501,10 +1495,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1536,7 +1526,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1544,10 +1534,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1573,7 +1559,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1581,11 +1567,13 @@
 		1888423C1846E6F4007B92CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Connection",
@@ -1615,7 +1603,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1623,11 +1611,13 @@
 		1888423D1846E6F4007B92CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Connection",
@@ -1656,7 +1646,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
