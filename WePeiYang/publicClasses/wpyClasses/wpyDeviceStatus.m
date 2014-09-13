@@ -90,7 +90,7 @@
     NSString *deviceUdid = device_.identifierForVendor.UUIDString;
     
     NSString *appVersion = [data shareInstance].appVersion;
-    NSString *deviceToken = [data shareInstance].deviceToken;
+    //NSString *deviceToken = [data shareInstance].deviceToken;
     
     [deviceStatus setValue:device forKey:@"model"];
     [deviceStatus setValue:screenSize forKey:@"size"];
@@ -99,7 +99,7 @@
     [deviceStatus setValue:deviceVersion forKey:@"version"];
     [deviceStatus setValue:deviceUdid forKey:@"udid"];
     [deviceStatus setValue:appVersion forKey:@"appversion"];
-    [deviceStatus setValue:deviceToken forKey:@"token"];
+    //[deviceStatus setValue:deviceToken forKey:@"token"];
     
     wpyDS.finishCallbackBlock(deviceStatus);
 

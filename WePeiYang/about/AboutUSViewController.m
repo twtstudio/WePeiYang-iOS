@@ -11,7 +11,7 @@
 #import "data.h"
 #import "SVProgressHUD.h"
 
-#define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
+#define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height >= (double)568))
 
 @interface AboutUSViewController ()
 
@@ -70,8 +70,8 @@
     NSString *path2 = [[NSBundle mainBundle]pathForResource:@"zhanshanlogo@2x" ofType:@"png"];
     UIImage *image2 = [UIImage imageWithContentsOfFile:path2];
     UIImageView *imgView2 = [[UIImageView alloc]initWithImage:image2];
-    int imgheight = DEVICE_IS_IPHONE5 ? 240 : 240*0.6;
-    [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width - self.view.frame.size.width*imgheight/240), self.view.frame.size.height - imgheight, self.view.frame.size.width*imgheight/240, imgheight)];
+    int imgheight = DEVICE_IS_IPHONE5 ? (self.view.frame.size.width * 0.667) : (self.view.frame.size.width * 0.667)*0.6;
+    [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width - self.view.frame.size.width*imgheight/(self.view.frame.size.width * 0.667)), self.view.frame.size.height - imgheight, self.view.frame.size.width*imgheight/(self.view.frame.size.width * 0.667), imgheight)];
     [self.view addSubview:imgView2];
     
     

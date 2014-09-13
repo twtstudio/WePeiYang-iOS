@@ -99,10 +99,10 @@
     {
         NSString *pushMsg = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
         NSString *pushId = [[userInfo objectForKey:@"aps"]objectForKey:@"id"];
-        [data shareInstance].pushMsg = pushMsg;
-        [data shareInstance].pushId = pushId;
-        [data shareInstance].newsTitle = [data shareInstance].pushMsg;
-        [data shareInstance].newsId = [data shareInstance].pushId;
+        //[data shareInstance].pushMsg = pushMsg;
+        //[data shareInstance].pushId = pushId;
+        //[data shareInstance].newsTitle = [data shareInstance].pushMsg;
+        //[data shareInstance].newsId = [data shareInstance].pushId;
         //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
         //slideTrans = [[DMSlideTransition alloc]init];
         //[receivedNotificationViewController setTransitioningDelegate:slideTrans];
@@ -123,7 +123,7 @@
     token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"apns -> devToken:%@",token);
-    [data shareInstance].deviceToken = token;
+    //[data shareInstance].deviceToken = token;
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -135,10 +135,10 @@
 {
     NSLog(@"apns -> Msg:%@",[[userInfo objectForKey:@"aps"]objectForKey:@"alert"]);
     NSLog(@"apns -> Id:%@",[[userInfo objectForKey:@"aps"]objectForKey:@"id"]);
-    [data shareInstance].pushId = [[userInfo objectForKey:@"aps"] objectForKey:@"id"];
-    [data shareInstance].pushMsg = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    //[data shareInstance].pushId = [[userInfo objectForKey:@"aps"] objectForKey:@"id"];
+    //[data shareInstance].pushMsg = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     
-    pushAlert = [[UIAlertView alloc]initWithTitle:@"新消息" message:[NSString stringWithFormat:@"%@",[data shareInstance].pushMsg] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
+    //pushAlert = [[UIAlertView alloc]initWithTitle:@"新消息" message:[NSString stringWithFormat:@"%@",[data shareInstance].pushMsg] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
     [pushAlert show];
     [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
     [[UIApplication sharedApplication]cancelAllLocalNotifications];
@@ -152,8 +152,8 @@
     {
         if (buttonIndex != [alertView cancelButtonIndex])
         {
-            [data shareInstance].newsTitle = [data shareInstance].pushMsg;
-            [data shareInstance].newsId = [data shareInstance].pushId;
+            //[data shareInstance].newsTitle = [data shareInstance].pushMsg;
+            //[data shareInstance].newsId = [data shareInstance].pushId;
             //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
             //DMSlideTransition *trans = [[DMSlideTransition alloc]init];
             //[receivedNotificationViewController setTransitioningDelegate:trans];

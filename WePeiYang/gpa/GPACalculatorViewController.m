@@ -42,7 +42,7 @@
     [[UIButton appearance] setTintColor:gpaTintColor];
     [[UINavigationBar appearance] setTintColor:gpaTintColor];
     
-    UINavigationBar *navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+    UINavigationBar *navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, 64)];
     UINavigationItem *navigationItem = [[UINavigationItem alloc]init];
     NSString *backIconPath = [[NSBundle mainBundle]pathForResource:@"backForNav@2x" ofType:@"png"];
     UIBarButtonItem *backBarBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithContentsOfFile:backIconPath] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LAFound_AnnounceViewController">
@@ -23,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="545"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3H-gd-Na9">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3H-gd-Na9">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="545"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-bj-dt5">
@@ -32,7 +33,7 @@
                             <color key="textColor" red="0.050980392156862744" green="0.68235294117647061" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题（丢失物品、特点）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PAm-ok-IAA">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标题（丢失物品、特点）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PAm-ok-IAA">
                             <rect key="frame" x="63" y="20" width="236" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -67,56 +68,68 @@
                             <color key="textColor" red="0.050980392156862744" green="0.68235294117647061" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="丢失地点" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Imo-9g-c5x">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="丢失地点" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Imo-9g-c5x">
                             <rect key="frame" x="63" y="60" width="236" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="丢失时间" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kID-9B-RYU">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="丢失时间" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kID-9B-RYU">
                             <rect key="frame" x="63" y="100" width="236" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系方式" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLh-5k-PS1">
-                            <rect key="frame" x="63" y="140" width="236" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
-                        </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="您的姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEe-r0-Xoy">
-                            <rect key="frame" x="64" y="181" width="236" height="30"/>
+                            <rect key="frame" x="63" y="181" width="237" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                         </textField>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2x-cb-wXF">
-                            <rect key="frame" x="64" y="219" width="236" height="329"/>
+                            <rect key="frame" x="63" y="219" width="237" height="329"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="联系方式" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLh-5k-PS1">
+                            <rect key="frame" x="63" y="140" width="236" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                        </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="j2x-cb-wXF" firstAttribute="top" secondItem="wEe-r0-Xoy" secondAttribute="bottom" constant="8" id="DDr-3t-cSt"/>
+                        <constraint firstAttribute="trailing" secondItem="PAm-ok-IAA" secondAttribute="trailing" constant="21" id="4YO-GV-GKU"/>
+                        <constraint firstAttribute="trailing" secondItem="kID-9B-RYU" secondAttribute="trailing" constant="21" id="E5R-zD-AUR"/>
                         <constraint firstAttribute="bottom" secondItem="j2x-cb-wXF" secondAttribute="bottom" constant="20" id="Qss-KQ-FAU"/>
+                        <constraint firstAttribute="trailing" secondItem="MLh-5k-PS1" secondAttribute="trailing" constant="21" id="TjN-vP-nRs"/>
+                        <constraint firstAttribute="trailing" secondItem="wEe-r0-Xoy" secondAttribute="trailing" constant="20" id="md2-hn-ZHR"/>
+                        <constraint firstAttribute="trailing" secondItem="Imo-9g-c5x" secondAttribute="trailing" constant="21" id="oBR-9W-95J"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="B3H-gd-Na9" secondAttribute="bottom" id="EOf-63-m3i"/>
+                <constraint firstAttribute="trailing" secondItem="B3H-gd-Na9" secondAttribute="trailing" id="EuV-Dc-9D5"/>
+                <constraint firstItem="B3H-gd-Na9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Orm-iB-hYi"/>
+                <constraint firstItem="B3H-gd-Na9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RYV-lf-bwg"/>
+                <constraint firstAttribute="bottom" secondItem="B3H-gd-Na9" secondAttribute="bottom" id="Vxu-xR-kBn"/>
                 <constraint firstItem="B3H-gd-Na9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aa1-Vk-MzU"/>
+                <constraint firstItem="B3H-gd-Na9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hvl-K7-y9V"/>
                 <constraint firstAttribute="bottom" secondItem="B3H-gd-Na9" secondAttribute="bottom" id="nHY-zW-FW5"/>
                 <constraint firstItem="B3H-gd-Na9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xxw-tZ-LVu"/>
+                <constraint firstAttribute="bottom" secondItem="B3H-gd-Na9" secondAttribute="bottom" id="yLZ-rZ-1zk"/>
+                <constraint firstItem="B3H-gd-Na9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yoo-dz-28U"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="434" y="354.5"/>
         </view>
         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="rQN-W5-HWR">
             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <date key="date" timeIntervalSinceReferenceDate="419165927.11566103">
-                <!--<__NSDate Class=2014-04-14 10:58:47 +0000 timeInterval=419165927.115661 ISO8601=2014-04-14T18:58:47.116+0800>-->
+                <!--2014-04-14 10:58:47 +0000-->
             </date>
             <locale key="locale" localeIdentifier="zh-Hans"/>
+            <point key="canvasLocation" x="434" y="-89"/>
         </datePicker>
         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8P7-QP-vjK">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -131,4 +144,9 @@
             </items>
         </toolbar>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

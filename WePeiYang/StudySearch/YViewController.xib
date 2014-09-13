@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YViewController">
@@ -20,9 +21,8 @@
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6et-PE-3pW">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="301"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8">
                             <rect key="frame" x="77" y="259" width="166" height="42"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <state key="normal" title="开始查询">
@@ -35,6 +35,10 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" constant="77" id="QrQ-RB-e5h"/>
+                        <constraint firstItem="8" firstAttribute="leading" secondItem="6et-PE-3pW" secondAttribute="leading" constant="77" id="Z0N-gH-J2L"/>
+                    </constraints>
                 </view>
                 <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11">
                     <rect key="frame" x="0.0" y="50" width="320" height="216"/>
@@ -62,7 +66,7 @@
                         <action selector="backToStart:" destination="-1" eventType="touchUpInside" id="922-Rm-iyd"/>
                     </connections>
                 </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T6n-NQ-SMT">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="T6n-NQ-SMT">
                     <rect key="frame" x="63" y="29" width="194" height="29"/>
                     <segments>
                         <segment title="今天"/>
@@ -76,14 +80,26 @@
             </subviews>
             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="6et-PE-3pW" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="0aN-kF-HVW"/>
                 <constraint firstItem="66" firstAttribute="top" secondItem="6et-PE-3pW" secondAttribute="bottom" id="34e-Qn-kre"/>
+                <constraint firstItem="T6n-NQ-SMT" firstAttribute="top" secondItem="6" secondAttribute="top" constant="29" id="BOM-eb-liT"/>
+                <constraint firstAttribute="trailing" secondItem="T6n-NQ-SMT" secondAttribute="trailing" constant="63" id="PRw-Yy-Ier"/>
+                <constraint firstItem="66" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="56" id="U9q-Ua-auJ"/>
                 <constraint firstAttribute="bottom" secondItem="66" secondAttribute="bottom" id="Y0g-Or-1do"/>
+                <constraint firstAttribute="trailing" secondItem="66" secondAttribute="trailing" id="Zy9-DW-9xZ"/>
+                <constraint firstItem="6et-PE-3pW" firstAttribute="top" secondItem="6" secondAttribute="top" id="kNA-1Y-9Ue"/>
+                <constraint firstAttribute="trailing" secondItem="6et-PE-3pW" secondAttribute="trailing" id="kOI-Nd-CqR"/>
+                <constraint firstItem="T6n-NQ-SMT" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="63" id="syw-hO-GRK"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
         <image name="backForNav.png" width="20" height="20"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

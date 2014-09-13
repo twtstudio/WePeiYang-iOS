@@ -16,6 +16,7 @@
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -34,7 +35,6 @@
     NSMutableArray *author;
     NSMutableArray *deadline;
     
-    UIAlertView *waitingAlert;
     UIAlertView *nilAlert;
     UIAlertView *logoutAlert;
     
@@ -126,10 +126,15 @@
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
+        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+        
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             //Successful
-            [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
+            //[waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
+            [SVProgressHUD dismiss];
             
             NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
             NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -145,8 +150,14 @@
             [self dealWithReceivedLoginData:responseObject];
             [data shareInstance].libLogin = @"";
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
             NSInteger statusCode = operation.response.statusCode;
             switch (statusCode) {
+                    
+                case 405:
+                    NSLog(@"HERE 405");
+                    break;
+                    
                 case 403:
                     //未绑定图书馆
                     [tableView setHidden:YES];
@@ -268,7 +279,6 @@
 
 - (void)dealWithReceivedLoginData:(NSDictionary *)loginDic
 {
-    [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
     title = [[NSMutableArray alloc]initWithObjects:nil, nil];
     author = [[NSMutableArray alloc]initWithObjects:nil, nil];
     deadline = [[NSMutableArray alloc]initWithObjects:nil, nil];
@@ -278,11 +288,7 @@
     NSString *backStr = [NSString stringWithFormat:@"%@",[loginDic objectForKey:@"back"]];
     NSString *uName = [loginDic objectForKey:@"uname"];
     [data shareInstance].welcomeLabelString = [NSString stringWithFormat:@"       %@  已借：%@本  应还：%@本  欠款：%@元",uName,outStr,backStr,money];
-    if (recordDic == [NSNull null])
-    {
-        
-    }
-    else
+    if (recordDic != [NSNull null])
     {
         for (NSDictionary *temp in recordDic)
         {
@@ -408,6 +414,7 @@
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"error"] integerValue] == 409) {
             [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"没有需要续订的书籍"];
@@ -457,8 +464,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *headerView = [[UIView alloc]init];
-    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, 32)];
-    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 32)];
+    [headerView setFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, 32)];
+    UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, 32)];
     [headerLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
     headerLabel.text = [data shareInstance].welcomeLabelString;
     [headerLabel setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];

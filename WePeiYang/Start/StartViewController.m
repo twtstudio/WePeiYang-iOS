@@ -30,6 +30,8 @@
 #import "WePeiYang-Swift.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
+#define DEVICE_IS_IPHONE6 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)667) < DBL_EPSILON)
+#define DEVICE_IS_IPHONE6PLUS (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)960) < DBL_EPSILON)
 #define DEVICE_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 @interface StartViewController ()
@@ -62,6 +64,8 @@
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     [data shareInstance].appVersion = appVersion;
+    
+    [data shareInstance].deviceWidth = self.view.frame.size.width;
     
     self.title = @"微北洋";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard_bg.png"]];
@@ -312,8 +316,7 @@
                                      @"brand":  @"Apple",
                                      @"model":  deviceStatus,
                                      @"system": deviceVersion,
-                                     @"size":   deviceSize,
-                                     @"id":     [data shareInstance].deviceToken};
+                                     @"size":   deviceSize};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSFileManager *fileManager = [NSFileManager defaultManager];

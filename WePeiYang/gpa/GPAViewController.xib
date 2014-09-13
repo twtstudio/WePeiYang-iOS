@@ -29,50 +29,68 @@
                         <outlet property="delegate" destination="-1" id="AHE-rn-2p5"/>
                     </connections>
                 </tableView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I26-nc-NRa">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I26-nc-NRa">
                     <rect key="frame" x="90" y="253" width="140" height="36"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JO-oA-fKH">
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JO-oA-fKH">
                     <rect key="frame" x="16" y="124" width="288" height="129"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-7H-tf1">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-7H-tf1">
                     <rect key="frame" x="0.0" y="21" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="JVW-b2-CbL"/>
+                        <constraint firstAttribute="height" constant="40" id="heG-13-sCa"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="back.png"/>
+                    <state key="normal" image="backForNav.png"/>
                     <connections>
                         <action selector="backToHomeBtn:" destination="-1" eventType="touchUpInside" id="QHA-Mj-15I"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="379-jO-4Ra">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="379-jO-4Ra">
                     <rect key="frame" x="280" y="21" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="al4-BJ-TYr"/>
+                        <constraint firstAttribute="height" constant="40" id="dse-Ta-GZt"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" image="moreBtn.png"/>
                     <connections>
                         <action selector="openActionSheet:" destination="-1" eventType="touchUpInside" id="dU7-4a-gkV"/>
                     </connections>
                 </button>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pujie.png" translatesAutoresizingMaskIntoConstraints="NO" id="nIg-WY-hFx">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="pujie.png" translatesAutoresizingMaskIntoConstraints="NO" id="nIg-WY-hFx">
                     <rect key="frame" x="55" y="322" width="210" height="125"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="I26-nc-NRa" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="90" id="08E-Ve-B0P"/>
+                <constraint firstAttribute="trailing" secondItem="I26-nc-NRa" secondAttribute="trailing" constant="90" id="36V-hm-BFS"/>
+                <constraint firstItem="sQh-7H-tf1" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="3zQ-Fk-sEx"/>
+                <constraint firstItem="sQh-7H-tf1" firstAttribute="top" secondItem="1" secondAttribute="top" constant="21" id="9H4-Ob-5Pm"/>
+                <constraint firstAttribute="trailing" secondItem="nIg-WY-hFx" secondAttribute="trailing" constant="55" id="AwC-yo-pVP"/>
                 <constraint firstItem="i3k-wA-iB1" firstAttribute="top" secondItem="1" secondAttribute="top" id="C7y-Qe-i6M"/>
                 <constraint firstItem="i3k-wA-iB1" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Mlu-py-eOZ"/>
                 <constraint firstAttribute="bottom" secondItem="i3k-wA-iB1" secondAttribute="bottom" id="UAP-Mv-bKQ"/>
+                <constraint firstItem="6JO-oA-fKH" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="dro-tu-LTh"/>
+                <constraint firstItem="379-jO-4Ra" firstAttribute="top" secondItem="1" secondAttribute="top" constant="21" id="kEP-fi-aoq"/>
                 <constraint firstAttribute="trailing" secondItem="i3k-wA-iB1" secondAttribute="trailing" id="lAJ-N1-Xb2"/>
+                <constraint firstAttribute="trailing" secondItem="379-jO-4Ra" secondAttribute="trailing" id="obe-ih-nxk"/>
+                <constraint firstItem="nIg-WY-hFx" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="55" id="q3b-7M-kTy"/>
+                <constraint firstAttribute="trailing" secondItem="6JO-oA-fKH" secondAttribute="trailing" constant="16" id="qvg-XS-FgA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="back.png" width="80" height="80"/>
+        <image name="backForNav.png" width="20" height="20"/>
         <image name="moreBtn.png" width="80" height="80"/>
         <image name="pujie.png" width="210" height="125"/>
     </resources>

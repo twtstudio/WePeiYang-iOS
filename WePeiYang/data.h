@@ -61,9 +61,10 @@
 
 //for Total
 @property (retain, nonatomic) NSString *appVersion;
-@property (retain, nonatomic) NSString *pushId;
-@property (retain, nonatomic) NSString *pushMsg;
-@property (retain, nonatomic) NSString *deviceToken;
+//@property (retain, nonatomic) NSString *pushId;
+//@property (retain, nonatomic) NSString *pushMsg;
+//@property (retain, nonatomic) NSString *deviceToken;
+@property (nonatomic) CGFloat deviceWidth;
 
 + (data *)shareInstance;
 

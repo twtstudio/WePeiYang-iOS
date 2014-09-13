@@ -13,11 +13,12 @@
 #import "GPATableCell.h"
 #import <ShareSDK/ShareSDK.h>
 #import "AFNetworking.h"
+#import "gpaHeaderView.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "CSNotificationView.h"
-#import "gpaHeaderView.h"
 #import "SVProgressHUD.h"
+#import "WePeiYang-Swift.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -98,7 +99,7 @@
     
     [loginBtn primaryStyle];
     
-    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight)];
+    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, gpaHeaderViewHeight)];
     
     [self reloadArraysInTable];
     [self checkLoginStatus];
@@ -329,7 +330,6 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+150)];
     [headerView addSubview:gpaHeader];
     [headerView addSubview:chart];
-    
     
     tableView.tableHeaderView = headerView;
     //frame = [tableView.tableHeaderView frame];
