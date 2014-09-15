@@ -10,7 +10,7 @@
 #import "HringTableCell.h"
 #import "AFNetworking.h"
 #import "data.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 #import "HiringDetailViewController.h"
 
 @interface HiringViewController ()
@@ -86,7 +86,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processContentDic:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];
     
@@ -152,7 +152,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processContentDic:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
 }
 

@@ -11,7 +11,7 @@
 #import "DetailViewController.h"
 #import "CollectionViewController.h"
 #import "AFNetworking.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -181,9 +181,12 @@
                                  @"version":[data shareInstance].appVersion};
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processIndexData:responseObject];
+        [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻列表失败~"];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [self.refreshControl endRefreshing];
     }];
+    [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
     
     /*
     [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
@@ -315,7 +318,7 @@
         [self processIndexData:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻列表失败~"];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];
 }

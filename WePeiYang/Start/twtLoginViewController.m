@@ -11,7 +11,6 @@
 #import "AFNetworking.h"
 #import "data.h"
 #import "UIButton+Bootstrap.h"
-#import "CSNotificationView.h"
 #import "wpyEncryption.h"
 #import "GuideViewController.h"
 #import "SVProgressHUD.h"
@@ -106,7 +105,7 @@
                 UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"出错" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [errorAlert show];
             } else {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前无法登录哦T^T"];
+                [SVProgressHUD showErrorWithStatus:@"当前无法登录哦T^T"];
             }
         }];
         

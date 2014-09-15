@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import <ShareSDK/ShareSDK.h>
 #import "data.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 @interface HiringDetailViewController ()
 
@@ -46,7 +46,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processContentDic:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     
     /*

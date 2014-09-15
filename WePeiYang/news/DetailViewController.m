@@ -12,7 +12,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
@@ -60,7 +60,7 @@
         [self processDetailData:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取新闻失败T^T"];
+        [SVProgressHUD showErrorWithStatus:@"获取新闻失败T^T"];
     }];
 }
 
@@ -191,7 +191,7 @@
     [collectionDic setObject:newDic forKey:[data shareInstance].newsTitle];
     [collectionDic writeToFile:plistPath atomically:YES];
     
-    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"新闻收藏成功！"];
+    [SVProgressHUD showSuccessWithStatus:@"新闻收藏成功！"];
 }
 
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet

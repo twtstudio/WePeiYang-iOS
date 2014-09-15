@@ -11,7 +11,7 @@
 #import "JobTableCell.h"
 #import "JobDetailViewController.h"
 #import "JobFavViewController.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 #import "AFNetworking.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -118,7 +118,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取列表失败T^T"];
+        [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
     }];
     [self.refreshControl endRefreshing];
     
@@ -255,7 +255,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取列表失败T^T"];
+        [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
     }];
     
     /*

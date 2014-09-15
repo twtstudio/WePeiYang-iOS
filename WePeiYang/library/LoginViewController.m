@@ -10,7 +10,7 @@
 #import "data.h"
 #import "UIButton+Bootstrap.h"
 #import "AFNetworking.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 @interface LoginViewController ()
 
@@ -105,7 +105,7 @@
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
             } else {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"绑定图书馆帐号失败T^T"];
+                [SVProgressHUD showErrorWithStatus:@"绑定图书馆帐号失败T^T"];
             }
         }];
         

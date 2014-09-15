@@ -10,7 +10,7 @@
 #import "data.h"
 #import "NoticeDetailViewController.h"
 #import "AFNetworking.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -91,7 +91,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedDictionary:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取公告失败T^T"];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];
     /*
@@ -176,7 +176,7 @@
         [self dealWithReceivedDictionary:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@",error.localizedDescription]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     /*
     NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=2",(long)currentPage];

@@ -11,7 +11,7 @@
 #import "UIButton+Bootstrap.h"
 #import "data.h"
 #import "AFNetworking.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -165,7 +165,7 @@
     
     if (startTimeSelected >= endTimeSelected) {
         
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"您选择的自习时间有些错误哦~"];
+        [SVProgressHUD showErrorWithStatus:@"您选择的自习时间有些错误哦~"];
         
         
     } else {
@@ -200,7 +200,7 @@
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self processReceivedContentData:responseObject];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取自习室失败T^T"];
+            [SVProgressHUD showErrorWithStatus:@"获取自习室失败T^T"];
         }];
         
         /*
@@ -248,7 +248,7 @@
             [self.searchResultsTableView reloadData];
             //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"这个时间段里这儿没有自习室了~" delegate:nil cancelButtonTitle:@"好吧" otherButtonTitles:nil];
             //[alert show];
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"这个时间段里这儿没有自习室了~"];
+            [SVProgressHUD showSuccessWithStatus:@"这个时间段里这儿没有自习室了~"];
         });
     }
     

@@ -10,7 +10,7 @@
 #import "data.h"
 #import "UIButton+Bootstrap.h"
 #import "AFNetworking.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 @interface GPALoginViewController ()
 
@@ -100,7 +100,7 @@
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
             } else {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"绑定办公网帐号失败T^T"];
+                [SVProgressHUD showErrorWithStatus:@"绑定办公网失败"];
             }
         }];
         

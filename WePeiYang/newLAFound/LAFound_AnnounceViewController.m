@@ -7,9 +7,8 @@
 //
 
 #import "LAFound_AnnounceViewController.h"
-#import "CSNotificationView.h"
 #import "LAFound_DataManager.h"
-
+#import "SVProgressHUD.h"
 
 @interface LAFound_AnnounceViewController ()
 
@@ -122,7 +121,7 @@
         [affirmAnnounceAlert show];
         
     }else {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"信息还没有填写完全哦~"];
+        [SVProgressHUD showErrorWithStatus:@"信息还没有填写完全哦~"];
     }
 }
 
@@ -133,7 +132,7 @@
     
     [LAFound_DataManager announceItemInfoWithType:_type title:self.titleTextField.text place:self.placeTextField.text time:self.timeTextField.text phone:self.phoneTextField.text name:self.nameTextField.text content:self.contentTexeView.text success:^(id responseObject) {
         if ([responseObject isEqualToString:@"发布成功"]) {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"消息发布成功！"];
+            [SVProgressHUD showSuccessWithStatus:@"消息发布成功！"];
             [self.titleTextField setText:@""];
             [self.placeTextField setText:@""];
             [self.timeTextField setText:@""];
@@ -143,10 +142,10 @@
 
             
         } else  if([responseObject isEqualToString:@"发布失败"]){
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"消息发布失败！"];
+            [SVProgressHUD showErrorWithStatus:@"消息发布失败！"];
         }
     } failure:^(NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     
     

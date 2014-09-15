@@ -16,7 +16,6 @@
 #import "gpaHeaderView.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
-#import "CSNotificationView.h"
 #import "SVProgressHUD.h"
 #import "WePeiYang-Swift.h"
 
@@ -165,8 +164,8 @@
             [SVProgressHUD dismiss];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSInteger statusCode = operation.response.statusCode;
-            [self processErrorWithStatusCode:statusCode];
             [SVProgressHUD dismiss];
+            [self processErrorWithStatusCode:statusCode];
         }];
         
     }
@@ -185,7 +184,7 @@
     backBtn.tintColor = gpaTintColor;
     switch (statusCode) {
         case 401:
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"验证出错…请重新登录~"];
+            [SVProgressHUD showErrorWithStatus:@"验证出错\n请重新登录"];
             [moreBtn setHidden:YES];
             [chart setHidden:YES];
             [tableView setHidden:YES];
@@ -215,7 +214,7 @@
             break;
             
         case 500:
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
+            [SVProgressHUD showErrorWithStatus:@"服务器出错惹QAQ"];
             break;
             
         default:
@@ -346,17 +345,17 @@
                                  @"version":appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"一键评价成功！"];
+        [SVProgressHUD showSuccessWithStatus:@"一键评价成功！"];
         [self checkLoginStatus];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSInteger statusCode = operation.response.statusCode;
         switch (statusCode) {
             case 403:
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"没有可以评价的科目"];
+                [SVProgressHUD showErrorWithStatus:@"没有可以评价的科目"];
                 break;
                 
             default:
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"无法一键评价T^T"];
+                [SVProgressHUD showErrorWithStatus:@"无法一键评价T^T"];
                 break;
         }
     }];

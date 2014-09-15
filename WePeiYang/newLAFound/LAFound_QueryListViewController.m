@@ -9,7 +9,7 @@
 #import "LAFound_QueryListViewController.h"
 #import "LAFound_QueryDetailViewController.h"
 #import "LAFound_QueryListTableViewCell.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 #import "LAFound_AnnounceViewController.h"
 
 #import "LAFound_DataManager.h"
@@ -194,7 +194,7 @@
     [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
         [self processWithData:responseObject];
     } failure:^(NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     
     
@@ -221,7 +221,7 @@
         }
         [self.tableView reloadData];
     } else {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"出错啦~请稍后重试…"];
+        [SVProgressHUD showErrorWithStatus:@"出错啦~请稍后重试…"];
     }
 }
 
@@ -242,7 +242,7 @@
         }
         [self.tableView reloadData];
     } else {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"出错啦~请稍后重试…"];
+        [SVProgressHUD showErrorWithStatus:@"出错啦~请稍后重试…"];
     }
     
     
@@ -283,7 +283,7 @@
     [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
         [self processWithDataPassRefresh:responseObject];
     } failure:^(NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];
     

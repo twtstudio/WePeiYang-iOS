@@ -11,11 +11,10 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
-#import "StartViewController.h"
 #import "data.h"
-#import "DMSlideTransition.h"
 #import "twtSecretKeys.h"
 #import "RavenClient.h"
+#import "WePeiYang-Swift.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -81,8 +80,9 @@
     
 
     
-    StartViewController *start = [[StartViewController alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:start];
+    //StartViewController *start = [[StartViewController alloc]init];
+    DashboardViewController *dashboard = [[DashboardViewController alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
     
     self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];

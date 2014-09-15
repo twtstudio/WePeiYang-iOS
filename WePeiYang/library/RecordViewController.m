@@ -15,7 +15,6 @@
 #import "DMSlideTransition.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
-#import "CSNotificationView.h"
 #import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -172,7 +171,7 @@
                     break;
                     
                 case 401:
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"登录验证出错...请重新登录！"];
+                    [SVProgressHUD showErrorWithStatus:@"登录验证出错...请重新登录！"];
                     [tableView setHidden:YES];
                     [noLoginLabel setHidden:NO];
                     [noLoginLabel setText:@"您尚未登录天外天账号"];
@@ -186,7 +185,7 @@
                     break;
                     
                 default:
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取记录失败T^T"];
+                    [SVProgressHUD showErrorWithStatus:@"获取记录失败T^T"];
                     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
                     NSFileManager *fileManager = [NSFileManager defaultManager];
                     if ([fileManager fileExistsAtPath:plistPath])
@@ -417,12 +416,12 @@
     
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject objectForKey:@"error"] integerValue] == 409) {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"没有需要续订的书籍"];
+            [SVProgressHUD showSuccessWithStatus:@"没有需要续订的书籍"];
         } else {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"一键续订成功!"];
+            [SVProgressHUD showSuccessWithStatus:@"一键续订成功!"];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"一键续订失败T^T"];
+        [SVProgressHUD showErrorWithStatus:@"一键续订失败T^T"];
     }];
     
     /*

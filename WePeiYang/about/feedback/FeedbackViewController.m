@@ -12,7 +12,7 @@
 #import "AFNetworking.h"
 #import "wpyDeviceStatus.h"
 #import "UIButton+Bootstrap.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 #import "data.h"
 
 @interface FeedbackViewController ()
@@ -117,7 +117,7 @@
         thxAlert = [[UIAlertView alloc]initWithTitle:@"Thanks" message:@"感谢您的反馈！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [thxAlert show];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"发送反馈失败，请稍后再试"];
+        [SVProgressHUD showErrorWithStatus:@"发送反馈失败，请稍后再试"];
     }];
     
     /*

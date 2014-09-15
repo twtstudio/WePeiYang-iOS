@@ -11,7 +11,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 @interface JobDetailViewController ()
 
@@ -59,7 +59,7 @@
     [manager POST:url parameters:body success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取详情失败T^T"];
+        [SVProgressHUD showErrorWithStatus:@"获取详情失败T^T"];
     }];
     /*
     NSString *body = [NSString stringWithFormat:@"ctype=job&index=%@",[data shareInstance].jobId];
@@ -145,7 +145,7 @@
     [jobFavDic setObject:newDic forKey:[data shareInstance].jobTitle];
     [jobFavDic writeToFile:plistPath atomically:YES];
     
-    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"就业资讯收藏成功！"];
+    [SVProgressHUD showSuccessWithStatus:@"就业资讯收藏成功！"];
 }
 
 - (void)shareByIOS

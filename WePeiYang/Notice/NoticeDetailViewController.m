@@ -11,7 +11,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 @interface NoticeDetailViewController ()
 
@@ -52,7 +52,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"无法获取公告T^T"];
+        [SVProgressHUD showErrorWithStatus:@"无法获取公告T^T"];
     }];
     
     /*
@@ -209,7 +209,7 @@
     [noticeFavDic setObject:newDic forKey:[data shareInstance].noticeTitle];
     [noticeFavDic writeToFile:plistPath atomically:YES];
     
-    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"公告收藏成功！"];
+    [SVProgressHUD showSuccessWithStatus:@"公告收藏成功！"];
 }
 
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet

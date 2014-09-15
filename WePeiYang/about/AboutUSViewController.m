@@ -71,7 +71,7 @@
     UIImage *image2 = [UIImage imageWithContentsOfFile:path2];
     UIImageView *imgView2 = [[UIImageView alloc]initWithImage:image2];
     int imgheight = DEVICE_IS_IPHONE5 ? (self.view.frame.size.width * 0.667) : (self.view.frame.size.width * 0.667)*0.6;
-    [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width - self.view.frame.size.width*imgheight/(self.view.frame.size.width * 0.667)), self.view.frame.size.height - imgheight, self.view.frame.size.width*imgheight/(self.view.frame.size.width * 0.667), imgheight)];
+    [imgView2 setFrame:CGRectMake(0.5*(self.view.frame.size.width-4*imgheight/3), self.view.frame.size.height - imgheight, 4*imgheight/3, imgheight)];
     [self.view addSubview:imgView2];
     
     

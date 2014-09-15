@@ -8,7 +8,7 @@
 
 #import "LAFound_QueryDetailViewController.h"
 #import <ShareSDK/ShareSDK.h>
-#import "CSNotificationView.h"
+#import "SVProgressHUD.h"
 
 @interface LAFound_QueryDetailViewController ()
 
@@ -106,7 +106,7 @@
         [archiver finishEncoding];
         [data writeToFile:[self dataFilePath] atomically:YES];
     }
-    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"添加收藏成功！"];
+    [SVProgressHUD showSuccessWithStatus:@"添加收藏成功"];
 }
 
 - (void)loadDataArray

@@ -15,7 +15,6 @@
 #import <ShareSDK/ShareSDK.h>
 #import "UIButton+Bootstrap.h"
 #import "DMSlideTransition.h"
-#import "CSNotificationView.h"
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 
@@ -187,8 +186,8 @@
             [self dealWithReceivedSearchData:resultDic];
             [SVProgressHUD dismiss];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取书目失败T^T"];
             [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:@"获取书目失败T^T"];
         }];
         
         /*
@@ -348,8 +347,8 @@
         [self dealWithReceivedNextData:resultDic];
         [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"获取书目失败T^T"];
         [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"获取书目失败T^T"];
     }];
 
 }
@@ -421,7 +420,7 @@
     [LibraryCollectionDic setObject:newDic forKey:[data shareInstance].titleSelected];
     [LibraryCollectionDic writeToFile:plistPath atomically:YES];
     
-    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"图书收藏成功！"];
+    [SVProgressHUD showSuccessWithStatus:@"书目收藏成功"];
 }
 
 - (void)share
