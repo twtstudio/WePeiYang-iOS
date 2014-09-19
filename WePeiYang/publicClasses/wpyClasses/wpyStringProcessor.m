@@ -16,14 +16,30 @@
 {
     wpyStringProcessor *wpySP = [[wpyStringProcessor alloc]init];
     wpySP.finishCallbackBlock = block;
-    NSString *load = [NSString stringWithFormat:@"<html> \n"
+    NSString *content = [contentStr stringByReplacingOccurrencesOfString:@"<img alt=\"\" src=\"" withString:@"<img class=\"img-responsive\" alt=\"Responsive image\" src=\""];
+    content = [content stringByReplacingOccurrencesOfString:@"\" style=\"width: 600px; height: 400px;\" />" withString:@"\"/>"];
+    NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
+    NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
+    NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
+                      "<html> \n"
                       "<head> \n"
-                      "<style type=\"text/css\"> \n"
-                      "body {font-family: \"%@\"; font-size: %@; color: %@;}\n"
-                      "</style> \n"
+                      "<meta charset=\"utf-8\"> \n"
+                      "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> \n"
+                      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n"
+                      "<link href=\"%@\" rel=\"stylesheet\"> \n"
                       "</head> \n"
-                      "<body>%@</body> \n"
-                      "</html>", @"serif", @"48",@"000000",contentStr];
+                      "<body> \n"
+                      "<div class=\"container\"> \n"
+                      "<div class=\"row\"> \n"
+                      "<div class=\"col-sm-12\"> \n"
+                      "%@ \n"
+                      "</div></div></div> \n"
+                      "<script src=\"http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js\"></script> \n"
+                      "<script src=\"%@\"></script> \n"
+                      "</body> \n"
+                      "</html>" , cssPath, content, jsPath];
+    
+    NSLog(load);
     
     if (wpySP.finishCallbackBlock)
     {

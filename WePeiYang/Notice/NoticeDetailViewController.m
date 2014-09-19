@@ -82,7 +82,6 @@
     
     NSURL *baseURL = [[NSURL alloc]initWithString:@"http://mynews.twtstudio.com/newspic/picture/"];
     
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'"];
     [wpyStringProcessor convertToWebViewByString:content withFinishCallbackBlock:^(NSString *load){
         [self.webView loadHTMLString:load baseURL:baseURL];
     }];

@@ -72,7 +72,6 @@
         detailContent = [contentDic objectForKey:@"content"];
     }
     
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"];
     [wpyStringProcessor convertToWebViewByString:detailContent withFinishCallbackBlock:^(NSString *load){
         [self.webView loadHTMLString:load baseURL:baseURL];
     }];
