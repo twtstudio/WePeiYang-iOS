@@ -72,7 +72,6 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.tableView.hidden = YES;
-    //self.view.backgroundColor = [[UIColor alloc]initWithPatternImage:[UIImage imageNamed:@"librarybg.png"]];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
@@ -108,7 +107,6 @@
 
 - (IBAction)backgroundTap:(id)sender
 {
-    //[searchField resignFirstResponder];
     [searchBar resignFirstResponder];
 }
 
@@ -149,15 +147,12 @@
     [fileManager removeItemAtPath:plistPath error:nil];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"注销成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
-    //[moreBtn removeTarget:self action:@selector(openActionSheetRecord:) forControlEvents:UIControlEventTouchUpInside];
-    //[moreBtn addTarget:self action:@selector(openActionSheetLogin:) forControlEvents:UIControlEventTouchUpInside];
     self.title = @"您尚未登录";
 }
 
 
 - (void)search:(id)sender
 {
-    //[searchField resignFirstResponder];
     [searchBar resignFirstResponder];
     searchStr = searchBar.text;
     if ([searchStr isEqualToString: @""])
@@ -169,7 +164,7 @@
     {
         libraryData = [[NSMutableArray alloc]initWithObjects: nil];
         
-        currentPage = 1;
+        currentPage = 0;
         
         [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
         
@@ -181,39 +176,14 @@
                                      @"version":[data shareInstance].appVersion};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
             NSDictionary *resultDic = [responseObject objectForKey:@"books"];
             totalBooks = [[responseObject objectForKey:@"total"]integerValue];
             [self dealWithReceivedSearchData:resultDic];
-            [SVProgressHUD dismiss];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:@"获取书目失败T^T"];
         }];
-        
-        /*
-        NSString *body = [NSString stringWithFormat:@"page=%d&query=%@&type=%ld",currentPage,searchStr,(long)type];
-        [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-            [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
-            if (dic!=nil)
-            {
-                if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-                {
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-                }
-                else
-                {
-                    NSDictionary *resultDic = [[dic objectForKey:@"content"] objectForKey:@"books"];
-                    totalBooks = [[[dic objectForKey:@"content"] objectForKey:@"total"]integerValue];
-                    [self dealWithReceivedSearchData:resultDic];
-                }
-            }
-            else
-            {
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            }
-        }];
-         */
     }
 }
 
@@ -221,34 +191,24 @@
 {
     if ([resultDic count]>0)
     {
-        
         for (NSDictionary *temp in resultDic)
         {
-            if ([temp objectForKey:@"title"] != nil)
-            {
-                [libraryData addObject:temp];
-            }
-            else
-            {
-                //totalPages = [[temp objectForKey:@"totalPages"]integerValue];
-            }
+            [libraryData addObject:temp];
         }
         
+        if ((currentPage+1) <= (totalBooks/20+1) && (totalBooks >= 20)) {
+            [libraryData addObject:@"点击加载更多..."];
+        }
         
-        
+        [self.tableView reloadData];
+        [tableView setHidden:NO];
+        [label1 setHidden:YES];
+        [label2 setHidden:YES];
+        [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+    } else {
+        [SVProgressHUD showErrorWithStatus:@"未找到您需要的书目"];
     }
-    
-    if (currentPage <= (totalBooks/20+1) && totalBooks >= 20)
-    {
-        [libraryData addObject:@"点击加载更多..."];
-    }
-    
-    [self.tableView reloadData];
-    [tableView setHidden:NO];
-    [label1 setHidden:YES];
-    [label2 setHidden:YES];
-    [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-    [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -259,7 +219,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if (row == [libraryData count]-1 && totalBooks >= 20)
+    if ([[libraryData objectAtIndex:row] isKindOfClass:[NSString class]])
     {
         return 68;
     }
@@ -279,7 +239,7 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    if (row == [libraryData count]-1)
+    if ([[libraryData objectAtIndex:row] isKindOfClass:[NSString class]])
     {
         cell.titleLabel.text = [libraryData objectAtIndex:row];
         cell.authorLabel.text = @"";
@@ -308,14 +268,13 @@
 {
     [searchBar resignFirstResponder];
     NSInteger row = [indexPath row];
-    if (row == [libraryData count]-1 && currentPage <= (totalBooks/20+1))
+    if ([[libraryData objectAtIndex:row] isKindOfClass:[NSString class]])
     {
         [libraryData removeObject:[libraryData lastObject]];
         [self nextPage];
     }
     else
     {
-        //NSString *msgStr = [[NSString alloc]initWithFormat:@"%@，%@，%@，%@",[titleArray objectAtIndex:row],[yearArray objectAtIndex:row],[positionArray objectAtIndex:row],[leftArray objectAtIndex:row]];
         NSDictionary *temp = [libraryData objectAtIndex:row];
         [data shareInstance].titleSelected = [temp objectForKey:@"title"];
         [data shareInstance].positionSelected = [temp objectForKey:@"position"];
@@ -331,7 +290,6 @@
 
 - (void)nextPage
 {
-    
     currentPage = currentPage + 1;
     [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
     NSString *url = @"http://push-mobile.twtapps.net/lib/search";
@@ -359,22 +317,14 @@
     {
         for (NSDictionary *temp in resultDic)
         {
-            if ([temp objectForKey:@"title"] != nil)
-            {
-                [libraryData addObject:temp];
-            }
-            else
-            {
-                //totalPages = [[temp objectForKey:@"totalPages"]integerValue];
-            }
+            [libraryData addObject:temp];
+        }
+        
+        if ((currentPage+1) <= (totalBooks/20+1))
+        {
+            [libraryData addObject:@"点击加载更多..."];
         }
     }
-    
-    if (currentPage <= (totalBooks/20+1))
-    {
-        [libraryData addObject:@"点击加载更多..."];
-    }
-    
     [self.tableView reloadData];
 }
 
@@ -459,35 +409,14 @@
 
 }
 
-
-/*
-- (void)shareByIOS
-{
-    NSArray *activityItems;
-    
-    NSString *title = [data shareInstance].titleSelected;
-    NSString *position = [data shareInstance].positionSelected;
-    NSString *left = [data shareInstance].leftSelected;
-    
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",title,position,left];
-    
-    activityItems = @[shareString];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
-    [self presentViewController:activityViewController animated:YES completion:nil];
-    
-}
- */
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"search button clicked");
     [searchBar resignFirstResponder];
     [self search:self];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    NSLog(@"BEGIN EDITING");
     
 }
 

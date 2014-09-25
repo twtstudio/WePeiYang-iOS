@@ -109,8 +109,8 @@
     [self.view endEditing:YES];
     if ((self.titleTextField.text.length > 0) && (self.placeTextField.text.length > 0) && (self.timeTextField.text.length > 0) && (self.phoneTextField.text.length > 0) && (self.nameTextField.text.length > 0) && (self.contentTexeView.text.length > 0)) {
         return YES;
-    }else{
-            return NO;
+    } else {
+        return NO;
     }
 }
 

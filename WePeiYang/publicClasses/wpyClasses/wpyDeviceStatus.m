@@ -40,6 +40,7 @@
     NSString *device;
     if ([platform isEqualToString:@"x86_64"]) device = @"iPhone Simulator";
     else if ([platform isEqualToString:@"i386"]) device = @"iPhone Simulator";
+    
     else if ([platform isEqualToString:@"iPhone2,1"]) device = @"iPhone 3GS";
     else if ([platform isEqualToString:@"iPhone3,1"]) device = @"iPhone 4";
     else if ([platform isEqualToString:@"iPhone3,2"]) device = @"iPhone 4";
@@ -51,8 +52,12 @@
     else if ([platform isEqualToString:@"iPhone5,4"]) device = @"iPhone 5c";
     else if ([platform isEqualToString:@"iPhone6,1"]) device = @"iPhone 5s";
     else if ([platform isEqualToString:@"iPhone6,2"]) device = @"iPhone 5s";
+    else if ([platform isEqualToString:@"iPhone7,1"]) device = @"iPhone 6 Plus";
+    else if ([platform isEqualToString:@"iPhone7,2"]) device = @"iPhone 6";
+    
     else if ([platform isEqualToString:@"iPod4,1"]) device = @"iPod touch 4";
     else if ([platform isEqualToString:@"iPod5,1"]) device = @"iPod touch 5";
+    
     else if ([platform isEqualToString:@"iPad2,1"]) device = @"iPad 2";
     else if ([platform isEqualToString:@"iPad2,2"]) device = @"iPad 2";
     else if ([platform isEqualToString:@"iPad2,3"]) device = @"iPad 2";
@@ -79,18 +84,16 @@
     else if ([device isEqualToString:@"iPhone 3GS"]) screenSize = @"320x480";
     else if ([device isEqualToString:@"iPhone 4"] || [device isEqualToString:@"iPhone 4S"] || [device isEqualToString:@"iPod touch 4"] || [device isEqualToString:@"iPad 2"] || [device isEqualToString:@"iPad 2 rev_a"] || [device isEqualToString:@"iPad 3"] || [device isEqualToString:@"iPad mini"] || [device isEqualToString:@"iPad 4"] || [device isEqualToString:@"iPad mini 2"] || [device isEqualToString:@"iPad Air"]) screenSize = @"640x960";
     else if ([device isEqualToString:@"iPhone 5"] || [device isEqualToString:@"iPhone 5c"] || [device isEqualToString:@"iPhone 5s"] || [device isEqualToString:@"iPod touch 5"]) screenSize = @"640x1136";
+    else if ([device isEqualToString:@"iPhone 6"]) screenSize = @"750x1334";
+    else if ([device isEqualToString:@"iPhone 6 Plus"]) screenSize = @"1080x1920";
     else screenSize = @"Unknown";
     
-    //deviceStatus = device_.model;
-    //NSString *deviceStatus = [self getDeviceVersion];
-    //NSString *deviceSize = [self getDeviceSizeFromModel:deviceStatus];
     NSString *deviceName = device_.systemName;
     NSString *deviceLocalized = device_.localizedModel;
     NSString *deviceVersion = device_.systemVersion;
     NSString *deviceUdid = device_.identifierForVendor.UUIDString;
     
     NSString *appVersion = [data shareInstance].appVersion;
-    //NSString *deviceToken = [data shareInstance].deviceToken;
     
     [deviceStatus setValue:device forKey:@"model"];
     [deviceStatus setValue:screenSize forKey:@"size"];
@@ -99,7 +102,6 @@
     [deviceStatus setValue:deviceVersion forKey:@"version"];
     [deviceStatus setValue:deviceUdid forKey:@"udid"];
     [deviceStatus setValue:appVersion forKey:@"appversion"];
-    //[deviceStatus setValue:deviceToken forKey:@"token"];
     
     wpyDS.finishCallbackBlock(deviceStatus);
 
@@ -110,6 +112,5 @@
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     return appVersion;
 }
-
 
 @end

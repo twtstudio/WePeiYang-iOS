@@ -21,7 +21,7 @@ class DashboardViewController: UIViewController {
         data.shareInstance().deviceWidth = self.view.frame.size.width
         let deviceWidth = self.view.frame.size.width
         let deviceHeight = self.view.frame.size.height
-        
+
         println(deviceWidth)
         println(deviceHeight)
         

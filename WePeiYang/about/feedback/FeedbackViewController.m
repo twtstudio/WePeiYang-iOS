@@ -11,7 +11,6 @@
 #include <sys/sysctl.h>
 #import "AFNetworking.h"
 #import "wpyDeviceStatus.h"
-#import "UIButton+Bootstrap.h"
 #import "SVProgressHUD.h"
 #import "data.h"
 
@@ -80,9 +79,6 @@
     
     feedbackView.delegate = self;
     
-    //UIBarButtonItem *sendBtn = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(send:)];
-    //[self.navigationItem setRightBarButtonItem:sendBtn];
-    
 }
 
 - (IBAction)backToHome:(id)sender
@@ -94,16 +90,6 @@
 {
     username = numberField.text;
     feedback = feedbackView.text;
-    /*
-    NSString *urlStr = [NSString stringWithFormat:@"http://service.twtstudio.com/phone/android/suggestion_for_weibeiyang.php?num=%@&content=%@&device_info=%@_%@",username,feedback,deviceStatus,deviceVersion];
-    NSString *urlStrStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [wpyWebConnection postDataToURLStr:urlStrStr withFinishCallbackBlock:^(NSDictionary *dic){
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        thxAlert = [[UIAlertView alloc]initWithTitle:@"Thanks" message:@"感谢您的反馈！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [thxAlert show];
-    }];
-     */
     
     NSString *url = @"http://push-mobile.twtapps.net/suggest/wepeiyang";
     NSDictionary *parameters = @{@"email":username,
@@ -119,31 +105,11 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"发送反馈失败，请稍后再试"];
     }];
-    
-    /*
-    NSString *body = [[NSString alloc]initWithFormat:@"email=%@&content=%@_deviceToken=%@&info=%@_%@",username,feedback,[data shareInstance].deviceToken,deviceStatus,deviceVersion];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                thxAlert = [[UIAlertView alloc]initWithTitle:@"Thanks" message:@"感谢您的反馈！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [thxAlert show];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-        }
-    }];
-     */
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)backgroundTap:(id)sender
@@ -166,12 +132,16 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    [self moveView:-80];
+    if (self.view.frame.size.width <= 320) {
+        [self moveView:-80];
+    }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    [self moveView:80];
+    if (self.view.frame.size.width <= 320) {
+        [self moveView:80];
+    }
 }
 
 - (void)moveView:(float)move

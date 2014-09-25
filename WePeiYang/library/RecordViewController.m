@@ -79,8 +79,6 @@
     
     [loginBtn primaryStyle];
     [self checkLoginStatus];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,8 +89,6 @@
 
 - (void)checkLoginStatus
 {
-    //[data shareInstance].loginStatus = @"NOT CHANGED";
-    //NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"login"];
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:plistPath])
@@ -111,8 +107,6 @@
     }
     else
     {
-        //[self loadLoginStatusFromPlist];
-        
         NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if ([fileManager fileExistsAtPath:plistPath])
@@ -132,7 +126,6 @@
         
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             //Successful
-            //[waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
             [SVProgressHUD dismiss];
             
             NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
@@ -195,84 +188,6 @@
                     break;
             }
         }];
-
-        
-        
-        /*
-        NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",[data shareInstance].userId,[data shareInstance].userToken];
-        [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-            if (dic!=nil)
-            {
-                if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-                {
-                    //出错
-                    
-                    if([[dic objectForKey:@"statusCode"] isEqualToString:@"403"])
-                    {
-                        //未绑定图书馆
-                        [tableView setHidden:YES];
-                        [noLoginLabel setHidden:NO];
-                        [loginBtn setHidden:NO];
-                        [continueBtn setHidden:YES];
-                        [noLoginLabel setText:@"您尚未绑定图书馆账号"];
-                        [loginBtn setTitle:@"绑定图书馆" forState:UIControlStateNormal];
-                        [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-                        [loginBtn addTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
-                        [noLoginImg setHidden:NO];
-                    }
-                    else
-                    {
-                        if([[dic objectForKey:@"statusCode"] isEqualToString:@"401"])
-                        {
-                            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"登录验证出错...请重新登录！"];
-                            [tableView setHidden:YES];
-                            [noLoginLabel setHidden:NO];
-                            [noLoginLabel setText:@"您尚未登录天外天账号"];
-                            [loginBtn setHidden:NO];
-                            [continueBtn setHidden:YES];
-                            [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-                            [loginBtn removeTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
-                            [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-                            [continueBtn setHidden:YES];
-                            [noLoginImg setHidden:NO];
-                        }
-                    }
-                    
-                }
-                else
-                {
-                    //未出错
-                    [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
-                    NSDictionary *loginDic = [dic objectForKey:@"content"];
-                    
-                    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
-                    NSFileManager *fileManager = [NSFileManager defaultManager];
-                    if ([fileManager fileExistsAtPath:plistPath])
-                    {
-                        [fileManager removeItemAtPath:plistPath error:nil];
-                    }
-                    else
-                    {
-                        [loginDic writeToFile:plistPath atomically:YES];
-                    }
-                    
-                    [self dealWithReceivedLoginData:loginDic];
-                    [data shareInstance].libLogin = @"";
-                }
-            }
-            else
-            {
-                //无网络连接
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-                NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                if ([fileManager fileExistsAtPath:plistPath])
-                {
-                    [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
-                }
-            }
-        }];
-         */
     }
 }
 
@@ -304,28 +219,8 @@
     }
 }
 
-/*
-- (void)loadLoginStatusFromPlist
-{
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"login"];
-    NSDictionary *personalDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-    NSString *username = [personalDic objectForKey:@"username"];
-    NSString *password = [personalDic objectForKey:@"password"];
-    //response = [[NSMutableData alloc]init];
-    [data shareInstance].libraryUsername = username;
-    [data shareInstance].libraryPassword = password;
-    waitingAlert = [[UIAlertView alloc]initWithTitle:@"请稍候" message:@"正在加载..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [waitingAlert show];
-    NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/lib_account.php?user_id=%@&password=%@&platform=ios&version=%@",username,password,[data shareInstance].appVersion];
-    [wpyWebConnection getDataFromURLStr:urlStr withFinishCallbackBlock:^(NSDictionary *loginDic){
-        if (loginDic != nil) [self dealWithReceivedLoginData:loginDic];
-    }];
-}
- */
-
 - (void)login
 {
-    //LoginViewController *login = [[LoginViewController alloc]initWithNibName:nil bundle:nil];
     twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
     [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:login animated:YES completion:^{
@@ -423,36 +318,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"一键续订失败T^T"];
     }];
-    
-    /*
-    NSString *body = [NSString stringWithFormat:@"id=%@&token=%@&type=all",[data shareInstance].userId,[data shareInstance].userToken];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                //[CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"一键续订成功!"];
-                if ([[[dic objectForKey:@"content"] objectForKey:@"error"] integerValue] == 409)
-                {
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"没有需要续订的书籍"];
-                }
-                else
-                {
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleSuccess message:@"一键续订成功!"];
-                }
-            }
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"一键续订失败..."];
-            }
-        }
-        else
-        {
-            //connection failed
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
-        }
-    }];
-     */
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

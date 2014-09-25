@@ -59,17 +59,7 @@
     self.searchResultsArray = [[NSMutableArray alloc] initWithObjects:nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]init];
     segmentedControl.momentary = YES;
-    [segmentedControl addTarget:(self) action:(@selector(segmentedControlSelected:)) forControlEvents:(UIControlEventValueChanged)];
     [self searchResultsTableView].hidden = YES;
-    
-    /*
-    NSArray *array = [NSArray arrayWithObjects:@"今天",@"明天",@"后天", nil];
-    UISegmentedControl *dateSelect = [[UISegmentedControl alloc]initWithItems:array];
-    [dateSelect addTarget:self action:@selector(toggleControls:) forControlEvents:UIControlEventValueChanged];
-    [dateSelect setFrame:(CGRectMake(0, 0, 260, 28))];
-    self.navigationItem.titleView = dateSelect;
-    dateSelect.selectedSegmentIndex = 0;
-     */
     
     //取消tableView的分割线和背景
     [self.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
@@ -157,6 +147,8 @@
     //查询按钮
 - (IBAction)btnTest:(UIButton *)sender
 {
+    [SVProgressHUD showWithStatus:@"正在加载" maskType:SVProgressHUDMaskTypeBlack];
+    
     [self searchResultsTableView].hidden = NO;
     //分别读出三个PickerView中所选中的值
     NSInteger startTimeSelected = [studySearchPickerView selectedRowInComponent:StartTimePicker];
@@ -179,17 +171,7 @@
             
         }
         
-        //NSString *urlStr = [NSString stringWithFormat:@"http://service.twtstudio.com/phone/android/studyroom.php?day=%@&class=%@&building=%@&platform=ios&version=%@",[YStudySearchConst shareInstance].daySelected, timeConvertResult, buildingConvertResult,[data shareInstance].appVersion];
         NSString *url = @"http://push-mobile.twtapps.net/studyrooms";
-        //NSString *body = [NSString stringWithFormat:@"day=%@&class=%@&building=%@",[YStudySearchConst shareInstance].daySelected,timeConvertResult,buildingConvertResult];
-        
-        //用这种方法调用劳资封装好的东西
-        //[wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *resultDic){
-            
-            //封装好的以后 直接在这个block里写对数据的处理操作
-            //[self processReceivedData:resultDic];
-        //}];
-        
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"day":        [YStudySearchConst shareInstance].daySelected,
@@ -198,38 +180,12 @@
                                      @"platform":   @"ios",
                                      @"version":    [data shareInstance].appVersion};
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [SVProgressHUD dismiss];
             [self processReceivedContentData:responseObject];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:@"获取自习室失败T^T"];
         }];
-        
-        /*
-        [wpyWebConnection getDataFromURLStr:urlStr withFinishCallbackBlock:^(NSDictionary *dic){
-            [self processReceivedData:dic];
-        }];
-         */
-        
-        
-        //------------------修改使用异步NSURLConnection-----------------
-        //------------------Qin Yubo------------------
-        
-        /*
-        
-        NSURL *url = [NSURL URLWithString:@"http://service.twtstudio.com/phone/android/studyroom.php"];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:100];
-        [request setHTTPMethod:@"POST"];
-        NSString *postField = [NSString stringWithFormat:@"day=%@&class=%@&building=%@&platform=ios&version=%@",[YStudySearchConst shareInstance].daySelected, timeConvertResult, buildingConvertResult,[data shareInstance].appVersion];
-        
-        NSData *data = [postField dataUsingEncoding:NSUTF8StringEncoding];
-        [request setHTTPBody:data];
-        
-        NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        received = [[NSMutableData alloc]init];
-        [conn start];
-         
-         */
-        
     }
 }
 
@@ -246,8 +202,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [self.searchResultsTableView reloadData];
-            //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"这个时间段里这儿没有自习室了~" delegate:nil cancelButtonTitle:@"好吧" otherButtonTitles:nil];
-            //[alert show];
             [SVProgressHUD showSuccessWithStatus:@"这个时间段里这儿没有自习室了~"];
         });
     }
@@ -260,113 +214,6 @@
         });
     }
 }
-
-/*
-- (void)processReceivedData:(NSDictionary *)resultDic
-{
-    if (resultDic != nil)
-    {
-        if (![[resultDic objectForKey:@"statusCode"] isEqualToString:@"200"])
-        {
-            
-        }
-        else
-        {
-            NSDictionary *convertData = [resultDic objectForKey:@"content"];
-            if ([convertData count] > 0)
-            {
-                for (NSDictionary *temp in convertData)
-                {
-                    [self.searchResultsArray addObject:[temp objectForKey:@"room"]];
-                }
-            }
-            else
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    [self.searchResultsTableView reloadData];
-                    //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"这个时间段里这儿没有自习室了~" delegate:nil cancelButtonTitle:@"好吧" otherButtonTitles:nil];
-                    //[alert show];
-                    [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"这个时间段里这儿没有自习室了~"];
-                });
-            }
-            
-            if ([self.searchResultsArray count] > 0) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.searchResultsTableView reloadData];
-                    [self.searchResultsTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-                    [self.searchResultsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
-                });
-            }
-        }
-    }
-    else
-    {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
-    }
-}
-*/
-
-/*
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [received appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"网络似乎出了一些错误哦~" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
-    [alert show];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSError *error;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    if (received == nil)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"网络似乎出了一些错误哦~" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
-        [alert show];
-    }
-    else
-    {
-        NSDictionary *convertData = [NSJSONSerialization JSONObjectWithData:received options:NSJSONReadingMutableLeaves error:nil];
-        if ([convertData count] > 0)
-        {
-            for (NSDictionary *temp in convertData)
-            {
-                [self.searchResultsArray addObject:[temp objectForKey:@"room"]];
-            }
-        }
-        else
-        {
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [self.searchResultsTableView reloadData];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"这个时间段里这儿没有自习室了~" delegate:nil cancelButtonTitle:@"好吧" otherButtonTitles:nil];
-                [alert show];
-                
-            });
-        }
-        
-        if ([self.searchResultsArray count] > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.searchResultsTableView reloadData];
-                [self.searchResultsTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-                [self.searchResultsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
-            });
-        }
-
-    }
-}
- */
-
-
-//------------------------就改了这么多-----------------------
-
-
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -387,7 +234,6 @@
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *label = [[UILabel alloc]init];
-    //UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(12.0f, 0.0f, [pickerView rowSizeForComponent:component].width - 12, [pickerView rowSizeForComponent:component].height)] autorelease];
     
     if (component == StartTimePicker)
         [label setText:[[YStudySearchConst shareInstance].startTimeArray objectAtIndex:row]];
@@ -504,7 +350,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [YStudySearchConst shareInstance].classroomSelected = [searchResultsArray objectAtIndex:[indexPath row]];
-    shareAlert = [[UIAlertView alloc]initWithTitle:@"告诉小伙伴" message:[NSString stringWithFormat:@"是否要告诉小伙伴们您要去 % @上自习的消息？",[YStudySearchConst shareInstance].classroomSelected] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"分享", nil];
+    shareAlert = [[UIAlertView alloc]initWithTitle:@"告诉小伙伴" message:[NSString stringWithFormat:@"是否要告诉小伙伴们您要去 %@上自习的消息？",[YStudySearchConst shareInstance].classroomSelected] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"分享", nil];
     [shareAlert show];
 }
 
