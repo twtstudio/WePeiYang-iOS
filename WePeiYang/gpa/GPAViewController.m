@@ -79,8 +79,6 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-    //[self.navigationController setNavigationBarHidden:YES];
-    
     //INSTANCES
     gpaHeaderViewHeight = 150;
     
@@ -150,7 +148,9 @@
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
             //Successful
+            
             loginBtn.userInteractionEnabled = YES;
             [moreBtn setHidden:NO];
             [chart setHidden:NO];
@@ -160,14 +160,27 @@
             [noLoginImg setHidden:YES];
             [data shareInstance].gpaLoginStatus = @"";
             backBtn.tintColor = [UIColor whiteColor];
+            
+            [self saveCacheWithData:responseObject];
             [self processGpaData:responseObject];
+            
             [SVProgressHUD dismiss];
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSInteger statusCode = operation.response.statusCode;
-            [SVProgressHUD dismiss];
-            [self processErrorWithStatusCode:statusCode];
+            
+            if (operation.response == nil) {
+                
+                [SVProgressHUD dismiss];
+                if ([self loadCacheAsResponseObject] != nil) {
+                    [self processGpaData:[self loadCacheAsResponseObject]];
+                }
+                
+            } else {
+                NSInteger statusCode = operation.response.statusCode;
+                [SVProgressHUD dismiss];
+                [self processErrorWithStatusCode:statusCode];
+            }
         }];
-        
     }
 }
 
@@ -215,9 +228,15 @@
             
         case 500:
             [SVProgressHUD showErrorWithStatus:@"服务器出错惹QAQ"];
+            if ([self loadCacheAsResponseObject] != nil) {
+                [self processGpaData:[self loadCacheAsResponseObject]];
+            }
             break;
             
         default:
+            if ([self loadCacheAsResponseObject] != nil) {
+                [self processGpaData:[self loadCacheAsResponseObject]];
+            }
             break;
     }
 }
@@ -626,6 +645,27 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+- (void) saveCacheWithData:(id)responseObject {
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:plistPath]) {
+        [fileManager removeItemAtPath:plistPath error:nil];
+    }
+    [responseObject writeToFile:plistPath atomically:YES];
+}
+
+- (NSDictionary *) loadCacheAsResponseObject {
+    [SVProgressHUD showErrorWithStatus:@"网络出错\n已为您加载缓存"];
+    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:plistPath]) {
+        NSDictionary *cacheDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
+        return cacheDic;
+    } else {
+        return nil;
+    }
 }
 
 @end

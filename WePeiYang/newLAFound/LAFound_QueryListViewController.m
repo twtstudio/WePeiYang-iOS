@@ -279,7 +279,7 @@
 
 - (void)refreshTableview
 {
-    
+    _currentPage = 0;
     [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
         [self processWithDataPassRefresh:responseObject];
     } failure:^(NSError *error) {

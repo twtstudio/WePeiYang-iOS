@@ -34,7 +34,6 @@
                       "<div class=\"col-sm-12\"> \n"
                       "%@ \n"
                       "</div></div></div> \n"
-                      "<script src=\"http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js\"></script> \n"
                       "<script src=\"%@\"></script> \n"
                       "</body> \n"
                       "</html>" , cssPath, content, jsPath];

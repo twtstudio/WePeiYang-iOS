@@ -196,21 +196,18 @@
         {
             [self.searchResultsArray addObject:[temp objectForKey:@"room"]];
         }
-    }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.searchResultsTableView reloadData];
-            [SVProgressHUD showSuccessWithStatus:@"这个时间段里这儿没有自习室了~"];
-        });
-    }
-    
-    if ([self.searchResultsArray count] > 0) {
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.searchResultsTableView reloadData];
             [self.searchResultsTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
             [self.searchResultsTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+        });
+                       
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.searchResultsTableView reloadData];
+            [SVProgressHUD showSuccessWithStatus:@"这个时间段里这儿没有自习室了~"];
         });
     }
 }

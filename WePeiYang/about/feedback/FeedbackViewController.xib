@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -75,13 +74,13 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="如果希望我们联系您，您可以在反馈中留下您的联系方式" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="FDv-y9-rHB">
-                    <rect key="frame" x="34" y="438" width="252" height="60"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="您的建议是我们不断改进的动力" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="076-RT-4Nq">
+                    <rect key="frame" x="41" y="506" width="238" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="您的建议是我们不断改进的动力" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="076-RT-4Nq">
-                    <rect key="frame" x="41" y="506" width="238" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="252" placeholderIntrinsicHeight="60" text="如果希望我们联系您，您可以在反馈中留下您的联系方式" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="FDv-y9-rHB">
+                    <rect key="frame" x="34" y="438" width="252" height="60"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -95,15 +94,15 @@
                 <constraint firstAttribute="trailing" secondItem="X9h-mM-MY2" secondAttribute="trailing" constant="83" id="FRY-qD-6tU"/>
                 <constraint firstItem="PtV-co-9XK" firstAttribute="leading" secondItem="duz-gD-SWg" secondAttribute="trailing" constant="15" id="FbF-Rz-kRT"/>
                 <constraint firstAttribute="trailing" secondItem="saT-Y7-VmX" secondAttribute="trailing" constant="20" id="H5J-U4-HKj"/>
-                <constraint firstItem="FDv-y9-rHB" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="34" id="Hpf-K9-Fva"/>
                 <constraint firstItem="duz-gD-SWg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="I9I-8O-8CU"/>
                 <constraint firstAttribute="trailing" secondItem="Voa-f5-BnS" secondAttribute="trailing" constant="20" id="SlC-uu-LID"/>
                 <constraint firstItem="Voa-f5-BnS" firstAttribute="leading" secondItem="gBl-d6-HKg" secondAttribute="trailing" constant="15" id="TUr-8p-efs"/>
-                <constraint firstAttribute="trailing" secondItem="FDv-y9-rHB" secondAttribute="trailing" constant="34" id="W9v-1i-vdM"/>
                 <constraint firstItem="gBl-d6-HKg" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="Z6S-ag-kiW"/>
+                <constraint firstItem="FDv-y9-rHB" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="34" id="aZi-C0-O8g"/>
                 <constraint firstItem="076-RT-4Nq" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="41" id="bVo-ev-EUD"/>
                 <constraint firstItem="gBl-d6-HKg" firstAttribute="top" secondItem="1" secondAttribute="top" constant="72" id="bud-lW-UUD"/>
                 <constraint firstItem="A2e-ug-L85" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="bwX-xF-wrU"/>
+                <constraint firstAttribute="trailing" secondItem="FDv-y9-rHB" secondAttribute="trailing" constant="34" id="o2u-9e-24T"/>
                 <constraint firstAttribute="trailing" secondItem="z2e-zC-fp6" secondAttribute="trailing" constant="20" id="vlf-0D-hYO"/>
                 <constraint firstItem="Voa-f5-BnS" firstAttribute="top" secondItem="1" secondAttribute="top" constant="68" id="ycl-YV-vMd"/>
                 <constraint firstItem="X9h-mM-MY2" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="84" id="zIb-zw-DIZ"/>

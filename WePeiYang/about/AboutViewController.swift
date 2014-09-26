@@ -25,9 +25,6 @@ class AboutViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         self.navigationController!.interactivePopGestureRecognizer.delegate = self
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         UIButton.appearance().tintColor = UIColor.darkGrayColor()
         UITextView.appearance().tintColor = UIColor.darkGrayColor()
         UITextField.appearance().tintColor = UIColor.darkGrayColor()
@@ -87,13 +84,13 @@ class AboutViewController: UIViewController,UITableViewDataSource, UITableViewDe
         var section = indexPath.section
         if section == 0 {
             cell.textLabel!.text = aboutArr[row] as NSString
-            //cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         } else if section == 1 {
             cell.textLabel!.text = webArr[row] as NSString
         } else if section == 2 {
             cell.textLabel!.text = feedbackArr[row] as NSString
             if row == 0 {
-                //cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
         } else if section == 3 {
             cell.accessoryType = UITableViewCellAccessoryType.None

@@ -38,10 +38,6 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sendForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(announceButionAction)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    //UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
-    //[self.navigationItem setLeftBarButtonItem:backBtn];
-    
-    UIColor *lafTintColor = [UIColor colorWithRed:13/255.0f green:174/255.0f blue:124/255.0f alpha:1.0f];
     
 //    设置segmentedControl
     NSArray *segmentedControlItems = @[@"失物", @"拾取"];
