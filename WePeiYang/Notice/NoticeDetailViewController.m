@@ -46,30 +46,18 @@
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openActionSheet)];
     [self.navigationItem setRightBarButtonItem:share];
     
+    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+    
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
     NSDictionary *parameters = @{@"ctype":@"news",@"index":noticeId};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"无法获取公告T^T"];
+        [SVProgressHUD dismiss];
     }];
-    
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=news&index=%@",noticeId];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"error"]boolValue]==true)
-            {
-                
-            }
-            else
-            {
-                [self dealWithReceivedData:[dic objectForKey:@"content"]];
-            }
-        }
-    }];*/
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)contentDic

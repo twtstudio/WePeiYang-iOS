@@ -50,6 +50,8 @@
     UIBarButtonItem *openInSafari = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(optionActionSheet:)];
     self.navigationItem.rightBarButtonItem = openInSafari;
     
+    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+    
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype":@"news",
@@ -59,7 +61,9 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processDetailData:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"获取新闻失败T^T"];
     }];
 }

@@ -17,6 +17,5 @@
 @property (strong) void (^finishCallbackBlock)(NSString *);
 
 + (void)convertToWebViewByString:(NSString *)contentStr withFinishCallbackBlock:(void(^)(NSString *))block;
-+ (void)convertToTextViewByString:(NSString *)contentStr withFinishCallbackBlock:(void(^)(NSString *))block;
 
 @end
