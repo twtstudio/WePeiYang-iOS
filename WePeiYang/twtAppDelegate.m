@@ -24,8 +24,6 @@
     UIAlertView *pushAlert;
 }
 
-@synthesize slideTrans;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -80,7 +78,7 @@
     
 
     
-    //StartViewController *start = [[StartViewController alloc]init];
+
     DashboardViewController *dashboard = [[DashboardViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
     

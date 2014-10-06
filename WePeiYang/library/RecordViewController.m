@@ -12,7 +12,6 @@
 #import "RecordTableCell.h"
 #import "AFNetworking.h"
 #import "LoginViewController.h"
-#import "DMSlideTransition.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "SVProgressHUD.h"
@@ -20,8 +19,6 @@
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
 @interface RecordViewController ()
-
-@property (strong) DMSlideTransition *slideTrans;
 
 @end
 
@@ -42,7 +39,6 @@
 
 @synthesize tableView;
 @synthesize response;
-@synthesize slideTrans;
 @synthesize noLoginLabel;
 @synthesize loginBtn;
 @synthesize continueBtn;

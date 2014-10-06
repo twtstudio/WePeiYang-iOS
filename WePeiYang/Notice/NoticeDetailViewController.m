@@ -70,9 +70,7 @@
     
     NSURL *baseURL = [[NSURL alloc]initWithString:@"http://mynews.twtstudio.com/newspic/picture/"];
     
-    [wpyStringProcessor convertToWebViewByString:content withFinishCallbackBlock:^(NSString *load){
-        [self.webView loadHTMLString:load baseURL:baseURL];
-    }];
+    [self.webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:content] baseURL:baseURL];
     self.webView.scalesPageToFit = YES;
 }
 

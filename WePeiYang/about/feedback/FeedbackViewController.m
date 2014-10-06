@@ -56,7 +56,6 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     
-    //self.title = @"发送反馈";
     UINavigationBar *navigationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, 64)];
     UINavigationItem *navigationItem = [[UINavigationItem alloc]init];
     NSString *backIconPath = [[NSBundle mainBundle]pathForResource:@"backForNav@2x" ofType:@"png"];
@@ -69,13 +68,8 @@
     [navigationItem setRightBarButtonItem:sendBarBtn];
     [self.view addSubview:navigationBar];
     
-    [wpyDeviceStatus getDeviceStatusWithFinishCallbackBlock:^(NSDictionary *device){
-        deviceStatus = [device objectForKey:@"model"];
-        deviceVersion = [device objectForKey:@"version"];
-    }];
-    
-    deviceStatusField.text = deviceStatus;
-    deviceVersionField.text = deviceVersion;
+    deviceStatusField.text = [wpyDeviceStatus getDeviceModel];
+    deviceVersionField.text = [wpyDeviceStatus getDeviceOSVersion];
     
     feedbackView.delegate = self;
     

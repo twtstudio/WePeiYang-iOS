@@ -43,8 +43,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    //self.view.backgroundColor = [[UIColor alloc]initWithPatternImage:[UIImage imageNamed:@"loginbg.png"]];
     
     [loginBtn successStyle];
     [cancelBtn dangerStyle];
@@ -53,7 +51,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)backgroundTap:(id)sender
@@ -108,42 +105,9 @@
                 [SVProgressHUD showErrorWithStatus:@"绑定图书馆帐号失败T^T"];
             }
         }];
-        
-        /*
-        NSString *body = [NSString stringWithFormat:@"id=%@&token=%@&libuname=%@&libpasswd=%@",[data shareInstance].userId,[data shareInstance].userToken,username,password];
-        [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-            if (dic!=nil) [self dealWithReceivedData:dic];
-            [loginBtn setUserInteractionEnabled:YES];
-        }];*/
     }
     [loginBtn setUserInteractionEnabled:YES];
 }
-
-/*
-- (void)dealWithReceivedData:(NSDictionary *)loginDic
-{
-    NSString *statusCode = [loginDic objectForKey:@"statusCode"];
-    if (![statusCode isEqualToString:@"200"])
-    {
-        if ([statusCode isEqualToString:@"401"])
-        {
-            [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    }
-    else
-    {
-        [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];
-        successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定图书馆账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [successAlert show];
-        [data shareInstance].libLogin = @"Changed";
-        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindLib"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
-    }
-}
- */
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

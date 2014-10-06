@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class AboutViewController: UIViewController,UITableViewDataSource, UITableViewDelegate,  UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
+class AboutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
 
     let aboutArr = ["关于我们","欢迎页面"];
     let webArr = ["访问天外天网站"];

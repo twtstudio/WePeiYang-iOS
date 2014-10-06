@@ -10,13 +10,7 @@
 
 @implementation wpyStringProcessor
 
-@synthesize finishCallbackBlock;
-
-+ (void)convertToWebViewByString:(NSString *)contentStr withFinishCallbackBlock:(void(^)(NSString *))block
-{
-    wpyStringProcessor *wpySP = [[wpyStringProcessor alloc]init];
-    wpySP.finishCallbackBlock = block;
-    
++ (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
     NSScanner *imgScanner = [NSScanner scannerWithString:contentStr];
     while (![imgScanner isAtEnd]) {
         
@@ -35,7 +29,7 @@
         
         NSString *originalImgStr = [NSString stringWithFormat:@"%@%@%@%@",@"<img alt=\"\" src=\"",imgPath,imgStyle,@"/>"];
         NSString *responsiveImgStr = [NSString stringWithFormat:@"<img class=\"img-responsive\" alt=\"Responsive image\" src=\"%@\" width=96%%/>",imgPath];
-
+        
         contentStr = [contentStr stringByReplacingOccurrencesOfString:originalImgStr withString:responsiveImgStr];
     }
     
@@ -59,12 +53,8 @@
                       "</body> \n"
                       "</html>" , cssPath, contentStr, jsPath];
     
-    //NSLog(load);
-    
-    if (wpySP.finishCallbackBlock)
-    {
-        wpySP.finishCallbackBlock(load);
-    }
+    return load;
+
 }
 
 @end

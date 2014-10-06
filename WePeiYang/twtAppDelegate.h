@@ -11,11 +11,9 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
-#import "DMSlideTransition.h"
 
 @interface twtAppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) DMSlideTransition *slideTrans;
 
 @end

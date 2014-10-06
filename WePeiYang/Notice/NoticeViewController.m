@@ -59,10 +59,10 @@
     [self refresh:self];
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
+    
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
 }
 
@@ -94,29 +94,6 @@
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=2",(long)currentPage];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                //NSString *msg = [dic objectForKey:@"msg"];
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self dealWithReceivedDictionary:contentDic];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            [self.refreshControl endRefreshing];
-        }
-    }];
-     */
 }
 
 - (void)tableViewEndReloading
@@ -178,22 +155,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=2",(long)currentPage];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                //NSString *msg = [dic objectForKey:@"msg"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self dealWithReceivedDictionary:contentDic];
-            }
-        }
-    }];*/
 }
 
 - (void)dealWithReceivedDictionary:(NSDictionary *)noticeDic

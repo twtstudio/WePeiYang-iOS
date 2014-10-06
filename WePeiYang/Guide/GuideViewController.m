@@ -9,7 +9,7 @@
 #import "GuideViewController.h"
 #import "twtLoginViewController.h"
 
-#define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
+#define DEVICEGREATERTHANIPHONE5 [UIScreen mainScreen].bounds.size.height >= 568
 
 @interface GuideViewController ()
 
@@ -45,19 +45,19 @@
     [guideView setShowsHorizontalScrollIndicator:NO];
     [guideView setDelegate:self];
     
-    NSString *img1Name = DEVICE_IS_IPHONE5 ? @"g1-568h@2x" : @"g1@2x";
+    NSString *img1Name = DEVICEGREATERTHANIPHONE5 ? @"g1-568h@2x" : @"g1@2x";
     NSString *imagePath = [[NSBundle mainBundle]pathForResource:img1Name ofType:@"jpg"];
     UIImageView *gImg1 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
     [gImg1 setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg1];
     
-    NSString *img2Name = DEVICE_IS_IPHONE5 ? @"g2-568h@2x" : @"g2@2x";
+    NSString *img2Name = DEVICEGREATERTHANIPHONE5 ? @"g2-568h@2x" : @"g2@2x";
     NSString *imagePath2 = [[NSBundle mainBundle]pathForResource:img2Name ofType:@"jpg"];
     UIImageView *gImg2 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath2]];
     [gImg2 setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg2];
     
-    NSString *img3Name = DEVICE_IS_IPHONE5 ? @"g3-568h@2x" : @"g3@2x";
+    NSString *img3Name = DEVICEGREATERTHANIPHONE5 ? @"g3-568h@2x" : @"g3@2x";
     NSString *imagePath3 = [[NSBundle mainBundle]pathForResource:img3Name ofType:@"jpg"];
     UIImageView *gImg3 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath3]];
     [gImg3 setFrame:CGRectMake(2 * self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -65,7 +65,7 @@
     
     NSInteger pcHeight;
     NSInteger ebHeight;
-    if (DEVICE_IS_IPHONE5)
+    if (DEVICEGREATERTHANIPHONE5)
     {
         pcHeight = 20;
         ebHeight = 80;

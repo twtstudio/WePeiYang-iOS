@@ -13,23 +13,13 @@
 
 @implementation wpyDeviceStatus
 
-@synthesize finishCallbackBlock;
++ (NSString *)getAppVersion {
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    return appVersion;
+}
 
-+ (void)getDeviceStatusWithFinishCallbackBlock:(void (^)(NSDictionary *))block
-{
-    wpyDeviceStatus *wpyDS = [[wpyDeviceStatus alloc]init];
-    wpyDS.finishCallbackBlock = block;
-    
-    NSMutableDictionary *deviceStatus = [[NSMutableDictionary alloc]init];
-    
-    UIDevice *device_=[[UIDevice alloc] init];
-    NSLog(@"设备所有者的名称－－%@",device_.name);
-    NSLog(@"设备的类别－－－－－%@",device_.model);
-    NSLog(@"设备的的本地化版本－%@",device_.localizedModel);
-    NSLog(@"设备运行的系统－－－%@",device_.systemName);
-    NSLog(@"当前系统的版本－－－%@",device_.systemVersion);
-    NSLog(@"设备识别码－－－－－%@",device_.identifierForVendor.UUIDString);
-    
++ (NSString *)getDeviceModel {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
     char *machine = (char*)malloc(size);
@@ -79,6 +69,26 @@
     else if ([platform isEqualToString:@"iPad4,6"]) device = @"iPad mini 2";
     else device = platform;
 
+    return device;
+}
+
++ (NSString *)getDeviceOSVersion {
+    UIDevice *device_=[[UIDevice alloc] init];
+    /*
+    NSLog(@"设备所有者的名称－－%@",device_.name);
+    NSLog(@"设备的类别－－－－－%@",device_.model);
+    NSLog(@"设备的的本地化版本－%@",device_.localizedModel);
+    NSLog(@"设备运行的系统－－－%@",device_.systemName);
+    NSLog(@"当前系统的版本－－－%@",device_.systemVersion);
+    NSLog(@"设备识别码－－－－－%@",device_.identifierForVendor.UUIDString);
+     */
+    return device_.systemVersion;
+}
+
++ (NSString *)getScreenSize {
+    
+    NSString *device = [self getDeviceModel];
+    
     NSString *screenSize;
     if ([device isEqualToString:@"iPhone Simulator"]) screenSize = @"Unlimited";
     else if ([device isEqualToString:@"iPhone 3GS"]) screenSize = @"320x480";
@@ -87,30 +97,8 @@
     else if ([device isEqualToString:@"iPhone 6"]) screenSize = @"750x1334";
     else if ([device isEqualToString:@"iPhone 6 Plus"]) screenSize = @"1080x1920";
     else screenSize = @"Unknown";
-    
-    NSString *deviceName = device_.systemName;
-    NSString *deviceLocalized = device_.localizedModel;
-    NSString *deviceVersion = device_.systemVersion;
-    NSString *deviceUdid = device_.identifierForVendor.UUIDString;
-    
-    NSString *appVersion = [data shareInstance].appVersion;
-    
-    [deviceStatus setValue:device forKey:@"model"];
-    [deviceStatus setValue:screenSize forKey:@"size"];
-    [deviceStatus setValue:deviceName forKey:@"name"];
-    [deviceStatus setValue:deviceLocalized forKey:@"localized"];
-    [deviceStatus setValue:deviceVersion forKey:@"version"];
-    [deviceStatus setValue:deviceUdid forKey:@"udid"];
-    [deviceStatus setValue:appVersion forKey:@"appversion"];
-    
-    wpyDS.finishCallbackBlock(deviceStatus);
 
-}
-
-+ (NSString *)getAppVersion {
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
-    return appVersion;
+    return screenSize;
 }
 
 @end

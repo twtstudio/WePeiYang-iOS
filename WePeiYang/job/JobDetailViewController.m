@@ -61,34 +61,12 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"获取详情失败T^T"];
     }];
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=job&index=%@",[data shareInstance].jobId];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self dealWithReceivedData:contentDic];
-            }
-        }
-    }];
-     */
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)contentDic
 {
     detail = [contentDic objectForKey:@"content"];
-    /*
-    [wpyStringProcessor convertToTextViewByString:detail withFinishCallbackBlock:^(NSString *filtered){
-        self.textView.text = filtered;
-    }];
-     */
-    [webView loadHTMLString:detail baseURL:[NSURL URLWithString:@""]];
+    [webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:detail] baseURL:[NSURL URLWithString:@""]];
 }
 
 - (void)didReceiveMemoryWarning

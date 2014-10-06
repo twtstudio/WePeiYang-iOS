@@ -87,8 +87,6 @@
 		18F586211859B21800410E81 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F586201859B21800410E81 /* NoticeViewController.m */; };
 		18F586291859B6C100410E81 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F586271859B6C100410E81 /* NoticeDetailViewController.m */; };
 		18F5862A1859B6C100410E81 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F586281859B6C100410E81 /* NoticeDetailViewController.xib */; };
-		18F6E4F718CF4F430041E425 /* DMScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E4F218CF4F430041E425 /* DMScaleTransition.m */; };
-		18F6E4F818CF4F430041E425 /* DMSlideTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6E4F418CF4F430041E425 /* DMSlideTransition.m */; };
 		18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FDB26618B50065000ED037 /* JobFavViewController.m */; };
 		250551B7191BA309007C1F90 /* corp_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 250551B6191BA309007C1F90 /* corp_icon@2x.png */; };
 		2514EAF4191A8425008CC0C7 /* sendForNav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2514EAF3191A8425008CC0C7 /* sendForNav@2x.png */; };
@@ -146,7 +144,6 @@
 		25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */; };
 		25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */; };
 		25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA518F96B840066E3E6 /* JobTabBarController.m */; };
-		E94E3D76198A42E70062B205 /* DMBaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E3D75198A42E70062B205 /* DMBaseTransition.m */; };
 		E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */; };
 		E95CDC821966D4D90083C1B7 /* wpyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */; };
 		E95CDC841966D58A0083C1B7 /* zhanshanlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */; };
@@ -332,10 +329,6 @@
 		18F586261859B6C100410E81 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeDetailViewController.h; path = Notice/NoticeDetailViewController.h; sourceTree = "<group>"; };
 		18F586271859B6C100410E81 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeDetailViewController.m; path = Notice/NoticeDetailViewController.m; sourceTree = "<group>"; };
 		18F586281859B6C100410E81 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeDetailViewController.xib; path = Notice/NoticeDetailViewController.xib; sourceTree = "<group>"; };
-		18F6E4F118CF4F430041E425 /* DMScaleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMScaleTransition.h; sourceTree = "<group>"; };
-		18F6E4F218CF4F430041E425 /* DMScaleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMScaleTransition.m; sourceTree = "<group>"; };
-		18F6E4F318CF4F430041E425 /* DMSlideTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSlideTransition.h; sourceTree = "<group>"; };
-		18F6E4F418CF4F430041E425 /* DMSlideTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSlideTransition.m; sourceTree = "<group>"; };
 		18FDB26518B50065000ED037 /* JobFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobFavViewController.h; path = job/JobFavViewController.h; sourceTree = "<group>"; };
 		18FDB26618B50065000ED037 /* JobFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobFavViewController.m; path = job/JobFavViewController.m; sourceTree = "<group>"; };
 		250551B6191BA309007C1F90 /* corp_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "corp_icon@2x.png"; sourceTree = "<group>"; };
@@ -403,8 +396,6 @@
 		25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = twtLoginViewController.xib; path = WePeiYang/Start/twtLoginViewController.xib; sourceTree = "<group>"; };
 		25E48CA418F96B840066E3E6 /* JobTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobTabBarController.h; path = job/JobTabBarController.h; sourceTree = "<group>"; };
 		25E48CA518F96B840066E3E6 /* JobTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobTabBarController.m; path = job/JobTabBarController.m; sourceTree = "<group>"; };
-		E94E3D74198A42E70062B205 /* DMBaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMBaseTransition.h; sourceTree = "<group>"; };
-		E94E3D75198A42E70062B205 /* DMBaseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMBaseTransition.m; sourceTree = "<group>"; };
 		E95CDC7E1966D4210083C1B7 /* VWWWaterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VWWWaterView.h; path = WePeiYang/about/VWWWaterView.h; sourceTree = "<group>"; };
 		E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VWWWaterView.m; path = WePeiYang/about/VWWWaterView.m; sourceTree = "<group>"; };
 		E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wpyicon@2x.png"; sourceTree = "<group>"; };
@@ -829,7 +820,6 @@
 				E9A2B2EE19B5C0080083FB2C /* Raven */,
 				E9952B6E19A72214001641A2 /* AFNetworking */,
 				18BB2ECA18E1ACDF0084AD16 /* wpyClasses */,
-				18F6E4EC18CF4F430041E425 /* Transitions */,
 				18CFC7DA18900C7200A51F01 /* customButtons */,
 			);
 			path = publicClasses;
@@ -880,19 +870,6 @@
 				18607AE818DC21DD00C5C665 /* noticeTabBarController.m */,
 			);
 			name = Notice;
-			sourceTree = "<group>";
-		};
-		18F6E4EC18CF4F430041E425 /* Transitions */ = {
-			isa = PBXGroup;
-			children = (
-				E94E3D74198A42E70062B205 /* DMBaseTransition.h */,
-				E94E3D75198A42E70062B205 /* DMBaseTransition.m */,
-				18F6E4F118CF4F430041E425 /* DMScaleTransition.h */,
-				18F6E4F218CF4F430041E425 /* DMScaleTransition.m */,
-				18F6E4F318CF4F430041E425 /* DMSlideTransition.h */,
-				18F6E4F418CF4F430041E425 /* DMSlideTransition.m */,
-			);
-			path = Transitions;
 			sourceTree = "<group>";
 		};
 		25976746190B5046002CCAFA /* images */ = {
@@ -1366,7 +1343,6 @@
 				2525F65018F691BF00918714 /* LibraryTabBarController.m in Sources */,
 				1888429A1846F73B007B92CB /* LoginViewController.m in Sources */,
 				18114E611858322A007455E2 /* YTrendChartView.m in Sources */,
-				18F6E4F718CF4F430041E425 /* DMScaleTransition.m in Sources */,
 				18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */,
 				188842601846E86D007B92CB /* YViewController.m in Sources */,
 				25340FAD191CA73E00AFDE7D /* HiringDetailViewController.m in Sources */,
@@ -1407,13 +1383,11 @@
 				18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */,
 				188842951846F73B007B92CB /* LibraryTableCell.m in Sources */,
 				18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */,
-				18F6E4F818CF4F430041E425 /* DMSlideTransition.m in Sources */,
 				1888427E1846F723007B92CB /* IndexViewController.m in Sources */,
 				252655D918ED4EB500C7F8D3 /* wpyDeviceStatus.m in Sources */,
 				18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */,
 				E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */,
 				1888429F1846F73B007B92CB /* RecordViewController.m in Sources */,
-				E94E3D76198A42E70062B205 /* DMBaseTransition.m in Sources */,
 				E9D4365519B2285C0042A9F1 /* LAFound_QueryListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

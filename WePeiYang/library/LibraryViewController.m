@@ -14,15 +14,12 @@
 #import "LibraryFavouriteViewController.h"
 #import <ShareSDK/ShareSDK.h>
 #import "UIButton+Bootstrap.h"
-#import "DMSlideTransition.h"
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
 @interface LibraryViewController ()
-
-@property (strong, nonatomic) DMSlideTransition *slideTrans;
 
 @end
 
@@ -53,7 +50,6 @@
 
 @synthesize label1;
 @synthesize label2;
-@synthesize slideTrans;
 @synthesize searchBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -62,6 +62,10 @@
     [self refresh];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+}
+
 - (void)refreshView:(UIRefreshControl *)refreshControl
 {
     if(refreshControl.refreshing)
@@ -90,18 +94,6 @@
     }];
     [self.refreshControl endRefreshing];
     
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic != nil)
-            [self processContentDic:dic];
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            [self.refreshControl endRefreshing];
-        }
-    }];*/
-    
 }
 
 - (void)processContentDic:(NSDictionary *)dic {
@@ -116,29 +108,6 @@
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
 }
-
-/*
-- (void)processContentDic:(NSDictionary *)dic
-{
-    if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-    {
-        [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-    }
-    else
-    {
-        NSDictionary *dataDic = [dic objectForKey:@"content"];
-        for (NSDictionary *tmp in dataDic)
-        {
-            [hiringData addObject:tmp];
-        }
-        
-        dataInTable = hiringData;
-        [dataInTable addObject:@"点击加载更多..."];
-        
-        [self.refreshControl endRefreshing];
-        [self.tableView reloadData];
-    }
-*/
 
 - (void)nextPage
 {

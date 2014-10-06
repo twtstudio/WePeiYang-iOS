@@ -60,17 +60,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"就业资讯";
-    //jobTitles = [[NSMutableArray alloc]init];
-    //jobCorporations = [[NSMutableArray alloc]init];
-    //jobDates = [[NSMutableArray alloc]init];
-    //jobIds = [[NSMutableArray alloc]init];
+
     jobData = [[NSMutableArray alloc]init];
     dataInTable = [[NSMutableArray alloc]init];
-    
-    /*
-    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
-    [self.navigationItem setRightBarButtonItem:refreshBtn];
-     */
+
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
     
@@ -88,6 +81,10 @@
     [self refresh:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+}
+
 - (void)refreshView:(UIRefreshControl *)refreshControl
 {
     if(refreshControl.refreshing)
@@ -99,10 +96,6 @@
 
 - (void)refresh:(id)sender
 {
-    //jobTitles = [NSMutableArray arrayWithObjects: nil];
-    //jobCorporations = [NSMutableArray arrayWithObjects: nil];
-    //jobDates = [NSMutableArray arrayWithObjects: nil];
-    //jobIds = [NSMutableArray arrayWithObjects: nil];
     
     jobData = [NSMutableArray arrayWithObjects: nil];
     dataInTable = [NSMutableArray arrayWithObjects: nil];
@@ -121,29 +114,6 @@
         [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
     }];
     [self.refreshControl endRefreshing];
-    
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=job&page=%d",currentPage];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self dealWithReceivedData:contentDic];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            [self.refreshControl endRefreshing];
-        }
-    }];
-     */
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)jobsDic
@@ -257,24 +227,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
     }];
-    
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=job&page=%d",currentPage];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错惹QAQ"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self dealWithReceivedData:contentDic];
-            }
-        }
-    }];
-     */
 }
 
 - (void)pushFav

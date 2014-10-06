@@ -48,28 +48,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
-    
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=fair&index=%@",[data shareInstance].hiringId];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self processContentDic:contentDic];
-            }
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"服务器出错了QAQ"];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-        }
-    }];
-    */
 }
 
 - (void)processContentDic:(NSDictionary *)dic

@@ -76,9 +76,7 @@
         detailContent = [contentDic objectForKey:@"content"];
     }
     
-    [wpyStringProcessor convertToWebViewByString:detailContent withFinishCallbackBlock:^(NSString *load){
-        [self.webView loadHTMLString:load baseURL:baseURL];
-    }];
+    [self.webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:detailContent] baseURL:baseURL];
     self.webView.scalesPageToFit = YES;
 }
 

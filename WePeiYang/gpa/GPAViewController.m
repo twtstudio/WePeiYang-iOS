@@ -96,7 +96,7 @@
     
     [loginBtn primaryStyle];
     
-    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, gpaHeaderViewHeight)];
+    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, gpaHeaderViewHeight)];
     
     [self reloadArraysInTable];
     [self checkLoginStatus];

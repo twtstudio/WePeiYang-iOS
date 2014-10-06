@@ -11,7 +11,6 @@
 
 #import "YViewController.h"
 #import "GPAViewController.h"
-#import "DMScaleTransition.h"
 
 #import "indexTabBarController.h"
 #import "noticeTabBarController.h"

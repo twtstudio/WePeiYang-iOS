@@ -62,6 +62,10 @@
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
     
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        self.navigationController.hidesBarsOnSwipe = NO;
+    }
+    
     //下面这段代码自定义NavigationBar
     //
     
@@ -82,10 +86,8 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    //self.navigationController.toolbarHidden = NO;
 }
 
 - (void)backToHome
@@ -157,21 +159,8 @@
         self.navigationItem.title = @"院系动态";
     }
     
-    /*
-    NSError *error;
-    NSString *urlString = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/get_news_list.php?page=%ld&platform=ios&type=%@&version=%@",(long)currentPage,type,[data shareInstance].appVersion];
-    [wpyWebConnection getDataFromURLStr:urlString withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic != nil) [self processIndexData:dic];
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            [self.refreshControl endRefreshing];
-        }
-    }];
-     */
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    //NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=%@",(long)currentPage,type];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype":@"news",
@@ -187,48 +176,6 @@
         [self.refreshControl endRefreshing];
     }];
     [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
-    
-    /*
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-            {
-                //NSString *msg = [dic objectForKey:@"msg"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                //-----------------------已注释过
-                NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"newsType%@CacheData",type]];
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                if ([fileManager fileExistsAtPath:plistPath])
-                {
-                    [fileManager removeItemAtPath:plistPath error:nil];
-                }
-                else
-                {
-                    [contentDic writeToFile:plistPath atomically:YES];
-                }
-                //-----------------------已注释过
-                
-                [self processIndexData:contentDic];
-            }
-        }
-        else
-        {
-            [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前没有网络连接哦~"];
-            [self.refreshControl endRefreshing];
-            //-----------------------已注释过
-            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"newsType%@CacheData",type]];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            if ([fileManager fileExistsAtPath:plistPath])
-            {
-                [self processIndexData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
-            }
-            //-----------------------已注释过
-        }
-    }];*/
 }
 
 - (void)processIndexData:(NSDictionary *)newsDic
@@ -237,8 +184,6 @@
     {
         for (NSDictionary *temp in newsDic)
         {
-            //[newsTitle addObject:[temp objectForKey:@"subject"]];
-            //[newsId addObject:[temp objectForKey:@"index"]];
             [newsData addObject:temp];
         }
     }
@@ -291,23 +236,7 @@
 {
     currentPage = currentPage + 1;
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    /*
-    NSString *body = [NSString stringWithFormat:@"ctype=news&page=%ld&ntype=%@",(long)currentPage,type];
-    [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-        if (dic!=nil)
-        {
-            if ([[dic objectForKey:@"error"]boolValue]==true)
-            {
-                NSString *msg = [dic objectForKey:@"msg"];
-            }
-            else
-            {
-                NSDictionary *contentDic = [dic objectForKey:@"content"];
-                [self processIndexData:contentDic];
-            }
-        }
-    }];
-     */
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype":@"news",
                                  @"page":[NSString stringWithFormat:@"%d", currentPage],
@@ -329,7 +258,6 @@
     if (row == [dataInTable count] - 1)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        //[newsTitle removeObject:[newsTitle lastObject]];
         [dataInTable removeObject:[dataInTable lastObject]];
         [self nextPage:self];
     }
@@ -344,8 +272,7 @@
         DetailViewController *detailViewController = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
         detailViewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailViewController animated:YES];
-        //[self.tabBarController.navigationController pushViewController:detailViewController animated:YES];
-        //[delegate push];
+
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     }
