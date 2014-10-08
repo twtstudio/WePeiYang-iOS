@@ -104,7 +104,7 @@
     }
     else if (buttonIndex == 1)
     {
-        [self collection];
+        [self addToCollection];
     }
     else if (buttonIndex == 2)
     {
@@ -120,7 +120,6 @@
 
 - (void)share
 {
-    //NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
     NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",[data shareInstance].newsId];
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeSinaWeibo, ShareTypeTencentWeibo, ShareTypeQQ, ShareTypeQQSpace, ShareTypeFacebook, ShareTypeTwitter, nil];
     //构造分享内容
@@ -170,7 +169,7 @@
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
-- (void)collection
+- (void)addToCollection
 {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"collectionData"];
     NSFileManager *fileManager = [NSFileManager defaultManager];

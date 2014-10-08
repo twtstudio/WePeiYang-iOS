@@ -33,7 +33,6 @@
 @synthesize twtLoginType;
 @synthesize loginBtn;
 @synthesize cancelBtn;
-//@synthesize beiniangImg;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,8 +47,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    //[loginBtn primaryStyle];
-    //[cancelBtn primaryStyle];
+
     moved = NO;
     UIColor *color = [UIColor colorWithWhite:0.9 alpha:1.0];
     unameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入天外天账号" attributes:@{NSForegroundColorAttributeName: color}];

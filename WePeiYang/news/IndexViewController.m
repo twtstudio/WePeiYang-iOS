@@ -33,9 +33,6 @@
     UIAlertView *waitingAlert;
 }
 
-//@synthesize response;
-//@synthesize delegate;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

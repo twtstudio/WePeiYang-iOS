@@ -19,7 +19,6 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UITextField *passwdField;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
-//@property (strong, nonatomic) IBOutlet UIImageView *beiniangImg;
 @property twtLoginType *twtLoginType;
 
 - (IBAction)login:(id)sender;

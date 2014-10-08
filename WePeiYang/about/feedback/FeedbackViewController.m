@@ -75,12 +75,12 @@
     
 }
 
-- (IBAction)backToHome:(id)sender
+- (void)backToHome:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)sendFeedback:(id)sender
+- (void)sendFeedback:(id)sender
 {
     username = numberField.text;
     feedback = feedbackView.text;

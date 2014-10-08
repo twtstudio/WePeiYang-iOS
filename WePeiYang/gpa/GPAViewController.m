@@ -138,7 +138,6 @@
     else
     {
         NSString *url = @"http://push-mobile.twtapps.net/gpa/get";
-        //NSString *body = [NSString stringWithFormat:@"id=%@&token=%@",[data shareInstance].userId,[data shareInstance].userToken];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
@@ -342,7 +341,6 @@
     chart = [[YTrendChartView alloc]init];
     [chart setFrame:CGRectMake(0, gpaHeaderViewHeight+20, self.view.frame.size.width, 130)];
     [chart setBackgroundColor:[UIColor whiteColor]];
-    //[self.view addSubview:chart];
     chart.delegate = self;
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+150)];
@@ -350,7 +348,6 @@
     [headerView addSubview:chart];
     
     tableView.tableHeaderView = headerView;
-    //frame = [tableView.tableHeaderView frame];
 }
 
 - (void)oneKeyToEvaluate
@@ -552,7 +549,7 @@
                             }];
 }
 
-//和之前查询的成绩进行比较，如果新出科目则标注小蓝点，并保存最新查询的成绩
+//和之前查询的成绩进行比较，如果新出科目则标注小点，并保存最新查询的成绩
 - (void)compareWithPreviousResult
 {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];

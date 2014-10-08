@@ -53,9 +53,6 @@
 		1888422E1846E6F4007B92CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842161846E6F4007B92CB /* UIKit.framework */; };
 		188842361846E6F4007B92CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188842341846E6F4007B92CB /* InfoPlist.strings */; };
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
-		1888425F1846E86D007B92CB /* YStudySearchConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888425A1846E86D007B92CB /* YStudySearchConst.m */; };
-		188842601846E86D007B92CB /* YViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888425C1846E86D007B92CB /* YViewController.m */; };
-		188842611846E86D007B92CB /* YViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1888425D1846E86D007B92CB /* YViewController.xib */; };
 		188842771846F723007B92CB /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842691846F723007B92CB /* CollectionViewController.m */; };
 		1888427E1846F723007B92CB /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842731846F723007B92CB /* IndexViewController.m */; };
 		188842951846F73B007B92CB /* LibraryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842831846F73B007B92CB /* LibraryTableCell.m */; };
@@ -148,6 +145,8 @@
 		E95CDC821966D4D90083C1B7 /* wpyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */; };
 		E95CDC841966D58A0083C1B7 /* zhanshanlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */; };
 		E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9638CC919C326C300898350 /* AboutViewController.swift */; };
+		E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E0CA219E53A9000244751 /* StudySearchViewController.swift */; };
+		E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96E0CA319E53A9000244751 /* StudySearchViewController.xib */; };
 		E9952B8219A72214001641A2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7019A72214001641A2 /* AFHTTPRequestOperation.m */; };
 		E9952B8319A72214001641A2 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7219A72214001641A2 /* AFHTTPRequestOperationManager.m */; };
 		E9952B8419A72214001641A2 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9952B7419A72214001641A2 /* AFHTTPSessionManager.m */; };
@@ -274,11 +273,6 @@
 		188842371846E6F4007B92CB /* WePeiYangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WePeiYangTests.m; sourceTree = "<group>"; };
 		188842411846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188842421846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		188842591846E86D007B92CB /* YStudySearchConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YStudySearchConst.h; path = StudySearch/YStudySearchConst.h; sourceTree = "<group>"; };
-		1888425A1846E86D007B92CB /* YStudySearchConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YStudySearchConst.m; path = StudySearch/YStudySearchConst.m; sourceTree = "<group>"; };
-		1888425B1846E86D007B92CB /* YViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YViewController.h; path = StudySearch/YViewController.h; sourceTree = "<group>"; };
-		1888425C1846E86D007B92CB /* YViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YViewController.m; path = StudySearch/YViewController.m; sourceTree = "<group>"; };
-		1888425D1846E86D007B92CB /* YViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YViewController.xib; path = StudySearch/YViewController.xib; sourceTree = "<group>"; };
 		188842681846F723007B92CB /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionViewController.h; path = news/CollectionViewController.h; sourceTree = "<group>"; };
 		188842691846F723007B92CB /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionViewController.m; path = news/CollectionViewController.m; sourceTree = "<group>"; };
 		188842721846F723007B92CB /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = news/IndexViewController.h; sourceTree = "<group>"; };
@@ -402,6 +396,8 @@
 		E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhanshanlogo@2x.png"; sourceTree = "<group>"; };
 		E9638CC919C326C300898350 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = WePeiYang/about/AboutViewController.swift; sourceTree = "<group>"; };
 		E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WePeiYang-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		E96E0CA219E53A9000244751 /* StudySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudySearchViewController.swift; path = StudySearch/StudySearchViewController.swift; sourceTree = "<group>"; };
+		E96E0CA319E53A9000244751 /* StudySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudySearchViewController.xib; path = StudySearch/StudySearchViewController.xib; sourceTree = "<group>"; };
 		E9952B6F19A72214001641A2 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E9952B7019A72214001641A2 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E9952B7119A72214001641A2 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -659,11 +655,11 @@
 				25976746190B5046002CCAFA /* images */,
 				1825E1901878647A004976EA /* Guide */,
 				18ACB783187EB5110073998E /* Start */,
-				1888427F1846F72F007B92CB /* Library */,
-				18D63E1D18571139004E75AA /* GPA */,
-				188842631846F715007B92CB /* News */,
 				188842431846E7BB007B92CB /* StudySearch */,
+				188842631846F715007B92CB /* News */,
 				18F5861B1859B0AB00410E81 /* Notice */,
+				18D63E1D18571139004E75AA /* GPA */,
+				1888427F1846F72F007B92CB /* Library */,
 				18114E6E185850A3007455E2 /* Job */,
 				E9D4363B19B2285C0042A9F1 /* newLAFound */,
 				18C322AE1861AA9C00CE035D /* About */,
@@ -708,11 +704,8 @@
 		188842431846E7BB007B92CB /* StudySearch */ = {
 			isa = PBXGroup;
 			children = (
-				188842591846E86D007B92CB /* YStudySearchConst.h */,
-				1888425A1846E86D007B92CB /* YStudySearchConst.m */,
-				1888425B1846E86D007B92CB /* YViewController.h */,
-				1888425C1846E86D007B92CB /* YViewController.m */,
-				1888425D1846E86D007B92CB /* YViewController.xib */,
+				E96E0CA219E53A9000244751 /* StudySearchViewController.swift */,
+				E96E0CA319E53A9000244751 /* StudySearchViewController.xib */,
 			);
 			name = StudySearch;
 			sourceTree = "<group>";
@@ -736,24 +729,24 @@
 		1888427F1846F72F007B92CB /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				1825E1891878644D004976EA /* LibraryFavouriteViewController.h */,
-				1825E18A1878644D004976EA /* LibraryFavouriteViewController.m */,
-				2525F65118F6941300918714 /* LibraryFavouriteViewController.xib */,
-				188842821846F73B007B92CB /* LibraryTableCell.h */,
-				188842831846F73B007B92CB /* LibraryTableCell.m */,
-				188842841846F73B007B92CB /* LibraryTableCell.xib */,
 				188842851846F73B007B92CB /* LibraryViewController.h */,
 				188842861846F73B007B92CB /* LibraryViewController.m */,
 				188842871846F73B007B92CB /* LibraryViewController.xib */,
-				188842891846F73B007B92CB /* LoginViewController.h */,
-				1888428A1846F73B007B92CB /* LoginViewController.m */,
-				1888428B1846F73B007B92CB /* LoginViewController.xib */,
-				1888428D1846F73B007B92CB /* RecordTableCell.h */,
-				1888428E1846F73B007B92CB /* RecordTableCell.m */,
-				1888428F1846F73B007B92CB /* RecordTableCell.xib */,
+				188842821846F73B007B92CB /* LibraryTableCell.h */,
+				188842831846F73B007B92CB /* LibraryTableCell.m */,
+				188842841846F73B007B92CB /* LibraryTableCell.xib */,
+				1825E1891878644D004976EA /* LibraryFavouriteViewController.h */,
+				1825E18A1878644D004976EA /* LibraryFavouriteViewController.m */,
+				2525F65118F6941300918714 /* LibraryFavouriteViewController.xib */,
 				188842901846F73B007B92CB /* RecordViewController.h */,
 				188842911846F73B007B92CB /* RecordViewController.m */,
 				188842921846F73B007B92CB /* RecordViewController.xib */,
+				1888428D1846F73B007B92CB /* RecordTableCell.h */,
+				1888428E1846F73B007B92CB /* RecordTableCell.m */,
+				1888428F1846F73B007B92CB /* RecordTableCell.xib */,
+				188842891846F73B007B92CB /* LoginViewController.h */,
+				1888428A1846F73B007B92CB /* LoginViewController.m */,
+				1888428B1846F73B007B92CB /* LoginViewController.xib */,
 				2525F64E18F691BF00918714 /* LibraryTabBarController.h */,
 				2525F64F18F691BF00918714 /* LibraryTabBarController.m */,
 			);
@@ -1244,7 +1237,6 @@
 				25C0A45218FA2D24008D56F6 /* HringTableCell.xib in Resources */,
 				18114E6C18584376007455E2 /* chart_selected@2x.png in Resources */,
 				25976772190B5046002CCAFA /* dashboard_bg@2x.png in Resources */,
-				188842611846E86D007B92CB /* YViewController.xib in Resources */,
 				25976788190B5046002CCAFA /* laf_post@2x.png in Resources */,
 				25976786190B5046002CCAFA /* l_record@2x.png in Resources */,
 				25340FB3191CE70F00AFDE7D /* place_job_icon@2x.png in Resources */,
@@ -1302,6 +1294,7 @@
 				2597677E190B5046002CCAFA /* libraryRecordCell@2x.png in Resources */,
 				25229483191DC86700B04998 /* signinline@2x.png in Resources */,
 				25976789190B5046002CCAFA /* league@2x.png in Resources */,
+				E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */,
 				25976775190B5046002CCAFA /* jobs@2x.png in Resources */,
 				2597678A190B5046002CCAFA /* look@2x.png in Resources */,
 				18C87D6A1887F0EF009AF085 /* DetailViewController.xib in Resources */,
@@ -1344,7 +1337,6 @@
 				1888429A1846F73B007B92CB /* LoginViewController.m in Sources */,
 				18114E611858322A007455E2 /* YTrendChartView.m in Sources */,
 				18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */,
-				188842601846E86D007B92CB /* YViewController.m in Sources */,
 				25340FAD191CA73E00AFDE7D /* HiringDetailViewController.m in Sources */,
 				25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */,
 				18F586291859B6C100410E81 /* NoticeDetailViewController.m in Sources */,
@@ -1363,7 +1355,6 @@
 				E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */,
 				E999800D19B857DA001C8B60 /* SVProgressHUD.m in Sources */,
 				252C101B19176FA900C2B636 /* wpyEncryption.m in Sources */,
-				1888425F1846E86D007B92CB /* YStudySearchConst.m in Sources */,
 				E9952B8419A72214001641A2 /* AFHTTPSessionManager.m in Sources */,
 				18114E74185857F2007455E2 /* JobTableCell.m in Sources */,
 				18D63E26185715F3004E75AA /* GPALoginViewController.m in Sources */,
@@ -1381,6 +1372,7 @@
 				E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */,
 				18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */,
 				18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */,
+				E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */,
 				188842951846F73B007B92CB /* LibraryTableCell.m in Sources */,
 				18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */,
 				1888427E1846F723007B92CB /* IndexViewController.m in Sources */,

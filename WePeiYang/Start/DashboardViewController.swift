@@ -103,7 +103,7 @@ class DashboardViewController: UIViewController {
     }
     
     func pushStudySearch() {
-        let studySearchVC = YViewController(nibName: "YViewController", bundle: nil)
+        let studySearchVC = StudySearchViewController(nibName: "StudySearchViewController", bundle: nil)
         self.navigationController!.pushViewController(studySearchVC, animated: true)
     }
     

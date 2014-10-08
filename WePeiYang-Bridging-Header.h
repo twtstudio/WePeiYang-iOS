@@ -8,8 +8,6 @@
 #import "GPALoginViewController.h"
 #import "LoginViewController.h"
 #import "twtLoginViewController.h"
-
-#import "YViewController.h"
 #import "GPAViewController.h"
 
 #import "indexTabBarController.h"

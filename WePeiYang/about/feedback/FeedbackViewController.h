@@ -14,12 +14,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *deviceStatusField;
 @property (strong, nonatomic) IBOutlet UITextField *deviceVersionField;
 @property (strong, nonatomic) IBOutlet UITextView *feedbackView;
-@property (strong, nonatomic) IBOutlet UIButton *sendBtn;
 
 //@property (strong, nonatomic) NSMutableData *response;
 
 - (IBAction)backgroundTap:(id)sender;
-- (IBAction)backToHome:(id)sender;
-- (IBAction)sendFeedback:(id)sender;
 
 @end
