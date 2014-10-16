@@ -111,6 +111,7 @@
 
 - (void)nextPage
 {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     currentPage ++;
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     //NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
@@ -120,7 +121,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processContentDic:responseObject];
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
 }

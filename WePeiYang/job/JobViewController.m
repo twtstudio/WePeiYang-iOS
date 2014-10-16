@@ -214,6 +214,8 @@
 
 - (void)nextPage:(id)sender
 {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    
     currentPage = currentPage + 1;
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
@@ -224,7 +226,9 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedData:responseObject];
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
     }];
 }

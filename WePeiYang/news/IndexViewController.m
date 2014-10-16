@@ -233,7 +233,7 @@
 {
     currentPage = currentPage + 1;
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype":@"news",
                                  @"page":[NSString stringWithFormat:@"%d", currentPage],
@@ -243,7 +243,9 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self processIndexData:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];

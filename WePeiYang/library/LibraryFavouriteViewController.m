@@ -44,8 +44,8 @@
 
     //[self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"收藏夹";
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
+    //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
     headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
 }
 
@@ -82,7 +82,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 134;
+    NSInteger row = [indexPath row];
+    //计算自适应行高
+    NSString *title = [titleArray objectAtIndex:row];
+    CGFloat width = self.tableView.frame.size.width;
+    
+    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+    gettingSizeLabel.text = title;
+    gettingSizeLabel.numberOfLines = 0;
+    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize maxSize = CGSizeMake(width, 1000.0);
+    
+    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+    
+    return 80 + size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

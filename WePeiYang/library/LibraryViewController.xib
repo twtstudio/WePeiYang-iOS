@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -46,7 +45,7 @@
                         <constraint firstAttribute="trailing" secondItem="8DB-Ux-wjM" secondAttribute="trailing" id="ofV-mC-nGh"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OaK-eV-YMt">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OaK-eV-YMt">
                     <rect key="frame" x="0.0" y="154" width="401" height="365"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -90,9 +89,12 @@
             <constraints>
                 <constraint firstItem="dIr-S2-DGt" firstAttribute="top" secondItem="1" secondAttribute="top" id="2gT-h5-vgn"/>
                 <constraint firstAttribute="trailing" secondItem="dIr-S2-DGt" secondAttribute="trailing" id="2y6-dH-uYa"/>
+                <constraint firstItem="OaK-eV-YMt" firstAttribute="top" secondItem="dIr-S2-DGt" secondAttribute="bottom" id="7iT-BD-nBT"/>
                 <constraint firstItem="bWB-MC-TWL" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="50" id="A2F-9V-sN3"/>
+                <constraint firstAttribute="centerX" secondItem="CT2-r7-oiP" secondAttribute="centerX" id="CBX-N9-rBK"/>
                 <constraint firstAttribute="trailing" secondItem="CT2-r7-oiP" secondAttribute="trailing" constant="16" id="DqR-xI-RDN"/>
                 <constraint firstItem="OaK-eV-YMt" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="F4U-zz-Y2N"/>
+                <constraint firstItem="OaK-eV-YMt" firstAttribute="top" secondItem="dIr-S2-DGt" secondAttribute="bottom" id="MCi-ww-Y0v"/>
                 <constraint firstItem="CT2-r7-oiP" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="MPs-EN-V0p"/>
                 <constraint firstAttribute="trailing" secondItem="bWB-MC-TWL" secondAttribute="trailing" constant="49" id="OI5-zd-BhJ"/>
                 <constraint firstAttribute="trailing" secondItem="OaK-eV-YMt" secondAttribute="trailing" id="Qtr-wc-HiG"/>
@@ -101,7 +103,6 @@
                 <constraint firstItem="dIr-S2-DGt" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ePr-kj-gUa"/>
                 <constraint firstItem="JWP-KX-4bJ" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="16" id="hB0-RV-cbl"/>
                 <constraint firstAttribute="trailing" secondItem="TjI-hV-rLf" secondAttribute="trailing" constant="7" id="hrZ-cD-hkn"/>
-                <constraint firstItem="OaK-eV-YMt" firstAttribute="top" secondItem="1" secondAttribute="top" constant="154" id="qHi-y1-wZD"/>
                 <constraint firstAttribute="trailing" secondItem="JWP-KX-4bJ" secondAttribute="trailing" constant="16" id="tjR-pE-vze"/>
             </constraints>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -109,7 +110,7 @@
             <connections>
                 <action selector="backgroundTap:" destination="-1" eventType="touchDown" id="eXH-R2-Aul"/>
             </connections>
-            <point key="canvasLocation" x="474.5" y="355"/>
+            <point key="canvasLocation" x="401.5" y="356"/>
         </view>
         <searchDisplayController id="hBF-SN-mGj">
             <connections>

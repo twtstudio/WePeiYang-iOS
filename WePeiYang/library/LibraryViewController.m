@@ -80,8 +80,8 @@
     
     self.typeSegmentedControl.selectedSegmentIndex = 0;
     
-    [tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
-    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [tableView setBackgroundColor:[UIColor whiteColor]];
+    //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     UITextField *searchField = [searchBar valueForKey:@"_searchField"];
     searchField.textColor = [UIColor whiteColor];
@@ -221,7 +221,19 @@
     }
     else
     {
-        return 134;
+        //计算自适应行高
+        NSString *title = [[libraryData objectAtIndex:row] objectForKey:@"title"];
+        CGFloat width = self.tableView.frame.size.width;
+        
+        UILabel *gettingSizeLabel = [[UILabel alloc]init];
+        gettingSizeLabel.text = title;
+        gettingSizeLabel.numberOfLines = 0;
+        gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        CGSize maxSize = CGSizeMake(width, 1000.0);
+        
+        CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+        
+        return 80 + size.height;
     }
 }
 
@@ -278,7 +290,7 @@
         [data shareInstance].yearSelected = [temp objectForKey:@"year"];
         [data shareInstance].leftSelected = [temp objectForKey:@"left"];
         
-        detailAlert = [[UIAlertView alloc]initWithTitle:@"更多" message:[data shareInstance].titleSelected delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"添加到收藏",@"分享", nil];
+        detailAlert = [[UIAlertView alloc]initWithTitle:@"更多" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"添加到收藏",@"分享", nil];
         [detailAlert show];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

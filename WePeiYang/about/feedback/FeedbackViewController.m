@@ -73,6 +73,7 @@
     
     feedbackView.delegate = self;
     
+    feedbackView.layer.cornerRadius = 6;
 }
 
 - (void)backToHome:(id)sender
