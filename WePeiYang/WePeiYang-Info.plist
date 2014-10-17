@@ -36,10 +36,7 @@
 		</dict>
 		<dict>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>QQ05feaeae</string>
-				<string>wxee6ccbd4dd72b325</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

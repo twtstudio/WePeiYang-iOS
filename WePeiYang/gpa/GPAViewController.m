@@ -11,7 +11,6 @@
 #import "data.h"
 #import "GPACalculatorViewController.h"
 #import "GPATableCell.h"
-#import <ShareSDK/ShareSDK.h>
 #import "AFNetworking.h"
 #import "gpaHeaderView.h"
 #import "UIButton+Bootstrap.h"
@@ -447,11 +446,6 @@
     }];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -504,49 +498,16 @@
     UIImage *shareImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    NSData *imgData = UIImageJPEGRepresentation(shareImg, 1.0);
-    
     NSString *shareFrom = @"（分享自 微北洋 iOS 版 https://itunes.apple.com/cn/app/wei-bei-yang/id785509141?mt=8）";
     NSString *gpaStr = gpaHeader.gpaLabel.text;
     NSString *scoreStr = gpaHeader.scoreLabel.text;
     
     NSString *shareString = [[NSString alloc]initWithFormat:@"我的平均分是 %@，GPA是 %@，快来晒出你的GPA吧！%@",scoreStr,gpaStr,shareFrom];
     
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeSinaWeibo, ShareTypeTencentWeibo, ShareTypeQQ, ShareTypeQQSpace, ShareTypeFacebook, ShareTypeTwitter, nil];
-    id<ISSContent> publishContent = [ShareSDK content:shareString
-                                       defaultContent:@"默认分享内容，没内容时显示"
-                                                image:[ShareSDK imageWithData:imgData fileName:@"gpa" mimeType:@"jpg"]
-                                                title:@"晒出GPA"
-                                                  url:nil
-                                          description:@"分享自微北洋"
-                                            mediaType:SSPublishContentMediaTypeImage];
-    NSArray *oneKeyShareList = shareList;
-    id<ISSShareOptions> shareOptions = [ShareSDK defaultShareOptionsWithTitle:nil      //分享视图标题
-                                                              oneKeyShareList:oneKeyShareList           //一键分享菜单
-                                                               qqButtonHidden:NO                               //QQ分享按钮是否隐藏
-                                                        wxSessionButtonHidden:NO                   //微信好友分享按钮是否隐藏
-                                                       wxTimelineButtonHidden:NO                 //微信朋友圈分享按钮是否隐藏
-                                                         showKeyboardOnAppear:NO                  //是否显示键盘
-                                                            shareViewDelegate:nil                            //分享视图委托
-                                                          friendsViewDelegate:nil                          //好友视图委托
-                                                        picViewerViewDelegate:nil];                    //图片浏览视图委托
+    NSArray *activityItems = @[shareImg, shareString];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:activityViewController animated:YES completion:nil];
     
-    [ShareSDK showShareActionSheet:nil
-                         shareList:shareList
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: shareOptions
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    NSLog(@"分享成功");
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];
 }
 
 //和之前查询的成绩进行比较，如果新出科目则标注小点，并保存最新查询的成绩

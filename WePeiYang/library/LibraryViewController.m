@@ -12,7 +12,6 @@
 #import "LoginViewController.h"
 #import "RecordViewController.h"
 #import "LibraryFavouriteViewController.h"
-#import <ShareSDK/ShareSDK.h>
 #import "UIButton+Bootstrap.h"
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
@@ -386,35 +385,11 @@
     NSString *title = [data shareInstance].titleSelected;
     NSString *position = [data shareInstance].positionSelected;
     NSString *left = [data shareInstance].leftSelected;
-    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeWeixiSession, ShareTypeWeixiTimeline, ShareTypeRenren, ShareTypeSinaWeibo, ShareTypeTencentWeibo, ShareTypeQQ, ShareTypeQQSpace, ShareTypeFacebook, ShareTypeTwitter, nil];
     NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",title,position,left];
-
-    //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:shareString
-                                       defaultContent:@"默认分享内容，没内容时显示"
-                                                image:nil
-                                                title:shareString
-                                                  url:nil
-                                          description:@"分享自微北洋"
-                                            mediaType:SSPublishContentMediaTypeText];
     
-    [ShareSDK showShareActionSheet:nil
-                         shareList:shareList
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: nil
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    NSLog(@"分享成功");
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];
-
+    NSArray *activityItems = @[shareString];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:activityViewController animated:YES completion:nil];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

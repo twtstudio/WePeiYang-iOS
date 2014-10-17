@@ -7,10 +7,6 @@
 //
 
 #import "twtAppDelegate.h"
-#import <ShareSDK/ShareSDK.h>
-#import "WXApi.h"
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
 #import "data.h"
 #import "twtSecretKeys.h"
 #import "RavenClient.h"
@@ -35,50 +31,7 @@
     // Install the global error handler
     [[RavenClient sharedClient] setupExceptionHandler];
     
-    //ShareSDK appKey
-    [ShareSDK registerApp:[twtSecretKeys getShareSDKAppKey]];
     
-    //添加新浪微博应用
-    [ShareSDK connectSinaWeiboWithAppKey:[twtSecretKeys getWeiboAppKey]
-                               appSecret:[twtSecretKeys getWeiboAppSecret]
-                             redirectUri:@"http://mobile.twt.edu.cn"];
-    
-    //添加腾讯微博应用
-    [ShareSDK connectTencentWeiboWithAppKey:[twtSecretKeys getTencentWeiboAppKey]
-                                  appSecret:[twtSecretKeys getTencentWeiboAppSecret]
-                                redirectUri:@"http://mobile.twt.edu.cn"];
-    
-    //添加QQ空间应用
-    [ShareSDK connectQZoneWithAppKey:[twtSecretKeys getQZoneAppKey]
-                           appSecret:[twtSecretKeys getQZoneAppSecret]];
-     
-    //添加人人网应用
-    [ShareSDK connectRenRenWithAppKey:[twtSecretKeys getRenrenAppKey]
-                            appSecret:[twtSecretKeys getRenrenAppSecret]];
-    
-    //添加Facebook应用
-    [ShareSDK connectFacebookWithAppKey:[twtSecretKeys getFacebookAppKey]
-                              appSecret:[twtSecretKeys getFacebookAppSecret]];
-    
-    //添加Twitter应用
-    [ShareSDK connectTwitterWithConsumerKey:[twtSecretKeys getTwitterConsumerKey]
-                             consumerSecret:[twtSecretKeys getTwitterConsumerSecret]
-                                redirectUri:@"http://mobile.twt.edu.cn"];
-    
-    //添加微信应用
-    [ShareSDK connectWeChatWithAppId:[twtSecretKeys getWechatAppId]        //此参数为申请的微信AppID
-                           wechatCls:[WXApi class]];
-    
-    //添加QQ应用
-    [ShareSDK connectQQWithQZoneAppKey:[twtSecretKeys getQQWithQZoneAppKey]                 //该参数填入申请的QQ AppId
-                     qqApiInterfaceCls:[QQApiInterface class]
-                       tencentOAuthCls:[TencentOAuth class]];
-    
-    //……
-    
-
-    
-
     DashboardViewController *dashboard = [[DashboardViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
     
@@ -158,23 +111,6 @@
             //[self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
         }
     }
-}
-
-- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
-{
-    return [ShareSDK handleOpenURL:url
-                        wxDelegate:self];
-}
-
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    return [ShareSDK handleOpenURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation
-                        wxDelegate:self];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

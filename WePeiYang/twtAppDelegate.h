@@ -7,10 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ShareSDK/ShareSDK.h>
-#import "WXApi.h"
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
 
 @interface twtAppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
 

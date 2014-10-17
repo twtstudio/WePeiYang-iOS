@@ -103,46 +103,6 @@
                 [SVProgressHUD showErrorWithStatus:@"绑定办公网失败"];
             }
         }];
-        
-        /*
-        NSString *body = [NSString stringWithFormat:@"id=%@&token=%@&tjuuname=%@&tjupasswd=%@",[data shareInstance].userId,[data shareInstance].userToken,username,password];
-        [wpyWebConnection getDataFromURLStr:url andBody:body withFinishCallbackBlock:^(NSDictionary *dic){
-            if (dic!=nil)
-            {
-                if (![[dic objectForKey:@"statusCode"] isEqualToString:@"200"])
-                {
-                    if ([[dic objectForKey:@"statusCode"] isEqualToString:@"401"])
-                    {
-                        //NSString *msg = [[dic objectForKey:@"content"] objectForKey:@"error"];
-                        if ([[[dic objectForKey:@"content"] objectForKey:@"error"] integerValue] == 401)
-                        {
-                            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                            [alert show];
-                        }
-                        else
-                        {
-                            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"出错惹QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                            [alert show];
-                        }
-                    }
-                }
-                else
-                {
-                    successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [successAlert show];
-                    [data shareInstance].gpaLoginStatus = @"Changed";
-                    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindTju"];
-                    NSFileManager *fileManager = [NSFileManager defaultManager];
-                    [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
-                }
-            }
-            else
-            {
-                [CSNotificationView showInViewController:self style:CSNotificationViewStyleError message:@"当前可能没有网络连接哦~"];
-            }
-            [loginBtn setUserInteractionEnabled:YES];
-        }];
-        */
     }
     [loginBtn setUserInteractionEnabled:YES];
 }
