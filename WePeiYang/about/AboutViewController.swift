@@ -12,7 +12,7 @@ import MessageUI
 class AboutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
 
     let aboutArr = ["关于我们","欢迎页面"];
-    let webArr = ["访问天外天网站"];
+    let webArr = ["抓取课程表","访问天外天网站"];
     let feedbackArr = ["发送反馈","联系我们"]
     
     var removeAlert:UIAlertView?
@@ -83,12 +83,12 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         var row = indexPath.row
         var section = indexPath.section
         if section == 0 {
-            cell.textLabel!.text = aboutArr[row] as NSString
+            cell.textLabel.text = aboutArr[row] as NSString
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         } else if section == 1 {
-            cell.textLabel!.text = webArr[row] as NSString
+            cell.textLabel.text = webArr[row] as NSString
         } else if section == 2 {
-            cell.textLabel!.text = feedbackArr[row] as NSString
+            cell.textLabel.text = feedbackArr[row] as NSString
             if row == 0 {
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
@@ -96,14 +96,14 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.accessoryType = UITableViewCellAccessoryType.None
             if self.logFileExists() {
                 if row == 0 {
-                    cell.textLabel!.text = self.tjuBinded() ? "解除办公网账号绑定" : "绑定办公网账号"
+                    cell.textLabel.text = self.tjuBinded() ? "解除办公网账号绑定" : "绑定办公网账号"
                 } else if row == 1 {
-                    cell.textLabel!.text = self.libBinded() ? "解除图书馆账号绑定" : "绑定图书馆账号"
+                    cell.textLabel.text = self.libBinded() ? "解除图书馆账号绑定" : "绑定图书馆账号"
                 } else if row == 2 {
-                    cell.textLabel!.text = "注销天外天账号"
+                    cell.textLabel.text = "注销天外天账号"
                 }
             } else {
-                cell.textLabel!.text = "登录天外天账号"
+                cell.textLabel.text = "登录天外天账号"
             }
         }
         return cell
@@ -120,6 +120,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         } else if section == 1 {
             if row == 0 {
+                self.getClassData()
+            } else if row == 1 {
                 self.openTwtInSafari()
             }
         } else if section == 2 {
@@ -173,9 +175,9 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         case 0:
             return nil
         case 1:
-            return "非常希望您能够将您的宝贵意见告诉我们。\n您的建议是微北洋持续改进的动力。"
-        case 2:
             return nil
+        case 2:
+            return "非常希望您能够将您的宝贵意见告诉我们。\n您的建议是微北洋持续改进的动力。"
         default:
             return nil
         }
@@ -217,6 +219,10 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             let plistPath = documentPath.stringByAppendingPathComponent(fileName)
             fileManager.removeItemAtPath(plistPath, error: nil)
         }
+        
+        let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
+        userDefault?.removeObjectForKey("Classtable")
+        userDefault?.synchronize()
         
         self.tableView.reloadData()
     }
@@ -280,6 +286,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.presentViewController(twtLogin, animated: true, completion: nil)
     }
     
+    //当前状态检测
+    
     func logFileExists() -> Bool {
         let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let documentPath = path[0] as String
@@ -318,7 +326,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func joinUs() {
         let twtUrl = NSURL(string: "http://mobile.twt.edu.cn/apply.html")
-        UIApplication.sharedApplication().openURL(twtUrl)
+        UIApplication.sharedApplication().openURL(twtUrl!)
     }
     
     func pushFeedback() {
@@ -328,7 +336,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func openTwtInSafari() {
         let twtURL = NSURL(string: "http://www.twt.edu.cn")
-        UIApplication.sharedApplication().openURL(twtURL)
+        UIApplication.sharedApplication().openURL(twtURL!)
     }
     
     func pushAboutUS() {
@@ -360,6 +368,60 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     func showGuide() {
         var guide = GuideViewController()
         self.presentViewController(guide, animated: true, completion: nil)
+    }
+    
+    func getClassData() {
+        if self.logFileExists() {
+            if self.tjuBinded() {
+                SVProgressHUD.showWithStatus("正在加载...")
+                
+                // Here to add functions to get class data
+                var manager = AFHTTPRequestOperationManager()
+                let url = "http://push-mobile.twtapps.net/classtable"
+                let parameters = ["id": data.shareInstance().userId, "token": data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
+                manager.GET(url, parameters: parameters, success: {
+                    (AFHTTPRequestOperation operation, AnyObject responseObj) in
+                        SVProgressHUD.dismiss()
+                        self.saveCacheWithData(responseObj)
+                    
+                    
+                    }, failure: {
+                    (AFHTTPRequestOperation operation, NSError error) in
+                        SVProgressHUD.dismiss()
+                        SVProgressHUD.showErrorWithStatus(error.localizedDescription)
+                })
+                
+            } else {
+                SVProgressHUD.showErrorWithStatus("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
+            }
+        } else {
+            SVProgressHUD.showErrorWithStatus("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
+        }
+    }
+    
+    func saveCacheWithData(responseObject: AnyObject) {
+        /*
+        let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let documentPath = path[0] as String
+        let plistPath = documentPath.stringByAppendingPathComponent("classtable")
+        let fileManager = NSFileManager.defaultManager()
+        if fileManager.fileExistsAtPath(plistPath) {
+            fileManager.removeItemAtPath(plistPath, error: nil)
+        }
+        var responseData = responseObject as NSArray
+        responseData.writeToFile(plistPath, atomically: true)
+        */
+        
+        println(responseObject)
+        //var jsonData = NSJSONSerialization.JSONObjectWithData(responseObject as NSData, options: .MutableLeaves, error: nil) as NSArray
+        
+        let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
+        userDefault?.removeObjectForKey("Classtable")
+        userDefault?.setObject(responseObject, forKey: "Classtable")
+        userDefault?.synchronize()
+        
+        var alert = UIAlertView(title: "成功", message: "加载课程表成功！", delegate: self, cancelButtonTitle: "好的")
+        alert.show()
     }
     
 

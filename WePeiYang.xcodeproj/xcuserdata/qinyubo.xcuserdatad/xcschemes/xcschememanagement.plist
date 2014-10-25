@@ -6,8 +6,15 @@
 	<dict>
 		<key>WePeiYang.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>WePeiYangToday.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -18,6 +25,31 @@
 			<true/>
 		</dict>
 		<key>188842291846E6F4007B92CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F933B519FBA5B200E53E03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F933CA19FBA61200E53E03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F933DD19FBA67C00E53E03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F933F019FBA8DC00E53E03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F9356219FBAA3100E53E03</key>
 		<dict>
 			<key>primary</key>
 			<true/>

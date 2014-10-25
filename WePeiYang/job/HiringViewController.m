@@ -56,9 +56,6 @@
     [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
     [self refresh];
 }
 

@@ -14,7 +14,7 @@
 		<string>https://github.com/xnth97/WePeiYang_iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WePeiYang.xcodeproj/project.xcworkspace</string>
+	<string>WePeiYang.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>18F6BE23FA0E5D5DDCF195BAC16DEFDE66456693</key>

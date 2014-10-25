@@ -260,7 +260,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "reuseIdentifier")
         }
-        cell!.textLabel!.text = searchResultArray[indexPath.row] as? String
+        cell!.textLabel.text = searchResultArray[indexPath.row] as? String
         cell!.backgroundColor = UIColor.clearColor()
         return cell!
     }

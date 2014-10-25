@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,9 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="libraryRecordCell.png" translatesAutoresizingMaskIntoConstraints="NO" id="L0t-pC-4HS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="titleLabel" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="283" translatesAutoresizingMaskIntoConstraints="NO" id="cQy-4i-BY7">
                         <rect key="frame" x="17" y="11" width="283" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -61,16 +58,12 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="I9v-zb-3KN" secondAttribute="trailing" constant="12" id="JDP-ZM-Q8p"/>
                     <constraint firstItem="Rec-tW-at7" firstAttribute="leading" secondItem="xL7-cv-Hnj" secondAttribute="trailing" constant="8" id="PvG-fn-Fc1"/>
-                    <constraint firstItem="L0t-pC-4HS" firstAttribute="leading" secondItem="3s0-Oc-9UY" secondAttribute="leadingMargin" constant="-8" id="Vse-qi-hGd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cQy-4i-BY7" secondAttribute="trailing" constant="12" id="aWY-qc-Hvu"/>
                     <constraint firstAttribute="bottomMargin" secondItem="xL7-cv-Hnj" secondAttribute="bottom" constant="-0.5" id="fPg-LI-O7G"/>
                     <constraint firstItem="I9v-zb-3KN" firstAttribute="leading" secondItem="Rec-tW-at7" secondAttribute="trailing" constant="4" id="me7-wx-4DW"/>
                     <constraint firstItem="cQy-4i-BY7" firstAttribute="leading" secondItem="3s0-Oc-9UY" secondAttribute="leadingMargin" constant="9" id="pzg-H5-i4D"/>
                     <constraint firstItem="xL7-cv-Hnj" firstAttribute="leading" secondItem="D6t-BE-7LN" secondAttribute="trailing" constant="8" id="tOf-hv-XIq"/>
-                    <constraint firstItem="L0t-pC-4HS" firstAttribute="top" secondItem="3s0-Oc-9UY" secondAttribute="topMargin" constant="-8" id="y4Z-Gf-A6x"/>
                     <constraint firstItem="D6t-BE-7LN" firstAttribute="leading" secondItem="3s0-Oc-9UY" secondAttribute="leadingMargin" constant="9" id="yuZ-5u-cXJ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="L0t-pC-4HS" secondAttribute="trailing" constant="-8" id="z02-CH-J8O"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="L0t-pC-4HS" secondAttribute="bottom" constant="-8.5" id="zUF-xa-UEL"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -84,7 +77,6 @@
     </objects>
     <resources>
         <image name="corp_icon.png" width="16" height="18"/>
-        <image name="libraryRecordCell.png" width="320" height="120"/>
         <image name="time_job_icon.png" width="14" height="14"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -15,7 +15,7 @@ class DashboardViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        let infoDic:NSDictionary = NSBundle.mainBundle().infoDictionary
+        let infoDic:NSDictionary = NSBundle.mainBundle().infoDictionary!
         let appVersion:NSString = infoDic["CFBundleShortVersionString"] as NSString
         data.shareInstance().appVersion = appVersion
         data.shareInstance().deviceWidth = self.view.frame.size.width
@@ -25,7 +25,7 @@ class DashboardViewController: UIViewController {
         println(deviceWidth)
         println(deviceHeight)
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "dashboard_bg.png"))
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "dashboard_bg.png")!)
         self.navigationController?.navigationBarHidden = true
         
         self.checkGuideStatus()
@@ -169,7 +169,7 @@ class DashboardViewController: UIViewController {
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(plistPath) {
             let savedData = NSData(contentsOfFile: plistPath)
-            let unarchiver = NSKeyedUnarchiver(forReadingWithData: savedData)
+            let unarchiver = NSKeyedUnarchiver(forReadingWithData: savedData!)
             
             let secretId = unarchiver.decodeObjectForKey("id") as NSData
             let secretToken = unarchiver.decodeObjectForKey("token") as NSData

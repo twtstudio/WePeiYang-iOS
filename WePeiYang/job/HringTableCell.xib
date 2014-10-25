@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,9 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="libraryCell.png" translatesAutoresizingMaskIntoConstraints="NO" id="UaG-JK-WjJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="m2R-qj-gWS">
                         <rect key="frame" x="20" y="9" width="280" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -65,18 +62,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="m2R-qj-gWS" secondAttribute="trailing" constant="12" id="0ji-Fl-CWy"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="UaG-JK-WjJ" secondAttribute="bottom" constant="-8.5" id="2Jc-u8-Def"/>
                     <constraint firstItem="gVC-oF-GDB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="3hY-Ax-HrK"/>
                     <constraint firstItem="MeH-Sr-gP5" firstAttribute="leading" secondItem="r6z-fV-bCb" secondAttribute="trailing" constant="8" id="6oz-mu-gUZ"/>
                     <constraint firstItem="05c-AF-VOC" firstAttribute="leading" secondItem="J3Y-WA-kI5" secondAttribute="trailing" constant="2" id="J51-OX-aqQ"/>
                     <constraint firstItem="LQh-hx-Nh3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="MeR-e1-dWP"/>
                     <constraint firstItem="m2R-qj-gWS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="UV6-C2-q6u"/>
                     <constraint firstItem="J3Y-WA-kI5" firstAttribute="leading" secondItem="LQh-hx-Nh3" secondAttribute="trailing" constant="8" id="Zyo-AY-k3D"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="UaG-JK-WjJ" secondAttribute="trailing" constant="-8" id="cxC-yv-rn2"/>
-                    <constraint firstItem="UaG-JK-WjJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="e6q-p0-A5t"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MeH-Sr-gP5" secondAttribute="trailing" constant="12" id="kBo-zB-Nfh"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gVC-oF-GDB" secondAttribute="trailing" constant="12" id="vFx-AP-CZh"/>
-                    <constraint firstItem="UaG-JK-WjJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="z30-9z-t9e"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -91,7 +84,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="libraryCell.png" width="320" height="134"/>
         <image name="place_job_icon.png" width="14" height="14"/>
         <image name="time_job_icon.png" width="14" height="14"/>
     </resources>

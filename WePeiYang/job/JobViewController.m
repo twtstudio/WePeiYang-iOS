@@ -75,9 +75,6 @@
     [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
     [self refresh:self];
 }
 
@@ -99,6 +96,9 @@
     
     jobData = [NSMutableArray arrayWithObjects: nil];
     dataInTable = [NSMutableArray arrayWithObjects: nil];
+    
+    [jobData removeAllObjects];
+    [dataInTable removeAllObjects];
     
     currentPage = 0;
     
@@ -172,12 +172,14 @@
     }
     else
     {
-        NSDictionary *temp = [dataInTable objectAtIndex:row];
-        cell.titleLabel.text = [temp objectForKey:@"title"];
-        cell.corporationLabel.text = [temp objectForKey:@"corporation"];
-        cell.dateLabel.text = [temp objectForKey:@"date"];
-        cell.timeIconImg.hidden = NO;
-        cell.corpIconImg.hidden = NO;
+        if ([dataInTable count] > 0) {
+            NSDictionary *temp = [dataInTable objectAtIndex:row];
+            cell.titleLabel.text = [temp objectForKey:@"title"];
+            cell.corporationLabel.text = [temp objectForKey:@"corporation"];
+            cell.dateLabel.text = [temp objectForKey:@"date"];
+            cell.timeIconImg.hidden = NO;
+            cell.corpIconImg.hidden = NO;
+        }
     }
     cell.backgroundColor = [UIColor clearColor];
     return cell;

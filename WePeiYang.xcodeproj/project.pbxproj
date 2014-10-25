@@ -165,6 +165,10 @@
 		E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4364C19B2285C0042A9F1 /* LAFTabBarController.m */; };
 		E9F3FC0019CC3C8900BA0019 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9F3FBFE19CC3C8900BA0019 /* bootstrap.css */; };
 		E9F3FC0119CC3C8900BA0019 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9F3FBFF19CC3C8900BA0019 /* bootstrap.min.js */; };
+		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
+		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
+		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
+		E9F9356E19FBAA3100E53E03 /* 微北洋.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E9F9356319FBAA3100E53E03 /* 微北洋.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,7 +179,28 @@
 			remoteGlobalIDString = 1888420E1846E6F4007B92CB;
 			remoteInfo = WePeiYang;
 		};
+		E9F9356C19FBAA3100E53E03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 188842071846E6F4007B92CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9F9356219FBAA3100E53E03;
+			remoteInfo = WePeiYangToday;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E9F933C619FBA5B300E53E03 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E9F9356E19FBAA3100E53E03 /* 微北洋.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		180F1C8F185D4D2B00F76085 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -416,6 +441,13 @@
 		E9D4364C19B2285C0042A9F1 /* LAFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFTabBarController.m; sourceTree = "<group>"; };
 		E9F3FBFE19CC3C8900BA0019 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9F3FBFF19CC3C8900BA0019 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
+		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		E9F9356319FBAA3100E53E03 /* 微北洋.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "微北洋.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F9356719FBAA3100E53E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9F9356819FBAA3100E53E03 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		E9F9357219FBAADD00E53E03 /* WePeiYang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WePeiYang.entitlements; sourceTree = "<group>"; };
+		E9F9357319FBAAFD00E53E03 /* 微北洋.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "微北洋.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,6 +472,14 @@
 				1888422C1846E6F4007B92CB /* XCTest.framework in Frameworks */,
 				1888422E1846E6F4007B92CB /* UIKit.framework in Frameworks */,
 				1888422D1846E6F4007B92CB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F9356019FBAA3100E53E03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +553,7 @@
 			children = (
 				188842181846E6F4007B92CB /* WePeiYang */,
 				188842311846E6F4007B92CB /* WePeiYangTests */,
+				E9F9356519FBAA3100E53E03 /* WePeiYangToday */,
 				188842111846E6F4007B92CB /* Frameworks */,
 				188842101846E6F4007B92CB /* Products */,
 			);
@@ -523,6 +564,7 @@
 			children = (
 				1888420F1846E6F4007B92CB /* WePeiYang.app */,
 				1888422A1846E6F4007B92CB /* WePeiYangTests.xctest */,
+				E9F9356319FBAA3100E53E03 /* 微北洋.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -549,6 +591,7 @@
 				188842141846E6F4007B92CB /* CoreGraphics.framework */,
 				188842161846E6F4007B92CB /* UIKit.framework */,
 				1888422B1846E6F4007B92CB /* XCTest.framework */,
+				E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -556,6 +599,7 @@
 		188842181846E6F4007B92CB /* WePeiYang */ = {
 			isa = PBXGroup;
 			children = (
+				E9F9357219FBAADD00E53E03 /* WePeiYang.entitlements */,
 				18CFC7D918900C7200A51F01 /* publicClasses */,
 				188842A21846F79F007B92CB /* data.h */,
 				188842A31846F79F007B92CB /* data.m */,
@@ -930,6 +974,25 @@
 			path = bootstrap;
 			sourceTree = "<group>";
 		};
+		E9F9356519FBAA3100E53E03 /* WePeiYangToday */ = {
+			isa = PBXGroup;
+			children = (
+				E9F9357319FBAAFD00E53E03 /* 微北洋.entitlements */,
+				E9F9356819FBAA3100E53E03 /* TodayViewController.swift */,
+				E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */,
+				E9F9356619FBAA3100E53E03 /* Supporting Files */,
+			);
+			path = WePeiYangToday;
+			sourceTree = "<group>";
+		};
+		E9F9356619FBAA3100E53E03 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9F9356719FBAA3100E53E03 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -940,10 +1003,12 @@
 				1888420B1846E6F4007B92CB /* Sources */,
 				1888420C1846E6F4007B92CB /* Frameworks */,
 				1888420D1846E6F4007B92CB /* Resources */,
+				E9F933C619FBA5B300E53E03 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E9F9356D19FBAA3100E53E03 /* PBXTargetDependency */,
 			);
 			name = WePeiYang;
 			productName = WePeiYang;
@@ -968,6 +1033,23 @@
 			productReference = 1888422A1846E6F4007B92CB /* WePeiYangTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E9F9356219FBAA3100E53E03 /* WePeiYangToday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9F9356F19FBAA3200E53E03 /* Build configuration list for PBXNativeTarget "WePeiYangToday" */;
+			buildPhases = (
+				E9F9355F19FBAA3100E53E03 /* Sources */,
+				E9F9356019FBAA3100E53E03 /* Frameworks */,
+				E9F9356119FBAA3100E53E03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WePeiYangToday;
+			productName = WePeiYangToday;
+			productReference = E9F9356319FBAA3100E53E03 /* 微北洋.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -980,9 +1062,23 @@
 				TargetAttributes = {
 					1888420E1846E6F4007B92CB = {
 						DevelopmentTeam = TYRRVX7RWJ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					188842291846E6F4007B92CB = {
 						TestTargetID = 1888420E1846E6F4007B92CB;
+					};
+					E9F9356219FBAA3100E53E03 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = TYRRVX7RWJ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1001,6 +1097,7 @@
 			targets = (
 				1888420E1846E6F4007B92CB /* WePeiYang */,
 				188842291846E6F4007B92CB /* WePeiYangTests */,
+				E9F9356219FBAA3100E53E03 /* WePeiYangToday */,
 			);
 		};
 /* End PBXProject section */
@@ -1102,6 +1199,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9F9356119FBAA3100E53E03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1185,6 +1290,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9F9355F19FBAA3100E53E03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1192,6 +1305,11 @@
 			isa = PBXTargetDependency;
 			target = 1888420E1846E6F4007B92CB /* WePeiYang */;
 			targetProxy = 1888422F1846E6F4007B92CB /* PBXContainerItemProxy */;
+		};
+		E9F9356D19FBAA3100E53E03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9F9356219FBAA3100E53E03 /* WePeiYangToday */;
+			targetProxy = E9F9356C19FBAA3100E53E03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1297,32 +1415,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Connection",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Core",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/GooglePlusSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/Pinterest.embeddedframework",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/QQConnectSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/RenRenSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/UI",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK",
-				);
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WePeiYang/WePeiYang-Prefix.pch";
 				INFOPLIST_FILE = "WePeiYang/WePeiYang-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/SinaWeiboSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/TencentWeiboSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/WeChatSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/YiXinSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1341,32 +1444,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Connection",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Core",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/GooglePlusSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/Pinterest.embeddedframework",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/QQConnectSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/RenRenSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/UI",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK",
-				);
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WePeiYang/WePeiYang-Prefix.pch";
 				INFOPLIST_FILE = "WePeiYang/WePeiYang-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/SinaWeiboSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/TencentWeiboSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/WeChatSDK",
-					"$(PROJECT_DIR)/WePeiYang/publicClasses/ShareSDK/Extend/YiXinSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1417,6 +1505,51 @@
 			};
 			name = Release;
 		};
+		E9F9357019FBAA3200E53E03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "WePeiYangToday/微北洋.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = WePeiYangToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "微北洋";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E9F9357119FBAA3200E53E03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = "WePeiYangToday/微北洋.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = WePeiYangToday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "微北洋";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1443,6 +1576,15 @@
 			buildConfigurations = (
 				1888423F1846E6F4007B92CB /* Debug */,
 				188842401846E6F4007B92CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9F9356F19FBAA3200E53E03 /* Build configuration list for PBXNativeTarget "WePeiYangToday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9F9357019FBAA3200E53E03 /* Debug */,
+				E9F9357119FBAA3200E53E03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
