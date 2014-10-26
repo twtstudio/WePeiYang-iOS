@@ -130,6 +130,7 @@
 		25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */; };
 		25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */; };
 		25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA518F96B840066E3E6 /* JobTabBarController.m */; };
+		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
 		E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */; };
 		E95CDC821966D4D90083C1B7 /* wpyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */; };
 		E95CDC841966D58A0083C1B7 /* zhanshanlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */; };
@@ -168,7 +169,7 @@
 		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
 		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
 		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
-		E9F9356E19FBAA3100E53E03 /* 微北洋.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E9F9356319FBAA3100E53E03 /* 微北洋.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E9F9356E19FBAA3100E53E03 /* WePeiYangToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,7 +196,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E9F9356E19FBAA3100E53E03 /* 微北洋.appex in Embed App Extensions */,
+				E9F9356E19FBAA3100E53E03 /* WePeiYangToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,6 +381,7 @@
 		25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = twtLoginViewController.xib; path = WePeiYang/Start/twtLoginViewController.xib; sourceTree = "<group>"; };
 		25E48CA418F96B840066E3E6 /* JobTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobTabBarController.h; path = job/JobTabBarController.h; sourceTree = "<group>"; };
 		25E48CA518F96B840066E3E6 /* JobTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobTabBarController.m; path = job/JobTabBarController.m; sourceTree = "<group>"; };
+		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
 		E95CDC7E1966D4210083C1B7 /* VWWWaterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VWWWaterView.h; path = WePeiYang/about/VWWWaterView.h; sourceTree = "<group>"; };
 		E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VWWWaterView.m; path = WePeiYang/about/VWWWaterView.m; sourceTree = "<group>"; };
 		E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wpyicon@2x.png"; sourceTree = "<group>"; };
@@ -442,12 +444,11 @@
 		E9F3FBFE19CC3C8900BA0019 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9F3FBFF19CC3C8900BA0019 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		E9F9356319FBAA3100E53E03 /* 微北洋.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "微北洋.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WePeiYangToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F9356719FBAA3100E53E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9F9356819FBAA3100E53E03 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		E9F9357219FBAADD00E53E03 /* WePeiYang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WePeiYang.entitlements; sourceTree = "<group>"; };
-		E9F9357319FBAAFD00E53E03 /* 微北洋.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "微北洋.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,7 +565,7 @@
 			children = (
 				1888420F1846E6F4007B92CB /* WePeiYang.app */,
 				1888422A1846E6F4007B92CB /* WePeiYangTests.xctest */,
-				E9F9356319FBAA3100E53E03 /* 微北洋.appex */,
+				E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -977,7 +978,7 @@
 		E9F9356519FBAA3100E53E03 /* WePeiYangToday */ = {
 			isa = PBXGroup;
 			children = (
-				E9F9357319FBAAFD00E53E03 /* 微北洋.entitlements */,
+				E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */,
 				E9F9356819FBAA3100E53E03 /* TodayViewController.swift */,
 				E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */,
 				E9F9356619FBAA3100E53E03 /* Supporting Files */,
@@ -1047,7 +1048,7 @@
 			);
 			name = WePeiYangToday;
 			productName = WePeiYangToday;
-			productReference = E9F9356319FBAA3100E53E03 /* 微北洋.appex */;
+			productReference = E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -1204,6 +1205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */,
+				E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1509,7 +1511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "WePeiYangToday/微北洋.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WePeiYangToday/WePeiYangToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1523,7 +1525,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "微北洋";
+				PRODUCT_NAME = WePeiYangToday;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1534,7 +1536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = "WePeiYangToday/微北洋.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WePeiYangToday/WePeiYangToday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1544,7 +1546,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "微北洋";
+				PRODUCT_NAME = WePeiYangToday;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
