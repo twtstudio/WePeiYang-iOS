@@ -78,6 +78,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let calendar = NSCalendar.currentCalendar()
             let components = calendar.components(.CalendarUnitWeekday, fromDate: now)
             var weekday = components.weekday
+            //var week = components.week
             //转换Cocoa weekday与twt weekday
             if weekday == 1 {
                 weekday = 7
@@ -88,8 +89,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             var currentClass = self.getCurrentClass()
             
             //测试数据
-            //表示这是本学期第几周
-            let thisWeek = 5
+            //let thisWeek = 5
+            
+            let thisWeek = self.getCurrentWeek()
+            println("\(thisWeek)")
+            
             var thisWeekIsDanZhou: Bool //这周是不是单周
             
             if thisWeek % 2 == 0 {
@@ -264,7 +268,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                     }
                                 } else {
                                     continue
-                                    
                                 }
                             }
                         }
@@ -322,6 +325,44 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         } else {
             return 12
         }
+    }
+    
+    func getCurrentWeek() -> NSInteger {
+        //计算这是本学期第几周
+        
+        let calendar = NSCalendar.currentCalendar()
+        calendar.firstWeekday = 2
+        let now = NSDate()
+        let comps = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear | .CalendarUnitYear, fromDate: now)
+        let thisWeekOfYear = comps.weekOfYear
+        let thisYear = comps.year
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let termBeginDate = dateFormatter.dateFromString("2014/09/01")
+        let termBeginComps = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear | .CalendarUnitYear, fromDate: termBeginDate!)
+        let termBeginWeekOfYear = termBeginComps.weekOfYear
+        let termBeginYear = termBeginComps.year
+        
+        if thisYear == termBeginYear {
+            let thisWeek = thisWeekOfYear - termBeginWeekOfYear + 1
+            return thisWeek
+        } else {
+            let termBeginYearLastDay = dateFormatter.dateFromString("\(termBeginYear)/12/31")
+            let endOfYearComps = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitWeekday, fromDate: termBeginYearLastDay!)
+            let endOfYearWeekday = endOfYearComps.weekday
+            let endOfYearWeek = endOfYearComps.weekOfYear
+            if endOfYearWeekday == 1 {
+                //年末是周日的话
+                let thisWeek = endOfYearWeek - termBeginWeekOfYear + 1 + thisWeekOfYear
+                return thisWeek
+            } else {
+                //年末不是周日的话
+                let thisWeek = endOfYearWeek - termBeginWeekOfYear + thisWeekOfYear
+                return thisWeek
+            }
+        }
+        
     }
     
 }

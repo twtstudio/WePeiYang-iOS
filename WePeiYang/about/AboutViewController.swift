@@ -388,7 +388,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }, failure: {
                     (AFHTTPRequestOperation operation, NSError error) in
                         SVProgressHUD.dismiss()
-                        SVProgressHUD.showErrorWithStatus(error.localizedDescription)
+                        var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_", delegate: self, cancelButtonTitle: "哦")
+                        alert.show()
                 })
                 
             } else {
@@ -400,27 +401,13 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func saveCacheWithData(responseObject: AnyObject) {
-        /*
-        let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentPath = path[0] as String
-        let plistPath = documentPath.stringByAppendingPathComponent("classtable")
-        let fileManager = NSFileManager.defaultManager()
-        if fileManager.fileExistsAtPath(plistPath) {
-            fileManager.removeItemAtPath(plistPath, error: nil)
-        }
-        var responseData = responseObject as NSArray
-        responseData.writeToFile(plistPath, atomically: true)
-        */
-        
-        println(responseObject)
-        //var jsonData = NSJSONSerialization.JSONObjectWithData(responseObject as NSData, options: .MutableLeaves, error: nil) as NSArray
         
         let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
         userDefault?.removeObjectForKey("Classtable")
         userDefault?.setObject(responseObject, forKey: "Classtable")
         userDefault?.synchronize()
         
-        var alert = UIAlertView(title: "成功", message: "加载课程表成功！", delegate: self, cancelButtonTitle: "好的")
+        var alert = UIAlertView(title: "成功", message: "抓取课程表成功！", delegate: self, cancelButtonTitle: "哦")
         alert.show()
     }
     
