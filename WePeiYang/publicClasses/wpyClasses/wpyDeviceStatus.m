@@ -101,4 +101,9 @@
     return screenSize;
 }
 
++ (float)getOSVersionFloat {
+    NSString *version = [self getDeviceOSVersion];
+    return version.floatValue;
+}
+
 @end

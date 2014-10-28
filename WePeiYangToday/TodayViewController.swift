@@ -85,6 +85,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             } else {
                 weekday = weekday - 1
             }
+            println("\(weekday)")
             
             var currentClass = self.getCurrentClass()
             
@@ -163,51 +164,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                                 courseLabel.text = "\(courseName)"
                                                 detailLabel.text = "\(teacher)  \(room)"
                                             } else {
-                                                
-                                                //显示今天接下来要上的课
-                                                
-                                                var nearestFrom = 12
-                                                var nearestClass: AnyObject?
-                                                var nearestArrange: AnyObject?
-                                                
-                                                if classesToday.count != 0 {
-                                                    for todayClassItem in classesToday {
-                                                        let todayArrange = todayClassItem["arrange"] as NSArray
-                                                        for todaySingleArrange in todayArrange {
-                                                            let todayFromStr = todaySingleArrange["from"] as NSString
-                                                            let todayFromInt = todayFromStr.integerValue
-                                                            
-                                                            if todayFromInt <= currentClass {
-                                                                continue
-                                                            } else {
-                                                                var deltaClass = todayFromInt - currentClass
-                                                                if deltaClass <= nearestFrom {
-                                                                    nearestFrom = deltaClass
-                                                                    nearestClass = todayClassItem
-                                                                    nearestArrange = todaySingleArrange
-                                                                } else {
-                                                                    continue
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                
-                                                if nearestClass != nil {
-                                                    //显示
-                                    
-                                                    let nearestFromStr = nearestArrange!["from"] as NSString
-                                                    let nearestToStr = nearestArrange!["to"] as NSString
-                                                    let courseName = (nearestClass! as NSDictionary)["coursename"] as NSString
-                                                    let teacher = (nearestClass! as NSDictionary)["teacher"] as NSString
-                                                    let room = nearestArrange!["room"] as NSString
-                                                    nextLabel.text = "第\(nearestFromStr)节至第\(nearestToStr)节"
-                                                    courseLabel.text = "\(courseName)"
-                                                    detailLabel.text = "\(teacher)  \(room)"
-                                                    
-                                                } else {
-                                                    continue
-                                                }
+                                                continue
                                             }
                                         } else {
                                             if fromNum == currentClass {
@@ -219,50 +176,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                                 courseLabel.text = "\(courseName)"
                                                 detailLabel.text = "\(teacher)  \(room)"
                                             } else {
-                                                
-                                                //显示今天接下来上的课
-                                                var nearestFrom = 12
-                                                var nearestClass: AnyObject?
-                                                var nearestArrange: AnyObject?
-                                                
-                                                if classesToday.count != 0 {
-                                                    for todayClassItem in classesToday {
-                                                        let todayArrange = todayClassItem["arrange"] as NSArray
-                                                        for todaySingleArrange in todayArrange {
-                                                            let todayFromStr = todaySingleArrange["from"] as NSString
-                                                            let todayFromInt = todayFromStr.integerValue
-                                                            
-                                                            if todayFromInt <= currentClass {
-                                                                continue
-                                                            } else {
-                                                                var deltaClass = todayFromInt - currentClass
-                                                                if deltaClass <= nearestFrom {
-                                                                    nearestFrom = deltaClass
-                                                                    nearestClass = todayClassItem
-                                                                    nearestArrange = todaySingleArrange
-                                                                } else {
-                                                                    continue
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                
-                                                if nearestClass != nil {
-                                                    //显示
-                                                    let nearestFromStr = nearestArrange!["from"] as NSString
-                                                    let nearestToStr = nearestArrange!["to"] as NSString
-
-                                                    let courseName = (nearestClass! as NSDictionary)["coursename"] as NSString
-                                                    let teacher = (nearestClass! as NSDictionary)["teacher"] as NSString
-                                                    let room = nearestArrange!["room"] as NSString
-                                                    nextLabel.text = "第\(nearestFromStr)节至第\(nearestToStr)节"
-                                                    courseLabel.text = "\(courseName)"
-                                                    detailLabel.text = "\(teacher)  \(room)"
-                                                    
-                                                } else {
-                                                    continue
-                                                }
+                                                continue
                                             }
                                         }
                                     }
@@ -275,6 +189,50 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 }
             }
             
+            //要是没课的话加载最近的一节
+            if courseLabel.text == "" {
+                var nearestFrom = 12
+                var nearestClass: AnyObject?
+                var nearestArrange: AnyObject?
+                
+                if classesToday.count != 0 {
+                    for todayClassItem in classesToday {
+                        let todayArrange = todayClassItem["arrange"] as NSArray
+                        for todaySingleArrange in todayArrange {
+                            let todayFromStr = todaySingleArrange["from"] as NSString
+                            let todayFromInt = todayFromStr.integerValue
+                            
+                            if todayFromInt <= currentClass {
+                                continue
+                            } else {
+                                var deltaClass = todayFromInt - currentClass
+                                if deltaClass <= nearestFrom {
+                                    nearestFrom = deltaClass
+                                    nearestClass = todayClassItem
+                                    nearestArrange = todaySingleArrange
+                                } else {
+                                    continue
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                if nearestClass != nil {
+                    //显示
+                    let nearestFromStr = nearestArrange!["from"] as NSString
+                    let nearestToStr = nearestArrange!["to"] as NSString
+                    
+                    let courseName = (nearestClass! as NSDictionary)["coursename"] as NSString
+                    let teacher = (nearestClass! as NSDictionary)["teacher"] as NSString
+                    let room = nearestArrange!["room"] as NSString
+                    nextLabel.text = "第\(nearestFromStr)节至第\(nearestToStr)节"
+                    courseLabel.text = "\(courseName)"
+                    detailLabel.text = "\(teacher)  \(room)"
+                }
+            }
+            
+            //还没课的话那就真没课了
             if courseLabel.text == "" {
                 nextLabel.text = ""
                 courseLabel.text = "您当前暂无课程"

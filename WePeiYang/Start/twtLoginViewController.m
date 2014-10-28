@@ -82,6 +82,7 @@
     NSString *passwd = [passwdField text];
     if ([uname isEqualToString:@""] || [passwd isEqualToString:@""])
     {
+        [SVProgressHUD dismiss];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }

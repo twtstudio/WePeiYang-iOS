@@ -120,7 +120,13 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         } else if section == 1 {
             if row == 0 {
-                self.getClassData()
+                if wpyDeviceStatus.getOSVersionFloat() < 8.0 {
+                    var alert = UIAlertView(title: "对不起！", message: "课程表扩展暂不支持 iOS 8.0 以下的设备_(:з」∠)_", delegate: self, cancelButtonTitle: "哦")
+                    alert.show()
+                } else {
+                    self.getClassData()
+                }
+                //self.getClassData()
             } else if row == 1 {
                 self.openTwtInSafari()
             }

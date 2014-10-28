@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E9F9356219FBAA3100E53E03"
-               BuildableName = "&#x5fae;&#x5317;&#x6d0b;.appex"
+               BuildableName = "WePeiYangToday.appex"
                BlueprintName = "WePeiYangToday"
                ReferencedContainer = "container:WePeiYang.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9F9356219FBAA3100E53E03"
-            BuildableName = "&#x5fae;&#x5317;&#x6d0b;.appex"
+            BuildableName = "WePeiYangToday.appex"
             BlueprintName = "WePeiYangToday"
             ReferencedContainer = "container:WePeiYang.xcodeproj">
          </BuildableReference>

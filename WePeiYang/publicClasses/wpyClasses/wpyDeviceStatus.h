@@ -14,5 +14,6 @@
 + (NSString *)getDeviceModel;
 + (NSString *)getDeviceOSVersion;
 + (NSString *)getScreenSize;
++ (float)getOSVersionFloat;
 
 @end
