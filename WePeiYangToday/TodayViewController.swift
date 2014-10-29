@@ -199,20 +199,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     for todayClassItem in classesToday {
                         let todayArrange = todayClassItem["arrange"] as NSArray
                         for todaySingleArrange in todayArrange {
-                            let todayFromStr = todaySingleArrange["from"] as NSString
-                            let todayFromInt = todayFromStr.integerValue
                             
-                            if todayFromInt <= currentClass {
-                                continue
-                            } else {
-                                var deltaClass = todayFromInt - currentClass
-                                if deltaClass <= nearestFrom {
-                                    nearestFrom = deltaClass
-                                    nearestClass = todayClassItem
-                                    nearestArrange = todaySingleArrange
-                                } else {
+                            let arrangeWeekday = todaySingleArrange["weekday"] as NSString
+                            let arrangeWeekdayInt = arrangeWeekday.integerValue
+                            
+                            if arrangeWeekdayInt == weekday {
+                                let todayFromStr = todaySingleArrange["from"] as NSString
+                                let todayFromInt = todayFromStr.integerValue
+                                
+                                if todayFromInt <= currentClass {
                                     continue
+                                } else {
+                                    var deltaClass = todayFromInt - currentClass
+                                    if deltaClass <= nearestFrom {
+                                        nearestFrom = deltaClass
+                                        nearestClass = todayClassItem
+                                        nearestArrange = todaySingleArrange
+                                    } else {
+                                        continue
+                                    }
                                 }
+                                
+                            } else {
+                                continue
                             }
                         }
                     }

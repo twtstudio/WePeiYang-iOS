@@ -394,7 +394,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }, failure: {
                     (AFHTTPRequestOperation operation, NSError error) in
                         SVProgressHUD.dismiss()
-                        var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_", delegate: self, cancelButtonTitle: "哦")
+                        var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_\n要么您试试重新登陆下？", delegate: self, cancelButtonTitle: "哦")
                         alert.show()
                 })
                 
