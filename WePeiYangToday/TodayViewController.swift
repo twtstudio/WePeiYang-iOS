@@ -263,7 +263,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let second = components.second
         let weekday = components.weekday
         
-        println("\(year,month,day)")
+        //println("\(year,month,day)")
         
         if (hour < 8) {
             return 0
