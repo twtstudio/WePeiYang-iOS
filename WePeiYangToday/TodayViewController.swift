@@ -303,10 +303,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let comps = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear | .CalendarUnitYear, fromDate: now)
         let thisWeekOfYear = comps.weekOfYear
         let thisYear = comps.year
+      
+        let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
+        var startTime = userDefault?.objectForKey("StartTime") as NSDictionary
+        var startTimeStr = startTime["start"] as NSString
+        //println(startTimeStr)
+        if startTimeStr == "" {
+            startTimeStr = "2014-09-01"
+        }
         
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        let termBeginDate = dateFormatter.dateFromString("2014/09/01")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let termBeginDate = dateFormatter.dateFromString(startTimeStr)
         let termBeginComps = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear | .CalendarUnitYear, fromDate: termBeginDate!)
         let termBeginWeekOfYear = termBeginComps.weekOfYear
         let termBeginYear = termBeginComps.year

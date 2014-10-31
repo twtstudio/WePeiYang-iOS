@@ -388,9 +388,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 manager.GET(url, parameters: parameters, success: {
                     (AFHTTPRequestOperation operation, AnyObject responseObj) in
                         SVProgressHUD.dismiss()
+                        self.getStartTime()
                         self.saveCacheWithData(responseObj)
-                    
-                    
                     }, failure: {
                     (AFHTTPRequestOperation operation, NSError error) in
                         SVProgressHUD.dismiss()
@@ -412,9 +411,24 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         userDefault?.removeObjectForKey("Classtable")
         userDefault?.setObject(responseObject, forKey: "Classtable")
         userDefault?.synchronize()
-        
+
         var alert = UIAlertView(title: "成功", message: "抓取课程表成功！", delegate: self, cancelButtonTitle: "哦")
         alert.show()
+    }
+    
+    func getStartTime() {
+        var manager = AFHTTPRequestOperationManager()
+        let url = "http://push-mobile.twtapps.net/start"
+        let parameters = ["platform":"ios", "version":data.shareInstance().appVersion]
+        manager.GET(url, parameters: parameters, success: {
+            (AFHTTPRequestOperation operation, AnyObject responseObj) in
+                let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
+                userDefault?.removeObjectForKey("StartTime")
+                userDefault?.setObject(responseObj, forKey: "StartTime")
+                userDefault?.synchronize()
+            }, failure: {
+            (AFHTTPRequestOperation operation, NSError error) in
+        })
     }
     
 
