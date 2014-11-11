@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class DashboardViewController: UIViewController {
 
@@ -66,7 +67,7 @@ class DashboardViewController: UIViewController {
         let gpaBtn = UIButton.buttonWithType(.Custom) as UIButton
         gpaBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         gpaBtn.setImage(UIImage(named: "gpa.png"), forState: .Normal)
-        gpaBtn.addTarget(self, action: "pushGPA", forControlEvents: .TouchUpInside)
+        gpaBtn.addTarget(self, action: "authGPA", forControlEvents: .TouchUpInside)
         self.view.addSubview(gpaBtn)
         
         let libBtn = UIButton.buttonWithType(.Custom) as UIButton
@@ -126,6 +127,47 @@ class DashboardViewController: UIViewController {
     func pushLibrary() {
         let libraryVC = LibraryTabBarController(nibName: nil, bundle: nil)
         self.navigationController!.pushViewController(libraryVC, animated: true)
+    }
+    
+    func authGPA() {
+        
+        var laContext = LAContext()
+        var authError: NSError?
+        var errorReason = "GPA这种东西怎么能随便给人看"
+        //隐藏输入密码按钮
+        laContext.localizedFallbackTitle = ""
+        
+        //第一层判断是否支持指纹识别
+        if laContext.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &authError) {
+            laContext.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: errorReason, reply: {
+                (BOOL success, NSError error) in
+                if success {
+                    println("touch id success")
+                    
+                    //touch id 改变 UI 一定要从主线程
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.pushGPA()
+                    })
+                    
+                } else {
+                    /*
+                    if error.code == kLAErrorUserFallback {
+                        
+                    } else error.code == kLAErrorUserCancel {
+                        
+                    }
+                    */
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        var errorAlert = UIAlertView(title: "失败", message: "请不要偷看别人GPA哼~", delegate: self, cancelButtonTitle: "对不起！");
+                        errorAlert.show()
+                    })
+                }
+            })
+        } else {
+            //不支持指纹识别的话
+            self.pushGPA()
+        }
     }
     
     func pushGPA() {
