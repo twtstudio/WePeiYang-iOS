@@ -158,18 +158,16 @@ class DashboardViewController: UIViewController {
                         })
                         
                     } else {
-                        /*
-                        if error.code == kLAErrorUserFallback {
                         
-                        } else error.code == kLAErrorUserCancel {
-                        
+                        if error.code == -1 {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                var errorAlert = UIAlertView(title: "失败", message: "Touch ID 验证失败", delegate: self, cancelButtonTitle: "取消");
+                                errorAlert.show()
+                            })
+
+                        } else if error.code == -2 {
+                            //User Cancelled
                         }
-                        */
-                        
-                        dispatch_async(dispatch_get_main_queue(), {
-                            var errorAlert = UIAlertView(title: "失败", message: "请不要偷看别人GPA哼~", delegate: self, cancelButtonTitle: "对不起！");
-                            errorAlert.show()
-                        })
                     }
                 })
             } else {

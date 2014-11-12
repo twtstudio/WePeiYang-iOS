@@ -111,6 +111,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     touchIdSwitch.addTarget(self, action: "touchIdSwitchChanged", forControlEvents: UIControlEvents.ValueChanged)
                     cell.accessoryView = touchIdSwitch
+                    cell.selectionStyle = UITableViewCellSelectionStyle.None
                     
                 } else {
                     cell.textLabel.text = webArr[row] as NSString
