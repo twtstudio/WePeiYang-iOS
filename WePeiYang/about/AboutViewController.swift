@@ -8,16 +8,19 @@
 
 import UIKit
 import MessageUI
+import LocalAuthentication
 
 class AboutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  UIAlertViewDelegate, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
 
-    let aboutArr = ["关于我们","欢迎页面"];
-    let webArr = ["抓取课程表","访问天外天网站"];
+    let aboutArr = ["关于我们","欢迎页面"]
+    var webArr = []
     let feedbackArr = ["发送反馈","联系我们"]
     
     var removeAlert:UIAlertView?
-    
     var tableView:UITableView!
+    var context: LAContext!
+    var touchIdSupport: Bool!
+    var touchIdSwitch = UISwitch()
     
     override func viewDidLoad() {
         
@@ -45,6 +48,16 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.addSubview(tableView)
         self.view.addSubview(navigationBar)
         self.view.backgroundColor = UIColor.whiteColor()
+        
+        context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
+            webArr = ["抓取课程表", "使用 Touch ID", "访问天外天网站"]
+            touchIdSupport = true
+        } else {
+            webArr = ["抓取课程表","访问天外天网站"]
+            touchIdSupport = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +99,25 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.textLabel.text = aboutArr[row] as NSString
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         } else if section == 1 {
-            cell.textLabel.text = webArr[row] as NSString
+            if touchIdSupport == true {
+                if row == 1 {
+                    cell.textLabel.text = webArr[row] as NSString
+                    var defaults = NSUserDefaults.standardUserDefaults()
+                    if defaults.objectForKey("touchIdEnabled") == nil {
+                        defaults.setObject(false, forKey: "touchIdEnabled")
+                    }
+                    
+                    touchIdSwitch.on = defaults.objectForKey("touchIdEnabled") as Bool
+                    
+                    touchIdSwitch.addTarget(self, action: "touchIdSwitchChanged", forControlEvents: UIControlEvents.ValueChanged)
+                    cell.accessoryView = touchIdSwitch
+                    
+                } else {
+                    cell.textLabel.text = webArr[row] as NSString
+                }
+            } else {
+                cell.textLabel.text = webArr[row] as NSString
+            }
         } else if section == 2 {
             cell.textLabel.text = feedbackArr[row] as NSString
             if row == 0 {
@@ -126,9 +157,19 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 } else {
                     self.getClassData()
                 }
-                //self.getClassData()
-            } else if row == 1 {
-                self.openTwtInSafari()
+                
+            } else {
+                if touchIdSupport == true {
+                    if row == 1 {
+                        
+                    } else if row == 2 {
+                        self.openTwtInSafari()
+                    }
+                } else {
+                    if row == 1 {
+                        self.openTwtInSafari()
+                    }
+                }
             }
         } else if section == 2 {
             if row == 0 {
@@ -415,6 +456,12 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         var alert = UIAlertView(title: "成功", message: "抓取课程表成功！", delegate: self, cancelButtonTitle: "哦")
         alert.show()
+    }
+    
+    func touchIdSwitchChanged() {
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var switchIsOn = touchIdSwitch.on
+        defaults.setObject(switchIsOn, forKey: "touchIdEnabled")
     }
     
 
