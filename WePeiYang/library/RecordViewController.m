@@ -278,9 +278,11 @@
         {
             case 1:
             {
+                //清除旧版文件
                 NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"login"];
                 NSFileManager *fileManager = [NSFileManager defaultManager];
                 [fileManager removeItemAtPath:plistPath error:nil];
+                
                 [self checkLoginStatus];
                 break;
             }
@@ -297,6 +299,8 @@
 
 - (IBAction)continueLend:(id)sender
 {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    
     NSString *url = @"http://push-mobile.twtapps.net/lib/renew";
     NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                  @"token":[data shareInstance].userToken,
@@ -306,12 +310,14 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         if ([[responseObject objectForKey:@"error"] integerValue] == 409) {
             [SVProgressHUD showSuccessWithStatus:@"没有需要续订的书籍"];
         } else {
             [SVProgressHUD showSuccessWithStatus:@"一键续订成功!"];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"一键续订失败T^T"];
     }];
 }

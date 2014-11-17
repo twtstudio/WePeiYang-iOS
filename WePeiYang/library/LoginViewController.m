@@ -78,11 +78,12 @@
     {
         waitingAlert = [[UIAlertView alloc]initWithTitle:@"请稍候" message:@"正在登录..." delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
         [waitingAlert show];
+        
         //NSString *urlStr = [[NSString alloc]initWithFormat:@"http://service.twtstudio.com/phone/android/lib_account.php?user_id=%@&password=%@&platform=ios&version=%@",username,password,[data shareInstance].appVersion];
         NSString *url = @"http://push-mobile.twtapps.net/user/bindLib";
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
-                                     @"libname":username,
+                                     @"libuname":username,
                                      @"libpasswd":password,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};

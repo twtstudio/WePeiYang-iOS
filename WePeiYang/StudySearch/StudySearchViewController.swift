@@ -107,8 +107,9 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else {
             
             self.searchResultArray.removeAllObjects()
+            self.searchResultArray.addObject("")
+            self.searchResultArray.addObject("暂无可用自习室_(:з」∠)_")
             self.searchResultTableView.reloadData()
-            SVProgressHUD.showErrorWithStatus("没有自习室了哦~")
         }
 
     }
@@ -146,7 +147,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
             endStudy = 6
         }
         
-        var studyContinued = "\(endStudy - startStudy)"
+        var studyContinued = "\(endStudy - startStudy + 1)"
         timeConvertTo = "\(startStudy)"+studyContinued
         return timeConvertTo
     }

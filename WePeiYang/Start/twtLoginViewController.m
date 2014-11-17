@@ -112,6 +112,9 @@
 }
 
 - (void)processLoginData:(NSDictionary *)contentDic {
+    
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc]init];
+    
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:plistPath])
@@ -141,17 +144,18 @@
     
     NSString *tjuuname = [contentDic objectForKey:@"tjuuname"];
     NSString *libuname = [contentDic objectForKey:@"libuname"];
-    if (![tjuuname isEqualToString:@""])
+    
+    if ([tjuuname isEqualToString:@""])
     {
-        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindTju"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+        [userDefault setBool:NO forKey:@"bindTju"];
+    } else {
+        [userDefault setBool:YES forKey:@"bindTju"];
     }
-    if (![libuname isEqualToString:@""])
+    if ([libuname isEqualToString:@""])
     {
-        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindLib"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+        [userDefault setBool:NO forKey:@"bindLib"];
+    } else {
+        [userDefault setBool:YES forKey:@"bindLib"];
     }
     
     if (twtLoginType == twtLoginTypeGPA)

@@ -260,13 +260,17 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         data.shareInstance().userToken = ""
         
         var fileManager = NSFileManager.defaultManager()
-        let files = ["login","libraryCollectionData","gpa","gpaResult","collectionData","noticeFavData","jobFavData","noticeAccount","twtLogin","libraryRecordCache","gpaCacheData","bindLib","bindTju"]
+        let files = ["login","libraryCollectionData","gpa","gpaResult","collectionData","noticeFavData","jobFavData","noticeAccount","twtLogin","libraryRecordCache","gpaCacheData"]
         for fileName in files {
             let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
             let documentPath = path[0] as String
             let plistPath = documentPath.stringByAppendingPathComponent(fileName)
             fileManager.removeItemAtPath(plistPath, error: nil)
         }
+        
+        var userDefaults = NSUserDefaults()
+        userDefaults.setBool(false, forKey: "bindLib")
+        userDefaults.setBool(false, forKey: "bindTju")
         
         let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
         userDefault?.removeObjectForKey("Classtable")
@@ -282,7 +286,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         manager.POST(url, parameters: parameters, success: {
             (AFHTTPRequestOperation operation, AnyObject responseObject) in
                 SVProgressHUD.showSuccessWithStatus("解除绑定成功")
-                let files = ["gpa","gpaResult","gpaCacheData","bindTju"]
+                let files = ["gpa","gpaResult","gpaCacheData"]
                 for fileName in files {
                     var fileManager = NSFileManager.defaultManager()
                     let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
@@ -290,6 +294,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let plistPath = documentPath.stringByAppendingPathComponent(fileName)
                     fileManager.removeItemAtPath(plistPath, error: nil)
                 }
+                var userDefaults = NSUserDefaults()
+                userDefaults.setBool(false, forKey: "bindTju")
                 self.tableView.reloadData()
         }, failure: {
             (AFHTTPRequestOperation operation, NSError error) in
@@ -304,7 +310,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         manager.POST(url, parameters: parameters, success: {
             (AFHTTPRequestOperation operation, AnyObject responseObject) in
             SVProgressHUD.showSuccessWithStatus("解除绑定成功")
-            let files = ["login","libraryRecordCache","bindLib"]
+            let files = ["login","libraryRecordCache"]
             for fileName in files {
                 var fileManager = NSFileManager.defaultManager()
                 let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
@@ -312,6 +318,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let plistPath = documentPath.stringByAppendingPathComponent(fileName)
                 fileManager.removeItemAtPath(plistPath, error: nil)
             }
+            var userDefaults = NSUserDefaults()
+            userDefaults.setBool(false, forKey: "bindLib")
             self.tableView.reloadData()
             }, failure: {
                 (AFHTTPRequestOperation operation, NSError error) in
@@ -349,28 +357,16 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func libBinded() -> Bool {
-        let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentPath = path[0] as String
-        let plistPath = documentPath.stringByAppendingPathComponent("bindLib")
-        let fileManager = NSFileManager.defaultManager()
-        if fileManager.fileExistsAtPath(plistPath) {
-            return true
-        } else {
-            return false
-        }
+        var userDefault = NSUserDefaults()
+        return userDefault.boolForKey("bindLib")
     }
     
     func tjuBinded() -> Bool {
-        let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentPath = path[0] as String
-        let plistPath = documentPath.stringByAppendingPathComponent("bindTju")
-        let fileManager = NSFileManager.defaultManager()
-        if fileManager.fileExistsAtPath(plistPath) {
-            return true
-        } else {
-            return false
-        }
+        var userDefault = NSUserDefaults()
+        return userDefault.boolForKey("bindTju")
     }
+    
+    //其他
     
     func joinUs() {
         let twtUrl = NSURL(string: "http://mobile.twt.edu.cn/apply.html")
@@ -457,8 +453,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         var alert = UIAlertView(title: "成功", message: "抓取课程表成功！", delegate: self, cancelButtonTitle: "哦")
         alert.show()
     }
-    
-<<<<<<< HEAD
+
     func getStartTime() {
         var manager = AFHTTPRequestOperationManager()
         let url = "http://push-mobile.twtapps.net/start"
@@ -471,13 +466,15 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 userDefault?.synchronize()
             }, failure: {
             (AFHTTPRequestOperation operation, NSError error) in
+                //可以加入手动选择学期开始时间
+                
         })
-=======
+    }
+    
     func touchIdSwitchChanged() {
         var defaults = NSUserDefaults.standardUserDefaults()
         var switchIsOn = touchIdSwitch.on
         defaults.setObject(switchIsOn, forKey: "touchIdEnabled")
->>>>>>> dev
     }
     
 
