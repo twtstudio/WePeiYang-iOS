@@ -12,14 +12,10 @@
 
 @interface GPAViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SelectTermDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
-//@property (strong, nonatomic) IBOutlet UILabel *gpaLabel;
-//@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *moreBtn;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) IBOutlet UILabel *noLoginLabel;
-//@property (strong, nonatomic) IBOutlet UILabel *gpaText;
-//@property (strong, nonatomic) IBOutlet UILabel *avgText;
 @property (strong, nonatomic) IBOutlet UIImageView *noLoginImg;
 @property (strong, nonatomic) YTrendChartView *chart;
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;

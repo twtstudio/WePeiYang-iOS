@@ -155,8 +155,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                         detailLabel.text = "请好好休息吧"
                                     } else {
                                         if currentClass % 2 == 0 {
+                                            
+                                            //currentClass是偶数，则显示下一节课
+                                            
                                             if fromNum == currentClass + 1 {
-                                                //显示
                                                 nextLabel.text = "第\(fromNum)节至第\(toNum)节"
                                                 var courseName = classItem["coursename"] as NSString
                                                 var teacher = classItem["teacher"] as NSString
@@ -167,8 +169,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                                 continue
                                             }
                                         } else {
+                                            
+                                            //currentClass是奇数，则显示这节课
+                                            
                                             if fromNum == currentClass {
-                                                //显示
                                                 nextLabel.text = "第\(fromNum)节至第\(toNum)节"
                                                 var courseName = classItem["coursename"] as NSString
                                                 var teacher = classItem["teacher"] as NSString
@@ -244,7 +248,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             //还没课的话那就真没课了
             if courseLabel.text == "" {
                 nextLabel.text = ""
-                courseLabel.text = "您当前暂无课程"
+                courseLabel.text = "暂时好像没有要上的课咯~"
                 detailLabel.text = ""
             }
         }

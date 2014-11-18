@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -14,9 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="117"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="libraryCell.png" translatesAutoresizingMaskIntoConstraints="NO" id="fOa-8C-d9f">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="117"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="丢失了手表" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="YiN-zk-5G8">
                         <rect key="frame" x="17" y="11" width="288" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -52,21 +50,16 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ZBj-S4-Xco" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="71j-tt-sZi"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="fOa-8C-d9f" secondAttribute="bottom" constant="-7.5" id="DnX-MK-phU"/>
                     <constraint firstItem="Hhn-OZ-vWj" firstAttribute="leading" secondItem="F4y-KP-HiC" secondAttribute="trailing" constant="11" id="Fxo-FM-ti0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9Sc-4J-b5J" secondAttribute="trailing" constant="2" id="IZj-uA-orz"/>
                     <constraint firstItem="9Sc-4J-b5J" firstAttribute="leading" secondItem="ZBj-S4-Xco" secondAttribute="trailing" constant="11" id="MH8-ly-Lz4"/>
-                    <constraint firstItem="fOa-8C-d9f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="gdJ-SD-7bE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="YiN-zk-5G8" secondAttribute="trailing" constant="7" id="lm3-cn-rks"/>
                     <constraint firstItem="YiN-zk-5G8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="rGo-hX-CZJ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fOa-8C-d9f" secondAttribute="trailing" constant="-8" id="wEp-zD-RVb"/>
-                    <constraint firstItem="fOa-8C-d9f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="xfz-AI-q20"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Hhn-OZ-vWj" secondAttribute="trailing" constant="2" id="yki-BK-unN"/>
                     <constraint firstItem="F4y-KP-HiC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="yvb-GA-LTu"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="borderImage" destination="fOa-8C-d9f" id="L8S-vH-zch"/>
                 <outlet property="placeLabel" destination="9Sc-4J-b5J" id="kGs-gp-WGD"/>
                 <outlet property="placeLogo" destination="ZBj-S4-Xco" id="5C3-2A-Paa"/>
                 <outlet property="timeLabel" destination="Hhn-OZ-vWj" id="XT0-Cf-nCN"/>
@@ -76,7 +69,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="libraryCell.png" width="320" height="134"/>
         <image name="place_laf_icon.png" width="14" height="14"/>
         <image name="time_laf_icon.png" width="14" height="14"/>
     </resources>

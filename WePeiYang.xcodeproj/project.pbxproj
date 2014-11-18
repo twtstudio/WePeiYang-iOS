@@ -104,8 +104,6 @@
 		25976778190B5046002CCAFA /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25976753190B5046002CCAFA /* news@2x.png */; };
 		25976779190B5046002CCAFA /* notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25976754190B5046002CCAFA /* notice@2x.png */; };
 		2597677A190B5046002CCAFA /* studysearch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25976755190B5046002CCAFA /* studysearch@2x.png */; };
-		2597677C190B5046002CCAFA /* libraryCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25976757190B5046002CCAFA /* libraryCell@2x.png */; };
-		2597677E190B5046002CCAFA /* libraryRecordCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25976759190B5046002CCAFA /* libraryRecordCell@2x.png */; };
 		2597677F190B5046002CCAFA /* moreBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597675A190B5046002CCAFA /* moreBtn@2x.png */; };
 		25976780190B5046002CCAFA /* newSubjectMark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597675B190B5046002CCAFA /* newSubjectMark@2x.png */; };
 		25976782190B5046002CCAFA /* college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2597675E190B5046002CCAFA /* college@2x.png */; };
@@ -125,8 +123,6 @@
 		25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44C18FA20B6008D56F6 /* HiringViewController.m */; };
 		25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44F18FA2D24008D56F6 /* HringTableCell.m */; };
 		25C0A45218FA2D24008D56F6 /* HringTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C0A45018FA2D24008D56F6 /* HringTableCell.xib */; };
-		25C1EB53191918D30042C84D /* error_cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C1EB51191918D30042C84D /* error_cross@2x.png */; };
-		25C1EB54191918D30042C84D /* success_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C1EB52191918D30042C84D /* success_tick@2x.png */; };
 		25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */; };
 		25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */; };
 		25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA518F96B840066E3E6 /* JobTabBarController.m */; };
@@ -350,8 +346,6 @@
 		25976753190B5046002CCAFA /* news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news@2x.png"; sourceTree = "<group>"; };
 		25976754190B5046002CCAFA /* notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notice@2x.png"; sourceTree = "<group>"; };
 		25976755190B5046002CCAFA /* studysearch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "studysearch@2x.png"; sourceTree = "<group>"; };
-		25976757190B5046002CCAFA /* libraryCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "libraryCell@2x.png"; sourceTree = "<group>"; };
-		25976759190B5046002CCAFA /* libraryRecordCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "libraryRecordCell@2x.png"; sourceTree = "<group>"; };
 		2597675A190B5046002CCAFA /* moreBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moreBtn@2x.png"; sourceTree = "<group>"; };
 		2597675B190B5046002CCAFA /* newSubjectMark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newSubjectMark@2x.png"; sourceTree = "<group>"; };
 		2597675E190B5046002CCAFA /* college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "college@2x.png"; sourceTree = "<group>"; };
@@ -374,8 +368,6 @@
 		25C0A44E18FA2D24008D56F6 /* HringTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HringTableCell.h; path = job/HringTableCell.h; sourceTree = "<group>"; };
 		25C0A44F18FA2D24008D56F6 /* HringTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HringTableCell.m; path = job/HringTableCell.m; sourceTree = "<group>"; };
 		25C0A45018FA2D24008D56F6 /* HringTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HringTableCell.xib; path = job/HringTableCell.xib; sourceTree = "<group>"; };
-		25C1EB51191918D30042C84D /* error_cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error_cross@2x.png"; sourceTree = "<group>"; };
-		25C1EB52191918D30042C84D /* success_tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success_tick@2x.png"; sourceTree = "<group>"; };
 		25E48C9F18F8C26E0066E3E6 /* twtLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = twtLoginViewController.h; path = WePeiYang/Start/twtLoginViewController.h; sourceTree = "<group>"; };
 		25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = twtLoginViewController.m; path = WePeiYang/Start/twtLoginViewController.m; sourceTree = "<group>"; };
 		25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = twtLoginViewController.xib; path = WePeiYang/Start/twtLoginViewController.xib; sourceTree = "<group>"; };
@@ -820,10 +812,8 @@
 			isa = PBXGroup;
 			children = (
 				2514EAF3191A8425008CC0C7 /* sendForNav@2x.png */,
-				25C1EB51191918D30042C84D /* error_cross@2x.png */,
 				25340FB1191CE70F00AFDE7D /* place_job_icon@2x.png */,
 				25340FB2191CE70F00AFDE7D /* time_job_icon@2x.png */,
-				25C1EB52191918D30042C84D /* success_tick@2x.png */,
 				25340FB5191CE78A00AFDE7D /* place_laf_icon@2x.png */,
 				25340FB6191CE78A00AFDE7D /* time_laf_icon@2x.png */,
 				25229482191DC86700B04998 /* signinline@2x.png */,
@@ -837,8 +827,6 @@
 				2597674A190B5046002CCAFA /* Banner@2x.png */,
 				2597674C190B5046002CCAFA /* dashboard_bg@2x.png */,
 				2597674D190B5046002CCAFA /* dashBoardIcons */,
-				25976757190B5046002CCAFA /* libraryCell@2x.png */,
-				25976759190B5046002CCAFA /* libraryRecordCell@2x.png */,
 				2597675A190B5046002CCAFA /* moreBtn@2x.png */,
 				250551B6191BA309007C1F90 /* corp_icon@2x.png */,
 				E95CDC831966D58A0083C1B7 /* zhanshanlogo@2x.png */,
@@ -1110,7 +1098,6 @@
 			files = (
 				18D63E2C185766C9004E75AA /* GPATableCell.xib in Resources */,
 				25976774190B5046002CCAFA /* gpa@2x.png in Resources */,
-				25C1EB54191918D30042C84D /* success_tick@2x.png in Resources */,
 				E95CDC821966D4D90083C1B7 /* wpyicon@2x.png in Resources */,
 				254DED40190CE1BE0034288E /* place_icon@2x.png in Resources */,
 				E9D4365219B2285C0042A9F1 /* LAFound_QueryDetailViewController.xib in Resources */,
@@ -1161,7 +1148,6 @@
 				E9F3FC0019CC3C8900BA0019 /* bootstrap.css in Resources */,
 				E9F3FC0119CC3C8900BA0019 /* bootstrap.min.js in Resources */,
 				2525F65218F6941300918714 /* LibraryFavouriteViewController.xib in Resources */,
-				2597677C190B5046002CCAFA /* libraryCell@2x.png in Resources */,
 				25976776190B5046002CCAFA /* laf@2x.png in Resources */,
 				18F5862A1859B6C100410E81 /* NoticeDetailViewController.xib in Resources */,
 				182155D618BF8ED4008A1D1A /* g2@2x.jpg in Resources */,
@@ -1180,9 +1166,7 @@
 				18114E6D18584376007455E2 /* chart_unselected@2x.png in Resources */,
 				182155D318BF8ED4008A1D1A /* g1-568h@2x.jpg in Resources */,
 				2597677F190B5046002CCAFA /* moreBtn@2x.png in Resources */,
-				25C1EB53191918D30042C84D /* error_cross@2x.png in Resources */,
 				182155D718BF8ED4008A1D1A /* g3-568h@2x.jpg in Resources */,
-				2597677E190B5046002CCAFA /* libraryRecordCell@2x.png in Resources */,
 				25229483191DC86700B04998 /* signinline@2x.png in Resources */,
 				25976789190B5046002CCAFA /* league@2x.png in Resources */,
 				E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */,

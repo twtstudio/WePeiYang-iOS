@@ -93,9 +93,10 @@
             successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定图书馆账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [successAlert show];
             [data shareInstance].libLogin = @"Changed";
-            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindLib"];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+            
+            NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
+            [userDefaults setBool:YES forKey:@"bindLib"];
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSInteger statusCode = operation.response.statusCode;
             [waitingAlert dismissWithClickedButtonIndex:0 animated:YES];

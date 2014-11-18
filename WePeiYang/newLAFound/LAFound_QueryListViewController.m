@@ -40,7 +40,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
     }
     return self;
@@ -55,8 +54,6 @@
     
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     
     NSArray *segmentedControlItems = @[@"失物", @"拾取"];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];

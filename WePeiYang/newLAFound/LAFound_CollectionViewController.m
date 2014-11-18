@@ -24,7 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
     }
     return self;
 }
@@ -40,7 +40,6 @@
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
-    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
 }
 
 - (void)viewDidAppear:(BOOL)animated

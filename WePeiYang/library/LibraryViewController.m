@@ -164,9 +164,9 @@
         [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
         
         NSString *url = @"http://push-mobile.twtapps.net/lib/search";
-        NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
+        NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                      @"query":searchStr,
-                                     @"type":[NSString stringWithFormat:@"%d",type],
+                                     @"type":[NSString stringWithFormat:@"%ld",(long)type],
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -300,9 +300,9 @@
     currentPage = currentPage + 1;
     [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
     NSString *url = @"http://push-mobile.twtapps.net/lib/search";
-    NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%d",currentPage],
+    NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"query":searchStr,
-                                 @"type":[NSString stringWithFormat:@"%d",type],
+                                 @"type":[NSString stringWithFormat:@"%ld",(long)type],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

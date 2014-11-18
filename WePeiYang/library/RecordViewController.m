@@ -69,8 +69,8 @@
     
     response = [[NSMutableData alloc]init];
     
-    [tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
-    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    //[tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
+    //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [loginBtn primaryStyle];
@@ -103,87 +103,109 @@
     }
     else
     {
-        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ([fileManager fileExistsAtPath:plistPath])
-        {
-            [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
-        }
-        
-        NSString *url = @"http://push-mobile.twtapps.net/lib/info";
-        NSDictionary *parameters = @{@"id":[data shareInstance].userId,
-                                     @"token":[data shareInstance].userToken,
-                                     @"platform":@"ios",
-                                     @"version":[data shareInstance].appVersion};
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        
-        [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
-        
-        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            //Successful
-            [SVProgressHUD dismiss];
+        if ([[data shareInstance].libLogin isEqualToString:@"Changed"]) {
+            [SVProgressHUD showWithStatus:@"请稍候..." maskType:SVProgressHUDMaskTypeBlack];
+        } else {
             
+            //加载缓存
             NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if ([fileManager fileExistsAtPath:plistPath])
             {
-                [fileManager removeItemAtPath:plistPath error:nil];
+                [SVProgressHUD showSuccessWithStatus:@"正在后台努力刷新数据~\n已为您加载缓存，请稍候..."];
+                [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
+            } else {
+                [SVProgressHUD showSuccessWithStatus:@"正在后台努力刷新数据~\n请稍候..."];
             }
-            else
-            {
-                [responseObject writeToFile:plistPath atomically:YES];
-            }
+        }
+        
+        //后台刷新数据
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
             
-            [self dealWithReceivedLoginData:responseObject];
-            [data shareInstance].libLogin = @"";
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
-            NSInteger statusCode = operation.response.statusCode;
-            switch (statusCode) {
-                    
-                case 405:
-                    NSLog(@"HERE 405");
-                    break;
-                    
-                case 403:
-                    //未绑定图书馆
-                    [tableView setHidden:YES];
-                    [noLoginLabel setHidden:NO];
-                    [loginBtn setHidden:NO];
-                    [continueBtn setHidden:YES];
-                    [noLoginLabel setText:@"您尚未绑定图书馆账号"];
-                    [loginBtn setTitle:@"绑定图书馆" forState:UIControlStateNormal];
-                    [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-                    [loginBtn addTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
-                    [noLoginImg setHidden:NO];
-                    break;
-                    
-                case 401:
-                    [SVProgressHUD showErrorWithStatus:@"登录验证出错...请重新登录！"];
-                    [tableView setHidden:YES];
-                    [noLoginLabel setHidden:NO];
-                    [noLoginLabel setText:@"您尚未登录天外天账号"];
-                    [loginBtn setHidden:NO];
-                    [continueBtn setHidden:YES];
-                    [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-                    [loginBtn removeTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
-                    [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-                    [continueBtn setHidden:YES];
-                    [noLoginImg setHidden:NO];
-                    break;
-                    
-                default:
-                    [SVProgressHUD showErrorWithStatus:@"获取记录失败T^T"];
-                    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
-                    NSFileManager *fileManager = [NSFileManager defaultManager];
-                    if ([fileManager fileExistsAtPath:plistPath])
-                    {
-                        [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+            
+            NSString *url = @"http://push-mobile.twtapps.net/lib/info";
+            NSDictionary *parameters = @{@"id":[data shareInstance].userId,
+                                         @"token":[data shareInstance].userToken,
+                                         @"platform":@"ios",
+                                         @"version":[data shareInstance].appVersion};
+            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                //Successful
+                
+                NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                if ([fileManager fileExistsAtPath:plistPath]) {
+                    [fileManager removeItemAtPath:plistPath error:nil];
+                } else {
+                    [responseObject writeToFile:plistPath atomically:YES];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SVProgressHUD dismiss];
+                    [SVProgressHUD showSuccessWithStatus:@"已借记录更新成功~"];
+                    [self dealWithReceivedLoginData:responseObject];
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                });
+                
+                [data shareInstance].libLogin = @"";
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [SVProgressHUD dismiss];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                NSInteger statusCode = operation.response.statusCode;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    switch (statusCode) {
+                            
+                        case 405:
+                            //NSLog(@"HERE 405");
+                            break;
+                            
+                        case 403:
+                            //未绑定图书馆
+                            [tableView setHidden:YES];
+                            [noLoginLabel setHidden:NO];
+                            [loginBtn setHidden:NO];
+                            [continueBtn setHidden:YES];
+                            [noLoginLabel setText:@"您尚未绑定图书馆账号"];
+                            [loginBtn setTitle:@"绑定图书馆" forState:UIControlStateNormal];
+                            [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+                            [loginBtn addTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
+                            [noLoginImg setHidden:NO];
+                            break;
+                            
+                        case 401:
+                            [SVProgressHUD showErrorWithStatus:@"登录验证出错...请重新登录！"];
+                            [tableView setHidden:YES];
+                            [noLoginLabel setHidden:NO];
+                            [noLoginLabel setText:@"您尚未登录天外天账号"];
+                            [loginBtn setHidden:NO];
+                            [continueBtn setHidden:YES];
+                            [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
+                            [loginBtn removeTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
+                            [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+                            [continueBtn setHidden:YES];
+                            [noLoginImg setHidden:NO];
+                            break;
+                            
+                        default:
+                            [SVProgressHUD showErrorWithStatus:@"获取记录失败T^T"];
+                            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
+                            NSFileManager *fileManager = [NSFileManager defaultManager];
+                            if ([fileManager fileExistsAtPath:plistPath])
+                            {
+                                [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
+                            }
+                            break;
                     }
-                    break;
-            }
-        }];
+
+                });
+                
+            }];
+
+        });
+        
     }
 }
 
@@ -249,7 +271,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120;
+    NSInteger row = [indexPath row];
+    NSString *titleStr = [title objectAtIndex:row];
+    CGFloat width = self.tableView.frame.size.width;
+        
+    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+    gettingSizeLabel.text = titleStr;
+    gettingSizeLabel.numberOfLines = 0;
+    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize maxSize = CGSizeMake(width, 1000.0);
+        
+    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+        
+    return 60 + size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -267,6 +301,7 @@
     cell.deadlineLabel.text = [deadline objectAtIndex:row];
     cell.recordCellBgImage.hidden = NO;
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

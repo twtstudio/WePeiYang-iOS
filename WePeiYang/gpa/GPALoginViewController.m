@@ -91,9 +91,10 @@
             successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [successAlert show];
             [data shareInstance].gpaLoginStatus = @"Changed";
-            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"bindTju"];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
+            
+            NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
+            [userDefaults setBool:YES forKey:@"bindTju"];
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSInteger statusCode = operation.response.statusCode;
             if (statusCode == 401) {

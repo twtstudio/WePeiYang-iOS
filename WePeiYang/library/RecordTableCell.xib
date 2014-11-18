@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -14,15 +15,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="libraryRecordCell.png" translatesAutoresizingMaskIntoConstraints="NO" id="qAZ-ZH-i1j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
-                    </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="yYg-GT-3fB">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="yYg-GT-3fB">
                         <rect key="frame" x="20" y="9" width="280" height="62"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5le-L3-NvS">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5le-L3-NvS">
                         <rect key="frame" x="20" y="67" width="280" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,29 +42,25 @@
                 <constraints>
                     <constraint firstItem="wwh-TN-8gp" firstAttribute="leading" secondItem="4jf-fc-aUN" secondAttribute="trailing" constant="2" id="D8J-1n-xdD"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yYg-GT-3fB" secondAttribute="trailing" constant="12" id="EpW-dV-mad"/>
-                    <constraint firstItem="qAZ-ZH-i1j" firstAttribute="top" secondItem="xBD-bE-7yo" secondAttribute="topMargin" constant="-8" id="Jqy-Go-o5v"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="qAZ-ZH-i1j" secondAttribute="trailing" constant="-8" id="USL-pT-POo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="wwh-TN-8gp" secondAttribute="bottom" constant="1.5" id="HcT-5z-1or"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="4jf-fc-aUN" secondAttribute="bottom" constant="1.5" id="PI1-Fc-nE1"/>
                     <constraint firstItem="4jf-fc-aUN" firstAttribute="leading" secondItem="xBD-bE-7yo" secondAttribute="leadingMargin" constant="12" id="UoZ-0e-Hge"/>
                     <constraint firstAttribute="trailingMargin" secondItem="5le-L3-NvS" secondAttribute="trailing" constant="12" id="VVG-Xx-2SI"/>
                     <constraint firstItem="yYg-GT-3fB" firstAttribute="leading" secondItem="xBD-bE-7yo" secondAttribute="leadingMargin" constant="12" id="WFE-By-ZD4"/>
+                    <constraint firstItem="yYg-GT-3fB" firstAttribute="top" secondItem="xBD-bE-7yo" secondAttribute="topMargin" id="bHy-DD-Lal"/>
                     <constraint firstAttribute="trailingMargin" secondItem="wwh-TN-8gp" secondAttribute="trailing" constant="18" id="g6s-Yz-IPK"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="qAZ-ZH-i1j" secondAttribute="bottom" constant="-8.5" id="r8P-Ow-xpe"/>
+                    <constraint firstItem="4jf-fc-aUN" firstAttribute="top" secondItem="5le-L3-NvS" secondAttribute="bottom" constant="1" id="qex-5I-WzK"/>
                     <constraint firstItem="wwh-TN-8gp" firstAttribute="leading" secondItem="4jf-fc-aUN" secondAttribute="trailing" constant="2" id="x1r-h6-rCl"/>
                     <constraint firstItem="5le-L3-NvS" firstAttribute="leading" secondItem="xBD-bE-7yo" secondAttribute="leadingMargin" constant="12" id="xdz-W2-z2t"/>
-                    <constraint firstItem="qAZ-ZH-i1j" firstAttribute="leading" secondItem="xBD-bE-7yo" secondAttribute="leadingMargin" constant="-8" id="z1S-TI-sVe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="authorLabel" destination="5le-L3-NvS" id="4Xp-KG-xMh"/>
                 <outlet property="deadlineLabel" destination="wwh-TN-8gp" id="j3l-8L-5aa"/>
-                <outlet property="recordCellBgImage" destination="qAZ-ZH-i1j" id="V2v-1S-zMi"/>
                 <outlet property="titleLabel" destination="yYg-GT-3fB" id="Kas-Xq-9zU"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="libraryRecordCell.png" width="320" height="120"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
