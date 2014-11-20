@@ -197,15 +197,15 @@
     else
     {
         NSDictionary *tmp = [dataInTable objectAtIndex:row];
-        [data shareInstance].hiringId = [tmp objectForKey:@"id"];
-        [data shareInstance].hiringTitle = [tmp objectForKey:@"title"];
-        [data shareInstance].hiringCorp = [tmp objectForKey:@"corporation"];
-        [data shareInstance].hiringDate = [tmp objectForKey:@"held_date"];
-        [data shareInstance].hiringTime = [tmp objectForKey:@"held_time"];
-        [data shareInstance].hiringPlace = [tmp objectForKey:@"place"];
-        
+
         HiringDetailViewController *hiringDetail = [[HiringDetailViewController alloc]initWithNibName:nil bundle:nil];
         [hiringDetail setHidesBottomBarWhenPushed:YES];
+        hiringDetail.hiringId = [tmp objectForKey:@"id"];
+        hiringDetail.hiringTitle = [tmp objectForKey:@"title"];
+        hiringDetail.hiringCorp = [tmp objectForKey:@"corporation"];
+        hiringDetail.hiringDate = [tmp objectForKey:@"held_date"];
+        hiringDetail.hiringTime = [tmp objectForKey:@"held_time"];
+        hiringDetail.hiringPlace = [tmp objectForKey:@"place"];
         [self.navigationController pushViewController:hiringDetail animated:YES];
     }
 }

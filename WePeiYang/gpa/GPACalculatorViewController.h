@@ -20,6 +20,6 @@ typedef enum {
 @interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-//@property (strong, nonatomic) IBOutlet UIButton *calculateBtn;
+@property (strong, nonatomic) NSArray *gpaData;
 
 @end

@@ -265,11 +265,13 @@
         NSDictionary *temp = [dataInTable objectAtIndex:row];
         NSString *rowSelected = [temp objectForKey:@"subject"];
         NSString *idSelected = [temp objectForKey:@"index"];
-        [data shareInstance].newsTitle = rowSelected;
-        [data shareInstance].newsId = idSelected;
+        //[data shareInstance].newsTitle = rowSelected;
+        //[data shareInstance].newsId = idSelected;
         
         DetailViewController *detailViewController = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
         detailViewController.hidesBottomBarWhenPushed = YES;
+        detailViewController.detailId = idSelected;
+        detailViewController.detailTitle = rowSelected;
         [self.navigationController pushViewController:detailViewController animated:YES];
 
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

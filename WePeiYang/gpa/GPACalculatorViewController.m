@@ -20,7 +20,7 @@
 }
 
 @synthesize tableView;
-//@synthesize calculateBtn;
+@synthesize gpaData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,8 +52,6 @@
     [navigationItem setRightBarButtonItem:actionBtn];
     [navigationBar pushNavigationItem:navigationItem animated:YES];
     [self.view addSubview:navigationBar];
-    
-    NSArray *gpaData = [data shareInstance].gpaDataArray;
     
     calculatorArray = [[NSMutableArray alloc]initWithObjects: nil];
     for (int i = 0; i < [gpaData count]; i++)

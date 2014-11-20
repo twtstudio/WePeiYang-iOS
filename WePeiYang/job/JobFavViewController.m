@@ -44,8 +44,6 @@
     }
     favDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
     titleArray = [favDic allKeys];
-    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,9 +122,9 @@
     NSUInteger row = [indexPath row];
     NSString *title = [titleArray objectAtIndex:row];
     NSDictionary *dic = [favDic objectForKey:title];
-    [data shareInstance].jobId = [dic objectForKey:@"id"];
-    [data shareInstance].jobTitle = [dic objectForKey:@"title"];
     JobDetailViewController *jobDetail = [[JobDetailViewController alloc]initWithNibName:nil bundle:nil];
+    jobDetail.jobId = [dic objectForKey:@"id"];
+    jobDetail.jobTitle = [dic objectForKey:@"title"];
     [jobDetail setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:jobDetail animated:YES];
 }

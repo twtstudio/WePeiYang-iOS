@@ -280,7 +280,6 @@
             [gpaData addObject:temp];
         }
     }
-    [data shareInstance].gpaDataArray = gpaData;
     
     //所有科目的学期值数组
     //[data shareInstance].termsArray = termArray;
@@ -585,6 +584,7 @@
 - (void)pushGPACalculator
 {
     GPACalculatorViewController *gpaCalculator = [[GPACalculatorViewController alloc]initWithNibName:nil bundle:nil];
+    gpaCalculator.gpaData = gpaData;
     [self.navigationController pushViewController:gpaCalculator animated:YES];
 }
 

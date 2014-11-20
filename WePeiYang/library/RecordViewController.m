@@ -25,16 +25,11 @@
 @implementation RecordViewController
 
 {
-    NSMutableArray *title;
-    NSMutableArray *status;
-    NSMutableArray *money;
-    NSMutableArray *author;
-    NSMutableArray *deadline;
+    
+    NSMutableArray *recordArr;
     
     UIAlertView *nilAlert;
     UIAlertView *logoutAlert;
-    
-    NSDictionary *recordDic;
 }
 
 @synthesize tableView;
@@ -61,11 +56,7 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
     
-    title = [[NSMutableArray alloc]initWithObjects: nil];
-    status = [[NSMutableArray alloc]initWithObjects: nil];
-    money = [[NSMutableArray alloc]initWithObjects: nil];
-    author = [[NSMutableArray alloc]initWithObjects: nil];
-    deadline = [[NSMutableArray alloc]initWithObjects: nil];
+    recordArr = [[NSMutableArray alloc]initWithObjects: nil];
     
     response = [[NSMutableData alloc]init];
     
@@ -209,25 +200,15 @@
     }
 }
 
-- (void)dealWithReceivedLoginData:(NSDictionary *)loginDic
-{
-    title = [[NSMutableArray alloc]initWithObjects:nil, nil];
-    author = [[NSMutableArray alloc]initWithObjects:nil, nil];
-    deadline = [[NSMutableArray alloc]initWithObjects:nil, nil];
-    recordDic = [loginDic objectForKey:@"charge"];
+- (void)dealWithReceivedLoginData:(NSDictionary *)loginDic {
+    recordArr = [loginDic objectForKey:@"charge"];
     NSString *money = [loginDic objectForKey:@"money"];
     NSString *outStr = [NSString stringWithFormat:@"%@",[loginDic objectForKey:@"out"]];
     NSString *backStr = [NSString stringWithFormat:@"%@",[loginDic objectForKey:@"back"]];
     NSString *uName = [loginDic objectForKey:@"uname"];
     [data shareInstance].welcomeLabelString = [NSString stringWithFormat:@"       %@  已借：%@本  应还：%@本  欠款：%@元",uName,outStr,backStr,money];
-    if (recordDic != [NSNull null])
+    if (recordArr != [NSNull null])
     {
-        for (NSDictionary *temp in recordDic)
-        {
-            [title addObject:[temp objectForKey:@"name"]];
-            [author addObject:[temp objectForKey:@"author"]];
-            [deadline addObject:[temp objectForKey:@"deadline"]];
-        }
         [tableView setHidden:NO];
         [noLoginLabel setHidden:YES];
         [loginBtn setHidden:YES];
@@ -266,13 +247,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [title count];
+    return [recordArr count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    NSString *titleStr = [title objectAtIndex:row];
+    NSDictionary *itemSelected = [recordArr objectAtIndex:row];
+    NSString *titleStr = [itemSelected objectForKey:@"name"];
     CGFloat width = self.tableView.frame.size.width;
         
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
@@ -296,9 +278,10 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    cell.titleLabel.text = [title objectAtIndex:row];
-    cell.authorLabel.text = [author objectAtIndex:row];
-    cell.deadlineLabel.text = [deadline objectAtIndex:row];
+    NSDictionary *item = [recordArr objectAtIndex:row];
+    cell.titleLabel.text = [item objectForKey:@"name"];
+    cell.authorLabel.text = [item objectForKey:@"author"];
+    cell.deadlineLabel.text = [item objectForKey:@"deadline"];
     cell.recordCellBgImage.hidden = NO;
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -187,14 +187,13 @@
     {
         NSString *rowSelected = [[titleInTable objectAtIndex:row] objectForKey:@"subject"];
         NSString *idSelected = [[titleInTable objectAtIndex:row] objectForKey:@"index"];
-        
-        [data shareInstance].noticeTitle = rowSelected;
-        [data shareInstance].noticeId = idSelected;
 
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         NoticeDetailViewController *noticeDetail;
         noticeDetail = [[NoticeDetailViewController alloc]initWithNibName:@"NoticeDetailViewController" bundle:nil];
         noticeDetail.hidesBottomBarWhenPushed = YES;
+        noticeDetail.noticeId = idSelected;
+        noticeDetail.noticeTitle = rowSelected;
         [self.navigationController pushViewController:noticeDetail animated:YES];
     }
 }

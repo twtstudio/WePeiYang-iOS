@@ -18,6 +18,12 @@
 @implementation HiringDetailViewController
 
 @synthesize webView;
+@synthesize hiringCorp;
+@synthesize hiringDate;
+@synthesize hiringId;
+@synthesize hiringPlace;
+@synthesize hiringTime;
+@synthesize hiringTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,13 +38,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = [data shareInstance].hiringTitle;
+    self.title = hiringTitle;
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareInfo)];
     [self.navigationItem setRightBarButtonItem:share];
     
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
     NSDictionary *parameters = @{@"ctype":@"fair",
-                                 @"index":[data shareInstance].hiringId,
+                                 @"index":hiringId,
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -62,7 +68,7 @@
 
 - (void)shareInfo
 {
-    NSString *shareStr = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",[data shareInstance].hiringTitle,[data shareInstance].hiringCorp,[data shareInstance].hiringDate,[data shareInstance].hiringTime,[data shareInstance].hiringPlace];
+    NSString *shareStr = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",hiringTitle,hiringCorp,hiringDate,hiringTime,hiringPlace];
     NSArray *activityItems = @[shareStr];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];

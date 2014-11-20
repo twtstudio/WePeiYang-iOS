@@ -23,7 +23,8 @@
 }
 
 @synthesize webView;
-//@synthesize response;
+@synthesize noticeId;
+@synthesize noticeTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +40,7 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = YES;
-    self.title = [data shareInstance].noticeTitle;
-    NSString *noticeId = [data shareInstance].noticeId;
+    self.title = noticeTitle;
     
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openActionSheet)];
     [self.navigationItem setRightBarButtonItem:share];
@@ -81,7 +81,7 @@
 
 - (void)openActionSheet
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:[data shareInstance].noticeTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:noticeTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -108,8 +108,8 @@
 - (void)share
 {
     NSArray *activityItems;
-    NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",[data shareInstance].noticeId];
-    NSString *title = [data shareInstance].noticeTitle;
+    NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",noticeId];
+    NSString *title = noticeTitle;
     
     NSString *shareString = [[NSString alloc]initWithFormat:@"%@ 地址：%@",title,urlStr];
     activityItems = @[shareString];
@@ -121,7 +121,7 @@
 
 - (void)openInSafari
 {
-    NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",[data shareInstance].noticeId];
+    NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",noticeId];
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication]openURL:url];
 }
@@ -140,10 +140,10 @@
         noticeFavDic = [[NSMutableDictionary alloc]init];
     }
     NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
-    [newDic setObject:[data shareInstance].noticeTitle forKey:@"title"];
-    [newDic setObject:[data shareInstance].noticeId forKey:@"id"];
+    [newDic setObject:noticeTitle forKey:@"title"];
+    [newDic setObject:noticeId forKey:@"id"];
     
-    [noticeFavDic setObject:newDic forKey:[data shareInstance].noticeTitle];
+    [noticeFavDic setObject:newDic forKey:noticeTitle];
     [noticeFavDic writeToFile:plistPath atomically:YES];
     
     [SVProgressHUD showSuccessWithStatus:@"公告收藏成功！"];

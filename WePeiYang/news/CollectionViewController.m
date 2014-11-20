@@ -96,10 +96,12 @@
 {
     NSUInteger row = [indexPath row];
     NSDictionary *dicSelected = [collectionDic objectForKey:[tableArray objectAtIndex:row]];
-    [data shareInstance].newsTitle = [dicSelected objectForKey:@"title"];
-    [data shareInstance].newsId = [dicSelected objectForKey:@"id"];
+    //[data shareInstance].newsTitle = [dicSelected objectForKey:@"title"];
+    //[data shareInstance].newsId = [dicSelected objectForKey:@"id"];
     
     DetailViewController *detailVC = [[DetailViewController alloc]initWithNibName:nil bundle:nil];
+    detailVC.detailId = [dicSelected objectForKey:@"id"];
+    detailVC.detailTitle = [dicSelected objectForKey:@"title"];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

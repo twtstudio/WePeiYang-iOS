@@ -26,6 +26,8 @@
 }
 
 @synthesize webView;
+@synthesize detailId;
+@synthesize detailTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,8 +43,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setToolbarHidden:YES animated:YES];
-    NSString *detailTitle = [data shareInstance].newsTitle;
-    NSString *detailId = [data shareInstance].newsId;
+    //detailTitle = [data shareInstance].newsTitle;
+    //detailId = [data shareInstance].newsId;
     self.title = detailTitle;
     self.automaticallyAdjustsScrollViewInsets = YES;
     
@@ -87,7 +89,7 @@
 
 - (void)optionActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:[data shareInstance].newsTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:self.detailTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -113,15 +115,14 @@
 
 - (void)openInSafari
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",[data shareInstance].newsId]];
-    [[UIApplication sharedApplication]openURL:url];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@", self.detailId]];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)share
 {
     NSArray *activityItems;
-    NSString *detailTitle = [data shareInstance].newsTitle;
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ 地址：%@",detailTitle,[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",[data shareInstance].newsId]];
+    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ 地址：%@",self.detailTitle,[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
     activityItems = @[shareString];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
@@ -142,11 +143,11 @@
     }
     
     NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
-    [newDic setObject:[data shareInstance].newsTitle forKey:@"title"];
+    [newDic setObject:detailTitle forKey:@"title"];
     [newDic setObject:detailContent forKey:@"content"];
-    [newDic setObject:[data shareInstance].newsId forKey:@"id"];
+    [newDic setObject:detailId forKey:@"id"];
     
-    [collectionDic setObject:newDic forKey:[data shareInstance].newsTitle];
+    [collectionDic setObject:newDic forKey:detailTitle];
     [collectionDic writeToFile:plistPath atomically:YES];
     
     [SVProgressHUD showSuccessWithStatus:@"新闻收藏成功！"];

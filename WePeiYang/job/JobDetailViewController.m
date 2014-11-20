@@ -24,7 +24,10 @@
 }
 
 @synthesize webView;
-//@synthesize response;
+@synthesize jobCorp;
+@synthesize jobDate;
+@synthesize jobId;
+@synthesize jobTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,9 +44,7 @@
 {
     [super viewDidLoad];
     
-    //self.textView.text = @"";
-    
-    self.title = [data shareInstance].jobTitle;
+    self.title = jobTitle;
     //self.automaticallyAdjustsScrollViewInsets = NO;
     
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openActionSheet:)];
@@ -51,7 +52,7 @@
     
     NSString *url = @"http://push-mobile.twtapps.net/content/detail";
     NSDictionary *body = @{@"ctype":@"job",
-                           @"index":[data shareInstance].jobId,
+                           @"index":jobId,
                            @"platform":@"ios",
                            @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -76,7 +77,7 @@
 
 - (void)openActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:[data shareInstance].jobTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:jobTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -114,12 +115,12 @@
         jobFavDic = [[NSMutableDictionary alloc]init];
     }
     NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
-    [newDic setObject:[data shareInstance].jobCorp forKey:@"corp"];
-    [newDic setObject:[data shareInstance].jobDate forKey:@"date"];
-    [newDic setObject:[data shareInstance].jobId forKey:@"id"];
-    [newDic setObject:[data shareInstance].jobTitle forKey:@"title"];
+    [newDic setObject:jobCorp forKey:@"corp"];
+    [newDic setObject:jobDate forKey:@"date"];
+    [newDic setObject:jobId forKey:@"id"];
+    [newDic setObject:jobTitle forKey:@"title"];
     
-    [jobFavDic setObject:newDic forKey:[data shareInstance].jobTitle];
+    [jobFavDic setObject:newDic forKey:jobTitle];
     [jobFavDic writeToFile:plistPath atomically:YES];
     
     [SVProgressHUD showSuccessWithStatus:@"就业资讯收藏成功！"];
@@ -128,12 +129,9 @@
 - (void)share
 {
     NSArray *activityItems;
-    NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",[data shareInstance].jobId];
-    NSString *title = [data shareInstance].jobTitle;
-    NSString *corp = [data shareInstance].jobCorp;
-    NSString *date = [data shareInstance].jobDate;
+    NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
     
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@ 地址：%@",title,corp,date,urlStr];
+    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@ 地址：%@",jobTitle,jobCorp,jobDate,urlStr];
     activityItems = @[shareString];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
@@ -142,7 +140,7 @@
 
 - (void)openInSafari
 {
-    NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",[data shareInstance].jobId];
+    NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication]openURL:url];
 }

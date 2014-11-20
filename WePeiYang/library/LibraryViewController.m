@@ -41,6 +41,7 @@
     UIActionSheet *typeActionSheet;
     
     NSMutableArray *libraryData;
+    NSDictionary *itemSelected;
 }
 
 @synthesize tableView;
@@ -283,11 +284,7 @@
     else
     {
         NSDictionary *temp = [libraryData objectAtIndex:row];
-        [data shareInstance].titleSelected = [temp objectForKey:@"title"];
-        [data shareInstance].positionSelected = [temp objectForKey:@"position"];
-        [data shareInstance].authorSelected = [temp objectForKey:@"author"];
-        [data shareInstance].yearSelected = [temp objectForKey:@"year"];
-        [data shareInstance].leftSelected = [temp objectForKey:@"left"];
+        itemSelected = temp;
         
         detailAlert = [[UIAlertView alloc]initWithTitle:@"更多" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"添加到收藏",@"分享", nil];
         [detailAlert show];
@@ -367,14 +364,10 @@
     {
         LibraryCollectionDic = [[NSMutableDictionary alloc]init];
     }
-    NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
-    [newDic setObject:[data shareInstance].titleSelected forKey:@"title"];
-    [newDic setObject:[data shareInstance].authorSelected forKey:@"author"];
-    [newDic setObject:[data shareInstance].yearSelected forKey:@"year"];
-    [newDic setObject:[data shareInstance].positionSelected forKey:@"position"];
-    [newDic setObject:[data shareInstance].leftSelected forKey:@"left"];
-    
-    [LibraryCollectionDic setObject:newDic forKey:[data shareInstance].titleSelected];
+    NSDictionary *newDic = [[NSDictionary alloc]init];
+    newDic = itemSelected;
+    NSString *titleStr = [newDic objectForKey:@"title"];
+    [LibraryCollectionDic setObject:newDic forKey:titleStr];
     [LibraryCollectionDic writeToFile:plistPath atomically:YES];
     
     [SVProgressHUD showSuccessWithStatus:@"书目收藏成功"];
@@ -382,9 +375,9 @@
 
 - (void)share
 {
-    NSString *title = [data shareInstance].titleSelected;
-    NSString *position = [data shareInstance].positionSelected;
-    NSString *left = [data shareInstance].leftSelected;
+    NSString *title = [itemSelected objectForKey:@"title"];
+    NSString *position = [itemSelected objectForKey:@"position"];
+    NSString *left = [itemSelected objectForKey:@"left"];
     NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",title,position,left];
     
     NSArray *activityItems = @[shareString];

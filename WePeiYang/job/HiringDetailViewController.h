@@ -11,5 +11,11 @@
 @interface HiringDetailViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (retain, nonatomic) NSString *hiringTitle;
+@property (retain, nonatomic) NSString *hiringCorp;
+@property (retain, nonatomic) NSString *hiringDate;
+@property (retain, nonatomic) NSString *hiringTime;
+@property (retain, nonatomic) NSString *hiringPlace;
+@property (retain, nonatomic) NSString *hiringId;
 
 @end

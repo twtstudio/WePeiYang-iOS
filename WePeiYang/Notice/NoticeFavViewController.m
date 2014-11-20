@@ -108,10 +108,10 @@
     NSUInteger row = [indexPath row];
     NSString *title = [titleArray objectAtIndex:row];
     NSDictionary *dic = [favDic objectForKey:title];
-    [data shareInstance].noticeTitle = title;
-    [data shareInstance].noticeId = [dic objectForKey:@"id"];
     NoticeDetailViewController *noticeDetail = [[NoticeDetailViewController alloc]initWithNibName:nil bundle:nil];
     [noticeDetail setHidesBottomBarWhenPushed:YES];
+    noticeDetail.noticeId = [dic objectForKey:@"id"];
+    noticeDetail.noticeTitle = title;
     [self.navigationController pushViewController:noticeDetail animated:YES];
 }
 

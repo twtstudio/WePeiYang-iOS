@@ -11,7 +11,9 @@
 @interface JobDetailViewController : UIViewController<UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
-
-- (NSString *)filterHTML:(NSString *)html;
+@property (retain, nonatomic) NSString *jobTitle;
+@property (retain, nonatomic) NSString *jobCorp;
+@property (retain, nonatomic) NSString *jobDate;
+@property (retain, nonatomic) NSString *jobId;
 
 @end

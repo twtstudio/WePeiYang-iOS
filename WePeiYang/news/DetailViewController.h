@@ -12,5 +12,7 @@
 @interface DetailViewController : UIViewController<UIActionSheetDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) NSString *detailId;
+@property (strong, nonatomic) NSString *detailTitle;
 
 @end

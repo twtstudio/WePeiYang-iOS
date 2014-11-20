@@ -203,12 +203,12 @@
     else
     {
         NSDictionary *temp = [dataInTable objectAtIndex:row];
-        [data shareInstance].jobTitle = [temp objectForKey:@"title"];
-        [data shareInstance].jobCorp = [temp objectForKey:@"corporation"];
-        [data shareInstance].jobDate = [temp objectForKey:@"date"];
-        [data shareInstance].jobId = [temp objectForKey:@"id"];
         JobDetailViewController *jobDetail;
         jobDetail = [[JobDetailViewController alloc]initWithNibName:@"JobDetailViewController" bundle:nil];
+        jobDetail.jobId = [temp objectForKey:@"id"];
+        jobDetail.jobDate = [temp objectForKey:@"date"];
+        jobDetail.jobCorp = [temp objectForKey:@"corporation"];
+        jobDetail.jobTitle = [temp objectForKey:@"title"];
         [jobDetail setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:jobDetail animated:YES];
     }
@@ -222,7 +222,7 @@
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"job",
-                                 @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

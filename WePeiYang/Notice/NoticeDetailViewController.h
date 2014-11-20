@@ -11,5 +11,7 @@
 @interface NoticeDetailViewController : UIViewController<UIActionSheetDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) NSString *noticeTitle;
+@property (strong, nonatomic) NSString *noticeId;
 
 @end
