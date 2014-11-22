@@ -28,8 +28,12 @@
                                 <outlet property="delegate" destination="-1" id="zx2-ne-pIN"/>
                             </connections>
                         </pickerView>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxf-Q2-YZt">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxf-Q2-YZt">
                             <rect key="frame" x="0.0" y="25" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="OEy-uf-UJV"/>
+                                <constraint firstAttribute="width" constant="40" id="TJP-1s-kKL"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" image="backForNav.png"/>
                             <connections>
@@ -47,8 +51,12 @@
                                 <action selector="studySearch" destination="-1" eventType="touchUpInside" id="nt3-nx-mLi"/>
                             </connections>
                         </button>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="keE-Xz-Kh9">
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="keE-Xz-Kh9">
                             <rect key="frame" x="190" y="31" width="220" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="220" id="4Oq-pK-wTS"/>
+                                <constraint firstAttribute="height" constant="28" id="AZt-7l-G10"/>
+                            </constraints>
                             <segments>
                                 <segment title="今天"/>
                                 <segment title="明天"/>
@@ -85,6 +93,7 @@
                 <constraint firstAttribute="trailing" secondItem="afT-yc-e8Z" secondAttribute="trailing" id="8Dk-t5-BM4"/>
                 <constraint firstItem="afT-yc-e8Z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="63" id="RXC-14-RCn"/>
                 <constraint firstAttribute="bottom" secondItem="afT-yc-e8Z" secondAttribute="bottom" id="Vva-ce-pq4"/>
+                <constraint firstItem="Pjq-qa-D8O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="njV-ho-IyK"/>
                 <constraint firstItem="Pjq-qa-D8O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pch-j5-NDi"/>
                 <constraint firstAttribute="trailing" secondItem="Pjq-qa-D8O" secondAttribute="trailing" id="qWP-k1-Qyb"/>
             </constraints>

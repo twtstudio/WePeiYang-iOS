@@ -472,9 +472,44 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func touchIdSwitchChanged() {
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var switchIsOn = touchIdSwitch.on
-        defaults.setObject(switchIsOn, forKey: "touchIdEnabled")
+        
+        if self.touchIdSwitch.on == false {
+            context = LAContext()
+            context.localizedFallbackTitle = ""
+            var error: NSError?
+            if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
+                context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "请验证 Touch ID" , reply: {
+                    (BOOL success, NSError BioError) in
+                    if success {
+                        var defaults = NSUserDefaults.standardUserDefaults()
+                        
+                        var switchIsOn = self.touchIdSwitch.on
+                        defaults.setObject(switchIsOn, forKey: "touchIdEnabled")
+                    } else {
+                        if BioError.code == -1 {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                var errorAlert = UIAlertView(title: "失败", message: "Touch ID 验证失败", delegate: self, cancelButtonTitle: "取消");
+                                errorAlert.show()
+                                self.touchIdSwitch.setOn(true, animated: true)
+                            })
+                        } else if BioError.code == -2 {
+                            //Cancel
+                            
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.touchIdSwitch.setOn(true, animated: true)
+                            })
+                        }
+                    }
+                })
+            }
+        } else {
+            var defaults = NSUserDefaults.standardUserDefaults()
+            
+            var switchIsOn = self.touchIdSwitch.on
+            defaults.setObject(switchIsOn, forKey: "touchIdEnabled")
+        }
+        
+        
     }
     
 
