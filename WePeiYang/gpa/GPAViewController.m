@@ -118,8 +118,11 @@
     dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
 }
 
-- (void)checkLoginStatus
-{
+- (void)checkLoginStatus {
+    [gpaData removeAllObjects];
+    [dataInTable removeAllObjects];
+    [everyArr removeAllObjects];
+    
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:plistPath])
@@ -359,17 +362,23 @@
                                  @"version":appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD showSuccessWithStatus:@"一键评价成功！"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showSuccessWithStatus:@"一键评价成功！"];
+        });
         [self checkLoginStatus];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSInteger statusCode = operation.response.statusCode;
         switch (statusCode) {
             case 403:
-                [SVProgressHUD showErrorWithStatus:@"没有可以评价的科目"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SVProgressHUD showErrorWithStatus:@"没有可以评价的科目"];
+                });
                 break;
                 
             default:
-                [SVProgressHUD showErrorWithStatus:@"无法一键评价T^T"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SVProgressHUD showErrorWithStatus:@"无法一键评价T^T"];
+                });
                 break;
         }
     }];
@@ -435,7 +444,7 @@
     }
 }
 
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+- (void) willPresentActionSheet:(UIActionSheet *)actionSheet
 {
     [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
         if ([subview isKindOfClass:[UIButton class]]) {
@@ -445,13 +454,13 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)selectTermForString:(NSString *)string
+- (void) selectTermForString:(NSString *)string
 {
     [self reloadArraysInTable];
     NSString *termSelectedStr = string;
@@ -471,7 +480,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (UIImage *)captureScreen
+- (UIImage *) captureScreen
 {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
     CGRect rect = [keyWindow bounds];
@@ -483,7 +492,7 @@
     return img;
 }
 
-- (void)shareGPA
+- (void) shareGPA
 {
     UIImage *screenShot = [self captureScreen];
     NSString *bannerPath = [[NSBundle mainBundle] pathForResource:@"Banner@2x" ofType:@".png"];
@@ -510,7 +519,7 @@
 }
 
 //和之前查询的成绩进行比较，如果新出科目则标注小点，并保存最新查询的成绩
-- (void)compareWithPreviousResult
+- (void) compareWithPreviousResult
 {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -581,14 +590,14 @@
     }
 }
 
-- (void)pushGPACalculator
+- (void) pushGPACalculator
 {
     GPACalculatorViewController *gpaCalculator = [[GPACalculatorViewController alloc]initWithNibName:nil bundle:nil];
     gpaCalculator.gpaData = gpaData;
     [self.navigationController pushViewController:gpaCalculator animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float offsetY = [scrollView contentOffset].y;
     //NSLog([NSString stringWithFormat:@"%f",offsetY]);
@@ -601,7 +610,7 @@
     moreBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
+- (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
