@@ -16,14 +16,16 @@ WePeiYang_iOS
 
 ## 致谢
 
-微北洋的初具雏形，以下开源类库功不可没。在此表示感谢。
+微北洋的初具雏形，以下开源项目功不可没。特在此致以感谢。
 
-As the programmer of this project I would like to deeply appreciate the following open-source projects, without which this project would never be completed. Thanks so much.
+As the programmer of this project, I would like to extend my sincere gratitude to the following open-source projects, without which this project would never be completed. 
 
 * AFNetworking
+* Cocoapods
 * SVProgressHUD
-* Ravel
 * UIButton+Bootstrap
 * Raven
+* POP
+* AHKActionSheet
 
 > Copyright 2002-2014 TWT Studio
