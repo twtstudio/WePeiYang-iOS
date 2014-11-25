@@ -12,6 +12,8 @@
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "SVProgressHUD.h"
+#import "AHKActionSheet.h"
+#import "WePeiYang-Swift.h"
 
 #define DEVICE_IS_IPHONE5 ([[UIScreen mainScreen] bounds].size.height == 568)
 
@@ -89,28 +91,21 @@
 
 - (void)optionActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:self.detailTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
-    [actionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == [actionSheet cancelButtonIndex])
-    {
-        nil;
-    }
-    else if (buttonIndex == 0)
-    {
+    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
+    
+    [actionSheet addButtonWithTitle:@"分享" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self share];
-    }
-    else if (buttonIndex == 1)
-    {
+    }];
+    
+    [actionSheet addButtonWithTitle:@"收藏" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self addToCollection];
-    }
-    else if (buttonIndex == 2)
-    {
+    }];
+    
+    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self openInSafari];
-    }
+    }];
+    
+    [actionSheet show];
 }
 
 - (void)openInSafari
@@ -151,16 +146,6 @@
     [collectionDic writeToFile:plistPath atomically:YES];
     
     [SVProgressHUD showSuccessWithStatus:@"新闻收藏成功！"];
-}
-
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
-        if ([subview isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)subview;
-            button.titleLabel.textColor = [UIColor colorWithRed:255/255.0f green:55/255.0f blue:156/255.0f alpha:1.0f];
-        }
-    }];
 }
 
 @end

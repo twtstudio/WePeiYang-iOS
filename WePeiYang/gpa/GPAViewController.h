@@ -10,7 +10,7 @@
 #import "YTrendChartView.h"
 #import "GPALoginViewController.h"
 
-@interface GPAViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SelectTermDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
+@interface GPAViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, SelectTermDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *moreBtn;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NoticeDetailViewController : UIViewController<UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface NoticeDetailViewController : UIViewController<UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) NSString *noticeTitle;

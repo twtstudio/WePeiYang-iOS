@@ -249,8 +249,25 @@
 }
     
 - (IBAction)openActionSheet:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"更多" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"一键评价",@"手动评价",@"分享GPA",@"GPA计算器", nil];
-    [actionSheet showInView:self.view];
+    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多操作"];
+    
+    [actionSheet addButtonWithTitle:@"一键评价" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self oneKeyToEvaluate];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"手动评价" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self selfEvaluate];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"分享 GPA" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self shareGPA];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"GPA 计算器" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self pushGPACalculator];
+    }];
+    
+    [actionSheet show];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -442,16 +459,6 @@
     {
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (void) willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
-        if ([subview isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)subview;
-            button.titleLabel.textColor = gpaTintColor;
-        }
-    }];
 }
 
 - (void) didReceiveMemoryWarning

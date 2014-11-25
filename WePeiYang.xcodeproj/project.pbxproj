@@ -137,6 +137,7 @@
 		E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AD61EB19C43983009824BB /* gpaHeaderView.m */; };
 		E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B0EB64197571F80000B951 /* twtSecretKeys.m */; };
 		E9C3E56F19C5611600B95CBE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */; };
+		E9D058DD1A24ECAD00BDE954 /* wpyActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D058DC1A24ECAD00BDE954 /* wpyActionSheet.swift */; };
 		E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4363D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m */; };
 		E9D4364E19B2285C0042A9F1 /* LAFound_AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D4363E19B2285C0042A9F1 /* LAFound_AnnounceViewController.xib */; };
 		E9D4364F19B2285C0042A9F1 /* LAFound_CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4364019B2285C0042A9F1 /* LAFound_CollectionViewController.m */; };
@@ -377,6 +378,7 @@
 		E9B0EB63197571F80000B951 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = twtSecretKeys.h; path = ../twtSecretKeys.h; sourceTree = "<group>"; };
 		E9B0EB64197571F80000B951 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = twtSecretKeys.m; path = ../twtSecretKeys.m; sourceTree = "<group>"; };
 		E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardViewController.swift; path = WePeiYang/Start/DashboardViewController.swift; sourceTree = "<group>"; };
+		E9D058DC1A24ECAD00BDE954 /* wpyActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wpyActionSheet.swift; sourceTree = "<group>"; };
 		E9D4363C19B2285C0042A9F1 /* LAFound_AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_AnnounceViewController.h; sourceTree = "<group>"; };
 		E9D4363D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFound_AnnounceViewController.m; sourceTree = "<group>"; };
 		E9D4363E19B2285C0042A9F1 /* LAFound_AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LAFound_AnnounceViewController.xib; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				252655D818ED4EB500C7F8D3 /* wpyDeviceStatus.m */,
 				252C101919176FA900C2B636 /* wpyEncryption.h */,
 				252C101A19176FA900C2B636 /* wpyEncryption.m */,
+				E9D058DC1A24ECAD00BDE954 /* wpyActionSheet.swift */,
 			);
 			path = wpyClasses;
 			sourceTree = "<group>";
@@ -1172,6 +1175,7 @@
 				18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */,
 				25340FAD191CA73E00AFDE7D /* HiringDetailViewController.m in Sources */,
 				25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */,
+				E9D058DD1A24ECAD00BDE954 /* wpyActionSheet.swift in Sources */,
 				18F586291859B6C100410E81 /* NoticeDetailViewController.m in Sources */,
 				188842971846F73B007B92CB /* LibraryViewController.m in Sources */,
 				25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */,

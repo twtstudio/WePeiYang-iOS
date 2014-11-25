@@ -99,47 +99,30 @@
 }
 
 - (void)openActionSheet {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择计算规则" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"标准",@"四分制",@"JASSO",@"改进四分制",@"加拿大4.3分制", nil];
-    [actionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != [actionSheet cancelButtonIndex]) {
-        if (buttonIndex == 0) {
-            [self calcGpaWithStandard];
-        } else if (buttonIndex == 1) {
-            [self calcGpaWithFourPt];
-        } else if (buttonIndex == 2) {
-            [self calcGpaWithJasso];
-        } else if (buttonIndex == 3) {
-            [self calcGpaWithImprovedFourPt];
-        } else if (buttonIndex == 4) {
-            [self calcGpaWithCanada];
-        }
-    }
-}
-
-- (void)calcGpaWithJasso
-{
-    [self calculateGPAwithCalcRule:gpaCalcRuleJasso];
-}
-
-- (void)calcGpaWithStandard
-{
-    [self calculateGPAwithCalcRule:gpaCalcRuleStandard];
-}
-
-- (void)calcGpaWithFourPt
-{
-    [self calculateGPAwithCalcRule:gpaCalcRuleFourPt];
-}
-
-- (void)calcGpaWithImprovedFourPt {
-    [self calculateGPAwithCalcRule:gpaCalcRuleImprovedFourPt];
-}
-
-- (void)calcGpaWithCanada {
-    [self calculateGPAwithCalcRule:gpaCalcRuleCanada];
+    
+    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"请选择计算规则"];
+    
+    [actionSheet addButtonWithTitle:@"标准" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self calculateGPAwithCalcRule:gpaCalcRuleStandard];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"四分制" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self calculateGPAwithCalcRule:gpaCalcRuleFourPt];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"JASSO" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self calculateGPAwithCalcRule:gpaCalcRuleJasso];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"改进四分制" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self calculateGPAwithCalcRule:gpaCalcRuleImprovedFourPt];
+    }];
+    
+    [actionSheet addButtonWithTitle:@"加拿大4.3分制" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self calculateGPAwithCalcRule:gpaCalcRuleCanada];
+    }];
+    
+    [actionSheet show];
 }
 
 - (void)didReceiveMemoryWarning

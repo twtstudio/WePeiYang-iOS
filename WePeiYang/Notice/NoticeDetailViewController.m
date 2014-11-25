@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "SVProgressHUD.h"
+#import "WePeiYang-Swift.h"
 
 @interface NoticeDetailViewController ()
 
@@ -81,28 +82,21 @@
 
 - (void)openActionSheet
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:noticeTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
-    [actionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == [actionSheet cancelButtonIndex])
-    {
-        nil;
-    }
-    else if (buttonIndex == 0)
-    {
+    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
+    
+    [actionSheet addButtonWithTitle:@"分享" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self share];
-    }
-    else if (buttonIndex == 1)
-    {
+    }];
+    
+    [actionSheet addButtonWithTitle:@"收藏" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self addToFav];
-    }
-    else if (buttonIndex == 2)
-    {
+    }];
+    
+    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self openInSafari];
-    }
+    }];
+    
+    [actionSheet show];
 }
 
 - (void)share

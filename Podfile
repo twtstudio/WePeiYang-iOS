@@ -1,8 +1,12 @@
-# Uncomment this line to define a global platform for your project
+# WePeiYang Podfile
+
 platform :ios, '7.0'
+
 pod 'Raven', :git => 'https://github.com/getsentry/raven-objc.git', :tag => '0.5.0'
 pod "AFNetworking", "~> 2.0"
 pod 'SVProgressHUD', :head
+pod 'pop', '~> 1.0'
+pod "AHKActionSheet"
 
 target 'WePeiYang' do
 

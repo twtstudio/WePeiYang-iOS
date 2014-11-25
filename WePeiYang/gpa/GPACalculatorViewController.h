@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "data.h"
+#import "WePeiYang-Swift.h"
 
 typedef enum {
     gpaCalcRuleJasso,
@@ -17,7 +18,7 @@ typedef enum {
     gpaCalcRuleCanada,
 } gpaCalcRule;
 
-@interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
+@interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *gpaData;
