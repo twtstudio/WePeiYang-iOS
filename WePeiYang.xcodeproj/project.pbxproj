@@ -29,7 +29,6 @@
 		1825E18B1878644D004976EA /* LibraryFavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825E18A1878644D004976EA /* LibraryFavouriteViewController.m */; };
 		1841D821187D5AD1006DDA17 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841D820187D5AD1006DDA17 /* GuideViewController.m */; };
 		1841D830187D5FE3006DDA17 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1841D82F187D5FE3006DDA17 /* button-background@2x.png */; };
-		18607AE918DC21DD00C5C665 /* noticeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18607AE818DC21DD00C5C665 /* noticeTabBarController.m */; };
 		188842131846E6F4007B92CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842121846E6F4007B92CB /* Foundation.framework */; };
 		188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842141846E6F4007B92CB /* CoreGraphics.framework */; };
 		188842171846E6F4007B92CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842161846E6F4007B92CB /* UIKit.framework */; };
@@ -229,8 +228,6 @@
 		1841D81F187D5AD1006DDA17 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		1841D820187D5AD1006DDA17 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		1841D82F187D5FE3006DDA17 /* button-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background@2x.png"; sourceTree = "<group>"; };
-		18607AE718DC21DD00C5C665 /* noticeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = noticeTabBarController.h; path = Notice/noticeTabBarController.h; sourceTree = "<group>"; };
-		18607AE818DC21DD00C5C665 /* noticeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = noticeTabBarController.m; path = Notice/noticeTabBarController.m; sourceTree = "<group>"; };
 		1888420F1846E6F4007B92CB /* WePeiYang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WePeiYang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188842121846E6F4007B92CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		188842141846E6F4007B92CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -766,8 +763,6 @@
 				18F586281859B6C100410E81 /* NoticeDetailViewController.xib */,
 				25A5F77F18EC2F0000D6EE4E /* NoticeFavViewController.h */,
 				25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */,
-				18607AE718DC21DD00C5C665 /* noticeTabBarController.h */,
-				18607AE818DC21DD00C5C665 /* noticeTabBarController.m */,
 			);
 			name = Notice;
 			sourceTree = "<group>";
@@ -1197,7 +1192,6 @@
 				18F586211859B21800410E81 /* NoticeViewController.m in Sources */,
 				188842A41846F79F007B92CB /* data.m in Sources */,
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
-				18607AE918DC21DD00C5C665 /* noticeTabBarController.m in Sources */,
 				E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */,
 				18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */,
 				18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */,

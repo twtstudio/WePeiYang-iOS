@@ -120,7 +120,7 @@ class DashboardViewController: UIViewController {
     }
     
     func pushNotice() {
-        let noticeVC = noticeTabBarController(nibName: nil, bundle: nil)
+        let noticeVC = NoticeViewController(nibName: nil, bundle: nil)
         self.navigationController!.pushViewController(noticeVC, animated: true)
     }
     

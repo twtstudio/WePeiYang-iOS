@@ -9,6 +9,7 @@
 #import "NoticeViewController.h"
 #import "data.h"
 #import "NoticeDetailViewController.h"
+#import "NoticeFavViewController.h"
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 
@@ -41,11 +42,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    //self.navigationController.navigationBarHidden = NO;
+    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+    UINavigationItem *navItem = [[UINavigationItem alloc]initWithTitle:@"校园公告"];
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
-    [self.navigationItem setLeftBarButtonItem:backBtn];
+    [navItem setLeftBarButtonItem:backBtn];
+    
+    UIBarButtonItem *favBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(pushFav)];
+    [navItem setRightBarButtonItem:favBtn];
+    
+    [navBar pushNavigationItem:navItem animated:YES];
+    [self.view addSubview:navBar];
 
     noticeData = [[NSMutableArray alloc]initWithObjects: nil];
     
@@ -64,11 +73,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    
 }
 
 - (void)backToHome
 {
-    [self.tabBarController.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)refreshView:(UIRefreshControl *)refreshControl
@@ -106,6 +116,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) pushFav {
+    NoticeFavViewController *noticeFav = [[NoticeFavViewController alloc]initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:noticeFav animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

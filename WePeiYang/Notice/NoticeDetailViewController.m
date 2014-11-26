@@ -143,14 +143,4 @@
     [SVProgressHUD showSuccessWithStatus:@"公告收藏成功！"];
 }
 
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
-        if ([subview isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)subview;
-            button.titleLabel.textColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
-        }
-    }];
-}
-
 @end
