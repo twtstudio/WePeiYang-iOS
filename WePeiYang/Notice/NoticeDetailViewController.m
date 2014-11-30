@@ -21,11 +21,9 @@
 
 {
     UIAlertView *waitingAlert;
-    UIWebView *webView;
-    NSString *htmlHeight;
 }
 
-@synthesize scrollView;
+@synthesize webView;
 @synthesize noticeId;
 @synthesize noticeTitle;
 
@@ -41,13 +39,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.automaticallyAdjustsScrollViewInsets = YES;
     self.title = noticeTitle;
-    
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    
-    webView = [[UIWebView alloc]init];
-    webView.scrollView.scrollEnabled = NO;
-    
     
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openActionSheet)];
     [self.navigationItem setRightBarButtonItem:share];
@@ -58,6 +52,7 @@
     NSDictionary *parameters = @{@"ctype":@"news",@"index":noticeId};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"无法获取公告T^T"];
@@ -75,18 +70,8 @@
     
     NSURL *baseURL = [[NSURL alloc]initWithString:@"http://mynews.twtstudio.com/newspic/picture/"];
     
-    [webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:content] baseURL:baseURL];
-    webView.scalesPageToFit = YES;
-    
-    // Left Uncompleted
-    // UIScrollView 内嵌 UIWebView
-    // UIWebView 的自适应高度问题
-    
-    webView.frame = CGRectMake(0, 140, [[UIScreen mainScreen] bounds].size.width, 2200);
-    scrollView.contentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, 140+2200);
-    scrollView.backgroundColor = [UIColor clearColor];
-    [scrollView addSubview:webView];
-    [SVProgressHUD dismiss];
+    [self.webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:content] baseURL:baseURL];
+    self.webView.scalesPageToFit = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -158,8 +143,14 @@
     [SVProgressHUD showSuccessWithStatus:@"公告收藏成功！"];
 }
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            button.titleLabel.textColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
+        }
+    }];
 }
 
 @end

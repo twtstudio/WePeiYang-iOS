@@ -16,10 +16,9 @@
 
 @end
 
-@interface LAFound_QueryListViewController : UIViewController<UIGestureRecognizerDelegate>
+@interface LAFound_QueryListViewController : UITableViewController
 
 @property (nonatomic)UIRefreshControl *refreshControl;
 @property id<LAFound_QueryListViewControllerDelegate>delegate;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

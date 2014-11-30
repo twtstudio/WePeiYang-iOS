@@ -9,11 +9,12 @@
 #import "LoginViewController.h"
 #import "twtLoginViewController.h"
 #import "GPAViewController.h"
-#import "NoticeViewController.h"
+
 #import "indexTabBarController.h"
+#import "noticeTabBarController.h"
 #import "LibraryTabBarController.h"
 #import "JobTabBarController.h"
-#import "LAFound_QueryListViewController.h"
+#import "LAFTabBarController.h"
 #import "wpyEncryption.h"
 #import "twtSecretKeys.h"
 

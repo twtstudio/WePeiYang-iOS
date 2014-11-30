@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LAFound_AnnounceViewController : UIViewController<UITextViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
+@interface LAFound_AnnounceViewController : UIViewController<UITextViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *titleTextField;

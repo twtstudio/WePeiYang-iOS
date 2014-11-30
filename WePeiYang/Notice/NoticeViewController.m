@@ -7,8 +7,8 @@
 //
 
 #import "NoticeViewController.h"
+#import "data.h"
 #import "NoticeDetailViewController.h"
-#import "NoticeFavViewController.h"
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 
@@ -27,15 +27,11 @@
     NSMutableArray *titleInTable;
     
     UIAlertView *waitingAlert;
-    
-    UIRefreshControl *refreshControl;
 }
 
-@synthesize tableView;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -45,42 +41,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 64)];
-    UINavigationItem *navItem = [[UINavigationItem alloc]initWithTitle:@"校园公告"];
+    //self.navigationController.navigationBarHidden = NO;
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
-    [navItem setLeftBarButtonItem:backBtn];
-    
-    UIBarButtonItem *favBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(pushFav)];
-    [navItem setRightBarButtonItem:favBtn];
-    
-    [navBar pushNavigationItem:navItem animated:YES];
-    [self.view addSubview:navBar];
+    [self.navigationItem setLeftBarButtonItem:backBtn];
 
     noticeData = [[NSMutableArray alloc]initWithObjects: nil];
     
-    refreshControl = [[UIRefreshControl alloc]init];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
     [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
+    self.refreshControl = refreshControl;
+    
+    self.title = @"校园公告";
     
     [self refresh:self];
     
-    navBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    
 }
 
 - (void)backToHome
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.tabBarController.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)refreshView:(UIRefreshControl *)refreshControl
@@ -105,24 +93,19 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
-    [refreshControl endRefreshing];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)tableViewEndReloading
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [refreshControl endRefreshing];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) pushFav {
-    NoticeFavViewController *noticeFav = [[NoticeFavViewController alloc]initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:noticeFav animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -187,7 +170,7 @@
     }
     titleInTable = noticeData;
     [titleInTable addObject:@"点击加载更多..."];
-    [refreshControl endRefreshing];
+    [self.refreshControl endRefreshing];
     [self.tableView reloadData];
 }
 
@@ -196,7 +179,7 @@
     NSUInteger row = [indexPath row];
     if (row == [titleInTable count] - 1)
     {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [titleInTable removeObject:[titleInTable lastObject]];
         [self nextPage:self];
     }
@@ -205,10 +188,10 @@
         NSString *rowSelected = [[titleInTable objectAtIndex:row] objectForKey:@"subject"];
         NSString *idSelected = [[titleInTable objectAtIndex:row] objectForKey:@"index"];
 
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         NoticeDetailViewController *noticeDetail;
         noticeDetail = [[NoticeDetailViewController alloc]initWithNibName:@"NoticeDetailViewController" bundle:nil];
-        //noticeDetail.hidesBottomBarWhenPushed = YES;
+        noticeDetail.hidesBottomBarWhenPushed = YES;
         noticeDetail.noticeId = idSelected;
         noticeDetail.noticeTitle = rowSelected;
         [self.navigationController pushViewController:noticeDetail animated:YES];

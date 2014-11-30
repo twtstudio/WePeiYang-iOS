@@ -120,7 +120,7 @@ class DashboardViewController: UIViewController {
     }
     
     func pushNotice() {
-        let noticeVC = NoticeViewController(nibName: nil, bundle: nil)
+        let noticeVC = noticeTabBarController(nibName: nil, bundle: nil)
         self.navigationController!.pushViewController(noticeVC, animated: true)
     }
     
@@ -192,7 +192,7 @@ class DashboardViewController: UIViewController {
     }
     
     func pushLAF() {
-        let LAFVC = LAFound_QueryListViewController(nibName: nil, bundle: nil)
+        let LAFVC = LAFTabBarController(nibName: nil, bundle: nil)
         self.navigationController!.pushViewController(LAFVC, animated: true)
     }
     

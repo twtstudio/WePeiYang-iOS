@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NoticeFavViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface NoticeFavViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

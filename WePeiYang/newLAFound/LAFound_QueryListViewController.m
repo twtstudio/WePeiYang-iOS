@@ -33,18 +33,14 @@
     
     UIAlertView *_waitingAlert;
     
-    UIRefreshControl *refreshControl;
-    
     bool _dataExixt;
 }
 
-@synthesize tableView;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -53,13 +49,11 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 64)];
-    UINavigationItem *navItem = [[UINavigationItem alloc]init];
     
     NSArray *segmentedControlItems = @[@"失物", @"拾取"];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];
@@ -67,14 +61,12 @@
     [segmentedControl setWidth:80 forSegmentAtIndex:0];
     [segmentedControl setWidth:80 forSegmentAtIndex:1];
     segmentedControl.selectedSegmentIndex = 0;
-    navItem.titleView = segmentedControl;
+    self.navigationItem.titleView = segmentedControl;
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
-    [navItem setLeftBarButtonItem:backBtn];
+    [self.navigationItem setLeftBarButtonItem:backBtn];
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(pushAdd)];
-    [navItem setRightBarButtonItem:addBtn];
-    [navBar pushNavigationItem:navItem animated:YES];
-    [self.view addSubview:navBar];
+    [self.navigationItem setRightBarButtonItem:addBtn];
     
     _dataArrayLost = [[NSMutableArray alloc] initWithCapacity:20];
     _dataArrayFound = [[NSMutableArray alloc] initWithCapacity:20];
@@ -97,7 +89,6 @@
         _dataExixt = YES;
         //        设置下拉刷新
         self.refreshControl = [[UIRefreshControl alloc] init];
-        [self.tableView addSubview:self.refreshControl];
         self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
         [self.refreshControl addTarget:self action:@selector(refreshTableview) forControlEvents:UIControlEventValueChanged];
     }
@@ -298,7 +289,7 @@
 
 - (void)backToHome
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.tabBarController.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)pushAdd
