@@ -13,7 +13,7 @@
 #import "indexTabBarController.h"
 #import "LibraryTabBarController.h"
 #import "JobTabBarController.h"
-#import "LAFTabBarController.h"
+#import "LAFound_QueryListViewController.h"
 #import "wpyEncryption.h"
 #import "twtSecretKeys.h"
 

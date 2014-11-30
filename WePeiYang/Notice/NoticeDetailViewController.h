@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NoticeDetailViewController : UIViewController<UIGestureRecognizerDelegate>
+@interface NoticeDetailViewController : UIViewController<UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NSString *noticeTitle;
 @property (strong, nonatomic) NSString *noticeId;
 

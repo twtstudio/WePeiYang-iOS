@@ -25,5 +25,6 @@
 @property BOOL isCollectionDetail;
 
 - (IBAction)call:(id)sender;
+- (IBAction)popViewController:(id)sender;
 
 @end

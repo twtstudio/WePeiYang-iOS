@@ -146,7 +146,8 @@
 		E9D4365319B2285C0042A9F1 /* LAFound_QueryListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4364719B2285C0042A9F1 /* LAFound_QueryListTableViewCell.m */; };
 		E9D4365419B2285C0042A9F1 /* LAFound_QueryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D4364819B2285C0042A9F1 /* LAFound_QueryListTableViewCell.xib */; };
 		E9D4365519B2285C0042A9F1 /* LAFound_QueryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4364A19B2285C0042A9F1 /* LAFound_QueryListViewController.m */; };
-		E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4364C19B2285C0042A9F1 /* LAFTabBarController.m */; };
+		E9D932791A288364002A92D0 /* NoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D932781A288364002A92D0 /* NoticeViewController.xib */; };
+		E9D9327D1A288A01002A92D0 /* LAFound_QueryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D9327C1A288A01002A92D0 /* LAFound_QueryListViewController.xib */; };
 		E9F3FC0019CC3C8900BA0019 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9F3FBFE19CC3C8900BA0019 /* bootstrap.css */; };
 		E9F3FC0119CC3C8900BA0019 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9F3FBFF19CC3C8900BA0019 /* bootstrap.min.js */; };
 		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
@@ -391,8 +392,8 @@
 		E9D4364819B2285C0042A9F1 /* LAFound_QueryListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LAFound_QueryListTableViewCell.xib; sourceTree = "<group>"; };
 		E9D4364919B2285C0042A9F1 /* LAFound_QueryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_QueryListViewController.h; sourceTree = "<group>"; };
 		E9D4364A19B2285C0042A9F1 /* LAFound_QueryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFound_QueryListViewController.m; sourceTree = "<group>"; };
-		E9D4364B19B2285C0042A9F1 /* LAFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFTabBarController.h; sourceTree = "<group>"; };
-		E9D4364C19B2285C0042A9F1 /* LAFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFTabBarController.m; sourceTree = "<group>"; };
+		E9D932781A288364002A92D0 /* NoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeViewController.xib; path = Notice/NoticeViewController.xib; sourceTree = "<group>"; };
+		E9D9327C1A288A01002A92D0 /* LAFound_QueryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LAFound_QueryListViewController.xib; sourceTree = "<group>"; };
 		E9F3FBFE19CC3C8900BA0019 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9F3FBFF19CC3C8900BA0019 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -758,6 +759,7 @@
 			children = (
 				18F5861F1859B21800410E81 /* NoticeViewController.h */,
 				18F586201859B21800410E81 /* NoticeViewController.m */,
+				E9D932781A288364002A92D0 /* NoticeViewController.xib */,
 				18F586261859B6C100410E81 /* NoticeDetailViewController.h */,
 				18F586271859B6C100410E81 /* NoticeDetailViewController.m */,
 				18F586281859B6C100410E81 /* NoticeDetailViewController.xib */,
@@ -866,8 +868,7 @@
 				E9D4364819B2285C0042A9F1 /* LAFound_QueryListTableViewCell.xib */,
 				E9D4364919B2285C0042A9F1 /* LAFound_QueryListViewController.h */,
 				E9D4364A19B2285C0042A9F1 /* LAFound_QueryListViewController.m */,
-				E9D4364B19B2285C0042A9F1 /* LAFTabBarController.h */,
-				E9D4364C19B2285C0042A9F1 /* LAFTabBarController.m */,
+				E9D9327C1A288A01002A92D0 /* LAFound_QueryListViewController.xib */,
 			);
 			path = newLAFound;
 			sourceTree = "<group>";
@@ -1045,6 +1046,7 @@
 				25340FB8191CE78A00AFDE7D /* time_laf_icon@2x.png in Resources */,
 				E95CDC841966D58A0083C1B7 /* zhanshanlogo@2x.png in Resources */,
 				2597676E190B5046002CCAFA /* back@2x.png in Resources */,
+				E9D932791A288364002A92D0 /* NoticeViewController.xib in Resources */,
 				25976778190B5046002CCAFA /* news@2x.png in Resources */,
 				25976785190B5046002CCAFA /* l_fav@2x.png in Resources */,
 				25976787190B5046002CCAFA /* l_search@2x.png in Resources */,
@@ -1074,6 +1076,7 @@
 				2597677A190B5046002CCAFA /* studysearch@2x.png in Resources */,
 				25976784190B5046002CCAFA /* jobs_tab@2x.png in Resources */,
 				254DED41190CE1BE0034288E /* time_icon@2x.png in Resources */,
+				E9D9327D1A288A01002A92D0 /* LAFound_QueryListViewController.xib in Resources */,
 				182155D418BF8ED4008A1D1A /* g1@2x.jpg in Resources */,
 				18D63E2218571196004E75AA /* GPAViewController.xib in Resources */,
 				25976777190B5046002CCAFA /* library@2x.png in Resources */,
@@ -1192,7 +1195,6 @@
 				18F586211859B21800410E81 /* NoticeViewController.m in Sources */,
 				188842A41846F79F007B92CB /* data.m in Sources */,
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
-				E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */,
 				18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */,
 				18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */,
 				E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */,

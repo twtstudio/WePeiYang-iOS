@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface NoticeViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+@interface NoticeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

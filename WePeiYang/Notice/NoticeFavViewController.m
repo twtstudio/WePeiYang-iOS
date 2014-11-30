@@ -35,18 +35,21 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 64)];
+    UINavigationItem *navItem = [[UINavigationItem alloc]initWithTitle:@"收藏夹"];
+    
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
-    [self.navigationItem setLeftBarButtonItem:backBtn];
-
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    [navItem setLeftBarButtonItem:backBtn];
     
-    self.title = @"收藏夹";
+    [navBar pushNavigationItem:navItem animated:YES];
+    [self.view addSubview:navBar];
+
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -144,7 +147,7 @@
 
 - (void)backToHome
 {
-    [self.tabBarController.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "NoticeViewController.h"
-#import "data.h"
 #import "NoticeDetailViewController.h"
 #import "NoticeFavViewController.h"
 #import "AFNetworking.h"
@@ -28,11 +27,15 @@
     NSMutableArray *titleInTable;
     
     UIAlertView *waitingAlert;
+    
+    UIRefreshControl *refreshControl;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+@synthesize tableView;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -43,8 +46,9 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 64)];
     UINavigationItem *navItem = [[UINavigationItem alloc]initWithTitle:@"校园公告"];
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
@@ -58,16 +62,14 @@
 
     noticeData = [[NSMutableArray alloc]initWithObjects: nil];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+    refreshControl = [[UIRefreshControl alloc]init];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
     [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
-    
-    self.title = @"校园公告";
+    [self.tableView addSubview:refreshControl];
     
     [self refresh:self];
     
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
+    navBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
     
 }
 
@@ -103,13 +105,13 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
-    [self.refreshControl endRefreshing];
+    [refreshControl endRefreshing];
 }
 
 - (void)tableViewEndReloading
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [self.refreshControl endRefreshing];
+    [refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,7 +187,7 @@
     }
     titleInTable = noticeData;
     [titleInTable addObject:@"点击加载更多..."];
-    [self.refreshControl endRefreshing];
+    [refreshControl endRefreshing];
     [self.tableView reloadData];
 }
 
@@ -194,7 +196,7 @@
     NSUInteger row = [indexPath row];
     if (row == [titleInTable count] - 1)
     {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         [titleInTable removeObject:[titleInTable lastObject]];
         [self nextPage:self];
     }
@@ -203,10 +205,10 @@
         NSString *rowSelected = [[titleInTable objectAtIndex:row] objectForKey:@"subject"];
         NSString *idSelected = [[titleInTable objectAtIndex:row] objectForKey:@"index"];
 
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         NoticeDetailViewController *noticeDetail;
         noticeDetail = [[NoticeDetailViewController alloc]initWithNibName:@"NoticeDetailViewController" bundle:nil];
-        noticeDetail.hidesBottomBarWhenPushed = YES;
+        //noticeDetail.hidesBottomBarWhenPushed = YES;
         noticeDetail.noticeId = idSelected;
         noticeDetail.noticeTitle = rowSelected;
         [self.navigationController pushViewController:noticeDetail animated:YES];

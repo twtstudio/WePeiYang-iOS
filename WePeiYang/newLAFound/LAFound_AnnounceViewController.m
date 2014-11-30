@@ -34,9 +34,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.contentTexeView.delegate = self;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    
+    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 64)];
+    UINavigationItem *navItem = [[UINavigationItem alloc]initWithTitle:@"详情"];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sendForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(announceButionAction)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    navItem.rightBarButtonItem = rightButton;
+    
+    [navBar pushNavigationItem:navItem animated:YES];
+    [self.view addSubview:navBar];
     
     
 //    设置segmentedControl
@@ -245,7 +252,7 @@
 
 - (void)backToHome
 {
-    [self.tabBarController.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LAFound_QueryDetailViewController">
@@ -111,6 +112,18 @@
                         <action selector="call:" destination="-1" eventType="touchUpInside" id="7UI-SI-er5"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNK-vE-D21">
+                    <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="DQH-jQ-mfE"/>
+                        <constraint firstAttribute="width" constant="40" id="Jhi-gF-dNd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" image="backForNav.png"/>
+                    <connections>
+                        <action selector="popViewController:" destination="-1" eventType="touchUpInside" id="XY5-Ys-6tV"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -125,16 +138,19 @@
                 <constraint firstAttribute="bottom" secondItem="ZYY-To-D6p" secondAttribute="bottom" id="Ul3-BR-MUz"/>
                 <constraint firstItem="Ebi-Uf-1ml" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="bVc-g5-lUz"/>
                 <constraint firstAttribute="trailing" secondItem="68M-L7-XyX" secondAttribute="trailing" id="ia5-kd-92F"/>
+                <constraint firstItem="nNK-vE-D21" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kIh-x4-3n4"/>
                 <constraint firstItem="68M-L7-XyX" firstAttribute="leading" secondItem="pQu-Qk-vgk" secondAttribute="trailing" constant="64" id="l6r-NX-jje"/>
                 <constraint firstItem="ZYY-To-D6p" firstAttribute="top" secondItem="G2q-c1-sAf" secondAttribute="bottom" constant="27" id="l7a-r0-scw"/>
+                <constraint firstItem="nNK-vE-D21" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="qB4-YG-oor"/>
                 <constraint firstItem="3qU-Sk-HDx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="uXk-Uk-bsB"/>
                 <constraint firstItem="ZYY-To-D6p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="vh9-Hu-XHT"/>
+                <constraint firstItem="nNK-vE-D21" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yiD-gQ-jjO"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
+        <image name="backForNav.png" width="20" height="20"/>
         <image name="call_phone.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -192,7 +192,7 @@ class DashboardViewController: UIViewController {
     }
     
     func pushLAF() {
-        let LAFVC = LAFTabBarController(nibName: nil, bundle: nil)
+        let LAFVC = LAFound_QueryListViewController(nibName: nil, bundle: nil)
         self.navigationController!.pushViewController(LAFVC, animated: true)
     }
     
