@@ -9,7 +9,8 @@
 #import "AboutUSViewController.h"
 #import "VWWWaterView.h"
 #import "data.h"
-#import "SVProgressHUD.h"
+#import "WePeiYang-Swift.h"
+#import "twtSecretKeys.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height >= (double)568))
 
@@ -21,6 +22,7 @@
 
 {
     NSInteger timesThatTheLogoWasTouched;
+    UIAlertView *secureAlert;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -113,8 +115,36 @@
 - (void)eggEvent {
     timesThatTheLogoWasTouched++;
     if (timesThatTheLogoWasTouched == 10) {
-        [SVProgressHUD showSuccessWithStatus:@"青春无下限~\n天外更有天:)"];
+        
+        // Change this line.
+        [self openDevKit];
+        
         timesThatTheLogoWasTouched = 0;
+    }
+}
+
+- (void) openDevKit {
+    
+    secureAlert = [[UIAlertView alloc]initWithTitle:@"安全验证" message:@"输入密码" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    secureAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+    [secureAlert show];
+    
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == secureAlert) {
+        UITextField *secureField = [alertView textFieldAtIndex:0];
+        NSString *key = [twtSecretKeys getDevKey];
+        if (buttonIndex == 1) {
+            NSString *password = secureField.text;
+            if ([password isEqualToString:key]) {
+                DevViewController *devVC = [[DevViewController alloc]initWithNibName:@"DevViewController" bundle:nil];
+                [self presentViewController:devVC animated:YES completion:nil];
+            } else {
+                
+            }
+        }
+        
     }
 }
 

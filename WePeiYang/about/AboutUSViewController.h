@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutUSViewController : UIViewController<UIScrollViewDelegate>
+@interface AboutUSViewController : UIViewController<UIScrollViewDelegate, UIAlertViewDelegate>
 
 @end

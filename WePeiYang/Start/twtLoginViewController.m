@@ -158,6 +158,9 @@
         [userDefault setBool:YES forKey:@"bindLib"];
     }
     
+    NSString *studentId = [contentDic objectForKey:@"studentid"];
+    [userDefault setObject:studentId forKey:@"studentid"];
+    
     if (twtLoginType == twtLoginTypeGPA)
     {
         [data shareInstance].gpaLoginStatus = @"Changed";

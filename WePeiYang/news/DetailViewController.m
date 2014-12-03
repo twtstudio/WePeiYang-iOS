@@ -93,15 +93,15 @@
 {
     wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
     
-    [actionSheet addButtonWithTitle:@"分享" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+    [actionSheet addButtonWithTitle:@"分享" image:[UIImage imageNamed: @"shareInSheet.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self share];
     }];
     
-    [actionSheet addButtonWithTitle:@"收藏" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+    [actionSheet addButtonWithTitle:@"收藏" image:[UIImage imageNamed: @"addToFav.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self addToCollection];
     }];
     
-    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:[UIImage imageNamed: @"openInSafari.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self openInSafari];
     }];
     

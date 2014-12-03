@@ -68,12 +68,16 @@
     [navigationItem setRightBarButtonItem:sendBarBtn];
     [self.view addSubview:navigationBar];
     
-    deviceStatusField.text = [wpyDeviceStatus getDeviceModel];
-    deviceVersionField.text = [wpyDeviceStatus getDeviceOSVersion];
+    deviceStatus = [wpyDeviceStatus getDeviceModel];
+    deviceVersion = [wpyDeviceStatus getDeviceOSVersion];
+    
+    deviceStatusField.text = deviceStatus;
+    deviceVersionField.text = deviceVersion;
     
     feedbackView.delegate = self;
-    
-    feedbackView.layer.cornerRadius = 6;
+    feedbackView.layer.cornerRadius = 4;
+    feedbackView.layer.borderColor = [UIColor colorWithWhite:0.6 alpha:1.0].CGColor;
+    feedbackView.layer.borderWidth = 0.3;
 }
 
 - (void)backToHome:(id)sender
@@ -89,7 +93,7 @@
     NSString *url = @"http://push-mobile.twtapps.net/suggest/wepeiyang";
     NSDictionary *parameters = @{@"email":username,
                                  @"content":feedback,
-                                 @"info":[NSString stringWithFormat:@"%@_%@",deviceStatus,deviceVersion],
+                                 @"info":[NSString stringWithFormat:@"%@,%@",deviceStatus,deviceVersion],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -151,10 +155,8 @@
     //设置调整界面的动画效果
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView == thxAlert)
-    {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == thxAlert) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

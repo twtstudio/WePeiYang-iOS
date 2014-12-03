@@ -95,7 +95,6 @@ class DashboardViewController: UIViewController {
         aboutBtn.setImage(UIImage(named:"about.png"), forState: .Normal)
         aboutBtn.addTarget(self, action: "pushAbout", forControlEvents: .TouchUpInside)
         self.view.addSubview(aboutBtn)
-        
     }
     
     override func viewDidAppear(animated: Bool) {

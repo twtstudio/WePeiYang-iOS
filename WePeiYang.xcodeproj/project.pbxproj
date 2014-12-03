@@ -127,6 +127,8 @@
 		25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */; };
 		25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA518F96B840066E3E6 /* JobTabBarController.m */; };
 		77A14064B98A239697510E28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2387BDC5FF179A6965C30F /* libPods.a */; };
+		E934944B1A2F036700F92525 /* DevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93494491A2F036700F92525 /* DevViewController.swift */; };
+		E934944C1A2F036700F92525 /* DevViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E934944A1A2F036700F92525 /* DevViewController.xib */; };
 		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
 		E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */; };
 		E95CDC821966D4D90083C1B7 /* wpyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CDC811966D4D90083C1B7 /* wpyicon@2x.png */; };
@@ -134,6 +136,9 @@
 		E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9638CC919C326C300898350 /* AboutViewController.swift */; };
 		E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E0CA219E53A9000244751 /* StudySearchViewController.swift */; };
 		E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96E0CA319E53A9000244751 /* StudySearchViewController.xib */; };
+		E99F1F2B1A2CA48F0068938F /* addToFav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E99F1F281A2CA48F0068938F /* addToFav@2x.png */; };
+		E99F1F2C1A2CA48F0068938F /* openInSafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E99F1F291A2CA48F0068938F /* openInSafari@2x.png */; };
+		E99F1F2D1A2CA48F0068938F /* shareInSheet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E99F1F2A1A2CA48F0068938F /* shareInSheet@2x.png */; };
 		E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AD61EB19C43983009824BB /* gpaHeaderView.m */; };
 		E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B0EB64197571F80000B951 /* twtSecretKeys.m */; };
 		E9C3E56F19C5611600B95CBE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */; };
@@ -364,6 +369,8 @@
 		25E48CA518F96B840066E3E6 /* JobTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobTabBarController.m; path = job/JobTabBarController.m; sourceTree = "<group>"; };
 		4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E93494491A2F036700F92525 /* DevViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevViewController.swift; sourceTree = "<group>"; };
+		E934944A1A2F036700F92525 /* DevViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevViewController.xib; sourceTree = "<group>"; };
 		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
 		E95CDC7E1966D4210083C1B7 /* VWWWaterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VWWWaterView.h; path = WePeiYang/about/VWWWaterView.h; sourceTree = "<group>"; };
 		E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VWWWaterView.m; path = WePeiYang/about/VWWWaterView.m; sourceTree = "<group>"; };
@@ -373,6 +380,9 @@
 		E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WePeiYang-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E96E0CA219E53A9000244751 /* StudySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudySearchViewController.swift; path = StudySearch/StudySearchViewController.swift; sourceTree = "<group>"; };
 		E96E0CA319E53A9000244751 /* StudySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudySearchViewController.xib; path = StudySearch/StudySearchViewController.xib; sourceTree = "<group>"; };
+		E99F1F281A2CA48F0068938F /* addToFav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addToFav@2x.png"; sourceTree = "<group>"; };
+		E99F1F291A2CA48F0068938F /* openInSafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openInSafari@2x.png"; sourceTree = "<group>"; };
+		E99F1F2A1A2CA48F0068938F /* shareInSheet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareInSheet@2x.png"; sourceTree = "<group>"; };
 		E9AD61EA19C43983009824BB /* gpaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpaHeaderView.h; path = gpa/gpaHeaderView.h; sourceTree = "<group>"; };
 		E9AD61EB19C43983009824BB /* gpaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gpaHeaderView.m; path = gpa/gpaHeaderView.m; sourceTree = "<group>"; };
 		E9B0EB63197571F80000B951 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = twtSecretKeys.h; path = ../twtSecretKeys.h; sourceTree = "<group>"; };
@@ -509,8 +519,8 @@
 			isa = PBXGroup;
 			children = (
 				188842181846E6F4007B92CB /* WePeiYang */,
-				188842311846E6F4007B92CB /* WePeiYangTests */,
 				E9F9356519FBAA3100E53E03 /* WePeiYangToday */,
+				188842311846E6F4007B92CB /* WePeiYangTests */,
 				188842111846E6F4007B92CB /* Frameworks */,
 				188842101846E6F4007B92CB /* Products */,
 				6549E6166344DDF1317765D0 /* Pods */,
@@ -699,6 +709,7 @@
 				E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */,
 				E9638CC919C326C300898350 /* AboutViewController.swift */,
 				18C322AF1861AAA400CE035D /* Feedback */,
+				E93494421A2EFF6500F92525 /* DevKit */,
 				18C322BA1861B9EB00CE035D /* AboutUSViewController.h */,
 				18C322BB1861B9EB00CE035D /* AboutUSViewController.m */,
 			);
@@ -790,6 +801,7 @@
 				25976749190B5046002CCAFA /* backForNav@2x.png */,
 				2597674A190B5046002CCAFA /* Banner@2x.png */,
 				2597674C190B5046002CCAFA /* dashboard_bg@2x.png */,
+				E99F1F271A2CA48F0068938F /* wpyActionSheet */,
 				2597674D190B5046002CCAFA /* dashBoardIcons */,
 				2597675A190B5046002CCAFA /* moreBtn@2x.png */,
 				250551B6191BA309007C1F90 /* corp_icon@2x.png */,
@@ -851,6 +863,26 @@
 				4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E93494421A2EFF6500F92525 /* DevKit */ = {
+			isa = PBXGroup;
+			children = (
+				E93494491A2F036700F92525 /* DevViewController.swift */,
+				E934944A1A2F036700F92525 /* DevViewController.xib */,
+			);
+			name = DevKit;
+			path = WePeiYang/about/DevKit;
+			sourceTree = "<group>";
+		};
+		E99F1F271A2CA48F0068938F /* wpyActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				E99F1F281A2CA48F0068938F /* addToFav@2x.png */,
+				E99F1F291A2CA48F0068938F /* openInSafari@2x.png */,
+				E99F1F2A1A2CA48F0068938F /* shareInSheet@2x.png */,
+			);
+			path = wpyActionSheet;
 			sourceTree = "<group>";
 		};
 		E9D4363B19B2285C0042A9F1 /* newLAFound */ = {
@@ -1041,6 +1073,7 @@
 				25229485191DC9F500B04998 /* signinbtn@2x.png in Resources */,
 				182155BC18BF6E0A008A1D1A /* GPACalculatorViewController.xib in Resources */,
 				18114E7B18585A64007455E2 /* JobDetailViewController.xib in Resources */,
+				E934944C1A2F036700F92525 /* DevViewController.xib in Resources */,
 				25C0A45218FA2D24008D56F6 /* HringTableCell.xib in Resources */,
 				18114E6C18584376007455E2 /* chart_selected@2x.png in Resources */,
 				25976772190B5046002CCAFA /* dashboard_bg@2x.png in Resources */,
@@ -1084,9 +1117,12 @@
 				25976777190B5046002CCAFA /* library@2x.png in Resources */,
 				E9D4364E19B2285C0042A9F1 /* LAFound_AnnounceViewController.xib in Resources */,
 				25976780190B5046002CCAFA /* newSubjectMark@2x.png in Resources */,
+				E99F1F2B1A2CA48F0068938F /* addToFav@2x.png in Resources */,
 				182155D818BF8ED4008A1D1A /* g3@2x.jpg in Resources */,
 				25976782190B5046002CCAFA /* college@2x.png in Resources */,
+				E99F1F2C1A2CA48F0068938F /* openInSafari@2x.png in Resources */,
 				2522948B191DD23600B04998 /* signin@2x.jpg in Resources */,
+				E99F1F2D1A2CA48F0068938F /* shareInSheet@2x.png in Resources */,
 				18114E6D18584376007455E2 /* chart_unselected@2x.png in Resources */,
 				182155D318BF8ED4008A1D1A /* g1-568h@2x.jpg in Resources */,
 				2597677F190B5046002CCAFA /* moreBtn@2x.png in Resources */,
@@ -1199,6 +1235,7 @@
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
 				18607AE918DC21DD00C5C665 /* noticeTabBarController.m in Sources */,
 				E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */,
+				E934944B1A2F036700F92525 /* DevViewController.swift in Sources */,
 				18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */,
 				18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */,
 				E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */,

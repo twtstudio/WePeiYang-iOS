@@ -5,6 +5,7 @@
 //  Created by 秦昱博 on 14/10/25.
 //  Copyright (c) 2014年 Qin Yubo. All rights reserved.
 //
+//  用于显示下节课的课程表小插件
 
 import UIKit
 import NotificationCenter

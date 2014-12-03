@@ -161,7 +161,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype":@"news",
-                                 @"page":[NSString stringWithFormat:@"%d", currentPage],
+                                 @"page":[NSString stringWithFormat:@"%ld", (long)currentPage],
                                  @"ntype":type,
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
@@ -236,7 +236,7 @@
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype":@"news",
-                                 @"page":[NSString stringWithFormat:@"%d", currentPage],
+                                 @"page":[NSString stringWithFormat:@"%ld", (long)currentPage],
                                  @"ntype":type,
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};

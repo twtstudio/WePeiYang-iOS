@@ -270,20 +270,6 @@
     [actionSheet show];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == [actionSheet cancelButtonIndex]) {
-        nil;
-    } else if (buttonIndex == 0) {
-        [self oneKeyToEvaluate];
-    } else if (buttonIndex == 1) {
-        [self selfEvaluate];
-    } else if (buttonIndex == 2) {
-        [self shareGPA];
-    } else if (buttonIndex == 3) {
-        [self pushGPACalculator];
-    }
-}
-
 - (void)selfEvaluate {
     NSURL *url = [NSURL URLWithString:@"http://e.tju.edu.cn"];
     [[UIApplication sharedApplication] openURL:url];
@@ -312,6 +298,8 @@
     
     //学期数组
     terms = [[NSMutableArray alloc]initWithObjects: nil];
+    
+    //UNCOMPLETED MARK - gpaData COULD BE NIL.
     for (int i = 0; i <= [gpaData count]-1; i++)
     {
         if (i == 0)
@@ -525,7 +513,8 @@
     
 }
 
-//和之前查询的成绩进行比较，如果新出科目则标注小点，并保存最新查询的成绩
+//  和之前查询的成绩进行比较，如果新出科目则标注小点，并保存最新查询的成绩
+
 - (void) compareWithPreviousResult
 {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
