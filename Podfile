@@ -7,6 +7,7 @@ pod "AFNetworking", "~> 2.0"
 pod 'SVProgressHUD', :head
 pod 'pop', '~> 1.0'
 pod "AHKActionSheet"
+pod 'JBChartView'
 
 target 'WePeiYang' do
 

@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "SVProgressHUD.h"
+#import "WePeiYang-Swift.h"
 
 @interface JobDetailViewController ()
 
@@ -77,28 +78,21 @@
 
 - (void)openActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:jobTitle delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹",@"在Safari中打开", nil];
-    [actionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == [actionSheet cancelButtonIndex])
-    {
-        nil;
-    }
-    else if (buttonIndex == 0)
-    {
+    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
+    
+    [actionSheet addButtonWithTitle:@"分享" image:[UIImage imageNamed: @"shareInSheet.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self share];
-    }
-    else if (buttonIndex == 1)
-    {
+    }];
+    
+    [actionSheet addButtonWithTitle:@"收藏" image:[UIImage imageNamed: @"addToFav.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self addToFav];
-    }
-    else if (buttonIndex == 2)
-    {
+    }];
+    
+    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:[UIImage imageNamed: @"openInSafari.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self openInSafari];
-    }
+    }];
+    
+    [actionSheet show];
 }
 
 - (void)addToFav
@@ -131,8 +125,9 @@
     NSArray *activityItems;
     NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
     
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@ 地址：%@",jobTitle,jobCorp,jobDate,urlStr];
-    activityItems = @[shareString];
+    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",jobTitle,jobCorp,jobDate];
+    NSURL *shareURL = [NSURL URLWithString:urlStr];
+    activityItems = @[shareString, shareURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
@@ -143,16 +138,6 @@
     NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication]openURL:url];
-}
-
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
-        if ([subview isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)subview;
-            button.titleLabel.textColor = [UIColor colorWithRed:149/255.0f green:82/255.0f blue:235/255.0f alpha:1.0f];
-        }
-    }];
 }
 
 @end

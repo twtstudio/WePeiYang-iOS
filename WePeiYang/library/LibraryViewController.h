@@ -10,7 +10,7 @@
 #import "LibraryTableCell.h"
 #import "data.h"
 
-@interface LibraryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource, UIAlertViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, UIScrollViewDelegate>
+@interface LibraryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource, UIAlertViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, UIScrollViewDelegate, UIActionSheetDelegate>
 
 //@property (strong, nonatomic) IBOutlet UITextField *searchField;
 //@property (strong, nonatomic) IBOutlet UIButton *searchBtn;

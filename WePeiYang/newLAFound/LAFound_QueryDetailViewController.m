@@ -8,13 +8,13 @@
 
 #import "LAFound_QueryDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "WePeiYang-Swift.h"
 
 @interface LAFound_QueryDetailViewController ()
 
 @end
 
-@implementation LAFound_QueryDetailViewController
-{
+@implementation LAFound_QueryDetailViewController {
     NSDictionary *_dic;
     NSMutableArray *_tempCollectionArray;
     NSString *shareContent;
@@ -124,20 +124,18 @@
 #pragma mark actionSheet
 - (void)showActionSheet
 {
-    //    actionSheet
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"添加到收藏夹", nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
-    [actionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [self collectItemAction];
-    }
-    else if (buttonIndex == 0) {
+    
+    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
+    
+    [actionSheet addButtonWithTitle:@"分享" image:[UIImage imageNamed: @"shareInSheet.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self getShareInfoString];
-    }
+    }];
+    
+    [actionSheet addButtonWithTitle:@"收藏" image:[UIImage imageNamed: @"addToFav.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+        [self collectItemAction];
+    }];
+    
+    [actionSheet show];
 }
 
 
@@ -165,16 +163,6 @@
 {
     NSString *phoneNum = [_dic objectForKey:@"phone"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]]];
-}
-
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-{
-    [actionSheet.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
-        if ([subview isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)subview;
-            button.titleLabel.textColor = [UIColor colorWithRed:13/255.0f green:174/255.0f blue:124/255.0f alpha:1.0f];;
-        }
-    }];
 }
 
 

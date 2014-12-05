@@ -48,8 +48,8 @@
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo)
     {
-        NSString *pushMsg = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
-        NSString *pushId = [[userInfo objectForKey:@"aps"]objectForKey:@"id"];
+        //NSString *pushMsg = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
+        //NSString *pushId = [[userInfo objectForKey:@"aps"]objectForKey:@"id"];
         //[data shareInstance].pushMsg = pushMsg;
         //[data shareInstance].pushId = pushId;
         //[data shareInstance].newsTitle = [data shareInstance].pushMsg;

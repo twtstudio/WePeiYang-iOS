@@ -80,7 +80,6 @@
     }
     
     [self.webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:detailContent] baseURL:baseURL];
-    self.webView.scalesPageToFit = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,8 +116,9 @@
 - (void)share
 {
     NSArray *activityItems;
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ 地址：%@",self.detailTitle,[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
-    activityItems = @[shareString];
+    NSString *shareString = [[NSString alloc]initWithFormat:@"%@",self.detailTitle];
+    NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
+    activityItems = @[shareString, shareURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
 }

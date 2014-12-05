@@ -62,7 +62,9 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (startTimeSelected >= endTimeSelected) {
             self.searchResultArray.removeAllObjects()
             self.searchResultTableView.reloadData()
-            SVProgressHUD.showErrorWithStatus("您的时间选择有点错误哦~")
+            dispatch_async(dispatch_get_main_queue(), {
+                SVProgressHUD.showErrorWithStatus("您的时间选择有点错误哦~")
+            })
             
         } else {
             var timeConvertResult = self.convertTimeWithStartTime(startTimeSelected, endTimeSelected: endTimeSelected)
@@ -84,8 +86,10 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
             }, failure: {
                 (AFHTTPRequestOperation operation, NSError error) in
-                SVProgressHUD.dismiss()
-                SVProgressHUD.showErrorWithStatus("")
+                //SVProgressHUD.dismiss()
+                dispatch_async(dispatch_get_main_queue(), {
+                    SVProgressHUD.showErrorWithStatus("加载失败")
+                })
             })
             
         }
@@ -261,7 +265,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "reuseIdentifier")
         }
-        cell!.textLabel.text = searchResultArray[indexPath.row] as? String
+        cell!.textLabel!.text = searchResultArray[indexPath.row] as? String
         cell!.backgroundColor = UIColor.clearColor()
         return cell!
     }

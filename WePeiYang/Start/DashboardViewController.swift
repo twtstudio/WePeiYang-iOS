@@ -203,12 +203,13 @@ class DashboardViewController: UIViewController {
     // Loading user id & token
     
     func checkGuideStatus() {
-        let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentPath = path[0] as String
-        let plistPath = documentPath.stringByAppendingPathComponent("guide1.2.0Loaded")
-        let fileManager = NSFileManager.defaultManager()
-        if !fileManager.fileExistsAtPath(plistPath) {
-            fileManager.createFileAtPath(plistPath, contents: nil, attributes: nil)
+        
+        let userDefaults = NSUserDefaults()
+        let guideVersion = userDefaults.floatForKey("guideVersion")
+        
+        // 发布新版本Guide的时候一定要改下面的！
+        
+        if guideVersion < 1.3 {
             let guide = GuideViewController()
             self.presentViewController(guide, animated: true, completion: nil)
         }

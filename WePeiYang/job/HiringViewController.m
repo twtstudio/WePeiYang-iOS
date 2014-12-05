@@ -80,7 +80,7 @@
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"fair",
-                                 @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -112,7 +112,7 @@
     currentPage ++;
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     //NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
-    NSDictionary *parameters = @{@"ctype":@"fair", @"page":[NSString stringWithFormat:@"%d",currentPage],
+    NSDictionary *parameters = @{@"ctype":@"fair", @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

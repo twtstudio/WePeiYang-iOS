@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "WePeiYang-Swift.h"
 
+
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
 @interface GPAViewController ()
@@ -52,6 +53,8 @@
     
     //Instances
     NSInteger gpaHeaderViewHeight;
+    
+    NSInteger lastSelected; // 图表里上一个选择的节点的index
 }
 
 @synthesize tableView;
@@ -59,7 +62,6 @@
 @synthesize backBtn;
 @synthesize loginBtn;
 @synthesize noLoginLabel;
-@synthesize chart;
 @synthesize noLoginImg;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -90,6 +92,7 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
     gpaData = [[NSMutableArray alloc]initWithObjects: nil];
+    dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
     
     newAddedSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
     
@@ -97,7 +100,7 @@
     
     gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, gpaHeaderViewHeight)];
     
-    [self reloadArraysInTable];
+    [dataInTable removeAllObjects];
     [self checkLoginStatus];
 }
 
@@ -113,11 +116,6 @@
     }
 }
 
-- (void)reloadArraysInTable
-{
-    dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
-}
-
 - (void)checkLoginStatus {
     [gpaData removeAllObjects];
     [dataInTable removeAllObjects];
@@ -128,7 +126,6 @@
     if (![fileManager fileExistsAtPath:plistPath])
     {
         [moreBtn setHidden:YES];
-        [chart setHidden:YES];
         [tableView setHidden:YES];
         [noLoginLabel setHidden:NO];
         [loginBtn setHidden:NO];
@@ -154,7 +151,6 @@
             
             loginBtn.userInteractionEnabled = YES;
             [moreBtn setHidden:NO];
-            [chart setHidden:NO];
             [tableView setHidden:NO];
             [loginBtn setHidden:YES];
             [noLoginLabel setHidden:YES];
@@ -185,6 +181,8 @@
     }
 }
 
+// For Log In
+
 - (void)login
 {
     twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
@@ -200,7 +198,6 @@
         case 401:
             [SVProgressHUD showErrorWithStatus:@"验证出错\n请重新登录"];
             [moreBtn setHidden:YES];
-            [chart setHidden:YES];
             [tableView setHidden:YES];
             [noLoginLabel setHidden:NO];
             [loginBtn setHidden:NO];
@@ -214,7 +211,6 @@
             
         case 403:
             [moreBtn setHidden:YES];
-            [chart setHidden:YES];
             [tableView setHidden:YES];
             [noLoginLabel setHidden:NO];
             [loginBtn setHidden:NO];
@@ -247,6 +243,8 @@
     [gpaLogin setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:gpaLogin animated:YES completion:nil];
 }
+
+// For Action Sheet
     
 - (IBAction)openActionSheet:(id)sender {
     wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多操作"];
@@ -275,6 +273,8 @@
     [[UIApplication sharedApplication] openURL:url];
 }
 
+// For Data Processing
+
 - (void)processGpaData:(NSDictionary *)gpaDic
 {
     NSArray *termsDataArr = [gpaDic objectForKey:@"terms"];
@@ -297,9 +297,11 @@
     gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f",score];
     
     //学期数组
+    
     terms = [[NSMutableArray alloc]initWithObjects: nil];
     
     //UNCOMPLETED MARK - gpaData COULD BE NIL.
+    
     for (int i = 0; i <= [gpaData count]-1; i++)
     {
         if (i == 0)
@@ -344,16 +346,28 @@
     
     [self compareWithPreviousResult];
     
-    chart = [[YTrendChartView alloc]init];
-    [chart setFrame:CGRectMake(0, gpaHeaderViewHeight+20, self.view.frame.size.width, 130)];
-    [chart setBackgroundColor:[UIColor whiteColor]];
-    chart.delegate = self;
+    //初始化图表
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+150)];
+    //chart = [[YTrendChartView alloc]init];
+    //[chart setFrame:CGRectMake(0, gpaHeaderViewHeight+20, self.view.frame.size.width, 130)];
+    //[chart setBackgroundColor:[UIColor whiteColor]];
+    //chart.delegate = self;
+    
+    JBLineChartView *lineChart = [[JBLineChartView alloc]initWithFrame:CGRectMake(20, gpaHeaderViewHeight+20, [UIScreen mainScreen].bounds.size.width - 40, 130)];
+    lineChart.dataSource = self;
+    lineChart.delegate = self;
+    lineChart.state = JBChartViewStateCollapsed; // 先收起ChartView
+    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+164)];
     [headerView addSubview:gpaHeader];
-    [headerView addSubview:chart];
+    [headerView addSubview:lineChart];
     
     tableView.tableHeaderView = headerView;
+    [self selectPointForIndex:[terms count]-1];
+    lastSelected = [terms count] - 1;
+    
+    [lineChart reloadData];
+    [lineChart setState:JBChartViewStateExpanded animated:YES]; // 之后动画展开
 }
 
 - (void)oneKeyToEvaluate
@@ -389,6 +403,8 @@
     }];
     
 }
+
+// UITableView Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -455,10 +471,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) selectTermForString:(NSString *)string
-{
-    [self reloadArraysInTable];
-    NSString *termSelectedStr = string;
+// For Term Selection
+
+- (void) selectPointForIndex:(NSInteger)index {
+    [dataInTable removeAllObjects];
+    
+    NSString *termSelectedStr = [terms objectAtIndex:index];
+    
     for (int i = 0; i < [gpaData count]; i++)
     {
         if ([[[gpaData objectAtIndex:i] objectForKey:@"term"] isEqualToString:termSelectedStr])
@@ -598,10 +617,6 @@
     float offsetY = [scrollView contentOffset].y;
     //NSLog([NSString stringWithFormat:@"%f",offsetY]);
     gpaHeader.alpha = 1-offsetY/150;
-    if (offsetY > 100)
-    {
-        chart.alpha = 1-(offsetY-150)/130;
-    }
     backBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
     moreBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
 }
@@ -609,6 +624,8 @@
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
+// GPA数据缓存
 
 - (void) saveCacheWithData:(id)responseObject {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
@@ -629,6 +646,97 @@
     } else {
         return nil;
     }
+}
+
+// JBLineChartViewDelegate
+
+- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
+{
+    return 1; // number of lines in chart
+}
+
+- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
+{
+    return terms.count; // number of values for a line
+}
+
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
+    return [everyArr[horizontalIndex] floatValue];
+}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [UIColor colorWithRed:255/255.0f green:94/255.0f blue:115/255.0f alpha:1.0f]; // color of line in chart
+}
+
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return 4.0; // width of line in chart
+}
+
+/*
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView dotRadiusForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
+    return 5.0; // width of line dot in chart
+}*/
+
+- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return JBLineChartViewLineStyleSolid; // style of line in chart
+}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView verticalSelectionColorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [UIColor colorWithRed:255/255.0f green:94/255.0f blue:115/255.0f alpha:1.0f]; // color of selection view
+}
+
+- (CGFloat)verticalSelectionWidthForLineChartView:(JBLineChartView *)lineChartView
+{
+    return 24.0; // width of selection view
+}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [UIColor colorWithRed:255/255.0f green:201/255.0f blue:201/255.0f alpha:1.0f]; // color of selected line
+}
+
+- (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex {
+    return YES;
+}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
+    if (horizontalIndex == lastSelected) {
+        return [UIColor colorWithRed:0/255.0f green:144/255.0f blue:255/255.0f alpha:1.0f];
+    } else {
+        return [UIColor colorWithRed:255/255.0f green:94/255.0f blue:115/255.0f alpha:1.0f];
+    }
+}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
+    return [UIColor colorWithRed:255/255.0f green:201/255.0f blue:201/255.0f alpha:1.0f];
+}
+
+- (BOOL)lineChartView:(JBLineChartView *)lineChartView smoothLineAtLineIndex:(NSUInteger)lineIndex {
+    return NO; // 是否平滑图表
+}
+
+- (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
+{
+    // Update view
+    self.tableView.scrollEnabled = NO;
+    
+    if (horizontalIndex != lastSelected) {
+        
+       [self selectPointForIndex:horizontalIndex];
+        
+        lastSelected = horizontalIndex;
+    }
+    
+}
+
+- (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView
+{
+    // Update view
+    self.tableView.scrollEnabled = YES;
 }
 
 @end

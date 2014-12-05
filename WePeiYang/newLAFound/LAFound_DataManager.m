@@ -15,7 +15,7 @@ static NSString *announceItemInfoUrlString = @"http://push-mobile.twtapps.net/lo
 
 + (void)announceItemInfoWithType:(ItemInfoType)type title:(NSString *)title place:(NSString *)place time:(NSString *)time phone:(NSString *)phone name:(NSString *)name content:(NSString *)content success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    NSDictionary *parameters = @{@"type": [NSString stringWithFormat:@"%d", type],
+    NSDictionary *parameters = @{@"type": [NSString stringWithFormat:@"%lu", type],
                                  @"title": title,
                                  @"place": place,
                                  @"time": time,
@@ -39,8 +39,8 @@ static NSString *announceItemInfoUrlString = @"http://push-mobile.twtapps.net/lo
 
 + (void)getItemInfoWithItemInfoType:(ItemInfoType)type andPage:(NSInteger)page success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    NSDictionary *parameters = @{@"type": [NSString stringWithFormat:@"%d", type],
-                                 @"page": [NSString stringWithFormat:@"%d", page]};
+    NSDictionary *parameters = @{@"type": [NSString stringWithFormat:@"%lu", type],
+                                 @"page": [NSString stringWithFormat:@"%ld", (long)page]};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];

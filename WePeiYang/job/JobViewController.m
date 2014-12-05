@@ -104,7 +104,7 @@
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"job",
-                                 @"page":[NSString stringWithFormat:@"%d",currentPage],
+                                 @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -68,7 +68,7 @@ class DevViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .Default, reuseIdentifier: "reuseIdentifier") as UITableViewCell!
         var row = indexPath.row
-        cell.textLabel.text = listArr[row]
+        cell.textLabel!.text = listArr[row]
         return cell
     }
     

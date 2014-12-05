@@ -28,7 +28,7 @@
         [imgScanner scanUpToString:@"/>" intoString:&imgStyle];
         
         NSString *originalImgStr = [NSString stringWithFormat:@"%@%@%@%@",@"<img alt=\"\" src=\"",imgPath,imgStyle,@"/>"];
-        NSString *responsiveImgStr = [NSString stringWithFormat:@"<img class=\"img-responsive\" alt=\"Responsive image\" src=\"%@\" width=96%%/>",imgPath];
+        NSString *responsiveImgStr = [NSString stringWithFormat:@"<img class=\"img-responsive\" alt=\"Responsive image\" src=\"%@\" width=100%%/>",imgPath];
         
         contentStr = [contentStr stringByReplacingOccurrencesOfString:originalImgStr withString:responsiveImgStr];
     }
@@ -46,7 +46,7 @@
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\"> \n"
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> \n"
                       "%@ \n"
                       "</div></div></div> \n"
                       "<script src=\"%@\"></script> \n"

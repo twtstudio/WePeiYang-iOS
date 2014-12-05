@@ -96,12 +96,12 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         var row = indexPath.row
         var section = indexPath.section
         if section == 0 {
-            cell.textLabel.text = aboutArr[row] as NSString
+            cell.textLabel!.text = aboutArr[row] as NSString
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         } else if section == 1 {
             if touchIdSupport == true {
                 if row == 1 {
-                    cell.textLabel.text = webArr[row] as NSString
+                    cell.textLabel!.text = webArr[row] as NSString
                     var defaults = NSUserDefaults.standardUserDefaults()
                     if defaults.objectForKey("touchIdEnabled") == nil {
                         defaults.setObject(false, forKey: "touchIdEnabled")
@@ -114,13 +114,13 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     
                 } else {
-                    cell.textLabel.text = webArr[row] as NSString
+                    cell.textLabel!.text = webArr[row] as NSString
                 }
             } else {
-                cell.textLabel.text = webArr[row] as NSString
+                cell.textLabel!.text = webArr[row] as NSString
             }
         } else if section == 2 {
-            cell.textLabel.text = feedbackArr[row] as NSString
+            cell.textLabel!.text = feedbackArr[row] as NSString
             if row == 0 {
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
@@ -128,14 +128,14 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.accessoryType = UITableViewCellAccessoryType.None
             if self.logFileExists() {
                 if row == 0 {
-                    cell.textLabel.text = self.tjuBinded() ? "解除办公网账号绑定" : "绑定办公网账号"
+                    cell.textLabel!.text = self.tjuBinded() ? "解除办公网账号绑定" : "绑定办公网账号"
                 } else if row == 1 {
-                    cell.textLabel.text = self.libBinded() ? "解除图书馆账号绑定" : "绑定图书馆账号"
+                    cell.textLabel!.text = self.libBinded() ? "解除图书馆账号绑定" : "绑定图书馆账号"
                 } else if row == 2 {
-                    cell.textLabel.text = "注销天外天账号"
+                    cell.textLabel!.text = "注销天外天账号"
                 }
             } else {
-                cell.textLabel.text = "登录天外天账号"
+                cell.textLabel!.text = "登录天外天账号"
             }
         }
         return cell

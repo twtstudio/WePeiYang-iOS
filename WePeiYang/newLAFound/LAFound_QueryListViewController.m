@@ -169,7 +169,7 @@
             _pageFound++;
             _currentPage = _pageFound;
         }
-        NSLog(@"%d", _currentPage);
+        NSLog(@"%ld", (long)_currentPage);
         [self loadData];
         return;
     }

@@ -90,14 +90,6 @@
     [eggBtn addTarget:self action:@selector(eggEvent) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:eggBtn];
     
-    /*
-    UIBarButtonItem *back = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    NSArray *arr = @[back,flexItem];
-    [self setToolbarItems:arr animated:YES];
-    [self.navigationController setToolbarHidden:NO animated:YES];
-     */
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -141,7 +133,8 @@
                 DevViewController *devVC = [[DevViewController alloc]initWithNibName:@"DevViewController" bundle:nil];
                 [self presentViewController:devVC animated:YES completion:nil];
             } else {
-                
+                UIAlertView *failAlert = [[UIAlertView alloc]initWithTitle:@"Failed" message:@"Wrong Password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [failAlert show];
             }
         }
         

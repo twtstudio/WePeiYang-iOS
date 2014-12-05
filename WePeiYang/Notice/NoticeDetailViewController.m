@@ -71,7 +71,6 @@
     NSURL *baseURL = [[NSURL alloc]initWithString:@"http://mynews.twtstudio.com/newspic/picture/"];
     
     [self.webView loadHTMLString:[wpyStringProcessor convertToBootstrapHTMLWithContent:content] baseURL:baseURL];
-    self.webView.scalesPageToFit = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,15 +83,15 @@
 {
     wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
     
-    [actionSheet addButtonWithTitle:@"分享" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+    [actionSheet addButtonWithTitle:@"分享" image:[UIImage imageNamed: @"shareInSheet.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self share];
     }];
     
-    [actionSheet addButtonWithTitle:@"收藏" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+    [actionSheet addButtonWithTitle:@"收藏" image:[UIImage imageNamed: @"addToFav.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self addToFav];
     }];
     
-    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
+    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:[UIImage imageNamed: @"openInSafari.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self openInSafari];
     }];
     
@@ -105,8 +104,9 @@
     NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",noticeId];
     NSString *title = noticeTitle;
     
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ 地址：%@",title,urlStr];
-    activityItems = @[shareString];
+    NSString *shareString = [[NSString alloc]initWithFormat:@"%@",title];
+    NSURL *shareURL = [NSURL URLWithString:urlStr];
+    activityItems = @[shareString, shareURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
     

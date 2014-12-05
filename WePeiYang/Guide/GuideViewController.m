@@ -36,6 +36,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
+    [userDefaults setFloat:1.3 forKey:@"guideVersion"];
+    
+    // 更改背景颜色
+    NSString *bgPath = [[NSBundle mainBundle]pathForResource:@"guideBackground@2x" ofType:@"jpg"];
+    UIImage *bgImg = [UIImage imageWithContentsOfFile:bgPath];
+    UIImageView *bgImgView = [[UIImageView alloc]initWithImage:bgImg];
+    bgImgView.frame = self.view.frame;
+    [self.view addSubview:bgImgView];
 
     NSInteger numberOfPages = 3;
     
@@ -45,19 +55,19 @@
     [guideView setShowsHorizontalScrollIndicator:NO];
     [guideView setDelegate:self];
     
-    NSString *img1Name = DEVICEGREATERTHANIPHONE5 ? @"g1-568h@2x" : @"g1@2x";
+    NSString *img1Name = @"g1";
     NSString *imagePath = [[NSBundle mainBundle]pathForResource:img1Name ofType:@"jpg"];
     UIImageView *gImg1 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath]];
     [gImg1 setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg1];
     
-    NSString *img2Name = DEVICEGREATERTHANIPHONE5 ? @"g2-568h@2x" : @"g2@2x";
+    NSString *img2Name = @"g2";
     NSString *imagePath2 = [[NSBundle mainBundle]pathForResource:img2Name ofType:@"jpg"];
     UIImageView *gImg2 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath2]];
     [gImg2 setFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [guideView addSubview:gImg2];
     
-    NSString *img3Name = DEVICEGREATERTHANIPHONE5 ? @"g3-568h@2x" : @"g3@2x";
+    NSString *img3Name = @"g3";
     NSString *imagePath3 = [[NSBundle mainBundle]pathForResource:img3Name ofType:@"jpg"];
     UIImageView *gImg3 = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:imagePath3]];
     [gImg3 setFrame:CGRectMake(2 * self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -76,7 +86,7 @@
         ebHeight = 75;
     }
     
-    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake( self.view.frame.size.width/2, (self.view.frame.size.height - pcHeight), 0, 0)];
+    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, (self.view.frame.size.height - pcHeight), 0, 0)];
     [pageControl setNumberOfPages:numberOfPages];
     [pageControl setUserInteractionEnabled:NO];
     
@@ -116,8 +126,6 @@
         [enterBtn addTarget:self action:@selector(enterWPY) forControlEvents:UIControlEventTouchUpInside];
         [guideView addSubview:enterBtn];
     }
-
-    self.view.backgroundColor = [UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1.0f];
     
 }
 
@@ -147,7 +155,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleDefault;
+    return UIStatusBarStyleLightContent;
 }
 
 @end
