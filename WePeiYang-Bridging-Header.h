@@ -17,6 +17,7 @@
 #import "LAFTabBarController.h"
 #import "wpyEncryption.h"
 #import "twtSecretKeys.h"
+#import "NSTimer+Blocks.h"
 
 #import "wpyDeviceStatus.h"
 #import "data.h"

@@ -226,6 +226,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             return nil
         case 2:
             return "非常希望您能够将您的宝贵意见告诉我们。\n您的建议是微北洋持续改进的动力。"
+        case 3:
+            return "\n\n微北洋 \(data.shareInstance().appVersion)"
         default:
             return nil
         }

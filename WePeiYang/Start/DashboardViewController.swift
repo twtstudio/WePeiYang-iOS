@@ -10,6 +10,15 @@ import UIKit
 import LocalAuthentication
 
 class DashboardViewController: UIViewController {
+    
+    var studySearchBtn: UIButton!
+    var newsBtn: UIButton!
+    var noticeBtn: UIButton!
+    var gpaBtn: UIButton!
+    var libBtn: UIButton!
+    var jobsBtn: UIButton!
+    var lafBtn: UIButton!
+    var aboutBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,57 +53,68 @@ class DashboardViewController: UIViewController {
         
         //Line 1
         
-        let studySearchBtn = UIButton.buttonWithType(.Custom) as UIButton
+        studySearchBtn = UIButton.buttonWithType(.Custom) as UIButton
         studySearchBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         studySearchBtn.setImage(UIImage(named: "studysearch.png"), forState: .Normal)
         studySearchBtn.addTarget(self, action: "pushStudySearch", forControlEvents: .TouchUpInside)
+        studySearchBtn.hidden = true
         self.view.addSubview(studySearchBtn)
         
-        let newsBtn = UIButton.buttonWithType(.Custom) as UIButton
+        newsBtn = UIButton.buttonWithType(.Custom) as UIButton
         newsBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         newsBtn.setImage(UIImage(named: "news.png"), forState: .Normal)
         newsBtn.addTarget(self, action: "pushNews", forControlEvents: .TouchUpInside)
+        newsBtn.hidden = true
         self.view.addSubview(newsBtn)
         
-        let noticeBtn = UIButton.buttonWithType(.Custom) as UIButton
+        noticeBtn = UIButton.buttonWithType(.Custom) as UIButton
         noticeBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+2*iconWidth+2*iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         noticeBtn.setImage(UIImage(named: "notice.png"), forState: .Normal)
         noticeBtn.addTarget(self, action: "pushNotice", forControlEvents: .TouchUpInside)
+        noticeBtn.hidden = true
         self.view.addSubview(noticeBtn)
         
         //Line 2
         
-        let gpaBtn = UIButton.buttonWithType(.Custom) as UIButton
+        gpaBtn = UIButton.buttonWithType(.Custom) as UIButton
         gpaBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         gpaBtn.setImage(UIImage(named: "gpa.png"), forState: .Normal)
         gpaBtn.addTarget(self, action: "authGPA", forControlEvents: .TouchUpInside)
+        gpaBtn.hidden = true
         self.view.addSubview(gpaBtn)
         
-        let libBtn = UIButton.buttonWithType(.Custom) as UIButton
+        libBtn = UIButton.buttonWithType(.Custom) as UIButton
         libBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         libBtn.setImage(UIImage(named: "library.png"), forState: .Normal)
         libBtn.addTarget(self, action: "pushLibrary", forControlEvents: .TouchUpInside)
+        libBtn.hidden = true
         self.view.addSubview(libBtn)
         
-        let jobsBtn = UIButton.buttonWithType(.Custom) as UIButton
+        jobsBtn = UIButton.buttonWithType(.Custom) as UIButton
         jobsBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+2*iconWidth+2*iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         jobsBtn.setImage(UIImage(named: "jobs.png"), forState: .Normal)
         jobsBtn.addTarget(self, action: "pushJobs", forControlEvents: .TouchUpInside)
+        jobsBtn.hidden = true
         self.view.addSubview(jobsBtn)
         
         //Line 3
         
-        let lafBtn = UIButton.buttonWithType(.Custom) as UIButton
+        lafBtn = UIButton.buttonWithType(.Custom) as UIButton
         lafBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+2*iconHeight+2*iconLineDistance, iconWidth, iconHeight)
         lafBtn.setImage(UIImage(named:"laf.png"), forState: .Normal)
         lafBtn.addTarget(self, action: "pushLAF", forControlEvents: .TouchUpInside)
+        lafBtn.hidden = true
         self.view.addSubview(lafBtn)
         
-        let aboutBtn = UIButton.buttonWithType(.Custom) as UIButton
+        aboutBtn = UIButton.buttonWithType(.Custom) as UIButton
         aboutBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+2*iconHeight+2*iconLineDistance, iconWidth, iconHeight)
         aboutBtn.setImage(UIImage(named:"about.png"), forState: .Normal)
         aboutBtn.addTarget(self, action: "pushAbout", forControlEvents: .TouchUpInside)
+        aboutBtn.hidden = true
         self.view.addSubview(aboutBtn)
+
+        self.activeLaunchAnimations()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -104,6 +124,103 @@ class DashboardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // POP Animation
+    
+    func activeLaunchAnimations() {
+        
+        // POP Animation
+        
+        let animSpringBounciness = 15.0 as CGFloat
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.3, block: {
+            self.studySearchBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.studySearchBtn.layer.pop_addAnimation(anim, forKey: "studySearchAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.5, block: {
+            self.newsBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.newsBtn.layer.pop_addAnimation(anim, forKey: "newsAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.7, block: {
+            self.noticeBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.noticeBtn.layer.pop_addAnimation(anim, forKey: "noticeAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.4, block: {
+            self.gpaBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.gpaBtn.layer.pop_addAnimation(anim, forKey: "gpaAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.6, block: {
+            self.libBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.libBtn.layer.pop_addAnimation(anim, forKey: "libAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.8, block: {
+            self.jobsBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.jobsBtn.layer.pop_addAnimation(anim, forKey: "jobsAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.5, block: {
+            self.lafBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.lafBtn.layer.pop_addAnimation(anim, forKey: "lafAnim")
+        }, repeats: false)
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.7, block: {
+            self.aboutBtn.hidden = false
+            
+            var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
+            anim.fromValue = NSValue(CGSize: CGSizeMake(0.0, 0.0))
+            anim.toValue = NSValue(CGSize: CGSizeMake(1.0, 1.0))
+            anim.springBounciness = animSpringBounciness
+            
+            self.aboutBtn.layer.pop_addAnimation(anim, forKey: "aboutAnim")
+        }, repeats: false)
     }
     
     // WPY Push functions

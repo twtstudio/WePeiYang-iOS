@@ -134,6 +134,7 @@
 		E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9638CC919C326C300898350 /* AboutViewController.swift */; };
 		E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E0CA219E53A9000244751 /* StudySearchViewController.swift */; };
 		E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96E0CA319E53A9000244751 /* StudySearchViewController.xib */; };
+		E9A2062A1A33EA090080144C /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A206291A33EA090080144C /* NSTimer+Blocks.m */; };
 		E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A6C1541A31BCC200544943 /* button-background@2x.png */; };
 		E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AD61EB19C43983009824BB /* gpaHeaderView.m */; };
 		E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B0EB64197571F80000B951 /* twtSecretKeys.m */; };
@@ -373,6 +374,8 @@
 		E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WePeiYang-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E96E0CA219E53A9000244751 /* StudySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudySearchViewController.swift; path = StudySearch/StudySearchViewController.swift; sourceTree = "<group>"; };
 		E96E0CA319E53A9000244751 /* StudySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudySearchViewController.xib; path = StudySearch/StudySearchViewController.xib; sourceTree = "<group>"; };
+		E9A206281A33EA090080144C /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		E9A206291A33EA090080144C /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		E9A6C1541A31BCC200544943 /* button-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background@2x.png"; sourceTree = "<group>"; };
 		E9AD61EA19C43983009824BB /* gpaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpaHeaderView.h; path = gpa/gpaHeaderView.h; sourceTree = "<group>"; };
 		E9AD61EB19C43983009824BB /* gpaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gpaHeaderView.m; path = gpa/gpaHeaderView.m; sourceTree = "<group>"; };
@@ -707,6 +710,7 @@
 		18CFC7D918900C7200A51F01 /* publicClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E9A206271A33EA090080144C /* NSTimer-Blocks */,
 				18BB2ECA18E1ACDF0084AD16 /* wpyClasses */,
 				18CFC7DA18900C7200A51F01 /* customButtons */,
 			);
@@ -861,6 +865,15 @@
 				E95DA5861A31BA570039EBC0 /* shareInSheet@2x.png */,
 			);
 			path = wpyActionSheet;
+			sourceTree = "<group>";
+		};
+		E9A206271A33EA090080144C /* NSTimer-Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				E9A206281A33EA090080144C /* NSTimer+Blocks.h */,
+				E9A206291A33EA090080144C /* NSTimer+Blocks.m */,
+			);
+			path = "NSTimer-Blocks";
 			sourceTree = "<group>";
 		};
 		E9D4363B19B2285C0042A9F1 /* newLAFound */ = {
@@ -1216,6 +1229,7 @@
 				188842951846F73B007B92CB /* LibraryTableCell.m in Sources */,
 				18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */,
 				1888427E1846F723007B92CB /* IndexViewController.m in Sources */,
+				E9A2062A1A33EA090080144C /* NSTimer+Blocks.m in Sources */,
 				252655D918ED4EB500C7F8D3 /* wpyDeviceStatus.m in Sources */,
 				18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */,
 				E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */,

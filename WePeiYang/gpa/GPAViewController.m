@@ -133,6 +133,7 @@
         [noLoginLabel setText:@"您尚未登录天外天账号"];
         [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
         [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+        backBtn.tintColor = gpaTintColor;
     }
     else
     {
@@ -206,7 +207,7 @@
             [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
             [loginBtn removeTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
             [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-
+            
             break;
             
         case 403:
@@ -253,10 +254,6 @@
         [self oneKeyToEvaluate];
     }];
     
-    [actionSheet addButtonWithTitle:@"手动评价" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
-        [self selfEvaluate];
-    }];
-    
     [actionSheet addButtonWithTitle:@"分享 GPA" image:nil type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
         [self shareGPA];
     }];
@@ -266,11 +263,6 @@
     }];
     
     [actionSheet show];
-}
-
-- (void)selfEvaluate {
-    NSURL *url = [NSURL URLWithString:@"http://e.tju.edu.cn"];
-    [[UIApplication sharedApplication] openURL:url];
 }
 
 // For Data Processing
@@ -299,8 +291,6 @@
     //学期数组
     
     terms = [[NSMutableArray alloc]initWithObjects: nil];
-    
-    //UNCOMPLETED MARK - gpaData COULD BE NIL.
     
     for (int i = 0; i <= [gpaData count]-1; i++)
     {
@@ -637,11 +627,22 @@
 }
 
 - (NSDictionary *) loadCacheAsResponseObject {
-    [SVProgressHUD showErrorWithStatus:@"网络出错\n已为您加载缓存"];
+    
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:plistPath]) {
         NSDictionary *cacheDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
+        if (cacheDic.count != 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD showErrorWithStatus:@"网络出错\n已为您加载缓存"];
+            });
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD showErrorWithStatus:@"网络出错\n请稍后重试_(:з」∠)_"];
+            });
+            
+        }
         return cacheDic;
     } else {
         return nil;
@@ -650,13 +651,11 @@
 
 // JBLineChartViewDelegate
 
-- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
-{
+- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView {
     return 1; // number of lines in chart
 }
 
-- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
-{
+- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex {
     return terms.count; // number of values for a line
 }
 
@@ -664,13 +663,11 @@
     return [everyArr[horizontalIndex] floatValue];
 }
 
-- (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
-{
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex {
     return [UIColor colorWithRed:255/255.0f green:94/255.0f blue:115/255.0f alpha:1.0f]; // color of line in chart
 }
 
-- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
-{
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex {
     return 4.0; // width of line in chart
 }
 
@@ -679,23 +676,19 @@
     return 5.0; // width of line dot in chart
 }*/
 
-- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
-{
+- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex {
     return JBLineChartViewLineStyleSolid; // style of line in chart
 }
 
-- (UIColor *)lineChartView:(JBLineChartView *)lineChartView verticalSelectionColorForLineAtLineIndex:(NSUInteger)lineIndex
-{
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView verticalSelectionColorForLineAtLineIndex:(NSUInteger)lineIndex {
     return [UIColor colorWithRed:255/255.0f green:94/255.0f blue:115/255.0f alpha:1.0f]; // color of selection view
 }
 
-- (CGFloat)verticalSelectionWidthForLineChartView:(JBLineChartView *)lineChartView
-{
+- (CGFloat)verticalSelectionWidthForLineChartView:(JBLineChartView *)lineChartView {
     return 24.0; // width of selection view
 }
 
-- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex
-{
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex {
     return [UIColor colorWithRed:255/255.0f green:201/255.0f blue:201/255.0f alpha:1.0f]; // color of selected line
 }
 
@@ -719,22 +712,20 @@
     return NO; // 是否平滑图表
 }
 
-- (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
-{
+- (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint {
     // Update view
     self.tableView.scrollEnabled = NO;
     
     if (horizontalIndex != lastSelected) {
         
-       [self selectPointForIndex:horizontalIndex];
+        [self selectPointForIndex:horizontalIndex];
         
         lastSelected = horizontalIndex;
     }
     
 }
 
-- (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView
-{
+- (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView {
     // Update view
     self.tableView.scrollEnabled = YES;
 }
