@@ -28,7 +28,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.navigationController!.interactivePopGestureRecognizer.delegate = self
         
-        UIButton.appearance().tintColor = UIColor.darkGrayColor()
         UITextView.appearance().tintColor = UIColor.darkGrayColor()
         UITextField.appearance().tintColor = UIColor.darkGrayColor()
         UINavigationBar.appearance().tintColor = UIColor.darkGrayColor()
@@ -386,7 +385,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func pushAboutUS() {
-        var aboutUS = AboutUSViewController()
+        let aboutUS = AboutUsViewController(nibName: "AboutUsViewController", bundle:nil)
         self.navigationController!.pushViewController(aboutUS, animated: true)
     }
     

@@ -18,7 +18,7 @@ WePeiYang_iOS
 
 微北洋的初具雏形，以下开源项目功不可没。特在此致以感谢。
 
-As the programmer of this project, I would like to extend my sincere gratitude to the following open-source projects, without which this project would never be completed. 
+As the programmer of this project, I would like to extend my sincere gratitude to the following open-source libraries, without which this project would never be completed. 
 
 * AFNetworking
 * Cocoapods
@@ -27,5 +27,7 @@ As the programmer of this project, I would like to extend my sincere gratitude t
 * Raven
 * POP
 * AHKActionSheet
+* JBChartView
+* NSTimer+Block
 
 > Copyright 2002-2014 TWT Studio

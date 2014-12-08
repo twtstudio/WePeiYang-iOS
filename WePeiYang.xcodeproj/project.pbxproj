@@ -50,7 +50,6 @@
 		18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */; };
 		18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322B11861AAB600CE035D /* FeedbackViewController.m */; };
 		18C322B51861AAB600CE035D /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C322B21861AAB600CE035D /* FeedbackViewController.xib */; };
-		18C322BC1861B9EB00CE035D /* AboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322BB1861B9EB00CE035D /* AboutUSViewController.m */; };
 		18C87D6A1887F0EF009AF085 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C87D681887F0EF009AF085 /* DetailViewController.xib */; };
 		18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C87D6D1887F1B7009AF085 /* DetailViewController.m */; };
 		18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CFC7DF18900C7200A51F01 /* UIButton+Bootstrap.m */; };
@@ -80,12 +79,17 @@
 		77A14064B98A239697510E28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2387BDC5FF179A6965C30F /* libPods.a */; };
 		E934944B1A2F036700F92525 /* DevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93494491A2F036700F92525 /* DevViewController.swift */; };
 		E934944C1A2F036700F92525 /* DevViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E934944A1A2F036700F92525 /* DevViewController.xib */; };
+		E93FBAFE1A35DB3C0002D38B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFD1A35DB3C0002D38B /* Settings.bundle */; };
+		E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */; };
+		E93FBB031A35DDBE0002D38B /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FBB011A35DDBE0002D38B /* AboutUsViewController.swift */; };
+		E93FBB041A35DDBE0002D38B /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB021A35DDBE0002D38B /* AboutUsViewController.xib */; };
+		E93FBB091A35DDF30002D38B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FBB071A35DDF30002D38B /* SplashViewController.swift */; };
+		E93FBB0A1A35DDF30002D38B /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB081A35DDF30002D38B /* SplashViewController.xib */; };
 		E94D76001A320929000B3082 /* g1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D75FD1A320929000B3082 /* g1.jpg */; };
 		E94D76011A320929000B3082 /* g2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D75FE1A320929000B3082 /* g2.jpg */; };
 		E94D76021A320929000B3082 /* g3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D75FF1A320929000B3082 /* g3.jpg */; };
 		E94D76091A320CFF000B3082 /* guideBackground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D76081A320CFF000B3082 /* guideBackground@2x.jpg */; };
 		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
-		E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */; };
 		E95DA5591A31B9F50039EBC0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52B1A31B9F50039EBC0 /* back@2x.png */; };
 		E95DA55A1A31B9F50039EBC0 /* backForNav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */; };
 		E95DA55B1A31B9F50039EBC0 /* Banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52D1A31B9F50039EBC0 /* Banner@2x.png */; };
@@ -135,6 +139,7 @@
 		E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E0CA219E53A9000244751 /* StudySearchViewController.swift */; };
 		E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96E0CA319E53A9000244751 /* StudySearchViewController.xib */; };
 		E9A2062A1A33EA090080144C /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A206291A33EA090080144C /* NSTimer+Blocks.m */; };
+		E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */; };
 		E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A6C1541A31BCC200544943 /* button-background@2x.png */; };
 		E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AD61EB19C43983009824BB /* gpaHeaderView.m */; };
 		E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B0EB64197571F80000B951 /* twtSecretKeys.m */; };
@@ -269,8 +274,6 @@
 		18C322B01861AAB600CE035D /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = WePeiYang/about/feedback/FeedbackViewController.h; sourceTree = "<group>"; };
 		18C322B11861AAB600CE035D /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = WePeiYang/about/feedback/FeedbackViewController.m; sourceTree = "<group>"; };
 		18C322B21861AAB600CE035D /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = WePeiYang/about/feedback/FeedbackViewController.xib; sourceTree = "<group>"; };
-		18C322BA1861B9EB00CE035D /* AboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutUSViewController.h; path = WePeiYang/about/AboutUSViewController.h; sourceTree = "<group>"; };
-		18C322BB1861B9EB00CE035D /* AboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutUSViewController.m; path = WePeiYang/about/AboutUSViewController.m; sourceTree = "<group>"; };
 		18C87D681887F0EF009AF085 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = news/DetailViewController.xib; sourceTree = "<group>"; };
 		18C87D6C1887F1B7009AF085 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = news/DetailViewController.h; sourceTree = "<group>"; };
 		18C87D6D1887F1B7009AF085 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = news/DetailViewController.m; sourceTree = "<group>"; };
@@ -318,13 +321,17 @@
 		A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E93494491A2F036700F92525 /* DevViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevViewController.swift; sourceTree = "<group>"; };
 		E934944A1A2F036700F92525 /* DevViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevViewController.xib; sourceTree = "<group>"; };
+		E93FBAFD1A35DB3C0002D38B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		E93FBB011A35DDBE0002D38B /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutUsViewController.swift; path = WePeiYang/about/AboutUsViewController.swift; sourceTree = "<group>"; };
+		E93FBB021A35DDBE0002D38B /* AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutUsViewController.xib; path = WePeiYang/about/AboutUsViewController.xib; sourceTree = "<group>"; };
+		E93FBB071A35DDF30002D38B /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = WePeiYang/about/SplashViewController.swift; sourceTree = "<group>"; };
+		E93FBB081A35DDF30002D38B /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashViewController.xib; path = WePeiYang/about/SplashViewController.xib; sourceTree = "<group>"; };
 		E94D75FD1A320929000B3082 /* g1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = g1.jpg; sourceTree = "<group>"; };
 		E94D75FE1A320929000B3082 /* g2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = g2.jpg; sourceTree = "<group>"; };
 		E94D75FF1A320929000B3082 /* g3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = g3.jpg; sourceTree = "<group>"; };
 		E94D76081A320CFF000B3082 /* guideBackground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "guideBackground@2x.jpg"; sourceTree = "<group>"; };
 		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
-		E95CDC7E1966D4210083C1B7 /* VWWWaterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VWWWaterView.h; path = WePeiYang/about/VWWWaterView.h; sourceTree = "<group>"; };
-		E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VWWWaterView.m; path = WePeiYang/about/VWWWaterView.m; sourceTree = "<group>"; };
 		E95DA52B1A31B9F50039EBC0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backForNav@2x.png"; sourceTree = "<group>"; };
 		E95DA52D1A31B9F50039EBC0 /* Banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Banner@2x.png"; sourceTree = "<group>"; };
@@ -376,6 +383,7 @@
 		E96E0CA319E53A9000244751 /* StudySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudySearchViewController.xib; path = StudySearch/StudySearchViewController.xib; sourceTree = "<group>"; };
 		E9A206281A33EA090080144C /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		E9A206291A33EA090080144C /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
+		E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "launchScreen@2x.jpg"; sourceTree = "<group>"; };
 		E9A6C1541A31BCC200544943 /* button-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background@2x.png"; sourceTree = "<group>"; };
 		E9AD61EA19C43983009824BB /* gpaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpaHeaderView.h; path = gpa/gpaHeaderView.h; sourceTree = "<group>"; };
 		E9AD61EB19C43983009824BB /* gpaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gpaHeaderView.m; path = gpa/gpaHeaderView.m; sourceTree = "<group>"; };
@@ -565,9 +573,11 @@
 				18C322AE1861AA9C00CE035D /* About */,
 				188842211846E6F4007B92CB /* twtAppDelegate.h */,
 				188842221846E6F4007B92CB /* twtAppDelegate.m */,
+				E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */,
 				E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */,
 				188842241846E6F4007B92CB /* Images.xcassets */,
 				188842191846E6F4007B92CB /* Supporting Files */,
+				E93FBAFD1A35DB3C0002D38B /* Settings.bundle */,
 			);
 			path = WePeiYang;
 			sourceTree = "<group>";
@@ -685,13 +695,13 @@
 		18C322AE1861AA9C00CE035D /* About */ = {
 			isa = PBXGroup;
 			children = (
-				E95CDC7E1966D4210083C1B7 /* VWWWaterView.h */,
-				E95CDC7F1966D4210083C1B7 /* VWWWaterView.m */,
 				E9638CC919C326C300898350 /* AboutViewController.swift */,
+				E93FBB011A35DDBE0002D38B /* AboutUsViewController.swift */,
+				E93FBB021A35DDBE0002D38B /* AboutUsViewController.xib */,
 				18C322AF1861AAA400CE035D /* Feedback */,
 				E93494421A2EFF6500F92525 /* DevKit */,
-				18C322BA1861B9EB00CE035D /* AboutUSViewController.h */,
-				18C322BB1861B9EB00CE035D /* AboutUSViewController.m */,
+				E93FBB071A35DDF30002D38B /* SplashViewController.swift */,
+				E93FBB081A35DDF30002D38B /* SplashViewController.xib */,
 			);
 			name = About;
 			path = ..;
@@ -811,6 +821,7 @@
 				E95DA5831A31BA570039EBC0 /* wpyActionSheet */,
 				E95DA5571A31B9F50039EBC0 /* wpyicon@2x.png */,
 				E95DA5581A31B9F50039EBC0 /* zhanshanlogo@2x.png */,
+				E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1073,14 +1084,18 @@
 				1888421D1846E6F4007B92CB /* InfoPlist.strings in Resources */,
 				E95DA5611A31B9F50039EBC0 /* jobs@2x.png in Resources */,
 				E95DA56C1A31B9F50039EBC0 /* send@2x.png in Resources */,
+				E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */,
 				18C322B51861AAB600CE035D /* FeedbackViewController.xib in Resources */,
 				E95DA55B1A31B9F50039EBC0 /* Banner@2x.png in Resources */,
 				E95DA5601A31B9F50039EBC0 /* gpa@2x.png in Resources */,
 				188842981846F73B007B92CB /* LibraryViewController.xib in Resources */,
 				E95DA56D1A31B9F50039EBC0 /* sendForNav@2x.png in Resources */,
 				E95DA5621A31B9F50039EBC0 /* laf@2x.png in Resources */,
+				E93FBB041A35DDBE0002D38B /* AboutUsViewController.xib in Resources */,
 				E95DA5811A31B9F50039EBC0 /* wpyicon@2x.png in Resources */,
 				E95DA5731A31B9F50039EBC0 /* jobs_tab@2x.png in Resources */,
+				E93FBB0A1A35DDF30002D38B /* SplashViewController.xib in Resources */,
+				E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */,
 				25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */,
 				18114E7618585807007455E2 /* JobTableCell.xib in Resources */,
 				25340FAE191CA73E00AFDE7D /* HiringDetailViewController.xib in Resources */,
@@ -1095,6 +1110,7 @@
 				E94D76021A320929000B3082 /* g3.jpg in Resources */,
 				18F5862A1859B6C100410E81 /* NoticeDetailViewController.xib in Resources */,
 				E95DA5751A31B9F50039EBC0 /* l_record@2x.png in Resources */,
+				E93FBAFE1A35DB3C0002D38B /* Settings.bundle in Resources */,
 				E95DA55F1A31B9F50039EBC0 /* about@2x.png in Resources */,
 				E94D76011A320929000B3082 /* g2.jpg in Resources */,
 				E95DA5721A31B9F50039EBC0 /* hiring@2x.png in Resources */,
@@ -1184,14 +1200,15 @@
 				1888429D1846F73B007B92CB /* RecordTableCell.m in Sources */,
 				25A5F78118EC2F0000D6EE4E /* NoticeFavViewController.m in Sources */,
 				E9D4365119B2285C0042A9F1 /* LAFound_QueryDetailViewController.m in Sources */,
+				E93FBB091A35DDF30002D38B /* SplashViewController.swift in Sources */,
 				188842771846F723007B92CB /* CollectionViewController.m in Sources */,
 				18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */,
-				18C322BC1861B9EB00CE035D /* AboutUSViewController.m in Sources */,
 				E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
 				E9D4365319B2285C0042A9F1 /* LAFound_QueryListTableViewCell.m in Sources */,
 				182155BB18BF6E0A008A1D1A /* GPACalculatorViewController.m in Sources */,
 				E9D4365019B2285C0042A9F1 /* LAFound_DataManager.m in Sources */,
+				E93FBB031A35DDBE0002D38B /* AboutUsViewController.swift in Sources */,
 				25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */,
 				2525F65018F691BF00918714 /* LibraryTabBarController.m in Sources */,
 				1888429A1846F73B007B92CB /* LoginViewController.m in Sources */,
@@ -1214,7 +1231,6 @@
 				18D63E26185715F3004E75AA /* GPALoginViewController.m in Sources */,
 				18114E71185850DA007455E2 /* JobViewController.m in Sources */,
 				1841D821187D5AD1006DDA17 /* GuideViewController.m in Sources */,
-				E95CDC801966D4210083C1B7 /* VWWWaterView.m in Sources */,
 				18D63E2A185766B0004E75AA /* GPATableCell.m in Sources */,
 				1825E18B1878644D004976EA /* LibraryFavouriteViewController.m in Sources */,
 				18F586211859B21800410E81 /* NoticeViewController.m in Sources */,
@@ -1369,7 +1385,6 @@
 			baseConfigurationReference = A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1398,7 +1413,6 @@
 			baseConfigurationReference = 4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

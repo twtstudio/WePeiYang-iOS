@@ -19,6 +19,8 @@ class DashboardViewController: UIViewController {
     var jobsBtn: UIButton!
     var lafBtn: UIButton!
     var aboutBtn: UIButton!
+    
+    var buttonArr = Array<UIButton>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,6 @@ class DashboardViewController: UIViewController {
         studySearchBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         studySearchBtn.setImage(UIImage(named: "studysearch.png"), forState: .Normal)
         studySearchBtn.addTarget(self, action: "pushStudySearch", forControlEvents: .TouchUpInside)
-        studySearchBtn.hidden = true
         self.view.addSubview(studySearchBtn)
         
         newsBtn = UIButton.buttonWithType(.Custom) as UIButton
@@ -112,6 +113,8 @@ class DashboardViewController: UIViewController {
         aboutBtn.addTarget(self, action: "pushAbout", forControlEvents: .TouchUpInside)
         aboutBtn.hidden = true
         self.view.addSubview(aboutBtn)
+        
+        buttonArr = [studySearchBtn, newsBtn, noticeBtn, gpaBtn, libBtn, jobsBtn, lafBtn, aboutBtn]
 
         self.activeLaunchAnimations()
         
@@ -126,7 +129,23 @@ class DashboardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     // POP Animation
+    
+    func hideAllButtons() {
+        
+        studySearchBtn.hidden = true
+        newsBtn.hidden = true
+        noticeBtn.hidden = true
+        gpaBtn.hidden = true
+        libBtn.hidden = true
+        jobsBtn.hidden = true
+        lafBtn.hidden = true
+        aboutBtn.hidden = true
+    }
     
     func activeLaunchAnimations() {
         
@@ -134,7 +153,7 @@ class DashboardViewController: UIViewController {
         
         let animSpringBounciness = 15.0 as CGFloat
         
-        NSTimer.scheduledTimerWithTimeInterval(0.3, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.1, block: {
             self.studySearchBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -145,7 +164,7 @@ class DashboardViewController: UIViewController {
             self.studySearchBtn.layer.pop_addAnimation(anim, forKey: "studySearchAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.5, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.3, block: {
             self.newsBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -156,7 +175,7 @@ class DashboardViewController: UIViewController {
             self.newsBtn.layer.pop_addAnimation(anim, forKey: "newsAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.7, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.5, block: {
             self.noticeBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -167,7 +186,7 @@ class DashboardViewController: UIViewController {
             self.noticeBtn.layer.pop_addAnimation(anim, forKey: "noticeAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.4, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.2, block: {
             self.gpaBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -178,7 +197,7 @@ class DashboardViewController: UIViewController {
             self.gpaBtn.layer.pop_addAnimation(anim, forKey: "gpaAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.6, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.4, block: {
             self.libBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -189,7 +208,7 @@ class DashboardViewController: UIViewController {
             self.libBtn.layer.pop_addAnimation(anim, forKey: "libAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.8, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.6, block: {
             self.jobsBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -200,7 +219,7 @@ class DashboardViewController: UIViewController {
             self.jobsBtn.layer.pop_addAnimation(anim, forKey: "jobsAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.5, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.3, block: {
             self.lafBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -211,7 +230,7 @@ class DashboardViewController: UIViewController {
             self.lafBtn.layer.pop_addAnimation(anim, forKey: "lafAnim")
         }, repeats: false)
         
-        NSTimer.scheduledTimerWithTimeInterval(0.7, block: {
+        NSTimer.scheduledTimerWithTimeInterval(0.5, block: {
             self.aboutBtn.hidden = false
             
             var anim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)

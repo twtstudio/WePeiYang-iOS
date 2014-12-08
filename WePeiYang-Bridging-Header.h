@@ -3,7 +3,6 @@
 //
 
 #import "FeedbackViewController.h"
-#import "AboutUSViewController.h"
 #import "GuideViewController.h"
 #import "GPALoginViewController.h"
 #import "LoginViewController.h"
