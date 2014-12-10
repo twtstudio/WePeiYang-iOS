@@ -72,7 +72,7 @@ class SplashViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             hideAnim.toValue = NSValue(CGPoint: CGPointMake(point.x, 32))
         }
-        navigationBar.pop_addAnimation(hideAnim, forKey: "hide")
+        navigationBar.layer.pop_addAnimation(hideAnim, forKey: "hide")
         
     }
     

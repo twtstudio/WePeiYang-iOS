@@ -139,22 +139,12 @@
         type = [data shareInstance].typeSelected;
     }
     
-    if ([type isEqual:@"1"])
-    {
-        self.navigationItem.title = @"天大要闻";
-    }
-    else if ([type isEqual:@"5"])
-    {
-        self.navigationItem.title = @"视点观察";
-    }
-    else if ([type isEqual:@"3"])
-    {
-        self.navigationItem.title = @"社团风采";
-    }
-    else if ([type isEqual:@"4"])
-    {
-        self.navigationItem.title = @"院系动态";
-    }
+    NSDictionary *typeTitleDic = @{@"1": @"天大要闻",
+                                   @"5": @"视点观察",
+                                   @"3": @"社团风采",
+                                   @"4": @"院系动态"};
+    
+    self.navigationItem.title = typeTitleDic[type];
     
     
     NSString *url = @"http://push-mobile.twtapps.net/content/list";

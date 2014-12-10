@@ -31,6 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     
     LAFound_QueryListViewController *qlVC = [[LAFound_QueryListViewController alloc] init];
     UINavigationController *qlVCNavigationViewController = [[UINavigationController alloc]initWithRootViewController:qlVC];

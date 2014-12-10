@@ -37,7 +37,7 @@ class DashboardViewController: UIViewController {
         println(deviceWidth)
         println(deviceHeight)
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "dashboard_bg.png")!)
+        self.view.backgroundColor = UIColor.whiteColor()
         self.navigationController?.navigationBarHidden = true
         
         self.checkGuideStatus()
@@ -45,11 +45,21 @@ class DashboardViewController: UIViewController {
         
         //INSTANCES
         
-        let iconWidth = 80 as CGFloat
-        let iconHeight = 120 as CGFloat
+        let iconWidth = 72 as CGFloat
+        let iconHeight = 108 as CGFloat
         
-        let iconLineDistance = 30 as CGFloat //行距
-        let iconRowDistance = 20 as CGFloat //列距
+        let iconLineDistance = 24 as CGFloat //行距
+        let iconRowDistance = 24 as CGFloat //列距
+        
+        
+        // Draw background
+        
+        let bgPath = NSBundle.mainBundle().pathForResource("dashboardBg@2x", ofType: "jpg")
+        let bgImgView = UIImageView(frame: UIScreen.mainScreen().bounds)
+        bgImgView.image = UIImage(contentsOfFile: bgPath!)
+        self.view.addSubview(bgImgView)
+        
+        let iconView = UIView(frame: UIScreen.mainScreen().bounds)
         
         //Draw UI
         
@@ -59,21 +69,22 @@ class DashboardViewController: UIViewController {
         studySearchBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         studySearchBtn.setImage(UIImage(named: "studysearch.png"), forState: .Normal)
         studySearchBtn.addTarget(self, action: "pushStudySearch", forControlEvents: .TouchUpInside)
-        self.view.addSubview(studySearchBtn)
+        studySearchBtn.hidden = true
+        iconView.addSubview(studySearchBtn)
         
         newsBtn = UIButton.buttonWithType(.Custom) as UIButton
         newsBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         newsBtn.setImage(UIImage(named: "news.png"), forState: .Normal)
         newsBtn.addTarget(self, action: "pushNews", forControlEvents: .TouchUpInside)
         newsBtn.hidden = true
-        self.view.addSubview(newsBtn)
+        iconView.addSubview(newsBtn)
         
         noticeBtn = UIButton.buttonWithType(.Custom) as UIButton
         noticeBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+2*iconWidth+2*iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         noticeBtn.setImage(UIImage(named: "notice.png"), forState: .Normal)
         noticeBtn.addTarget(self, action: "pushNotice", forControlEvents: .TouchUpInside)
         noticeBtn.hidden = true
-        self.view.addSubview(noticeBtn)
+        iconView.addSubview(noticeBtn)
         
         //Line 2
         
@@ -82,21 +93,21 @@ class DashboardViewController: UIViewController {
         gpaBtn.setImage(UIImage(named: "gpa.png"), forState: .Normal)
         gpaBtn.addTarget(self, action: "authGPA", forControlEvents: .TouchUpInside)
         gpaBtn.hidden = true
-        self.view.addSubview(gpaBtn)
+        iconView.addSubview(gpaBtn)
         
         libBtn = UIButton.buttonWithType(.Custom) as UIButton
         libBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         libBtn.setImage(UIImage(named: "library.png"), forState: .Normal)
         libBtn.addTarget(self, action: "pushLibrary", forControlEvents: .TouchUpInside)
         libBtn.hidden = true
-        self.view.addSubview(libBtn)
+        iconView.addSubview(libBtn)
         
         jobsBtn = UIButton.buttonWithType(.Custom) as UIButton
         jobsBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+2*iconWidth+2*iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         jobsBtn.setImage(UIImage(named: "jobs.png"), forState: .Normal)
         jobsBtn.addTarget(self, action: "pushJobs", forControlEvents: .TouchUpInside)
         jobsBtn.hidden = true
-        self.view.addSubview(jobsBtn)
+        iconView.addSubview(jobsBtn)
         
         //Line 3
         
@@ -105,18 +116,23 @@ class DashboardViewController: UIViewController {
         lafBtn.setImage(UIImage(named:"laf.png"), forState: .Normal)
         lafBtn.addTarget(self, action: "pushLAF", forControlEvents: .TouchUpInside)
         lafBtn.hidden = true
-        self.view.addSubview(lafBtn)
+        iconView.addSubview(lafBtn)
         
         aboutBtn = UIButton.buttonWithType(.Custom) as UIButton
         aboutBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+2*iconHeight+2*iconLineDistance, iconWidth, iconHeight)
         aboutBtn.setImage(UIImage(named:"about.png"), forState: .Normal)
         aboutBtn.addTarget(self, action: "pushAbout", forControlEvents: .TouchUpInside)
         aboutBtn.hidden = true
-        self.view.addSubview(aboutBtn)
+        iconView.addSubview(aboutBtn)
+        
+        iconView.alpha = 0.8
         
         buttonArr = [studySearchBtn, newsBtn, noticeBtn, gpaBtn, libBtn, jobsBtn, lafBtn, aboutBtn]
+        
+        self.view.addSubview(iconView)
 
         self.activeLaunchAnimations()
+        
         
     }
     
@@ -374,6 +390,10 @@ class DashboardViewController: UIViewController {
             data.shareInstance().userId = twtId
             data.shareInstance().userToken = twtToken
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
    

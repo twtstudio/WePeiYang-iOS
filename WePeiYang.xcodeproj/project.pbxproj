@@ -79,12 +79,12 @@
 		77A14064B98A239697510E28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2387BDC5FF179A6965C30F /* libPods.a */; };
 		E934944B1A2F036700F92525 /* DevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93494491A2F036700F92525 /* DevViewController.swift */; };
 		E934944C1A2F036700F92525 /* DevViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E934944A1A2F036700F92525 /* DevViewController.xib */; };
-		E93FBAFE1A35DB3C0002D38B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFD1A35DB3C0002D38B /* Settings.bundle */; };
 		E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */; };
 		E93FBB031A35DDBE0002D38B /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FBB011A35DDBE0002D38B /* AboutUsViewController.swift */; };
 		E93FBB041A35DDBE0002D38B /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB021A35DDBE0002D38B /* AboutUsViewController.xib */; };
 		E93FBB091A35DDF30002D38B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FBB071A35DDF30002D38B /* SplashViewController.swift */; };
 		E93FBB0A1A35DDF30002D38B /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB081A35DDF30002D38B /* SplashViewController.xib */; };
+		E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */; };
 		E94D76001A320929000B3082 /* g1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D75FD1A320929000B3082 /* g1.jpg */; };
 		E94D76011A320929000B3082 /* g2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D75FE1A320929000B3082 /* g2.jpg */; };
 		E94D76021A320929000B3082 /* g3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94D75FF1A320929000B3082 /* g3.jpg */; };
@@ -321,12 +321,12 @@
 		A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E93494491A2F036700F92525 /* DevViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevViewController.swift; sourceTree = "<group>"; };
 		E934944A1A2F036700F92525 /* DevViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DevViewController.xib; sourceTree = "<group>"; };
-		E93FBAFD1A35DB3C0002D38B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E93FBB011A35DDBE0002D38B /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutUsViewController.swift; path = WePeiYang/about/AboutUsViewController.swift; sourceTree = "<group>"; };
 		E93FBB021A35DDBE0002D38B /* AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutUsViewController.xib; path = WePeiYang/about/AboutUsViewController.xib; sourceTree = "<group>"; };
 		E93FBB071A35DDF30002D38B /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = WePeiYang/about/SplashViewController.swift; sourceTree = "<group>"; };
 		E93FBB081A35DDF30002D38B /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashViewController.xib; path = WePeiYang/about/SplashViewController.xib; sourceTree = "<group>"; };
+		E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dashboardBg@2x.jpg"; sourceTree = "<group>"; };
 		E94D75FD1A320929000B3082 /* g1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = g1.jpg; sourceTree = "<group>"; };
 		E94D75FE1A320929000B3082 /* g2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = g2.jpg; sourceTree = "<group>"; };
 		E94D75FF1A320929000B3082 /* g3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = g3.jpg; sourceTree = "<group>"; };
@@ -577,7 +577,6 @@
 				E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */,
 				188842241846E6F4007B92CB /* Images.xcassets */,
 				188842191846E6F4007B92CB /* Supporting Files */,
-				E93FBAFD1A35DB3C0002D38B /* Settings.bundle */,
 			);
 			path = WePeiYang;
 			sourceTree = "<group>";
@@ -821,6 +820,7 @@
 				E95DA5831A31BA570039EBC0 /* wpyActionSheet */,
 				E95DA5571A31B9F50039EBC0 /* wpyicon@2x.png */,
 				E95DA5581A31B9F50039EBC0 /* zhanshanlogo@2x.png */,
+				E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */,
 				E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */,
 			);
 			path = images;
@@ -1061,6 +1061,7 @@
 				188842961846F73B007B92CB /* LibraryTableCell.xib in Resources */,
 				E95DA5591A31B9F50039EBC0 /* back@2x.png in Resources */,
 				E95DA5771A31B9F50039EBC0 /* laf_post@2x.png in Resources */,
+				E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */,
 				E95DA5651A31B9F50039EBC0 /* notice@2x.png in Resources */,
 				E9D4365419B2285C0042A9F1 /* LAFound_QueryListTableViewCell.xib in Resources */,
 				1888429E1846F73B007B92CB /* RecordTableCell.xib in Resources */,
@@ -1110,7 +1111,6 @@
 				E94D76021A320929000B3082 /* g3.jpg in Resources */,
 				18F5862A1859B6C100410E81 /* NoticeDetailViewController.xib in Resources */,
 				E95DA5751A31B9F50039EBC0 /* l_record@2x.png in Resources */,
-				E93FBAFE1A35DB3C0002D38B /* Settings.bundle in Resources */,
 				E95DA55F1A31B9F50039EBC0 /* about@2x.png in Resources */,
 				E94D76011A320929000B3082 /* g2.jpg in Resources */,
 				E95DA5721A31B9F50039EBC0 /* hiring@2x.png in Resources */,
@@ -1385,6 +1385,7 @@
 			baseConfigurationReference = A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1413,6 +1414,7 @@
 			baseConfigurationReference = 4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *avgText;
 @property (strong, nonatomic) IBOutlet UILabel *gpaLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) IBOutlet UILabel *termLabel;
 
 @end

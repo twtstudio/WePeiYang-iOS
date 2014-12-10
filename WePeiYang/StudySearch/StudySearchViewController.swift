@@ -44,7 +44,8 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func toggleControls(sender:AnyObject) {
         daySelected = sender.selectedSegmentIndex
-        self.searchResultTableView.hidden = true
+        self.searchResultArray.removeAllObjects()
+        self.searchResultTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
     }
     
     @IBAction func backToHome() {
@@ -52,7 +53,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func studySearch() {
-        self.searchResultTableView.hidden = false
+        
         SVProgressHUD.showWithStatus("加载中...")
         
         let startTimeSelected = studysearchPickerView.selectedRowInComponent(0) as Int
@@ -61,7 +62,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         if (startTimeSelected >= endTimeSelected) {
             self.searchResultArray.removeAllObjects()
-            self.searchResultTableView.reloadData()
+            self.searchResultTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
             dispatch_async(dispatch_get_main_queue(), {
                 SVProgressHUD.showErrorWithStatus("您的时间选择有点错误哦~")
             })
@@ -104,7 +105,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 //println(temp["room"] as NSString)
             }
             self.searchResultTableView.hidden = false
-            self.searchResultTableView.reloadData()
+            self.searchResultTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             self.searchResultTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
                     
                     
@@ -113,7 +114,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
             self.searchResultArray.removeAllObjects()
             self.searchResultArray.addObject("")
             self.searchResultArray.addObject("暂无可用自习室_(:з」∠)_")
-            self.searchResultTableView.reloadData()
+            self.searchResultTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
 
     }

@@ -37,9 +37,11 @@
     
     float gpa;
     float score;
-    NSMutableArray *everyArr;
+    NSMutableArray *everyScoreArr;
+    NSMutableArray *everyGpaArr;
     
     NSMutableArray *dataInTable;
+    NSArray *termsInGraph;
     
     NSMutableArray *terms;
     
@@ -102,6 +104,7 @@
     
     [dataInTable removeAllObjects];
     [self checkLoginStatus];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -119,7 +122,8 @@
 - (void)checkLoginStatus {
     [gpaData removeAllObjects];
     [dataInTable removeAllObjects];
-    [everyArr removeAllObjects];
+    [everyScoreArr removeAllObjects];
+    [everyGpaArr removeAllObjects];
     
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -285,8 +289,10 @@
     gpa = [[[gpaDic objectForKey:@"data"] objectForKey:@"gpa"] floatValue];
     score = [[[gpaDic objectForKey:@"data"] objectForKey:@"score"] floatValue];
     
-    gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f",gpa];
-    gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f",score];
+    gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
+    gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
+    
+    gpaHeader.termLabel.text = @"";
     
     //学期数组
     
@@ -307,15 +313,15 @@
         }
     }
     
-    everyArr = [[NSMutableArray alloc]initWithObjects: nil];
+    everyScoreArr = [[NSMutableArray alloc]initWithObjects: nil];
+    everyGpaArr = [[NSMutableArray alloc]initWithObjects: nil];
     NSArray *everyDataArr = [[gpaDic objectForKey:@"data"]objectForKey:@"every"];
     for (NSDictionary *tmp in everyDataArr)
     {
-        [everyArr addObject:[tmp objectForKey:@"score"]];
+        [everyScoreArr addObject:[tmp objectForKey:@"score"]];
+        [everyGpaArr addObject:[tmp objectForKey:@"gpa"]];
     }
-    [data shareInstance].every = everyArr;
     
-    NSArray *termsInGraph;
     if ([terms count] == 0) termsInGraph = @[@""];
     else if ([terms count] == 1) termsInGraph = @[@"大一上"];
     else if ([terms count] == 2) termsInGraph = @[@"大一上",@"大一下"];
@@ -338,11 +344,6 @@
     
     //初始化图表
     
-    //chart = [[YTrendChartView alloc]init];
-    //[chart setFrame:CGRectMake(0, gpaHeaderViewHeight+20, self.view.frame.size.width, 130)];
-    //[chart setBackgroundColor:[UIColor whiteColor]];
-    //chart.delegate = self;
-    
     JBLineChartView *lineChart = [[JBLineChartView alloc]initWithFrame:CGRectMake(20, gpaHeaderViewHeight+20, [UIScreen mainScreen].bounds.size.width - 40, 130)];
     lineChart.dataSource = self;
     lineChart.delegate = self;
@@ -353,7 +354,7 @@
     [headerView addSubview:lineChart];
     
     tableView.tableHeaderView = headerView;
-    [self selectPointForIndex:[terms count]-1];
+    [self selectPointForIndex:[terms count]-1 withRowAnimation:UITableViewRowAnimationAutomatic];
     lastSelected = [terms count] - 1;
     
     [lineChart reloadData];
@@ -463,7 +464,7 @@
 
 // For Term Selection
 
-- (void) selectPointForIndex:(NSInteger)index {
+- (void) selectPointForIndex:(NSInteger)index withRowAnimation:(UITableViewRowAnimation)rowAnimation {
     [dataInTable removeAllObjects];
     
     NSString *termSelectedStr = [terms objectAtIndex:index];
@@ -476,7 +477,7 @@
         }
     }
     
-    [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
+    [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:rowAnimation];
 }
 
 - (IBAction)backToHomeBtn:(id)sender
@@ -660,7 +661,7 @@
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
-    return [everyArr[horizontalIndex] floatValue];
+    return [everyScoreArr[horizontalIndex] floatValue];
 }
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex {
@@ -716,9 +717,18 @@
     // Update view
     self.tableView.scrollEnabled = NO;
     
+    gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", [everyGpaArr[horizontalIndex] floatValue]];
+    gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", [everyScoreArr[horizontalIndex] floatValue]];
+    gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
+    
     if (horizontalIndex != lastSelected) {
         
-        [self selectPointForIndex:horizontalIndex];
+        if (horizontalIndex > lastSelected) {
+            [self selectPointForIndex:horizontalIndex withRowAnimation:UITableViewRowAnimationLeft];
+        } else {
+            [self selectPointForIndex:horizontalIndex withRowAnimation:UITableViewRowAnimationRight];
+        }
+        // [self selectPointForIndex:horizontalIndex];
         
         lastSelected = horizontalIndex;
     }
@@ -728,6 +738,9 @@
 - (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView {
     // Update view
     self.tableView.scrollEnabled = YES;
+    gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
+    gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
+    gpaHeader.termLabel.text = @"";
 }
 
 @end

@@ -14,6 +14,7 @@
 @synthesize gpaLabel;
 @synthesize avgText;
 @synthesize scoreLabel;
+@synthesize termLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -40,15 +41,22 @@
         scoreLabel.textAlignment = NSTextAlignmentLeft;
         scoreLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:42];
         
+        termLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, self.frame.size.width, 30)];
+        termLabel.textAlignment = NSTextAlignmentCenter;
+        
         gpaText.textColor = [UIColor whiteColor];
         avgText.textColor = [UIColor whiteColor];
         gpaLabel.textColor = [UIColor whiteColor];
         scoreLabel.textColor = [UIColor whiteColor];
+        termLabel.textColor = [UIColor whiteColor];
         
         [self addSubview:gpaText];
         [self addSubview:avgText];
         [self addSubview:gpaLabel];
         [self addSubview:scoreLabel];
+        [self addSubview:termLabel];
+        
+        
     }
     return self;
 }

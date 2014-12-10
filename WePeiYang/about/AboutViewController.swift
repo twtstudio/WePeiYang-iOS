@@ -28,6 +28,9 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.navigationController!.interactivePopGestureRecognizer.delegate = self
         
+        // Reverse to default tint color.
+        UIButton.appearance().tintColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+        
         UITextView.appearance().tintColor = UIColor.darkGrayColor()
         UITextField.appearance().tintColor = UIColor.darkGrayColor()
         UINavigationBar.appearance().tintColor = UIColor.darkGrayColor()
@@ -48,11 +51,16 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.addSubview(navigationBar)
         self.view.backgroundColor = UIColor.whiteColor()
         
-        context = LAContext()
-        var error: NSError?
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
-            webArr = ["抓取课程表", "使用 Touch ID", "访问天外天网站"]
-            touchIdSupport = true
+        if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
+            context = LAContext()
+            var error: NSError?
+            if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
+                webArr = ["抓取课程表", "使用 Touch ID", "访问天外天网站"]
+                touchIdSupport = true
+            } else {
+                webArr = ["抓取课程表","访问天外天网站"]
+                touchIdSupport = false
+            }
         } else {
             webArr = ["抓取课程表","访问天外天网站"]
             touchIdSupport = false
@@ -66,7 +74,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        self.tableView.reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
     }
     
     //Table View
@@ -277,7 +285,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         userDefault?.removeObjectForKey("Classtable")
         userDefault?.synchronize()
         
-        self.tableView.reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
     }
     
     func jbTju() {
@@ -297,7 +305,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 var userDefaults = NSUserDefaults()
                 userDefaults.setBool(false, forKey: "bindTju")
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
         }, failure: {
             (AFHTTPRequestOperation operation, NSError error) in
                 SVProgressHUD.showErrorWithStatus("解除绑定失败")
@@ -321,7 +329,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             var userDefaults = NSUserDefaults()
             userDefaults.setBool(false, forKey: "bindLib")
-            self.tableView.reloadData()
+            self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
             }, failure: {
                 (AFHTTPRequestOperation operation, NSError error) in
                 SVProgressHUD.showErrorWithStatus("解除绑定失败")
@@ -509,7 +517,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             var switchIsOn = self.touchIdSwitch.on
             defaults.setObject(switchIsOn, forKey: "touchIdEnabled")
         }
-        
         
     }
     
