@@ -337,9 +337,6 @@
     else if ([terms count] == 12) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上",@"大四下",@"大五上",@"大五下",@"大六上",@"大六下"];
     else termsInGraph = terms;
     
-    [data shareInstance].term = terms;
-    [data shareInstance].termsInGraph = termsInGraph;
-    
     [self compareWithPreviousResult];
     
     //初始化图表

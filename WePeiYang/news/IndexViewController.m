@@ -146,7 +146,12 @@
     
     self.navigationItem.title = typeTitleDic[type];
     
+    [self getIndexData];
     
+}
+
+- (void)getIndexData {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -156,6 +161,7 @@
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         [self processIndexData:responseObject];
         [self.refreshControl endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -222,6 +228,7 @@
 - (void)nextPage:(id)sender
 {
     currentPage = currentPage + 1;
+    /*
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -237,7 +244,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
+    }];*/
+    [self getIndexData];
     [self.refreshControl endRefreshing];
 }
 

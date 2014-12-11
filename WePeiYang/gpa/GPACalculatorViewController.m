@@ -343,22 +343,4 @@
     return @"请选择希望计入GPA的科目";
 }
 
-/*
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[data shareInstance].term count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [[data shareInstance].term objectAtIndex:section];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 58;
-}
- */
-
 @end

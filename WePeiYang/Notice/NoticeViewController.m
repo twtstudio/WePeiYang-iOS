@@ -85,15 +85,22 @@
     noticeData = [[NSMutableArray alloc]initWithObjects: nil];
     currentPage = 0;
     
+    [self getIndexData];
+    
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getIndexData {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"news",@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],@"ntype":@"2"};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         [self dealWithReceivedDictionary:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
-    [self.refreshControl endRefreshing];
 }
 
 - (void)tableViewEndReloading
@@ -143,20 +150,9 @@
 
 - (void)nextPage:(id)sender
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     currentPage = currentPage + 1;
     
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    NSDictionary *parameters = @{@"ctype":@"news",@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],@"ntype":@"2"};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self dealWithReceivedDictionary:responseObject];
-        [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
-        [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
+    [self getIndexData];
 }
 
 - (void)dealWithReceivedDictionary:(NSDictionary *)noticeDic

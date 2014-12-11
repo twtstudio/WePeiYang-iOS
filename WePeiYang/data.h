@@ -27,9 +27,6 @@
 
 //for GPA
 @property (retain, nonatomic) NSString *gpaLoginStatus;
-@property (retain, nonatomic) NSArray *every;
-@property (retain, nonatomic) NSArray *term;
-@property (retain, nonatomic) NSArray *termsInGraph;
 
 //for Total
 @property (retain, nonatomic) NSString *appVersion;
