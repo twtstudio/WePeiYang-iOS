@@ -46,7 +46,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"校园招聘";
+    
     hiringData = [[NSMutableArray alloc]initWithObjects: nil];
+    dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
@@ -75,25 +77,31 @@
 - (void)refresh
 {
     currentPage = 0;
-    hiringData = [[NSMutableArray alloc]initWithObjects: nil];
-    dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
+    [hiringData removeAllObjects];
+    [dataInTable removeAllObjects];
     
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    NSDictionary *parameters = @{@"ctype":@"fair",
-                                 @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
-                                 @"platform":@"ios",
-                                 @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self processContentDic:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
-    [self.refreshControl endRefreshing];
+    [self getIndexData];
     
 }
 
+- (void)getIndexData {
+    NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSDictionary *parameters = @{@"ctype":@"fair", @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
+                                 @"platform":@"ios",
+                                 @"version":[data shareInstance].appVersion};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self processContentDic:responseObject];
+        [SVProgressHUD dismiss];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }];
+}
+
 - (void)processContentDic:(NSDictionary *)dic {
+    
     for (NSDictionary *tmp in dic)
     {
         [hiringData addObject:tmp];
@@ -108,21 +116,9 @@
 
 - (void)nextPage
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    
     currentPage ++;
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    //NSString *body = [NSString stringWithFormat:@"ctype=fair&page=%d",currentPage];
-    NSDictionary *parameters = @{@"ctype":@"fair", @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
-                                 @"platform":@"ios",
-                                 @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self processContentDic:responseObject];
-        [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
+    [self getIndexData];
 }
 
 

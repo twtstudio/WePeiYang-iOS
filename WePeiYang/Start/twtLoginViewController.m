@@ -14,6 +14,7 @@
 #import "wpyEncryption.h"
 #import "GuideViewController.h"
 #import "SVProgressHUD.h"
+#import <POP/POP.h>
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -25,7 +26,6 @@
 
 {
     UIAlertView *successAlert;
-    BOOL moved;
 }
 
 @synthesize unameField;
@@ -48,7 +48,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    moved = NO;
     UIColor *color = [UIColor colorWithWhite:0.9 alpha:1.0];
     unameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入天外天账号" attributes:@{NSForegroundColorAttributeName: color}];
     passwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSForegroundColorAttributeName: color}];
@@ -71,10 +70,9 @@
 {
     [SVProgressHUD showWithStatus:@"登录中..." maskType:SVProgressHUDMaskTypeBlack];
     [loginBtn setUserInteractionEnabled:NO];
-    if (moved)
+    if ([self moved])
     {
-        [self moveView:80];
-        moved = NO;
+        [self adjustViewAnimation];
     }
     [unameField resignFirstResponder];
     [passwdField resignFirstResponder];
@@ -161,14 +159,11 @@
     NSString *studentId = [contentDic objectForKey:@"studentid"];
     [userDefault setObject:studentId forKey:@"studentid"];
     
-    if (twtLoginType == twtLoginTypeGPA)
-    {
+    if (twtLoginType == twtLoginTypeGPA) {
         [data shareInstance].gpaLoginStatus = @"Changed";
         successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [successAlert show];
-    }
-    else if (twtLoginType == twtLoginTypeLibrary)
-    {
+    } else if (twtLoginType == twtLoginTypeLibrary) {
         [data shareInstance].libLogin = @"Changed";
         successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！\n图书馆系统加载速度较慢\n请耐心等待哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [successAlert show];
@@ -206,10 +201,9 @@
 {
     [unameField resignFirstResponder];
     [passwdField resignFirstResponder];
-    if (moved)
+    if ([self moved])
     {
-        [self moveView:80];
-        moved = NO;
+        [self adjustViewAnimation];
     }
 }
 
@@ -220,32 +214,39 @@
 
 - (IBAction)textFieldBeginEditing:(id)sender
 {
-    if (!moved && self.view.frame.size.width == 320)
-    {
-        [self moveView:-80];
-        moved = YES;
+    if (![self moved] && self.view.frame.size.width == 320) {
+        [self adjustViewAnimation];
     }
 }
 
 - (IBAction)textFieldEndEditing:(id)sender
 {
-    if(moved && self.view.frame.size.width == 320)
-    {
-        [self moveView:80];
-        moved = NO;
+    if ([self moved] && self.view.frame.size.width == 320) {
+        [self adjustViewAnimation];
     }
 }
 
-- (void)moveView:(float)move
-{
-    NSTimeInterval animationDuration = 0.30f;
-    CGRect frame = self.view.frame;
-    frame.origin.y += move;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
-    //设置调整界面的动画效果
+- (void)adjustViewAnimation {
+    POPBasicAnimation *viewAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
+    CGPoint point = self.view.center;
+    CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
+    if ([self moved]) {
+        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight)];
+    } else {
+        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight - 80)];
+    }
+    [self.view.layer pop_addAnimation:viewAnim forKey:@"viewAnimation"];
 }
+
+- (BOOL)moved {
+    CGPoint point = self.view.center;
+    CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
+    if (point.y == halfHeight) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 
 @end

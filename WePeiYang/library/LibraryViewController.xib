@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryViewController">
@@ -9,7 +10,7 @@
                 <outlet property="headerBackView" destination="dIr-S2-DGt" id="iYV-DX-h3e"/>
                 <outlet property="label1" destination="CT2-r7-oiP" id="zVT-EZ-xEr"/>
                 <outlet property="label2" destination="bWB-MC-TWL" id="pRP-ry-rjv"/>
-                <outlet property="searchBar" destination="TjI-hV-rLf" id="gMu-Wh-TEC"/>
+                <outlet property="libSearchBar" destination="TjI-hV-rLf" id="UtW-1G-akO"/>
                 <outlet property="searchDisplayController" destination="hBF-SN-mGj" id="gaG-6C-m9D"/>
                 <outlet property="tableView" destination="OaK-eV-YMt" id="1dh-a9-uWP"/>
                 <outlet property="typeSegmentedControl" destination="JWP-KX-4bJ" id="3gf-3i-3Oy"/>

@@ -13,6 +13,7 @@
 #import "wpyDeviceStatus.h"
 #import "SVProgressHUD.h"
 #import "data.h"
+#import <POP/POP.h>
 
 @interface FeedbackViewController ()
 
@@ -132,32 +133,42 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if (self.view.frame.size.width <= 320) {
-        [self moveView:-80];
+        [self adjustViewAnimation];
     }
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     if (self.view.frame.size.width <= 320) {
-        [self moveView:80];
+        [self adjustViewAnimation];
     }
-}
-
-- (void)moveView:(float)move
-{
-    NSTimeInterval animationDuration = 0.30f;
-    CGRect frame = self.view.frame;
-    frame.origin.y += move;
-    [UIView beginAnimations:@"ResizeView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.view.frame = frame;
-    [UIView commitAnimations];
-    //设置调整界面的动画效果
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView == thxAlert) {
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)adjustViewAnimation {
+    POPBasicAnimation *viewAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
+    CGPoint point = self.view.center;
+    CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
+    if ([self moved]) {
+        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight)];
+    } else {
+        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight - 90)];
+    }
+    [self.view.layer pop_addAnimation:viewAnim forKey:@"viewAnimation"];
+}
+
+- (BOOL)moved {
+    CGPoint point = self.view.center;
+    CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
+    if (point.y == halfHeight) {
+        return NO;
+    } else {
+        return YES;
     }
 }
 

@@ -102,18 +102,26 @@
     
     currentPage = 0;
     
+    [self getIndexData];
+    
+    [self.refreshControl endRefreshing];
+}
+
+- (void)getIndexData {
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"job",
                                  @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
     }];
-    [self.refreshControl endRefreshing];
+
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)jobsDic
@@ -131,6 +139,8 @@
     
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
+    
+    [SVProgressHUD dismiss];
 }
 
 - (void)tableViewEndReloading
@@ -220,19 +230,7 @@
     
     currentPage = currentPage + 1;
     
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    NSDictionary *parameters = @{@"ctype":@"job",
-                                 @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
-                                 @"platform":@"ios",
-                                 @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self dealWithReceivedData:responseObject];
-        [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
-    }];
+    [self getIndexData];
 }
 
 - (void)pushFav

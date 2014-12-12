@@ -54,7 +54,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func studySearch() {
         
-        SVProgressHUD.showWithStatus("加载中...")
+        SVProgressHUD.showWithMaskType(SVProgressHUDMaskType.Black)
         
         let startTimeSelected = studysearchPickerView.selectedRowInComponent(0) as Int
         let endTimeSelected = studysearchPickerView.selectedRowInComponent(1) as Int
@@ -76,7 +76,6 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
             }
             
             let url = "http://push-mobile.twtapps.net/studyrooms"
-            //let body = "day=\(daySelected)&class="+timeConvertResult+"&building="+buildingConvertResult
             let parameters = ["day":daySelected, "class":timeConvertResult, "building":buildingConvertResult, "platform":"ios", "version":data.shareInstance().appVersion]
             
             var manager = AFHTTPRequestOperationManager()
@@ -87,7 +86,6 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 
             }, failure: {
                 (AFHTTPRequestOperation operation, NSError error) in
-                //SVProgressHUD.dismiss()
                 dispatch_async(dispatch_get_main_queue(), {
                     SVProgressHUD.showErrorWithStatus("加载失败")
                 })

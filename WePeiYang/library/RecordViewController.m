@@ -81,7 +81,7 @@
     if (![fileManager fileExistsAtPath:plistPath])
     {
         //无twt登录文件时
-        //
+        
         [tableView setHidden:YES];
         [noLoginLabel setHidden:NO];
         [noLoginLabel setText:@"您尚未登录天外天账号"];

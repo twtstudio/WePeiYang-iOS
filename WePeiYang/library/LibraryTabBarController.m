@@ -41,7 +41,7 @@
     
     NSArray *imgNameArr = @[@"l_search@2x", @"l_fav@2x", @"l_record@2x"];
     NSArray *tabBarItemTitleArr = @[@"图书检索", @"收藏夹", @"记录"];
-    for (int i = 0; i <3; i++) {
+    for (int i = 0; i < 3; i++) {
         [[self.tabBar.items objectAtIndex:i]setTitle:tabBarItemTitleArr[i]];
         NSString *tabBarIconPath = [[NSBundle mainBundle]pathForResource:imgNameArr[i] ofType:@"png"];
         [[self.tabBar.items objectAtIndex:i]setImage:[UIImage imageWithContentsOfFile:tabBarIconPath]];

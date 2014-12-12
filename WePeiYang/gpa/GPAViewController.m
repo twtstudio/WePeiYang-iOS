@@ -18,9 +18,6 @@
 #import "SVProgressHUD.h"
 #import "WePeiYang-Swift.h"
 
-
-#define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
-
 @interface GPAViewController ()
 
 @end

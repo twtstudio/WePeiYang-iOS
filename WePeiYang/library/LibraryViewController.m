@@ -50,7 +50,7 @@
 
 @synthesize label1;
 @synthesize label2;
-@synthesize searchBar;
+@synthesize libSearchBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -83,7 +83,7 @@
     [tableView setBackgroundColor:[UIColor whiteColor]];
     //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+    UITextField *searchField = [libSearchBar valueForKey:@"_searchField"];
     searchField.textColor = [UIColor whiteColor];
     [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     UIImageView *nilView = [[UIImageView alloc]initWithImage:nil];
@@ -103,12 +103,12 @@
 
 - (IBAction)backgroundTap:(id)sender
 {
-    [searchBar resignFirstResponder];
+    [libSearchBar resignFirstResponder];
 }
 
 - (IBAction)typeChanged:(id)sender
 {
-    [searchBar resignFirstResponder];
+    [libSearchBar resignFirstResponder];
     
     if ([sender selectedSegmentIndex] == 0)
     {
@@ -149,8 +149,8 @@
 
 - (void)search:(id)sender
 {
-    [searchBar resignFirstResponder];
-    searchStr = searchBar.text;
+    [libSearchBar resignFirstResponder];
+    searchStr = libSearchBar.text;
     if ([searchStr isEqualToString: @""])
     {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"关键字不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -269,12 +269,12 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [searchBar resignFirstResponder];
+    [libSearchBar resignFirstResponder];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [searchBar resignFirstResponder];
+    [libSearchBar resignFirstResponder];
     NSInteger row = [indexPath row];
     if ([[libraryData objectAtIndex:row] isKindOfClass:[NSString class]])
     {
