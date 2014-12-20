@@ -26,7 +26,7 @@
     // Override point for customization after application launch.
     
     // Configure the Sentry client
-    [RavenClient clientWithDSN:@"http://4bdecbe73bac4899acd3f0cbf9e55b91:59f4ecc64de94659acbb88422e64494e@sentry-ops.twtapps.net/5"];
+    [RavenClient clientWithDSN:[twtSecretKeys getRavenKey]];
     
     // Install the global error handler
     [[RavenClient sharedClient] setupExceptionHandler];

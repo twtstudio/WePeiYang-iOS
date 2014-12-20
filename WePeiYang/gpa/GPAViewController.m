@@ -54,6 +54,7 @@
     NSInteger gpaHeaderViewHeight;
     
     NSInteger lastSelected; // 图表里上一个选择的节点的index
+    BOOL graphIsTouched; // 图表当前被摸着
 }
 
 @synthesize tableView;
@@ -85,6 +86,8 @@
     self.title = @"GPA查询";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    graphIsTouched = NO;
     
     gpaTintColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
     [[UIButton appearance] setTintColor:[UIColor whiteColor]];
@@ -504,14 +507,13 @@
     [banner drawInRect:CGRectMake(0, screenShotSize.height, bannerSize.width, bannerSize.height)];
     UIImage *shareImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    NSString *shareFrom = @"（分享自 微北洋 iOS 版 https://itunes.apple.com/cn/app/wei-bei-yang/id785509141?mt=8）";
+    /*    NSString *shareFrom = @"（分享自 微北洋 iOS 版 https://itunes.apple.com/cn/app/wei-bei-yang/id785509141?mt=8）";
     NSString *gpaStr = gpaHeader.gpaLabel.text;
     NSString *scoreStr = gpaHeader.scoreLabel.text;
     
     NSString *shareString = [[NSString alloc]initWithFormat:@"我的平均分是 %@，GPA是 %@，快来晒出你的GPA吧！%@",scoreStr,gpaStr,shareFrom];
-    
-    NSArray *activityItems = @[shareImg, shareString];
+    */
+    NSArray *activityItems = @[shareImg];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
@@ -711,9 +713,15 @@
     // Update view
     self.tableView.scrollEnabled = NO;
     
-    gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", [everyGpaArr[horizontalIndex] floatValue]];
-    gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", [everyScoreArr[horizontalIndex] floatValue]];
-    gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
+    // 不该每次执行都更新，但是第一次要更新
+    if (graphIsTouched == NO) {
+        //NSLog(@"terms update");
+        gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", [everyGpaArr[horizontalIndex] floatValue]];
+        gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", [everyScoreArr[horizontalIndex] floatValue]];
+        gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
+        
+        graphIsTouched = YES;
+    }
     
     if (horizontalIndex != lastSelected) {
         
@@ -722,7 +730,13 @@
         } else {
             [self selectPointForIndex:horizontalIndex withRowAnimation:UITableViewRowAnimationRight];
         }
-        // [self selectPointForIndex:horizontalIndex];
+        //NSLog(@"terms update");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", [everyGpaArr[horizontalIndex] floatValue]];
+            gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", [everyScoreArr[horizontalIndex] floatValue]];
+            gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
+        });
+        
         
         lastSelected = horizontalIndex;
     }
@@ -735,6 +749,8 @@
     gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
     gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
     gpaHeader.termLabel.text = @"";
+    
+    graphIsTouched = NO;
 }
 
 @end

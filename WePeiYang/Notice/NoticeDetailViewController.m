@@ -102,11 +102,11 @@
 {
     NSArray *activityItems;
     NSString *urlStr = [NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",noticeId];
-    NSString *title = noticeTitle;
+    //NSString *title = noticeTitle;
     
-    NSString *shareString = [[NSString alloc]initWithFormat:@"%@",title];
+    //NSString *shareString = [[NSString alloc]initWithFormat:@"%@",title];
     NSURL *shareURL = [NSURL URLWithString:urlStr];
-    activityItems = @[shareString, shareURL];
+    activityItems = @[shareURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
