@@ -337,12 +337,12 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func bindTju() {
-        let gpaLogin = GPALoginViewController(nibName: nil, bundle: nil)
+        let gpaLogin = GPALoginViewController()
         self.presentViewController(gpaLogin, animated: true, completion: nil)
     }
     
     func bindLib() {
-        let libLogin = LoginViewController(nibName: nil, bundle: nil)
+        let libLogin = LibLoginViewController()
         self.presentViewController(libLogin, animated: true, completion: nil)
     }
     

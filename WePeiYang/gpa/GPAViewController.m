@@ -445,7 +445,7 @@
 {
     if (alertView == errorAlert)
     {
-        GPALoginViewController *login = [[GPALoginViewController alloc]initWithNibName:nil bundle:nil];
+        GPALoginViewController *login = [[GPALoginViewController alloc]init];
         [self presentViewController:login animated:YES completion:nil];
     }
     else

@@ -11,7 +11,7 @@
 #import "data.h"
 #import "RecordTableCell.h"
 #import "AFNetworking.h"
-#import "LoginViewController.h"
+#import "LibLoginViewController.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "SVProgressHUD.h"
@@ -229,7 +229,7 @@
 
 - (void)bindLib
 {
-    LoginViewController *libLogin = [[LoginViewController alloc]initWithNibName:nil bundle:nil];
+    LibLoginViewController *libLogin = [[LibLoginViewController alloc]init];
     [libLogin setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:libLogin animated:YES completion:nil];
 }

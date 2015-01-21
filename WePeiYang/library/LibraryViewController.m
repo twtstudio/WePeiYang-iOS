@@ -9,7 +9,7 @@
 #import "LibraryViewController.h"
 #import "LibraryTableCell.h"
 #import "data.h"
-#import "LoginViewController.h"
+#import "LibLoginViewController.h"
 #import "RecordViewController.h"
 #import "LibraryFavouriteViewController.h"
 #import "UIButton+Bootstrap.h"

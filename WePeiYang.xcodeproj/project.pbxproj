@@ -36,8 +36,6 @@
 		188842961846F73B007B92CB /* LibraryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188842841846F73B007B92CB /* LibraryTableCell.xib */; };
 		188842971846F73B007B92CB /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842861846F73B007B92CB /* LibraryViewController.m */; };
 		188842981846F73B007B92CB /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188842871846F73B007B92CB /* LibraryViewController.xib */; };
-		1888429A1846F73B007B92CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888428A1846F73B007B92CB /* LoginViewController.m */; };
-		1888429B1846F73B007B92CB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1888428B1846F73B007B92CB /* LoginViewController.xib */; };
 		1888429D1846F73B007B92CB /* RecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888428E1846F73B007B92CB /* RecordTableCell.m */; };
 		1888429E1846F73B007B92CB /* RecordTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1888428F1846F73B007B92CB /* RecordTableCell.xib */; };
 		1888429F1846F73B007B92CB /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842911846F73B007B92CB /* RecordViewController.m */; };
@@ -51,8 +49,6 @@
 		18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CFC7DF18900C7200A51F01 /* UIButton+Bootstrap.m */; };
 		18D63E2118571196004E75AA /* GPAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D63E1F18571196004E75AA /* GPAViewController.m */; };
 		18D63E2218571196004E75AA /* GPAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D63E2018571196004E75AA /* GPAViewController.xib */; };
-		18D63E26185715F3004E75AA /* GPALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D63E24185715F3004E75AA /* GPALoginViewController.m */; };
-		18D63E27185715F3004E75AA /* GPALoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D63E25185715F3004E75AA /* GPALoginViewController.xib */; };
 		18D63E2A185766B0004E75AA /* GPATableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D63E29185766B0004E75AA /* GPATableCell.m */; };
 		18D63E2C185766C9004E75AA /* GPATableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D63E2B185766C9004E75AA /* GPATableCell.xib */; };
 		18F586211859B21800410E81 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F586201859B21800410E81 /* NoticeViewController.m */; };
@@ -66,8 +62,6 @@
 		25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44C18FA20B6008D56F6 /* HiringViewController.m */; };
 		25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44F18FA2D24008D56F6 /* HringTableCell.m */; };
 		25C0A45218FA2D24008D56F6 /* HringTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C0A45018FA2D24008D56F6 /* HringTableCell.xib */; };
-		25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */; };
-		25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */; };
 		25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E48CA518F96B840066E3E6 /* JobTabBarController.m */; };
 		77A14064B98A239697510E28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2387BDC5FF179A6965C30F /* libPods.a */; };
 		E934944B1A2F036700F92525 /* DevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93494491A2F036700F92525 /* DevViewController.swift */; };
@@ -139,6 +133,12 @@
 		E9A48CE51A6FF597001D8420 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CE71A6FF597001D8420 /* Localizable.strings */; };
 		E9A48CEB1A70043B001D8420 /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CEA1A70043B001D8420 /* FeedbackForm.m */; };
 		E9A48CF11A7012BF001D8420 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CF01A7012BF001D8420 /* FeedbackController.m */; };
+		E9A48D001A701BD2001D8420 /* GPALoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CFA1A701BD2001D8420 /* GPALoginForm.m */; };
+		E9A48D011A701BD2001D8420 /* GPALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CFC1A701BD2001D8420 /* GPALoginViewController.m */; };
+		E9A48D021A701BD2001D8420 /* twtLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CFE1A701BD2001D8420 /* twtLoginViewController.m */; };
+		E9A48D031A701BD2001D8420 /* twtLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CFF1A701BD2001D8420 /* twtLoginViewController.xib */; };
+		E9A48D061A70216B001D8420 /* LibLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48D051A70216B001D8420 /* LibLoginViewController.m */; };
+		E9A48D091A7021F5001D8420 /* LibLoginForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48D081A7021F5001D8420 /* LibLoginForm.m */; };
 		E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A6C1541A31BCC200544943 /* button-background@2x.png */; };
 		E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AD61EB19C43983009824BB /* gpaHeaderView.m */; };
 		E9C3E56F19C5611600B95CBE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */; };
@@ -249,9 +249,6 @@
 		188842851846F73B007B92CB /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LibraryViewController.h; path = library/LibraryViewController.h; sourceTree = "<group>"; };
 		188842861846F73B007B92CB /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LibraryViewController.m; path = library/LibraryViewController.m; sourceTree = "<group>"; };
 		188842871846F73B007B92CB /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = library/LibraryViewController.xib; sourceTree = "<group>"; };
-		188842891846F73B007B92CB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = library/LoginViewController.h; sourceTree = "<group>"; };
-		1888428A1846F73B007B92CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = library/LoginViewController.m; sourceTree = "<group>"; };
-		1888428B1846F73B007B92CB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = library/LoginViewController.xib; sourceTree = "<group>"; };
 		1888428D1846F73B007B92CB /* RecordTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecordTableCell.h; path = library/RecordTableCell.h; sourceTree = "<group>"; };
 		1888428E1846F73B007B92CB /* RecordTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecordTableCell.m; path = library/RecordTableCell.m; sourceTree = "<group>"; };
 		1888428F1846F73B007B92CB /* RecordTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordTableCell.xib; path = library/RecordTableCell.xib; sourceTree = "<group>"; };
@@ -273,9 +270,6 @@
 		18D63E1E18571196004E75AA /* GPAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAViewController.h; path = gpa/GPAViewController.h; sourceTree = "<group>"; };
 		18D63E1F18571196004E75AA /* GPAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAViewController.m; path = gpa/GPAViewController.m; sourceTree = "<group>"; };
 		18D63E2018571196004E75AA /* GPAViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GPAViewController.xib; path = gpa/GPAViewController.xib; sourceTree = "<group>"; };
-		18D63E23185715F3004E75AA /* GPALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPALoginViewController.h; path = gpa/GPALoginViewController.h; sourceTree = "<group>"; };
-		18D63E24185715F3004E75AA /* GPALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPALoginViewController.m; path = gpa/GPALoginViewController.m; sourceTree = "<group>"; };
-		18D63E25185715F3004E75AA /* GPALoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GPALoginViewController.xib; path = gpa/GPALoginViewController.xib; sourceTree = "<group>"; };
 		18D63E28185766B0004E75AA /* GPATableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPATableCell.h; path = gpa/GPATableCell.h; sourceTree = "<group>"; };
 		18D63E29185766B0004E75AA /* GPATableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPATableCell.m; path = gpa/GPATableCell.m; sourceTree = "<group>"; };
 		18D63E2B185766C9004E75AA /* GPATableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GPATableCell.xib; path = gpa/GPATableCell.xib; sourceTree = "<group>"; };
@@ -298,9 +292,6 @@
 		25C0A44E18FA2D24008D56F6 /* HringTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HringTableCell.h; path = job/HringTableCell.h; sourceTree = "<group>"; };
 		25C0A44F18FA2D24008D56F6 /* HringTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HringTableCell.m; path = job/HringTableCell.m; sourceTree = "<group>"; };
 		25C0A45018FA2D24008D56F6 /* HringTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HringTableCell.xib; path = job/HringTableCell.xib; sourceTree = "<group>"; };
-		25E48C9F18F8C26E0066E3E6 /* twtLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = twtLoginViewController.h; path = WePeiYang/Start/twtLoginViewController.h; sourceTree = "<group>"; };
-		25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = twtLoginViewController.m; path = WePeiYang/Start/twtLoginViewController.m; sourceTree = "<group>"; };
-		25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = twtLoginViewController.xib; path = WePeiYang/Start/twtLoginViewController.xib; sourceTree = "<group>"; };
 		25E48CA418F96B840066E3E6 /* JobTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobTabBarController.h; path = job/JobTabBarController.h; sourceTree = "<group>"; };
 		25E48CA518F96B840066E3E6 /* JobTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobTabBarController.m; path = job/JobTabBarController.m; sourceTree = "<group>"; };
 		4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -380,6 +371,17 @@
 		E9A48CEA1A70043B001D8420 /* FeedbackForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackForm.m; path = WePeiYang/about/feedback/FeedbackForm.m; sourceTree = "<group>"; };
 		E9A48CEF1A7012BF001D8420 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackController.h; path = WePeiYang/about/feedback/FeedbackController.h; sourceTree = "<group>"; };
 		E9A48CF01A7012BF001D8420 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackController.m; path = WePeiYang/about/feedback/FeedbackController.m; sourceTree = "<group>"; };
+		E9A48CF91A701BD2001D8420 /* GPALoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPALoginForm.h; sourceTree = "<group>"; };
+		E9A48CFA1A701BD2001D8420 /* GPALoginForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPALoginForm.m; sourceTree = "<group>"; };
+		E9A48CFB1A701BD2001D8420 /* GPALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPALoginViewController.h; sourceTree = "<group>"; };
+		E9A48CFC1A701BD2001D8420 /* GPALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPALoginViewController.m; sourceTree = "<group>"; };
+		E9A48CFD1A701BD2001D8420 /* twtLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtLoginViewController.h; sourceTree = "<group>"; };
+		E9A48CFE1A701BD2001D8420 /* twtLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtLoginViewController.m; sourceTree = "<group>"; };
+		E9A48CFF1A701BD2001D8420 /* twtLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = twtLoginViewController.xib; sourceTree = "<group>"; };
+		E9A48D041A70216B001D8420 /* LibLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibLoginViewController.h; sourceTree = "<group>"; };
+		E9A48D051A70216B001D8420 /* LibLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibLoginViewController.m; sourceTree = "<group>"; };
+		E9A48D071A7021F5001D8420 /* LibLoginForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibLoginForm.h; sourceTree = "<group>"; };
+		E9A48D081A7021F5001D8420 /* LibLoginForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibLoginForm.m; sourceTree = "<group>"; };
 		E9A6C1541A31BCC200544943 /* button-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background@2x.png"; sourceTree = "<group>"; };
 		E9AD61EA19C43983009824BB /* gpaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpaHeaderView.h; path = gpa/gpaHeaderView.h; sourceTree = "<group>"; };
 		E9AD61EB19C43983009824BB /* gpaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gpaHeaderView.m; path = gpa/gpaHeaderView.m; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				E9A48CD41A6FE8FE001D8420 /* Sharing */,
 				1825E1901878647A004976EA /* Guide */,
 				18ACB783187EB5110073998E /* Start */,
+				E9A48CF81A701BD2001D8420 /* Login */,
 				188842431846E7BB007B92CB /* StudySearch */,
 				188842631846F715007B92CB /* News */,
 				18F5861B1859B0AB00410E81 /* Notice */,
@@ -643,9 +646,6 @@
 				1888428D1846F73B007B92CB /* RecordTableCell.h */,
 				1888428E1846F73B007B92CB /* RecordTableCell.m */,
 				1888428F1846F73B007B92CB /* RecordTableCell.xib */,
-				188842891846F73B007B92CB /* LoginViewController.h */,
-				1888428A1846F73B007B92CB /* LoginViewController.m */,
-				1888428B1846F73B007B92CB /* LoginViewController.xib */,
 				2525F64E18F691BF00918714 /* LibraryTabBarController.h */,
 				2525F64F18F691BF00918714 /* LibraryTabBarController.m */,
 			);
@@ -656,9 +656,6 @@
 			isa = PBXGroup;
 			children = (
 				E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */,
-				25E48C9F18F8C26E0066E3E6 /* twtLoginViewController.h */,
-				25E48CA018F8C26E0066E3E6 /* twtLoginViewController.m */,
-				25E48CA118F8C26E0066E3E6 /* twtLoginViewController.xib */,
 			);
 			name = Start;
 			path = ..;
@@ -734,9 +731,6 @@
 				18D63E1E18571196004E75AA /* GPAViewController.h */,
 				18D63E1F18571196004E75AA /* GPAViewController.m */,
 				18D63E2018571196004E75AA /* GPAViewController.xib */,
-				18D63E23185715F3004E75AA /* GPALoginViewController.h */,
-				18D63E24185715F3004E75AA /* GPALoginViewController.m */,
-				18D63E25185715F3004E75AA /* GPALoginViewController.xib */,
 				18D63E28185766B0004E75AA /* GPATableCell.h */,
 				18D63E29185766B0004E75AA /* GPATableCell.m */,
 				18D63E2B185766C9004E75AA /* GPATableCell.xib */,
@@ -891,6 +885,24 @@
 				E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */,
 			);
 			name = Sharing;
+			sourceTree = "<group>";
+		};
+		E9A48CF81A701BD2001D8420 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E9A48CFD1A701BD2001D8420 /* twtLoginViewController.h */,
+				E9A48CFE1A701BD2001D8420 /* twtLoginViewController.m */,
+				E9A48CFF1A701BD2001D8420 /* twtLoginViewController.xib */,
+				E9A48CF91A701BD2001D8420 /* GPALoginForm.h */,
+				E9A48CFA1A701BD2001D8420 /* GPALoginForm.m */,
+				E9A48CFB1A701BD2001D8420 /* GPALoginViewController.h */,
+				E9A48CFC1A701BD2001D8420 /* GPALoginViewController.m */,
+				E9A48D071A7021F5001D8420 /* LibLoginForm.h */,
+				E9A48D081A7021F5001D8420 /* LibLoginForm.m */,
+				E9A48D041A70216B001D8420 /* LibLoginViewController.h */,
+				E9A48D051A70216B001D8420 /* LibLoginViewController.m */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		E9D4363B19B2285C0042A9F1 /* newLAFound */ = {
@@ -1071,11 +1083,9 @@
 				E95DA5651A31B9F50039EBC0 /* notice@2x.png in Resources */,
 				E9D4365419B2285C0042A9F1 /* LAFound_QueryListTableViewCell.xib in Resources */,
 				1888429E1846F73B007B92CB /* RecordTableCell.xib in Resources */,
-				18D63E27185715F3004E75AA /* GPALoginViewController.xib in Resources */,
 				E95DA5681A31B9F50039EBC0 /* newSubjectMark@2x.png in Resources */,
 				E94D76001A320929000B3082 /* g1.jpg in Resources */,
 				E95DA5741A31B9F50039EBC0 /* l_fav@2x.png in Resources */,
-				1888429B1846F73B007B92CB /* LoginViewController.xib in Resources */,
 				182155BC18BF6E0A008A1D1A /* GPACalculatorViewController.xib in Resources */,
 				18114E7B18585A64007455E2 /* JobDetailViewController.xib in Resources */,
 				E934944C1A2F036700F92525 /* DevViewController.xib in Resources */,
@@ -1092,6 +1102,7 @@
 				E95DA56C1A31B9F50039EBC0 /* send@2x.png in Resources */,
 				E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */,
 				E95DA55B1A31B9F50039EBC0 /* Banner@2x.png in Resources */,
+				E9A48D031A701BD2001D8420 /* twtLoginViewController.xib in Resources */,
 				E95DA5601A31B9F50039EBC0 /* gpa@2x.png in Resources */,
 				188842981846F73B007B92CB /* LibraryViewController.xib in Resources */,
 				E95DA56D1A31B9F50039EBC0 /* sendForNav@2x.png in Resources */,
@@ -1101,7 +1112,6 @@
 				E95DA5731A31B9F50039EBC0 /* jobs_tab@2x.png in Resources */,
 				E93FBB0A1A35DDF30002D38B /* SplashViewController.xib in Resources */,
 				E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */,
-				25E48CA318F8C26E0066E3E6 /* twtLoginViewController.xib in Resources */,
 				18114E7618585807007455E2 /* JobTableCell.xib in Resources */,
 				25340FAE191CA73E00AFDE7D /* HiringDetailViewController.xib in Resources */,
 				188842251846E6F4007B92CB /* Images.xcassets in Resources */,
@@ -1203,12 +1213,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9A48D001A701BD2001D8420 /* GPALoginForm.m in Sources */,
 				1888429D1846F73B007B92CB /* RecordTableCell.m in Sources */,
 				E9D4365119B2285C0042A9F1 /* LAFound_QueryDetailViewController.m in Sources */,
 				E9A48CEB1A70043B001D8420 /* FeedbackForm.m in Sources */,
 				E93FBB091A35DDF30002D38B /* SplashViewController.swift in Sources */,
 				18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */,
 				E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */,
+				E9A48D021A701BD2001D8420 /* twtLoginViewController.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
 				E9D4365319B2285C0042A9F1 /* LAFound_QueryListTableViewCell.m in Sources */,
 				182155BB18BF6E0A008A1D1A /* GPACalculatorViewController.m in Sources */,
@@ -1217,14 +1229,13 @@
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */,
 				2525F65018F691BF00918714 /* LibraryTabBarController.m in Sources */,
-				1888429A1846F73B007B92CB /* LoginViewController.m in Sources */,
+				E9A48D011A701BD2001D8420 /* GPALoginViewController.m in Sources */,
 				E9A48CCF1A6F7798001D8420 /* twtSecretKeys.m in Sources */,
 				18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */,
 				25340FAD191CA73E00AFDE7D /* HiringDetailViewController.m in Sources */,
 				25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */,
 				E9D058DD1A24ECAD00BDE954 /* wpyActionSheet.swift in Sources */,
 				188842971846F73B007B92CB /* LibraryViewController.m in Sources */,
-				25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */,
 				18D63E2118571196004E75AA /* GPAViewController.m in Sources */,
 				25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */,
 				E9D4364F19B2285C0042A9F1 /* LAFound_CollectionViewController.m in Sources */,
@@ -1233,7 +1244,6 @@
 				E9638CCA19C326C300898350 /* AboutViewController.swift in Sources */,
 				252C101B19176FA900C2B636 /* wpyEncryption.m in Sources */,
 				18114E74185857F2007455E2 /* JobTableCell.m in Sources */,
-				18D63E26185715F3004E75AA /* GPALoginViewController.m in Sources */,
 				18114E71185850DA007455E2 /* JobViewController.m in Sources */,
 				1841D821187D5AD1006DDA17 /* GuideViewController.m in Sources */,
 				E9A48CF11A7012BF001D8420 /* FeedbackController.m in Sources */,
@@ -1243,10 +1253,12 @@
 				188842A41846F79F007B92CB /* data.m in Sources */,
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
 				E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */,
+				E9A48D061A70216B001D8420 /* LibLoginViewController.m in Sources */,
 				E934944B1A2F036700F92525 /* DevViewController.swift in Sources */,
 				18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */,
 				18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */,
 				E96E0CA419E53A9000244751 /* StudySearchViewController.swift in Sources */,
+				E9A48D091A7021F5001D8420 /* LibLoginForm.m in Sources */,
 				188842951846F73B007B92CB /* LibraryTableCell.m in Sources */,
 				18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */,
 				1888427E1846F723007B92CB /* IndexViewController.m in Sources */,
