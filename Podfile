@@ -8,6 +8,10 @@ pod 'SVProgressHUD', :head
 pod 'pop', '~> 1.0'
 pod "AHKActionSheet"
 pod 'JBChartView'
+pod 'JSONKit'
+pod 'KVOController', '~> 1.0.3'
+pod 'SVPullToRefresh', '~> 0.4.1'
+pod 'FXForms', '~> 1.2.11'
 
 target 'WePeiYang' do
 

@@ -16,6 +16,7 @@
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "SVProgressHUD.h"
+#import "JSONKit.h"
 #import "WePeiYang-Swift.h"
 
 @interface GPAViewController ()
@@ -164,7 +165,7 @@
             backBtn.tintColor = [UIColor whiteColor];
             
             [self saveCacheWithData:responseObject];
-            [self processGpaData:responseObject];
+            [self processGpaData:[operation.responseString objectFromJSONString]];
             
             [SVProgressHUD dismiss];
             

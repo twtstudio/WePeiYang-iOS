@@ -383,7 +383,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func pushFeedback() {
-        var fb = FeedbackViewController()
+        var fb = FeedbackController()
         self.navigationController!.pushViewController(fb, animated: true)
     }
     

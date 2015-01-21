@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DetailViewController : UIViewController<UIGestureRecognizerDelegate>
+@interface DetailViewController : UIViewController<UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) NSString *detailId;

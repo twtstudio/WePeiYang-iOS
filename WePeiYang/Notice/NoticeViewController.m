@@ -8,13 +8,15 @@
 
 #import "NoticeViewController.h"
 #import "data.h"
-#import "NoticeDetailViewController.h"
+#import "DetailViewController.h"
 #import "AFNetworking.h"
+#import "JSONKit.h"
+#import "SVPullToRefresh.h"
 #import "SVProgressHUD.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
-@interface NoticeViewController ()
+@interface NoticeViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -42,71 +44,81 @@
 {
     [super viewDidLoad];
     
-    //self.navigationController.navigationBarHidden = NO;
+    //修复下拉刷新位置错误
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        
+        UIEdgeInsets insets = self.tableView.contentInset;
+        insets.top = self.navigationController.navigationBar.bounds.size.height +
+        [UIApplication sharedApplication].statusBarFrame.size.height;
+        self.tableView.contentInset = insets;
+        self.tableView.scrollIndicatorInsets = insets;
+    }
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
 
-    noticeData = [[NSMutableArray alloc]initWithObjects: nil];
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
-    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
+    noticeData = [[NSMutableArray alloc]init];
+    titleInTable = [[NSMutableArray alloc]init];
     
     self.title = @"校园公告";
     
-    [self refresh:self];
-    
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:232/255.0f green:159/255.0f blue:0/255.0f alpha:1.0f];
     
+    __weak NoticeViewController *weakSelf = self;
+    
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refresh];
+    }];
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf nextPage];
+    }];
+    
+    [self.tableView triggerPullToRefresh];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)backToHome
 {
-    [self.tabBarController.navigationController popViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)refreshView:(UIRefreshControl *)refreshControl
-{
-    if(refreshControl.refreshing)
-    {
-        refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在加载..."];
-        [self performSelector:@selector(refresh:) withObject:nil afterDelay:0];
-    }
-}
-
-- (void)refresh:(id)sender
-{
-    noticeData = [[NSMutableArray alloc]initWithObjects: nil];
+- (void)refresh {
+    noticeData = [[NSMutableArray alloc]init];
     currentPage = 0;
     
     [self getIndexData];
-    
-    [self.refreshControl endRefreshing];
 }
 
 - (void)getIndexData {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"news",@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],@"ntype":@"2"};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
-        [self dealWithReceivedDictionary:responseObject];
+        [self dealWithReceivedData:[operation.responseString objectFromJSONString]];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.pullToRefreshView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.pullToRefreshView stopAnimating];
     }];
 }
 
 - (void)tableViewEndReloading
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,15 +142,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     NSUInteger row = [indexPath row];
-    if (row == [titleInTable count]-1)
-    {
-        cell.textLabel.text = [titleInTable objectAtIndex:row];
-    }
-    else
-    {
-        cell.textLabel.text = [[titleInTable objectAtIndex:row]objectForKey:@"subject"];
-        cell.textLabel.numberOfLines = 2;
-    }
+    cell.textLabel.text = [[titleInTable objectAtIndex:row]objectForKey:@"subject"];
+    cell.textLabel.numberOfLines = 2;
     return cell;
 }
 
@@ -148,50 +153,39 @@
     return 58;
 }
 
-- (void)nextPage:(id)sender
+- (void)nextPage
 {
     currentPage = currentPage + 1;
     
     [self getIndexData];
 }
 
-- (void)dealWithReceivedDictionary:(NSDictionary *)noticeDic
+- (void)dealWithReceivedData:(NSMutableArray *)noticeArr
 {
-    if ([noticeDic count]>0)
+    if ([noticeArr count]>0)
     {
-        for (NSDictionary *temp in noticeDic)
+        for (NSDictionary *temp in noticeArr)
         {
             [noticeData addObject:temp];
         }
     }
     titleInTable = noticeData;
-    [titleInTable addObject:@"点击加载更多..."];
-    [self.refreshControl endRefreshing];
     [self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger row = [indexPath row];
-    if (row == [titleInTable count] - 1)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [titleInTable removeObject:[titleInTable lastObject]];
-        [self nextPage:self];
-    }
-    else
-    {
-        NSString *rowSelected = [[titleInTable objectAtIndex:row] objectForKey:@"subject"];
-        NSString *idSelected = [[titleInTable objectAtIndex:row] objectForKey:@"index"];
+    NSString *rowSelected = [[titleInTable objectAtIndex:row] objectForKey:@"subject"];
+    NSString *idSelected = [[titleInTable objectAtIndex:row] objectForKey:@"index"];
 
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        NoticeDetailViewController *noticeDetail;
-        noticeDetail = [[NoticeDetailViewController alloc]initWithNibName:@"NoticeDetailViewController" bundle:nil];
-        noticeDetail.hidesBottomBarWhenPushed = YES;
-        noticeDetail.noticeId = idSelected;
-        noticeDetail.noticeTitle = rowSelected;
-        [self.navigationController pushViewController:noticeDetail animated:YES];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    DetailViewController *noticeDetail;
+    noticeDetail = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
+    noticeDetail.hidesBottomBarWhenPushed = YES;
+    noticeDetail.detailId = idSelected;
+    noticeDetail.detailTitle = rowSelected;
+    [self.navigationController pushViewController:noticeDetail animated:YES];
 }
 
 @end

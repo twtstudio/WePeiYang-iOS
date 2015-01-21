@@ -19,7 +19,6 @@
 		182155BC18BF6E0A008A1D1A /* GPACalculatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182155BA18BF6E0A008A1D1A /* GPACalculatorViewController.xib */; };
 		1825E18B1878644D004976EA /* LibraryFavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1825E18A1878644D004976EA /* LibraryFavouriteViewController.m */; };
 		1841D821187D5AD1006DDA17 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1841D820187D5AD1006DDA17 /* GuideViewController.m */; };
-		18607AE918DC21DD00C5C665 /* noticeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18607AE818DC21DD00C5C665 /* noticeTabBarController.m */; };
 		188842131846E6F4007B92CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842121846E6F4007B92CB /* Foundation.framework */; };
 		188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842141846E6F4007B92CB /* CoreGraphics.framework */; };
 		188842171846E6F4007B92CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842161846E6F4007B92CB /* UIKit.framework */; };
@@ -32,7 +31,6 @@
 		1888422E1846E6F4007B92CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842161846E6F4007B92CB /* UIKit.framework */; };
 		188842361846E6F4007B92CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188842341846E6F4007B92CB /* InfoPlist.strings */; };
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
-		188842771846F723007B92CB /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842691846F723007B92CB /* CollectionViewController.m */; };
 		1888427E1846F723007B92CB /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842731846F723007B92CB /* IndexViewController.m */; };
 		188842951846F73B007B92CB /* LibraryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842831846F73B007B92CB /* LibraryTableCell.m */; };
 		188842961846F73B007B92CB /* LibraryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188842841846F73B007B92CB /* LibraryTableCell.xib */; };
@@ -48,8 +46,6 @@
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		18B5EF4A18DB059400B14FE8 /* indexTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B5EF4918DB059400B14FE8 /* indexTabBarController.m */; };
 		18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */; };
-		18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C322B11861AAB600CE035D /* FeedbackViewController.m */; };
-		18C322B51861AAB600CE035D /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C322B21861AAB600CE035D /* FeedbackViewController.xib */; };
 		18C87D6A1887F0EF009AF085 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C87D681887F0EF009AF085 /* DetailViewController.xib */; };
 		18C87D6E1887F1B7009AF085 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C87D6D1887F1B7009AF085 /* DetailViewController.m */; };
 		18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CFC7DF18900C7200A51F01 /* UIButton+Bootstrap.m */; };
@@ -60,8 +56,6 @@
 		18D63E2A185766B0004E75AA /* GPATableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D63E29185766B0004E75AA /* GPATableCell.m */; };
 		18D63E2C185766C9004E75AA /* GPATableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D63E2B185766C9004E75AA /* GPATableCell.xib */; };
 		18F586211859B21800410E81 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F586201859B21800410E81 /* NoticeViewController.m */; };
-		18F586291859B6C100410E81 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F586271859B6C100410E81 /* NoticeDetailViewController.m */; };
-		18F5862A1859B6C100410E81 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F586281859B6C100410E81 /* NoticeDetailViewController.xib */; };
 		18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FDB26618B50065000ED037 /* JobFavViewController.m */; };
 		2525F65018F691BF00918714 /* LibraryTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2525F64F18F691BF00918714 /* LibraryTabBarController.m */; };
 		2525F65218F6941300918714 /* LibraryFavouriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2525F65118F6941300918714 /* LibraryFavouriteViewController.xib */; };
@@ -69,7 +63,6 @@
 		252C101B19176FA900C2B636 /* wpyEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 252C101A19176FA900C2B636 /* wpyEncryption.m */; };
 		25340FAD191CA73E00AFDE7D /* HiringDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25340FAB191CA73E00AFDE7D /* HiringDetailViewController.m */; };
 		25340FAE191CA73E00AFDE7D /* HiringDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25340FAC191CA73E00AFDE7D /* HiringDetailViewController.xib */; };
-		25A5F78118EC2F0000D6EE4E /* NoticeFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */; };
 		25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44C18FA20B6008D56F6 /* HiringViewController.m */; };
 		25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A44F18FA2D24008D56F6 /* HringTableCell.m */; };
 		25C0A45218FA2D24008D56F6 /* HringTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C0A45018FA2D24008D56F6 /* HringTableCell.xib */; };
@@ -131,7 +124,6 @@
 		E95DA57F1A31B9F50039EBC0 /* maimeng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5541A31B9F50039EBC0 /* maimeng@2x.png */; };
 		E95DA5801A31B9F50039EBC0 /* pujie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5551A31B9F50039EBC0 /* pujie@2x.png */; };
 		E95DA5811A31B9F50039EBC0 /* wpyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5571A31B9F50039EBC0 /* wpyicon@2x.png */; };
-		E95DA5821A31B9F50039EBC0 /* zhanshanlogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5581A31B9F50039EBC0 /* zhanshanlogo@2x.png */; };
 		E95DA5871A31BA570039EBC0 /* addToFav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5841A31BA570039EBC0 /* addToFav@2x.png */; };
 		E95DA5881A31BA570039EBC0 /* openInSafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5851A31BA570039EBC0 /* openInSafari@2x.png */; };
 		E95DA5891A31BA570039EBC0 /* shareInSheet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5861A31BA570039EBC0 /* shareInSheet@2x.png */; };
@@ -140,9 +132,15 @@
 		E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96E0CA319E53A9000244751 /* StudySearchViewController.xib */; };
 		E9A2062A1A33EA090080144C /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A206291A33EA090080144C /* NSTimer+Blocks.m */; };
 		E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */; };
+		E9A48CCF1A6F7798001D8420 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CCE1A6F7798001D8420 /* twtSecretKeys.m */; };
+		E9A48CD71A6FE9A0001D8420 /* openinsafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */; };
+		E9A48CD81A6FE9A0001D8420 /* openinsafari7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */; };
+		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
+		E9A48CE51A6FF597001D8420 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CE71A6FF597001D8420 /* Localizable.strings */; };
+		E9A48CEB1A70043B001D8420 /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CEA1A70043B001D8420 /* FeedbackForm.m */; };
+		E9A48CF11A7012BF001D8420 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CF01A7012BF001D8420 /* FeedbackController.m */; };
 		E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A6C1541A31BCC200544943 /* button-background@2x.png */; };
 		E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AD61EB19C43983009824BB /* gpaHeaderView.m */; };
-		E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B0EB64197571F80000B951 /* twtSecretKeys.m */; };
 		E9C3E56F19C5611600B95CBE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */; };
 		E9D058DD1A24ECAD00BDE954 /* wpyActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D058DC1A24ECAD00BDE954 /* wpyActionSheet.swift */; };
 		E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4363D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m */; };
@@ -225,8 +223,6 @@
 		1825E18A1878644D004976EA /* LibraryFavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LibraryFavouriteViewController.m; path = library/LibraryFavouriteViewController.m; sourceTree = "<group>"; };
 		1841D81F187D5AD1006DDA17 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		1841D820187D5AD1006DDA17 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
-		18607AE718DC21DD00C5C665 /* noticeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = noticeTabBarController.h; path = Notice/noticeTabBarController.h; sourceTree = "<group>"; };
-		18607AE818DC21DD00C5C665 /* noticeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = noticeTabBarController.m; path = Notice/noticeTabBarController.m; sourceTree = "<group>"; };
 		1888420F1846E6F4007B92CB /* WePeiYang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WePeiYang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188842121846E6F4007B92CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		188842141846E6F4007B92CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -245,8 +241,6 @@
 		188842371846E6F4007B92CB /* WePeiYangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WePeiYangTests.m; sourceTree = "<group>"; };
 		188842411846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188842421846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		188842681846F723007B92CB /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionViewController.h; path = news/CollectionViewController.h; sourceTree = "<group>"; };
-		188842691846F723007B92CB /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionViewController.m; path = news/CollectionViewController.m; sourceTree = "<group>"; };
 		188842721846F723007B92CB /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndexViewController.h; path = news/IndexViewController.h; sourceTree = "<group>"; };
 		188842731846F723007B92CB /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndexViewController.m; path = news/IndexViewController.m; sourceTree = "<group>"; };
 		188842821846F73B007B92CB /* LibraryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LibraryTableCell.h; path = library/LibraryTableCell.h; sourceTree = "<group>"; };
@@ -271,9 +265,6 @@
 		18B5EF4918DB059400B14FE8 /* indexTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = indexTabBarController.m; path = news/indexTabBarController.m; sourceTree = "<group>"; };
 		18BB2ECE18E1AD0C0084AD16 /* wpyStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyStringProcessor.h; sourceTree = "<group>"; };
 		18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyStringProcessor.m; sourceTree = "<group>"; };
-		18C322B01861AAB600CE035D /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = WePeiYang/about/feedback/FeedbackViewController.h; sourceTree = "<group>"; };
-		18C322B11861AAB600CE035D /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = WePeiYang/about/feedback/FeedbackViewController.m; sourceTree = "<group>"; };
-		18C322B21861AAB600CE035D /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = WePeiYang/about/feedback/FeedbackViewController.xib; sourceTree = "<group>"; };
 		18C87D681887F0EF009AF085 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = news/DetailViewController.xib; sourceTree = "<group>"; };
 		18C87D6C1887F1B7009AF085 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = news/DetailViewController.h; sourceTree = "<group>"; };
 		18C87D6D1887F1B7009AF085 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = news/DetailViewController.m; sourceTree = "<group>"; };
@@ -290,9 +281,6 @@
 		18D63E2B185766C9004E75AA /* GPATableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GPATableCell.xib; path = gpa/GPATableCell.xib; sourceTree = "<group>"; };
 		18F5861F1859B21800410E81 /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeViewController.h; path = Notice/NoticeViewController.h; sourceTree = "<group>"; };
 		18F586201859B21800410E81 /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeViewController.m; path = Notice/NoticeViewController.m; sourceTree = "<group>"; };
-		18F586261859B6C100410E81 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeDetailViewController.h; path = Notice/NoticeDetailViewController.h; sourceTree = "<group>"; };
-		18F586271859B6C100410E81 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeDetailViewController.m; path = Notice/NoticeDetailViewController.m; sourceTree = "<group>"; };
-		18F586281859B6C100410E81 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoticeDetailViewController.xib; path = Notice/NoticeDetailViewController.xib; sourceTree = "<group>"; };
 		18FDB26518B50065000ED037 /* JobFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobFavViewController.h; path = job/JobFavViewController.h; sourceTree = "<group>"; };
 		18FDB26618B50065000ED037 /* JobFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobFavViewController.m; path = job/JobFavViewController.m; sourceTree = "<group>"; };
 		2525F64E18F691BF00918714 /* LibraryTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LibraryTabBarController.h; path = library/LibraryTabBarController.h; sourceTree = "<group>"; };
@@ -305,8 +293,6 @@
 		25340FAA191CA73E00AFDE7D /* HiringDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiringDetailViewController.h; path = job/HiringDetailViewController.h; sourceTree = "<group>"; };
 		25340FAB191CA73E00AFDE7D /* HiringDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HiringDetailViewController.m; path = job/HiringDetailViewController.m; sourceTree = "<group>"; };
 		25340FAC191CA73E00AFDE7D /* HiringDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HiringDetailViewController.xib; path = job/HiringDetailViewController.xib; sourceTree = "<group>"; };
-		25A5F77F18EC2F0000D6EE4E /* NoticeFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoticeFavViewController.h; path = Notice/NoticeFavViewController.h; sourceTree = "<group>"; };
-		25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoticeFavViewController.m; path = Notice/NoticeFavViewController.m; sourceTree = "<group>"; };
 		25C0A44B18FA20B6008D56F6 /* HiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiringViewController.h; path = job/HiringViewController.h; sourceTree = "<group>"; };
 		25C0A44C18FA20B6008D56F6 /* HiringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HiringViewController.m; path = job/HiringViewController.m; sourceTree = "<group>"; };
 		25C0A44E18FA2D24008D56F6 /* HringTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HringTableCell.h; path = job/HringTableCell.h; sourceTree = "<group>"; };
@@ -373,7 +359,6 @@
 		E95DA5541A31B9F50039EBC0 /* maimeng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maimeng@2x.png"; sourceTree = "<group>"; };
 		E95DA5551A31B9F50039EBC0 /* pujie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pujie@2x.png"; sourceTree = "<group>"; };
 		E95DA5571A31B9F50039EBC0 /* wpyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wpyicon@2x.png"; sourceTree = "<group>"; };
-		E95DA5581A31B9F50039EBC0 /* zhanshanlogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhanshanlogo@2x.png"; sourceTree = "<group>"; };
 		E95DA5841A31BA570039EBC0 /* addToFav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addToFav@2x.png"; sourceTree = "<group>"; };
 		E95DA5851A31BA570039EBC0 /* openInSafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openInSafari@2x.png"; sourceTree = "<group>"; };
 		E95DA5861A31BA570039EBC0 /* shareInSheet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareInSheet@2x.png"; sourceTree = "<group>"; };
@@ -384,11 +369,20 @@
 		E9A206281A33EA090080144C /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		E9A206291A33EA090080144C /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "launchScreen@2x.jpg"; sourceTree = "<group>"; };
+		E9A48CCD1A6F7798001D8420 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
+		E9A48CCE1A6F7798001D8420 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
+		E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari@2x.png"; sourceTree = "<group>"; };
+		E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari7@2x.png"; sourceTree = "<group>"; };
+		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
+		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
+		E9A48CE61A6FF597001D8420 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E9A48CE91A70043B001D8420 /* FeedbackForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackForm.h; path = WePeiYang/about/feedback/FeedbackForm.h; sourceTree = "<group>"; };
+		E9A48CEA1A70043B001D8420 /* FeedbackForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackForm.m; path = WePeiYang/about/feedback/FeedbackForm.m; sourceTree = "<group>"; };
+		E9A48CEF1A7012BF001D8420 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackController.h; path = WePeiYang/about/feedback/FeedbackController.h; sourceTree = "<group>"; };
+		E9A48CF01A7012BF001D8420 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackController.m; path = WePeiYang/about/feedback/FeedbackController.m; sourceTree = "<group>"; };
 		E9A6C1541A31BCC200544943 /* button-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-background@2x.png"; sourceTree = "<group>"; };
 		E9AD61EA19C43983009824BB /* gpaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpaHeaderView.h; path = gpa/gpaHeaderView.h; sourceTree = "<group>"; };
 		E9AD61EB19C43983009824BB /* gpaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gpaHeaderView.m; path = gpa/gpaHeaderView.m; sourceTree = "<group>"; };
-		E9B0EB63197571F80000B951 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = twtSecretKeys.h; path = ../twtSecretKeys.h; sourceTree = "<group>"; };
-		E9B0EB64197571F80000B951 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = twtSecretKeys.m; path = ../twtSecretKeys.m; sourceTree = "<group>"; };
 		E9C3E56E19C5611600B95CBE /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardViewController.swift; path = WePeiYang/Start/DashboardViewController.swift; sourceTree = "<group>"; };
 		E9D058DC1A24ECAD00BDE954 /* wpyActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wpyActionSheet.swift; sourceTree = "<group>"; };
 		E9D4363C19B2285C0042A9F1 /* LAFound_AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_AnnounceViewController.h; sourceTree = "<group>"; };
@@ -556,11 +550,13 @@
 		188842181846E6F4007B92CB /* WePeiYang */ = {
 			isa = PBXGroup;
 			children = (
+				E9A48CD11A6FA31B001D8420 /* Main */,
 				E9F9357219FBAADD00E53E03 /* WePeiYang.entitlements */,
 				18CFC7D918900C7200A51F01 /* publicClasses */,
 				188842A21846F79F007B92CB /* data.h */,
 				188842A31846F79F007B92CB /* data.m */,
 				E95DA52A1A31B9F50039EBC0 /* images */,
+				E9A48CD41A6FE8FE001D8420 /* Sharing */,
 				1825E1901878647A004976EA /* Guide */,
 				18ACB783187EB5110073998E /* Start */,
 				188842431846E7BB007B92CB /* StudySearch */,
@@ -571,10 +567,6 @@
 				18114E6E185850A3007455E2 /* Job */,
 				E9D4363B19B2285C0042A9F1 /* newLAFound */,
 				18C322AE1861AA9C00CE035D /* About */,
-				188842211846E6F4007B92CB /* twtAppDelegate.h */,
-				188842221846E6F4007B92CB /* twtAppDelegate.m */,
-				E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */,
-				E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */,
 				188842241846E6F4007B92CB /* Images.xcassets */,
 				188842191846E6F4007B92CB /* Supporting Files */,
 			);
@@ -622,8 +614,6 @@
 		188842631846F715007B92CB /* News */ = {
 			isa = PBXGroup;
 			children = (
-				188842681846F723007B92CB /* CollectionViewController.h */,
-				188842691846F723007B92CB /* CollectionViewController.m */,
 				188842721846F723007B92CB /* IndexViewController.h */,
 				188842731846F723007B92CB /* IndexViewController.m */,
 				18C87D6C1887F1B7009AF085 /* DetailViewController.h */,
@@ -678,8 +668,8 @@
 			isa = PBXGroup;
 			children = (
 				E9F3FBFD19CC3C8900BA0019 /* bootstrap */,
-				E9B0EB63197571F80000B951 /* twtSecretKeys.h */,
-				E9B0EB64197571F80000B951 /* twtSecretKeys.m */,
+				E9A48CCD1A6F7798001D8420 /* twtSecretKeys.h */,
+				E9A48CCE1A6F7798001D8420 /* twtSecretKeys.m */,
 				18BB2ECE18E1AD0C0084AD16 /* wpyStringProcessor.h */,
 				18BB2ECF18E1AD0C0084AD16 /* wpyStringProcessor.m */,
 				252655D718ED4EB500C7F8D3 /* wpyDeviceStatus.h */,
@@ -709,9 +699,10 @@
 		18C322AF1861AAA400CE035D /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
-				18C322B01861AAB600CE035D /* FeedbackViewController.h */,
-				18C322B11861AAB600CE035D /* FeedbackViewController.m */,
-				18C322B21861AAB600CE035D /* FeedbackViewController.xib */,
+				E9A48CE91A70043B001D8420 /* FeedbackForm.h */,
+				E9A48CEA1A70043B001D8420 /* FeedbackForm.m */,
+				E9A48CEF1A7012BF001D8420 /* FeedbackController.h */,
+				E9A48CF01A7012BF001D8420 /* FeedbackController.m */,
 			);
 			name = Feedback;
 			sourceTree = "<group>";
@@ -761,13 +752,6 @@
 			children = (
 				18F5861F1859B21800410E81 /* NoticeViewController.h */,
 				18F586201859B21800410E81 /* NoticeViewController.m */,
-				18F586261859B6C100410E81 /* NoticeDetailViewController.h */,
-				18F586271859B6C100410E81 /* NoticeDetailViewController.m */,
-				18F586281859B6C100410E81 /* NoticeDetailViewController.xib */,
-				25A5F77F18EC2F0000D6EE4E /* NoticeFavViewController.h */,
-				25A5F78018EC2F0000D6EE4E /* NoticeFavViewController.m */,
-				18607AE718DC21DD00C5C665 /* noticeTabBarController.h */,
-				18607AE818DC21DD00C5C665 /* noticeTabBarController.m */,
 			);
 			name = Notice;
 			sourceTree = "<group>";
@@ -794,6 +778,8 @@
 		E95DA52A1A31B9F50039EBC0 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */,
+				E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */,
 				E9A6C1541A31BCC200544943 /* button-background@2x.png */,
 				E95DA52B1A31B9F50039EBC0 /* back@2x.png */,
 				E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */,
@@ -819,7 +805,6 @@
 				E95DA5531A31B9F50039EBC0 /* wpn emotions */,
 				E95DA5831A31BA570039EBC0 /* wpyActionSheet */,
 				E95DA5571A31B9F50039EBC0 /* wpyicon@2x.png */,
-				E95DA5581A31B9F50039EBC0 /* zhanshanlogo@2x.png */,
 				E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */,
 				E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */,
 			);
@@ -885,6 +870,27 @@
 				E9A206291A33EA090080144C /* NSTimer+Blocks.m */,
 			);
 			path = "NSTimer-Blocks";
+			sourceTree = "<group>";
+		};
+		E9A48CD11A6FA31B001D8420 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				188842211846E6F4007B92CB /* twtAppDelegate.h */,
+				188842221846E6F4007B92CB /* twtAppDelegate.m */,
+				E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */,
+				E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */,
+				E9A48CE71A6FF597001D8420 /* Localizable.strings */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		E9A48CD41A6FE8FE001D8420 /* Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */,
+				E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */,
+			);
+			name = Sharing;
 			sourceTree = "<group>";
 		};
 		E9D4363B19B2285C0042A9F1 /* newLAFound */ = {
@@ -1071,7 +1077,6 @@
 				E95DA5741A31B9F50039EBC0 /* l_fav@2x.png in Resources */,
 				1888429B1846F73B007B92CB /* LoginViewController.xib in Resources */,
 				182155BC18BF6E0A008A1D1A /* GPACalculatorViewController.xib in Resources */,
-				E95DA5821A31B9F50039EBC0 /* zhanshanlogo@2x.png in Resources */,
 				18114E7B18585A64007455E2 /* JobDetailViewController.xib in Resources */,
 				E934944C1A2F036700F92525 /* DevViewController.xib in Resources */,
 				E95DA56B1A31B9F50039EBC0 /* place_laf_icon@2x.png in Resources */,
@@ -1086,7 +1091,6 @@
 				E95DA5611A31B9F50039EBC0 /* jobs@2x.png in Resources */,
 				E95DA56C1A31B9F50039EBC0 /* send@2x.png in Resources */,
 				E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */,
-				18C322B51861AAB600CE035D /* FeedbackViewController.xib in Resources */,
 				E95DA55B1A31B9F50039EBC0 /* Banner@2x.png in Resources */,
 				E95DA5601A31B9F50039EBC0 /* gpa@2x.png in Resources */,
 				188842981846F73B007B92CB /* LibraryViewController.xib in Resources */,
@@ -1104,12 +1108,12 @@
 				E95DA57D1A31B9F50039EBC0 /* time_job_icon@2x.png in Resources */,
 				E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */,
 				E9F3FC0019CC3C8900BA0019 /* bootstrap.css in Resources */,
+				E9A48CD71A6FE9A0001D8420 /* openinsafari@2x.png in Resources */,
 				E95DA57E1A31B9F50039EBC0 /* time_laf_icon@2x.png in Resources */,
 				E9F3FC0119CC3C8900BA0019 /* bootstrap.min.js in Resources */,
 				E95DA5781A31B9F50039EBC0 /* league@2x.png in Resources */,
 				2525F65218F6941300918714 /* LibraryFavouriteViewController.xib in Resources */,
 				E94D76021A320929000B3082 /* g3.jpg in Resources */,
-				18F5862A1859B6C100410E81 /* NoticeDetailViewController.xib in Resources */,
 				E95DA5751A31B9F50039EBC0 /* l_record@2x.png in Resources */,
 				E95DA55F1A31B9F50039EBC0 /* about@2x.png in Resources */,
 				E94D76011A320929000B3082 /* g2.jpg in Resources */,
@@ -1125,8 +1129,10 @@
 				E95DA5881A31BA570039EBC0 /* openInSafari@2x.png in Resources */,
 				E95DA56E1A31B9F50039EBC0 /* signin@2x.jpg in Resources */,
 				E95DA56A1A31B9F50039EBC0 /* place_job_icon@2x.png in Resources */,
+				E9A48CD81A6FE9A0001D8420 /* openinsafari7@2x.png in Resources */,
 				E95DA57A1A31B9F50039EBC0 /* n_notice@2x.png in Resources */,
 				E95DA5691A31B9F50039EBC0 /* place_icon@2x.png in Resources */,
+				E9A48CE51A6FF597001D8420 /* Localizable.strings in Resources */,
 				E95DA56F1A31B9F50039EBC0 /* signinbtn@2x.png in Resources */,
 				E95DA57B1A31B9F50039EBC0 /* news_n@2x.png in Resources */,
 				E96E0CA519E53A9000244751 /* StudySearchViewController.xib in Resources */,
@@ -1198,10 +1204,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1888429D1846F73B007B92CB /* RecordTableCell.m in Sources */,
-				25A5F78118EC2F0000D6EE4E /* NoticeFavViewController.m in Sources */,
 				E9D4365119B2285C0042A9F1 /* LAFound_QueryDetailViewController.m in Sources */,
+				E9A48CEB1A70043B001D8420 /* FeedbackForm.m in Sources */,
 				E93FBB091A35DDF30002D38B /* SplashViewController.swift in Sources */,
-				188842771846F723007B92CB /* CollectionViewController.m in Sources */,
 				18BB2ED018E1AD0C0084AD16 /* wpyStringProcessor.m in Sources */,
 				E9D4364D19B2285C0042A9F1 /* LAFound_AnnounceViewController.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
@@ -1209,17 +1214,17 @@
 				182155BB18BF6E0A008A1D1A /* GPACalculatorViewController.m in Sources */,
 				E9D4365019B2285C0042A9F1 /* LAFound_DataManager.m in Sources */,
 				E93FBB031A35DDBE0002D38B /* AboutUsViewController.swift in Sources */,
+				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				25C0A44D18FA20B6008D56F6 /* HiringViewController.m in Sources */,
 				2525F65018F691BF00918714 /* LibraryTabBarController.m in Sources */,
 				1888429A1846F73B007B92CB /* LoginViewController.m in Sources */,
+				E9A48CCF1A6F7798001D8420 /* twtSecretKeys.m in Sources */,
 				18FDB26718B50065000ED037 /* JobFavViewController.m in Sources */,
 				25340FAD191CA73E00AFDE7D /* HiringDetailViewController.m in Sources */,
 				25C0A45118FA2D24008D56F6 /* HringTableCell.m in Sources */,
 				E9D058DD1A24ECAD00BDE954 /* wpyActionSheet.swift in Sources */,
-				18F586291859B6C100410E81 /* NoticeDetailViewController.m in Sources */,
 				188842971846F73B007B92CB /* LibraryViewController.m in Sources */,
 				25E48CA218F8C26E0066E3E6 /* twtLoginViewController.m in Sources */,
-				E9B0EB65197571F80000B951 /* twtSecretKeys.m in Sources */,
 				18D63E2118571196004E75AA /* GPAViewController.m in Sources */,
 				25E48CA618F96B840066E3E6 /* JobTabBarController.m in Sources */,
 				E9D4364F19B2285C0042A9F1 /* LAFound_CollectionViewController.m in Sources */,
@@ -1231,12 +1236,12 @@
 				18D63E26185715F3004E75AA /* GPALoginViewController.m in Sources */,
 				18114E71185850DA007455E2 /* JobViewController.m in Sources */,
 				1841D821187D5AD1006DDA17 /* GuideViewController.m in Sources */,
+				E9A48CF11A7012BF001D8420 /* FeedbackController.m in Sources */,
 				18D63E2A185766B0004E75AA /* GPATableCell.m in Sources */,
 				1825E18B1878644D004976EA /* LibraryFavouriteViewController.m in Sources */,
 				18F586211859B21800410E81 /* NoticeViewController.m in Sources */,
 				188842A41846F79F007B92CB /* data.m in Sources */,
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
-				18607AE918DC21DD00C5C665 /* noticeTabBarController.m in Sources */,
 				E9D4365619B2285C0042A9F1 /* LAFTabBarController.m in Sources */,
 				E934944B1A2F036700F92525 /* DevViewController.swift in Sources */,
 				18CFC83318900C7200A51F01 /* UIButton+Bootstrap.m in Sources */,
@@ -1247,7 +1252,6 @@
 				1888427E1846F723007B92CB /* IndexViewController.m in Sources */,
 				E9A2062A1A33EA090080144C /* NSTimer+Blocks.m in Sources */,
 				252655D918ED4EB500C7F8D3 /* wpyDeviceStatus.m in Sources */,
-				18C322B41861AAB600CE035D /* FeedbackViewController.m in Sources */,
 				E9AD61ED19C43983009824BB /* gpaHeaderView.m in Sources */,
 				1888429F1846F73B007B92CB /* RecordViewController.m in Sources */,
 				E9D4365519B2285C0042A9F1 /* LAFound_QueryListViewController.m in Sources */,
@@ -1302,6 +1306,14 @@
 				188842421846E706007B92CB /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E9A48CE71A6FF597001D8420 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9A48CE61A6FF597001D8420 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1403,7 +1415,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1431,7 +1443,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

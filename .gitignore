@@ -6,3 +6,6 @@ WePeiYang/publicClasses/twtSecretKeys.m
 Pods/
 
 Podfile.lock
+WePeiYang/publicClasses/wpyClasses/twtSecretKeys.h
+
+WePeiYang/publicClasses/wpyClasses/twtSecretKeys.m

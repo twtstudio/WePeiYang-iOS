@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  WePeiYang
+
+  Created by 秦昱博 on 15/1/21.
+  Copyright (c) 2015年 Qin Yubo. All rights reserved.
+*/
+
+"Open in Safari" = "在Safari中打开";
+"Pull to refresh..." = "下拉刷新...";
+"Loading..." = "加载中...";
+"Release to refresh..." = "释放以更新...";
+"Last Updated: %@" = "上次更新：%@";
