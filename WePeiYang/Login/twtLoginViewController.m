@@ -14,6 +14,7 @@
 #import "wpyEncryption.h"
 #import "GuideViewController.h"
 #import "SVProgressHUD.h"
+#import "twtSecretKeys.h"
 #import <POP/POP.h>
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -123,7 +124,7 @@
     
     NSString *twtId = [contentDic objectForKey:@"id"];
     NSString *twtToken = [contentDic objectForKey:@"token"];
-    NSString *key = @"TWT224studio";
+    NSString *key = [twtSecretKeys getSecretKey];
     NSData *plainId = [twtId dataUsingEncoding:NSUTF8StringEncoding];
     NSData *secretId = [plainId AES256EncryptWithKey:key];
     NSData *plainToken = [twtToken dataUsingEncoding:NSUTF8StringEncoding];

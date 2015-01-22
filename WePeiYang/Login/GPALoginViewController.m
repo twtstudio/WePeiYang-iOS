@@ -57,7 +57,7 @@
     isLogingIn = YES;
     
     GPALoginForm *form = formController.form;
-    NSString *username = form.username;
+    NSString *username = form.username.stringValue;
     NSString *password = form.password;
     
     if ([username isEqualToString:@""] || [password isEqualToString:@""]) {

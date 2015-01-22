@@ -11,7 +11,7 @@
 
 @interface GPALoginForm : NSObject <FXForm>
 
-@property (copy, nonatomic) NSString *username;
+@property (copy, nonatomic) NSNumber *username;
 @property (copy, nonatomic) NSString *password;
 
 @end

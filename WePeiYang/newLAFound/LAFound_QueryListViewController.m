@@ -14,7 +14,7 @@
 
 #import "LAFound_DataManager.h"
 
-@interface LAFound_QueryListViewController ()
+@interface LAFound_QueryListViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -55,6 +55,13 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    UIColor *lafTintColor = [UIColor colorWithRed:13/255.0f green:174/255.0f blue:124/255.0f alpha:1.0f];
+    [self.navigationController.navigationBar setTintColor:lafTintColor];
+    [[UIButton appearance]setTintColor:lafTintColor];
+    [[UITextView appearance]setTintColor:lafTintColor];
+    [[UITextField appearance]setTintColor:lafTintColor];
+    [[UISegmentedControl appearance]setTintColor:lafTintColor];
+    
     NSArray *segmentedControlItems = @[@"失物", @"拾取"];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];
     [segmentedControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
@@ -92,6 +99,9 @@
         self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
         [self.refreshControl addTarget:self action:@selector(refreshTableview) forControlEvents:UIControlEventValueChanged];
     }
+    
+    
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,6 +113,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma mark tableView代理方法
@@ -135,7 +150,7 @@
         cell.placeLabel.text = [dic valueForKey:@"place"];
         cell.timeLabel.text = [dic valueForKey:@"time"];
     }
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
     
 }
@@ -289,12 +304,12 @@
 
 - (void)backToHome
 {
-    [self.tabBarController.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)pushAdd
 {
-    LAFound_AnnounceViewController *lafAnnounce = [[LAFound_AnnounceViewController alloc]initWithNibName:nil bundle:nil];
+    LAFound_AnnounceViewController *lafAnnounce = [[LAFound_AnnounceViewController alloc]init];
     [lafAnnounce setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:lafAnnounce animated:YES];
 }

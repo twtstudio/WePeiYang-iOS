@@ -49,7 +49,7 @@
     //self.contentTextView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.15].CGColor;
     
     if (!self.isCollectionDetail) {
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showActionSheet)];
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
         self.navigationItem.rightBarButtonItem = rightButton;
     }
     
@@ -67,11 +67,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (void)LAFound_CollectionViewController:(LAFound_CollectionViewController *)cVC ShowDetailByDataDic:(NSDictionary *)dic
 {
     _dic = dic;
-}
+}*/
 
 - (void)LAFound_QueryListViewController:(LAFound_QueryListViewController *)qdVC ShowDetailByDataDic:(NSDictionary *)dic
 {
@@ -121,26 +121,9 @@
     }
 }
 
-#pragma mark actionSheet
-- (void)showActionSheet
-{
-    
-    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
-    
-    [actionSheet addButtonWithTitle:@"分享" image:[UIImage imageNamed: @"shareInSheet.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
-        [self getShareInfoString];
-    }];
-    
-    [actionSheet addButtonWithTitle:@"收藏" image:[UIImage imageNamed: @"addToFav.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
-        [self collectItemAction];
-    }];
-    
-    [actionSheet show];
-}
-
 
 #pragma mark 取得分享内容文本
-- (void)getShareInfoString
+- (void)share
 {
     NSString *type;
     if ([[_dic valueForKey:@"type"] isEqualToString:@"0"]) {

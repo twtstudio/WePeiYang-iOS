@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LAFound_QueryListViewController.h"
-#import "LAFound_CollectionViewController.h"
 
-@interface LAFound_QueryDetailViewController : UIViewController<LAFound_CollectionViewControllerDelegate, LAFound_QueryListViewControllerDelegate>
+@interface LAFound_QueryDetailViewController : UIViewController<LAFound_QueryListViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *placeTextField;

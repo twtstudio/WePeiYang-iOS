@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "JSONKit.h"
 #import "WePeiYang-Swift.h"
+#import <KVOController/FBKVOController.h>
 
 @interface GPAViewController ()
 
@@ -81,6 +82,9 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
+    FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
+    self.KVOController = kvoController;
+    
     //INSTANCES
     gpaHeaderViewHeight = 150;
     
@@ -106,6 +110,13 @@
     [dataInTable removeAllObjects];
     [self checkLoginStatus];
     
+    // Observe Log in status
+    
+    /*
+    [self.KVOController observe:[data shareInstance].gpaLoginStatus keyPath:@"status" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id status, NSDictionary *change) {
+        NSLog(status);
+        NSLog(change);
+    }]; */
 }
 
 - (void)viewDidAppear:(BOOL)animated

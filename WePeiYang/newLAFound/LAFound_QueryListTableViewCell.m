@@ -10,8 +10,7 @@
 
 @implementation LAFound_QueryListTableViewCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 //    self.contentView.layer.borderWidth = 1.0;
 //    self.contentView.layer.cornerRadius = 20.0;
 //    self.contentView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.15].CGColor;
