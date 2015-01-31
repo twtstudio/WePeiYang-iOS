@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "SVPullToRefresh.h"
+#import "twtAPIs.h"
 #import "JSONKit.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -127,7 +128,7 @@
 }
 
 - (void)getIndexData {
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
+    NSString *url = [twtAPIs twtAPINewsList];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype": @"news",

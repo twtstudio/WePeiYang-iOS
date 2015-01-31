@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "data.h"
+#import "twtAPIs.h"
 
 @interface LibLoginViewController ()
 
@@ -62,7 +63,7 @@
         [alert show];
     } else {
         
-        NSString *url = @"http://push-mobile.twtapps.net/user/bindLib";
+        NSString *url = [twtAPIs twtAPIBindLib];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"libuname":username,

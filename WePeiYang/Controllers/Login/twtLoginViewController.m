@@ -15,6 +15,7 @@
 #import "GuideViewController.h"
 #import "SVProgressHUD.h"
 #import "twtSecretKeys.h"
+#import "twtAPIs.h"
 #import <POP/POP.h>
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -87,7 +88,7 @@
     }
     else
     {
-        NSString *url = @"http://push-mobile.twtapps.net/user/login";
+        NSString *url = [twtAPIs twtAPILogin];
         NSDictionary *parameters = @{@"twtuname":uname,
                                      @"twtpasswd":passwd,
                                      @"platform":@"ios",

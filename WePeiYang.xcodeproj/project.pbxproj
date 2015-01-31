@@ -153,6 +153,7 @@
 		E9AF6BD91A7CFCEA008B5214 /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BD71A7CFCEA008B5214 /* UIButton+Bootstrap.m */; };
 		E9AF6BDA1A7CFCEA008B5214 /* wpyActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BD81A7CFCEA008B5214 /* wpyActionSheet.swift */; };
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
+		E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */; };
 		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
 		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
 		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
@@ -401,6 +402,8 @@
 		E9AF6BD81A7CFCEA008B5214 /* wpyActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wpyActionSheet.swift; sourceTree = "<group>"; };
 		E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
 		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
+		E9AF6BDE1A7CFDB5008B5214 /* twtAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtAPIs.h; sourceTree = "<group>"; };
+		E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtAPIs.m; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WePeiYangToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F9356719FBAA3100E53E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -934,6 +937,8 @@
 				E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */,
 				E9AF6BC51A7CFCE2008B5214 /* wpyEncryption.h */,
 				E9AF6BC61A7CFCE2008B5214 /* wpyEncryption.m */,
+				E9AF6BDE1A7CFDB5008B5214 /* twtAPIs.h */,
+				E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -1257,6 +1262,7 @@
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
 				E9AF6BA61A7CFCD4008B5214 /* LibLoginViewController.m in Sources */,
 				E9AF6B7A1A7CFCD4008B5214 /* DevViewController.swift in Sources */,
+				E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */,
 				E9AF6B8E1A7CFCD4008B5214 /* HiringViewController.m in Sources */,
 				E9AF6B8B1A7CFCD4008B5214 /* GuideViewController.m in Sources */,
 				E9AF6B951A7CFCD4008B5214 /* JobTableCell.m in Sources */,

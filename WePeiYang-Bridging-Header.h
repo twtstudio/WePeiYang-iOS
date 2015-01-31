@@ -17,6 +17,7 @@
 #import "NSTimer+Blocks.h"
 #import "wpyDeviceStatus.h"
 #import "data.h"
+#import "twtAPIs.h"
 #import "FeedbackController.h"
 
 // Open Source Classes

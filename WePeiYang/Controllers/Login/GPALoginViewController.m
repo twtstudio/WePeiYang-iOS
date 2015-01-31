@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "data.h"
+#import "twtAPIs.h"
 
 @interface GPALoginViewController () <UIAlertViewDelegate>
 
@@ -64,7 +65,7 @@
         blankAlert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [blankAlert show];
     } else {
-        NSString *url = @"http://push-mobile.twtapps.net/user/bindTju";
+        NSString *url = [twtAPIs twtAPIBindTju];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"tjuuname":username,

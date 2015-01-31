@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "data.h"
+#import "twtAPIs.h"
 #import "Social/Social.h"
 #import "AFNetworking.h"
 #import "wpyStringProcessor.h"
@@ -61,7 +62,7 @@
     
     [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
     
-    NSString *url = @"http://push-mobile.twtapps.net/content/detail";
+    NSString *url = [twtAPIs twtAPINewsDetail];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype": @"news",
                                  @"index": detailId,

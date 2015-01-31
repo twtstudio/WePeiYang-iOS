@@ -254,7 +254,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func logout() {
-        let url = "http://push-mobile.twtapps.net/user/logout"
+        let url = twtAPIs.twtAPILogout()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: parameters, success: {
@@ -289,7 +289,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func jbTju() {
-        let url = "http://push-mobile.twtapps.net/user/unbindTju"
+        let url = twtAPIs.twtAPIUnbindTju()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: parameters, success: {
@@ -313,7 +313,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func jbLib() {
-        let url = "http://push-mobile.twtapps.net/user/unbindLib"
+        let url = twtAPIs.twtAPIUnbindLib()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: parameters, success: {

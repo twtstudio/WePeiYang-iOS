@@ -9,6 +9,7 @@
 #import "GPAViewController.h"
 #import "GPALoginViewController.h"
 #import "data.h"
+#import "twtAPIs.h"
 #import "GPACalculatorViewController.h"
 #import "GPATableCell.h"
 #import "AFNetworking.h"
@@ -153,7 +154,7 @@
     }
     else
     {
-        NSString *url = @"http://push-mobile.twtapps.net/gpa/get";
+        NSString *url = [twtAPIs twtAPIGPAInquire];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
@@ -372,7 +373,7 @@
 
 - (void)oneKeyToEvaluate
 {
-    NSString *url = @"http://push-mobile.twtapps.net/gpa/auto";
+    NSString *url = [twtAPIs twtAPIGPAAutoEvaluate];
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSDictionary *parameters = @{@"id":[data shareInstance].userId,
