@@ -154,6 +154,7 @@
 		E9AF6BDA1A7CFCEA008B5214 /* wpyActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BD81A7CFCEA008B5214 /* wpyActionSheet.swift */; };
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
 		E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */; };
+		E9AF6BE41A7E1857008B5214 /* GPADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BE31A7E1857008B5214 /* GPADataManager.m */; };
 		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
 		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
 		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
@@ -404,6 +405,8 @@
 		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		E9AF6BDE1A7CFDB5008B5214 /* twtAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtAPIs.h; sourceTree = "<group>"; };
 		E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtAPIs.m; sourceTree = "<group>"; };
+		E9AF6BE21A7E1857008B5214 /* GPADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPADataManager.h; path = GPA/GPADataManager.h; sourceTree = "<group>"; };
+		E9AF6BE31A7E1857008B5214 /* GPADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPADataManager.m; path = GPA/GPADataManager.m; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WePeiYangToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F9356719FBAA3100E53E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -926,6 +929,7 @@
 		E9AF6BC31A7CFCE2008B5214 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E9AF6BE11A7E1832008B5214 /* GPA */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -978,6 +982,15 @@
 				E9AF6BD71A7CFCEA008B5214 /* UIButton+Bootstrap.m */,
 			);
 			path = customButtons;
+			sourceTree = "<group>";
+		};
+		E9AF6BE11A7E1832008B5214 /* GPA */ = {
+			isa = PBXGroup;
+			children = (
+				E9AF6BE21A7E1857008B5214 /* GPADataManager.h */,
+				E9AF6BE31A7E1857008B5214 /* GPADataManager.m */,
+			);
+			name = GPA;
 			sourceTree = "<group>";
 		};
 		E9F9356519FBAA3100E53E03 /* WePeiYangToday */ = {
@@ -1297,6 +1310,7 @@
 				E9AF6BAA1A7CFCD4008B5214 /* LAFound_DataManager.m in Sources */,
 				E9AF6B7E1A7CFCD4008B5214 /* SplashViewController.swift in Sources */,
 				E9AF6BA51A7CFCD4008B5214 /* LibLoginForm.m in Sources */,
+				E9AF6BE41A7E1857008B5214 /* GPADataManager.m in Sources */,
 				E9AF6BA91A7CFCD4008B5214 /* LAFound_AnnounceViewController.m in Sources */,
 				E9AF6B771A7CFCD4008B5214 /* AboutUsViewController.swift in Sources */,
 				E9AF6BB11A7CFCD4008B5214 /* DetailViewController.m in Sources */,

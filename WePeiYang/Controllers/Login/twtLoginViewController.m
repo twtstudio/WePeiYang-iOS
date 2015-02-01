@@ -88,7 +88,7 @@
     }
     else
     {
-        NSString *url = [twtAPIs twtAPILogin];
+        NSString *url = [twtAPIs login];
         NSDictionary *parameters = @{@"twtuname":uname,
                                      @"twtpasswd":passwd,
                                      @"platform":@"ios",

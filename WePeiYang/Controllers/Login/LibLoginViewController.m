@@ -63,7 +63,7 @@
         [alert show];
     } else {
         
-        NSString *url = [twtAPIs twtAPIBindLib];
+        NSString *url = [twtAPIs bindLib];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"libuname":username,

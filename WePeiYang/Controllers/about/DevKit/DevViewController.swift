@@ -104,7 +104,7 @@ class DevViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func getGPARawData() {
         var manager = AFHTTPRequestOperationManager()
-        var url = twtAPIs.twtAPIGPAInquire()
+        var url = twtAPIs.GPAInquire()
         var parameters = ["id": data.shareInstance().userId,
             "token": data.shareInstance().userToken,
             "platform": "ios",

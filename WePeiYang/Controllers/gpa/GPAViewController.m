@@ -9,17 +9,14 @@
 #import "GPAViewController.h"
 #import "GPALoginViewController.h"
 #import "data.h"
-#import "twtAPIs.h"
 #import "GPACalculatorViewController.h"
 #import "GPATableCell.h"
-#import "AFNetworking.h"
 #import "gpaHeaderView.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
 #import "SVProgressHUD.h"
-#import "JSONKit.h"
+#import "GPADataManager.h"
 #import "WePeiYang-Swift.h"
-#import <KVOController/FBKVOController.h>
 
 @interface GPAViewController ()
 
@@ -83,12 +80,9 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
         self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-    FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
-    self.KVOController = kvoController;
-    
     //INSTANCES
     gpaHeaderViewHeight = 150;
-    
+
     self.title = @"GPA查询";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -110,14 +104,6 @@
     
     [dataInTable removeAllObjects];
     [self checkLoginStatus];
-    
-    // Observe Log in status
-    
-    /*
-    [self.KVOController observe:[data shareInstance].gpaLoginStatus keyPath:@"status" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id status, NSDictionary *change) {
-        NSLog(status);
-        NSLog(change);
-    }]; */
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -142,19 +128,10 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:plistPath])
     {
-        [moreBtn setHidden:YES];
-        [tableView setHidden:YES];
-        [noLoginLabel setHidden:NO];
-        [loginBtn setHidden:NO];
-        [noLoginImg setHidden:NO];
-        [noLoginLabel setText:@"您尚未登录天外天账号"];
-        [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-        [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-        backBtn.tintColor = gpaTintColor;
+        [self setLoginView];
     }
     else
     {
-        NSString *url = [twtAPIs twtAPIGPAInquire];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
@@ -162,21 +139,25 @@
         
         [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
         
+        [GPADataManager getDataWithParameters:parameters success:^(id responseObject) {
+            //Successful
+            [self setNormalView];
+            [self saveCacheWithData:responseObject];
+            [self processGpaData:responseObject];
+            [SVProgressHUD dismiss];
+        } failure:^(NSInteger statusCode) {
+            [SVProgressHUD dismiss];
+            [self processErrorWithStatusCode:statusCode];
+        }];
+        /*
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             //Successful
             
-            loginBtn.userInteractionEnabled = YES;
-            [moreBtn setHidden:NO];
-            [tableView setHidden:NO];
-            [loginBtn setHidden:YES];
-            [noLoginLabel setHidden:YES];
-            [noLoginImg setHidden:YES];
-            [data shareInstance].gpaLoginStatus = @"";
-            backBtn.tintColor = [UIColor whiteColor];
+            [self setNormalView];
             
-            [self saveCacheWithData:responseObject];
+            [self saveCacheWithData:[operation.responseString objectFromJSONString]];
             [self processGpaData:[operation.responseString objectFromJSONString]];
             
             [SVProgressHUD dismiss];
@@ -186,7 +167,7 @@
             if (operation.response == nil) {
                 
                 [SVProgressHUD dismiss];
-                if ([self loadCacheAsResponseObject] != nil) {
+                if ([self loadCacheAsResponseObject].count > 0) {
                     [self processGpaData:[self loadCacheAsResponseObject]];
                 }
                 
@@ -195,8 +176,46 @@
                 [SVProgressHUD dismiss];
                 [self processErrorWithStatusCode:statusCode];
             }
-        }];
+        }];*/
     }
+}
+
+// Set Views
+
+- (void)setNormalView {
+    loginBtn.userInteractionEnabled = YES;
+    [moreBtn setHidden:NO];
+    [tableView setHidden:NO];
+    [loginBtn setHidden:YES];
+    [noLoginLabel setHidden:YES];
+    [noLoginImg setHidden:YES];
+    [data shareInstance].gpaLoginStatus = @"";
+    backBtn.tintColor = [UIColor whiteColor];
+}
+
+- (void)setLoginView {
+    [moreBtn setHidden:YES];
+    [tableView setHidden:YES];
+    [noLoginLabel setHidden:NO];
+    [loginBtn setHidden:NO];
+    [noLoginImg setHidden:NO];
+    [noLoginLabel setText:@"您尚未登录天外天账号"];
+    [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
+    [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    backBtn.tintColor = gpaTintColor;
+}
+
+- (void)setBindView {
+    [moreBtn setHidden:YES];
+    [tableView setHidden:YES];
+    [noLoginLabel setHidden:NO];
+    [loginBtn setHidden:NO];
+    [noLoginImg setHidden:NO];
+    [noLoginLabel setText:@"您尚未绑定办公网账号"];
+    loginBtn.userInteractionEnabled = YES;
+    [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
+    [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
 }
 
 // For Log In
@@ -215,29 +234,12 @@
     switch (statusCode) {
         case 401:
             [SVProgressHUD showErrorWithStatus:@"验证出错\n请重新登录"];
-            [moreBtn setHidden:YES];
-            [tableView setHidden:YES];
-            [noLoginLabel setHidden:NO];
-            [loginBtn setHidden:NO];
-            [noLoginImg setHidden:NO];
-            [noLoginLabel setText:@"您尚未登录天外天账号"];
-            [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-            [loginBtn removeTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
-            [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+            [self setLoginView];
             
             break;
             
         case 403:
-            [moreBtn setHidden:YES];
-            [tableView setHidden:YES];
-            [noLoginLabel setHidden:NO];
-            [loginBtn setHidden:NO];
-            [noLoginImg setHidden:NO];
-            [noLoginLabel setText:@"您尚未绑定办公网账号"];
-            loginBtn.userInteractionEnabled = YES;
-            [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
-            [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-            [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
+            [self setBindView];
             
             break;
             
@@ -373,21 +375,16 @@
 
 - (void)oneKeyToEvaluate
 {
-    NSString *url = [twtAPIs twtAPIGPAAutoEvaluate];
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                  @"token":[data shareInstance].userToken,
                                  @"platform":@"ios",
-                                 @"version":appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                 @"version":[data shareInstance].appVersion};
+    [GPADataManager autoEvaluateWithParameters:parameters success:^(){
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD showSuccessWithStatus:@"一键评价成功！"];
         });
         [self checkLoginStatus];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSInteger statusCode = operation.response.statusCode;
+    } failure:^(NSInteger statusCode) {
         switch (statusCode) {
             case 403:
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -729,9 +726,11 @@
     // 不该每次执行都更新，但是第一次要更新
     if (graphIsTouched == NO) {
         //NSLog(@"terms update");
-        gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", [everyGpaArr[horizontalIndex] floatValue]];
-        gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", [everyScoreArr[horizontalIndex] floatValue]];
-        gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", [everyGpaArr[horizontalIndex] floatValue]];
+            gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", [everyScoreArr[horizontalIndex] floatValue]];
+            gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
+        });
         
         graphIsTouched = YES;
     }
@@ -750,7 +749,6 @@
             gpaHeader.termLabel.text = [termsInGraph objectAtIndex:horizontalIndex];
         });
         
-        
         lastSelected = horizontalIndex;
     }
     
@@ -759,10 +757,11 @@
 - (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView {
     // Update view
     self.tableView.scrollEnabled = YES;
-    gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
-    gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
-    gpaHeader.termLabel.text = @"";
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
+        gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
+        gpaHeader.termLabel.text = @"";
+    });
     graphIsTouched = NO;
 }
 

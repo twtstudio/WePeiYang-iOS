@@ -62,7 +62,7 @@
     
     [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
     
-    NSString *url = [twtAPIs twtAPINewsDetail];
+    NSString *url = [twtAPIs newsDetail];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype": @"news",
                                  @"index": detailId,
@@ -98,7 +98,9 @@
 - (void)share {
     NSArray *activityItems;
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
-    activityItems = @[shareURL];
+    UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
+    
+    activityItems = @[shareURL, shareImg];
     
     // Presentation Controller
     
@@ -119,6 +121,14 @@
     
     [self presentViewController:activityViewController animated:YES completion:nil];
     
+}
+
+- (UIImage *)getImageFromView:(UIView *)view {
+    UIGraphicsBeginImageContext(view.bounds.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

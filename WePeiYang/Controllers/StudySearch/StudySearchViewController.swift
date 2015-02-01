@@ -75,7 +75,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 searchResultArray.removeAllObjects()
             }
             
-            let url = "http://push-mobile.twtapps.net/studyrooms"
+            let url = twtAPIs.studySearch()
             let parameters = ["day":daySelected, "class":timeConvertResult, "building":buildingConvertResult, "platform":"ios", "version":data.shareInstance().appVersion]
             
             var manager = AFHTTPRequestOperationManager()

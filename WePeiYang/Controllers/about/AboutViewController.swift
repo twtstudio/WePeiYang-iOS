@@ -254,7 +254,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func logout() {
-        let url = twtAPIs.twtAPILogout()
+        let url = twtAPIs.logout()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: parameters, success: {
@@ -289,7 +289,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func jbTju() {
-        let url = twtAPIs.twtAPIUnbindTju()
+        let url = twtAPIs.unbindTju()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: parameters, success: {
@@ -313,7 +313,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func jbLib() {
-        let url = twtAPIs.twtAPIUnbindLib()
+        let url = twtAPIs.unbindLib()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: parameters, success: {

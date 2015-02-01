@@ -10,16 +10,16 @@
 
 @interface twtAPIs : NSObject
 
-+ (NSString *)twtAPINewsList;
-+ (NSString *)twtAPINewsDetail;
-+ (NSString *)twtAPIStudySearch;
-+ (NSString *)twtAPIGPAInquire;
-+ (NSString *)twtAPIGPAAutoEvaluate;
-+ (NSString *)twtAPILogin;
-+ (NSString *)twtAPIBindLib;
-+ (NSString *)twtAPIBindTju;
-+ (NSString *)twtAPIUnbindLib;
-+ (NSString *)twtAPIUnbindTju;
-+ (NSString *)twtAPILogout;
++ (NSString *)newsList;
++ (NSString *)newsDetail;
++ (NSString *)studySearch;
++ (NSString *)GPAInquire;
++ (NSString *)GPAAutoEvaluate;
++ (NSString *)login;
++ (NSString *)bindLib;
++ (NSString *)bindTju;
++ (NSString *)unbindLib;
++ (NSString *)unbindTju;
++ (NSString *)logout;
 
 @end

@@ -128,7 +128,7 @@
 }
 
 - (void)getIndexData {
-    NSString *url = [twtAPIs twtAPINewsList];
+    NSString *url = [twtAPIs newsList];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype": @"news",
