@@ -8,7 +8,7 @@
 
 #import "HiringViewController.h"
 #import "HringTableCell.h"
-#import "AFNetworking.h"
+#import "ContentDataManager.h"
 #import "data.h"
 #import "SVProgressHUD.h"
 #import "HiringDetailViewController.h"
@@ -38,12 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"校园招聘";
     
@@ -85,18 +79,19 @@
 }
 
 - (void)getIndexData {
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
-    NSDictionary *parameters = @{@"ctype":@"fair", @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
-                                 @"platform":@"ios",
-                                 @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"ctype":@"fair",
+                                 @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
+                                 @"platform": @"ios",
+                                 @"version": [data shareInstance].appVersion};
+    
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [ContentDataManager getIndexDataWithParameters:parameters success:^(id responseObject) {
+        [SVProgressHUD dismiss];
         [self processContentDic:responseObject];
+    }failure:^(NSString *error) {
         [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [SVProgressHUD showErrorWithStatus:error];
     }];
 }
 
@@ -114,14 +109,10 @@
     [self.tableView reloadData];
 }
 
-- (void)nextPage
-{
-    
+- (void)nextPage {
     currentPage ++;
     [self getIndexData];
 }
-
-
 
 - (void)tableViewEndReloading
 {

@@ -9,11 +9,9 @@
 #import "IndexViewController.h"
 #import "data.h"
 #import "DetailViewController.h"
-#import "AFNetworking.h"
+#import "ContentDataManager.h"
 #import "SVProgressHUD.h"
 #import "SVPullToRefresh.h"
-#import "twtAPIs.h"
-#import "JSONKit.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -128,28 +126,23 @@
 }
 
 - (void)getIndexData {
-    NSString *url = [twtAPIs newsList];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype": @"news",
                                  @"page": [NSString stringWithFormat:@"%ld", (long)currentPage],
                                  @"ntype": type,
                                  @"platform": @"ios",
                                  @"version": [data shareInstance].appVersion};
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSArray *dataArr = [operation.responseString objectFromJSONString];
-        
-        [self processIndexData:dataArr];
+    [ContentDataManager getIndexDataWithParameters:parameters success:^(id responseObject) {
+        [self processIndexData:responseObject];
         
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
-
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        
+    } failure:^(NSString *error) {
+        [SVProgressHUD showErrorWithStatus:error];
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
     }];
+    
     [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
     
 }

@@ -7,7 +7,7 @@
 //
 
 #import "HiringDetailViewController.h"
-#import "AFNetworking.h"
+#import "ContentDataManager.h"
 #import "data.h"
 #import "SVProgressHUD.h"
 
@@ -42,16 +42,14 @@
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareInfo)];
     [self.navigationItem setRightBarButtonItem:share];
     
-    NSString *url = @"http://push-mobile.twtapps.net/content/detail";
     NSDictionary *parameters = @{@"ctype":@"fair",
                                  @"index":hiringId,
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ContentDataManager getDetailDataWithParameters:parameters success:^(id responseObject) {
         [self processContentDic:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }failure:^(NSString *error) {
+        [SVProgressHUD showErrorWithStatus:error];
     }];
 }
 

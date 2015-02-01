@@ -10,9 +10,8 @@
 #import "data.h"
 #import "JobTableCell.h"
 #import "JobDetailViewController.h"
-#import "JobFavViewController.h"
 #import "SVProgressHUD.h"
-#import "AFNetworking.h"
+#import "ContentDataManager.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -23,14 +22,6 @@
 @implementation JobViewController
 
 {
-    //NSMutableArray *jobTitles;
-    //NSMutableArray *jobCorporations;
-    //NSMutableArray *jobDates;
-    //NSMutableArray *jobIds;
-    //NSMutableArray *titleInTable;
-    //NSMutableArray *corpInTable;
-    //NSMutableArray *dateInTable;
-    
     NSMutableArray *jobData;
     NSMutableArray *dataInTable;
     
@@ -53,11 +44,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = @"就业资讯";
 
@@ -66,9 +52,6 @@
 
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
-    
-    UIBarButtonItem *favBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(pushFav)];
-    [self.navigationItem setRightBarButtonItem:favBtn];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
@@ -108,18 +91,15 @@
 }
 
 - (void)getIndexData {
-    NSString *url = @"http://push-mobile.twtapps.net/content/list";
     NSDictionary *parameters = @{@"ctype":@"job",
                                  @"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [ContentDataManager getIndexDataWithParameters:parameters success:^(id responseObject) {
         [self dealWithReceivedData:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"获取列表失败T^T"];
+    } failure:^(NSString *error) {
+        [SVProgressHUD showErrorWithStatus:error];
     }];
 
 }
@@ -231,13 +211,6 @@
     currentPage = currentPage + 1;
     
     [self getIndexData];
-}
-
-- (void)pushFav
-{
-    JobFavViewController *jobFav = [[JobFavViewController alloc]initWithStyle:UITableViewStylePlain];
-    [jobFav setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:jobFav animated:YES];
 }
 
 - (void)backToHome

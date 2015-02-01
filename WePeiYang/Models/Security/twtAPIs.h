@@ -10,8 +10,8 @@
 
 @interface twtAPIs : NSObject
 
-+ (NSString *)newsList;
-+ (NSString *)newsDetail;
++ (NSString *)contentList;
++ (NSString *)contentDetail;
 + (NSString *)studySearch;
 + (NSString *)GPAInquire;
 + (NSString *)GPAAutoEvaluate;

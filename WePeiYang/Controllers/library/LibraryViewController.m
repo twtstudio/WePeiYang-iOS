@@ -16,7 +16,7 @@
 #import "AFNetworking.h"
 #import "SVProgressHUD.h"
 
-#define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
+#define DEVICE_IS_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
 @interface LibraryViewController ()
 
@@ -88,6 +88,10 @@
     [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     UIImageView *nilView = [[UIImageView alloc]initWithImage:nil];
     searchField.leftView = nilView;
+    
+    if (DEVICE_IS_IOS8) {
+        tableView.rowHeight = UITableViewAutomaticDimension;
+    }
 }
 
 - (IBAction)backToHome:(id)sender

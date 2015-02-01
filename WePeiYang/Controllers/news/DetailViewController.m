@@ -8,14 +8,11 @@
 
 #import "DetailViewController.h"
 #import "data.h"
-#import "twtAPIs.h"
 #import "Social/Social.h"
-#import "AFNetworking.h"
 #import "wpyStringProcessor.h"
 #import "SVProgressHUD.h"
 #import "OpenInSafariActivity.h"
-#import "JSONKit.h"
-#import "WePeiYang-Swift.h"
+#import "ContentDataManager.h"
 
 #define DEVICE_IS_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
@@ -62,19 +59,19 @@
     
     [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
     
-    NSString *url = [twtAPIs newsDetail];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"ctype": @"news",
                                  @"index": detailId,
                                  @"platform": @"ios",
                                  @"version": [data shareInstance].appVersion};
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self processDetailData:[operation.responseString objectFromJSONString]];
+    [ContentDataManager getDetailDataWithParameters:parameters success:^(id responseObject) {
+        [self processDetailData:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
         [SVProgressHUD dismiss];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    } failure:^(NSString *error) {
         [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"获取新闻失败T^T"];
+        [SVProgressHUD showErrorWithStatus:error];
+        
     }];
 }
 

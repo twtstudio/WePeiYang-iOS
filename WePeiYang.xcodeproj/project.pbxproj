@@ -105,7 +105,6 @@
 		E9AF6B901A7CFCD4008B5214 /* HringTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6B2D1A7CFCD4008B5214 /* HringTableCell.xib */; };
 		E9AF6B911A7CFCD4008B5214 /* JobDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B2F1A7CFCD4008B5214 /* JobDetailViewController.m */; };
 		E9AF6B921A7CFCD4008B5214 /* JobDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6B301A7CFCD4008B5214 /* JobDetailViewController.xib */; };
-		E9AF6B931A7CFCD4008B5214 /* JobFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B321A7CFCD4008B5214 /* JobFavViewController.m */; };
 		E9AF6B941A7CFCD4008B5214 /* JobTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B341A7CFCD4008B5214 /* JobTabBarController.m */; };
 		E9AF6B951A7CFCD4008B5214 /* JobTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B361A7CFCD4008B5214 /* JobTableCell.m */; };
 		E9AF6B961A7CFCD4008B5214 /* JobTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6B371A7CFCD4008B5214 /* JobTableCell.xib */; };
@@ -155,6 +154,7 @@
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
 		E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */; };
 		E9AF6BE41A7E1857008B5214 /* GPADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BE31A7E1857008B5214 /* GPADataManager.m */; };
+		E9AF6BEC1A7E5F5A008B5214 /* ContentDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BEB1A7E5F5A008B5214 /* ContentDataManager.m */; };
 		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
 		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
 		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
@@ -323,8 +323,6 @@
 		E9AF6B2E1A7CFCD4008B5214 /* JobDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobDetailViewController.h; sourceTree = "<group>"; };
 		E9AF6B2F1A7CFCD4008B5214 /* JobDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobDetailViewController.m; sourceTree = "<group>"; };
 		E9AF6B301A7CFCD4008B5214 /* JobDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JobDetailViewController.xib; sourceTree = "<group>"; };
-		E9AF6B311A7CFCD4008B5214 /* JobFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobFavViewController.h; sourceTree = "<group>"; };
-		E9AF6B321A7CFCD4008B5214 /* JobFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobFavViewController.m; sourceTree = "<group>"; };
 		E9AF6B331A7CFCD4008B5214 /* JobTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobTabBarController.h; sourceTree = "<group>"; };
 		E9AF6B341A7CFCD4008B5214 /* JobTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobTabBarController.m; sourceTree = "<group>"; };
 		E9AF6B351A7CFCD4008B5214 /* JobTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobTableCell.h; sourceTree = "<group>"; };
@@ -407,6 +405,8 @@
 		E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtAPIs.m; sourceTree = "<group>"; };
 		E9AF6BE21A7E1857008B5214 /* GPADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPADataManager.h; path = GPA/GPADataManager.h; sourceTree = "<group>"; };
 		E9AF6BE31A7E1857008B5214 /* GPADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPADataManager.m; path = GPA/GPADataManager.m; sourceTree = "<group>"; };
+		E9AF6BEA1A7E5F5A008B5214 /* ContentDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentDataManager.h; sourceTree = "<group>"; };
+		E9AF6BEB1A7E5F5A008B5214 /* ContentDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentDataManager.m; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WePeiYangToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F9356719FBAA3100E53E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -770,8 +770,6 @@
 				E9AF6B2E1A7CFCD4008B5214 /* JobDetailViewController.h */,
 				E9AF6B2F1A7CFCD4008B5214 /* JobDetailViewController.m */,
 				E9AF6B301A7CFCD4008B5214 /* JobDetailViewController.xib */,
-				E9AF6B311A7CFCD4008B5214 /* JobFavViewController.h */,
-				E9AF6B321A7CFCD4008B5214 /* JobFavViewController.m */,
 				E9AF6B331A7CFCD4008B5214 /* JobTabBarController.h */,
 				E9AF6B341A7CFCD4008B5214 /* JobTabBarController.m */,
 				E9AF6B351A7CFCD4008B5214 /* JobTableCell.h */,
@@ -929,6 +927,7 @@
 		E9AF6BC31A7CFCE2008B5214 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E9AF6BE91A7E5F5A008B5214 /* Content */,
 				E9AF6BE11A7E1832008B5214 /* GPA */,
 			);
 			path = Sections;
@@ -991,6 +990,15 @@
 				E9AF6BE31A7E1857008B5214 /* GPADataManager.m */,
 			);
 			name = GPA;
+			sourceTree = "<group>";
+		};
+		E9AF6BE91A7E5F5A008B5214 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				E9AF6BEA1A7E5F5A008B5214 /* ContentDataManager.h */,
+				E9AF6BEB1A7E5F5A008B5214 /* ContentDataManager.m */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		E9F9356519FBAA3100E53E03 /* WePeiYangToday */ = {
@@ -1279,6 +1287,7 @@
 				E9AF6B8E1A7CFCD4008B5214 /* HiringViewController.m in Sources */,
 				E9AF6B8B1A7CFCD4008B5214 /* GuideViewController.m in Sources */,
 				E9AF6B951A7CFCD4008B5214 /* JobTableCell.m in Sources */,
+				E9AF6BEC1A7E5F5A008B5214 /* ContentDataManager.m in Sources */,
 				E9AF6B9F1A7CFCD4008B5214 /* RecordTableCell.m in Sources */,
 				E9AF6B941A7CFCD4008B5214 /* JobTabBarController.m in Sources */,
 				E9AF6B9B1A7CFCD4008B5214 /* LibraryTableCell.m in Sources */,
@@ -1298,7 +1307,6 @@
 				E9AF6B8F1A7CFCD4008B5214 /* HringTableCell.m in Sources */,
 				E9AF6B7D1A7CFCD4008B5214 /* FeedbackForm.m in Sources */,
 				E9AF6B851A7CFCD4008B5214 /* GPAViewController.m in Sources */,
-				E9AF6B931A7CFCD4008B5214 /* JobFavViewController.m in Sources */,
 				E9AF6B801A7CFCD4008B5214 /* GPACalculatorViewController.m in Sources */,
 				E9AF6BA11A7CFCD4008B5214 /* RecordViewController.m in Sources */,
 				E9AF6BAF1A7CFCD4008B5214 /* LAFound_QueryListViewController.m in Sources */,

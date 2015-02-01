@@ -8,10 +8,10 @@
 
 #import "JobDetailViewController.h"
 #import "data.h"
-#import "AFNetworking.h"
+#import "ContentDataManager.h"
 #import "wpyStringProcessor.h"
 #import "SVProgressHUD.h"
-#import "WePeiYang-Swift.h"
+#import "OpenInSafariActivity.h"
 
 @interface JobDetailViewController ()
 
@@ -48,19 +48,17 @@
     self.title = jobTitle;
     //self.automaticallyAdjustsScrollViewInsets = NO;
     
-    UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openActionSheet:)];
+    UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
     [self.navigationItem setRightBarButtonItem:share];
     
-    NSString *url = @"http://push-mobile.twtapps.net/content/detail";
     NSDictionary *body = @{@"ctype":@"job",
                            @"index":jobId,
                            @"platform":@"ios",
                            @"version":[data shareInstance].appVersion};
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:url parameters:body success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [ContentDataManager getDetailDataWithParameters:body success:^(id responseObject) {
         [self dealWithReceivedData:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"获取详情失败T^T"];
+    } failure:^(NSString *error) {
+        [SVProgressHUD showErrorWithStatus:error];
     }];
 }
 
@@ -76,68 +74,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)openActionSheet:(id)sender
-{
-    wpyActionSheet *actionSheet = [[wpyActionSheet alloc]initWithTitle:@"更多"];
-    
-    [actionSheet addButtonWithTitle:@"分享" image:[UIImage imageNamed: @"shareInSheet.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
-        [self share];
-    }];
-    
-    [actionSheet addButtonWithTitle:@"收藏" image:[UIImage imageNamed: @"addToFav.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
-        [self addToFav];
-    }];
-    
-    [actionSheet addButtonWithTitle:@"在 Safari 中打开" image:[UIImage imageNamed: @"openInSafari.png"] type:AHKActionSheetButtonTypeDefault handler:^(AHKActionSheet *actionSheet) {
-        [self openInSafari];
-    }];
-    
-    [actionSheet show];
-}
-
-- (void)addToFav
-{
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"jobFavData"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:plistPath])
-    {
-        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
-    }
-    NSMutableDictionary *jobFavDic = [[NSMutableDictionary alloc]initWithContentsOfFile:plistPath];
-    if (jobFavDic == nil)
-    {
-        jobFavDic = [[NSMutableDictionary alloc]init];
-    }
-    NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
-    [newDic setObject:jobCorp forKey:@"corp"];
-    [newDic setObject:jobDate forKey:@"date"];
-    [newDic setObject:jobId forKey:@"id"];
-    [newDic setObject:jobTitle forKey:@"title"];
-    
-    [jobFavDic setObject:newDic forKey:jobTitle];
-    [jobFavDic writeToFile:plistPath atomically:YES];
-    
-    [SVProgressHUD showSuccessWithStatus:@"就业资讯收藏成功！"];
-}
-
 - (void)share
 {
     NSArray *activityItems;
     NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
+    UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
     
     //NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",jobTitle,jobCorp,jobDate];
     NSURL *shareURL = [NSURL URLWithString:urlStr];
-    activityItems = @[shareURL];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    activityItems = @[shareURL, shareImg];
+    OpenInSafariActivity *openInSafariActivity = [[OpenInSafariActivity alloc]init];
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafariActivity]];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
 }
 
-- (void)openInSafari
-{
-    NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    [[UIApplication sharedApplication]openURL:url];
+- (UIImage *)getImageFromView:(UIView *)view {
+    UIGraphicsBeginImageContext(view.bounds.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end
