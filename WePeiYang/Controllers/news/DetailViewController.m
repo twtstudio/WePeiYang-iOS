@@ -10,6 +10,7 @@
 #import "data.h"
 #import "Social/Social.h"
 #import "wpyStringProcessor.h"
+#import "wpyDeviceStatus.h"
 #import "SVProgressHUD.h"
 #import "OpenInSafariActivity.h"
 #import "ContentDataManager.h"
@@ -95,7 +96,7 @@
 - (void)share {
     NSArray *activityItems;
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
-    UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
+    UIImage *shareImg = [wpyDeviceStatus getImageFromView:webView.scrollView.subviews[0]];
     
     activityItems = @[shareURL, shareImg];
     
@@ -118,14 +119,6 @@
     
     [self presentViewController:activityViewController animated:YES completion:nil];
     
-}
-
-- (UIImage *)getImageFromView:(UIView *)view {
-    UIGraphicsBeginImageContext(view.bounds.size);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 @end

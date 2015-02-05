@@ -117,8 +117,7 @@
     
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:plistPath])
-    {
+    if ([fileManager fileExistsAtPath:plistPath]) {
         [fileManager removeItemAtPath:plistPath error:nil];
     }
     [fileManager createFileAtPath:plistPath contents:nil attributes:nil];

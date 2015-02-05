@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    twtLoginTypeGPA,
-    twtLoginTypeLibrary
+    twtLoginTypeGPA = 0,
+    twtLoginTypeLibrary = 1
 } twtLoginType;
 
 @interface twtLoginViewController : UIViewController<UIAlertViewDelegate>

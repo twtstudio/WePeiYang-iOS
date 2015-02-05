@@ -9,14 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "data.h"
 #import "WePeiYang-Swift.h"
+#import "GPACalculationModel.h"
 
-typedef enum {
-    gpaCalcRuleJasso,
-    gpaCalcRuleStandard,
-    gpaCalcRuleFourPt,
-    gpaCalcRuleImprovedFourPt,
-    gpaCalcRuleCanada,
-} gpaCalcRule;
+
 
 @interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 

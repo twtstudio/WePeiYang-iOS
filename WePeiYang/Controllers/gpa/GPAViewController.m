@@ -17,6 +17,7 @@
 #import "SVProgressHUD.h"
 #import "GPADataManager.h"
 #import "WePeiYang-Swift.h"
+#import "wpyDeviceStatus.h"
 
 @interface GPAViewController ()
 
@@ -492,21 +493,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (UIImage *) captureScreen
-{
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    CGRect rect = [keyWindow bounds];
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [keyWindow.layer renderInContext:context];
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return img;
-}
-
 - (void) shareGPA
 {
-    UIImage *screenShot = [self captureScreen];
+    UIImage *screenShot = [wpyDeviceStatus captureScreen];
     NSString *bannerPath = [[NSBundle mainBundle] pathForResource:@"Banner@2x" ofType:@".png"];
     UIImage *banner = [UIImage imageWithContentsOfFile:bannerPath];
     CGSize screenShotSize = [screenShot size];

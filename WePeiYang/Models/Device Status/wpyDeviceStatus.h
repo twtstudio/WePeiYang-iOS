@@ -16,4 +16,7 @@
 + (NSString *)getScreenSize;
 + (float)getOSVersionFloat;
 
++ (UIImage *)getImageFromView:(UIView *)view;
++ (UIImage *)captureScreen;
+
 @end

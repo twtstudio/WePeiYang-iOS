@@ -71,6 +71,8 @@
 		E95DA5871A31BA570039EBC0 /* addToFav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5841A31BA570039EBC0 /* addToFav@2x.png */; };
 		E95DA5881A31BA570039EBC0 /* openInSafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5851A31BA570039EBC0 /* openInSafari@2x.png */; };
 		E95DA5891A31BA570039EBC0 /* shareInSheet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5861A31BA570039EBC0 /* shareInSheet@2x.png */; };
+		E97CE0771A837624007F65D6 /* ContentDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0761A837624007F65D6 /* ContentDataManager.m */; };
+		E97CE07A1A837704007F65D6 /* GPACalculationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0791A837704007F65D6 /* GPACalculationModel.m */; };
 		E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */; };
 		E9A48CD71A6FE9A0001D8420 /* openinsafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */; };
 		E9A48CD81A6FE9A0001D8420 /* openinsafari7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */; };
@@ -154,7 +156,6 @@
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
 		E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */; };
 		E9AF6BE41A7E1857008B5214 /* GPADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BE31A7E1857008B5214 /* GPADataManager.m */; };
-		E9AF6BEC1A7E5F5A008B5214 /* ContentDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BEB1A7E5F5A008B5214 /* ContentDataManager.m */; };
 		E9F9356419FBAA3100E53E03 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */; };
 		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
 		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
@@ -277,6 +278,10 @@
 		E95DA5851A31BA570039EBC0 /* openInSafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openInSafari@2x.png"; sourceTree = "<group>"; };
 		E95DA5861A31BA570039EBC0 /* shareInSheet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shareInSheet@2x.png"; sourceTree = "<group>"; };
 		E9638CCC19C33D1000898350 /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WePeiYang-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		E97CE0751A837624007F65D6 /* ContentDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentDataManager.h; sourceTree = "<group>"; };
+		E97CE0761A837624007F65D6 /* ContentDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentDataManager.m; sourceTree = "<group>"; };
+		E97CE0781A837704007F65D6 /* GPACalculationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPACalculationModel.h; path = GPA/GPACalculationModel.h; sourceTree = "<group>"; };
+		E97CE0791A837704007F65D6 /* GPACalculationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPACalculationModel.m; path = GPA/GPACalculationModel.m; sourceTree = "<group>"; };
 		E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "launchScreen@2x.jpg"; sourceTree = "<group>"; };
 		E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari@2x.png"; sourceTree = "<group>"; };
 		E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari7@2x.png"; sourceTree = "<group>"; };
@@ -405,8 +410,6 @@
 		E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtAPIs.m; sourceTree = "<group>"; };
 		E9AF6BE21A7E1857008B5214 /* GPADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPADataManager.h; path = GPA/GPADataManager.h; sourceTree = "<group>"; };
 		E9AF6BE31A7E1857008B5214 /* GPADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPADataManager.m; path = GPA/GPADataManager.m; sourceTree = "<group>"; };
-		E9AF6BEA1A7E5F5A008B5214 /* ContentDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentDataManager.h; sourceTree = "<group>"; };
-		E9AF6BEB1A7E5F5A008B5214 /* ContentDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentDataManager.m; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WePeiYangToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F9356719FBAA3100E53E03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 			children = (
 				E9AF6BE21A7E1857008B5214 /* GPADataManager.h */,
 				E9AF6BE31A7E1857008B5214 /* GPADataManager.m */,
+				E97CE0781A837704007F65D6 /* GPACalculationModel.h */,
+				E97CE0791A837704007F65D6 /* GPACalculationModel.m */,
 			);
 			name = GPA;
 			sourceTree = "<group>";
@@ -995,8 +1000,8 @@
 		E9AF6BE91A7E5F5A008B5214 /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				E9AF6BEA1A7E5F5A008B5214 /* ContentDataManager.h */,
-				E9AF6BEB1A7E5F5A008B5214 /* ContentDataManager.m */,
+				E97CE0751A837624007F65D6 /* ContentDataManager.h */,
+				E97CE0761A837624007F65D6 /* ContentDataManager.m */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -1287,7 +1292,6 @@
 				E9AF6B8E1A7CFCD4008B5214 /* HiringViewController.m in Sources */,
 				E9AF6B8B1A7CFCD4008B5214 /* GuideViewController.m in Sources */,
 				E9AF6B951A7CFCD4008B5214 /* JobTableCell.m in Sources */,
-				E9AF6BEC1A7E5F5A008B5214 /* ContentDataManager.m in Sources */,
 				E9AF6B9F1A7CFCD4008B5214 /* RecordTableCell.m in Sources */,
 				E9AF6B941A7CFCD4008B5214 /* JobTabBarController.m in Sources */,
 				E9AF6B9B1A7CFCD4008B5214 /* LibraryTableCell.m in Sources */,
@@ -1300,6 +1304,7 @@
 				E9AF6B9A1A7CFCD4008B5214 /* LibraryTabBarController.m in Sources */,
 				E9AF6BD91A7CFCEA008B5214 /* UIButton+Bootstrap.m in Sources */,
 				E9AF6BB61A7CFCD4008B5214 /* DashboardViewController.swift in Sources */,
+				E97CE07A1A837704007F65D6 /* GPACalculationModel.m in Sources */,
 				E9AF6BD01A7CFCE2008B5214 /* wpyEncryption.m in Sources */,
 				E9AF6BCE1A7CFCE2008B5214 /* NSTimer+Blocks.m in Sources */,
 				E9AF6B8C1A7CFCD4008B5214 /* HiringDetailViewController.m in Sources */,
@@ -1322,6 +1327,7 @@
 				E9AF6BA91A7CFCD4008B5214 /* LAFound_AnnounceViewController.m in Sources */,
 				E9AF6B771A7CFCD4008B5214 /* AboutUsViewController.swift in Sources */,
 				E9AF6BB11A7CFCD4008B5214 /* DetailViewController.m in Sources */,
+				E97CE0771A837624007F65D6 /* ContentDataManager.m in Sources */,
 				188842231846E6F4007B92CB /* twtAppDelegate.m in Sources */,
 				E9AF6BDA1A7CFCEA008B5214 /* wpyActionSheet.swift in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,

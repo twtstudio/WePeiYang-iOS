@@ -152,7 +152,7 @@ class DashboardViewController: UIViewController {
     
     // POP Animation
     
-    func hideAllButtons() {
+    private func hideAllButtons() {
         
         studySearchBtn.hidden = true
         newsBtn.hidden = true
@@ -164,7 +164,7 @@ class DashboardViewController: UIViewController {
         aboutBtn.hidden = true
     }
     
-    func activeLaunchAnimations() {
+    private func activeLaunchAnimations() {
         
         // POP Animation
         
@@ -355,7 +355,7 @@ class DashboardViewController: UIViewController {
     
     // Loading user id & token
     
-    func checkGuideStatus() {
+    private func checkGuideStatus() {
         
         let userDefaults = NSUserDefaults()
         let guideVersion = userDefaults.floatForKey("guideVersion")
@@ -368,7 +368,7 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    func checkLoginStatus() {
+    private func checkLoginStatus() {
         let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let documentPath = path[0] as String
         let plistPath = documentPath.stringByAppendingPathComponent("twtLogin")
