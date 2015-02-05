@@ -7,10 +7,9 @@
 //
 
 #import "LibLoginViewController.h"
-#import "AFNetworking.h"
-#import "SVProgressHUD.h"
 #import "data.h"
-#import "twtAPIs.h"
+#import "SVProgressHUD.h"
+#import "AccountManager.h"
 
 @interface LibLoginViewController ()
 
@@ -62,34 +61,24 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     } else {
-        
-        NSString *url = [twtAPIs bindLib];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"libuname":username,
                                      @"libpasswd":password,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
+        [AccountManager bindLibWithParameters:parameters success:^() {
             successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定图书馆账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [successAlert show];
             [data shareInstance].libLogin = @"Changed";
             
-            NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
-            [userDefaults setBool:YES forKey:@"bindLib"];
-            
             isLogingIn = NO;
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSInteger statusCode = operation.response.statusCode;
-            
+        } failure:^(NSInteger statusCode, NSString *errorStr) {
             if (statusCode == 401) {
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
             } else {
-                [SVProgressHUD showErrorWithStatus:@"绑定图书馆帐号失败T^T"];
+                [SVProgressHUD showErrorWithStatus:errorStr];
             }
             isLogingIn = NO;
         }];

@@ -8,14 +8,14 @@
 
 #import "twtLoginViewController.h"
 #import "GPAViewController.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 #import "data.h"
 #import "UIButton+Bootstrap.h"
-#import "wpyEncryption.h"
+//#import "wpyEncryption.h"
 #import "GuideViewController.h"
 #import "SVProgressHUD.h"
-#import "twtSecretKeys.h"
-#import "twtAPIs.h"
+//#import "twtSecretKeys.h"
+//#import "twtAPIs.h"
 #import <POP/POP.h>
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -32,7 +32,7 @@
 
 @synthesize unameField;
 @synthesize passwdField;
-@synthesize twtLoginType;
+@synthesize loginType;
 @synthesize loginBtn;
 @synthesize cancelBtn;
 
@@ -88,90 +88,45 @@
     }
     else
     {
-        NSString *url = [twtAPIs login];
         NSDictionary *parameters = @{@"twtuname":uname,
                                      @"twtpasswd":passwd,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [AccountManager loginWithParameters:parameters andType:loginType Success:^() {
             [SVProgressHUD dismiss];
-            [self processLoginData:responseObject];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            if (loginType == nil) {
+                loginType = twtLoginTypeNormal;
+            }
+            
+            if (loginType == twtLoginTypeNormal) {
+                successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [successAlert show];
+            } else if (loginType == twtLoginTypeGPA) {
+                [data shareInstance].gpaLoginStatus = @"Changed";
+                successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [successAlert show];
+            } else if (loginType == twtLoginTypeLibrary) {
+                [data shareInstance].libLogin = @"Changed";
+                successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！\n图书馆系统加载速度较慢\n请耐心等待哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [successAlert show];
+            }
+            [loginBtn setUserInteractionEnabled:YES];
+            
+        } Failure:^(NSInteger statusCode, NSString *errorStr) {
             [SVProgressHUD dismiss];
-            NSInteger statusCode = operation.response.statusCode;
+            
             if (statusCode == 401) {
                 UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"出错" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [errorAlert show];
             } else {
-                [SVProgressHUD showErrorWithStatus:@"当前无法登录哦T^T"];
+                [SVProgressHUD showErrorWithStatus:errorStr];
             }
+            
         }];
     }
     [loginBtn setUserInteractionEnabled:YES];
 }
-
-- (void)processLoginData:(NSDictionary *)contentDic {
-    
-    NSUserDefaults *userDefault = [[NSUserDefaults alloc]init];
-    
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:plistPath]) {
-        [fileManager removeItemAtPath:plistPath error:nil];
-    }
-    [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
-    
-    NSString *twtId = [contentDic objectForKey:@"id"];
-    NSString *twtToken = [contentDic objectForKey:@"token"];
-    NSString *key = [twtSecretKeys getSecretKey];
-    NSData *plainId = [twtId dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *secretId = [plainId AES256EncryptWithKey:key];
-    NSData *plainToken = [twtToken dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *secretToken = [plainToken AES256EncryptWithKey:key];
-    
-    NSMutableData *saveData = [[NSMutableData alloc]init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:saveData];
-    [archiver encodeObject:secretId forKey:@"id"];
-    [archiver encodeObject:secretToken forKey:@"token"];
-    [archiver finishEncoding];
-    
-    [saveData writeToFile:plistPath atomically:YES];
-    
-    [data shareInstance].userId = [contentDic objectForKey:@"id"];
-    [data shareInstance].userToken = [contentDic objectForKey:@"token"];
-    
-    NSString *tjuuname = [contentDic objectForKey:@"tjuuname"];
-    NSString *libuname = [contentDic objectForKey:@"libuname"];
-    
-    if ([tjuuname isEqualToString:@""])
-    {
-        [userDefault setBool:NO forKey:@"bindTju"];
-    } else {
-        [userDefault setBool:YES forKey:@"bindTju"];
-    }
-    if ([libuname isEqualToString:@""])
-    {
-        [userDefault setBool:NO forKey:@"bindLib"];
-    } else {
-        [userDefault setBool:YES forKey:@"bindLib"];
-    }
-    
-    NSString *studentId = [contentDic objectForKey:@"studentid"];
-    [userDefault setObject:studentId forKey:@"studentid"];
-    
-    if (twtLoginType == twtLoginTypeGPA) {
-        [data shareInstance].gpaLoginStatus = @"Changed";
-        successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [successAlert show];
-    } else if (twtLoginType == twtLoginTypeLibrary) {
-        [data shareInstance].libLogin = @"Changed";
-        successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！\n图书馆系统加载速度较慢\n请耐心等待哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [successAlert show];
-    }
-    [loginBtn setUserInteractionEnabled:YES];
-}
-
 
 - (IBAction)cancelLogin:(id)sender
 {

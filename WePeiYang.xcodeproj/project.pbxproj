@@ -73,6 +73,7 @@
 		E95DA5891A31BA570039EBC0 /* shareInSheet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA5861A31BA570039EBC0 /* shareInSheet@2x.png */; };
 		E97CE0771A837624007F65D6 /* ContentDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0761A837624007F65D6 /* ContentDataManager.m */; };
 		E97CE07A1A837704007F65D6 /* GPACalculationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0791A837704007F65D6 /* GPACalculationModel.m */; };
+		E97CE07E1A837DAB007F65D6 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE07D1A837DAB007F65D6 /* AccountManager.m */; };
 		E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */; };
 		E9A48CD71A6FE9A0001D8420 /* openinsafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */; };
 		E9A48CD81A6FE9A0001D8420 /* openinsafari7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */; };
@@ -282,6 +283,8 @@
 		E97CE0761A837624007F65D6 /* ContentDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentDataManager.m; sourceTree = "<group>"; };
 		E97CE0781A837704007F65D6 /* GPACalculationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPACalculationModel.h; path = GPA/GPACalculationModel.h; sourceTree = "<group>"; };
 		E97CE0791A837704007F65D6 /* GPACalculationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPACalculationModel.m; path = GPA/GPACalculationModel.m; sourceTree = "<group>"; };
+		E97CE07C1A837DAB007F65D6 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Account/AccountManager.h; sourceTree = "<group>"; };
+		E97CE07D1A837DAB007F65D6 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Account/AccountManager.m; sourceTree = "<group>"; };
 		E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "launchScreen@2x.jpg"; sourceTree = "<group>"; };
 		E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari@2x.png"; sourceTree = "<group>"; };
 		E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari7@2x.png"; sourceTree = "<group>"; };
@@ -647,6 +650,15 @@
 			path = wpyActionSheet;
 			sourceTree = "<group>";
 		};
+		E97CE07B1A837D84007F65D6 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E97CE07C1A837DAB007F65D6 /* AccountManager.h */,
+				E97CE07D1A837DAB007F65D6 /* AccountManager.m */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
 		E9A48CD11A6FA31B001D8420 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +942,7 @@
 		E9AF6BC31A7CFCE2008B5214 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E97CE07B1A837D84007F65D6 /* Account */,
 				E9AF6BE91A7E5F5A008B5214 /* Content */,
 				E9AF6BE11A7E1832008B5214 /* GPA */,
 			);
@@ -1324,6 +1337,7 @@
 				E9AF6B7E1A7CFCD4008B5214 /* SplashViewController.swift in Sources */,
 				E9AF6BA51A7CFCD4008B5214 /* LibLoginForm.m in Sources */,
 				E9AF6BE41A7E1857008B5214 /* GPADataManager.m in Sources */,
+				E97CE07E1A837DAB007F65D6 /* AccountManager.m in Sources */,
 				E9AF6BA91A7CFCD4008B5214 /* LAFound_AnnounceViewController.m in Sources */,
 				E9AF6B771A7CFCD4008B5214 /* AboutUsViewController.swift in Sources */,
 				E9AF6BB11A7CFCD4008B5214 /* DetailViewController.m in Sources */,

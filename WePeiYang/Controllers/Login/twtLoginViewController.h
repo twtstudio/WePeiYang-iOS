@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum {
-    twtLoginTypeGPA = 0,
-    twtLoginTypeLibrary = 1
-} twtLoginType;
+#import "AccountManager.h"
 
 @interface twtLoginViewController : UIViewController<UIAlertViewDelegate>
 
@@ -19,7 +15,7 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UITextField *passwdField;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
-@property twtLoginType *twtLoginType;
+@property twtLoginType *loginType;
 
 - (IBAction)login:(id)sender;
 - (IBAction)cancelLogin:(id)sender;

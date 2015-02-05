@@ -7,10 +7,9 @@
 //
 
 #import "GPALoginViewController.h"
-#import "AFNetworking.h"
 #import "SVProgressHUD.h"
 #import "data.h"
-#import "twtAPIs.h"
+#import "AccountManager.h"
 
 @interface GPALoginViewController () <UIAlertViewDelegate>
 
@@ -65,33 +64,26 @@
         blankAlert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [blankAlert show];
     } else {
-        NSString *url = [twtAPIs bindTju];
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"tjuuname":username,
                                      @"tjupasswd":password,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [AccountManager bindTjuWithParameters:parameters success:^() {
             isLogingIn = NO;
             
             successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [successAlert show];
             
             [data shareInstance].gpaLoginStatus = @"Changed";
-            
-            NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
-            [userDefaults setBool:YES forKey:@"bindTju"];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSInteger statusCode = operation.response.statusCode;
+        } failure:^(NSInteger statusCode, NSString *errorStr) {
             if (statusCode == 401) {
                 isLogingIn = NO;
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
             } else {
-                [SVProgressHUD showErrorWithStatus:@"绑定办公网失败"];
+                [SVProgressHUD showErrorWithStatus:errorStr];
                 isLogingIn = NO;
             }
         }];

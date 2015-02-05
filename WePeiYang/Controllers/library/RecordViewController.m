@@ -223,7 +223,7 @@
     twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
     [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:login animated:YES completion:^{
-        login.twtLoginType = twtLoginTypeLibrary;
+        login.loginType = twtLoginTypeLibrary;
     }];
 }
 

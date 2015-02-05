@@ -91,7 +91,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         } else if section == 2 {
             return feedbackArr.count
         } else if section == 3 {
-            return self.logFileExists() ? 3 : 1
+            return AccountManager.isLoggedIn() ? 3 : 1
         } else {
             return 0
         }
@@ -133,11 +133,11 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         } else if section == 3 {
             cell.accessoryType = UITableViewCellAccessoryType.None
-            if self.logFileExists() {
+            if AccountManager.isLoggedIn() {
                 if row == 0 {
-                    cell.textLabel!.text = self.tjuBinded() ? "解除办公网账号绑定" : "绑定办公网账号"
+                    cell.textLabel!.text = AccountManager.isTjuBinded() ? "解除办公网账号绑定" : "绑定办公网账号"
                 } else if row == 1 {
-                    cell.textLabel!.text = self.libBinded() ? "解除图书馆账号绑定" : "绑定图书馆账号"
+                    cell.textLabel!.text = AccountManager.isLibBinded() ? "解除图书馆账号绑定" : "绑定图书馆账号"
                 } else if row == 2 {
                     cell.textLabel!.text = "注销天外天账号"
                 }
@@ -186,15 +186,15 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.sendEmail()
             }
         } else if section == 3 {
-            if self.logFileExists() {
+            if AccountManager.isLoggedIn() {
                 if row == 0 {
-                    if self.tjuBinded() {
+                    if AccountManager.isTjuBinded() {
                         self.jbTju()
                     } else {
                         self.bindTju()
                     }
                 } else if row == 1 {
-                    if self.libBinded() {
+                    if AccountManager.isLibBinded() {
                         self.jbLib()
                     } else {
                         self.bindLib()
@@ -254,84 +254,30 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func logout() {
-        let url = twtAPIs.logout()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
-        var manager = AFHTTPRequestOperationManager()
-        manager.POST(url, parameters: parameters, success: {
-            (AFHTTPRequestOperation operation, AnyObject responseObject) in
+        
+        AccountManager.logoutWithParameters(parameters, withBlock: {
             SVProgressHUD.showSuccessWithStatus("注销成功")
-        }, failure: {
-            (AFHTTPRequestOperation operation, NSError error) in
-            SVProgressHUD.showErrorWithStatus("注销失败")
+            self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
         })
-        
-        data.shareInstance().userId = ""
-        data.shareInstance().userToken = ""
-        
-        var fileManager = NSFileManager.defaultManager()
-        let files = ["login","libraryCollectionData","gpa","gpaResult","collectionData","noticeFavData","jobFavData","noticeAccount","twtLogin","libraryRecordCache","gpaCacheData"]
-        for fileName in files {
-            let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-            let documentPath = path[0] as String
-            let plistPath = documentPath.stringByAppendingPathComponent(fileName)
-            fileManager.removeItemAtPath(plistPath, error: nil)
-        }
-        
-        var userDefaults = NSUserDefaults()
-        userDefaults.setBool(false, forKey: "bindLib")
-        userDefaults.setBool(false, forKey: "bindTju")
-        
-        let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
-        userDefault?.removeObjectForKey("Classtable")
-        userDefault?.synchronize()
-        
-        self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
     }
     
     func jbTju() {
-        let url = twtAPIs.unbindTju()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
-        var manager = AFHTTPRequestOperationManager()
-        manager.POST(url, parameters: parameters, success: {
-            (AFHTTPRequestOperation operation, AnyObject responseObject) in
-                SVProgressHUD.showSuccessWithStatus("解除绑定成功")
-                let files = ["gpa","gpaResult","gpaCacheData"]
-                for fileName in files {
-                    var fileManager = NSFileManager.defaultManager()
-                    let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-                    let documentPath = path[0] as String
-                    let plistPath = documentPath.stringByAppendingPathComponent(fileName)
-                    fileManager.removeItemAtPath(plistPath, error: nil)
-                }
-                var userDefaults = NSUserDefaults()
-                userDefaults.setBool(false, forKey: "bindTju")
-                self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
-        }, failure: {
-            (AFHTTPRequestOperation operation, NSError error) in
+        AccountManager.unBindTjuWithParameters(parameters, success: {
+            SVProgressHUD.showSuccessWithStatus("解除绑定成功")
+            self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+            }, failure: {
                 SVProgressHUD.showErrorWithStatus("解除绑定失败")
         })
     }
     
     func jbLib() {
-        let url = twtAPIs.unbindLib()
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
-        var manager = AFHTTPRequestOperationManager()
-        manager.POST(url, parameters: parameters, success: {
-            (AFHTTPRequestOperation operation, AnyObject responseObject) in
+        AccountManager.unBindLibWithParameters(parameters, success: {
             SVProgressHUD.showSuccessWithStatus("解除绑定成功")
-            let files = ["login","libraryRecordCache"]
-            for fileName in files {
-                var fileManager = NSFileManager.defaultManager()
-                let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-                let documentPath = path[0] as String
-                let plistPath = documentPath.stringByAppendingPathComponent(fileName)
-                fileManager.removeItemAtPath(plistPath, error: nil)
-            }
-            var userDefaults = NSUserDefaults()
-            userDefaults.setBool(false, forKey: "bindLib")
             self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
             }, failure: {
-                (AFHTTPRequestOperation operation, NSError error) in
                 SVProgressHUD.showErrorWithStatus("解除绑定失败")
         })
     }
@@ -349,30 +295,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     func login() {
         let twtLogin = twtLoginViewController(nibName: nil, bundle: nil)
         self.presentViewController(twtLogin, animated: true, completion: nil)
-    }
-    
-    //当前状态检测
-    
-    func logFileExists() -> Bool {
-        let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentPath = path[0] as String
-        let plistPath = documentPath.stringByAppendingPathComponent("twtLogin")
-        let fileManager = NSFileManager.defaultManager()
-        if fileManager.fileExistsAtPath(plistPath) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func libBinded() -> Bool {
-        var userDefault = NSUserDefaults()
-        return userDefault.boolForKey("bindLib")
-    }
-    
-    func tjuBinded() -> Bool {
-        var userDefault = NSUserDefaults()
-        return userDefault.boolForKey("bindTju")
     }
     
     //其他
@@ -424,8 +346,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func getClassData() {
-        if self.logFileExists() {
-            if self.tjuBinded() {
+        if AccountManager.isLoggedIn() {
+            if AccountManager.isTjuBinded() {
                 SVProgressHUD.showWithStatus("正在加载...")
                 
                 // Here to add functions to get class data
