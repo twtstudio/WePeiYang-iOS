@@ -27,6 +27,7 @@
 		E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */; };
 		E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */; };
 		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
+		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E95DA5591A31B9F50039EBC0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52B1A31B9F50039EBC0 /* back@2x.png */; };
 		E95DA55A1A31B9F50039EBC0 /* backForNav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */; };
 		E95DA55B1A31B9F50039EBC0 /* Banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52D1A31B9F50039EBC0 /* Banner@2x.png */; };
@@ -75,8 +76,6 @@
 		E97CE07A1A837704007F65D6 /* GPACalculationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0791A837704007F65D6 /* GPACalculationModel.m */; };
 		E97CE07E1A837DAB007F65D6 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE07D1A837DAB007F65D6 /* AccountManager.m */; };
 		E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */; };
-		E9A48CD71A6FE9A0001D8420 /* openinsafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */; };
-		E9A48CD81A6FE9A0001D8420 /* openinsafari7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
 		E9A48CE51A6FF597001D8420 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CE71A6FF597001D8420 /* Localizable.strings */; };
 		E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A6C1541A31BCC200544943 /* button-background@2x.png */; };
@@ -161,6 +160,8 @@
 		E9F9356919FBAA3100E53E03 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9356819FBAA3100E53E03 /* TodayViewController.swift */; };
 		E9F9356B19FBAA3100E53E03 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */; };
 		E9F9356E19FBAA3100E53E03 /* WePeiYangToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E9F9356319FBAA3100E53E03 /* WePeiYangToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E9FF96D81A904C3300274A39 /* openinsafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FF96D71A904C3300274A39 /* openinsafari@2x.png */; };
+		E9FF96DA1A904F8C00274A39 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FF96D91A904F8C00274A39 /* calendar@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,8 @@
 		E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dashboardBg@2x.jpg"; sourceTree = "<group>"; };
 		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
+		E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarEventActivity.h; path = Sharing/CalendarEventActivity.h; sourceTree = "<group>"; };
+		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
 		E95DA52B1A31B9F50039EBC0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backForNav@2x.png"; sourceTree = "<group>"; };
 		E95DA52D1A31B9F50039EBC0 /* Banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Banner@2x.png"; sourceTree = "<group>"; };
@@ -286,8 +289,6 @@
 		E97CE07C1A837DAB007F65D6 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Account/AccountManager.h; sourceTree = "<group>"; };
 		E97CE07D1A837DAB007F65D6 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Account/AccountManager.m; sourceTree = "<group>"; };
 		E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "launchScreen@2x.jpg"; sourceTree = "<group>"; };
-		E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari@2x.png"; sourceTree = "<group>"; };
-		E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari7@2x.png"; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
 		E9A48CE61A6FF597001D8420 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -419,6 +420,8 @@
 		E9F9356819FBAA3100E53E03 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		E9F9356A19FBAA3100E53E03 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		E9F9357219FBAADD00E53E03 /* WePeiYang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WePeiYang.entitlements; sourceTree = "<group>"; };
+		E9FF96D71A904C3300274A39 /* openinsafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "openinsafari@2x.png"; sourceTree = "<group>"; };
+		E9FF96D91A904F8C00274A39 /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,8 +568,8 @@
 		E95DA52A1A31B9F50039EBC0 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				E9A48CD51A6FE9A0001D8420 /* openinsafari@2x.png */,
-				E9A48CD61A6FE9A0001D8420 /* openinsafari7@2x.png */,
+				E9FF96D71A904C3300274A39 /* openinsafari@2x.png */,
+				E9FF96D91A904F8C00274A39 /* calendar@2x.png */,
 				E9A6C1541A31BCC200544943 /* button-background@2x.png */,
 				E95DA52B1A31B9F50039EBC0 /* back@2x.png */,
 				E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */,
@@ -676,6 +679,8 @@
 			children = (
 				E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */,
 				E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */,
+				E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */,
+				E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */,
 			);
 			name = Sharing;
 			sourceTree = "<group>";
@@ -1160,6 +1165,8 @@
 				E9AF6B861A7CFCD4008B5214 /* GPAViewController.xib in Resources */,
 				E9AF6BAC1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.xib in Resources */,
 				E95DA5771A31B9F50039EBC0 /* laf_post@2x.png in Resources */,
+				E9FF96DA1A904F8C00274A39 /* calendar@2x.png in Resources */,
+				E9FF96D81A904C3300274A39 /* openinsafari@2x.png in Resources */,
 				E9AF6B7F1A7CFCD4008B5214 /* SplashViewController.xib in Resources */,
 				E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */,
 				E95DA5651A31B9F50039EBC0 /* notice@2x.png in Resources */,
@@ -1194,7 +1201,6 @@
 				E95DA57D1A31B9F50039EBC0 /* time_job_icon@2x.png in Resources */,
 				E9AF6B9C1A7CFCD4008B5214 /* LibraryTableCell.xib in Resources */,
 				E9A6C1551A31BCC200544943 /* button-background@2x.png in Resources */,
-				E9A48CD71A6FE9A0001D8420 /* openinsafari@2x.png in Resources */,
 				E9AF6B811A7CFCD4008B5214 /* GPACalculatorViewController.xib in Resources */,
 				E95DA57E1A31B9F50039EBC0 /* time_laf_icon@2x.png in Resources */,
 				E9AF6B891A7CFCD4008B5214 /* g3.jpg in Resources */,
@@ -1216,7 +1222,6 @@
 				E95DA56E1A31B9F50039EBC0 /* signin@2x.jpg in Resources */,
 				E9AF6B871A7CFCD4008B5214 /* g1.jpg in Resources */,
 				E95DA56A1A31B9F50039EBC0 /* place_job_icon@2x.png in Resources */,
-				E9A48CD81A6FE9A0001D8420 /* openinsafari7@2x.png in Resources */,
 				E95DA57A1A31B9F50039EBC0 /* n_notice@2x.png in Resources */,
 				E95DA5691A31B9F50039EBC0 /* place_icon@2x.png in Resources */,
 				E9AF6B901A7CFCD4008B5214 /* HringTableCell.xib in Resources */,
@@ -1348,6 +1353,7 @@
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				E9AF6B791A7CFCD4008B5214 /* AboutViewController.swift in Sources */,
+				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E9AF6BB51A7CFCD4008B5214 /* NoticeViewController.m in Sources */,
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
 			);

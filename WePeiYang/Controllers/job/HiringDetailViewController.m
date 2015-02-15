@@ -10,6 +10,7 @@
 #import "ContentDataManager.h"
 #import "data.h"
 #import "SVProgressHUD.h"
+#import "CalendarEventActivity.h"
 
 @interface HiringDetailViewController ()
 
@@ -67,8 +68,18 @@
 - (void)shareInfo
 {
     NSString *shareStr = [NSString stringWithFormat:@"%@ %@ %@ %@ %@",hiringTitle,hiringCorp,hiringDate,hiringTime,hiringPlace];
-    NSArray *activityItems = @[shareStr];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    
+    
+    NSDictionary *shareDic = @{@"title": hiringTitle,
+                               @"corp": hiringCorp,
+                               @"date": hiringDate,
+                               @"time": hiringTime,
+                               @"place": hiringPlace};
+    NSData *shareData = [NSKeyedArchiver archivedDataWithRootObject:shareDic];
+    
+    NSArray *activityItems = @[shareStr, shareData];
+    CalendarEventActivity *calendarActivity = [[CalendarEventActivity alloc]init];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities: @[calendarActivity]];
     [self presentViewController:activityViewController animated:YES completion:nil];
 }
 

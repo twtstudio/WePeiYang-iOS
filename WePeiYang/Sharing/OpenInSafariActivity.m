@@ -21,11 +21,7 @@
 }
 
 - (UIImage *)activityImage {
-    if ([[self class] respondsToSelector: @selector(activityCategory)]) {
-        return [UIImage imageNamed:@"openinsafari7.png"];
-    } else {
-        return [UIImage imageNamed:@"openinsafari.png"];
-    }
+    return [UIImage imageNamed:@"openinsafari.png"];
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
