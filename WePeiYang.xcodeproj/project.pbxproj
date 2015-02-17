@@ -27,6 +27,7 @@
 		E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */; };
 		E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */; };
 		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
+		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E95DA5591A31B9F50039EBC0 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52B1A31B9F50039EBC0 /* back@2x.png */; };
 		E95DA55A1A31B9F50039EBC0 /* backForNav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95DA52C1A31B9F50039EBC0 /* backForNav@2x.png */; };
@@ -235,6 +236,8 @@
 		E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dashboardBg@2x.jpg"; sourceTree = "<group>"; };
 		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
+		E958E7881A9384EE0055B7C4 /* MsgDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MsgDisplay.h; path = "Message Display/MsgDisplay.h"; sourceTree = "<group>"; };
+		E958E7891A9384EE0055B7C4 /* MsgDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgDisplay.m; path = "Message Display/MsgDisplay.m"; sourceTree = "<group>"; };
 		E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarEventActivity.h; path = Sharing/CalendarEventActivity.h; sourceTree = "<group>"; };
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
 		E95DA52B1A31B9F50039EBC0 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
@@ -563,6 +566,15 @@
 				4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E958E7871A9384CA0055B7C4 /* Message Display */ = {
+			isa = PBXGroup;
+			children = (
+				E958E7881A9384EE0055B7C4 /* MsgDisplay.h */,
+				E958E7891A9384EE0055B7C4 /* MsgDisplay.m */,
+			);
+			name = "Message Display";
 			sourceTree = "<group>";
 		};
 		E95DA52A1A31B9F50039EBC0 /* images */ = {
@@ -907,6 +919,7 @@
 		E9AF6BB91A7CFCE2008B5214 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E958E7871A9384CA0055B7C4 /* Message Display */,
 				E9AF6BBA1A7CFCE2008B5214 /* Device Status */,
 				E9AF6BBD1A7CFCE2008B5214 /* NSTimer-Blocks */,
 				E9AF6BC01A7CFCE2008B5214 /* Passing Data */,
@@ -1325,6 +1338,7 @@
 				E97CE07A1A837704007F65D6 /* GPACalculationModel.m in Sources */,
 				E9AF6BD01A7CFCE2008B5214 /* wpyEncryption.m in Sources */,
 				E9AF6BCE1A7CFCE2008B5214 /* NSTimer+Blocks.m in Sources */,
+				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
 				E9AF6B8C1A7CFCD4008B5214 /* HiringDetailViewController.m in Sources */,
 				E9AF6BAB1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.m in Sources */,
 				E9AF6B8F1A7CFCD4008B5214 /* HringTableCell.m in Sources */,
@@ -1436,8 +1450,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jiayi Li (TYRRVX7RWJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jiayi Li (TYRRVX7RWJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1475,8 +1489,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jiayi Li (TYRRVX7RWJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jiayi Li (TYRRVX7RWJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1516,7 +1530,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1544,7 +1558,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

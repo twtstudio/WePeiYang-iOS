@@ -9,7 +9,7 @@
 #import "HiringDetailViewController.h"
 #import "ContentDataManager.h"
 #import "data.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "CalendarEventActivity.h"
 
 @interface HiringDetailViewController ()
@@ -50,7 +50,7 @@
     [ContentDataManager getDetailDataWithParameters:parameters success:^(id responseObject) {
         [self processContentDic:responseObject];
     }failure:^(NSString *error) {
-        [SVProgressHUD showErrorWithStatus:error];
+        [MsgDisplay showErrorMsg:error];
     }];
 }
 

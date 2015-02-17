@@ -54,7 +54,7 @@ class DevViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         var consoleStr = consoleTextView.text
         var pasteBoard = UIPasteboard.generalPasteboard()
         pasteBoard.string = consoleStr
-        SVProgressHUD.showSuccessWithStatus("控制台输出复制成功")
+        MsgDisplay.showSuccessMsg("控制台输出复制成功")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

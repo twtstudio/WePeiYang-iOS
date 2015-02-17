@@ -10,7 +10,7 @@
 #import "data.h"
 #import "ContentDataManager.h"
 #import "wpyStringProcessor.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "OpenInSafariActivity.h"
 
 @interface JobDetailViewController ()
@@ -58,7 +58,7 @@
     [ContentDataManager getDetailDataWithParameters:body success:^(id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(NSString *error) {
-        [SVProgressHUD showErrorWithStatus:error];
+        [MsgDisplay showErrorMsg:error];
     }];
 }
 

@@ -10,7 +10,7 @@
 #import "data.h"
 #import "JobTableCell.h"
 #import "JobDetailViewController.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "ContentDataManager.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -99,7 +99,7 @@
     [ContentDataManager getIndexDataWithParameters:parameters success:^(id responseObject) {
         [self dealWithReceivedData:responseObject];
     } failure:^(NSString *error) {
-        [SVProgressHUD showErrorWithStatus:error];
+        [MsgDisplay showErrorMsg:error];
     }];
 
 }
@@ -120,7 +120,7 @@
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
     
-    [SVProgressHUD dismiss];
+    [MsgDisplay dismiss];
 }
 
 - (void)tableViewEndReloading
@@ -206,7 +206,7 @@
 
 - (void)nextPage:(id)sender
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [MsgDisplay showLoading];
     
     currentPage = currentPage + 1;
     

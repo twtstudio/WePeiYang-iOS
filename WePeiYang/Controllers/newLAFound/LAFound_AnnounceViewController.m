@@ -45,18 +45,20 @@
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sendForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(announceButionAction)];
     self.navigationItem.rightBarButtonItem = rightButton;
-    
+    self.title = @"发布信息";
     
 //    设置segmentedControl
+    /*
     NSArray *segmentedControlItems = @[@"失物", @"拾取"];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];
     [segmentedControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
     [segmentedControl setWidth:80 forSegmentAtIndex:0];
     [segmentedControl setWidth:80 forSegmentAtIndex:1];
     segmentedControl.selectedSegmentIndex = 0;
-    self.navigationItem.titleView = segmentedControl;
+    self.navigationItem.titleView = segmentedControl;*/
     
-    _type = 0;
+    // 初值，如果为这个值表示 _type 没有被选择
+    _type = 99;
     
     [self.view addSubview:tableView];
 }
@@ -70,7 +72,7 @@
 
 - (BOOL)isGetAllInfo {
     LAFoundAnnounceForm *form = self.formController.form;
-    
+    _type = form.type;
     titleStr = form.title;
     placeStr = form.place;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -80,7 +82,7 @@
     phoneStr = form.phone.stringValue;
     contentStr = form.content;
     
-    if ((titleStr.length > 0) && (placeStr.length > 0) && (timeStr.length > 0) && (phoneStr > 0) && (nameStr > 0) && (contentStr.length > 0)) {
+    if ((titleStr.length > 0) && (placeStr.length > 0) && (timeStr.length > 0) && (phoneStr > 0) && (nameStr > 0) && (contentStr.length > 0) && (_type != 99)) {
         return YES;
     } else {
         return NO;
@@ -95,7 +97,7 @@
         [affirmAnnounceAlert show];
         
     }else {
-        [SVProgressHUD showErrorWithStatus:@"信息还没有填写完全哦~"];
+        [SVProgressHUD showErrorWithStatus:@"信息还没有填写完全哦~" maskType: SVProgressHUDMaskTypeBlack];
     }
 }
 
@@ -104,13 +106,13 @@
     
     [LAFound_DataManager announceItemInfoWithType:_type title:titleStr place:placeStr time:timeStr phone:phoneStr name:nameStr content:contentStr success:^(id responseObject) {
         if ([responseObject isEqualToString:@"发布成功"]) {
-            [SVProgressHUD showSuccessWithStatus:@"消息发布成功！"];
+            [SVProgressHUD showSuccessWithStatus:@"消息发布成功！"  maskType: SVProgressHUDMaskTypeBlack];
 
         } else  if([responseObject isEqualToString:@"发布失败"]){
-            [SVProgressHUD showErrorWithStatus:@"消息发布失败！"];
+            [SVProgressHUD showErrorWithStatus:@"消息发布失败！"  maskType: SVProgressHUDMaskTypeBlack];
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [SVProgressHUD showErrorWithStatus:error.localizedDescription maskType: SVProgressHUDMaskTypeBlack];
     }];
     
     

@@ -314,7 +314,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         var startTimeStr = startTime["start"] as NSString
         //println(startTimeStr)
         if startTimeStr == "" {
-            startTimeStr = "2014-09-01"
+            startTimeStr = "2015-03-09"
         }
         
         var dateFormatter = NSDateFormatter()

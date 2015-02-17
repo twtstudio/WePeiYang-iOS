@@ -14,7 +14,8 @@
 #import "LibLoginViewController.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
+#import "twtAPIs.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -95,7 +96,7 @@
     else
     {
         if ([[data shareInstance].libLogin isEqualToString:@"Changed"]) {
-            [SVProgressHUD showWithStatus:@"请稍候..." maskType:SVProgressHUDMaskTypeBlack];
+            [MsgDisplay showLoading];
         } else {
             
             //加载缓存
@@ -103,10 +104,10 @@
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if ([fileManager fileExistsAtPath:plistPath])
             {
-                [SVProgressHUD showSuccessWithStatus:@"正在后台努力刷新数据~\n已为您加载缓存，请稍候..."];
+                [MsgDisplay showSuccessMsg:@"正在后台努力刷新数据~\n已为您加载缓存，请稍候..."];
                 [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
             } else {
-                [SVProgressHUD showSuccessWithStatus:@"正在后台努力刷新数据~\n请稍候..."];
+                [MsgDisplay showSuccessMsg:@"正在后台努力刷新数据~\n请稍候..."];
             }
         }
         
@@ -115,7 +116,7 @@
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             
-            NSString *url = @"http://push-mobile.twtapps.net/lib/info";
+            NSString *url = [twtAPIs libInfo];
             NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                          @"token":[data shareInstance].userToken,
                                          @"platform":@"ios",
@@ -134,15 +135,15 @@
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [SVProgressHUD dismiss];
-                    [SVProgressHUD showSuccessWithStatus:@"已借记录更新成功~"];
+                    [MsgDisplay dismiss];
+                    [MsgDisplay showSuccessMsg:@"已借记录更新成功~"];
                     [self dealWithReceivedLoginData:responseObject];
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 });
                 
                 [data shareInstance].libLogin = @"";
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [SVProgressHUD dismiss];
+                [MsgDisplay dismiss];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 NSInteger statusCode = operation.response.statusCode;
                 
@@ -167,7 +168,7 @@
                             break;
                             
                         case 401:
-                            [SVProgressHUD showErrorWithStatus:@"登录验证出错...请重新登录！"];
+                            [MsgDisplay showErrorMsg:@"登录验证出错...请重新登录！"];
                             [tableView setHidden:YES];
                             [noLoginLabel setHidden:NO];
                             [noLoginLabel setText:@"您尚未登录天外天账号"];
@@ -181,7 +182,7 @@
                             break;
                             
                         default:
-                            [SVProgressHUD showErrorWithStatus:@"获取记录失败T^T"];
+                            [MsgDisplay showErrorMsg:@"获取记录失败T^T"];
                             NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
                             NSFileManager *fileManager = [NSFileManager defaultManager];
                             if ([fileManager fileExistsAtPath:plistPath])
@@ -317,9 +318,9 @@
 
 - (IBAction)continueLend:(id)sender
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [MsgDisplay showLoading];
     
-    NSString *url = @"http://push-mobile.twtapps.net/lib/renew";
+    NSString *url = [twtAPIs libRenew];
     NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                  @"token":[data shareInstance].userToken,
                                  @"type":@"all",
@@ -328,15 +329,15 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
+        [MsgDisplay dismiss];
         if ([[responseObject objectForKey:@"error"] integerValue] == 409) {
-            [SVProgressHUD showSuccessWithStatus:@"没有需要续订的书籍"];
+            [MsgDisplay showSuccessMsg:@"没有需要续订的书籍"];
         } else {
-            [SVProgressHUD showSuccessWithStatus:@"一键续订成功!"];
+            [MsgDisplay showSuccessMsg:@"一键续订成功!"];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"一键续订失败T^T"];
+        [MsgDisplay dismiss];
+        [MsgDisplay showErrorMsg:@"一键续订失败T^T"];
     }];
 }
 

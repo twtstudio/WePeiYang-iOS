@@ -11,7 +11,7 @@
 #import "Social/Social.h"
 #import "wpyStringProcessor.h"
 #import "wpyDeviceStatus.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "OpenInSafariActivity.h"
 #import "ContentDataManager.h"
 
@@ -21,9 +21,7 @@
 
 @end
 
-@implementation DetailViewController
-
-{
+@implementation DetailViewController {
     NSString *detailContent;
 }
 
@@ -58,7 +56,7 @@
     UIBarButtonItem *openInSafari = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
     self.navigationItem.rightBarButtonItem = openInSafari;
     
-    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+    [MsgDisplay showLoading];
     
     NSDictionary *parameters = @{@"ctype": @"news",
                                  @"index": detailId,
@@ -67,11 +65,11 @@
     [ContentDataManager getDetailDataWithParameters:parameters success:^(id responseObject) {
         [self processDetailData:responseObject];
         [[UIApplication sharedApplication]setNetworkActivityIndicatorVisible:NO];
-        [SVProgressHUD dismiss];
+        [MsgDisplay dismiss];
         
     } failure:^(NSString *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:error];
+        [MsgDisplay dismiss];
+        [MsgDisplay showErrorMsg:error];
         
     }];
 }

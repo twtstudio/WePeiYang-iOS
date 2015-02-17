@@ -10,7 +10,7 @@
 #import "HringTableCell.h"
 #import "ContentDataManager.h"
 #import "data.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "HiringDetailViewController.h"
 
 @interface HiringViewController ()
@@ -84,14 +84,14 @@
                                  @"platform": @"ios",
                                  @"version": [data shareInstance].appVersion};
     
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [MsgDisplay showLoading];
     
     [ContentDataManager getIndexDataWithParameters:parameters success:^(id responseObject) {
-        [SVProgressHUD dismiss];
+        [MsgDisplay dismiss];
         [self processContentDic:responseObject];
     }failure:^(NSString *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:error];
+        [MsgDisplay dismiss];
+        [MsgDisplay showErrorMsg:error];
     }];
 }
 

@@ -10,7 +10,7 @@
 #import "data.h"
 #import "DetailViewController.h"
 #import "ContentDataManager.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "SVPullToRefresh.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
@@ -138,7 +138,7 @@
         [self.tableView.pullToRefreshView stopAnimating];
         
     } failure:^(NSString *error) {
-        [SVProgressHUD showErrorWithStatus:error];
+        [MsgDisplay showErrorMsg:error];
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
     }];

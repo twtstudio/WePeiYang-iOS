@@ -11,6 +11,7 @@
 
 @interface LAFoundAnnounceForm : NSObject <FXForm>
 
+@property (nonatomic) NSInteger type;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *place;
 @property (nonatomic, copy) NSDate *time;

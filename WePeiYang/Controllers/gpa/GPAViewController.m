@@ -14,7 +14,7 @@
 #import "gpaHeaderView.h"
 #import "UIButton+Bootstrap.h"
 #import "twtLoginViewController.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "GPADataManager.h"
 #import "WePeiYang-Swift.h"
 #import "wpyDeviceStatus.h"
@@ -138,46 +138,18 @@
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
         
-        [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
+        [MsgDisplay showLoading];
         
         [GPADataManager getDataWithParameters:parameters success:^(id responseObject) {
             //Successful
             [self setNormalView];
             [self saveCacheWithData:responseObject];
             [self processGpaData:responseObject];
-            [SVProgressHUD dismiss];
+            [MsgDisplay dismiss];
         } failure:^(NSInteger statusCode) {
-            [SVProgressHUD dismiss];
+            [MsgDisplay dismiss];
             [self processErrorWithStatusCode:statusCode];
         }];
-        /*
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-            //Successful
-            
-            [self setNormalView];
-            
-            [self saveCacheWithData:[operation.responseString objectFromJSONString]];
-            [self processGpaData:[operation.responseString objectFromJSONString]];
-            
-            [SVProgressHUD dismiss];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            if (operation.response == nil) {
-                
-                [SVProgressHUD dismiss];
-                if ([self loadCacheAsResponseObject].count > 0) {
-                    [self processGpaData:[self loadCacheAsResponseObject]];
-                }
-                
-            } else {
-                NSInteger statusCode = operation.response.statusCode;
-                [SVProgressHUD dismiss];
-                [self processErrorWithStatusCode:statusCode];
-            }
-        }];*/
     }
 }
 
@@ -234,7 +206,7 @@
     backBtn.tintColor = gpaTintColor;
     switch (statusCode) {
         case 401:
-            [SVProgressHUD showErrorWithStatus:@"验证出错\n请重新登录"];
+            [MsgDisplay showErrorMsg:@"验证出错\n请重新登录"];
             [self setLoginView];
             
             break;
@@ -245,7 +217,7 @@
             break;
             
         case 500:
-            [SVProgressHUD showErrorWithStatus:@"服务器出错惹QAQ"];
+            [MsgDisplay showErrorMsg:@"服务器出错惹QAQ"];
             if ([self loadCacheAsResponseObject] != nil) {
                 [self processGpaData:[self loadCacheAsResponseObject]];
             }
@@ -374,29 +346,22 @@
     [lineChart setState:JBChartViewStateExpanded animated:YES]; // 之后动画展开
 }
 
-- (void)oneKeyToEvaluate
-{
+- (void)oneKeyToEvaluate {
     NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                  @"token":[data shareInstance].userToken,
                                  @"platform":@"ios",
                                  @"version":[data shareInstance].appVersion};
     [GPADataManager autoEvaluateWithParameters:parameters success:^(){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD showSuccessWithStatus:@"一键评价成功！"];
-        });
+        [MsgDisplay showSuccessMsg:@"一键评价成功！"];
         [self checkLoginStatus];
     } failure:^(NSInteger statusCode) {
         switch (statusCode) {
             case 403:
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [SVProgressHUD showErrorWithStatus:@"没有可以评价的科目"];
-                });
+                [MsgDisplay showErrorMsg:@"没有可以评价的科目"];
                 break;
                 
             default:
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [SVProgressHUD showErrorWithStatus:@"无法一键评价T^T"];
-                });
+                [MsgDisplay showErrorMsg:@"无法一键评价T^T"];
                 break;
         }
     }];
@@ -629,14 +594,10 @@
     if ([fileManager fileExistsAtPath:plistPath]) {
         NSDictionary *cacheDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
         if (cacheDic.count != 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD showErrorWithStatus:@"网络出错\n已为您加载缓存"];
-            });
+            [MsgDisplay showErrorMsg:@"网络出错\n已为您加载缓存"];
             
         } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD showErrorWithStatus:@"网络出错\n请稍后重试_(:з」∠)_"];
-            });
+            [MsgDisplay showErrorMsg:@"网络出错\n请稍后重试_(:з」∠)_"];
             
         }
         return cacheDic;

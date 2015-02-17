@@ -13,6 +13,8 @@
 - (NSArray *) fields {
     return @[
              
+             @{FXFormFieldHeader: @"类型", FXFormFieldKey: @"type", FXFormFieldTitle: @"", FXFormFieldOptions: @[@"丢失物品", @"拾取物品"], FXFormFieldCell: [FXFormOptionSegmentsCell class]},
+             
              @{FXFormFieldKey: @"title", FXFormFieldTitle: @"标题", FXFormFieldHeader: @"物品信息"},
              @{FXFormFieldKey: @"place", FXFormFieldTitle: @"地点"},
              @{FXFormFieldKey: @"time", FXFormFieldTitle: @"时间", FXFormFieldType: FXFormFieldTypeDateTime},

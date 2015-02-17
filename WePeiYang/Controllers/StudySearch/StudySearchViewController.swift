@@ -54,7 +54,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func studySearch() {
         
-        SVProgressHUD.showWithMaskType(SVProgressHUDMaskType.Black)
+        MsgDisplay.showLoading()
         
         let startTimeSelected = studysearchPickerView.selectedRowInComponent(0) as Int
         let endTimeSelected = studysearchPickerView.selectedRowInComponent(1) as Int
@@ -63,9 +63,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (startTimeSelected >= endTimeSelected) {
             self.searchResultArray.removeAllObjects()
             self.searchResultTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
-            dispatch_async(dispatch_get_main_queue(), {
-                SVProgressHUD.showErrorWithStatus("您的时间选择有点错误哦~")
-            })
+            MsgDisplay.showErrorMsg("您的时间选择有点错误哦~")
             
         } else {
             var timeConvertResult = self.convertTimeWithStartTime(startTimeSelected, endTimeSelected: endTimeSelected)
@@ -81,14 +79,12 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
             var manager = AFHTTPRequestOperationManager()
             manager.POST(url, parameters: parameters, success: {
                 (AFHTTPRequestOperation operation, AnyObject responseObject) in
-                SVProgressHUD.dismiss()
+                MsgDisplay.dismiss()
                 self.processReceivedData(responseObject as NSArray)
                 
             }, failure: {
                 (AFHTTPRequestOperation operation, NSError error) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    SVProgressHUD.showErrorWithStatus("加载失败")
-                })
+                MsgDisplay.showErrorMsg("加载失败")
             })
             
         }

@@ -257,7 +257,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         
         AccountManager.logoutWithParameters(parameters, withBlock: {
-            SVProgressHUD.showSuccessWithStatus("注销成功")
+            MsgDisplay.showSuccessMsg("注销成功")
             self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
         })
     }
@@ -265,20 +265,20 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     func jbTju() {
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         AccountManager.unBindTjuWithParameters(parameters, success: {
-            SVProgressHUD.showSuccessWithStatus("解除绑定成功")
+            MsgDisplay.showSuccessMsg("解除绑定成功")
             self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
             }, failure: {
-                SVProgressHUD.showErrorWithStatus("解除绑定失败")
+                MsgDisplay.showErrorMsg("解除绑定失败")
         })
     }
     
     func jbLib() {
         let parameters = ["id":data.shareInstance().userId, "token":data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
         AccountManager.unBindLibWithParameters(parameters, success: {
-            SVProgressHUD.showSuccessWithStatus("解除绑定成功")
+            MsgDisplay.showSuccessMsg("解除绑定成功")
             self.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
             }, failure: {
-                SVProgressHUD.showErrorWithStatus("解除绑定失败")
+                MsgDisplay.showErrorMsg("解除绑定失败")
         })
     }
     
@@ -348,7 +348,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     func getClassData() {
         if AccountManager.isLoggedIn() {
             if AccountManager.isTjuBinded() {
-                SVProgressHUD.showWithStatus("正在加载...")
+                MsgDisplay.showLoading()
                 
                 // Here to add functions to get class data
                 var manager = AFHTTPRequestOperationManager()
@@ -356,21 +356,21 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let parameters = ["id": data.shareInstance().userId, "token": data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
                 manager.GET(url, parameters: parameters, success: {
                     (AFHTTPRequestOperation operation, AnyObject responseObj) in
-                        SVProgressHUD.dismiss()
+                        MsgDisplay.dismiss()
                         self.getStartTime()
                         self.saveCacheWithData(responseObj)
                     }, failure: {
                     (AFHTTPRequestOperation operation, NSError error) in
-                        SVProgressHUD.dismiss()
+                        MsgDisplay.dismiss()
                         var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_", delegate: self, cancelButtonTitle: "哦")
                         alert.show()
                 })
                 
             } else {
-                SVProgressHUD.showErrorWithStatus("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
+                MsgDisplay.showErrorMsg("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
             }
         } else {
-            SVProgressHUD.showErrorWithStatus("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
+            MsgDisplay.showErrorMsg("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
         }
     }
     

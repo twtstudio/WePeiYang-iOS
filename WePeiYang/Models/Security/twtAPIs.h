@@ -21,5 +21,8 @@
 + (NSString *)unbindLib;
 + (NSString *)unbindTju;
 + (NSString *)logout;
++ (NSString *)libSearch;
++ (NSString *)libInfo;
++ (NSString *)libRenew;
 
 @end

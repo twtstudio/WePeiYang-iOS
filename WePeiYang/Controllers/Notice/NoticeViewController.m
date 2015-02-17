@@ -12,7 +12,7 @@
 #import "AFNetworking.h"
 #import "JSONKit.h"
 #import "SVPullToRefresh.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -110,7 +110,7 @@
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [MsgDisplay showErrorMsg:error.localizedDescription];
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
     }];

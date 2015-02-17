@@ -14,7 +14,8 @@
 #import "LibraryFavouriteViewController.h"
 #import "UIButton+Bootstrap.h"
 #import "AFNetworking.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
+#import "twtAPIs.h"
 
 #define DEVICE_IS_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
 
@@ -166,9 +167,9 @@
         
         currentPage = 0;
         
-        [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
+        [MsgDisplay showLoading];
         
-        NSString *url = @"http://push-mobile.twtapps.net/lib/search";
+        NSString *url = [twtAPIs libSearch];
         NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                      @"query":searchStr,
                                      @"type":[NSString stringWithFormat:@"%ld",(long)type],
@@ -176,13 +177,13 @@
                                      @"version":[data shareInstance].appVersion};
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [SVProgressHUD dismiss];
+            [MsgDisplay dismiss];
             NSDictionary *resultDic = [responseObject objectForKey:@"books"];
             totalBooks = [[responseObject objectForKey:@"total"]integerValue];
             [self dealWithReceivedSearchData:resultDic];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showErrorWithStatus:@"获取书目失败T^T"];
+            [MsgDisplay dismiss];
+            [MsgDisplay showErrorMsg:@"获取书目失败T^T"];
         }];
     }
 }
@@ -207,7 +208,7 @@
         [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
         [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
     } else {
-        [SVProgressHUD showErrorWithStatus:@"未找到您需要的书目"];
+        [MsgDisplay showErrorMsg:@"未找到您需要的书目"];
     }
 }
 
@@ -299,8 +300,8 @@
 - (void)nextPage
 {
     currentPage = currentPage + 1;
-    [SVProgressHUD showWithStatus:@"请稍候" maskType:SVProgressHUDMaskTypeBlack];
-    NSString *url = @"http://push-mobile.twtapps.net/lib/search";
+    [MsgDisplay showLoading];
+    NSString *url = [twtAPIs libSearch];
     NSDictionary *parameters = @{@"page":[NSString stringWithFormat:@"%ld",(long)currentPage],
                                  @"query":searchStr,
                                  @"type":[NSString stringWithFormat:@"%ld",(long)type],
@@ -311,10 +312,10 @@
         NSDictionary *resultDic = [responseObject objectForKey:@"books"];
         totalBooks = [[responseObject objectForKey:@"total"]integerValue];
         [self dealWithReceivedNextData:resultDic];
-        [SVProgressHUD dismiss];
+        [MsgDisplay dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"获取书目失败T^T"];
+        [MsgDisplay dismiss];
+        [MsgDisplay showErrorMsg:@"获取书目失败T^T"];
     }];
 
 }
@@ -374,7 +375,7 @@
     [LibraryCollectionDic setObject:newDic forKey:titleStr];
     [LibraryCollectionDic writeToFile:plistPath atomically:YES];
     
-    [SVProgressHUD showSuccessWithStatus:@"书目收藏成功"];
+    [MsgDisplay showSuccessMsg:@"书目收藏成功"];
 }
 
 - (void)share
