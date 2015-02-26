@@ -9,7 +9,7 @@
 #import "CalendarEventActivity.h"
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 
 @implementation CalendarEventActivity {
     NSDictionary *dic;
@@ -73,13 +73,9 @@
             [event setCalendar:[eventStore defaultCalendarForNewEvents]];
             [eventStore saveEvent:event span:EKSpanThisEvent error:&error];
             
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                [SVProgressHUD showSuccessWithStatus:@"添加到日历成功" maskType:SVProgressHUDMaskTypeBlack];
-            });
+            [MsgDisplay showSuccessMsg:@"添加到日历成功"];
         } else {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                [SVProgressHUD showErrorWithStatus:@"添加到日历失败\n用户未授权访问日历" maskType:SVProgressHUDMaskTypeBlack];
-            });
+            [MsgDisplay showErrorMsg:@"添加到日历失败\n用户未授权访问日历"];
         }
         
     }];

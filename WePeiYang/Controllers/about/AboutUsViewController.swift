@@ -52,11 +52,6 @@ class AboutUsViewController: UIViewController, UIGestureRecognizerDelegate, UIAl
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func presentLaunchImage() {
-        var splashVC = SplashViewController(nibName: "SplashViewController", bundle: nil)
-        self.presentViewController(splashVC, animated: true, completion: nil)
-    }
-    
     @IBAction func eggEvent() {
         timesThatTheLogoWasTouches = timesThatTheLogoWasTouches + 1
         if timesThatTheLogoWasTouches == 10 {

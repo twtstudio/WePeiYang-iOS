@@ -49,31 +49,16 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKG-j1-Wg2">
-                    <rect key="frame" x="190" y="548" width="220" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="9qE-Rv-hOy"/>
-                        <constraint firstAttribute="width" constant="220" id="zrZ-A9-2Gi"/>
-                    </constraints>
-                    <state key="normal" title="谨贺新年">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="presentLaunchImage" destination="-1" eventType="touchUpInside" id="iTr-FB-vyR"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="3hP-n0-QT4" secondAttribute="centerX" id="4FC-Jf-KTQ"/>
                 <constraint firstAttribute="centerX" secondItem="qn6-f8-WKE" secondAttribute="centerX" id="ECy-S2-3MS"/>
                 <constraint firstItem="KYT-We-dbc" firstAttribute="centerY" secondItem="OrA-L0-Ow3" secondAttribute="centerY" id="L2e-YB-WbG"/>
-                <constraint firstAttribute="centerX" secondItem="HKG-j1-Wg2" secondAttribute="centerX" id="LbF-hI-m1g"/>
                 <constraint firstAttribute="centerX" secondItem="OrA-L0-Ow3" secondAttribute="centerX" id="MUi-Hs-4kL"/>
                 <constraint firstItem="KYT-We-dbc" firstAttribute="centerY" secondItem="3hP-n0-QT4" secondAttribute="centerY" constant="-89.5" id="Oa3-g6-3eV"/>
                 <constraint firstAttribute="centerX" secondItem="KYT-We-dbc" secondAttribute="centerX" id="bUJ-XU-zbE"/>
                 <constraint firstItem="KYT-We-dbc" firstAttribute="centerY" secondItem="qn6-f8-WKE" secondAttribute="centerY" constant="-130.5" id="oII-m9-Cv1"/>
-                <constraint firstAttribute="bottom" secondItem="HKG-j1-Wg2" secondAttribute="bottom" constant="22" id="try-Eb-48t"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>

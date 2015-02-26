@@ -87,8 +87,6 @@
 		E9AF6B7B1A7CFCD4008B5214 /* DevViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6B091A7CFCD4008B5214 /* DevViewController.xib */; };
 		E9AF6B7C1A7CFCD4008B5214 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B0C1A7CFCD4008B5214 /* FeedbackController.m */; };
 		E9AF6B7D1A7CFCD4008B5214 /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B0E1A7CFCD4008B5214 /* FeedbackForm.m */; };
-		E9AF6B7E1A7CFCD4008B5214 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B0F1A7CFCD4008B5214 /* SplashViewController.swift */; };
-		E9AF6B7F1A7CFCD4008B5214 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6B101A7CFCD4008B5214 /* SplashViewController.xib */; };
 		E9AF6B801A7CFCD4008B5214 /* GPACalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B131A7CFCD4008B5214 /* GPACalculatorViewController.m */; };
 		E9AF6B811A7CFCD4008B5214 /* GPACalculatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6B141A7CFCD4008B5214 /* GPACalculatorViewController.xib */; };
 		E9AF6B821A7CFCD4008B5214 /* gpaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6B161A7CFCD4008B5214 /* gpaHeaderView.m */; };
@@ -305,8 +303,6 @@
 		E9AF6B0C1A7CFCD4008B5214 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
 		E9AF6B0D1A7CFCD4008B5214 /* FeedbackForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackForm.h; sourceTree = "<group>"; };
 		E9AF6B0E1A7CFCD4008B5214 /* FeedbackForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackForm.m; sourceTree = "<group>"; };
-		E9AF6B0F1A7CFCD4008B5214 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		E9AF6B101A7CFCD4008B5214 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		E9AF6B121A7CFCD4008B5214 /* GPACalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPACalculatorViewController.h; sourceTree = "<group>"; };
 		E9AF6B131A7CFCD4008B5214 /* GPACalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPACalculatorViewController.m; sourceTree = "<group>"; };
 		E9AF6B141A7CFCD4008B5214 /* GPACalculatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GPACalculatorViewController.xib; sourceTree = "<group>"; };
@@ -723,8 +719,6 @@
 				E9AF6B061A7CFCD4008B5214 /* AboutViewController.swift */,
 				E9AF6B071A7CFCD4008B5214 /* DevKit */,
 				E9AF6B0A1A7CFCD4008B5214 /* feedback */,
-				E9AF6B0F1A7CFCD4008B5214 /* SplashViewController.swift */,
-				E9AF6B101A7CFCD4008B5214 /* SplashViewController.xib */,
 			);
 			path = about;
 			sourceTree = "<group>";
@@ -1180,7 +1174,6 @@
 				E95DA5771A31B9F50039EBC0 /* laf_post@2x.png in Resources */,
 				E9FF96DA1A904F8C00274A39 /* calendar@2x.png in Resources */,
 				E9FF96D81A904C3300274A39 /* openinsafari@2x.png in Resources */,
-				E9AF6B7F1A7CFCD4008B5214 /* SplashViewController.xib in Resources */,
 				E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */,
 				E95DA5651A31B9F50039EBC0 /* notice@2x.png in Resources */,
 				E9AF6B7B1A7CFCD4008B5214 /* DevViewController.xib in Resources */,
@@ -1353,7 +1346,6 @@
 				E9AF6B821A7CFCD4008B5214 /* gpaHeaderView.m in Sources */,
 				E9AF6BAD1A7CFCD4008B5214 /* LAFound_QueryListTableViewCell.m in Sources */,
 				E9AF6BAA1A7CFCD4008B5214 /* LAFound_DataManager.m in Sources */,
-				E9AF6B7E1A7CFCD4008B5214 /* SplashViewController.swift in Sources */,
 				E9AF6BA51A7CFCD4008B5214 /* LibLoginForm.m in Sources */,
 				E9AF6BE41A7E1857008B5214 /* GPADataManager.m in Sources */,
 				E97CE07E1A837DAB007F65D6 /* AccountManager.m in Sources */,
