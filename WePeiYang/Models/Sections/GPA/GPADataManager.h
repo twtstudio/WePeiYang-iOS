@@ -16,4 +16,6 @@
 
 + (void)autoEvaluateWithParameters:(NSDictionary *)parameters success:(void(^)())success failure:(void(^)(NSInteger statusCode))failure;
 
++ (void)processGPAData:(NSDictionary *)gpaDic finishBlock:(void (^)(NSMutableArray *gpaData, float gpa, float score, NSArray *termsInGraph, NSMutableArray *terms, NSMutableArray *everyScoreArr, NSMutableArray *everyGpaArr, NSMutableArray *newAddedSubjects))block;
+
 @end

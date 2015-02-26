@@ -217,7 +217,7 @@
             break;
             
         case 500:
-            [MsgDisplay showErrorMsg:@"服务器出错惹QAQ"];
+            [MsgDisplay showErrorMsg:@"服务器出错惹 QAQ"];
             if ([self loadCacheAsResponseObject] != nil) {
                 [self processGpaData:[self loadCacheAsResponseObject]];
             }
@@ -259,73 +259,23 @@
 
 // For Data Processing
 
-- (void)processGpaData:(NSDictionary *)gpaDic
-{
-    NSArray *termsDataArr = [gpaDic objectForKey:@"terms"];
+- (void)processGpaData:(NSDictionary *)gpaDic {
     
-    for (NSDictionary *termDic in termsDataArr)
-    {
-        for (NSDictionary *temp in termDic)
-        {
-            [gpaData addObject:temp];
-        }
-    }
-    
-    //所有科目的学期值数组
-    //[data shareInstance].termsArray = termArray;
-    
-    gpa = [[[gpaDic objectForKey:@"data"] objectForKey:@"gpa"] floatValue];
-    score = [[[gpaDic objectForKey:@"data"] objectForKey:@"score"] floatValue];
+    [GPADataManager processGPAData:gpaDic finishBlock:^(NSMutableArray *_gpaData, float _gpa, float _score, NSArray *_termsInGraph, NSMutableArray *_terms, NSMutableArray *_everyScoreArr, NSMutableArray *_everyGpaArr, NSMutableArray *_newAddedSubjects) {
+        gpaData = _gpaData;
+        gpa = _gpa;
+        score = _score;
+        termsInGraph = _termsInGraph;
+        terms = _terms;
+        everyScoreArr = _everyScoreArr;
+        everyGpaArr = _everyGpaArr;
+        newAddedSubjects = _newAddedSubjects;
+    }];
     
     gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
     gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
     
     gpaHeader.termLabel.text = @"";
-    
-    //学期数组
-    
-    terms = [[NSMutableArray alloc]initWithObjects: nil];
-    
-    for (int i = 0; i <= [gpaData count]-1; i++)
-    {
-        if (i == 0)
-        {
-            [terms addObject:[[gpaData objectAtIndex:i] objectForKey:@"term"]];
-        }
-        else
-        {
-            if (![[[gpaData objectAtIndex:i-1] objectForKey:@"term"] isEqualToString:[[gpaData objectAtIndex:i] objectForKey:@"term"]])
-            {
-                [terms addObject:[[gpaData objectAtIndex:i] objectForKey:@"term"]];
-            }
-        }
-    }
-    
-    everyScoreArr = [[NSMutableArray alloc]initWithObjects: nil];
-    everyGpaArr = [[NSMutableArray alloc]initWithObjects: nil];
-    NSArray *everyDataArr = [[gpaDic objectForKey:@"data"]objectForKey:@"every"];
-    for (NSDictionary *tmp in everyDataArr)
-    {
-        [everyScoreArr addObject:[tmp objectForKey:@"score"]];
-        [everyGpaArr addObject:[tmp objectForKey:@"gpa"]];
-    }
-    
-    if ([terms count] == 0) termsInGraph = @[@""];
-    else if ([terms count] == 1) termsInGraph = @[@"大一上"];
-    else if ([terms count] == 2) termsInGraph = @[@"大一上",@"大一下"];
-    else if ([terms count] == 3) termsInGraph = @[@"大一上",@"大一下",@"大二上"];
-    else if ([terms count] == 4) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下"];
-    else if ([terms count] == 5) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上"];
-    else if ([terms count] == 6) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下"];
-    else if ([terms count] == 7) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上"];
-    else if ([terms count] == 8) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上",@"大四下"];
-    else if ([terms count] == 9) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上",@"大四下",@"大五上"];
-    else if ([terms count] == 10) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上",@"大四下",@"大五上",@"大五下"];
-    else if ([terms count] == 11) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上",@"大四下",@"大五上",@"大五下",@"大六上"];
-    else if ([terms count] == 12) termsInGraph = @[@"大一上",@"大一下",@"大二上",@"大二下",@"大三上",@"大三下",@"大四上",@"大四下",@"大五上",@"大五下",@"大六上",@"大六下"];
-    else termsInGraph = terms;
-    
-    [self compareWithPreviousResult];
     
     //初始化图表
     
@@ -471,89 +421,11 @@
     [banner drawInRect:CGRectMake(0, screenShotSize.height, bannerSize.width, bannerSize.height)];
     UIImage *shareImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    /*    NSString *shareFrom = @"（分享自 微北洋 iOS 版 https://itunes.apple.com/cn/app/wei-bei-yang/id785509141?mt=8）";
-    NSString *gpaStr = gpaHeader.gpaLabel.text;
-    NSString *scoreStr = gpaHeader.scoreLabel.text;
-    
-    NSString *shareString = [[NSString alloc]initWithFormat:@"我的平均分是 %@，GPA是 %@，快来晒出你的GPA吧！%@",scoreStr,gpaStr,shareFrom];
-    */
+
     NSArray *activityItems = @[shareImg];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
-}
-
-//  和之前查询的成绩进行比较，如果新出科目则标注小点，并保存最新查询的成绩
-
-- (void) compareWithPreviousResult
-{
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:plistPath])
-    {
-        [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
-        NSMutableDictionary *previousGPAResult = [[NSMutableDictionary alloc]init];
-        for (int i = 0; i < [terms count]; i++)
-        {
-            NSMutableDictionary *termDic = [[NSMutableDictionary alloc]init];
-            NSString *thisTerm = [terms objectAtIndex:i];
-            for (int j = 0; j < [gpaData count]; j++)
-            {
-                if ([[[gpaData objectAtIndex:j] objectForKey:@"term"] isEqualToString:thisTerm])
-                {
-                    [termDic setObject:[gpaData objectAtIndex:j] forKey:[[gpaData objectAtIndex:j] objectForKey:@"name"]];
-                }
-            }
-            [previousGPAResult setObject:termDic forKey:thisTerm];
-        }
-        [previousGPAResult writeToFile:plistPath atomically:YES];
-    }
-    else
-    {
-        NSDictionary *previousGPAResult = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-        [fileManager removeItemAtPath:plistPath error:nil];
-        
-        newAddedSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
-        
-        NSMutableDictionary *thisTimeGPAResult = [[NSMutableDictionary alloc]init];
-        for (int i = 0; i < [terms count]; i++)
-        {
-            NSMutableArray *thisTermSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
-            
-            NSMutableDictionary *termDic = [[NSMutableDictionary alloc]init];
-            NSString *thisTerm = [terms objectAtIndex:i];
-            NSDictionary *resultOfThisTermLastChecked = [previousGPAResult objectForKey:thisTerm];
-            NSArray *lastSubjects = [resultOfThisTermLastChecked allKeys];
-            
-            for (int j = 0; j < [gpaData count]; j++)
-            {
-                if ([[[gpaData objectAtIndex:j] objectForKey:@"term"] isEqualToString:thisTerm])
-                {
-                    [termDic setObject:[gpaData objectAtIndex:j] forKey:[[gpaData objectAtIndex:j] objectForKey:@"name"]];
-                    [thisTermSubjects addObject:[[gpaData objectAtIndex:j] objectForKey:@"name"]];
-                }
-            }
-            [thisTimeGPAResult setObject:termDic forKey:thisTerm];
-            
-            for (int k = 0; k < [thisTermSubjects count]; k++)
-            {
-                BOOL subjectInLastChecked = NO;
-                for (int l = 0; l < [lastSubjects count]; l++)
-                {
-                    if ([[thisTermSubjects objectAtIndex:k] isEqualToString:[lastSubjects objectAtIndex:l]])
-                    {
-                        subjectInLastChecked = YES;
-                        break;
-                    }
-                }
-                if(!subjectInLastChecked)
-                {
-                    [newAddedSubjects addObject:[thisTermSubjects objectAtIndex:k]];
-                }
-            }
-        }
-        [thisTimeGPAResult writeToFile:plistPath atomically:YES];
-    }
 }
 
 - (void) pushGPACalculator
