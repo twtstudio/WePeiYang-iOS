@@ -101,7 +101,7 @@
     }
     
     
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    //self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning

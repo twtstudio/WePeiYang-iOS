@@ -12,6 +12,7 @@ pod 'JSONKit'
 pod 'KVOController', '~> 1.0.3'
 pod 'SVPullToRefresh', '~> 0.4.1'
 pod 'FXForms', '~> 1.2.11'
+pod 'ALActionBlocks', '~> 1.0.3'
 
 target 'WePeiYang' do
 

@@ -31,6 +31,8 @@
     
     UIAlertView *nilAlert;
     UIAlertView *logoutAlert;
+    
+    NSString *welcomeString;
 }
 
 @synthesize tableView;
@@ -54,7 +56,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    // self.navigationController.interactivePopGestureRecognizer.delegate = self;
     headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
     
     recordArr = [[NSMutableArray alloc]initWithObjects: nil];
@@ -75,6 +77,33 @@
     [self checkLoginStatus];
 }
 
+// Set views
+
+- (void)setLoginView {
+    [tableView setHidden:YES];
+    [noLoginLabel setHidden:NO];
+    [noLoginLabel setText:@"您尚未登录天外天账号"];
+    [loginBtn setHidden:NO];
+    [continueBtn setHidden:YES];
+    [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
+    [loginBtn removeTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [continueBtn setHidden:YES];
+    [noLoginImg setHidden:NO];
+}
+
+- (void)setBindView {
+    [tableView setHidden:YES];
+    [noLoginLabel setHidden:NO];
+    [loginBtn setHidden:NO];
+    [continueBtn setHidden:YES];
+    [noLoginLabel setText:@"您尚未绑定图书馆账号"];
+    [loginBtn setTitle:@"绑定图书馆" forState:UIControlStateNormal];
+    [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn addTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
+    [noLoginImg setHidden:NO];
+}
+
 - (void)checkLoginStatus
 {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
@@ -82,16 +111,8 @@
     if (![fileManager fileExistsAtPath:plistPath])
     {
         //无twt登录文件时
+        [self setLoginView];
         
-        [tableView setHidden:YES];
-        [noLoginLabel setHidden:NO];
-        [noLoginLabel setText:@"您尚未登录天外天账号"];
-        [loginBtn setHidden:NO];
-        [continueBtn setHidden:YES];
-        [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-        [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-        [continueBtn setHidden:YES];
-        [noLoginImg setHidden:NO];
     }
     else
     {
@@ -156,29 +177,12 @@
                             
                         case 403:
                             //未绑定图书馆
-                            [tableView setHidden:YES];
-                            [noLoginLabel setHidden:NO];
-                            [loginBtn setHidden:NO];
-                            [continueBtn setHidden:YES];
-                            [noLoginLabel setText:@"您尚未绑定图书馆账号"];
-                            [loginBtn setTitle:@"绑定图书馆" forState:UIControlStateNormal];
-                            [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-                            [loginBtn addTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
-                            [noLoginImg setHidden:NO];
+                            [self setBindView];
                             break;
                             
                         case 401:
                             [MsgDisplay showErrorMsg:@"登录验证出错...请重新登录！"];
-                            [tableView setHidden:YES];
-                            [noLoginLabel setHidden:NO];
-                            [noLoginLabel setText:@"您尚未登录天外天账号"];
-                            [loginBtn setHidden:NO];
-                            [continueBtn setHidden:YES];
-                            [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-                            [loginBtn removeTarget:self action:@selector(bindLib) forControlEvents:UIControlEventTouchUpInside];
-                            [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-                            [continueBtn setHidden:YES];
-                            [noLoginImg setHidden:NO];
+                            [self setLoginView];
                             break;
                             
                         default:
@@ -207,7 +211,7 @@
     NSString *outStr = [NSString stringWithFormat:@"%@",[loginDic objectForKey:@"out"]];
     NSString *backStr = [NSString stringWithFormat:@"%@",[loginDic objectForKey:@"back"]];
     NSString *uName = [loginDic objectForKey:@"uname"];
-    [data shareInstance].welcomeLabelString = [NSString stringWithFormat:@"       %@  已借：%@本  应还：%@本  欠款：%@元",uName,outStr,backStr,money];
+    welcomeString = [NSString stringWithFormat:@"       %@  已借：%@本  应还：%@本  欠款：%@元",uName,outStr,backStr,money];
     if (recordArr != [NSNull null])
     {
         [tableView setHidden:NO];
@@ -352,7 +356,7 @@
     [headerView setFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, 32)];
     UILabel *headerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [data shareInstance].deviceWidth, 32)];
     [headerLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-    headerLabel.text = [data shareInstance].welcomeLabelString;
+    headerLabel.text = welcomeString;
     [headerLabel setBackgroundColor:[UIColor colorWithWhite:0.95 alpha:1.0]];
     [headerView addSubview:headerLabel];
     [headerView setBackgroundColor:[UIColor whiteColor]];

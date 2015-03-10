@@ -22,7 +22,7 @@ class AboutUsViewController: UIViewController, UIGestureRecognizerDelegate, UIAl
         // Do any additional setup after loading the view.
         timesThatTheLogoWasTouches = 0
         
-        self.navigationController!.interactivePopGestureRecognizer.delegate = self
+        //self.navigationController!.interactivePopGestureRecognizer.delegate = self
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.versionLabel.text = "微北洋 \(data.shareInstance().appVersion)"

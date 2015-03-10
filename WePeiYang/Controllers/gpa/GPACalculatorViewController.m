@@ -30,12 +30,10 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-        self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     
     UIColor *gpaTintColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
     [[UIButton appearance] setTintColor:gpaTintColor];
@@ -53,47 +51,39 @@
     [self.view addSubview:navigationBar];
     
     calculatorArray = [[NSMutableArray alloc]initWithObjects: nil];
-    for (int i = 0; i < [gpaData count]; i++)
-    {
+    
+    for (int i = 0; i < [gpaData count]; i++) {
         NSMutableDictionary *tmp = [[NSMutableDictionary alloc]init];
         NSDictionary *gpaTmp = [gpaData objectAtIndex:i];
         [tmp setValue:[gpaTmp objectForKey:@"score"] forKey:@"score"];
         [tmp setValue:[gpaTmp objectForKey:@"name"] forKey:@"name"];
         [tmp setValue:[gpaTmp objectForKey:@"credit"] forKey:@"credit"];
         [tmp setValue:[gpaTmp objectForKey:@"term"] forKey:@"term"];
-        if ([[tmp objectForKey:@"score"] floatValue] <= 100)
-        {
+        
+        if ([[tmp objectForKey:@"score"] floatValue] <= 100) {
             [tmp setValue:@"YES" forKey:@"selected"];
-        }
-        else
-        {
+        } else {
             [tmp setValue:@"NO" forKey:@"selected"];
         }
         [calculatorArray addObject:tmp];
         
         //用来去除过去重复的科目 这里有Bug
         
-        for (NSDictionary *prevDic in calculatorArray)
-        {
+        for (NSDictionary *prevDic in calculatorArray) {
             if (prevDic != tmp) {
-                if ([[prevDic objectForKey:@"name"] isEqualToString:[tmp objectForKey:@"name"]])
-                {
+                if ([[prevDic objectForKey:@"name"] isEqualToString:[tmp objectForKey:@"name"]]) {
                     float prevScore = [[prevDic objectForKey:@"score"] floatValue];
                     float thisScore = [[tmp objectForKey:@"score"] floatValue];
-                    if (prevScore < thisScore)
-                    {
+                    if (prevScore < thisScore) {
                         [calculatorArray removeObject:prevDic];
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         [calculatorArray removeObject:tmp];
                         break;
                     }
                 }
             }
         }
-        
     }
 }
 
