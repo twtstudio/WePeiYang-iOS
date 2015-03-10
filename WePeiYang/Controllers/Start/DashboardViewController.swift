@@ -148,6 +148,7 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        // self.navigationController?.interactivePopGestureRecognizer.delegate = nil;
     }
     
     // POP Animation

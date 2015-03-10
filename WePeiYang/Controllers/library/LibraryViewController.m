@@ -66,8 +66,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-        self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    //self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.tableView.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     

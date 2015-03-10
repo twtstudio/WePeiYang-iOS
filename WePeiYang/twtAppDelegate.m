@@ -11,6 +11,7 @@
 #import "twtSecretKeys.h"
 #import "RavenClient.h"
 #import "WePeiYang-Swift.h"
+#import "TWTNavController.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -33,7 +34,8 @@
     
     
     DashboardViewController *dashboard = [[DashboardViewController alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
+    // UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
+    TWTNavController *nav = [[TWTNavController alloc]initWithRootViewController:dashboard];
     
     self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
@@ -41,6 +43,7 @@
     [self.window makeKeyAndVisible];
     
     //Remote Notification
+    /*
     UIRemoteNotificationType types = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound);
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
     
@@ -48,25 +51,25 @@
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo)
     {
-        //NSString *pushMsg = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
-        //NSString *pushId = [[userInfo objectForKey:@"aps"]objectForKey:@"id"];
-        //[data shareInstance].pushMsg = pushMsg;
-        //[data shareInstance].pushId = pushId;
-        //[data shareInstance].newsTitle = [data shareInstance].pushMsg;
-        //[data shareInstance].newsId = [data shareInstance].pushId;
-        //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
-        //slideTrans = [[DMSlideTransition alloc]init];
-        //[receivedNotificationViewController setTransitioningDelegate:slideTrans];
-        //[self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
-        //[[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
-        //[[UIApplication sharedApplication]cancelAllLocalNotifications];
-    }
+        NSString *pushMsg = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
+        NSString *pushId = [[userInfo objectForKey:@"aps"]objectForKey:@"id"];
+        [data shareInstance].pushMsg = pushMsg;
+        [data shareInstance].pushId = pushId;
+        [data shareInstance].newsTitle = [data shareInstance].pushMsg;
+        [data shareInstance].newsId = [data shareInstance].pushId;
+        ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
+        slideTrans = [[DMSlideTransition alloc]init];
+        [receivedNotificationViewController setTransitioningDelegate:slideTrans];
+        [self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
+        [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
+        [[UIApplication sharedApplication]cancelAllLocalNotifications];
+    }*/
     
     return YES;
 }
 
 //Notifications
-
+/*
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSString *token = [NSString stringWithFormat:@"%@",deviceToken];
@@ -94,9 +97,10 @@
     [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
     [[UIApplication sharedApplication]cancelAllLocalNotifications];
 }
-
+*/
 //Notifications End Here
 
+/*
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (alertView == pushAlert)
@@ -112,6 +116,7 @@
         }
     }
 }
+ */
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

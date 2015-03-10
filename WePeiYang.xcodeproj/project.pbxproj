@@ -76,6 +76,7 @@
 		E97CE0771A837624007F65D6 /* ContentDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0761A837624007F65D6 /* ContentDataManager.m */; };
 		E97CE07A1A837704007F65D6 /* GPACalculationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE0791A837704007F65D6 /* GPACalculationModel.m */; };
 		E97CE07E1A837DAB007F65D6 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE07D1A837DAB007F65D6 /* AccountManager.m */; };
+		E99028CD1AAF19B6001840BD /* TWTNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99028CC1AAF19B6001840BD /* TWTNavController.m */; };
 		E9A2062C1A349DD40080144C /* launchScreen@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
 		E9A48CE51A6FF597001D8420 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A48CE71A6FF597001D8420 /* Localizable.strings */; };
@@ -289,6 +290,8 @@
 		E97CE0791A837704007F65D6 /* GPACalculationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPACalculationModel.m; path = GPA/GPACalculationModel.m; sourceTree = "<group>"; };
 		E97CE07C1A837DAB007F65D6 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Account/AccountManager.h; sourceTree = "<group>"; };
 		E97CE07D1A837DAB007F65D6 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Account/AccountManager.m; sourceTree = "<group>"; };
+		E99028CB1AAF19B6001840BD /* TWTNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWTNavController.h; path = TWTNavController/TWTNavController.h; sourceTree = "<group>"; };
+		E99028CC1AAF19B6001840BD /* TWTNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWTNavController.m; path = TWTNavController/TWTNavController.m; sourceTree = "<group>"; };
 		E9A2062B1A349DD40080144C /* launchScreen@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "launchScreen@2x.jpg"; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
@@ -670,6 +673,15 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
+		E99028CA1AAF198A001840BD /* TWTNavController */ = {
+			isa = PBXGroup;
+			children = (
+				E99028CB1AAF19B6001840BD /* TWTNavController.h */,
+				E99028CC1AAF19B6001840BD /* TWTNavController.m */,
+			);
+			name = TWTNavController;
+			sourceTree = "<group>";
+		};
 		E9A48CD11A6FA31B001D8420 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +708,7 @@
 		E9AF6B021A7CFCD3008B5214 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E99028CA1AAF198A001840BD /* TWTNavController */,
 				E9AF6B031A7CFCD3008B5214 /* about */,
 				E9AF6B111A7CFCD4008B5214 /* gpa */,
 				E9AF6B1D1A7CFCD4008B5214 /* Guide */,
@@ -1344,6 +1357,7 @@
 				E9AF6BB71A7CFCD4008B5214 /* StudySearchViewController.swift in Sources */,
 				E9AF6BB41A7CFCD4008B5214 /* IndexViewController.m in Sources */,
 				E9AF6B821A7CFCD4008B5214 /* gpaHeaderView.m in Sources */,
+				E99028CD1AAF19B6001840BD /* TWTNavController.m in Sources */,
 				E9AF6BAD1A7CFCD4008B5214 /* LAFound_QueryListTableViewCell.m in Sources */,
 				E9AF6BAA1A7CFCD4008B5214 /* LAFound_DataManager.m in Sources */,
 				E9AF6BA51A7CFCD4008B5214 /* LibLoginForm.m in Sources */,

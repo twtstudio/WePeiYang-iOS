@@ -26,7 +26,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         super.viewDidLoad()
         
-        self.navigationController!.interactivePopGestureRecognizer.delegate = self
+        //self.navigationController!.interactivePopGestureRecognizer.delegate = self
         
         // Reverse to default tint color.
         UIButton.appearance().tintColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
@@ -381,7 +381,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         userDefault?.setObject(responseObject, forKey: "Classtable")
         userDefault?.synchronize()
 
-        var alert = UIAlertView(title: "成功", message: "抓取课程表成功~", delegate: self, cancelButtonTitle: "哦")
+        var alert = UIAlertView(title: "成功", message: "抓取课程表成功~\n请下拉通知栏，进入【今天】视图，点击【编辑】以添加微北洋课程表扩展~", delegate: self, cancelButtonTitle: "哦")
         alert.show()
     }
 

@@ -15,15 +15,10 @@
 @property (nonatomic, retain) NSString *userToken;
 
 //for News
-
 @property (nonatomic, retain) NSString *typeSelected;
 
 //for Library
-@property (retain, nonatomic) NSDictionary *recordDic;
-@property (retain, nonatomic) NSString *welcomeLabelString;
 @property (retain, nonatomic) NSString *libLogin;
-@property (retain, nonatomic) NSString *libraryUsername;
-@property (retain, nonatomic) NSString *libraryPassword;
 
 //for GPA
 @property (retain, nonatomic) NSString *gpaLoginStatus;

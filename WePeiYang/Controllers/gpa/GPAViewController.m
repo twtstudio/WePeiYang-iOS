@@ -78,8 +78,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-        self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
     //INSTANCES
     gpaHeaderViewHeight = 150;
@@ -408,8 +406,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) shareGPA
-{
+- (void)shareGPA {
+    
     UIImage *screenShot = [wpyDeviceStatus captureScreen];
     NSString *bannerPath = [[NSBundle mainBundle] pathForResource:@"Banner@2x" ofType:@".png"];
     UIImage *banner = [UIImage imageWithContentsOfFile:bannerPath];

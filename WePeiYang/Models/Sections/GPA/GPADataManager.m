@@ -92,6 +92,8 @@
     
     NSMutableArray *newAddedSubjects = [self compareWithPreviousResultByGpaData:gpaData andTerms:terms];
     
+    // block 里的参数分别是：成绩数据，当前 GPA，当前加权，显示学期数组（大一上，大一下），学期数组（13141，13142），每学期加权数组，每学期 GPA 数组，新出分科目数组
+    
     block(gpaData, gpa, score, termsInGraph, terms, everyScoreArr, everyGpaArr, newAddedSubjects);
 }
 

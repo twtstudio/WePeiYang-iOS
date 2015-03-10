@@ -70,9 +70,13 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:YES];//This is important!
+    [super viewDidAppear:animated];//This is important!
     //不执行super方法会导致动画丢失！
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [data shareInstance].typeSelected = @"1";
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item

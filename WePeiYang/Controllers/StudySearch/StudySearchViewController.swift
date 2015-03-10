@@ -24,7 +24,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController!.interactivePopGestureRecognizer.delegate = self
+        // self.navigationController!.interactivePopGestureRecognizer.delegate = self
         
         self.searchResultTableView.backgroundColor = UIColor.clearColor()
         self.searchResultTableView.separatorStyle = UITableViewCellSeparatorStyle.None
