@@ -12,22 +12,22 @@
 
 @implementation GPADataManager
 
-+ (void)getDataWithParameters:(NSDictionary *)parameters success:(void (^)(id))success failure:(void (^)(NSInteger))failure {
++ (void)getDataWithParameters:(NSDictionary *)parameters success:(void (^)(id))success failure:(void (^)(NSInteger, NSString *))failure {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[twtAPIs GPAInquire] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success([operation.responseString objectFromJSONString]);
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(operation.response.statusCode);
+        failure(operation.response.statusCode, error.localizedDescription);
     }];
 }
 
-+ (void)autoEvaluateWithParameters:(NSDictionary *)parameters success:(void (^)())success failure:(void (^)(NSInteger))failure {
++ (void)autoEvaluateWithParameters:(NSDictionary *)parameters success:(void (^)())success failure:(void (^)(NSInteger, NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[twtAPIs GPAAutoEvaluate] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(operation.response.statusCode);
+        failure(operation.response.statusCode, error.localizedDescription);
     }];
 }
 

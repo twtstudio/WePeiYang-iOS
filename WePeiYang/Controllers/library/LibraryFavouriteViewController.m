@@ -25,7 +25,7 @@
     NSDictionary *collectionDic;
 }
 
-@synthesize tableView;
+@synthesize favTableView;
 @synthesize noFavLabel;
 @synthesize headerBackView;
 
@@ -45,7 +45,7 @@
     //[self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"收藏夹";
     //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.favTableView setBackgroundColor:[UIColor whiteColor]];
     headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
 }
 
@@ -64,13 +64,13 @@
     if ([titleArray count]==0)
     {
         [noFavLabel setHidden:NO];
-        [tableView setHidden:YES];
+        [favTableView setHidden:YES];
     }
     else
     {
         [noFavLabel setHidden:YES];
-        [tableView setHidden:NO];
-        [tableView reloadData];
+        [favTableView setHidden:NO];
+        [favTableView reloadData];
     }
 }
 
@@ -85,7 +85,7 @@
     NSInteger row = [indexPath row];
     //计算自适应行高
     NSString *title = [titleArray objectAtIndex:row];
-    CGFloat width = self.tableView.frame.size.width;
+    CGFloat width = self.favTableView.frame.size.width;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = title;
@@ -147,8 +147,8 @@
     
     //重新加载数据
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryCollectionData"];
-    NSDictionary *collectionDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-    titleArray = [collectionDic allKeys];
+    NSDictionary *collectionDict = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
+    titleArray = [collectionDict allKeys];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     if ([titleArray count]==0)
     {

@@ -15,7 +15,7 @@
 
 @interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *resultTableView;
 @property (strong, nonatomic) NSArray *gpaData;
 
 @end

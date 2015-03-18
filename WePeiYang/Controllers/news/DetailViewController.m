@@ -94,9 +94,9 @@
 - (void)share {
     NSArray *activityItems;
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
-    UIImage *shareImg = [wpyDeviceStatus getImageFromView:webView.scrollView.subviews[0]];
+    // UIImage *shareImg = [wpyDeviceStatus getImageFromView:webView.scrollView.subviews[0]];
     
-    activityItems = @[shareURL, shareImg];
+    activityItems = @[shareURL];
     
     // Presentation Controller
     

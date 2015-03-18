@@ -45,7 +45,7 @@
     NSDictionary *itemSelected;
 }
 
-@synthesize tableView;
+@synthesize resultTableView;
 @synthesize typeSegmentedControl;
 @synthesize headerBackView;
 
@@ -67,7 +67,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    self.tableView.hidden = YES;
+    self.resultTableView.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.headerBackView.backgroundColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
@@ -80,7 +80,7 @@
     
     self.typeSegmentedControl.selectedSegmentIndex = 0;
     
-    [tableView setBackgroundColor:[UIColor whiteColor]];
+    [resultTableView setBackgroundColor:[UIColor whiteColor]];
     //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     UITextField *searchField = [libSearchBar valueForKey:@"_searchField"];
@@ -90,7 +90,7 @@
     searchField.leftView = nilView;
     
     if (DEVICE_IS_IOS8) {
-        tableView.rowHeight = UITableViewAutomaticDimension;
+        resultTableView.rowHeight = UITableViewAutomaticDimension;
     }
 }
 
@@ -200,12 +200,12 @@
             [libraryData addObject:@"点击加载更多..."];
         }
         
-        [self.tableView reloadData];
-        [tableView setHidden:NO];
+        [self.resultTableView reloadData];
+        [resultTableView setHidden:NO];
         [label1 setHidden:YES];
         [label2 setHidden:YES];
-        [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
-        [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+        [resultTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [resultTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"未找到您需要的书目"];
     }
@@ -219,15 +219,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    if ([[libraryData objectAtIndex:row] isKindOfClass:[NSString class]])
-    {
+    if ([[libraryData objectAtIndex:row] isKindOfClass:[NSString class]]) {
         return 68;
-    }
-    else
-    {
+    } else {
         //计算自适应行高
         NSString *title = [[libraryData objectAtIndex:row] objectForKey:@"title"];
-        CGFloat width = self.tableView.frame.size.width;
+        CGFloat width = self.resultTableView.frame.size.width;
         
         UILabel *gettingSizeLabel = [[UILabel alloc]init];
         gettingSizeLabel.text = title;
@@ -333,7 +330,7 @@
             [libraryData addObject:@"点击加载更多..."];
         }
     }
-    [self.tableView reloadData];
+    [self.resultTableView reloadData];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -408,6 +405,19 @@
             button.titleLabel.textColor = [UIColor colorWithRed:0/255.0f green:181/255.0f blue:128/255.0f alpha:1.0f];
         }
     }];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (actionSheet == typeActionSheet) {
+        if (buttonIndex != [typeActionSheet cancelButtonIndex]) {
+            // typeSegmentedControl.momentary = NO;
+            type = buttonIndex + 3;
+            typeSegmentedControl.selectedSegmentIndex = 3;
+        } else {
+            typeSegmentedControl.momentary = YES;
+            typeSegmentedControl.selectedSegmentIndex = type;
+        }
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

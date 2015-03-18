@@ -58,7 +58,7 @@
     BOOL graphIsTouched; // 图表当前被摸着
 }
 
-@synthesize tableView;
+@synthesize resultTableView;
 @synthesize moreBtn;
 @synthesize backBtn;
 @synthesize loginBtn;
@@ -144,9 +144,9 @@
             [self saveCacheWithData:responseObject];
             [self processGpaData:responseObject];
             [MsgDisplay dismiss];
-        } failure:^(NSInteger statusCode) {
+        } failure:^(NSInteger statusCode, NSString *errStr) {
             [MsgDisplay dismiss];
-            [self processErrorWithStatusCode:statusCode];
+            [self processErrorWithStatusCode:statusCode andErrorString:errStr];
         }];
     }
 }
@@ -156,7 +156,7 @@
 - (void)setNormalView {
     loginBtn.userInteractionEnabled = YES;
     [moreBtn setHidden:NO];
-    [tableView setHidden:NO];
+    [resultTableView setHidden:NO];
     [loginBtn setHidden:YES];
     [noLoginLabel setHidden:YES];
     [noLoginImg setHidden:YES];
@@ -166,7 +166,7 @@
 
 - (void)setLoginView {
     [moreBtn setHidden:YES];
-    [tableView setHidden:YES];
+    [resultTableView setHidden:YES];
     [noLoginLabel setHidden:NO];
     [loginBtn setHidden:NO];
     [noLoginImg setHidden:NO];
@@ -178,7 +178,7 @@
 
 - (void)setBindView {
     [moreBtn setHidden:YES];
-    [tableView setHidden:YES];
+    [resultTableView setHidden:YES];
     [noLoginLabel setHidden:NO];
     [loginBtn setHidden:NO];
     [noLoginImg setHidden:NO];
@@ -200,7 +200,7 @@
     }];
 }
 
-- (void)processErrorWithStatusCode:(NSInteger)statusCode {
+- (void)processErrorWithStatusCode:(NSInteger)statusCode andErrorString:(NSString *)errStr {
     backBtn.tintColor = gpaTintColor;
     switch (statusCode) {
         case 401:
@@ -225,6 +225,7 @@
             if ([self loadCacheAsResponseObject] != nil) {
                 [self processGpaData:[self loadCacheAsResponseObject]];
             }
+            [MsgDisplay showErrorMsg:errStr];
             break;
     }
 }
@@ -286,7 +287,7 @@
     [headerView addSubview:gpaHeader];
     [headerView addSubview:lineChart];
     
-    tableView.tableHeaderView = headerView;
+    resultTableView.tableHeaderView = headerView;
     [self selectPointForIndex:[terms count]-1 withRowAnimation:UITableViewRowAnimationAutomatic];
     lastSelected = [terms count] - 1;
     
@@ -302,14 +303,14 @@
     [GPADataManager autoEvaluateWithParameters:parameters success:^(){
         [MsgDisplay showSuccessMsg:@"一键评价成功！"];
         [self checkLoginStatus];
-    } failure:^(NSInteger statusCode) {
+    } failure:^(NSInteger statusCode, NSString *errStr) {
         switch (statusCode) {
             case 403:
                 [MsgDisplay showErrorMsg:@"没有可以评价的科目"];
                 break;
                 
             default:
-                [MsgDisplay showErrorMsg:@"无法一键评价T^T"];
+                [MsgDisplay showErrorMsg:[NSString stringWithFormat:@"无法一键评价 T^T\n%@", errStr]];
                 break;
         }
     }];
@@ -398,7 +399,7 @@
         }
     }
     
-    [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:rowAnimation];
+    [resultTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:rowAnimation];
 }
 
 - (IBAction)backToHomeBtn:(id)sender
@@ -541,7 +542,7 @@
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint {
     // Update view
-    self.tableView.scrollEnabled = NO;
+    self.resultTableView.scrollEnabled = NO;
     
     // 不该每次执行都更新，但是第一次要更新
     if (graphIsTouched == NO) {
@@ -576,7 +577,7 @@
 
 - (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView {
     // Update view
-    self.tableView.scrollEnabled = YES;
+    self.resultTableView.scrollEnabled = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
         gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
         gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];

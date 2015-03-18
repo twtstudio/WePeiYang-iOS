@@ -9,16 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-/*
-@protocol PushViewControllerDelegate <NSObject>
-
-- (void)push;
-
-@end
- */
-
 @interface IndexViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
-
-//@property (nonatomic, assign) id<PushViewControllerDelegate> delegate;
 
 @end
