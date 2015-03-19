@@ -32,6 +32,9 @@
     // Install the global error handler
     [[RavenClient sharedClient] setupExceptionHandler];
     
+    // Set NSURLCache
+    NSURLCache *sharedCache = [[NSURLCache alloc]initWithMemoryCapacity:2 * 1024 * 1024 diskCapacity:30 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
     
     DashboardViewController *dashboard = [[DashboardViewController alloc]init];
     // UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
@@ -110,7 +113,6 @@
             //[data shareInstance].newsTitle = [data shareInstance].pushMsg;
             //[data shareInstance].newsId = [data shareInstance].pushId;
             //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
-            //DMSlideTransition *trans = [[DMSlideTransition alloc]init];
             //[receivedNotificationViewController setTransitioningDelegate:trans];
             //[self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
         }

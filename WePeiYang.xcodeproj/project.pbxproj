@@ -24,6 +24,7 @@
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		77A14064B98A239697510E28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2387BDC5FF179A6965C30F /* libPods.a */; };
+		E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */; };
 		E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */; };
 		E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */; };
 		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
@@ -232,6 +233,8 @@
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E91A26FD1ABAC21C0080CB6F /* wpyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wpyCacheManager.h; path = "Cache Manager/wpyCacheManager.h"; sourceTree = "<group>"; };
+		E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wpyCacheManager.m; path = "Cache Manager/wpyCacheManager.m"; sourceTree = "<group>"; };
 		E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dashboardBg@2x.jpg"; sourceTree = "<group>"; };
 		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
@@ -565,6 +568,15 @@
 				4668D72FD393BB91A2B0658E /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E91A26FC1ABAC1E00080CB6F /* Cache Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E91A26FD1ABAC21C0080CB6F /* wpyCacheManager.h */,
+				E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */,
+			);
+			name = "Cache Manager";
 			sourceTree = "<group>";
 		};
 		E958E7871A9384CA0055B7C4 /* Message Display */ = {
@@ -926,6 +938,7 @@
 		E9AF6BB91A7CFCE2008B5214 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E91A26FC1ABAC1E00080CB6F /* Cache Manager */,
 				E958E7871A9384CA0055B7C4 /* Message Display */,
 				E9AF6BBA1A7CFCE2008B5214 /* Device Status */,
 				E9AF6BBD1A7CFCE2008B5214 /* NSTimer-Blocks */,
@@ -1376,6 +1389,7 @@
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E9AF6BB51A7CFCD4008B5214 /* NoticeViewController.m in Sources */,
 				1888421F1846E6F4007B92CB /* main.m in Sources */,
+				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

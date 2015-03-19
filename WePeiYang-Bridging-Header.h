@@ -21,6 +21,7 @@
 #import "FeedbackController.h"
 #import "AccountManager.h"
 #import "MsgDisplay.h"
+#import "wpyCacheManager.h"
 
 // Open Source Classes
 

@@ -18,6 +18,7 @@
 #import "GPADataManager.h"
 #import "WePeiYang-Swift.h"
 #import "wpyDeviceStatus.h"
+#import "wpyCacheManager.h"
 
 @interface GPAViewController ()
 
@@ -141,7 +142,6 @@
         [GPADataManager getDataWithParameters:parameters success:^(id responseObject) {
             //Successful
             [self setNormalView];
-            [self saveCacheWithData:responseObject];
             [self processGpaData:responseObject];
             [MsgDisplay dismiss];
         } failure:^(NSInteger statusCode, NSString *errStr) {
@@ -206,26 +206,19 @@
         case 401:
             [MsgDisplay showErrorMsg:@"验证出错\n请重新登录"];
             [self setLoginView];
-            
+            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
             break;
             
         case 403:
             [self setBindView];
-            
-            break;
-            
-        case 500:
-            [MsgDisplay showErrorMsg:@"服务器出错惹 QAQ"];
-            if ([self loadCacheAsResponseObject] != nil) {
-                [self processGpaData:[self loadCacheAsResponseObject]];
-            }
+            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
             break;
             
         default:
-            if ([self loadCacheAsResponseObject] != nil) {
-                [self processGpaData:[self loadCacheAsResponseObject]];
-            }
             [MsgDisplay showErrorMsg:errStr];
+            if ([gpaData count] == 0) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
             break;
     }
 }
@@ -447,6 +440,7 @@
     return UIStatusBarStyleLightContent;
 }
 
+/*
 // GPA数据缓存
 
 - (void) saveCacheWithData:(id)responseObject {
@@ -475,7 +469,7 @@
     } else {
         return nil;
     }
-}
+}*/
 
 // JBLineChartViewDelegate
 
