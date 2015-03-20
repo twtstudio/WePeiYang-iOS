@@ -346,13 +346,49 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func getClassData() {
+        
+        MsgDisplay.showLoading()
+        
+        ClasstableManager.getClassDataIfSuccess({
+            () in
+            
+            var alert = UIAlertView(title: "成功", message: "抓取课程表成功~\n请下拉通知栏，进入【今天】视图，点击【编辑】以添加微北洋课程表扩展~", delegate: self, cancelButtonTitle: "哦")
+            alert.show()
+            
+            ClasstableManager.getTermStartTimeIfSuccess({
+                () in
+                MsgDisplay.dismiss()
+                }, orFailure: {
+                    (Int statusCode, NSString errStr) in
+                    MsgDisplay.dismiss()
+            })
+            
+            }, orFailure: {
+                (Int statusCode, NSString errStr) in
+                MsgDisplay.dismiss()
+                if (statusCode == 1) {
+                    MsgDisplay.showErrorMsg("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
+                    return
+                } else if (statusCode == 2) {
+                    MsgDisplay.showErrorMsg("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
+                    return
+                } else {
+                    MsgDisplay.dismiss()
+                    var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_\n\(errStr)", delegate: self, cancelButtonTitle: "哦")
+                    alert.show()
+                }
+            
+        })
+        
+        /*
         if AccountManager.isLoggedIn() {
             if AccountManager.isTjuBinded() {
                 MsgDisplay.showLoading()
                 
                 // Here to add functions to get class data
+                
                 var manager = AFHTTPRequestOperationManager()
-                let url = "http://push-mobile.twtapps.net/classtable"
+                let url = twtAPIs.classTable()
                 let parameters = ["id": data.shareInstance().userId, "token": data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
                 manager.GET(url, parameters: parameters, success: {
                     (AFHTTPRequestOperation operation, AnyObject responseObj) in
@@ -372,6 +408,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         } else {
             MsgDisplay.showErrorMsg("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
         }
+        */
     }
     
     func saveCacheWithData(responseObject: AnyObject) {
@@ -387,7 +424,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     func getStartTime() {
         var manager = AFHTTPRequestOperationManager()
-        let url = "http://push-mobile.twtapps.net/start"
+        let url = twtAPIs.termStartTime()
         let parameters = ["platform":"ios", "version":data.shareInstance().appVersion]
         manager.GET(url, parameters: parameters, success: {
             (AFHTTPRequestOperation operation, AnyObject responseObj) in

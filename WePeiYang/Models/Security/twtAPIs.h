@@ -24,5 +24,7 @@
 + (NSString *)libSearch;
 + (NSString *)libInfo;
 + (NSString *)libRenew;
++ (NSString *)classTable;
++ (NSString *)termStartTime;
 
 @end

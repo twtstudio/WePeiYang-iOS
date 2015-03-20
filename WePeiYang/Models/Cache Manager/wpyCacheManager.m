@@ -65,4 +65,22 @@
     }
 }
 
++ (void)removeGroupCacheDataForKey:(NSString *)keyStr {
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc]initWithSuiteName:@"group.WePeiYang"];
+    [userDefault removeObjectForKey:keyStr];
+}
+
++ (void)saveGroupCacheData:(id)cacheData withKey:(NSString *)keyStr {
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc]initWithSuiteName:@"group.WePeiYang"];
+    [self removeGroupCacheDataForKey:keyStr];
+    [userDefault setObject:cacheData forKey:keyStr];
+    [userDefault synchronize];
+}
+
++ (void)loadGroupCacheDataWithKey:(NSString *)keyStr andBlock:(void (^)(id))block {
+    NSUserDefaults *userDefault = [[NSUserDefaults alloc]initWithSuiteName:@"group.WePeiYang"];
+    id cacheData = [userDefault objectForKey:keyStr];
+    block(cacheData);
+}
+
 @end

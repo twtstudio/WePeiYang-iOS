@@ -15,4 +15,8 @@
 + (void)removeCacheDataForKey:(NSString *)keyStr;
 + (BOOL)cacheDataExistsWithKey:(NSString *)keyStr;
 
++ (void)saveGroupCacheData:(id)cacheData withKey:(NSString *)keyStr;
++ (void)loadGroupCacheDataWithKey:(NSString *)keyStr andBlock:(void(^)(id cacheData))block;
++ (void)removeGroupCacheDataForKey:(NSString *)keyStr;
+
 @end

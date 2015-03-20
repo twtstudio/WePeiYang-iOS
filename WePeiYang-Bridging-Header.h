@@ -22,6 +22,7 @@
 #import "AccountManager.h"
 #import "MsgDisplay.h"
 #import "wpyCacheManager.h"
+#import "ClasstableManager.h"
 
 // Open Source Classes
 
