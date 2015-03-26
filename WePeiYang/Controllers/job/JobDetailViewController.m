@@ -78,11 +78,11 @@
 {
     NSArray *activityItems;
     NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
-    UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
+    // UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
     
     //NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",jobTitle,jobCorp,jobDate];
     NSURL *shareURL = [NSURL URLWithString:urlStr];
-    activityItems = @[shareURL, shareImg];
+    activityItems = @[shareURL];
     OpenInSafariActivity *openInSafariActivity = [[OpenInSafariActivity alloc]init];
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafariActivity]];

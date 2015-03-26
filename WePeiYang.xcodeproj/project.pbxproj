@@ -375,8 +375,8 @@
 		E9AF6B571A7CFCD4008B5214 /* twtLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = twtLoginViewController.xib; sourceTree = "<group>"; };
 		E9AF6B591A7CFCD4008B5214 /* LAFound_AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_AnnounceViewController.h; sourceTree = "<group>"; };
 		E9AF6B5A1A7CFCD4008B5214 /* LAFound_AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFound_AnnounceViewController.m; sourceTree = "<group>"; };
-		E9AF6B5B1A7CFCD4008B5214 /* LAFound_DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_DataManager.h; sourceTree = "<group>"; };
-		E9AF6B5C1A7CFCD4008B5214 /* LAFound_DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFound_DataManager.m; sourceTree = "<group>"; };
+		E9AF6B5B1A7CFCD4008B5214 /* LAFound_DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAFound_DataManager.h; path = ../../Controllers/newLAFound/LAFound_DataManager.h; sourceTree = "<group>"; };
+		E9AF6B5C1A7CFCD4008B5214 /* LAFound_DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LAFound_DataManager.m; path = ../../Controllers/newLAFound/LAFound_DataManager.m; sourceTree = "<group>"; };
 		E9AF6B5D1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LAFound_QueryDetailViewController.h; sourceTree = "<group>"; };
 		E9AF6B5E1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LAFound_QueryDetailViewController.m; sourceTree = "<group>"; };
 		E9AF6B5F1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LAFound_QueryDetailViewController.xib; sourceTree = "<group>"; };
@@ -573,6 +573,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E91302FD1AC00E0800A16ADF /* LostAndFound */ = {
+			isa = PBXGroup;
+			children = (
+				E9AF6B5B1A7CFCD4008B5214 /* LAFound_DataManager.h */,
+				E9AF6B5C1A7CFCD4008B5214 /* LAFound_DataManager.m */,
+			);
+			name = LostAndFound;
+			sourceTree = "<group>";
+		};
 		E91A26FC1ABAC1E00080CB6F /* Cache Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,7 +739,7 @@
 				E9AF6B251A7CFCD4008B5214 /* job */,
 				E9AF6B3A1A7CFCD4008B5214 /* library */,
 				E9AF6B4C1A7CFCD4008B5214 /* Login */,
-				E9AF6B581A7CFCD4008B5214 /* newLAFound */,
+				E9AF6B581A7CFCD4008B5214 /* LostAndFound */,
 				E9AF6B671A7CFCD4008B5214 /* news */,
 				E9AF6B6F1A7CFCD4008B5214 /* Notice */,
 				E9AF6B721A7CFCD4008B5214 /* Start */,
@@ -877,13 +886,11 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		E9AF6B581A7CFCD4008B5214 /* newLAFound */ = {
+		E9AF6B581A7CFCD4008B5214 /* LostAndFound */ = {
 			isa = PBXGroup;
 			children = (
 				E9AF6B591A7CFCD4008B5214 /* LAFound_AnnounceViewController.h */,
 				E9AF6B5A1A7CFCD4008B5214 /* LAFound_AnnounceViewController.m */,
-				E9AF6B5B1A7CFCD4008B5214 /* LAFound_DataManager.h */,
-				E9AF6B5C1A7CFCD4008B5214 /* LAFound_DataManager.m */,
 				E9AF6B5D1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.h */,
 				E9AF6B5E1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.m */,
 				E9AF6B5F1A7CFCD4008B5214 /* LAFound_QueryDetailViewController.xib */,
@@ -895,6 +902,7 @@
 				E9AF6B651A7CFCD4008B5214 /* LAFoundAnnounceForm.h */,
 				E9AF6B661A7CFCD4008B5214 /* LAFoundAnnounceForm.m */,
 			);
+			name = LostAndFound;
 			path = newLAFound;
 			sourceTree = "<group>";
 		};
@@ -983,6 +991,7 @@
 		E9AF6BC31A7CFCE2008B5214 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E91302FD1AC00E0800A16ADF /* LostAndFound */,
 				E9F75D6D1ABBEC6200785C51 /* Classtable */,
 				E97CE07B1A837D84007F65D6 /* Account */,
 				E9AF6BE91A7E5F5A008B5214 /* Content */,

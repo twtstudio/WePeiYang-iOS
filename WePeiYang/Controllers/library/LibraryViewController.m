@@ -150,7 +150,6 @@
     self.title = @"您尚未登录";
 }
 
-
 - (void)search:(id)sender
 {
     [libSearchBar resignFirstResponder];

@@ -26,8 +26,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         super.viewDidLoad()
         
-        //self.navigationController!.interactivePopGestureRecognizer.delegate = self
-        
         // Reverse to default tint color.
         UIButton.appearance().tintColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
         
@@ -377,38 +375,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                     var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_\n\(errStr)", delegate: self, cancelButtonTitle: "哦")
                     alert.show()
                 }
-            
         })
-        
-        /*
-        if AccountManager.isLoggedIn() {
-            if AccountManager.isTjuBinded() {
-                MsgDisplay.showLoading()
-                
-                // Here to add functions to get class data
-                
-                var manager = AFHTTPRequestOperationManager()
-                let url = twtAPIs.classTable()
-                let parameters = ["id": data.shareInstance().userId, "token": data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
-                manager.GET(url, parameters: parameters, success: {
-                    (AFHTTPRequestOperation operation, AnyObject responseObj) in
-                        MsgDisplay.dismiss()
-                        self.getStartTime()
-                        self.saveCacheWithData(responseObj)
-                    }, failure: {
-                    (AFHTTPRequestOperation operation, NSError error) in
-                        MsgDisplay.dismiss()
-                        var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_", delegate: self, cancelButtonTitle: "哦")
-                        alert.show()
-                })
-                
-            } else {
-                MsgDisplay.showErrorMsg("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
-            }
-        } else {
-            MsgDisplay.showErrorMsg("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
-        }
-        */
     }
     
     func saveCacheWithData(responseObject: AnyObject) {
@@ -420,23 +387,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         var alert = UIAlertView(title: "成功", message: "抓取课程表成功~\n请下拉通知栏，进入【今天】视图，点击【编辑】以添加微北洋课程表扩展~", delegate: self, cancelButtonTitle: "哦")
         alert.show()
-    }
-
-    func getStartTime() {
-        var manager = AFHTTPRequestOperationManager()
-        let url = twtAPIs.termStartTime()
-        let parameters = ["platform":"ios", "version":data.shareInstance().appVersion]
-        manager.GET(url, parameters: parameters, success: {
-            (AFHTTPRequestOperation operation, AnyObject responseObj) in
-                let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
-                userDefault?.removeObjectForKey("StartTime")
-                userDefault?.setObject(responseObj, forKey: "StartTime")
-                userDefault?.synchronize()
-            }, failure: {
-            (AFHTTPRequestOperation operation, NSError error) in
-                //可以加入手动选择学期开始时间
-                
-        })
     }
     
     func touchIdSwitchChanged() {

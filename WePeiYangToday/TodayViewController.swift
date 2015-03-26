@@ -68,7 +68,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         if userDefault?.objectForKey("Classtable") == nil {
             nextLabel.text = ""
-            courseLabel.text = "您尚未抓取过课程表哦QAQ"
+            courseLabel.text = "您尚未抓取过课程表哦 QAQ"
             detailLabel.text = "请进入微北洋 -> 关于 -> 抓取课程表"
         } else {
             nextLabel.text = ""

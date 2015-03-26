@@ -20,7 +20,7 @@
              
              @{FXFormFieldKey: @"contact", FXFormFieldTitle: @"联系方式", FXFormFieldHeader: @"基本信息"},
              @{FXFormFieldKey: @"deviceModel", FXFormFieldTitle: @"设备型号", FXFormFieldType: FXFormFieldTypeLabel, FXFormFieldDefaultValue: deviceModel},
-             @{FXFormFieldKey: @"deviceVersion", FXFormFieldTitle: @"设备版本", FXFormFieldType: FXFormFieldTypeLabel, FXFormFieldDefaultValue: deviceVersion},
+             @{FXFormFieldKey: @"deviceVersion", FXFormFieldTitle: @"iOS 版本", FXFormFieldType: FXFormFieldTypeLabel, FXFormFieldDefaultValue: deviceVersion},
              
              @{FXFormFieldKey: @"advices", FXFormFieldTitle: @"", FXFormFieldType: FXFormFieldTypeLongText, FXFormFieldHeader: @"反馈"},
     

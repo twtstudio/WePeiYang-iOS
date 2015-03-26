@@ -126,12 +126,9 @@
     
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:plistPath])
-    {
+    if (![fileManager fileExistsAtPath:plistPath]) {
         [self setLoginView];
-    }
-    else
-    {
+    } else {
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
@@ -274,11 +271,13 @@
     JBLineChartView *lineChart = [[JBLineChartView alloc]initWithFrame:CGRectMake(20, gpaHeaderViewHeight+20, [UIScreen mainScreen].bounds.size.width - 40, 130)];
     lineChart.dataSource = self;
     lineChart.delegate = self;
+    lineChart.backgroundColor = [UIColor whiteColor];
     lineChart.state = JBChartViewStateCollapsed; // 先收起ChartView
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+164)];
     [headerView addSubview:gpaHeader];
     [headerView addSubview:lineChart];
+    headerView.backgroundColor = [UIColor whiteColor];
     
     resultTableView.tableHeaderView = headerView;
     [self selectPointForIndex:[terms count]-1 withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -299,7 +298,7 @@
     } failure:^(NSInteger statusCode, NSString *errStr) {
         switch (statusCode) {
             case 403:
-                [MsgDisplay showErrorMsg:@"没有可以评价的科目"];
+                [MsgDisplay showErrorMsg:@"没有可以评价的科目。"];
                 break;
                 
             default:
@@ -420,56 +419,31 @@
     
 }
 
-- (void) pushGPACalculator
+- (void)pushGPACalculator
 {
     GPACalculatorViewController *gpaCalculator = [[GPACalculatorViewController alloc]initWithNibName:nil bundle:nil];
     gpaCalculator.gpaData = gpaData;
     [self.navigationController pushViewController:gpaCalculator animated:YES];
 }
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float offsetY = [scrollView contentOffset].y;
     //NSLog([NSString stringWithFormat:@"%f",offsetY]);
     gpaHeader.alpha = 1-offsetY/150;
     backBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
     moreBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
+    
+    if (offsetY < 0) {
+        resultTableView.backgroundColor = gpaTintColor;
+    } else {
+        resultTableView.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-
-/*
-// GPA数据缓存
-
-- (void) saveCacheWithData:(id)responseObject {
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:plistPath]) {
-        [fileManager removeItemAtPath:plistPath error:nil];
-    }
-    [responseObject writeToFile:plistPath atomically:YES];
-}
-
-- (NSDictionary *) loadCacheAsResponseObject {
-    
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:plistPath]) {
-        NSDictionary *cacheDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-        if (cacheDic.count != 0) {
-            [MsgDisplay showErrorMsg:@"网络出错\n已为您加载缓存"];
-            
-        } else {
-            [MsgDisplay showErrorMsg:@"网络出错\n请稍后重试_(:з」∠)_"];
-            
-        }
-        return cacheDic;
-    } else {
-        return nil;
-    }
-}*/
 
 // JBLineChartViewDelegate
 

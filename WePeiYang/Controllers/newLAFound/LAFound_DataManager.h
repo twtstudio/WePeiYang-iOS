@@ -17,10 +17,7 @@ typedef NS_ENUM(NSUInteger, ItemInfoType) {
 
 @interface LAFound_DataManager : NSObject
 
-
-
 + (void)getItemInfoWithItemInfoType:(ItemInfoType)type andPage:(NSInteger)page success:(void(^)(id responseObject))success failure:(void(^)(NSError *error))failure;
-
 
 + (void)announceItemInfoWithType:(ItemInfoType)type title:(NSString *)title place:(NSString *)place time:(NSString *)time phone:(NSString *)phone name:(NSString *)name content:(NSString *)content success:(void(^)(id responseObject))success failure:(void(^)(NSError *error))failure;
 

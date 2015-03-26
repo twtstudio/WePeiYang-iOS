@@ -3,13 +3,12 @@
 //  WePeiYang
 //
 //  Created by 马骁 on 14-8-29.
+//  Modified by Qin Yubo
 //  Copyright (c) 2014年 Qin Yubo. All rights reserved.
 //
 
 #import "LAFound_DataManager.h"
-
-static NSString *getItemInfoUrlString = @"http://push-mobile.twtapps.net/lostfound/getList";
-static NSString *announceItemInfoUrlString = @"http://push-mobile.twtapps.net/lostfound/new";
+#import "twtAPIs.h"
 
 @implementation LAFound_DataManager
 
@@ -24,7 +23,7 @@ static NSString *announceItemInfoUrlString = @"http://push-mobile.twtapps.net/lo
                                  @"content": content};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager POST:announceItemInfoUrlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[twtAPIs lostFoundAnnounceItem] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[operation valueForKeyPath:@"response.statusCode"] intValue] == 200)
         {
             success(@"发布成功");
@@ -44,7 +43,7 @@ static NSString *announceItemInfoUrlString = @"http://push-mobile.twtapps.net/lo
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [manager POST:getItemInfoUrlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[twtAPIs lostFoundItemInfoList] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[operation valueForKeyPath:@"response.statusCode"] intValue] == 200)
         {
             success(responseObject);
@@ -55,9 +54,5 @@ static NSString *announceItemInfoUrlString = @"http://push-mobile.twtapps.net/lo
         failure(error);
     }];
 }
-
-
-
-
 
 @end
