@@ -40,8 +40,9 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 64))
         let navigationItem = UINavigationItem(title: "关于")
         
-        let backIconPath:NSString! = NSBundle.mainBundle().pathForResource("backForNav@2x", ofType: "png")
-        let backBarBtn = UIBarButtonItem(image: UIImage(contentsOfFile: backIconPath), style: UIBarButtonItemStyle.Plain, target: self, action: "backToHome")
+        let backIconPath: String! = NSBundle.mainBundle().pathForResource("backForNav@2x", ofType: "png")
+        var backIcon = UIImage(contentsOfFile: backIconPath)
+        let backBarBtn = UIBarButtonItem(image: backIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "backToHome")
         navigationBar.pushNavigationItem(navigationItem, animated: true)
         navigationItem.setLeftBarButtonItem(backBarBtn, animated: true)
         
@@ -101,31 +102,31 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         var row = indexPath.row
         var section = indexPath.section
         if section == 0 {
-            cell.textLabel!.text = aboutArr[row] as NSString
+            cell.textLabel!.text = aboutArr[row] as NSString as String
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         } else if section == 1 {
             if touchIdSupport == true {
                 if row == 1 {
-                    cell.textLabel!.text = webArr[row] as NSString
+                    cell.textLabel!.text = webArr[row] as! NSString as String
                     var defaults = NSUserDefaults.standardUserDefaults()
                     if defaults.objectForKey("touchIdEnabled") == nil {
                         defaults.setObject(false, forKey: "touchIdEnabled")
                     }
                     
-                    touchIdSwitch.on = defaults.objectForKey("touchIdEnabled") as Bool
+                    touchIdSwitch.on = defaults.objectForKey("touchIdEnabled") as! Bool
                     
                     touchIdSwitch.addTarget(self, action: "touchIdSwitchChanged", forControlEvents: UIControlEvents.ValueChanged)
                     cell.accessoryView = touchIdSwitch
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     
                 } else {
-                    cell.textLabel!.text = webArr[row] as NSString
+                    cell.textLabel!.text = webArr[row] as? String
                 }
             } else {
-                cell.textLabel!.text = webArr[row] as NSString
+                cell.textLabel!.text = webArr[row] as? String
             }
         } else if section == 2 {
-            cell.textLabel!.text = feedbackArr[row] as NSString
+            cell.textLabel!.text = feedbackArr[row]
             if row == 0 {
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
@@ -357,12 +358,12 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                 () in
                 MsgDisplay.dismiss()
                 }, orFailure: {
-                    (Int statusCode, NSString errStr) in
+                    (statusCode: Int, errStr: String!) in
                     MsgDisplay.dismiss()
             })
             
             }, orFailure: {
-                (Int statusCode, NSString errStr) in
+                (statusCode: Int, errStr: String!) in
                 MsgDisplay.dismiss()
                 if (statusCode == 1) {
                     MsgDisplay.showErrorMsg("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
@@ -397,7 +398,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             var error: NSError?
             if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
                 context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "请验证 Touch ID" , reply: {
-                    (BOOL success, NSError BioError) in
+                    (success: Bool, BioError: NSError!) in
                     if success {
                         var defaults = NSUserDefaults.standardUserDefaults()
                         

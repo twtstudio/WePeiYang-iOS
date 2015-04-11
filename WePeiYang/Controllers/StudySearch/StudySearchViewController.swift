@@ -80,7 +80,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
             manager.POST(url, parameters: parameters, success: {
                 (AFHTTPRequestOperation operation, AnyObject responseObject) in
                 MsgDisplay.dismiss()
-                self.processReceivedData(responseObject as NSArray)
+                self.processReceivedData(responseObject as! NSArray)
                 
             }, failure: {
                 (AFHTTPRequestOperation operation, NSError error) in
@@ -95,7 +95,7 @@ class StudySearchViewController: UIViewController, UIPickerViewDelegate, UIPicke
         var convertData = dic as NSArray
         if (convertData.count > 0) {
             for temp in convertData {
-                searchResultArray.addObject(temp["room"] as NSString)
+                searchResultArray.addObject(temp["room"] as! NSString)
                 //println(temp["room"] as NSString)
             }
             self.searchResultTableView.hidden = false

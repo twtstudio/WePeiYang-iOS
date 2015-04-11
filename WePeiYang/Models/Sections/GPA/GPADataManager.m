@@ -29,7 +29,7 @@
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             });
             [wpyCacheManager saveCacheData:[operation.responseString objectFromJSONString] withKey:@"gpaCache"];
-        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
                 NSString *errorMsg = [wpyCacheManager cacheDataExistsWithKey:@"gpaCache"] ? [NSString stringWithFormat:@"%@\n已为您加载缓存。", error.localizedDescription] : error.localizedDescription;
                 failure(operation.response.statusCode, errorMsg);
@@ -53,10 +53,8 @@
     
     NSArray *termsDataArr = [gpaDic objectForKey:@"terms"];
     
-    for (NSDictionary *termDic in termsDataArr)
-    {
-        for (NSDictionary *temp in termDic)
-        {
+    for (NSDictionary *termDic in termsDataArr) {
+        for (NSDictionary *temp in termDic) {
             [gpaData addObject:temp];
         }
     }
@@ -66,16 +64,11 @@
     
     NSMutableArray *terms = [[NSMutableArray alloc]initWithObjects: nil];
     
-    for (int i = 0; i <= [gpaData count]-1; i++)
-    {
-        if (i == 0)
-        {
+    for (int i = 0; i <= [gpaData count]-1; i++) {
+        if (i == 0) {
             [terms addObject:[[gpaData objectAtIndex:i] objectForKey:@"term"]];
-        }
-        else
-        {
-            if (![[[gpaData objectAtIndex:i-1] objectForKey:@"term"] isEqualToString:[[gpaData objectAtIndex:i] objectForKey:@"term"]])
-            {
+        } else {
+            if (![[[gpaData objectAtIndex:i-1] objectForKey:@"term"] isEqualToString:[[gpaData objectAtIndex:i] objectForKey:@"term"]]) {
                 [terms addObject:[[gpaData objectAtIndex:i] objectForKey:@"term"]];
             }
         }
@@ -84,8 +77,7 @@
     NSMutableArray *everyScoreArr = [[NSMutableArray alloc]initWithObjects: nil];
     NSMutableArray *everyGpaArr = [[NSMutableArray alloc]initWithObjects: nil];
     NSArray *everyDataArr = [[gpaDic objectForKey:@"data"]objectForKey:@"every"];
-    for (NSDictionary *tmp in everyDataArr)
-    {
+    for (NSDictionary *tmp in everyDataArr) {
         [everyScoreArr addObject:[tmp objectForKey:@"score"]];
         [everyGpaArr addObject:[tmp objectForKey:@"gpa"]];
     }
