@@ -52,9 +52,6 @@
     
     gpaHeaderView *gpaHeader;
     
-    //Instances
-    NSInteger gpaHeaderViewHeight;
-    
     NSInteger lastSelected; // 图表里上一个选择的节点的index
     BOOL graphIsTouched; // 图表当前被摸着
 }
@@ -81,7 +78,6 @@
     // Do any additional setup after loading the view from its nib.
     
     //INSTANCES
-    gpaHeaderViewHeight = 150;
 
     self.title = @"GPA查询";
     
@@ -99,8 +95,6 @@
     newAddedSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
     
     [loginBtn primaryStyle];
-    
-    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, gpaHeaderViewHeight)];
     
     [dataInTable removeAllObjects];
     [self checkLoginStatus];
@@ -261,23 +255,36 @@
         newAddedSubjects = _newAddedSubjects;
     }];
     
+    gpaHeader = [[gpaHeaderView alloc]init];
     gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
     gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
-    
     gpaHeader.termLabel.text = @"";
+    gpaHeader.translatesAutoresizingMaskIntoConstraints = NO;
     
     //初始化图表
     
-    JBLineChartView *lineChart = [[JBLineChartView alloc]initWithFrame:CGRectMake(20, gpaHeaderViewHeight+20, [UIScreen mainScreen].bounds.size.width - 40, 130)];
+    JBLineChartView *lineChart = [[JBLineChartView alloc]init];
     lineChart.dataSource = self;
     lineChart.delegate = self;
     lineChart.backgroundColor = [UIColor whiteColor];
     lineChart.state = JBChartViewStateCollapsed; // 先收起ChartView
+    lineChart.translatesAutoresizingMaskIntoConstraints = NO;
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+164)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 320)];
+    //UIView *headerView = [[UIView alloc]init];
     [headerView addSubview:gpaHeader];
     [headerView addSubview:lineChart];
     headerView.backgroundColor = [UIColor whiteColor];
+    
+    NSDictionary *headerSubviews = NSDictionaryOfVariableBindings(gpaHeader, lineChart);
+    NSDictionary *metrics = @{@"gpaHeaderHeight": @150,
+                              @"lineChartHeight": @130};
+    NSString *vfl1 = @"V:|-0-[gpaHeader(gpaHeaderHeight)]-18-[lineChart]-12-|";
+    NSString *vfl2 = @"|-0-[gpaHeader]-0-|";
+    NSString *vfl3 = @"|-20-[lineChart]-20-|";
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:metrics views:headerSubviews]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:metrics views:headerSubviews]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3 options:0 metrics:metrics views:headerSubviews]];
     
     resultTableView.tableHeaderView = headerView;
     [self selectPointForIndex:[terms count]-1 withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -552,6 +559,10 @@
         gpaHeader.termLabel.text = @"";
     });
     graphIsTouched = NO;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
 }
 
 @end
