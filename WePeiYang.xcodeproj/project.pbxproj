@@ -25,6 +25,11 @@
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		77A14064B98A239697510E28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2387BDC5FF179A6965C30F /* libPods.a */; };
 		E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */; };
+		E92298521AF0F78E000CC8F7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298511AF0F78E000CC8F7 /* libz.dylib */; };
+		E92298541AF0F797000CC8F7 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */; };
+		E92298591AF0F7D3000CC8F7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298561AF0F7D3000CC8F7 /* libWeChatSDK.a */; };
+		E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */; };
+		E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */; };
 		E93FBB001A35DDA70002D38B /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */; };
 		E93FBB0C1A371F760002D38B /* dashboardBg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */; };
 		E958871919FCBF240035C1F9 /* WePeiYangToday.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */; };
@@ -236,6 +241,15 @@
 		A3937C4A72759E6CC2B4FCD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E91A26FD1ABAC21C0080CB6F /* wpyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wpyCacheManager.h; path = "Cache Manager/wpyCacheManager.h"; sourceTree = "<group>"; };
 		E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wpyCacheManager.m; path = "Cache Manager/wpyCacheManager.m"; sourceTree = "<group>"; };
+		E92298511AF0F78E000CC8F7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		E92298561AF0F7D3000CC8F7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		E92298571AF0F7D3000CC8F7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		E92298581AF0F7D3000CC8F7 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		E922985A1AF0F907000CC8F7 /* WeChatMomentsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeChatMomentsActivity.h; path = Sharing/WeChatMomentsActivity.h; sourceTree = "<group>"; };
+		E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatMomentsActivity.m; path = Sharing/WeChatMomentsActivity.m; sourceTree = "<group>"; };
+		E922985C1AF0F907000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeChatSessionActivity.h; path = Sharing/WeChatSessionActivity.h; sourceTree = "<group>"; };
+		E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatSessionActivity.m; path = Sharing/WeChatSessionActivity.m; sourceTree = "<group>"; };
 		E93FBAFF1A35DDA70002D38B /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		E93FBB0B1A371F760002D38B /* dashboardBg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dashboardBg@2x.jpg"; sourceTree = "<group>"; };
 		E958871819FCBF240035C1F9 /* WePeiYangToday.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYangToday.entitlements; sourceTree = "<group>"; };
@@ -437,9 +451,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92298541AF0F797000CC8F7 /* libsqlite3.0.dylib in Frameworks */,
+				E92298521AF0F78E000CC8F7 /* libz.dylib in Frameworks */,
 				180F1CAA185D4DF500F76085 /* MessageUI.framework in Frameworks */,
 				180F1C92185D4D3200F76085 /* QuartzCore.framework in Frameworks */,
 				180F1C90185D4D2B00F76085 /* SystemConfiguration.framework in Frameworks */,
+				E92298591AF0F7D3000CC8F7 /* libWeChatSDK.a in Frameworks */,
 				188842A81846FBEB007B92CB /* Social.framework in Frameworks */,
 				188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */,
 				188842171846E6F4007B92CB /* UIKit.framework in Frameworks */,
@@ -494,6 +511,8 @@
 		188842111846E6F4007B92CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */,
+				E92298511AF0F78E000CC8F7 /* libz.dylib */,
 				180F1CA9185D4DF500F76085 /* MessageUI.framework */,
 				180F1CA7185D4DEE00F76085 /* AssetsLibrary.framework */,
 				180F1CA5185D4DDF00F76085 /* MediaPlayer.framework */,
@@ -538,6 +557,7 @@
 		188842191846E6F4007B92CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E92298551AF0F7BA000CC8F7 /* WeChatSDK */,
 				1888421A1846E6F4007B92CB /* WePeiYang-Info.plist */,
 				1888421B1846E6F4007B92CB /* InfoPlist.strings */,
 				1888421E1846E6F4007B92CB /* main.m */,
@@ -589,6 +609,16 @@
 				E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */,
 			);
 			name = "Cache Manager";
+			sourceTree = "<group>";
+		};
+		E92298551AF0F7BA000CC8F7 /* WeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E92298561AF0F7D3000CC8F7 /* libWeChatSDK.a */,
+				E92298571AF0F7D3000CC8F7 /* WXApi.h */,
+				E92298581AF0F7D3000CC8F7 /* WXApiObject.h */,
+			);
+			name = WeChatSDK;
 			sourceTree = "<group>";
 		};
 		E958E7871A9384CA0055B7C4 /* Message Display */ = {
@@ -725,6 +755,10 @@
 				E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */,
 				E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */,
 				E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */,
+				E922985A1AF0F907000CC8F7 /* WeChatMomentsActivity.h */,
+				E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */,
+				E922985C1AF0F907000CC8F7 /* WeChatSessionActivity.h */,
+				E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */,
 			);
 			name = Sharing;
 			sourceTree = "<group>";
@@ -1389,9 +1423,11 @@
 				E9AF6BA11A7CFCD4008B5214 /* RecordViewController.m in Sources */,
 				E9AF6BAF1A7CFCD4008B5214 /* LAFound_QueryListViewController.m in Sources */,
 				E9AF6B971A7CFCD4008B5214 /* JobViewController.m in Sources */,
+				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E9AF6BB71A7CFCD4008B5214 /* StudySearchViewController.swift in Sources */,
 				E9AF6BB41A7CFCD4008B5214 /* IndexViewController.m in Sources */,
 				E9AF6B821A7CFCD4008B5214 /* gpaHeaderView.m in Sources */,
+				E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E99028CD1AAF19B6001840BD /* TWTNavController.m in Sources */,
 				E9AF6BAD1A7CFCD4008B5214 /* LAFound_QueryListTableViewCell.m in Sources */,
 				E9AF6BAA1A7CFCD4008B5214 /* LAFound_DataManager.m in Sources */,
@@ -1567,7 +1603,10 @@
 				INFOPLIST_FILE = "WePeiYang/WePeiYang-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WePeiYang",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1596,7 +1635,10 @@
 				INFOPLIST_FILE = "WePeiYang/WePeiYang-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WePeiYang",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

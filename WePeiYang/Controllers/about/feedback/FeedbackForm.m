@@ -19,14 +19,34 @@
     return @[
              
              @{FXFormFieldKey: @"contact", FXFormFieldTitle: @"联系方式", FXFormFieldHeader: @"基本信息"},
-             @{FXFormFieldKey: @"deviceModel", FXFormFieldTitle: @"设备型号", FXFormFieldType: FXFormFieldTypeLabel, FXFormFieldDefaultValue: deviceModel},
-             @{FXFormFieldKey: @"deviceVersion", FXFormFieldTitle: @"iOS 版本", FXFormFieldType: FXFormFieldTypeLabel, FXFormFieldDefaultValue: deviceVersion},
+             //@{FXFormFieldKey: @"deviceModel", FXFormFieldTitle: @"设备型号", FXFormFieldType: FXFormFieldTypeLabel, FXFormFieldDefaultValue: deviceModel},
+             @{FXFormFieldKey: @"deviceModel", FXFormFieldTitle: @"设备型号",  FXFormFieldDefaultValue: deviceModel},
+             @{FXFormFieldKey: @"deviceVersion", FXFormFieldTitle: @"iOS 版本", FXFormFieldDefaultValue: deviceVersion},
              
              @{FXFormFieldKey: @"advices", FXFormFieldTitle: @"", FXFormFieldType: FXFormFieldTypeLongText, FXFormFieldHeader: @"反馈"},
     
             @{FXFormFieldTitle: @"提交反馈", FXFormFieldHeader: @"", FXFormFieldAction: @"submitFeedback:"},
 
             ];
+}
+
+- (NSDictionary *)contactField {
+    //UITextField *field = [[UITextField alloc]init];
+    //field.userInteractionEnabled
+    return @{@"textField.textAlignment": @(NSTextAlignmentLeft),
+             @"textLabel.font": [UIFont systemFontOfSize:17.0]};
+}
+
+- (NSDictionary *)deviceModelField {
+    return @{@"textField.textAlignment": @(NSTextAlignmentLeft),
+             @"textField.userInteractionEnabled": @NO,
+             @"textLabel.font": [UIFont systemFontOfSize:17.0]};
+}
+
+- (NSDictionary *)deviceVersionField {
+    return @{@"textField.textAlignment": @(NSTextAlignmentLeft),
+             @"textField.userInteractionEnabled": @NO,
+             @"textLabel.font": [UIFont systemFontOfSize:17.0]};
 }
 
 @end

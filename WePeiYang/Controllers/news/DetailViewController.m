@@ -13,6 +13,8 @@
 #import "wpyDeviceStatus.h"
 #import "MsgDisplay.h"
 #import "OpenInSafariActivity.h"
+#import "WeChatMomentsActivity.h"
+#import "WeChatSessionActivity.h"
 #import "ContentDataManager.h"
 
 #define DEVICE_IS_IOS8 [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
@@ -45,6 +47,8 @@
     [self.navigationController setToolbarHidden:YES animated:YES];
     self.title = detailTitle;
     self.automaticallyAdjustsScrollViewInsets = YES;
+    
+    webView.delegate = self;
     
     // pragma mark - 等全局原生NavigationBar之后再取消注释
     /*
@@ -94,15 +98,18 @@
 - (void)share {
     NSArray *activityItems;
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@",self.detailId]];
+    NSString *shareStr = detailTitle;
     // UIImage *shareImg = [wpyDeviceStatus getImageFromView:webView.scrollView.subviews[0]];
     
-    activityItems = @[shareURL];
+    activityItems = @[shareURL, shareStr];
     
     // Presentation Controller
     
     OpenInSafariActivity *openInSafariActivity = [[OpenInSafariActivity alloc]init];
+    WeChatMomentsActivity *wxMoments = [[WeChatMomentsActivity alloc] init];
+    WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
     
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafariActivity]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafariActivity, wxMoments, wxSession]];
     
     if (DEVICE_IS_IOS8) {
         activityViewController.modalPresentationStyle = UIModalPresentationPopover;
@@ -117,6 +124,15 @@
     
     [self presentViewController:activityViewController animated:YES completion:nil];
     
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 @end
