@@ -17,6 +17,7 @@
 //#import "twtSecretKeys.h"
 //#import "twtAPIs.h"
 #import <POP/POP.h>
+#import "MsgDisplay.h"
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -120,7 +121,7 @@
                 UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"出错" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [errorAlert show];
             } else {
-                [SVProgressHUD showErrorWithStatus:errorStr];
+                [MsgDisplay showErrorMsg:errorStr];
             }
             
         }];
@@ -203,6 +204,5 @@
         return YES;
     }
 }
-
 
 @end

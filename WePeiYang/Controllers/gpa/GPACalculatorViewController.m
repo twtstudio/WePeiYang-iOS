@@ -18,7 +18,7 @@
     NSMutableArray *calculatorArray;
 }
 
-@synthesize tableView;
+@synthesize resultTableView;
 @synthesize gpaData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -151,12 +151,9 @@
     //NSString *term = [tmp objectForKey:@"term"];
     NSString *cellStr = [NSString stringWithFormat:@"%@, %@学分, %@",name,credit,score];
     cell.textLabel.text = cellStr;
-    if ([selected  isEqual: @"YES"])
-    {
+    if ([selected  isEqual: @"YES"]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
+    } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     

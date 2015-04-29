@@ -16,8 +16,7 @@
 
 @implementation indexTabBarController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -25,8 +24,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     IndexViewController *newsIndex = [[IndexViewController alloc]initWithStyle:UITableViewStylePlain];
@@ -62,14 +60,12 @@
     [[UINavigationBar appearance]setTintColor:[UIColor colorWithRed:255/255.0f green:55/255.0f blue:156/255.0f alpha:1.0f]];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];//This is important!
     //不执行super方法会导致动画丢失！
 }
@@ -79,8 +75,7 @@
     [data shareInstance].typeSelected = @"1";
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (item == [tabBar.items objectAtIndex:0])
     {
         [data shareInstance].typeSelected = @"1";

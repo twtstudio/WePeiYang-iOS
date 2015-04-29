@@ -9,7 +9,7 @@
 
 #import "LAFound_AnnounceViewController.h"
 #import "LAFound_DataManager.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 
 @interface LAFound_AnnounceViewController ()
 
@@ -47,16 +47,6 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     self.title = @"发布信息";
     
-//    设置segmentedControl
-    /*
-    NSArray *segmentedControlItems = @[@"失物", @"拾取"];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentedControlItems];
-    [segmentedControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
-    [segmentedControl setWidth:80 forSegmentAtIndex:0];
-    [segmentedControl setWidth:80 forSegmentAtIndex:1];
-    segmentedControl.selectedSegmentIndex = 0;
-    self.navigationItem.titleView = segmentedControl;*/
-    
     // 初值，如果为这个值表示 _type 没有被选择
     _type = 99;
     
@@ -78,6 +68,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm"];
     timeStr = [dateFormatter stringFromDate:form.time];
+    
     nameStr = form.name;
     phoneStr = form.phone.stringValue;
     contentStr = form.content;
@@ -90,37 +81,41 @@
     return YES;
 }
 
-- (void)announceButionAction
-{
+- (BOOL)checkTime {
+    LAFoundAnnounceForm *form = self.formController.form;
+    if ([form.time compare:[NSDate date]] == NSOrderedDescending) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (void)announceButionAction {
     if ([self isGetAllInfo]) {
-        affirmAnnounceAlert = [[UIAlertView alloc] initWithTitle:@"确认发布" message:@"发布以后就不能修改了哦~" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-        [affirmAnnounceAlert show];
-        
-    }else {
-        [SVProgressHUD showErrorWithStatus:@"信息还没有填写完全哦~" maskType: SVProgressHUDMaskTypeBlack];
+        if ([self checkTime] != NO) {
+            affirmAnnounceAlert = [[UIAlertView alloc] initWithTitle:@"确认发布" message:@"发布以后就不能修改了哦~" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+            [affirmAnnounceAlert show];
+        } else {
+            [MsgDisplay showErrorMsg:@"出错啦\n时间不能晚于现在哦"];
+        }
+    } else {
+        [MsgDisplay showErrorMsg:@"信息还没有填写完全哦~"];
     }
 }
 
 - (void)announceInfo {
-
-    
     [LAFound_DataManager announceItemInfoWithType:_type title:titleStr place:placeStr time:timeStr phone:phoneStr name:nameStr content:contentStr success:^(id responseObject) {
         if ([responseObject isEqualToString:@"发布成功"]) {
-            [SVProgressHUD showSuccessWithStatus:@"消息发布成功！"  maskType: SVProgressHUDMaskTypeBlack];
-
-        } else  if([responseObject isEqualToString:@"发布失败"]){
-            [SVProgressHUD showErrorWithStatus:@"消息发布失败！"  maskType: SVProgressHUDMaskTypeBlack];
+            [MsgDisplay showSuccessMsg:@"消息发布成功！"];
+        } else if([responseObject isEqualToString:@"发布失败"]){
+            [MsgDisplay showErrorMsg:@"消息发布失败！"];
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription maskType: SVProgressHUDMaskTypeBlack];
+        [MsgDisplay showErrorMsg:error.localizedDescription];
     }];
-    
-    
 }
 
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView == affirmAnnounceAlert)
     {
         if (buttonIndex == 1) {

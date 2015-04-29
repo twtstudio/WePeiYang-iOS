@@ -9,25 +9,42 @@
 #import "GPADataManager.h"
 #import "twtAPIs.h"
 #import "JSONKit.h"
+#import "wpyCacheManager.h"
 
 @implementation GPADataManager
 
-+ (void)getDataWithParameters:(NSDictionary *)parameters success:(void (^)(id))success failure:(void (^)(NSInteger))failure {
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[twtAPIs GPAInquire] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success([operation.responseString objectFromJSONString]);
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(operation.response.statusCode);
++ (void)getDataWithParameters:(NSDictionary *)parameters success:(void (^)(id))success failure:(void (^)(NSInteger, NSString *))failure {
+    [wpyCacheManager loadCacheDataWithKey:@"gpaCache" andBlock:^(id cacheObject) {
+        dispatch_async(dispatch_get_main_queue(), ^() {
+            success(cacheObject);
+        });
     }];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^() {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:[twtAPIs GPAInquire] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                success([operation.responseString objectFromJSONString]);
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            });
+            [wpyCacheManager saveCacheData:[operation.responseString objectFromJSONString] withKey:@"gpaCache"];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                NSString *errorMsg = [wpyCacheManager cacheDataExistsWithKey:@"gpaCache"] ? [NSString stringWithFormat:@"%@\n已为您加载缓存。", error.localizedDescription] : error.localizedDescription;
+                failure(operation.response.statusCode, errorMsg);
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            });
+        }];
+    });
 }
 
-+ (void)autoEvaluateWithParameters:(NSDictionary *)parameters success:(void (^)())success failure:(void (^)(NSInteger))failure {
++ (void)autoEvaluateWithParameters:(NSDictionary *)parameters success:(void (^)())success failure:(void (^)(NSInteger, NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[twtAPIs GPAAutoEvaluate] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(operation.response.statusCode);
+        failure(operation.response.statusCode, error.localizedDescription);
     }];
 }
 
@@ -36,10 +53,8 @@
     
     NSArray *termsDataArr = [gpaDic objectForKey:@"terms"];
     
-    for (NSDictionary *termDic in termsDataArr)
-    {
-        for (NSDictionary *temp in termDic)
-        {
+    for (NSDictionary *termDic in termsDataArr) {
+        for (NSDictionary *temp in termDic) {
             [gpaData addObject:temp];
         }
     }
@@ -49,16 +64,11 @@
     
     NSMutableArray *terms = [[NSMutableArray alloc]initWithObjects: nil];
     
-    for (int i = 0; i <= [gpaData count]-1; i++)
-    {
-        if (i == 0)
-        {
+    for (int i = 0; i <= [gpaData count]-1; i++) {
+        if (i == 0) {
             [terms addObject:[[gpaData objectAtIndex:i] objectForKey:@"term"]];
-        }
-        else
-        {
-            if (![[[gpaData objectAtIndex:i-1] objectForKey:@"term"] isEqualToString:[[gpaData objectAtIndex:i] objectForKey:@"term"]])
-            {
+        } else {
+            if (![[[gpaData objectAtIndex:i-1] objectForKey:@"term"] isEqualToString:[[gpaData objectAtIndex:i] objectForKey:@"term"]]) {
                 [terms addObject:[[gpaData objectAtIndex:i] objectForKey:@"term"]];
             }
         }
@@ -67,8 +77,7 @@
     NSMutableArray *everyScoreArr = [[NSMutableArray alloc]initWithObjects: nil];
     NSMutableArray *everyGpaArr = [[NSMutableArray alloc]initWithObjects: nil];
     NSArray *everyDataArr = [[gpaDic objectForKey:@"data"]objectForKey:@"every"];
-    for (NSDictionary *tmp in everyDataArr)
-    {
+    for (NSDictionary *tmp in everyDataArr) {
         [everyScoreArr addObject:[tmp objectForKey:@"score"]];
         [everyGpaArr addObject:[tmp objectForKey:@"gpa"]];
     }
@@ -106,35 +115,28 @@
     
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:plistPath])
-    {
+    if (![fileManager fileExistsAtPath:plistPath]) {
         [fileManager createFileAtPath:plistPath contents:nil attributes:nil];
         NSMutableDictionary *previousGPAResult = [[NSMutableDictionary alloc]init];
-        for (int i = 0; i < [terms count]; i++)
-        {
+        for (int i = 0; i < [terms count]; i++) {
             NSMutableDictionary *termDic = [[NSMutableDictionary alloc]init];
             NSString *thisTerm = [terms objectAtIndex:i];
-            for (int j = 0; j < [gpaData count]; j++)
-            {
-                if ([[[gpaData objectAtIndex:j] objectForKey:@"term"] isEqualToString:thisTerm])
-                {
+            for (int j = 0; j < [gpaData count]; j++) {
+                if ([[[gpaData objectAtIndex:j] objectForKey:@"term"] isEqualToString:thisTerm]) {
                     [termDic setObject:[gpaData objectAtIndex:j] forKey:[[gpaData objectAtIndex:j] objectForKey:@"name"]];
                 }
             }
             [previousGPAResult setObject:termDic forKey:thisTerm];
         }
         [previousGPAResult writeToFile:plistPath atomically:YES];
-    }
-    else
-    {
+    } else {
         NSDictionary *previousGPAResult = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
         [fileManager removeItemAtPath:plistPath error:nil];
         
         newAddedSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
         
         NSMutableDictionary *thisTimeGPAResult = [[NSMutableDictionary alloc]init];
-        for (int i = 0; i < [terms count]; i++)
-        {
+        for (int i = 0; i < [terms count]; i++) {
             NSMutableArray *thisTermSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
             
             NSMutableDictionary *termDic = [[NSMutableDictionary alloc]init];
@@ -142,29 +144,23 @@
             NSDictionary *resultOfThisTermLastChecked = [previousGPAResult objectForKey:thisTerm];
             NSArray *lastSubjects = [resultOfThisTermLastChecked allKeys];
             
-            for (int j = 0; j < [gpaData count]; j++)
-            {
-                if ([[[gpaData objectAtIndex:j] objectForKey:@"term"] isEqualToString:thisTerm])
-                {
+            for (int j = 0; j < [gpaData count]; j++) {
+                if ([[[gpaData objectAtIndex:j] objectForKey:@"term"] isEqualToString:thisTerm]) {
                     [termDic setObject:[gpaData objectAtIndex:j] forKey:[[gpaData objectAtIndex:j] objectForKey:@"name"]];
                     [thisTermSubjects addObject:[[gpaData objectAtIndex:j] objectForKey:@"name"]];
                 }
             }
             [thisTimeGPAResult setObject:termDic forKey:thisTerm];
             
-            for (int k = 0; k < [thisTermSubjects count]; k++)
-            {
+            for (int k = 0; k < [thisTermSubjects count]; k++) {
                 BOOL subjectInLastChecked = NO;
-                for (int l = 0; l < [lastSubjects count]; l++)
-                {
-                    if ([[thisTermSubjects objectAtIndex:k] isEqualToString:[lastSubjects objectAtIndex:l]])
-                    {
+                for (int l = 0; l < [lastSubjects count]; l++) {
+                    if ([[thisTermSubjects objectAtIndex:k] isEqualToString:[lastSubjects objectAtIndex:l]]) {
                         subjectInLastChecked = YES;
                         break;
                     }
                 }
-                if(!subjectInLastChecked)
-                {
+                if(!subjectInLastChecked) {
                     [newAddedSubjects addObject:[thisTermSubjects objectAtIndex:k]];
                 }
             }

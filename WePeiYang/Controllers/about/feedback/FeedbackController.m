@@ -8,15 +8,18 @@
 
 #import "FeedbackController.h"
 #import "FeedbackForm.h"
-#import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "AFNetworking.h"
 #import "data.h"
+#import "twtAPIs.h"
 
 @interface FeedbackController ()
 
 @end
 
-@implementation FeedbackController
+@implementation FeedbackController {
+    UIAlertView *successAlert;
+}
 
 @synthesize tableView;
 @synthesize formController;
@@ -47,8 +50,7 @@
     [navigationItem setTitle:@"发送反馈"];
     [navigationItem setLeftBarButtonItem:backBarBtn];
     [self.view addSubview:navigationBar];
-    
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -72,7 +74,7 @@
     NSString *deviceVersion = form.deviceVersion;
     NSString *feedback = form.advices;
     
-    NSString *url = @"http://push-mobile.twtapps.net/suggest/wepeiyang";
+    NSString *url = [twtAPIs sendFeedback];
     NSDictionary *parameters = @{@"email":email,
                                  @"content":feedback,
                                  @"info":[NSString stringWithFormat:@"%@,%@",deviceModel,deviceVersion],
@@ -81,9 +83,10 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [SVProgressHUD showSuccessWithStatus:@"感谢您的反馈！"];
+        successAlert = [[UIAlertView alloc]initWithTitle:@"反馈成功" message:@"感谢您的反馈！" delegate:self cancelButtonTitle:@"平身" otherButtonTitles:nil];
+        [successAlert show];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"发送反馈失败，请稍后再试"];
+        [MsgDisplay showErrorMsg:@"发送反馈失败，请稍后再试"];
     }];
 }
 
@@ -91,14 +94,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView == successAlert) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
-*/
 
 @end

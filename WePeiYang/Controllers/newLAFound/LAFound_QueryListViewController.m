@@ -3,14 +3,15 @@
 //  LostAndFound
 //
 //  Created by 马骁 on 14-4-16.
+//  Modified by Qin Yubo
 //  Copyright (c) 2014年 Mx. All rights reserved.
 //
 
 #import "LAFound_QueryListViewController.h"
 #import "LAFound_QueryDetailViewController.h"
 #import "LAFound_QueryListTableViewCell.h"
-#import "SVProgressHUD.h"
 #import "LAFound_AnnounceViewController.h"
+#import "MsgDisplay.h"
 
 #import "LAFound_DataManager.h"
 
@@ -94,14 +95,11 @@
     }else{
         [self loadData];
         _dataExixt = YES;
-        //        设置下拉刷新
+        // 设置下拉刷新
         self.refreshControl = [[UIRefreshControl alloc] init];
         self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
         [self.refreshControl addTarget:self action:@selector(refreshTableview) forControlEvents:UIControlEventValueChanged];
     }
-    
-    
-    //self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,14 +199,11 @@
 
 - (void)loadData
 {
-
-    
     [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
         [self processWithData:responseObject];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [MsgDisplay showErrorMsg:error.localizedDescription];
     }];
-    
     
 }
 
@@ -233,7 +228,7 @@
         }
         [self.tableView reloadData];
     } else {
-        [SVProgressHUD showErrorWithStatus:@"出错啦~请稍后重试…"];
+        [MsgDisplay showErrorMsg:@"出错啦~请稍后重试…"];
     }
 }
 
@@ -254,7 +249,7 @@
         }
         [self.tableView reloadData];
     } else {
-        [SVProgressHUD showErrorWithStatus:@"出错啦~请稍后重试…"];
+        [MsgDisplay showErrorMsg:@"出错啦~请稍后重试…"];
     }
     
     
@@ -295,7 +290,7 @@
     [LAFound_DataManager getItemInfoWithItemInfoType:_type andPage:_currentPage success:^(id responseObject) {
         [self processWithDataPassRefresh:responseObject];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        [MsgDisplay showErrorMsg:error.localizedDescription];
     }];
     [self.refreshControl endRefreshing];
     

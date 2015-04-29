@@ -26,8 +26,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         super.viewDidLoad()
         
-        //self.navigationController!.interactivePopGestureRecognizer.delegate = self
-        
         // Reverse to default tint color.
         UIButton.appearance().tintColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
         
@@ -42,8 +40,9 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 64))
         let navigationItem = UINavigationItem(title: "关于")
         
-        let backIconPath:NSString! = NSBundle.mainBundle().pathForResource("backForNav@2x", ofType: "png")
-        let backBarBtn = UIBarButtonItem(image: UIImage(contentsOfFile: backIconPath), style: UIBarButtonItemStyle.Plain, target: self, action: "backToHome")
+        let backIconPath: String! = NSBundle.mainBundle().pathForResource("backForNav@2x", ofType: "png")
+        var backIcon = UIImage(contentsOfFile: backIconPath)
+        let backBarBtn = UIBarButtonItem(image: backIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "backToHome")
         navigationBar.pushNavigationItem(navigationItem, animated: true)
         navigationItem.setLeftBarButtonItem(backBarBtn, animated: true)
         
@@ -103,31 +102,31 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         var row = indexPath.row
         var section = indexPath.section
         if section == 0 {
-            cell.textLabel!.text = aboutArr[row] as NSString
+            cell.textLabel!.text = aboutArr[row] as NSString as String
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         } else if section == 1 {
             if touchIdSupport == true {
                 if row == 1 {
-                    cell.textLabel!.text = webArr[row] as NSString
+                    cell.textLabel!.text = webArr[row] as! NSString as String
                     var defaults = NSUserDefaults.standardUserDefaults()
                     if defaults.objectForKey("touchIdEnabled") == nil {
                         defaults.setObject(false, forKey: "touchIdEnabled")
                     }
                     
-                    touchIdSwitch.on = defaults.objectForKey("touchIdEnabled") as Bool
+                    touchIdSwitch.on = defaults.objectForKey("touchIdEnabled") as! Bool
                     
                     touchIdSwitch.addTarget(self, action: "touchIdSwitchChanged", forControlEvents: UIControlEvents.ValueChanged)
                     cell.accessoryView = touchIdSwitch
                     cell.selectionStyle = UITableViewCellSelectionStyle.None
                     
                 } else {
-                    cell.textLabel!.text = webArr[row] as NSString
+                    cell.textLabel!.text = webArr[row] as? String
                 }
             } else {
-                cell.textLabel!.text = webArr[row] as NSString
+                cell.textLabel!.text = webArr[row] as? String
             }
         } else if section == 2 {
-            cell.textLabel!.text = feedbackArr[row] as NSString
+            cell.textLabel!.text = feedbackArr[row]
             if row == 0 {
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
@@ -346,32 +345,38 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func getClassData() {
-        if AccountManager.isLoggedIn() {
-            if AccountManager.isTjuBinded() {
-                MsgDisplay.showLoading()
-                
-                // Here to add functions to get class data
-                var manager = AFHTTPRequestOperationManager()
-                let url = "http://push-mobile.twtapps.net/classtable"
-                let parameters = ["id": data.shareInstance().userId, "token": data.shareInstance().userToken, "platform":"ios", "version":data.shareInstance().appVersion]
-                manager.GET(url, parameters: parameters, success: {
-                    (AFHTTPRequestOperation operation, AnyObject responseObj) in
-                        MsgDisplay.dismiss()
-                        self.getStartTime()
-                        self.saveCacheWithData(responseObj)
-                    }, failure: {
-                    (AFHTTPRequestOperation operation, NSError error) in
-                        MsgDisplay.dismiss()
-                        var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_", delegate: self, cancelButtonTitle: "哦")
-                        alert.show()
-                })
-                
-            } else {
-                MsgDisplay.showErrorMsg("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
-            }
-        } else {
-            MsgDisplay.showErrorMsg("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
-        }
+        
+        MsgDisplay.showLoading()
+        
+        ClasstableManager.getClassDataIfSuccess({
+            () in
+            
+            var alert = UIAlertView(title: "成功", message: "抓取课程表成功~\n请下拉通知栏，进入【今天】视图，点击【编辑】以添加微北洋课程表扩展~", delegate: self, cancelButtonTitle: "哦")
+            alert.show()
+            
+            ClasstableManager.getTermStartTimeIfSuccess({
+                () in
+                MsgDisplay.dismiss()
+                }, orFailure: {
+                    (statusCode: Int, errStr: String!) in
+                    MsgDisplay.dismiss()
+            })
+            
+            }, orFailure: {
+                (statusCode: Int, errStr: String!) in
+                MsgDisplay.dismiss()
+                if (statusCode == 1) {
+                    MsgDisplay.showErrorMsg("您尚未绑定办公网账号哦~\n请向下滑动菜单，点击【绑定办公网账号】~")
+                    return
+                } else if (statusCode == 2) {
+                    MsgDisplay.showErrorMsg("您尚未登录哦~\n请滑动菜单至最下方，点击【登录天外天账号】~")
+                    return
+                } else {
+                    MsgDisplay.dismiss()
+                    var alert = UIAlertView(title: "失败", message: "抓取课程表失败_(:з」∠)_\n\(errStr)", delegate: self, cancelButtonTitle: "哦")
+                    alert.show()
+                }
+        })
     }
     
     func saveCacheWithData(responseObject: AnyObject) {
@@ -384,23 +389,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         var alert = UIAlertView(title: "成功", message: "抓取课程表成功~\n请下拉通知栏，进入【今天】视图，点击【编辑】以添加微北洋课程表扩展~", delegate: self, cancelButtonTitle: "哦")
         alert.show()
     }
-
-    func getStartTime() {
-        var manager = AFHTTPRequestOperationManager()
-        let url = "http://push-mobile.twtapps.net/start"
-        let parameters = ["platform":"ios", "version":data.shareInstance().appVersion]
-        manager.GET(url, parameters: parameters, success: {
-            (AFHTTPRequestOperation operation, AnyObject responseObj) in
-                let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
-                userDefault?.removeObjectForKey("StartTime")
-                userDefault?.setObject(responseObj, forKey: "StartTime")
-                userDefault?.synchronize()
-            }, failure: {
-            (AFHTTPRequestOperation operation, NSError error) in
-                //可以加入手动选择学期开始时间
-                
-        })
-    }
     
     func touchIdSwitchChanged() {
         
@@ -410,7 +398,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             var error: NSError?
             if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
                 context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "请验证 Touch ID" , reply: {
-                    (BOOL success, NSError BioError) in
+                    (success: Bool, BioError: NSError!) in
                     if success {
                         var defaults = NSUserDefaults.standardUserDefaults()
                         

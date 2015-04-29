@@ -10,7 +10,7 @@
 
 @interface LibraryFavouriteViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *favTableView;
 @property (strong, nonatomic) IBOutlet UILabel *noFavLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *headerBackView;
 

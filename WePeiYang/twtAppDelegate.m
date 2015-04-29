@@ -9,9 +9,9 @@
 #import "twtAppDelegate.h"
 #import "data.h"
 #import "twtSecretKeys.h"
-#import "RavenClient.h"
 #import "WePeiYang-Swift.h"
 #import "TWTNavController.h"
+#import <FIR/FIR.h>
 
 #define DEVICE_IS_IPHONE5 (fabs((double)[UIScreen mainScreen].bounds.size.height - (double)568) < DBL_EPSILON)
 
@@ -26,12 +26,12 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    // Configure the Sentry client
-    [RavenClient clientWithDSN:[twtSecretKeys getRavenKey]];
+    [FIR handleCrashWithKey:[twtSecretKeys getFIRKey]];
+    [WXApi registerApp:[twtSecretKeys getWechatAppId]];
     
-    // Install the global error handler
-    [[RavenClient sharedClient] setupExceptionHandler];
-    
+    // Set NSURLCache
+    NSURLCache *sharedCache = [[NSURLCache alloc]initWithMemoryCapacity:2 * 1024 * 1024 diskCapacity:30 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
     
     DashboardViewController *dashboard = [[DashboardViewController alloc]init];
     // UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:dashboard];
@@ -66,6 +66,14 @@
     }*/
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:self];
 }
 
 //Notifications
@@ -110,7 +118,6 @@
             //[data shareInstance].newsTitle = [data shareInstance].pushMsg;
             //[data shareInstance].newsId = [data shareInstance].pushId;
             //ReceivedNotificationViewController *receivedNotificationViewController = [[ReceivedNotificationViewController alloc]initWithNibName:nil bundle:nil];
-            //DMSlideTransition *trans = [[DMSlideTransition alloc]init];
             //[receivedNotificationViewController setTransitioningDelegate:trans];
             //[self.window.rootViewController presentViewController:receivedNotificationViewController animated:YES completion:nil];
         }
@@ -166,6 +173,16 @@
 {
     float lastVer = [coder decodeFloatForKey:@"Version"];
     NSLog(@"lastVer = %f",lastVer);
+}
+
+// WeChat Delegate
+
+- (void)onReq:(BaseReq *)req {
+    
+}
+
+- (void)onResp:(BaseResp *)resp {
+    
 }
 
 @end

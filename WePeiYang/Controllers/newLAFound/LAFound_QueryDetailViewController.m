@@ -3,6 +3,7 @@
 //  LostAndFound
 //
 //  Created by 马骁 on 14-4-15.
+//  Modified by Qin Yubo
 //  Copyright (c) 2014年 Mx. All rights reserved.
 //
 
@@ -43,84 +44,25 @@
     self.phoneTextField.text = [_dic valueForKey:@"phone"];
     self.contentTextView.text = [_dic valueForKey:@"content"];
     self.updataDateTextField.text = [_dic valueForKey:@"created_at"];
-
-    //self.contentTextView.layer.borderWidth = 1.0;
-    //self.contentTextView.layer.cornerRadius = 5.0;
-    //self.contentTextView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.15].CGColor;
     
     if (!self.isCollectionDetail) {
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
         self.navigationItem.rightBarButtonItem = rightButton;
     }
-    
-    //NSTimer *timerforScrollView;
-    //timerforScrollView = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(forScrollView) userInfo:nil repeats:NO];
+
 }
-/*
-- (void)forScrollView{
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-40)];
-}
- */
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-- (void)LAFound_CollectionViewController:(LAFound_CollectionViewController *)cVC ShowDetailByDataDic:(NSDictionary *)dic
-{
-    _dic = dic;
-}*/
 
 - (void)LAFound_QueryListViewController:(LAFound_QueryListViewController *)qdVC ShowDetailByDataDic:(NSDictionary *)dic
 {
     _dic = dic;
 }
-
-#pragma mark 收集
-
-
-- (NSString *)documentsDirectory
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths firstObject];
-    return documentsDirectory;
-}
-
-- (NSString *)dataFilePath
-{
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"LAFound_Collection.plist"];
-}
-
-
-
-- (void)collectItemAction{
-    [self loadDataArray];
-    if (![_tempCollectionArray containsObject:_dic]) {
-        [_tempCollectionArray addObject:_dic];
-        NSMutableData *data = [[NSMutableData alloc] init];
-        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-        [archiver encodeObject:_tempCollectionArray forKey:@"LAFound_Collection"];
-        [archiver finishEncoding];
-        [data writeToFile:[self dataFilePath] atomically:YES];
-    }
-    [SVProgressHUD showSuccessWithStatus:@"添加收藏成功"];
-}
-
-- (void)loadDataArray
-{
-    NSString *path = [self dataFilePath];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        _tempCollectionArray = [unArchiver decodeObjectForKey:@"LAFound_Collection"];
-        [unArchiver finishDecoding];
-    } else {
-        _tempCollectionArray = [[NSMutableArray alloc] initWithCapacity:20];
-    }
-}
-
 
 #pragma mark 取得分享内容文本
 - (void)share

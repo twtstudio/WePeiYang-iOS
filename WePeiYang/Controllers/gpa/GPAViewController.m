@@ -18,6 +18,7 @@
 #import "GPADataManager.h"
 #import "WePeiYang-Swift.h"
 #import "wpyDeviceStatus.h"
+#import "wpyCacheManager.h"
 
 @interface GPAViewController ()
 
@@ -51,14 +52,11 @@
     
     gpaHeaderView *gpaHeader;
     
-    //Instances
-    NSInteger gpaHeaderViewHeight;
-    
     NSInteger lastSelected; // 图表里上一个选择的节点的index
     BOOL graphIsTouched; // 图表当前被摸着
 }
 
-@synthesize tableView;
+@synthesize resultTableView;
 @synthesize moreBtn;
 @synthesize backBtn;
 @synthesize loginBtn;
@@ -80,7 +78,6 @@
     // Do any additional setup after loading the view from its nib.
     
     //INSTANCES
-    gpaHeaderViewHeight = 150;
 
     self.title = @"GPA查询";
     
@@ -98,8 +95,6 @@
     newAddedSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
     
     [loginBtn primaryStyle];
-    
-    gpaHeader = [[gpaHeaderView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, gpaHeaderViewHeight)];
     
     [dataInTable removeAllObjects];
     [self checkLoginStatus];
@@ -125,12 +120,9 @@
     
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:plistPath])
-    {
+    if (![fileManager fileExistsAtPath:plistPath]) {
         [self setLoginView];
-    }
-    else
-    {
+    } else {
         NSDictionary *parameters = @{@"id":[data shareInstance].userId,
                                      @"token":[data shareInstance].userToken,
                                      @"platform":@"ios",
@@ -141,12 +133,11 @@
         [GPADataManager getDataWithParameters:parameters success:^(id responseObject) {
             //Successful
             [self setNormalView];
-            [self saveCacheWithData:responseObject];
             [self processGpaData:responseObject];
             [MsgDisplay dismiss];
-        } failure:^(NSInteger statusCode) {
+        } failure:^(NSInteger statusCode, NSString *errStr) {
             [MsgDisplay dismiss];
-            [self processErrorWithStatusCode:statusCode];
+            [self processErrorWithStatusCode:statusCode andErrorString:errStr];
         }];
     }
 }
@@ -156,7 +147,7 @@
 - (void)setNormalView {
     loginBtn.userInteractionEnabled = YES;
     [moreBtn setHidden:NO];
-    [tableView setHidden:NO];
+    [resultTableView setHidden:NO];
     [loginBtn setHidden:YES];
     [noLoginLabel setHidden:YES];
     [noLoginImg setHidden:YES];
@@ -166,7 +157,7 @@
 
 - (void)setLoginView {
     [moreBtn setHidden:YES];
-    [tableView setHidden:YES];
+    [resultTableView setHidden:YES];
     [noLoginLabel setHidden:NO];
     [loginBtn setHidden:NO];
     [noLoginImg setHidden:NO];
@@ -178,7 +169,7 @@
 
 - (void)setBindView {
     [moreBtn setHidden:YES];
-    [tableView setHidden:YES];
+    [resultTableView setHidden:YES];
     [noLoginLabel setHidden:NO];
     [loginBtn setHidden:NO];
     [noLoginImg setHidden:NO];
@@ -200,30 +191,24 @@
     }];
 }
 
-- (void)processErrorWithStatusCode:(NSInteger)statusCode {
+- (void)processErrorWithStatusCode:(NSInteger)statusCode andErrorString:(NSString *)errStr {
     backBtn.tintColor = gpaTintColor;
     switch (statusCode) {
         case 401:
             [MsgDisplay showErrorMsg:@"验证出错\n请重新登录"];
             [self setLoginView];
-            
+            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
             break;
             
         case 403:
             [self setBindView];
-            
-            break;
-            
-        case 500:
-            [MsgDisplay showErrorMsg:@"服务器出错惹 QAQ"];
-            if ([self loadCacheAsResponseObject] != nil) {
-                [self processGpaData:[self loadCacheAsResponseObject]];
-            }
+            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
             break;
             
         default:
-            if ([self loadCacheAsResponseObject] != nil) {
-                [self processGpaData:[self loadCacheAsResponseObject]];
+            [MsgDisplay showErrorMsg:errStr];
+            if ([gpaData count] == 0) {
+                [self.navigationController popViewControllerAnimated:YES];
             }
             break;
     }
@@ -270,23 +255,38 @@
         newAddedSubjects = _newAddedSubjects;
     }];
     
+    gpaHeader = [[gpaHeaderView alloc]init];
     gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
     gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
-    
     gpaHeader.termLabel.text = @"";
+    gpaHeader.translatesAutoresizingMaskIntoConstraints = NO;
     
     //初始化图表
     
-    JBLineChartView *lineChart = [[JBLineChartView alloc]initWithFrame:CGRectMake(20, gpaHeaderViewHeight+20, [UIScreen mainScreen].bounds.size.width - 40, 130)];
+    JBLineChartView *lineChart = [[JBLineChartView alloc]init];
     lineChart.dataSource = self;
     lineChart.delegate = self;
+    lineChart.backgroundColor = [UIColor whiteColor];
     lineChart.state = JBChartViewStateCollapsed; // 先收起ChartView
+    lineChart.translatesAutoresizingMaskIntoConstraints = NO;
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, gpaHeaderViewHeight+164)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 320)];
+    //UIView *headerView = [[UIView alloc]init];
     [headerView addSubview:gpaHeader];
     [headerView addSubview:lineChart];
+    headerView.backgroundColor = [UIColor whiteColor];
     
-    tableView.tableHeaderView = headerView;
+    NSDictionary *headerSubviews = NSDictionaryOfVariableBindings(gpaHeader, lineChart);
+    NSDictionary *metrics = @{@"gpaHeaderHeight": @150,
+                              @"lineChartHeight": @130};
+    NSString *vfl1 = @"V:|-0-[gpaHeader(gpaHeaderHeight)]-18-[lineChart]-12-|";
+    NSString *vfl2 = @"|-0-[gpaHeader]-0-|";
+    NSString *vfl3 = @"|-20-[lineChart]-20-|";
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:metrics views:headerSubviews]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:metrics views:headerSubviews]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3 options:0 metrics:metrics views:headerSubviews]];
+    
+    resultTableView.tableHeaderView = headerView;
     [self selectPointForIndex:[terms count]-1 withRowAnimation:UITableViewRowAnimationAutomatic];
     lastSelected = [terms count] - 1;
     
@@ -302,14 +302,14 @@
     [GPADataManager autoEvaluateWithParameters:parameters success:^(){
         [MsgDisplay showSuccessMsg:@"一键评价成功！"];
         [self checkLoginStatus];
-    } failure:^(NSInteger statusCode) {
+    } failure:^(NSInteger statusCode, NSString *errStr) {
         switch (statusCode) {
             case 403:
-                [MsgDisplay showErrorMsg:@"没有可以评价的科目"];
+                [MsgDisplay showErrorMsg:@"没有可以评价的科目。"];
                 break;
                 
             default:
-                [MsgDisplay showErrorMsg:@"无法一键评价T^T"];
+                [MsgDisplay showErrorMsg:[NSString stringWithFormat:@"无法一键评价 T^T\n%@", errStr]];
                 break;
         }
     }];
@@ -398,7 +398,7 @@
         }
     }
     
-    [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:rowAnimation];
+    [resultTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:rowAnimation];
 }
 
 - (IBAction)backToHomeBtn:(id)sender
@@ -426,54 +426,30 @@
     
 }
 
-- (void) pushGPACalculator
+- (void)pushGPACalculator
 {
     GPACalculatorViewController *gpaCalculator = [[GPACalculatorViewController alloc]initWithNibName:nil bundle:nil];
     gpaCalculator.gpaData = gpaData;
     [self.navigationController pushViewController:gpaCalculator animated:YES];
 }
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float offsetY = [scrollView contentOffset].y;
     //NSLog([NSString stringWithFormat:@"%f",offsetY]);
     gpaHeader.alpha = 1-offsetY/150;
     backBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
     moreBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
+    
+    if (offsetY < 0) {
+        resultTableView.backgroundColor = gpaTintColor;
+    } else {
+        resultTableView.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
-}
-
-// GPA数据缓存
-
-- (void) saveCacheWithData:(id)responseObject {
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:plistPath]) {
-        [fileManager removeItemAtPath:plistPath error:nil];
-    }
-    [responseObject writeToFile:plistPath atomically:YES];
-}
-
-- (NSDictionary *) loadCacheAsResponseObject {
-    
-    NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"gpaCacheData"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:plistPath]) {
-        NSDictionary *cacheDic = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
-        if (cacheDic.count != 0) {
-            [MsgDisplay showErrorMsg:@"网络出错\n已为您加载缓存"];
-            
-        } else {
-            [MsgDisplay showErrorMsg:@"网络出错\n请稍后重试_(:з」∠)_"];
-            
-        }
-        return cacheDic;
-    } else {
-        return nil;
-    }
 }
 
 // JBLineChartViewDelegate
@@ -541,7 +517,7 @@
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint {
     // Update view
-    self.tableView.scrollEnabled = NO;
+    self.resultTableView.scrollEnabled = NO;
     
     // 不该每次执行都更新，但是第一次要更新
     if (graphIsTouched == NO) {
@@ -576,13 +552,17 @@
 
 - (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView {
     // Update view
-    self.tableView.scrollEnabled = YES;
+    self.resultTableView.scrollEnabled = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
         gpaHeader.gpaLabel.text = [NSString stringWithFormat:@"%.2f", gpa];
         gpaHeader.scoreLabel.text = [NSString stringWithFormat:@"%.2f", score];
         gpaHeader.termLabel.text = @"";
     });
     graphIsTouched = NO;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
 }
 
 @end

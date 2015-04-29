@@ -30,7 +30,7 @@ class AboutUsViewController: UIViewController, UIGestureRecognizerDelegate, UIAl
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 64))
         let navigationItem = UINavigationItem(title: "关于我们")
         
-        let backIconPath:NSString! = NSBundle.mainBundle().pathForResource("backForNav@2x", ofType: "png")
+        let backIconPath: String! = NSBundle.mainBundle().pathForResource("backForNav@2x", ofType: "png")
         let backBarBtn = UIBarButtonItem(image: UIImage(contentsOfFile: backIconPath), style: UIBarButtonItemStyle.Plain, target: self, action: "backToHome")
         navigationBar.pushNavigationItem(navigationItem, animated: true)
         navigationItem.setLeftBarButtonItem(backBarBtn, animated: true)

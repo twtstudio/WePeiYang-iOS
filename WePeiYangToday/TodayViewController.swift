@@ -68,7 +68,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         if userDefault?.objectForKey("Classtable") == nil {
             nextLabel.text = ""
-            courseLabel.text = "您尚未抓取过课程表哦QAQ"
+            courseLabel.text = "您尚未抓取过课程表哦 QAQ"
             detailLabel.text = "请进入微北洋 -> 关于 -> 抓取课程表"
         } else {
             nextLabel.text = ""
@@ -106,20 +106,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
             var classesToday = NSMutableArray()
             
-            var classData = userDefault?.objectForKey("Classtable") as NSArray
+            var classData = userDefault?.objectForKey("Classtable") as! NSArray
             
             for classItem in classData {
                 
                 //安排课的
-                if classItem["arrange"] as NSArray == [] {
+                if classItem["arrange"] as! NSArray == [] {
                     continue
                 } else {
                     
                     //始末周判断
-                    let startEndDic = classItem["startend"] as NSDictionary
+                    let startEndDic = classItem["startend"] as! NSDictionary
                     
-                    var startStr = startEndDic["start"] as NSString
-                    var endStr = startEndDic["end"] as NSString
+                    var startStr = startEndDic["start"] as! NSString
+                    var endStr = startEndDic["end"] as! NSString
                     
                     var startWeek = startStr.integerValue
                     var endWeek = endStr.integerValue
@@ -129,22 +129,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     } else {
                         
                         //单双周判断
-                        let arrangeArr = classItem["arrange"] as NSArray
+                        let arrangeArr = classItem["arrange"] as! NSArray
                         for singleArrange in arrangeArr {
-                            if (singleArrange["weektimes"] as NSString == "单周" && thisWeekIsDanZhou == false) || (singleArrange["weektimes"] as NSString == "双周" && thisWeekIsDanZhou == true) {
+                            if (singleArrange["weektimes"] as! NSString == "单周" && thisWeekIsDanZhou == false) || (singleArrange["weektimes"] as! NSString == "双周" && thisWeekIsDanZhou == true) {
                                 continue
                             } else {
                                 
                                 //weekday判断
-                                var weekDayStr = singleArrange["weekday"] as NSString
+                                var weekDayStr = singleArrange["weekday"] as! NSString
                                 var weekDayInt = weekDayStr.integerValue
                                 if weekday == weekDayInt {
                                     
                                     classesToday.addObject(classItem)
                                     
                                     //currentClass判断
-                                    var fromStr = singleArrange["from"] as NSString
-                                    var toStr = singleArrange["to"] as NSString
+                                    var fromStr = singleArrange["from"] as! NSString
+                                    var toStr = singleArrange["to"] as! NSString
                                     var fromNum = fromStr.integerValue
                                     var toNum = toStr.integerValue
                                     
@@ -161,9 +161,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                             
                                             if fromNum == currentClass + 1 {
                                                 nextLabel.text = "第\(fromNum)节至第\(toNum)节"
-                                                var courseName = classItem["coursename"] as NSString
-                                                var teacher = classItem["teacher"] as NSString
-                                                var room = singleArrange["room"] as NSString
+                                                var courseName = classItem["coursename"] as! NSString
+                                                var teacher = classItem["teacher"] as! NSString
+                                                var room = singleArrange["room"] as! NSString
                                                 courseLabel.text = "\(courseName)"
                                                 detailLabel.text = "\(teacher)  \(room)"
                                             } else {
@@ -175,9 +175,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                             
                                             if fromNum == currentClass {
                                                 nextLabel.text = "第\(fromNum)节至第\(toNum)节"
-                                                var courseName = classItem["coursename"] as NSString
-                                                var teacher = classItem["teacher"] as NSString
-                                                var room = singleArrange["room"] as NSString
+                                                var courseName = classItem["coursename"] as! NSString
+                                                var teacher = classItem["teacher"] as! NSString
+                                                var room = singleArrange["room"] as! NSString
                                                 courseLabel.text = "\(courseName)"
                                                 detailLabel.text = "\(teacher)  \(room)"
                                             } else {
@@ -202,14 +202,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 
                 if classesToday.count != 0 {
                     for todayClassItem in classesToday {
-                        let todayArrange = todayClassItem["arrange"] as NSArray
+                        let todayArrange = todayClassItem["arrange"] as! NSArray
                         for todaySingleArrange in todayArrange {
                             
-                            let arrangeWeekday = todaySingleArrange["weekday"] as NSString
+                            let arrangeWeekday = todaySingleArrange["weekday"] as! NSString
                             let arrangeWeekdayInt = arrangeWeekday.integerValue
                             
                             if arrangeWeekdayInt == weekday {
-                                let todayFromStr = todaySingleArrange["from"] as NSString
+                                let todayFromStr = todaySingleArrange["from"] as! NSString
                                 let todayFromInt = todayFromStr.integerValue
                                 
                                 if todayFromInt <= currentClass {
@@ -234,12 +234,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 
                 if nearestClass != nil {
                     //显示
-                    let nearestFromStr = nearestArrange!["from"] as NSString
-                    let nearestToStr = nearestArrange!["to"] as NSString
+                    let nearestFromStr = nearestArrange!["from"] as! NSString
+                    let nearestToStr = nearestArrange!["to"] as! NSString
                     
-                    let courseName = (nearestClass! as NSDictionary)["coursename"] as NSString
-                    let teacher = (nearestClass! as NSDictionary)["teacher"] as NSString
-                    let room = nearestArrange!["room"] as NSString
+                    let courseName = (nearestClass! as! NSDictionary)["coursename"] as! NSString
+                    let teacher = (nearestClass! as! NSDictionary)["teacher"] as! NSString
+                    let room = nearestArrange!["room"] as! NSString
                     nextLabel.text = "第\(nearestFromStr)节至第\(nearestToStr)节"
                     courseLabel.text = "\(courseName)"
                     detailLabel.text = "\(teacher)  \(room)"
@@ -310,8 +310,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let thisYear = comps.year
       
         let userDefault = NSUserDefaults(suiteName: "group.WePeiYang")
-        var startTime = userDefault?.objectForKey("StartTime") as NSDictionary
-        var startTimeStr = startTime["start"] as NSString
+        var startTime = userDefault?.objectForKey("StartTime") as! NSDictionary
+        var startTimeStr = startTime["start"] as! NSString
         //println(startTimeStr)
         if startTimeStr == "" {
             startTimeStr = "2015-03-09"
@@ -319,7 +319,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let termBeginDate = dateFormatter.dateFromString(startTimeStr)
+        let termBeginDate = dateFormatter.dateFromString(startTimeStr as String)
         let termBeginComps = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear | .CalendarUnitYear, fromDate: termBeginDate!)
         let termBeginWeekOfYear = termBeginComps.weekOfYear
         let termBeginYear = termBeginComps.year

@@ -13,6 +13,7 @@
 #import "twtSecretKeys.h"
 #import "data.h"
 #import "wpyEncryption.h"
+#import "wpyCacheManager.h"
 
 @implementation AccountManager
 
@@ -120,6 +121,11 @@
         [self removeFileWithFileName:fileName];
     }
     
+    NSArray *caches = @[@"gpaCache"];
+    for (NSString *cacheName in caches) {
+        [wpyCacheManager removeCacheDataForKey:cacheName];
+    }
+    
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] init];
     [userDefaults setBool:NO forKey:@"bindLib"];
     [userDefaults setBool:NO forKey:@"bindTju"];
@@ -163,6 +169,8 @@
         for (NSString *fileName in files) {
             [self removeFileWithFileName:fileName];
         }
+        
+        [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
         
         NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
         [userDefaults setBool:NO forKey:@"bindTju"];

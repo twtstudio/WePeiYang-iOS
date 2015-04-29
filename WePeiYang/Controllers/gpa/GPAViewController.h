@@ -13,7 +13,7 @@
 
 @interface GPAViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, JBLineChartViewDataSource, JBLineChartViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *resultTableView;
 @property (strong, nonatomic) IBOutlet UIButton *moreBtn;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) IBOutlet UILabel *noLoginLabel;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JobDetailViewController : UIViewController
+@interface JobDetailViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (retain, nonatomic) NSString *jobTitle;

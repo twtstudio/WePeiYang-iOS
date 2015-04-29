@@ -12,6 +12,8 @@
 #import "wpyStringProcessor.h"
 #import "MsgDisplay.h"
 #import "OpenInSafariActivity.h"
+#import "WeChatMomentsActivity.h"
+#import "WeChatSessionActivity.h"
 
 @interface JobDetailViewController ()
 
@@ -60,6 +62,8 @@
     } failure:^(NSString *error) {
         [MsgDisplay showErrorMsg:error];
     }];
+    
+    webView.delegate = self;
 }
 
 - (void)dealWithReceivedData:(NSDictionary *)contentDic
@@ -78,14 +82,17 @@
 {
     NSArray *activityItems;
     NSString *urlStr = [NSString stringWithFormat:@"http://job.tju.edu.cn/zhaopinxinxi_detail.php?id=%@",jobId];
-    UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
+    // UIImage *shareImg = [self getImageFromView:webView.scrollView.subviews[0]];
     
-    //NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",jobTitle,jobCorp,jobDate];
+    NSString *shareString = [[NSString alloc]initWithFormat:@"%@ %@ %@",jobTitle,jobCorp,jobDate];
     NSURL *shareURL = [NSURL URLWithString:urlStr];
-    activityItems = @[shareURL, shareImg];
-    OpenInSafariActivity *openInSafariActivity = [[OpenInSafariActivity alloc]init];
+    activityItems = @[shareURL, shareString];
     
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafariActivity]];
+    OpenInSafariActivity *openInSafariActivity = [[OpenInSafariActivity alloc]init];
+    WeChatMomentsActivity *wxMoments = [[WeChatMomentsActivity alloc] init];
+    WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafariActivity, wxMoments, wxSession]];
     [self presentViewController:activityViewController animated:YES completion:nil];
     
 }
@@ -96,6 +103,15 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 @end

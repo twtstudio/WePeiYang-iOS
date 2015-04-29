@@ -12,6 +12,7 @@
 #import "data.h"
 #import "MsgDisplay.h"
 #import "HiringDetailViewController.h"
+#import "SVPullToRefresh.h"
 
 @interface HiringViewController ()
 
@@ -20,7 +21,7 @@
 @implementation HiringViewController
 
 {
-    NSMutableArray *hiringData;
+    NSMutableArray *rowsData;
     NSMutableArray *dataInTable;
     
     NSInteger currentPage;
@@ -41,38 +42,40 @@
     
     self.title = @"校园招聘";
     
-    hiringData = [[NSMutableArray alloc]initWithObjects: nil];
-    dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        
+        UIEdgeInsets insets = self.tableView.contentInset;
+        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        self.tableView.contentInset = insets;
+        self.tableView.scrollIndicatorInsets = insets;
+    }
+    
+    rowsData = [[NSMutableArray alloc]init];
+    dataInTable = [[NSMutableArray alloc]init];
+    currentPage = 0;
+    
+    __weak HiringViewController *weakSelf = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refresh];
+    }];
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf nextPage];
+    }];
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backForNav.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backToHome)];
     [self.navigationItem setLeftBarButtonItem:backBtn];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
-    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshControl;
-    
-    [self refresh];
+    [self.tableView triggerPullToRefresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
 }
 
-- (void)refreshView:(UIRefreshControl *)refreshControl
-{
-    if(refreshControl.refreshing)
-    {
-        refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在加载..."];
-        [self performSelector:@selector(refresh) withObject:nil afterDelay:0];
-    }
-}
-
-- (void)refresh
-{
+- (void)refresh {
     currentPage = 0;
-    [hiringData removeAllObjects];
-    [dataInTable removeAllObjects];
+    rowsData = [[NSMutableArray alloc]init];
     
     [self getIndexData];
     
@@ -86,27 +89,24 @@
     
     [MsgDisplay showLoading];
     
-    [ContentDataManager getIndexDataWithParameters:parameters success:^(id responseObject) {
+    [ContentDataManager getIndexDataWithParameters:parameters success:^(id _rowsData) {
         [MsgDisplay dismiss];
-        [self processContentDic:responseObject];
+        if (currentPage == 0) {
+            rowsData = [[NSMutableArray alloc]initWithArray:_rowsData];
+        } else {
+            [rowsData addObjectsFromArray:_rowsData];
+        }
+        dataInTable = rowsData;
+        
+        [self.tableView reloadData];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.pullToRefreshView stopAnimating];
     }failure:^(NSString *error) {
         [MsgDisplay dismiss];
         [MsgDisplay showErrorMsg:error];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        [self.tableView.pullToRefreshView stopAnimating];
     }];
-}
-
-- (void)processContentDic:(NSDictionary *)dic {
-    
-    for (NSDictionary *tmp in dic)
-    {
-        [hiringData addObject:tmp];
-    }
-    
-    dataInTable = hiringData;
-    [dataInTable addObject:@"点击加载更多..."];
-    
-    [self.refreshControl endRefreshing];
-    [self.tableView reloadData];
 }
 
 - (void)nextPage {
@@ -128,8 +128,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger row = [indexPath row];
-    return (row!=[dataInTable count]-1) ? 112 : 64;
+    return 112;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -147,58 +146,34 @@
         cell = [nib objectAtIndex:0];
     }
     NSInteger row = [indexPath row];
-    if (row!=[dataInTable count]-1)
-    {
-        NSDictionary *tmp = [dataInTable objectAtIndex:row];
-        cell.titleLabel.text = [tmp objectForKey:@"title"];
-        cell.corpLabel.text = [tmp objectForKey:@"corporation"];
-        cell.dateLabel.text = [tmp objectForKey:@"held_date"];
-        cell.timeLabel.text = [tmp objectForKey:@"held_time"];
-        cell.placeLabel.text = [tmp objectForKey:@"place"];
-        cell.timeImg.hidden = NO;
-        cell.placeImg.hidden = NO;
-    }
-    else
-    {
-        cell.titleLabel.text = [dataInTable lastObject];
-        cell.corpLabel.text = @"";
-        cell.dateLabel.text = @"";
-        cell.timeLabel.text = @"";
-        cell.placeLabel.text = @"";
-        cell.timeImg.hidden = YES;
-        cell.placeImg.hidden = YES;
-    }
+    NSDictionary *tmp = [dataInTable objectAtIndex:row];
+    cell.titleLabel.text = [tmp objectForKey:@"title"];
+    cell.corpLabel.text = [tmp objectForKey:@"corporation"];
+    cell.dateLabel.text = [tmp objectForKey:@"held_date"];
+    cell.timeLabel.text = [tmp objectForKey:@"held_time"];
+    cell.placeLabel.text = [tmp objectForKey:@"place"];
+    cell.timeImg.hidden = NO;
+    cell.placeImg.hidden = NO;
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger row = [indexPath row];
-    if (row == [dataInTable count] - 1)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [dataInTable removeObject:[dataInTable lastObject]];
-        [self nextPage];
-    }
-    else
-    {
-        NSDictionary *tmp = [dataInTable objectAtIndex:row];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
+    NSDictionary *tmp = [dataInTable objectAtIndex:row];
 
-        HiringDetailViewController *hiringDetail = [[HiringDetailViewController alloc]initWithNibName:nil bundle:nil];
-        [hiringDetail setHidesBottomBarWhenPushed:YES];
-        hiringDetail.hiringId = [tmp objectForKey:@"id"];
-        hiringDetail.hiringTitle = [tmp objectForKey:@"title"];
-        hiringDetail.hiringCorp = [tmp objectForKey:@"corporation"];
-        hiringDetail.hiringDate = [tmp objectForKey:@"held_date"];
-        hiringDetail.hiringTime = [tmp objectForKey:@"held_time"];
-        hiringDetail.hiringPlace = [tmp objectForKey:@"place"];
-        [self.navigationController pushViewController:hiringDetail animated:YES];
-    }
+    HiringDetailViewController *hiringDetail = [[HiringDetailViewController alloc]initWithNibName:nil bundle:nil];
+    [hiringDetail setHidesBottomBarWhenPushed:YES];
+    hiringDetail.hiringId = [tmp objectForKey:@"id"];
+    hiringDetail.hiringTitle = [tmp objectForKey:@"title"];
+    hiringDetail.hiringCorp = [tmp objectForKey:@"corporation"];
+    hiringDetail.hiringDate = [tmp objectForKey:@"held_date"];
+    hiringDetail.hiringTime = [tmp objectForKey:@"held_time"];
+    hiringDetail.hiringPlace = [tmp objectForKey:@"place"];
+    [self.navigationController pushViewController:hiringDetail animated:YES];
 }
 
-- (void)backToHome
-{
+- (void)backToHome {
     [self.tabBarController.navigationController popViewControllerAnimated:YES];
 }
 

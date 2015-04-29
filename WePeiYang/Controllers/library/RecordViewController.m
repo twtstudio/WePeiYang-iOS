@@ -35,7 +35,7 @@
     NSString *welcomeString;
 }
 
-@synthesize tableView;
+@synthesize recordTableView;
 @synthesize response;
 @synthesize noLoginLabel;
 @synthesize loginBtn;
@@ -80,7 +80,7 @@
 // Set views
 
 - (void)setLoginView {
-    [tableView setHidden:YES];
+    [recordTableView setHidden:YES];
     [noLoginLabel setHidden:NO];
     [noLoginLabel setText:@"您尚未登录天外天账号"];
     [loginBtn setHidden:NO];
@@ -93,7 +93,7 @@
 }
 
 - (void)setBindView {
-    [tableView setHidden:YES];
+    [recordTableView setHidden:YES];
     [noLoginLabel setHidden:NO];
     [loginBtn setHidden:NO];
     [continueBtn setHidden:YES];
@@ -214,12 +214,12 @@
     welcomeString = [NSString stringWithFormat:@"       %@  已借：%@本  应还：%@本  欠款：%@元",uName,outStr,backStr,money];
     if (recordArr != [NSNull null])
     {
-        [tableView setHidden:NO];
+        [recordTableView setHidden:NO];
         [noLoginLabel setHidden:YES];
         [loginBtn setHidden:YES];
         [continueBtn setHidden:NO];
         [noLoginImg setHidden:YES];
-        [tableView reloadData];
+        [recordTableView reloadData];
     }
 }
 
@@ -260,7 +260,7 @@
     NSInteger row = [indexPath row];
     NSDictionary *itemSelected = [recordArr objectAtIndex:row];
     NSString *titleStr = [itemSelected objectForKey:@"name"];
-    CGFloat width = self.tableView.frame.size.width;
+    CGFloat width = self.recordTableView.frame.size.width;
         
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = titleStr;
@@ -317,7 +317,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.recordTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)continueLend:(id)sender

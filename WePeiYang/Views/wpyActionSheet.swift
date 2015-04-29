@@ -18,10 +18,6 @@ class wpyActionSheet: AHKActionSheet {
     }
     */
     
-    override init() {
-        super.init()
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

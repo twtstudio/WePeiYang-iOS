@@ -10,7 +10,7 @@
 
 @interface RecordViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *recordTableView;
 @property (strong, nonatomic) NSMutableData *response;
 @property (strong, nonatomic) IBOutlet UILabel *noLoginLabel;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;

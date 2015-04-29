@@ -28,8 +28,8 @@ class DashboardViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let infoDic:NSDictionary = NSBundle.mainBundle().infoDictionary!
-        let appVersion:NSString = infoDic["CFBundleShortVersionString"] as NSString
-        data.shareInstance().appVersion = appVersion
+        let appVersion:NSString = infoDic["CFBundleShortVersionString"] as! NSString
+        data.shareInstance().appVersion = appVersion as String
         data.shareInstance().deviceWidth = self.view.frame.size.width
         let deviceWidth = self.view.frame.size.width
         let deviceHeight = self.view.frame.size.height
@@ -65,21 +65,21 @@ class DashboardViewController: UIViewController {
         
         //Line 1
         
-        studySearchBtn = UIButton.buttonWithType(.Custom) as UIButton
+        studySearchBtn = UIButton.buttonWithType(.Custom) as! UIButton
         studySearchBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         studySearchBtn.setImage(UIImage(named: "studysearch.png"), forState: .Normal)
         studySearchBtn.addTarget(self, action: "pushStudySearch", forControlEvents: .TouchUpInside)
         studySearchBtn.hidden = true
         iconView.addSubview(studySearchBtn)
         
-        newsBtn = UIButton.buttonWithType(.Custom) as UIButton
+        newsBtn = UIButton.buttonWithType(.Custom) as! UIButton
         newsBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         newsBtn.setImage(UIImage(named: "news.png"), forState: .Normal)
         newsBtn.addTarget(self, action: "pushNews", forControlEvents: .TouchUpInside)
         newsBtn.hidden = true
         iconView.addSubview(newsBtn)
         
-        noticeBtn = UIButton.buttonWithType(.Custom) as UIButton
+        noticeBtn = UIButton.buttonWithType(.Custom) as! UIButton
         noticeBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+2*iconWidth+2*iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance), iconWidth, iconHeight)
         noticeBtn.setImage(UIImage(named: "notice.png"), forState: .Normal)
         noticeBtn.addTarget(self, action: "pushNotice", forControlEvents: .TouchUpInside)
@@ -88,21 +88,21 @@ class DashboardViewController: UIViewController {
         
         //Line 2
         
-        gpaBtn = UIButton.buttonWithType(.Custom) as UIButton
+        gpaBtn = UIButton.buttonWithType(.Custom) as! UIButton
         gpaBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         gpaBtn.setImage(UIImage(named: "gpa.png"), forState: .Normal)
         gpaBtn.addTarget(self, action: "authGPA", forControlEvents: .TouchUpInside)
         gpaBtn.hidden = true
         iconView.addSubview(gpaBtn)
         
-        libBtn = UIButton.buttonWithType(.Custom) as UIButton
+        libBtn = UIButton.buttonWithType(.Custom) as! UIButton
         libBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         libBtn.setImage(UIImage(named: "library.png"), forState: .Normal)
         libBtn.addTarget(self, action: "pushLibrary", forControlEvents: .TouchUpInside)
         libBtn.hidden = true
         iconView.addSubview(libBtn)
         
-        jobsBtn = UIButton.buttonWithType(.Custom) as UIButton
+        jobsBtn = UIButton.buttonWithType(.Custom) as! UIButton
         jobsBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+2*iconWidth+2*iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+iconHeight+iconLineDistance, iconWidth, iconHeight)
         jobsBtn.setImage(UIImage(named: "jobs.png"), forState: .Normal)
         jobsBtn.addTarget(self, action: "pushJobs", forControlEvents: .TouchUpInside)
@@ -111,14 +111,14 @@ class DashboardViewController: UIViewController {
         
         //Line 3
         
-        lafBtn = UIButton.buttonWithType(.Custom) as UIButton
+        lafBtn = UIButton.buttonWithType(.Custom) as! UIButton
         lafBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance), 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+2*iconHeight+2*iconLineDistance, iconWidth, iconHeight)
         lafBtn.setImage(UIImage(named:"laf.png"), forState: .Normal)
         lafBtn.addTarget(self, action: "pushLAF", forControlEvents: .TouchUpInside)
         lafBtn.hidden = true
         iconView.addSubview(lafBtn)
         
-        aboutBtn = UIButton.buttonWithType(.Custom) as UIButton
+        aboutBtn = UIButton.buttonWithType(.Custom) as! UIButton
         aboutBtn.frame = CGRectMake(0.5*(deviceWidth-3*iconWidth-2*iconRowDistance)+iconWidth+iconRowDistance, 0.5*(deviceHeight-3*iconHeight-2*iconLineDistance)+2*iconHeight+2*iconLineDistance, iconWidth, iconHeight)
         aboutBtn.setImage(UIImage(named:"about.png"), forState: .Normal)
         aboutBtn.addTarget(self, action: "pushAbout", forControlEvents: .TouchUpInside)
@@ -284,54 +284,57 @@ class DashboardViewController: UIViewController {
     
     func authGPA() {
         
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var touchIdEnabled: AnyObject? = defaults.objectForKey("touchIdEnabled")
-        
-        if touchIdEnabled == nil {
-            touchIdEnabled = false
-        }
-        
-        if (touchIdEnabled as Bool) == true {
-            var laContext = LAContext()
-            var authError: NSError?
-            var errorReason = "GPA这种东西怎么能随便给人看"
-            //隐藏输入密码按钮
-            laContext.localizedFallbackTitle = ""
+        if wpyDeviceStatus.getOSVersionFloat() < 8.0 {
+            self.pushGPA()
+        } else {
+            var defaults = NSUserDefaults.standardUserDefaults()
+            var touchIdEnabled: AnyObject? = defaults.objectForKey("touchIdEnabled")
             
-            //第一层判断是否支持指纹识别
-            if laContext.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &authError) {
-                laContext.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: errorReason, reply: {
-                    (BOOL success, NSError error) in
-                    if success {
-                        println("touch id success")
-                        
-                        //touch id 改变 UI 一定要从主线程
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.pushGPA()
-                        })
-                        
-                    } else {
-                        
-                        if error.code == -1 {
-                            dispatch_async(dispatch_get_main_queue(), {
-                                var errorAlert = UIAlertView(title: "失败", message: "Touch ID 验证失败", delegate: self, cancelButtonTitle: "取消");
-                                errorAlert.show()
-                            })
-
-                        } else if error.code == -2 {
-                            //User Cancelled
-                        }
-                    }
-                })
-            } else {
-                //不支持指纹识别的话
-                self.pushGPA()
+            if touchIdEnabled == nil {
+                touchIdEnabled = false
             }
             
-        } else {
-            self.pushGPA()
+            if (touchIdEnabled as! Bool) == true {
+                var laContext = LAContext()
+                var authError: NSError?
+                var errorReason = "GPA这种东西怎么能随便给人看"
+                //隐藏输入密码按钮
+                laContext.localizedFallbackTitle = ""
+                
+                //第一层判断是否支持指纹识别
+                if laContext.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                    laContext.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: errorReason, reply: {
+                        (success: Bool, error: NSError!) in
+                        if success {
+                            println("touch id success")
+                            
+                            //touch id 改变 UI 一定要从主线程
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.pushGPA()
+                            })
+                            
+                        } else {
+                            
+                            if error.code == -1 {
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    var errorAlert = UIAlertView(title: "失败", message: "Touch ID 验证失败", delegate: self, cancelButtonTitle: "取消");
+                                    errorAlert.show()
+                                })
+                                
+                            } else if error.code == -2 {
+                                //User Cancelled
+                            }
+                        }
+                    })
+                } else {
+                    //不支持指纹识别的话
+                    self.pushGPA()
+                }
+            } else {
+                self.pushGPA()
+            }
+
         }
-        
     }
     
     func pushGPA() {
@@ -371,15 +374,15 @@ class DashboardViewController: UIViewController {
     
     private func checkLoginStatus() {
         let path:Array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentPath = path[0] as String
+        let documentPath = path[0] as! String
         let plistPath = documentPath.stringByAppendingPathComponent("twtLogin")
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(plistPath) {
             let savedData = NSData(contentsOfFile: plistPath)
             let unarchiver = NSKeyedUnarchiver(forReadingWithData: savedData!)
             
-            let secretId = unarchiver.decodeObjectForKey("id") as NSData
-            let secretToken = unarchiver.decodeObjectForKey("token") as NSData
+            let secretId = unarchiver.decodeObjectForKey("id") as! NSData
+            let secretToken = unarchiver.decodeObjectForKey("token") as! NSData
             unarchiver.finishDecoding()
             
             let key = twtSecretKeys.getSecretKey()
@@ -389,8 +392,8 @@ class DashboardViewController: UIViewController {
             let twtId = NSString(data: plainId, encoding: NSUTF8StringEncoding)
             let twtToken = NSString(data: plainToken, encoding: NSUTF8StringEncoding)
             
-            data.shareInstance().userId = twtId
-            data.shareInstance().userToken = twtToken
+            data.shareInstance().userId = twtId as! String
+            data.shareInstance().userToken = twtToken as! String
         }
     }
     

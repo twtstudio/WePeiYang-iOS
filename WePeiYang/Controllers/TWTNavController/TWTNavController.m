@@ -38,11 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     
-    if ( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] && animated == YES )
-    {
+    if ( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] && animated == YES ) {
         self.interactivePopGestureRecognizer.enabled = NO;
     }
     
@@ -50,10 +48,8 @@
     
 }
 
-- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
-{
-    if ( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] && animated == YES )
-    {
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated {
+    if ( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] && animated == YES ) {
         self.interactivePopGestureRecognizer.enabled = NO;
     }
     
@@ -61,10 +57,8 @@
     
 }
 
-- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] )
-    {
+- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] ) {
         self.interactivePopGestureRecognizer.enabled = NO;
     }
     
@@ -76,37 +70,22 @@
 
 - (void)navigationController:(UINavigationController *)navigationController
        didShowViewController:(UIViewController *)viewController
-                    animated:(BOOL)animated
-{
-    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
-    {
+                    animated:(BOOL)animated {
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.enabled = YES;
     }
 }
 
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     
-    if ( gestureRecognizer == self.interactivePopGestureRecognizer )
-    {
-        if ( self.viewControllers.count < 2 || self.visibleViewController == [self.viewControllers objectAtIndex:0] )
-        {
+    if ( gestureRecognizer == self.interactivePopGestureRecognizer ) {
+        if ( self.viewControllers.count < 2 || self.visibleViewController == [self.viewControllers objectAtIndex:0] ) {
             return NO;
         }
     }
     
     return YES;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

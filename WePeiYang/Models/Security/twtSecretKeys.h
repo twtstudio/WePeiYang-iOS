@@ -13,6 +13,8 @@
 + (NSString *)getSecretKey;
 + (NSString *)getRavenKey;
 + (NSString *)getDevKey;
++ (NSString *)getFIRKey;
++ (NSString *)getWechatAppId;
 /*
 + (NSString *)getShareSDKAppKey;
 + (NSString *)getWeiboAppKey;
@@ -27,7 +29,6 @@
 + (NSString *)getFacebookAppSecret;
 + (NSString *)getTwitterConsumerKey;
 + (NSString *)getTwitterConsumerSecret;
-+ (NSString *)getWechatAppId;
 + (NSString *)getQQWithQZoneAppKey;
  */
 

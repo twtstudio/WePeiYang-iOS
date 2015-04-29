@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
@@ -12,7 +11,7 @@
                 <outlet property="loginBtn" destination="7Ik-xC-yqq" id="Dqc-1y-8cR"/>
                 <outlet property="noLoginImg" destination="DVL-lA-OoF" id="fF3-8k-Sgm"/>
                 <outlet property="noLoginLabel" destination="KS8-Rx-Zac" id="ILg-Pg-LeY"/>
-                <outlet property="tableView" destination="vSc-gU-4jo" id="HH6-gz-2nQ"/>
+                <outlet property="recordTableView" destination="vSc-gU-4jo" id="4Iu-yB-TdF"/>
                 <outlet property="view" destination="1" id="ytA-bl-rcO"/>
             </connections>
         </placeholder>

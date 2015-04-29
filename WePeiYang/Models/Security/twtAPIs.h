@@ -24,5 +24,10 @@
 + (NSString *)libSearch;
 + (NSString *)libInfo;
 + (NSString *)libRenew;
++ (NSString *)classTable;
++ (NSString *)termStartTime;
++ (NSString *)lostFoundItemInfoList;
++ (NSString *)lostFoundAnnounceItem;
++ (NSString *)sendFeedback;
 
 @end
