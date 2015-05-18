@@ -65,18 +65,15 @@
         NSDictionary *views = NSDictionaryOfVariableBindings(_gpaText, _gpaLabel, _avgText, _scoreLabel, _termLabel);
         NSDictionary *metrics = @{@"borderDist": @16,
                                   @"innerDist": @20};
-        NSString *vfl0 = @"|-borderDist-[_termLabel]-borderDist-|";
-        NSString *vfl1 = @"|-borderDist-[_gpaText]-innerDist-[_avgText(_gpaText)]-borderDist-|";
-        NSString *vfl2 = @"|-borderDist-[_gpaLabel]-innerDist-[_scoreLabel(_gpaLabel)]-borderDist-|";
-        NSString *vfl3 = @"V:|-24-[_termLabel(==30)]";
-        NSString *vfl4 = @"V:|-60-[_gpaText(22)]-4-[_gpaLabel]-8-|";
-        NSString *vfl5 = @"V:|-60-[_avgText(22)]-4-[_scoreLabel]-8-|";
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl0 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5 options:0 metrics:metrics views:views]];
+        NSArray *vfl = @[@"|-borderDist-[_termLabel]-borderDist-|",
+                         @"|-borderDist-[_gpaText]-innerDist-[_avgText(_gpaText)]-borderDist-|",
+                         @"|-borderDist-[_gpaLabel]-innerDist-[_scoreLabel(_gpaLabel)]-borderDist-|",
+                         @"V:|-24-[_termLabel(==30)]",
+                         @"V:|-60-[_gpaText(22)]-4-[_gpaLabel]-8-|",
+                         @"V:|-60-[_avgText(22)]-4-[_scoreLabel]-8-|"];
+        for (NSString *tmpVFL in vfl) {
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:tmpVFL options:0 metrics:metrics views:views]];
+        }
     }
     return self;
 }
@@ -91,7 +88,7 @@
 }
 
 - (void)layoutSubviews {
-    
+    [super layoutSubviews];
 }
 
 /*

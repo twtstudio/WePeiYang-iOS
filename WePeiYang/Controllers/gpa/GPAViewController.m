@@ -474,10 +474,9 @@
     return 4.0; // width of line in chart
 }
 
-/*
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView dotRadiusForDotAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
-    return 5.0; // width of line dot in chart
-}*/
+    return 6.0; // width of line dot in chart
+}
 
 - (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex {
     return JBLineChartViewLineStyleSolid; // style of line in chart

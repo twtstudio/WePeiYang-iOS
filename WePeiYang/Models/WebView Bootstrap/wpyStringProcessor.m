@@ -54,7 +54,6 @@
                       "</html>" , cssPath, contentStr, jsPath];
     
     return load;
-
 }
 
 @end
