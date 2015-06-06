@@ -41,7 +41,7 @@
 
 // Log in & Log out
 
-+ (void)loginWithParameters:(NSDictionary *)parameters andType:(twtLoginType)type Success:(void (^)())success Failure:(void (^)(NSInteger, NSString *))failure {
++ (void)loginWithParameters:(NSDictionary *)parameters Success:(void (^)())success Failure:(void (^)(NSInteger, NSString *))failure {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[twtAPIs login] parameters:parameters success:^(AFHTTPRequestOperation *operaion, id responseObject) {

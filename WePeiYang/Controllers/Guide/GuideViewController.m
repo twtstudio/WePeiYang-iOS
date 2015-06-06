@@ -40,6 +40,8 @@
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc]init];
     [userDefaults setFloat:1.3 forKey:@"guideVersion"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterWPY) name:LoginSuccessfully object:nil];
+    
     // 更改背景颜色
     NSString *bgPath = [[NSBundle mainBundle]pathForResource:@"guideBackground@2x" ofType:@"jpg"];
     UIImage *bgImg = [UIImage imageWithContentsOfFile:bgPath];
@@ -139,6 +141,10 @@
 {
     [self.view addSubview:guideView];
     [self.view addSubview:pageControl];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)enterWPY

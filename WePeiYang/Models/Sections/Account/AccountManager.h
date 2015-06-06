@@ -8,19 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
-    twtLoginTypeNormal,
-    twtLoginTypeGPA,
-    twtLoginTypeLibrary
-} twtLoginType;
-
 @interface AccountManager : NSObject
 
 + (BOOL)isLoggedIn;
 + (BOOL)isTjuBinded;
 + (BOOL)isLibBinded;
 
-+ (void)loginWithParameters:(NSDictionary *)parameters andType:(twtLoginType)type Success:(void(^)())success Failure:(void(^)(NSInteger statusCode, NSString *errorStr))failure;
++ (void)loginWithParameters:(NSDictionary *)parameters Success:(void(^)())success Failure:(void(^)(NSInteger statusCode, NSString *errorStr))failure;
 + (void)logoutWithParameters:(NSDictionary *)parameters withBlock:(void(^)())block;
 
 + (void)bindTjuWithParameters:(NSDictionary *)parameters success:(void(^)())success failure:(void(^)(NSInteger statusCode, NSString *errorStr))failure;

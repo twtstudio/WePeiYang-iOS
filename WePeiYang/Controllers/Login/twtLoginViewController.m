@@ -33,7 +33,6 @@
 
 @synthesize unameField;
 @synthesize passwdField;
-@synthesize loginType;
 @synthesize loginBtn;
 @synthesize cancelBtn;
 
@@ -93,25 +92,12 @@
                                      @"twtpasswd":passwd,
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
-        [AccountManager loginWithParameters:parameters andType:loginType Success:^() {
+        [AccountManager loginWithParameters:parameters Success:^() {
             [SVProgressHUD dismiss];
             
-            if (loginType == nil) {
-                loginType = twtLoginTypeNormal;
-            }
-            
-            if (loginType == twtLoginTypeNormal) {
-                successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [successAlert show];
-            } else if (loginType == twtLoginTypeGPA) {
-                [data shareInstance].gpaLoginStatus = @"Changed";
-                successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [successAlert show];
-            } else if (loginType == twtLoginTypeLibrary) {
-                [data shareInstance].libLogin = @"Changed";
-                successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"登录成功！\n图书馆系统加载速度较慢\n请耐心等待哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [successAlert show];
-            }
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:LoginSuccessfully object:LoginSuccessfully];
+            }];
             [loginBtn setUserInteractionEnabled:YES];
             
         } Failure:^(NSInteger statusCode, NSString *errorStr) {
@@ -137,21 +123,6 @@
             [presentingVC dismissViewControllerAnimated:YES completion:nil];
         }
     }];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (alertView == successAlert)
-    {
-        UIViewController *presentingVC = self.presentingViewController;
-        [self dismissViewControllerAnimated:YES completion:^{
-            if ([presentingVC isKindOfClass:[GuideViewController class]]) {
-                [presentingVC dismissViewControllerAnimated:YES completion:nil];
-            } else if ([presentingVC isKindOfClass:[GPAViewController class]]) {
-                //
-            }
-        }];
-    }
 }
 
 - (IBAction)backgroundTapped:(id)sender

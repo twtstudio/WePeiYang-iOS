@@ -27,8 +27,8 @@ class DashboardViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        let infoDic:NSDictionary = NSBundle.mainBundle().infoDictionary!
-        let appVersion:NSString = infoDic["CFBundleShortVersionString"] as! NSString
+        let infoDic = NSBundle.mainBundle().infoDictionary!
+        let appVersion = infoDic["CFBundleShortVersionString"] as! NSString
         data.shareInstance().appVersion = appVersion as String
         data.shareInstance().deviceWidth = self.view.frame.size.width
         let deviceWidth = self.view.frame.size.width
@@ -264,6 +264,14 @@ class DashboardViewController: UIViewController {
     
     func pushStudySearch() {
         let studySearchVC = StudySearchViewController(nibName: "StudySearchViewController", bundle: nil)
+        /*
+        transition = JTMaterialTransition()
+        transition.startFrame = CGRectMake(60, 160, 40, 40)
+        transition.startBackgroundColor = UIColor(red: 0/255, green: 127/255, blue: 191/255, alpha: 1.0)
+        studySearchVC.modalPresentationStyle = .Custom
+        studySearchVC.transitioningDelegate = self;
+        self.presentViewController(studySearchVC, animated: true, completion: nil)
+        */
         self.navigationController!.pushViewController(studySearchVC, animated: true)
     }
     
@@ -400,6 +408,5 @@ class DashboardViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    
    
 }

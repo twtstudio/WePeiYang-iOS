@@ -26,6 +26,7 @@
 #import "MsgDisplay.h"
 #import "wpyCacheManager.h"
 #import "ClasstableManager.h"
+#import "TWTNavController.h"
 
 // Open Source Classes
 

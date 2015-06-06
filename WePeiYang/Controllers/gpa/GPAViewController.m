@@ -96,6 +96,8 @@
     
     [loginBtn primaryStyle];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLoginStatus) name:LoginSuccessfully object:nil];
+    
     [dataInTable removeAllObjects];
     [self checkLoginStatus];
 }
@@ -110,6 +112,10 @@
         self.loginBtn.userInteractionEnabled = NO;
         [self checkLoginStatus];
     }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)checkLoginStatus {
@@ -186,9 +192,7 @@
 {
     twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
     [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:login animated:YES completion:^{
-        login.loginType = twtLoginTypeGPA;
-    }];
+    [self presentViewController:login animated:YES completion:nil];
 }
 
 - (void)processErrorWithStatusCode:(NSInteger)statusCode andErrorString:(NSString *)errStr {

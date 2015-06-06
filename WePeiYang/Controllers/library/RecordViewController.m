@@ -67,6 +67,8 @@
     //[tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkLoginStatus) name:LoginSuccessfully object:nil];
+    
     [loginBtn primaryStyle];
     [self checkLoginStatus];
 }
@@ -75,6 +77,10 @@
 {
     [super viewDidAppear:YES];
     [self checkLoginStatus];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 // Set views
@@ -227,9 +233,7 @@
 {
     twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
     [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:login animated:YES completion:^{
-        login.loginType = twtLoginTypeLibrary;
-    }];
+    [self presentViewController:login animated:YES completion:nil];
 }
 
 - (void)bindLib
