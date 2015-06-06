@@ -10,6 +10,8 @@
 #import "SVProgressHUD.h"
 #import "data.h"
 #import "AccountManager.h"
+#import "MsgDisplay.h"
+#import "twtLoginViewController.h"
 
 @interface GPALoginViewController () <UIAlertViewDelegate>
 
@@ -73,27 +75,18 @@
         [AccountManager bindTjuWithParameters:parameters success:^() {
             isLogingIn = NO;
             
-            successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [successAlert show];
-            
-            [data shareInstance].gpaLoginStatus = @"Changed";
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:LoginSuccessfully object:LoginSuccessfully];
+                [MsgDisplay showSuccessMsg:@"绑定办公网账号成功"];
+            }];
         } failure:^(NSInteger statusCode, NSString *errorStr) {
             if (statusCode == 401) {
                 isLogingIn = NO;
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
+                [MsgDisplay showErrorMsg:@"账号或密码错误哦QAQ"];
             } else {
-                [SVProgressHUD showErrorWithStatus:errorStr];
+                [MsgDisplay showErrorMsg:errorStr];
                 isLogingIn = NO;
             }
-        }];
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView == successAlert) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            [data shareInstance].gpaLoginStatus = @"Changed";
         }];
     }
 }

@@ -9,7 +9,9 @@
 #import "LibLoginViewController.h"
 #import "data.h"
 #import "SVProgressHUD.h"
+#import "MsgDisplay.h"
 #import "AccountManager.h"
+#import "twtLoginViewController.h"
 
 @interface LibLoginViewController ()
 
@@ -68,29 +70,19 @@
                                      @"platform":@"ios",
                                      @"version":[data shareInstance].appVersion};
         [AccountManager bindLibWithParameters:parameters success:^() {
-            successAlert = [[UIAlertView alloc]initWithTitle:@"成功" message:@"绑定图书馆账号成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [successAlert show];
-            [data shareInstance].libLogin = @"Changed";
-            
             isLogingIn = NO;
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:LoginSuccessfully object:LoginSuccessfully];
+                [MsgDisplay showSuccessMsg:@"绑定图书馆账号成功！"];
+            }];
         } failure:^(NSInteger statusCode, NSString *errorStr) {
             if (statusCode == 401) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"账号或密码错误哦QAQ" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
+                [MsgDisplay showErrorMsg:@"账号或密码错误哦QAQ"];
             } else {
-                [SVProgressHUD showErrorWithStatus:errorStr];
+                [MsgDisplay showErrorMsg:errorStr];
             }
             isLogingIn = NO;
         }];
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView == successAlert) {
-        if (buttonIndex == [alertView cancelButtonIndex]) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
     }
 }
 

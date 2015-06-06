@@ -21,6 +21,10 @@
     if (self) {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
+        
+        addedSubjectMarkImgView.backgroundColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
+        addedSubjectMarkImgView.layer.cornerRadius = 0.5 * addedSubjectMarkImgView.frame.size.width;
+        addedSubjectMarkImgView.clipsToBounds = YES;
     }
     return self;
 }

@@ -946,10 +946,10 @@
 				E9AF6B681A7CFCD4008B5214 /* DetailViewController.h */,
 				E9AF6B691A7CFCD4008B5214 /* DetailViewController.m */,
 				E9AF6B6A1A7CFCD4008B5214 /* DetailViewController.xib */,
-				E9AF6B6B1A7CFCD4008B5214 /* indexTabBarController.h */,
-				E9AF6B6C1A7CFCD4008B5214 /* indexTabBarController.m */,
 				E9AF6B6D1A7CFCD4008B5214 /* IndexViewController.h */,
 				E9AF6B6E1A7CFCD4008B5214 /* IndexViewController.m */,
+				E9AF6B6B1A7CFCD4008B5214 /* indexTabBarController.h */,
+				E9AF6B6C1A7CFCD4008B5214 /* indexTabBarController.m */,
 			);
 			path = news;
 			sourceTree = "<group>";

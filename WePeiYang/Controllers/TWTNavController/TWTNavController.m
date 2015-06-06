@@ -28,8 +28,8 @@
     
     __weak TWTNavController *weakSelf = self;
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.interactivePopGestureRecognizer.delegate = weakSelf;
-        self.delegate = weakSelf;
+        self.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)weakSelf;
+        self.delegate = (id<UINavigationControllerDelegate>)weakSelf;
     }
 }
 

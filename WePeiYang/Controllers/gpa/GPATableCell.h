@@ -13,6 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameCellLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreCellLabel;
 @property (strong, nonatomic) IBOutlet UILabel *creditCellLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *addedSubjectMarkImgView;
+@property (strong, nonatomic) IBOutlet UIView *addedSubjectMarkImgView;
 
 @end

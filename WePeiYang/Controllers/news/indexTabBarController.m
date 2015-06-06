@@ -58,6 +58,7 @@
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:255/255.0f green:55/255.0f blue:156/255.0f alpha:1.0f]];
     [[UINavigationBar appearance]setTintColor:[UIColor colorWithRed:255/255.0f green:55/255.0f blue:156/255.0f alpha:1.0f]];
+    
 }
 
 - (void)didReceiveMemoryWarning {

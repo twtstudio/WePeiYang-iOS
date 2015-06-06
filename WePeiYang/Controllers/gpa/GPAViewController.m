@@ -107,11 +107,13 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    /*
     if ([[data shareInstance].gpaLoginStatus isEqualToString:@"Changed"])
     {
         self.loginBtn.userInteractionEnabled = NO;
         [self checkLoginStatus];
     }
+     */
 }
 
 - (void)dealloc {
@@ -159,6 +161,12 @@
     [noLoginImg setHidden:YES];
     [data shareInstance].gpaLoginStatus = @"";
     backBtn.tintColor = [UIColor whiteColor];
+    
+    [self.view addSubview:({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+        view.backgroundColor = gpaTintColor;
+        view;
+    })];
 }
 
 - (void)setLoginView {
@@ -344,14 +352,18 @@
     NSUInteger row = [indexPath row];
     NSDictionary *temp = [dataInTable objectAtIndex:row];
     cell.nameCellLabel.text = [temp objectForKey:@"name"];
-    cell.addedSubjectMarkImgView.hidden = YES;
+    
     if ([newAddedSubjects count] != 0)
     {
         for (int i = 0; i < [newAddedSubjects count]; i++)
         {
             if ([[[dataInTable objectAtIndex:row] objectForKey:@"name"] isEqualToString:[newAddedSubjects objectAtIndex:i]])
             {
-                cell.addedSubjectMarkImgView.hidden = NO;
+                // 画小圆点
+                cell.addedSubjectMarkImgView.backgroundColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
+                cell.addedSubjectMarkImgView.layer.cornerRadius = 0.5 * cell.addedSubjectMarkImgView.frame.size.width;
+                cell.addedSubjectMarkImgView.clipsToBounds = YES;
+                
                 break;
             }
         }

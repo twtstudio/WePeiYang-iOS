@@ -76,7 +76,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    [self checkLoginStatus];
 }
 
 - (void)dealloc {
@@ -110,6 +109,14 @@
     [noLoginImg setHidden:NO];
 }
 
+- (void)setNormalView {
+    [recordTableView setHidden:NO];
+    [noLoginLabel setHidden:YES];
+    [loginBtn setHidden:YES];
+    [continueBtn setHidden:NO];
+    [noLoginImg setHidden:YES];
+}
+
 - (void)checkLoginStatus
 {
     NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"twtLogin"];
@@ -122,6 +129,7 @@
     }
     else
     {
+        /*
         if ([[data shareInstance].libLogin isEqualToString:@"Changed"]) {
             [MsgDisplay showLoading];
         } else {
@@ -136,6 +144,17 @@
             } else {
                 [MsgDisplay showSuccessMsg:@"正在后台努力刷新数据~\n请稍候..."];
             }
+        }
+         */
+        //加载缓存
+        NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"libraryRecordCache"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:plistPath])
+        {
+            [MsgDisplay showSuccessMsg:@"正在后台努力刷新数据~\n已为您加载缓存，请稍候..."];
+            [self dealWithReceivedLoginData:[[NSDictionary alloc]initWithContentsOfFile:plistPath]];
+        } else {
+            [MsgDisplay showSuccessMsg:@"正在后台努力刷新数据~\n请稍候..."];
         }
         
         //后台刷新数据
@@ -166,9 +185,8 @@
                     [MsgDisplay showSuccessMsg:@"已借记录更新成功~"];
                     [self dealWithReceivedLoginData:responseObject];
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    [self setNormalView];
                 });
-                
-                [data shareInstance].libLogin = @"";
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 [MsgDisplay dismiss];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -218,7 +236,7 @@
     NSString *backStr = [NSString stringWithFormat:@"%@",[loginDic objectForKey:@"back"]];
     NSString *uName = [loginDic objectForKey:@"uname"];
     welcomeString = [NSString stringWithFormat:@"       %@  已借：%@本  应还：%@本  欠款：%@元",uName,outStr,backStr,money];
-    if (recordArr != [NSNull null])
+    if (!(recordArr == nil || recordArr.count == 0))
     {
         [recordTableView setHidden:NO];
         [noLoginLabel setHidden:YES];
