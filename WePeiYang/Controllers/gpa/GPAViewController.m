@@ -89,6 +89,8 @@
     [[UIButton appearance] setTintColor:[UIColor whiteColor]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     
+    resultTableView.tableFooterView = [[UIView alloc] init];
+    
     gpaData = [[NSMutableArray alloc]initWithObjects: nil];
     dataInTable = [[NSMutableArray alloc]initWithObjects: nil];
     
@@ -104,16 +106,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
+    [super viewDidAppear:animated];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    /*
-    if ([[data shareInstance].gpaLoginStatus isEqualToString:@"Changed"])
-    {
-        self.loginBtn.userInteractionEnabled = NO;
-        [self checkLoginStatus];
-    }
-     */
 }
 
 - (void)dealloc {
@@ -352,7 +347,7 @@
     NSUInteger row = [indexPath row];
     NSDictionary *temp = [dataInTable objectAtIndex:row];
     cell.nameCellLabel.text = [temp objectForKey:@"name"];
-    
+    cell.addedSubjectMarkImgView.hidden = YES;
     if ([newAddedSubjects count] != 0)
     {
         for (int i = 0; i < [newAddedSubjects count]; i++)
@@ -360,9 +355,7 @@
             if ([[[dataInTable objectAtIndex:row] objectForKey:@"name"] isEqualToString:[newAddedSubjects objectAtIndex:i]])
             {
                 // 画小圆点
-                cell.addedSubjectMarkImgView.backgroundColor = [UIColor colorWithRed:255/255.0f green:85/255.0f blue:95/255.0f alpha:1.0f];
-                cell.addedSubjectMarkImgView.layer.cornerRadius = 0.5 * cell.addedSubjectMarkImgView.frame.size.width;
-                cell.addedSubjectMarkImgView.clipsToBounds = YES;
+                cell.addedSubjectMarkImgView.hidden = NO;
                 
                 break;
             }
@@ -459,8 +452,10 @@
     
     if (offsetY < 0) {
         resultTableView.backgroundColor = gpaTintColor;
+        resultTableView.scrollEnabled = NO;
     } else {
         resultTableView.backgroundColor = [UIColor whiteColor];
+        resultTableView.scrollEnabled = YES;
     }
 }
 

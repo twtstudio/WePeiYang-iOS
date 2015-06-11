@@ -11,8 +11,6 @@
 #import "WePeiYang-Swift.h"
 #import "GPACalculationModel.h"
 
-
-
 @interface GPACalculatorViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *resultTableView;

@@ -31,6 +31,8 @@
         self.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)weakSelf;
         self.delegate = (id<UINavigationControllerDelegate>)weakSelf;
     }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

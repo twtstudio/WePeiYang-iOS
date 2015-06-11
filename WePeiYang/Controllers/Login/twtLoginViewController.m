@@ -55,12 +55,19 @@
     passwdField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:@{NSForegroundColorAttributeName: color}];
     [[UITextField appearance]setTintColor:color];
     self.view.backgroundColor = [UIColor colorWithRed:49/255.0f green:154/255.0f blue:207/255.0f alpha:1.0f];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,10 +79,6 @@
 {
     [SVProgressHUD showWithStatus:@"登录中..." maskType:SVProgressHUDMaskTypeBlack];
     [loginBtn setUserInteractionEnabled:NO];
-    if ([self moved])
-    {
-        [self adjustViewAnimation];
-    }
     [unameField resignFirstResponder];
     [passwdField resignFirstResponder];
     NSString *uname = [unameField text];
@@ -129,51 +132,32 @@
 {
     [unameField resignFirstResponder];
     [passwdField resignFirstResponder];
-    if ([self moved])
-    {
-        [self adjustViewAnimation];
-    }
+}
+
+- (IBAction)nextTextField:(id)sender {
+    [unameField resignFirstResponder];
+    [passwdField becomeFirstResponder];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
-
-- (IBAction)textFieldBeginEditing:(id)sender
-{
-    if (![self moved] && self.view.frame.size.width == 320) {
-        [self adjustViewAnimation];
-    }
-}
-
-- (IBAction)textFieldEndEditing:(id)sender
-{
-    if ([self moved] && self.view.frame.size.width == 320) {
-        [self adjustViewAnimation];
-    }
-}
-
-- (void)adjustViewAnimation {
+     
+- (void)keyboardWillShow {
     POPBasicAnimation *viewAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
     CGPoint point = self.view.center;
     CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
-    if ([self moved]) {
-        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight)];
-    } else {
-        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight - 80)];
-    }
+    viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight - 80)];
     [self.view.layer pop_addAnimation:viewAnim forKey:@"viewAnimation"];
 }
-
-- (BOOL)moved {
+     
+- (void)keyboardWillHide {
+    POPBasicAnimation *viewAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
     CGPoint point = self.view.center;
     CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
-    if (point.y == halfHeight) {
-        return NO;
-    } else {
-        return YES;
-    }
+    viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight)];
+    [self.view.layer pop_addAnimation:viewAnim forKey:@"viewAnimation"];
 }
 
 @end

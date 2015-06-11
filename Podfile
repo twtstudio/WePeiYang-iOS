@@ -12,7 +12,6 @@ pod 'KVOController'
 pod 'SVPullToRefresh'
 pod 'FXForms'
 pod 'FIR.im'
-pod 'LTNavigationBar'
 pod 'ALActionBlocks'
 pod 'iOS7Colors'
 

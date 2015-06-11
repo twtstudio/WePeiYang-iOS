@@ -18,7 +18,6 @@
 
 @interface LAFound_QueryListViewController : UITableViewController
 
-@property (nonatomic)UIRefreshControl *refreshControl;
 @property id<LAFound_QueryListViewControllerDelegate>delegate;
 
 @end

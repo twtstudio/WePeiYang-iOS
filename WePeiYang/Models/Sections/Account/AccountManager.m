@@ -47,6 +47,10 @@
     [manager POST:[twtAPIs login] parameters:parameters success:^(AFHTTPRequestOperation *operaion, id responseObject) {
         
         NSDictionary *contentDic = [operaion.responseString objectFromJSONString];
+        if (contentDic == nil) {
+            failure(0, @"服务器出错惹！\n请尽快通过反馈联系程序猿喔");
+            return;
+        }
         
         NSUserDefaults *userDefault = [[NSUserDefaults alloc]init];
         

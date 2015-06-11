@@ -21,7 +21,6 @@
 - (IBAction)login:(id)sender;
 - (IBAction)cancelLogin:(id)sender;
 - (IBAction)backgroundTapped:(id)sender;
-- (IBAction)textFieldBeginEditing:(id)sender;
-- (IBAction)textFieldEndEditing:(id)sender;
+- (IBAction)nextTextField:(id)sender;
 
 @end
