@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutUsViewController" customModule="WePeiYang" customModuleProvider="target">
@@ -17,20 +17,20 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="wpyicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="OrA-L0-Ow3">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wpyicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="OrA-L0-Ow3">
                     <rect key="frame" x="255" y="207" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="Hdy-qk-KeZ"/>
                         <constraint firstAttribute="width" constant="90" id="pxs-9V-5Jl"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="微北洋 x.x.x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hP-n0-QT4">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="微北洋 x.x.x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hP-n0-QT4">
                     <rect key="frame" x="203" y="331" width="194" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYT-We-dbc">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYT-We-dbc">
                     <rect key="frame" x="255" y="207" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="Cv8-9h-WJz"/>
@@ -43,10 +43,10 @@
                         <action selector="eggEvent" destination="-1" eventType="touchUpInside" id="Jg4-h7-R4R"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="天外天工作室" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qn6-f8-WKE">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天外天工作室" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qn6-f8-WKE">
                     <rect key="frame" x="249" y="372" width="102" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -54,6 +54,7 @@
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="3hP-n0-QT4" secondAttribute="centerX" id="4FC-Jf-KTQ"/>
                 <constraint firstAttribute="centerX" secondItem="qn6-f8-WKE" secondAttribute="centerX" id="ECy-S2-3MS"/>
+                <constraint firstAttribute="centerY" secondItem="KYT-We-dbc" secondAttribute="centerY" constant="48" id="JLq-v3-o6m"/>
                 <constraint firstItem="KYT-We-dbc" firstAttribute="centerY" secondItem="OrA-L0-Ow3" secondAttribute="centerY" id="L2e-YB-WbG"/>
                 <constraint firstAttribute="centerX" secondItem="OrA-L0-Ow3" secondAttribute="centerX" id="MUi-Hs-4kL"/>
                 <constraint firstItem="KYT-We-dbc" firstAttribute="centerY" secondItem="3hP-n0-QT4" secondAttribute="centerY" constant="-89.5" id="Oa3-g6-3eV"/>

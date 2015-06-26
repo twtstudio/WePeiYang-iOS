@@ -15,9 +15,15 @@
 
 + (void)getDataWithParameters:(NSDictionary *)parameters success:(void (^)(id))success failure:(void (^)(NSInteger, NSString *))failure {
     [wpyCacheManager loadCacheDataWithKey:@"gpaCache" andBlock:^(id cacheObject) {
-        dispatch_async(dispatch_get_main_queue(), ^() {
-            success(cacheObject);
-        });
+        if ([self gpaCacheDataIsCompleted:cacheObject]) {
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                success(cacheObject);
+            });
+        } else {
+            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
+            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
+            [[NSFileManager defaultManager] removeItemAtPath:plistPath error:nil];
+        }
     }];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^() {
@@ -131,6 +137,10 @@
         [previousGPAResult writeToFile:plistPath atomically:YES];
     } else {
         NSDictionary *previousGPAResult = [[NSDictionary alloc]initWithContentsOfFile:plistPath];
+        if (![self gpaCacheDataIsCompleted:previousGPAResult]) {
+            return [@[] mutableCopy];
+        }
+        
         [fileManager removeItemAtPath:plistPath error:nil];
         
         newAddedSubjects = [[NSMutableArray alloc]initWithObjects:nil, nil];
@@ -169,6 +179,34 @@
     }
     
     return newAddedSubjects;
+}
+
+#pragma mark - private functions
+
++ (BOOL)gpaCacheDataIsCompleted:(id)gpaCacheObject {
+    if (gpaCacheObject == nil) {
+        return NO;
+    } else {
+        
+        NSDictionary *gpaDic = (NSDictionary *)gpaCacheObject;
+        
+        for (NSString *tmpKey in gpaDic.allKeys) {
+            id tmpObject = gpaDic[tmpKey];
+            
+            if ([tmpObject isKindOfClass:[NSArray class]]) {
+                NSArray *tmp = (NSArray *)tmpObject;
+                if (tmp.count == 0) {
+                    return NO;
+                }
+            } else {
+                if (tmpObject == nil) {
+                    return NO;
+                }
+            }
+        }
+        
+        return YES;
+    }
 }
 
 

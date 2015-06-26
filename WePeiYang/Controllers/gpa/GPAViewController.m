@@ -19,6 +19,7 @@
 #import "WePeiYang-Swift.h"
 #import "wpyDeviceStatus.h"
 #import "wpyCacheManager.h"
+#import "ALActionBlocks.h"
 
 @interface GPAViewController ()
 
@@ -172,7 +173,11 @@
     [noLoginImg setHidden:NO];
     [noLoginLabel setText:@"您尚未登录天外天账号"];
     [loginBtn setTitle:@"点击这里登录" forState:UIControlStateNormal];
-    [loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
+        [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:login animated:YES completion:nil];
+    }];
     backBtn.tintColor = gpaTintColor;
 }
 
@@ -185,17 +190,12 @@
     [noLoginLabel setText:@"您尚未绑定办公网账号"];
     loginBtn.userInteractionEnabled = YES;
     [loginBtn setTitle:@"点击这里绑定" forState:UIControlStateNormal];
-    [loginBtn removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    [loginBtn addTarget:self action:@selector(bindTju) forControlEvents:UIControlEventTouchUpInside];
-}
-
-// For Log In
-
-- (void)login
-{
-    twtLoginViewController *login = [[twtLoginViewController alloc]initWithNibName:nil bundle:nil];
-    [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:login animated:YES completion:nil];
+    [loginBtn removeActionBlocksForControlEvents:UIControlEventTouchUpInside];
+    [loginBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        GPALoginViewController *gpaLogin = [[GPALoginViewController alloc]initWithNibName:nil bundle:nil];
+        [gpaLogin setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+        [self presentViewController:gpaLogin animated:YES completion:nil];
+    }];
 }
 
 - (void)processErrorWithStatusCode:(NSInteger)statusCode andErrorString:(NSString *)errStr {
@@ -219,12 +219,6 @@
             }
             break;
     }
-}
-
-- (void)bindTju {
-    GPALoginViewController *gpaLogin = [[GPALoginViewController alloc]initWithNibName:nil bundle:nil];
-    [gpaLogin setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self presentViewController:gpaLogin animated:YES completion:nil];
 }
 
 // For Action Sheet
@@ -445,17 +439,21 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float offsetY = [scrollView contentOffset].y;
-    //NSLog([NSString stringWithFormat:@"%f",offsetY]);
+//    NSLog([NSString stringWithFormat:@"%f",offsetY]);
     gpaHeader.alpha = 1-offsetY/150;
     backBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
     moreBtn.tintColor = [UIColor colorWithRed:255/255.0f green:(-2*offsetY+255)/255.0f blue:(-1.8824*offsetY+255)/255.0f alpha:1.0f];
     
     if (offsetY < 0) {
         resultTableView.backgroundColor = gpaTintColor;
-        resultTableView.scrollEnabled = NO;
+        resultTableView.tableFooterView = ({
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, resultTableView.frame.size.width, 500)];
+            view.backgroundColor = [UIColor whiteColor];
+            view;
+        });
     } else {
         resultTableView.backgroundColor = [UIColor whiteColor];
-        resultTableView.scrollEnabled = YES;
+        resultTableView.tableFooterView = [[UIView alloc] init];
     }
 }
 
