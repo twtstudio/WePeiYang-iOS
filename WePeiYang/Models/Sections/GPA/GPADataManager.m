@@ -10,21 +10,11 @@
 #import "twtAPIs.h"
 #import "JSONKit.h"
 #import "wpyCacheManager.h"
+#import "MsgDisplay.h"
 
 @implementation GPADataManager
 
 + (void)getDataWithParameters:(NSDictionary *)parameters success:(void (^)(id))success failure:(void (^)(NSInteger, NSString *))failure {
-    [wpyCacheManager loadCacheDataWithKey:@"gpaCache" andBlock:^(id cacheObject) {
-        if ([self gpaCacheDataIsCompleted:cacheObject]) {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                success(cacheObject);
-            });
-        } else {
-            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
-            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
-            [[NSFileManager defaultManager] removeItemAtPath:plistPath error:nil];
-        }
-    }];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^() {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -37,8 +27,28 @@
             [wpyCacheManager saveCacheData:[operation.responseString objectFromJSONString] withKey:@"gpaCache"];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^() {
-                NSString *errorMsg = [wpyCacheManager cacheDataExistsWithKey:@"gpaCache"] ? [NSString stringWithFormat:@"%@\n已为您加载缓存。", error.localizedDescription] : error.localizedDescription;
-                failure(operation.response.statusCode, errorMsg);
+                
+                NSString *errorCacheMsg = [NSString stringWithFormat:@"%@\n已为您加载缓存。", error.localizedDescription];
+                
+                if ([wpyCacheManager cacheDataExistsWithKey:@"gpaCache"]) {
+                    
+                    [wpyCacheManager loadCacheDataWithKey:@"gpaCache" andBlock:^(id cacheObject) {
+                        if ([self gpaCacheDataIsCompleted:cacheObject]) {
+                            dispatch_async(dispatch_get_main_queue(), ^() {
+                                success(cacheObject);
+                                [MsgDisplay showErrorMsg:errorCacheMsg];
+                            });
+                        } else {
+                            [wpyCacheManager removeCacheDataForKey:@"gpaCache"];
+                            NSString *plistPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"gpaResult"];
+                            [[NSFileManager defaultManager] removeItemAtPath:plistPath error:nil];
+                            failure(operation.response.statusCode, error.localizedDescription);
+                        }
+                    }];
+                } else {
+                    failure(operation.response.statusCode, error.localizedDescription);
+                }
+                
                 [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             });
         }];
@@ -182,6 +192,8 @@
 }
 
 #pragma mark - private functions
+
+// 校验数据完整性
 
 + (BOOL)gpaCacheDataIsCompleted:(id)gpaCacheObject {
     if (gpaCacheObject == nil) {

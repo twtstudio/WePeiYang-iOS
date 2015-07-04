@@ -13,7 +13,7 @@ class DevViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet var devTableView: UITableView!
     @IBOutlet var consoleTextView: UITextView!
     
-    let listArr = ["ID", "Token", "GPA Raw Data", "Class Raw Data"]
+    let listArr = ["ID", "Token", "GPA Raw Data", "Class Raw Data", "Inject ID & Token"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +87,9 @@ class DevViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         case 3:
             self.getClassRawData()
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        case 4:
+            self.injectIdAndToken()
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         default:
             break
         }
@@ -131,7 +134,34 @@ class DevViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         })
     }
     
-    
+    func injectIdAndToken() {
+        var injectController = UIAlertController(title: "Injection", message: "Inject ID and Token(only for developers)", preferredStyle: .Alert)
+        injectController.addTextFieldWithConfigurationHandler({
+            (textField) in
+            textField.placeholder = "id"
+        })
+        injectController.addTextFieldWithConfigurationHandler({
+            (textField) in
+            textField.placeholder = "token"
+        })
+        var injectAction = UIAlertAction(title: "Inject", style: .Destructive, handler: {
+            (alertAction) in
+            let idField = injectController.textFields![0] as! UITextField
+            let tokenField = injectController.textFields![1] as! UITextField
+            
+            let id = idField.text
+            let token = tokenField.text
+            
+            data.shareInstance().userId = id
+            data.shareInstance().userToken = token
+            
+            MsgDisplay.showSuccessMsg("Injection Success")
+        })
+        var cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        injectController.addAction(cancelAction)
+        injectController.addAction(injectAction)
+        self.presentViewController(injectController, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

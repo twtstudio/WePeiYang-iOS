@@ -28,6 +28,11 @@
 @synthesize tableView;
 @synthesize formController;
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

@@ -25,6 +25,13 @@
 @synthesize tableView;
 @synthesize formController;
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // Must be called in iOS 7
+    [tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

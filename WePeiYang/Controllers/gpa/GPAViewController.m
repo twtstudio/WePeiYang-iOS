@@ -432,7 +432,7 @@
 - (void)pushGPACalculator
 {
     GPACalculatorViewController *gpaCalculator = [[GPACalculatorViewController alloc]initWithNibName:nil bundle:nil];
-    gpaCalculator.gpaData = gpaData;
+    [gpaCalculator setGpaData:[gpaData copy]];
     [self.navigationController pushViewController:gpaCalculator animated:YES];
 }
 
