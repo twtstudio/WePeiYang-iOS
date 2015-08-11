@@ -8,27 +8,24 @@
 
 #import "data.h"
 
-static data *INSTANCE;
-
 @implementation data
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self)
     {
-        //这里初始化原本木有的数据，e.g.，Dictionary,Array,etc.
+        
     }
     return self;
 }
 
-+ (data *)shareInstance
-{
-    if (!INSTANCE)
-    {
-        INSTANCE = [[data alloc]init];
-    }
-    return INSTANCE;
++ (data *)shareInstance {
+    static data *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
 }
 
 @end

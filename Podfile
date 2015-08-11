@@ -13,6 +13,7 @@ pod 'SVPullToRefresh'
 pod 'FXForms'
 pod 'FIR.im'
 pod 'ALActionBlocks'
+pod 'MJExtension'
 pod 'iOS7Colors'
 
 target 'WePeiYang' do

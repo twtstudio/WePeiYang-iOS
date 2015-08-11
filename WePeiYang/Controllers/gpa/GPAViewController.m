@@ -461,7 +461,7 @@
     return UIStatusBarStyleLightContent;
 }
 
-// JBLineChartViewDelegate
+#pragma mark - JBLineChart Delegate
 
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView {
     return 1; // number of lines in chart
