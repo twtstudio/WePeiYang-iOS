@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,24 +10,11 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="KwC-kD-x0l">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-                </imageView>
-            </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="KwC-kD-x0l" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="K8u-9v-Ncd"/>
-                <constraint firstItem="KwC-kD-x0l" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="O1E-4n-PBj"/>
-                <constraint firstAttribute="trailing" secondItem="KwC-kD-x0l" secondAttribute="trailing" id="YUg-hn-fLq"/>
-                <constraint firstAttribute="bottom" secondItem="KwC-kD-x0l" secondAttribute="bottom" id="vIz-zN-3hg"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="404" y="445"/>
         </view>
     </objects>
-    <resources>
-        <image name="launchScreen.jpg" width="320" height="568"/>
-    </resources>
 </document>
