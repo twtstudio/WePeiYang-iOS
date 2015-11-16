@@ -9,19 +9,20 @@
 #import "twtAppDelegate.h"
 #import "data.h"
 #import "twtSecretKeys.h"
-#import <FIR/FIR.h>
+#import "twtSDK.h"
 
 @implementation twtAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self.window setBackgroundColor:[UIColor whiteColor]];
     
-    [FIR handleCrashWithKey:[twtSecretKeys getFIRKey]];
     [WXApi registerApp:[twtSecretKeys getWechatAppId]];
     
     // Set NSURLCache
     NSURLCache *sharedCache = [[NSURLCache alloc]initWithMemoryCapacity:2 * 1024 * 1024 diskCapacity:30 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:sharedCache];
     
+    [twtSDK setAppKey:@"YPUzdhNPOa8TeozPw0wb" appSecret:@"TyxNrASaYhSjb7XqGDmSAsQBFi3p4L"];
     return YES;
 }
 
@@ -57,26 +58,23 @@
 
 // 关于后台挂起
 
-- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
-{
-    return YES;
-}
-
-- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
-{
-    return YES;
-}
-
-- (void)application:(UIApplication *)application willEncodeRestorableStateWithCoder:(NSCoder *)coder
-{
-    [coder encodeFloat:2.0 forKey:@"Version"];
-}
-
-- (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder
-{
-    float lastVer = [coder decodeFloatForKey:@"Version"];
-    NSLog(@"lastVer = %f",lastVer);
-}
+//- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+//{
+//    return YES;
+//}
+//
+//- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+//{
+//    return YES;
+//}
+//
+//- (void)application:(UIApplication *)application willEncodeRestorableStateWithCoder:(NSCoder *)coder {
+//
+//}
+//
+//- (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
+//    
+//}
 
 // WeChat Delegate
 
