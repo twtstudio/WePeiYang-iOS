@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="r0T-Bj-3ua">
             <objects>
-                <tabBarController id="D0j-LE-GPn" sceneMemberID="viewController">
+                <tabBarController id="D0j-LE-GPn" customClass="MainTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xuG-pR-SnG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,6 +71,11 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="240"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aH9-QX-n4y" customClass="JBLineChartView">
+                                    <rect key="frame" x="16" y="80" width="568" height="134"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="0H8-iv-fNo">
                                     <rect key="frame" x="140" y="8" width="320" height="64"/>
                                     <subviews>
@@ -117,15 +122,10 @@
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="320" id="S53-aC-UrZ"/>
+                                        <constraint firstAttribute="width" constant="320" id="4L0-dT-gc0"/>
                                         <constraint firstAttribute="height" constant="64" id="jau-6b-sJQ"/>
                                     </constraints>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aH9-QX-n4y" customClass="JBLineChartView">
-                                    <rect key="frame" x="16" y="80" width="568" height="134"/>
-                                    <animations/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,7 +226,18 @@
                             <outlet property="delegate" destination="8gz-MA-cms" id="b14-iw-mFn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="成绩" id="Gls-nL-gR2"/>
+                    <navigationItem key="navigationItem" title="成绩" id="Gls-nL-gR2">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="OPp-Xf-SMP">
+                            <connections>
+                                <action selector="refresh:" destination="8gz-MA-cms" id="0ao-kK-ial"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="分析" id="cqE-Wb-3Hv">
+                            <connections>
+                                <segue destination="k3C-WF-dCW" kind="show" identifier="showStat" id="ZmH-SD-Cbj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="chartView" destination="aH9-QX-n4y" id="w8y-Lb-Zss"/>
                         <outlet property="gpaLabel" destination="FC4-QQ-1A6" id="KdK-ka-hTD"/>
@@ -339,7 +350,27 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54P-Tb-a8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1939" y="1046"/>
+            <point key="canvasLocation" x="1798" y="1046"/>
+        </scene>
+        <!--分析-->
+        <scene sceneID="iwg-Db-cZD">
+            <objects>
+                <viewController id="k3C-WF-dCW" customClass="GPAAnalysisViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="21U-ub-GOK"/>
+                        <viewControllerLayoutGuide type="bottom" id="rhK-D1-fzU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vwi-v4-gDl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="分析" id="ivT-e6-aXT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A05-gT-LMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2529" y="358"/>
         </scene>
         <!--关于微北洋-->
         <scene sceneID="Udy-sD-jGJ">
@@ -366,7 +397,7 @@
         <scene sceneID="9Hi-mc-Vhm">
             <objects>
                 <navigationController id="79T-xM-nQv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" id="dh7-wI-x9I"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="settingTab" id="dh7-wI-x9I"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lh3-Lc-Y90">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -384,7 +415,7 @@
         <scene sceneID="2Du-6I-fSn">
             <objects>
                 <navigationController id="RPE-ch-Ky5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="新闻" id="zOd-op-VeU"/>
+                    <tabBarItem key="tabBarItem" title="新闻" image="newsTab" id="zOd-op-VeU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lDD-Va-jii">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -402,7 +433,7 @@
         <scene sceneID="RSM-Th-5fl">
             <objects>
                 <navigationController id="EMI-dr-t4a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="成绩" id="yju-nD-rpc"/>
+                    <tabBarItem key="tabBarItem" title="成绩" image="gpaTab" id="yju-nD-rpc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IdH-aP-ONg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -419,5 +450,8 @@
     </scenes>
     <resources>
         <image name="dot" width="1000" height="1000"/>
+        <image name="gpaTab" width="30" height="30"/>
+        <image name="newsTab" width="30" height="30"/>
+        <image name="settingTab" width="30" height="30"/>
     </resources>
 </document>

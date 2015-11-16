@@ -7,6 +7,7 @@ pod 'pop'
 pod 'KVOController'
 pod 'SVPullToRefresh'
 pod 'FXForms'
+pod 'FDStackView', '~> 1.0-alpha'
 pod 'BlocksKit'
 pod 'MJExtension'
 pod 'CRToast'
@@ -16,6 +17,7 @@ pod 'WebViewJavascriptBridge'
 pod 'DZNEmptyDataSet'
 pod 'PNChart'
 pod 'JBChartView'
+pod 'Masonry'
 
 target 'WePeiYang' do
 

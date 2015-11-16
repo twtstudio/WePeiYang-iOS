@@ -24,4 +24,11 @@
     return @{@"data": [GPAClassData class]};
 }
 
+- (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property {
+    if ([property.name isEqualToString:@"gpa"] || [property.name isEqualToString:@"score"]) {
+        return [NSString stringWithFormat:@"%.2f", [oldValue floatValue]];
+    }
+    return oldValue;
+}
+
 @end

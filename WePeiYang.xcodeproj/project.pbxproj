@@ -40,6 +40,10 @@
 		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
+		E9AEE5A21BF9DA0000A3949C /* GPADataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */; };
+		E9AEE5A61BF9DF2600A3949C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */; };
+		E9AEE5AA1BFA08D200A3949C /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */; };
+		E9AEE5B11BFA0CF000A3949C /* GPAAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5B01BFA0CF000A3949C /* GPAAnalysisViewController.m */; };
 		E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */; };
 		E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC21A7CFCE2008B5214 /* data.m */; };
 		E9AF6BD01A7CFCE2008B5214 /* wpyEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC61A7CFCE2008B5214 /* wpyEncryption.m */; };
@@ -136,6 +140,14 @@
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
+		E9AEE5A01BF9DA0000A3949C /* GPADataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPADataHandler.h; path = Sections/GPADataHandler.h; sourceTree = "<group>"; };
+		E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPADataHandler.m; path = Sections/GPADataHandler.m; sourceTree = "<group>"; };
+		E9AEE5A41BF9DF2600A3949C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarController.h; path = Controllers/Main/MainTabBarController.h; sourceTree = "<group>"; };
+		E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = Controllers/Main/MainTabBarController.m; sourceTree = "<group>"; };
+		E9AEE5A81BFA08D200A3949C /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = NotLoggedIn/NotLoggedInView.h; sourceTree = "<group>"; };
+		E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = NotLoggedIn/NotLoggedInView.m; sourceTree = "<group>"; };
+		E9AEE5AF1BFA0CF000A3949C /* GPAAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAAnalysisViewController.h; path = Controllers/GPA/GPAAnalysisViewController.h; sourceTree = "<group>"; };
+		E9AEE5B01BFA0CF000A3949C /* GPAAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAAnalysisViewController.m; path = Controllers/GPA/GPAAnalysisViewController.m; sourceTree = "<group>"; };
 		E9AF6BBB1A7CFCE2008B5214 /* wpyDeviceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyDeviceStatus.h; sourceTree = "<group>"; };
 		E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyDeviceStatus.m; sourceTree = "<group>"; };
 		E9AF6BC11A7CFCE2008B5214 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
@@ -313,6 +325,8 @@
 		E91C43DC1BF78FC9001B1B98 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E9AEE5A01BF9DA0000A3949C /* GPADataHandler.h */,
+				E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */,
 			);
 			name = Sections;
 			sourceTree = "<group>";
@@ -321,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				E9372E0E1BB6F0B000F40AF0 /* Main.storyboard */,
+				E9AEE5A31BF9DF0900A3949C /* MainTabBar */,
 				E9D3577D1BF0FBF70052976E /* News */,
 				E9D95A0A1BEF34DF003F30BD /* GPA */,
 				E9D357821BF0FE420052976E /* Setting */,
@@ -391,6 +406,24 @@
 			);
 			name = UIActivity;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E9AEE5A31BF9DF0900A3949C /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E9AEE5A41BF9DF2600A3949C /* MainTabBarController.h */,
+				E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */,
+			);
+			name = MainTabBar;
+			sourceTree = "<group>";
+		};
+		E9AEE5A71BFA08B800A3949C /* NotLoggedIn */ = {
+			isa = PBXGroup;
+			children = (
+				E9AEE5A81BFA08D200A3949C /* NotLoggedInView.h */,
+				E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */,
+			);
+			name = NotLoggedIn;
 			sourceTree = "<group>";
 		};
 		E9AF6BB91A7CFCE2008B5214 /* Models */ = {
@@ -464,6 +497,7 @@
 		E9AF6BD41A7CFCEA008B5214 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E9AEE5A71BFA08B800A3949C /* NotLoggedIn */,
 				E94B1FD31BF7AA6C00520536 /* GPA */,
 			);
 			path = Views;
@@ -546,6 +580,8 @@
 			children = (
 				E9D95A0B1BEF35A8003F30BD /* GPATableViewController.h */,
 				E9D95A0C1BEF35A8003F30BD /* GPATableViewController.m */,
+				E9AEE5AF1BFA0CF000A3949C /* GPAAnalysisViewController.h */,
+				E9AEE5B01BFA0CF000A3949C /* GPAAnalysisViewController.m */,
 			);
 			name = GPA;
 			sourceTree = "<group>";
@@ -721,6 +757,7 @@
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* wpyStringProcessor.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
+				E9AEE5B11BFA0CF000A3949C /* GPAAnalysisViewController.m in Sources */,
 				E9D357851BF0FE570052976E /* SettingViewController.m in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
@@ -740,10 +777,13 @@
 				E94B1FD61BF7AA9300520536 /* GPATableViewCell.m in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
+				E9AEE5A61BF9DF2600A3949C /* MainTabBarController.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,
+				E9AEE5AA1BFA08D200A3949C /* NotLoggedInView.m in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				E9D744031BF9AE38005F2EF9 /* twtAppDelegate.m in Sources */,
+				E9AEE5A21BF9DA0000A3949C /* GPADataHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

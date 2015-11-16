@@ -16,6 +16,10 @@
 #import "GPAClassData.h"
 #import "GPAStat.h"
 #import "GPATableViewCell.h"
+#import "wpyCacheManager.h"
+#import "MsgDisplay.h"
+#import "GPAAnalysisViewController.h"
+#import "twtSecretKeys.h"
 
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
@@ -39,7 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBarBackgroundAlpha = 0.0;
     self.clearsSelectionOnViewWillAppear = YES;
     headerView.backgroundColor = [UIColor flatPinkColorDark];
@@ -74,27 +79,51 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    float offSetY = self.tableView.contentOffset.y;
+    [self adjustStyleWithScrollOffset:offSetY];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
 }
 
 #pragma mark - Private methods
 
 - (void)getGPAData {
-    [twtSDK getGpaWithTjuUsername:@"3012209017" password:@"tjuiai429r" success:^(NSURLSessionTask *task, id responseObject) {
+    dataArr = [[NSArray alloc] init];
+    chartDataArr = [[NSMutableArray alloc] init];
+    stat = [[GPAStat alloc] init];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [twtSDK getGpaWithTjuUsername:[twtSecretKeys getTestGPAID] password:[twtSecretKeys getTestGPAPasswd] success:^(NSURLSessionTask *task, id responseObject) {
         if ([responseObject[@"error_code"] isEqual: @-1]) {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            [wpyCacheManager saveCacheData:responseObject withKey:@"GPACache"];
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(responseObject[@"data"])[@"data"]];
             stat = [GPAStat mj_objectWithKeyValues:(responseObject[@"data"])[@"stat"]];
             [self updateView];
+        } else {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
     } failure:^(NSURLSessionTask *task, NSError *error) {
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [MsgDisplay showErrorMsg:error.description];
+        [wpyCacheManager loadCacheDataWithKey:@"GPACache" andBlock:^(id cacheData) {
+            dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
+            stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
+            [self updateView];
+        }];
     } userCanceledCaptcha:^() {
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [MsgDisplay showErrorMsg:@"您已取消输入验证码\n将为您加载缓存"];
+        [wpyCacheManager loadCacheDataWithKey:@"GPACache" andBlock:^(id cacheData) {
+            dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
+            stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
+            [self updateView];
+        }];
     }];
 }
 
@@ -114,6 +143,31 @@
     }
     [chartView reloadData];
     [chartView setState:JBChartViewStateExpanded animated:YES];
+}
+
+- (void)adjustStyleWithScrollOffset:(float)offSetY {
+    if (offSetY > -60 && offSetY <= -10) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+        self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
+        self.navigationController.navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
+    } else if (offSetY <= -60) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        self.navigationController.navigationBarBackgroundAlpha = 0.0;
+    } else {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+        self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
+        self.navigationController.navigationBarBackgroundAlpha = 1.0;
+    }
+}
+
+#pragma mark - IBActions
+
+- (IBAction)refresh:(id)sender {
+    [self getGPAData];
 }
 
 #pragma mark - JBChartView data source
@@ -255,19 +309,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    NSLog(@"%f", scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y > -60 && scrollView.contentOffset.y <= -10) {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-        self.navigationController.navigationBarBackgroundAlpha = (scrollView.contentOffset.y + 60) * 0.02;
-    } else if (scrollView.contentOffset.y <= -60) {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-        self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-        self.navigationController.navigationBarBackgroundAlpha = 0.0;
-    } else {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-        self.navigationController.navigationBarBackgroundAlpha = 1.0;
-    }
+    [self adjustStyleWithScrollOffset:scrollView.contentOffset.y];
 }
 
 #pragma mark - Navigation
@@ -276,7 +318,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //     Get the new view controller using [segue destinationViewController].
 //     Pass the selected object to the new view controller.
-    
+    if ([segue.identifier isEqualToString:@"showStat"]) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+        self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
+        self.navigationController.navigationBarBackgroundAlpha = 1.0;
+        GPAAnalysisViewController *destVC = (GPAAnalysisViewController *)[segue destinationViewController];
+        destVC.dataArr = dataArr;
+    }
 }
 
 @end

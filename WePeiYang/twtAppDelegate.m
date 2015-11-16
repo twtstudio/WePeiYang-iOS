@@ -22,7 +22,7 @@
     NSURLCache *sharedCache = [[NSURLCache alloc]initWithMemoryCapacity:2 * 1024 * 1024 diskCapacity:30 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:sharedCache];
     
-    [twtSDK setAppKey:@"YPUzdhNPOa8TeozPw0wb" appSecret:@"TyxNrASaYhSjb7XqGDmSAsQBFi3p4L"];
+    [twtSDK setAppKey:[twtSecretKeys getTWTAppKey] appSecret:[twtSecretKeys getTWTAppSecret]];
     return YES;
 }
 
