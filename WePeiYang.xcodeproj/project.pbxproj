@@ -27,6 +27,7 @@
 		E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */; };
 		E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */; };
 		E9372E0F1BB6F0B000F40AF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9372E0E1BB6F0B000F40AF0 /* Main.storyboard */; };
+		E93CEA741BFB424700E77C43 /* GPAAnalysisTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93CEA731BFB424700E77C43 /* GPAAnalysisTableViewController.m */; };
 		E93F0E371BF9BCC1004B997C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C93185D4D6200F76085 /* CoreTelephony.framework */; };
 		E93F0E381BF9BCD1004B997C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D744091BF9AE88005F2EF9 /* libWeChatSDK.a */; };
 		E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FCE1BF79A5000520536 /* GPAData.m */; };
@@ -43,7 +44,6 @@
 		E9AEE5A21BF9DA0000A3949C /* GPADataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */; };
 		E9AEE5A61BF9DF2600A3949C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */; };
 		E9AEE5AA1BFA08D200A3949C /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */; };
-		E9AEE5B11BFA0CF000A3949C /* GPAAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5B01BFA0CF000A3949C /* GPAAnalysisViewController.m */; };
 		E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */; };
 		E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC21A7CFCE2008B5214 /* data.m */; };
 		E9AF6BD01A7CFCE2008B5214 /* wpyEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC61A7CFCE2008B5214 /* wpyEncryption.m */; };
@@ -118,6 +118,8 @@
 		E922985C1AF0F907000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeChatSessionActivity.h; path = Sharing/WeChatSessionActivity.h; sourceTree = "<group>"; };
 		E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatSessionActivity.m; path = Sharing/WeChatSessionActivity.m; sourceTree = "<group>"; };
 		E9372E0E1BB6F0B000F40AF0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Controllers/Main.storyboard; sourceTree = "<group>"; };
+		E93CEA721BFB424700E77C43 /* GPAAnalysisTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAAnalysisTableViewController.h; path = Controllers/GPA/GPAAnalysisTableViewController.h; sourceTree = "<group>"; };
+		E93CEA731BFB424700E77C43 /* GPAAnalysisTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAAnalysisTableViewController.m; path = Controllers/GPA/GPAAnalysisTableViewController.m; sourceTree = "<group>"; };
 		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "Data Model/GPAData.h"; sourceTree = "<group>"; };
 		E94B1FCE1BF79A5000520536 /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "Data Model/GPAData.m"; sourceTree = "<group>"; };
 		E94B1FD01BF79BF900520536 /* GPAClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAClassData.h; path = "Data Model/GPAClassData.h"; sourceTree = "<group>"; };
@@ -146,8 +148,6 @@
 		E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = Controllers/Main/MainTabBarController.m; sourceTree = "<group>"; };
 		E9AEE5A81BFA08D200A3949C /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = NotLoggedIn/NotLoggedInView.h; sourceTree = "<group>"; };
 		E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = NotLoggedIn/NotLoggedInView.m; sourceTree = "<group>"; };
-		E9AEE5AF1BFA0CF000A3949C /* GPAAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAAnalysisViewController.h; path = Controllers/GPA/GPAAnalysisViewController.h; sourceTree = "<group>"; };
-		E9AEE5B01BFA0CF000A3949C /* GPAAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAAnalysisViewController.m; path = Controllers/GPA/GPAAnalysisViewController.m; sourceTree = "<group>"; };
 		E9AF6BBB1A7CFCE2008B5214 /* wpyDeviceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyDeviceStatus.h; sourceTree = "<group>"; };
 		E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyDeviceStatus.m; sourceTree = "<group>"; };
 		E9AF6BC11A7CFCE2008B5214 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
@@ -580,8 +580,8 @@
 			children = (
 				E9D95A0B1BEF35A8003F30BD /* GPATableViewController.h */,
 				E9D95A0C1BEF35A8003F30BD /* GPATableViewController.m */,
-				E9AEE5AF1BFA0CF000A3949C /* GPAAnalysisViewController.h */,
-				E9AEE5B01BFA0CF000A3949C /* GPAAnalysisViewController.m */,
+				E93CEA721BFB424700E77C43 /* GPAAnalysisTableViewController.h */,
+				E93CEA731BFB424700E77C43 /* GPAAnalysisTableViewController.m */,
 			);
 			name = GPA;
 			sourceTree = "<group>";
@@ -757,7 +757,6 @@
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* wpyStringProcessor.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
-				E9AEE5B11BFA0CF000A3949C /* GPAAnalysisViewController.m in Sources */,
 				E9D357851BF0FE570052976E /* SettingViewController.m in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
@@ -772,6 +771,7 @@
 				E9D3577B1BF0FAFB0052976E /* LoginViewController.m in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
+				E93CEA741BFB424700E77C43 /* GPAAnalysisTableViewController.m in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				E94B1FD61BF7AA9300520536 /* GPATableViewCell.m in Sources */,

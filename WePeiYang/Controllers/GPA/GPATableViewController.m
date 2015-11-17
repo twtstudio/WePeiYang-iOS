@@ -18,7 +18,7 @@
 #import "GPATableViewCell.h"
 #import "wpyCacheManager.h"
 #import "MsgDisplay.h"
-#import "GPAAnalysisViewController.h"
+#import "GPAAnalysisTableViewController.h"
 #import "twtSecretKeys.h"
 
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
@@ -323,7 +323,7 @@
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
         self.navigationController.navigationBarBackgroundAlpha = 1.0;
-        GPAAnalysisViewController *destVC = (GPAAnalysisViewController *)[segue destinationViewController];
+        GPAAnalysisTableViewController *destVC = (GPAAnalysisTableViewController *)[segue destinationViewController];
         destVC.dataArr = dataArr;
     }
 }

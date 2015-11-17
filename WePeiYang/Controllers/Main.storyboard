@@ -234,7 +234,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="分析" id="cqE-Wb-3Hv">
                             <connections>
-                                <segue destination="k3C-WF-dCW" kind="show" identifier="showStat" id="ZmH-SD-Cbj"/>
+                                <segue destination="ly2-xY-3RG" kind="show" identifier="showStat" id="QPp-HD-sWk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -353,24 +353,47 @@
             <point key="canvasLocation" x="1798" y="1046"/>
         </scene>
         <!--分析-->
-        <scene sceneID="iwg-Db-cZD">
+        <scene sceneID="gGy-i9-fau">
             <objects>
-                <viewController id="k3C-WF-dCW" customClass="GPAAnalysisViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="21U-ub-GOK"/>
-                        <viewControllerLayoutGuide type="bottom" id="rhK-D1-fzU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vwi-v4-gDl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <tableViewController id="ly2-xY-3RG" customClass="GPAAnalysisTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oJg-ry-grb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="分析" id="ivT-e6-aXT"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A05-gT-LMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="7d6-Dl-Mmo">
+                            <rect key="frame" x="0.0" y="64" width="600" height="511"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="p4T-7w-xvv">
+                                <rect key="frame" x="0.0" y="603" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p4T-7w-xvv" id="85U-KV-kU6">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ly2-xY-3RG" id="hJl-bS-jmV"/>
+                            <outlet property="delegate" destination="ly2-xY-3RG" id="cF7-T4-a7b"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="分析" id="E0B-AO-1xs"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="800"/>
+                    <connections>
+                        <outlet property="headerView" destination="7d6-Dl-Mmo" id="Lwm-MS-XpY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SGg-aM-PNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2529" y="358"/>
+            <point key="canvasLocation" x="2489" y="299"/>
         </scene>
         <!--关于微北洋-->
         <scene sceneID="Udy-sD-jGJ">
