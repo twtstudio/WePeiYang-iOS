@@ -48,6 +48,7 @@
     self.navigationController.navigationBarBackgroundAlpha = 0.0;
     self.clearsSelectionOnViewWillAppear = YES;
     headerView.backgroundColor = [UIColor flatPinkColorDark];
+    
     dataArr = [[NSArray alloc] init];
     chartDataArr = [[NSMutableArray alloc] init];
     stat = [[GPAStat alloc] init];

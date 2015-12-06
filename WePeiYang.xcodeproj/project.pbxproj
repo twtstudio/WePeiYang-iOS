@@ -30,6 +30,9 @@
 		E93CEA741BFB424700E77C43 /* GPAAnalysisTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93CEA731BFB424700E77C43 /* GPAAnalysisTableViewController.m */; };
 		E93F0E371BF9BCC1004B997C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C93185D4D6200F76085 /* CoreTelephony.framework */; };
 		E93F0E381BF9BCD1004B997C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D744091BF9AE88005F2EF9 /* libWeChatSDK.a */; };
+		E9472BE91C14872900EC229C /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BE81C14872900EC229C /* NewsData.m */; };
+		E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BEB1C14879D00EC229C /* NewsContent.m */; };
+		E9472BF01C148B5000EC229C /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BEF1C148B5000EC229C /* NewsTableViewCell.m */; };
 		E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FCE1BF79A5000520536 /* GPAData.m */; };
 		E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FD11BF79BF900520536 /* GPAClassData.m */; };
 		E94B1FD61BF7AA9300520536 /* GPATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FD51BF7AA9300520536 /* GPATableViewCell.m */; };
@@ -40,18 +43,16 @@
 		E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE41BF7AE8800520536 /* twtSDK.m */; };
 		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
+		E98AB0211C008DAA0060E339 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98AB0201C008DAA0060E339 /* NewsViewController.m */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
-		E9AEE5A21BF9DA0000A3949C /* GPADataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */; };
 		E9AEE5A61BF9DF2600A3949C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */; };
 		E9AEE5AA1BFA08D200A3949C /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */; };
 		E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */; };
 		E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC21A7CFCE2008B5214 /* data.m */; };
-		E9AF6BD01A7CFCE2008B5214 /* wpyEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC61A7CFCE2008B5214 /* wpyEncryption.m */; };
 		E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */; };
 		E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */; };
 		E9AF6BD31A7CFCE2008B5214 /* wpyStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BCC1A7CFCE2008B5214 /* wpyStringProcessor.m */; };
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
-		E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */; };
 		E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C7D93D1BF9A94100DCB34A /* Images.xcassets */; };
 		E9D3577B1BF0FAFB0052976E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D357791BF0FAFA0052976E /* LoginViewController.m */; };
 		E9D3577C1BF0FAFB0052976E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D3577A1BF0FAFB0052976E /* LoginViewController.xib */; };
@@ -66,6 +67,7 @@
 		E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FB1BF9AE38005F2EF9 /* InfoPlist.strings */; };
 		E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FD1BF9AE38005F2EF9 /* Localizable.strings */; };
 		E9D95A0D1BEF35A8003F30BD /* GPATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D95A0C1BEF35A8003F30BD /* GPATableViewController.m */; };
+		E9E637401BFB824C009CA6C8 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E6373F1BFB824C009CA6C8 /* NewsTableViewController.m */; };
 		E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +122,12 @@
 		E9372E0E1BB6F0B000F40AF0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Controllers/Main.storyboard; sourceTree = "<group>"; };
 		E93CEA721BFB424700E77C43 /* GPAAnalysisTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAAnalysisTableViewController.h; path = Controllers/GPA/GPAAnalysisTableViewController.h; sourceTree = "<group>"; };
 		E93CEA731BFB424700E77C43 /* GPAAnalysisTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAAnalysisTableViewController.m; path = Controllers/GPA/GPAAnalysisTableViewController.m; sourceTree = "<group>"; };
+		E9472BE71C14872900EC229C /* NewsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsData.h; path = "Data Model/NewsData.h"; sourceTree = "<group>"; };
+		E9472BE81C14872900EC229C /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsData.m; path = "Data Model/NewsData.m"; sourceTree = "<group>"; };
+		E9472BEA1C14879D00EC229C /* NewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContent.h; path = "Data Model/NewsContent.h"; sourceTree = "<group>"; };
+		E9472BEB1C14879D00EC229C /* NewsContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsContent.m; path = "Data Model/NewsContent.m"; sourceTree = "<group>"; };
+		E9472BEE1C148B5000EC229C /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewCell.h; path = News/NewsTableViewCell.h; sourceTree = "<group>"; };
+		E9472BEF1C148B5000EC229C /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = News/NewsTableViewCell.m; sourceTree = "<group>"; };
 		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "Data Model/GPAData.h"; sourceTree = "<group>"; };
 		E94B1FCE1BF79A5000520536 /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "Data Model/GPAData.m"; sourceTree = "<group>"; };
 		E94B1FD01BF79BF900520536 /* GPAClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAClassData.h; path = "Data Model/GPAClassData.h"; sourceTree = "<group>"; };
@@ -140,10 +148,10 @@
 		E958E7891A9384EE0055B7C4 /* MsgDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgDisplay.m; path = "Message Display/MsgDisplay.m"; sourceTree = "<group>"; };
 		E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarEventActivity.h; path = Sharing/CalendarEventActivity.h; sourceTree = "<group>"; };
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
+		E98AB01F1C008DAA0060E339 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/News/NewsViewController.h; sourceTree = "<group>"; };
+		E98AB0201C008DAA0060E339 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/News/NewsViewController.m; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
-		E9AEE5A01BF9DA0000A3949C /* GPADataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPADataHandler.h; path = Sections/GPADataHandler.h; sourceTree = "<group>"; };
-		E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPADataHandler.m; path = Sections/GPADataHandler.m; sourceTree = "<group>"; };
 		E9AEE5A41BF9DF2600A3949C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarController.h; path = Controllers/Main/MainTabBarController.h; sourceTree = "<group>"; };
 		E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = Controllers/Main/MainTabBarController.m; sourceTree = "<group>"; };
 		E9AEE5A81BFA08D200A3949C /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = NotLoggedIn/NotLoggedInView.h; sourceTree = "<group>"; };
@@ -152,16 +160,12 @@
 		E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyDeviceStatus.m; sourceTree = "<group>"; };
 		E9AF6BC11A7CFCE2008B5214 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
 		E9AF6BC21A7CFCE2008B5214 /* data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = data.m; sourceTree = "<group>"; };
-		E9AF6BC51A7CFCE2008B5214 /* wpyEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyEncryption.h; sourceTree = "<group>"; };
-		E9AF6BC61A7CFCE2008B5214 /* wpyEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyEncryption.m; sourceTree = "<group>"; };
 		E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
 		E9AF6BCB1A7CFCE2008B5214 /* wpyStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyStringProcessor.h; sourceTree = "<group>"; };
 		E9AF6BCC1A7CFCE2008B5214 /* wpyStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyStringProcessor.m; sourceTree = "<group>"; };
 		E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
 		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
-		E9AF6BDE1A7CFDB5008B5214 /* twtAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtAPIs.h; sourceTree = "<group>"; };
-		E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtAPIs.m; sourceTree = "<group>"; };
 		E9C7D93D1BF9A94100DCB34A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9C7D93F1BF9A94100DCB34A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		E9C7D9401BF9A94100DCB34A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 		E9D744091BF9AE88005F2EF9 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E9D95A0B1BEF35A8003F30BD /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPATableViewController.h; path = Controllers/GPA/GPATableViewController.h; sourceTree = "<group>"; };
 		E9D95A0C1BEF35A8003F30BD /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPATableViewController.m; path = Controllers/GPA/GPATableViewController.m; sourceTree = "<group>"; };
+		E9E6373E1BFB824C009CA6C8 /* NewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewController.h; path = Controllers/News/NewsTableViewController.h; sourceTree = "<group>"; };
+		E9E6373F1BFB824C009CA6C8 /* NewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewController.m; path = Controllers/News/NewsTableViewController.m; sourceTree = "<group>"; };
 		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "Data Model/GPAStat.h"; sourceTree = "<group>"; };
 		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "Data Model/GPAStat.m"; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -325,8 +331,6 @@
 		E91C43DC1BF78FC9001B1B98 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				E9AEE5A01BF9DA0000A3949C /* GPADataHandler.h */,
-				E9AEE5A11BF9DA0000A3949C /* GPADataHandler.m */,
 			);
 			name = Sections;
 			sourceTree = "<group>";
@@ -344,6 +348,15 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		E9472BED1C148B2900EC229C /* News */ = {
+			isa = PBXGroup;
+			children = (
+				E9472BEE1C148B5000EC229C /* NewsTableViewCell.h */,
+				E9472BEF1C148B5000EC229C /* NewsTableViewCell.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
 		E94B1FCC1BF79A3600520536 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +366,10 @@
 				E94B1FD11BF79BF900520536 /* GPAClassData.m */,
 				E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */,
 				E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */,
+				E9472BE71C14872900EC229C /* NewsData.h */,
+				E9472BE81C14872900EC229C /* NewsData.m */,
+				E9472BEA1C14879D00EC229C /* NewsContent.h */,
+				E9472BEB1C14879D00EC229C /* NewsContent.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -467,10 +484,6 @@
 			children = (
 				E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */,
 				E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */,
-				E9AF6BC51A7CFCE2008B5214 /* wpyEncryption.h */,
-				E9AF6BC61A7CFCE2008B5214 /* wpyEncryption.m */,
-				E9AF6BDE1A7CFDB5008B5214 /* twtAPIs.h */,
-				E9AF6BDF1A7CFDB5008B5214 /* twtAPIs.m */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -498,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AEE5A71BFA08B800A3949C /* NotLoggedIn */,
+				E9472BED1C148B2900EC229C /* News */,
 				E94B1FD31BF7AA6C00520536 /* GPA */,
 			);
 			path = Views;
@@ -528,6 +542,10 @@
 		E9D3577D1BF0FBF70052976E /* News */ = {
 			isa = PBXGroup;
 			children = (
+				E98AB01F1C008DAA0060E339 /* NewsViewController.h */,
+				E98AB0201C008DAA0060E339 /* NewsViewController.m */,
+				E9E6373E1BFB824C009CA6C8 /* NewsTableViewController.h */,
+				E9E6373F1BFB824C009CA6C8 /* NewsTableViewController.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -761,12 +779,14 @@
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E9D95A0D1BEF35A8003F30BD /* GPATableViewController.m in Sources */,
-				E9AF6BE01A7CFDB5008B5214 /* twtAPIs.m in Sources */,
-				E9AF6BD01A7CFCE2008B5214 /* wpyEncryption.m in Sources */,
+				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
+				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
+				E98AB0211C008DAA0060E339 /* NewsViewController.m in Sources */,
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
+				E9472BF01C148B5000EC229C /* NewsTableViewCell.m in Sources */,
 				E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E9D3577B1BF0FAFB0052976E /* LoginViewController.m in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
@@ -777,13 +797,13 @@
 				E94B1FD61BF7AA9300520536 /* GPATableViewCell.m in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
+				E9E637401BFB824C009CA6C8 /* NewsTableViewController.m in Sources */,
 				E9AEE5A61BF9DF2600A3949C /* MainTabBarController.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,
 				E9AEE5AA1BFA08D200A3949C /* NotLoggedInView.m in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				E9D744031BF9AE38005F2EF9 /* twtAppDelegate.m in Sources */,
-				E9AEE5A21BF9DA0000A3949C /* GPADataHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, NewsType) {
+    NewsTypeTJU,
+    NewsTypeNotic,
+    NewsTypeSociety,
+    NewsTypeCollege,
+    NewsTypeView
+};
+
 @interface twtSDK : NSObject
 
 /**
@@ -29,5 +37,9 @@
  *  @param userCanceled 用户取消验证框的回调
  */
 + (void)getGpaWithTjuUsername:(NSString *)username password:(NSString *)password success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure userCanceledCaptcha:(void(^)())userCanceled;
+
++ (void)getNewsListWithType:(NewsType)type page:(NSUInteger)page success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+
++ (void)getNewsContentWithIndex:(NSString *)index success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 @end

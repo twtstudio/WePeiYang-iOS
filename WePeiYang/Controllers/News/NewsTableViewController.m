@@ -1,38 +1,58 @@
 //
-//  GPAAnalysisTableViewController.m
+//  NewsTableViewController.m
 //  WePeiYang
 //
 //  Created by Qin Yubo on 15/11/17.
 //  Copyright © 2015年 Qin Yubo. All rights reserved.
 //
 
-#import "GPAAnalysisTableViewController.h"
-#import "PNChart.h"
-#import "GPAData.h"
-#import "GPAClassData.h"
-#import "Chameleon.h"
-#import "Masonry.h"
+#import "NewsTableViewController.h"
+#import "twtSDK.h"
+#import "MJExtension.h"
+#import "SVPullToRefresh.h"
+#import "NewsData.h"
 
-@interface GPAAnalysisTableViewController ()
+@interface NewsTableViewController ()
 
 @end
 
-@implementation GPAAnalysisTableViewController
+@implementation NewsTableViewController {
+    NSUInteger currentPage;
+    NewsType type;
+}
 
-@synthesize headerView;
-@synthesize dataArr;
+@synthesize delegate;
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    if (self = [super initWithStyle:style]) {
+        // 使 tableView 最上方不被 navigationBar 遮挡
+        UIEdgeInsets oriContentInset = self.tableView.contentInset;
+        UIEdgeInsets oriScrollIndicatorInset = self.tableView.scrollIndicatorInsets;
+        self.tableView.contentInset = UIEdgeInsetsMake(64.0, oriContentInset.left, oriContentInset.bottom, oriContentInset.right);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0, oriScrollIndicatorInset.left, oriScrollIndicatorInset.bottom, oriScrollIndicatorInset.right);
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    if (dataArr.count > 0) {
-        [self strokeChart];
-    }
+    
+    currentPage = 0;
+    type = NewsTypeTJU;
+    
+    __weak NewsTableViewController *weakSelf = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshData];
+    }];
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf nextPage];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,49 +60,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)strokeChart {
-    int gradeA = 0;
-    int gradeB = 0;
-    int gradeC = 0;
-    int gradeD = 0;
-    int gradeE = 0;
-    int totalNum = 0;
-    for (GPAData *data in dataArr) {
-        for (GPAClassData *class in data.data) {
-            totalNum ++;
-            float score = [class.score floatValue];
-            if (score >= 90) {
-                gradeA ++;
-            } else if (score >= 80) {
-                gradeB ++;
-            } else if (score >= 70) {
-                gradeC ++;
-            } else if (score >= 60) {
-                gradeD ++;
-            } else {
-                gradeE ++;
-            }
-        }
-    }
+#pragma mark - Private methods
+
+- (void)getData {
     
-    NSArray *items = @[
-                       [PNPieChartDataItem dataItemWithValue:gradeA color:[UIColor flatGreenColor] description:@"90~100"],
-                       [PNPieChartDataItem dataItemWithValue:gradeB color:[UIColor flatMagentaColor] description:@"80~90"],
-                       [PNPieChartDataItem dataItemWithValue:gradeC color:[UIColor flatSkyBlueColor] description:@"70~80"],
-                       [PNPieChartDataItem dataItemWithValue:gradeD color:[UIColor flatYellowColorDark] description:@"60~70"],
-                       [PNPieChartDataItem dataItemWithValue:gradeE color:[UIColor flatRedColor] description:@"0~60"]
-                       ];
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(24, 8, self.view.frame.size.width - 48, 360) items:items];
-    pieChart.descriptionTextColor = [UIColor whiteColor];
-    pieChart.descriptionTextFont = [UIFont systemFontOfSize:17.0];
-    [headerView addSubview:pieChart];
-    [pieChart strokeChart];
+}
+
+- (void)nextPage {
     
-    pieChart.legendFont = [UIFont systemFontOfSize:14.0];
-    pieChart.legendStyle = PNLegendItemStyleStacked;
-    UIView *legend = [pieChart getLegendWithMaxWidth:200];
-    [legend setFrame:CGRectMake(24, 400, legend.frame.size.width, legend.frame.size.height)];
-    [headerView addSubview:legend];
+}
+
+- (void)refreshData {
+    
 }
 
 #pragma mark - Table view data source
