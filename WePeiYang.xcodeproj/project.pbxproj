@@ -44,6 +44,8 @@
 		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E98AB0211C008DAA0060E339 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98AB0201C008DAA0060E339 /* NewsViewController.m */; };
+		E9941B3F1C15DC2E00626A56 /* NewsContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9941B3E1C15DC2E00626A56 /* NewsContentViewController.m */; };
+		E9941B411C15E30800626A56 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9941B401C15E30800626A56 /* jquery.min.js */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
 		E9AEE5A61BF9DF2600A3949C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A51BF9DF2600A3949C /* MainTabBarController.m */; };
 		E9AEE5AA1BFA08D200A3949C /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE5A91BFA08D200A3949C /* NotLoggedInView.m */; };
@@ -51,7 +53,7 @@
 		E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC21A7CFCE2008B5214 /* data.m */; };
 		E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */; };
 		E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */; };
-		E9AF6BD31A7CFCE2008B5214 /* wpyStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BCC1A7CFCE2008B5214 /* wpyStringProcessor.m */; };
+		E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */; };
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
 		E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C7D93D1BF9A94100DCB34A /* Images.xcassets */; };
 		E9D3577B1BF0FAFB0052976E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D357791BF0FAFA0052976E /* LoginViewController.m */; };
@@ -150,6 +152,10 @@
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
 		E98AB01F1C008DAA0060E339 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsViewController.h; path = Controllers/News/NewsViewController.h; sourceTree = "<group>"; };
 		E98AB0201C008DAA0060E339 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsViewController.m; path = Controllers/News/NewsViewController.m; sourceTree = "<group>"; };
+		E9941B3D1C15DC2E00626A56 /* NewsContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContentViewController.h; path = Controllers/News/NewsContentViewController.h; sourceTree = "<group>"; };
+		E9941B3E1C15DC2E00626A56 /* NewsContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsContentViewController.m; path = Controllers/News/NewsContentViewController.m; sourceTree = "<group>"; };
+		E9941B401C15E30800626A56 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		E9941B421C15E8A800626A56 /* WechatAuthSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
 		E9AEE5A41BF9DF2600A3949C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarController.h; path = Controllers/Main/MainTabBarController.h; sourceTree = "<group>"; };
@@ -162,8 +168,8 @@
 		E9AF6BC21A7CFCE2008B5214 /* data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = data.m; sourceTree = "<group>"; };
 		E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
-		E9AF6BCB1A7CFCE2008B5214 /* wpyStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyStringProcessor.h; sourceTree = "<group>"; };
-		E9AF6BCC1A7CFCE2008B5214 /* wpyStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyStringProcessor.m; sourceTree = "<group>"; };
+		E9AF6BCB1A7CFCE2008B5214 /* FrontEndProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontEndProcessor.h; sourceTree = "<group>"; };
+		E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontEndProcessor.m; sourceTree = "<group>"; };
 		E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
 		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		E9C7D93D1BF9A94100DCB34A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -409,6 +415,17 @@
 			name = "Message Display";
 			sourceTree = "<group>";
 		};
+		E9941B431C15E8AC00626A56 /* WXSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E9D744091BF9AE88005F2EF9 /* libWeChatSDK.a */,
+				E9C7D93F1BF9A94100DCB34A /* WXApi.h */,
+				E9941B421C15E8A800626A56 /* WechatAuthSDK.h */,
+				E9C7D9401BF9A94100DCB34A /* WXApiObject.h */,
+			);
+			name = WXSDK;
+			sourceTree = "<group>";
+		};
 		E9A48CD41A6FE8FE001D8420 /* UIActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,8 +509,8 @@
 			isa = PBXGroup;
 			children = (
 				E9AF6BC81A7CFCE2008B5214 /* bootstrap */,
-				E9AF6BCB1A7CFCE2008B5214 /* wpyStringProcessor.h */,
-				E9AF6BCC1A7CFCE2008B5214 /* wpyStringProcessor.m */,
+				E9AF6BCB1A7CFCE2008B5214 /* FrontEndProcessor.h */,
+				E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */,
 			);
 			path = "WebView Bootstrap";
 			sourceTree = "<group>";
@@ -501,6 +518,7 @@
 		E9AF6BC81A7CFCE2008B5214 /* bootstrap */ = {
 			isa = PBXGroup;
 			children = (
+				E9941B401C15E30800626A56 /* jquery.min.js */,
 				E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */,
 				E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */,
 			);
@@ -521,9 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				E9C7D93D1BF9A94100DCB34A /* Images.xcassets */,
-				E9D744091BF9AE88005F2EF9 /* libWeChatSDK.a */,
-				E9C7D93F1BF9A94100DCB34A /* WXApi.h */,
-				E9C7D9401BF9A94100DCB34A /* WXApiObject.h */,
+				E9941B431C15E8AC00626A56 /* WXSDK */,
 			);
 			name = Resource;
 			path = WePeiYang/Resource;
@@ -546,6 +562,8 @@
 				E98AB0201C008DAA0060E339 /* NewsViewController.m */,
 				E9E6373E1BFB824C009CA6C8 /* NewsTableViewController.h */,
 				E9E6373F1BFB824C009CA6C8 /* NewsTableViewController.m */,
+				E9941B3D1C15DC2E00626A56 /* NewsContentViewController.h */,
+				E9941B3E1C15DC2E00626A56 /* NewsContentViewController.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -705,6 +723,7 @@
 				E9D744041BF9AE38005F2EF9 /* WePeiYang-Info.plist in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
 				E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */,
+				E9941B411C15E30800626A56 /* jquery.min.js in Resources */,
 				E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,7 +792,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
-				E9AF6BD31A7CFCE2008B5214 /* wpyStringProcessor.m in Sources */,
+				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
 				E9D357851BF0FE570052976E /* SettingViewController.m in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
@@ -787,6 +806,7 @@
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				E9472BF01C148B5000EC229C /* NewsTableViewCell.m in Sources */,
+				E9941B3F1C15DC2E00626A56 /* NewsContentViewController.m in Sources */,
 				E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E9D3577B1BF0FAFB0052976E /* LoginViewController.m in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,

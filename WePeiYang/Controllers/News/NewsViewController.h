@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WMPageController.h"
 
-@interface NewsViewController : UIViewController<UIPageViewControllerDataSource>
+@interface NewsViewController : WMPageController
 
 @end

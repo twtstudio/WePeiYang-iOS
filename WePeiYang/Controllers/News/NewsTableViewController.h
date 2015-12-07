@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol NewsTableViewControllerDelegate <NSObject>
+#define PUSH_NOTIFICATION @"pushNotification"
 
-- (void)pushContentWithIndex:(NSString *)index;
-
-@end
+//@protocol NewsTableViewControllerDelegate <NSObject>
+//
+//- (void)pushContentWithIndex:(NSString *)index;
+//
+//@end
 
 @interface NewsTableViewController : UITableViewController
 
-@property (nonatomic) NSInteger tag;
-@property (assign, nonatomic) id<NewsTableViewControllerDelegate> delegate;
+@property (nonatomic) NSInteger type;
+//@property (assign, nonatomic) id<NewsTableViewControllerDelegate> delegate;
 
 @end

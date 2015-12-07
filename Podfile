@@ -18,6 +18,7 @@ pod 'DZNEmptyDataSet'
 pod 'PNChart'
 pod 'JBChartView'
 pod 'Masonry'
+pod 'WMPageController'
 
 target 'WePeiYang' do
 

@@ -11,6 +11,8 @@
 #import "MJExtension.h"
 #import "SVPullToRefresh.h"
 #import "NewsData.h"
+#import "NewsTableViewCell.h"
+#import "MsgDisplay.h"
 
 @interface NewsTableViewController ()
 
@@ -18,33 +20,29 @@
 
 @implementation NewsTableViewController {
     NSUInteger currentPage;
-    NewsType type;
+    NSMutableArray *dataArr;
 }
 
-@synthesize delegate;
+//@synthesize delegate;
+@synthesize type;
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    if (self = [super initWithStyle:style]) {
-        // 使 tableView 最上方不被 navigationBar 遮挡
-        UIEdgeInsets oriContentInset = self.tableView.contentInset;
-        UIEdgeInsets oriScrollIndicatorInset = self.tableView.scrollIndicatorInsets;
-        self.tableView.contentInset = UIEdgeInsetsMake(64.0, oriContentInset.left, oriContentInset.bottom, oriContentInset.right);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0, oriScrollIndicatorInset.left, oriScrollIndicatorInset.bottom, oriScrollIndicatorInset.right);
-    }
+- (instancetype)init {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"NewsTableViewController"];
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self refreshData];
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    currentPage = 0;
-    type = NewsTypeTJU;
+    currentPage = 1;
+    dataArr = [[NSMutableArray alloc] init];
     
     __weak NewsTableViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -63,72 +61,61 @@
 #pragma mark - Private methods
 
 - (void)getData {
-    
+    [twtSDK getNewsListWithType:type page:currentPage success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (currentPage == 1) {
+            dataArr = [NewsData mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        } else if (currentPage > 1) {
+            if (((NSArray *)responseObject[@"data"]).count == 0) {
+                [MsgDisplay showErrorMsg:@"已到最后一页"];
+                currentPage --;
+            } else {
+                [dataArr addObjectsFromArray:[NewsData mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
+            }
+        }
+        [self.tableView reloadData];
+        [self.tableView.pullToRefreshView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.tableView.pullToRefreshView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
+    }];
 }
 
 - (void)nextPage {
-    
+    currentPage ++;
+    [self getData];
 }
 
 - (void)refreshData {
-    
+    currentPage = 1;
+    [self getData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return dataArr.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    NewsTableViewCell *cell = (NewsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"simpleIdentifier"];
+    NewsData *tmp = (NewsData *)dataArr[indexPath.row];
+    cell.titleLabel.text = tmp.subject;
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark - Table view delegate
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NewsData *tmp = (NewsData *)dataArr[indexPath.row];
+//    [delegate pushContentWithIndex:tmp.index];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PUSH_NOTIFICATION object:tmp];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

@@ -40,13 +40,13 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     if (type == SessionTypeGET) {
-        [manager GET:fullURL parameters:para success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager GET:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure(task, error);
         }];
     } else if (type == SessionTypePOST) {
-        [manager POST:fullURL parameters:para success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager POST:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure(task, error);

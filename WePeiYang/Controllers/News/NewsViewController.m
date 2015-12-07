@@ -8,38 +8,45 @@
 
 #import "NewsViewController.h"
 #import "NewsTableViewController.h"
+#import "Chameleon.h"
+#import "NewsContentViewController.h"
+#import "NewsData.h"
 
-@interface NewsViewController ()<NewsTableViewControllerDelegate>
-
-@property (strong, nonatomic) UIPageViewController *pageController;
-@property (strong, nonatomic) NSArray *pageContent;
+@interface NewsViewController ()
 
 @end
 
 @implementation NewsViewController {
-    NSString *selectedIndex;
+    NewsData *selectedNewsData;
 }
 
-@synthesize pageContent;
-@synthesize pageController;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.viewControllerClasses = @[[NewsTableViewController class], [NewsTableViewController class], [NewsTableViewController class], [NewsTableViewController class], [NewsTableViewController class]];
+        self.titles = @[@"天大要闻", @"校园公告", @"社团风采", @"院系动态", @"视点观察"];
+        // KVO value passing
+        self.keys = @[@"type", @"type", @"type", @"type", @"type"];
+        self.values = @[@1, @2, @3, @4, @5];
+        
+        // customization
+        self.pageAnimatable = YES;
+        self.titleSizeSelected = 15.0;
+        self.titleSizeNormal = 15.0;
+        self.menuViewStyle = WMMenuViewStyleLine;
+        self.titleColorSelected = [UIColor flatTealColor];
+        self.titleColorNormal = [UIColor darkGrayColor];
+        self.menuItemWidth = 100;
+        self.bounces = YES;
+        self.menuHeight = 36;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.automaticallyAdjustsScrollViewInsets = NO;
-
-    pageContent = @[@1, @2, @3];
-    
-    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin] forKey:UIPageViewControllerOptionSpineLocationKey];
-    pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
-    pageController.dataSource = self;
-    pageController.view.frame = self.view.frame;
-    
-    NSArray *viewControllers = [NSArray arrayWithObject:[self viewControllerAtIndex:0]];
-    [pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    [self addChildViewController:pageController];
-    [self.view addSubview:pageController.view];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name: PUSH_NOTIFICATION object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,58 +54,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Private methods
-
-- (UIViewController *)viewControllerAtIndex:(NSInteger)index {
-    if (([self.pageContent count] == 0) || (index >= [self.pageContent count])) {
-        return nil;
-    }
-    NewsTableViewController *tableController = [[NewsTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    tableController.delegate = self;
-    tableController.tag = [pageContent[index] integerValue];
-    return tableController;
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-- (NSUInteger)indexOfViewController:(UIViewController *)viewController {
-    return [pageContent indexOfObject:[NSNumber numberWithInteger:((NewsTableViewController *)viewController).tag]];
-}
-
-#pragma mark - UIPageViewController DataSource
-
-// 返回上一个ViewController对象
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    
-    NSUInteger index = [self indexOfViewController:viewController];
-    if ((index == 0) || (index == NSNotFound)) {
-        return nil;
-    }
-    index--;
-    // 返回的ViewController，将被添加到相应的UIPageViewController对象上。
-    // UIPageViewController对象会根据UIPageViewControllerDataSource协议方法，自动来维护次序。
-    // 不用我们去操心每个ViewController的顺序问题。
-    return [self viewControllerAtIndex:index];
-    
-    
-}
-
-// 返回下一个ViewController对象
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    
-    NSUInteger index = [self indexOfViewController:viewController];
-    if (index == NSNotFound) {
-        return nil;
-    }
-    index++;
-    if (index == [self.pageContent count]) {
-        return nil;
-    }
-    return [self viewControllerAtIndex:index];
-}
-
-#pragma mark - NewsTableDelegate
-
-- (void)pushContentWithIndex:(NSString *)index {
-    selectedIndex = index;
+     
+#pragma mark - Private Method
+     
+- (void)notificationHandler:(NSNotification *)notification {
+    selectedNewsData = notification.object;
     [self performSegueWithIdentifier:@"pushContent" sender:nil];
 }
 
@@ -107,7 +70,8 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"pushContent"]) {
-        
+        NewsContentViewController *vc = (NewsContentViewController *)segue.destinationViewController;
+        vc.newsData = selectedNewsData;
     }
 }
 

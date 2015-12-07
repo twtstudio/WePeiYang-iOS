@@ -10,6 +10,8 @@
 
 @implementation NewsTableViewCell
 
+@synthesize titleLabel;
+
 - (void)awakeFromNib {
     // Initialization code
 }
