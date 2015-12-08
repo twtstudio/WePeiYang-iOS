@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "JBLineChartView.h"
 
+#define GPA_CACHE @"gpaCache"
+#define GPA_USER_NAME_CACHE @"gpaUserNameAndPassword"
+
 @interface GPATableViewController : UITableViewController<JBLineChartViewDelegate, JBLineChartViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;

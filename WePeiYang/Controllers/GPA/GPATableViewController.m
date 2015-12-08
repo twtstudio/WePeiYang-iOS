@@ -20,6 +20,7 @@
 #import "MsgDisplay.h"
 #import "GPAAnalysisTableViewController.h"
 #import "twtSecretKeys.h"
+#import "wpyCacheManager.h"
 
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
@@ -33,12 +34,30 @@
     
     BOOL graphIsTouched;
     NSInteger lastSelected;
+    
+    NSString *userName;
+    NSString *userPasswd;
 }
 
 @synthesize headerView;
 @synthesize chartView;
 @synthesize gpaLabel;
 @synthesize scoreLabel;
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (![wpyCacheManager cacheDataExistsWithKey:GPA_USER_NAME_CACHE]) {
+        dataArr = [[NSArray alloc] init];
+        chartDataArr = [[NSMutableArray alloc] init];
+        stat = [[GPAStat alloc] init];
+        currentTerm = 0;
+        graphIsTouched = NO;
+        lastSelected = 0;
+        [self.tableView reloadData];
+        [self updateView];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -94,15 +113,42 @@
 #pragma mark - Private methods
 
 - (void)getGPAData {
+    [wpyCacheManager loadCacheDataWithKey:GPA_USER_NAME_CACHE andBlock:^(id cacheData) {
+        userName = cacheData[@"username"];
+        userPasswd = cacheData[@"password"];
+        [self fetchGPAData];
+    } failed:^{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"PLEASE LOG IN" message:@"Enter TJU Username & Password\nPlease do NOT enter wrong password" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"请输入办公网账号";
+        }];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"请输入办公网密码";
+            textField.secureTextEntry = YES;
+        }];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSDictionary *dic = @{@"username": alertController.textFields[0].text,
+                                  @"password": alertController.textFields[1].text};
+            [wpyCacheManager saveCacheData:dic withKey:GPA_USER_NAME_CACHE];
+            [self getGPAData];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancel];
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }];
+}
+
+- (void)fetchGPAData {
     dataArr = [[NSArray alloc] init];
     chartDataArr = [[NSMutableArray alloc] init];
     stat = [[GPAStat alloc] init];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [twtSDK getGpaWithTjuUsername:[twtSecretKeys getTestGPAID] password:[twtSecretKeys getTestGPAPasswd] success:^(NSURLSessionTask *task, id responseObject) {
+    [twtSDK getGpaWithTjuUsername:userName password:userPasswd success:^(NSURLSessionTask *task, id responseObject) {
         if ([responseObject[@"error_code"] isEqual: @-1]) {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            [wpyCacheManager saveCacheData:responseObject withKey:@"GPACache"];
+            [wpyCacheManager saveCacheData:responseObject withKey:GPA_CACHE];
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(responseObject[@"data"])[@"data"]];
             stat = [GPAStat mj_objectWithKeyValues:(responseObject[@"data"])[@"stat"]];
             [self updateView];
@@ -112,18 +158,20 @@
     } failure:^(NSURLSessionTask *task, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [MsgDisplay showErrorMsg:error.description];
-        [wpyCacheManager loadCacheDataWithKey:@"GPACache" andBlock:^(id cacheData) {
+        [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
             stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
             [self updateView];
-        }];
+        } failed:nil];
     } userCanceledCaptcha:^() {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [MsgDisplay showErrorMsg:@"您已取消输入验证码\n将为您加载缓存"];
-        [wpyCacheManager loadCacheDataWithKey:@"GPACache" andBlock:^(id cacheData) {
+        [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
             stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
             [self updateView];
+            [MsgDisplay showErrorMsg:@"您已取消输入验证码\n将为您加载缓存"];
+        } failed:^{
+            [MsgDisplay showErrorMsg:@"您已取消输入验证码"];
         }];
     }];
 }

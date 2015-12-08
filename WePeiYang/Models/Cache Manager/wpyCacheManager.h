@@ -11,7 +11,7 @@
 @interface wpyCacheManager : NSObject
 
 + (void)saveCacheData:(id)cacheData withKey:(NSString *)keyStr;
-+ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void(^)(id cacheData))block;
++ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void(^)(id cacheData))block failed:(void(^)())failed;
 + (void)removeCacheDataForKey:(NSString *)keyStr;
 + (BOOL)cacheDataExistsWithKey:(NSString *)keyStr;
 

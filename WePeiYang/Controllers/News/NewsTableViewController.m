@@ -104,7 +104,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsTableViewCell *cell = (NewsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"simpleIdentifier"];
     NewsData *tmp = (NewsData *)dataArr[indexPath.row];
-    cell.titleLabel.text = tmp.subject;
+    [cell setNewsData:tmp];
     return cell;
 }
 

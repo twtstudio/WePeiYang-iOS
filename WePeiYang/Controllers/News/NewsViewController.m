@@ -47,6 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name: PUSH_NOTIFICATION object:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor flatTealColor];
 }
 
 - (void)didReceiveMemoryWarning {
