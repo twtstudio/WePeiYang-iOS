@@ -19,6 +19,12 @@
     return appVersion;
 }
 
++ (NSString *)getAppBuild {
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleVersion"];
+    return appVersion;
+}
+
 + (NSString *)getDeviceModel {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);

@@ -11,6 +11,7 @@
 @interface wpyDeviceStatus : NSObject
 
 + (NSString *)getAppVersion;
++ (NSString *)getAppBuild;
 + (NSString *)getDeviceModel;
 + (NSString *)getDeviceOSVersion;
 + (NSString *)getScreenSize;

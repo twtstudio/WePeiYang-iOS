@@ -1,8 +1,9 @@
 # WePeiYang Podfile
 
 platform :ios, '8.0'
+use_frameworks!
 
-pod 'AFNetworking', '~> 3.0.0-beta.2'
+pod 'AFNetworking'
 pod 'pop'
 pod 'KVOController'
 pod 'SVPullToRefresh'
@@ -19,6 +20,8 @@ pod 'PNChart'
 pod 'JBChartView'
 pod 'Masonry'
 pod 'WMPageController'
+pod 'FMDB'
+pod 'MK'
 
 target 'WePeiYang' do
 

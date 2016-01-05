@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="WePeiYang" customModuleProvider="target">
+            <connections>
+                <outlet property="mainScrollView" destination="wTL-wx-PO3" id="VVG-OL-P6Y"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTL-wx-PO3">
+                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                </scrollView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="wTL-wx-PO3" secondAttribute="trailing" id="97J-Oa-Xex"/>
+                <constraint firstAttribute="bottom" secondItem="wTL-wx-PO3" secondAttribute="bottom" id="QHl-on-xoq"/>
+                <constraint firstItem="wTL-wx-PO3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Snf-T7-eFr"/>
+                <constraint firstItem="wTL-wx-PO3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="U9v-RY-ebi"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

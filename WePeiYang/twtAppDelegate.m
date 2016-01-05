@@ -6,10 +6,15 @@
 //  Copyright (c) 2013年 Qin Yubo. All rights reserved.
 //
 
+#import "WePeiYang-Swift.h"
 #import "twtAppDelegate.h"
 #import "data.h"
 #import "twtSecretKeys.h"
 #import "twtSDK.h"
+#import "MK-Swift.h"
+#import "UINavigationController+JZExtension.h"
+
+@class SideNavigationViewController;
 
 @implementation twtAppDelegate
 
@@ -23,6 +28,17 @@
     [NSURLCache setSharedURLCache:sharedCache];
     
     [twtSDK setAppKey:[twtSecretKeys getTWTAppKey] appSecret:[twtSecretKeys getTWTAppSecret]];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+    SidebarViewController *sidebarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
+    SideNavigationViewController *sideNav = [[SideNavigationViewController alloc] initWithMainViewController:mainController sideViewController:sidebarController];
+    sideNav.automaticallyAdjustsScrollViewInsets = NO;
+    sideNav.wantsNavigationBarVisible = NO;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:sideNav];
+    navigationController.view.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

@@ -52,12 +52,12 @@
                       "%@ \n"
                       "<br> \n"
                       "</div> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:14px; line-height:1.5; color: #bbbbbb\">来源：%@<br>供稿：%@<br>审稿：%@<br>摄影：%@</div> \n"
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:14px; line-height:1.5; color: #666666\">%@<br>%@<br>%@<br>%@</div> \n"
                       "</div></div> \n"
                       "<script src=\"%@\"></script> \n"
                       "<script src=\"%@\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, newsContent.source, newsContent.author, newsContent.reviewer, newsContent.photographer, jsPath, jqueryPath];
+                      "</html>" , cssPath, contentStr, [NSString stringWithFormat:@"来源：%@", newsContent.source], [NSString stringWithFormat:@"供稿：%@", newsContent.author], [NSString stringWithFormat:@"审稿：%@", newsContent.reviewer], (newsContent.photographer.length == 0) ? @"" : [NSString stringWithFormat:@"摄影：%@", newsContent.photographer], jsPath, jqueryPath];
     
     return load;
 }

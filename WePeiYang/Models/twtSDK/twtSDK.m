@@ -33,7 +33,8 @@
 + (void)getGpaWithParameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void(^)())userCanceled  {
     [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/tmp/gpa" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = (NSDictionary *)responseObject;
-        if ([dic objectForKey:@"raw"] != nil) {
+        if ([[dic objectForKey:@"error_code"] isEqual: @20003]) {
+            dic = dic[@"data"];
             NSData *captchaData = [[NSData alloc] initWithBase64EncodedString:[dic objectForKey:@"raw"] options:0];
             UIImage *img = [[UIImage alloc] initWithData:captchaData];
             
