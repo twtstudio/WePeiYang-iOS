@@ -9,7 +9,6 @@
         <!--成绩-->
         <scene sceneID="1ZZ-lp-qJT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3fM-0U-mYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="GPATableViewController" id="8gz-MA-cms" customClass="GPATableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="bJL-w5-FOB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -36,7 +35,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3.25" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FC4-QQ-1A6">
-                                                    <rect key="frame" x="0.0" y="21" width="148" height="43"/>
+                                                    <rect key="frame" x="0.0" y="21" width="148" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -125,7 +124,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="08A47DA7-E321-4BF1-83EC-72BA5BB712C7" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1018B821-6331-44D1-A166-EA63568A4923" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
                                             <rect key="frame" x="8" y="12" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="Rl6-ca-WxZ"/>
@@ -170,6 +169,7 @@
                         <outlet property="scoreLabel" destination="lv1-jZ-hbj" id="IT5-Uc-um7"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fM-0U-mYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1798" y="358"/>
         </scene>
@@ -213,97 +213,6 @@
             </objects>
             <point key="canvasLocation" x="2489" y="299"/>
         </scene>
-        <!--关于微北洋-->
-        <scene sceneID="Udy-sD-jGJ">
-            <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Jzp-Rg-p5F" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jGm-Oa-UXT"/>
-                        <viewControllerLayoutGuide type="bottom" id="v7d-SV-yRX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bB2-zd-yUm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微北洋 1.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6x-Em-MFH">
-                                <rect key="frame" x="262" y="464" width="77" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twtLogo" translatesAutoresizingMaskIntoConstraints="NO" id="1y1-Sz-6IO">
-                                <rect key="frame" x="188" y="216" width="224" height="168"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="168" id="7T9-8w-Hif"/>
-                                    <constraint firstAttribute="width" constant="224" id="mVL-gZ-goh"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="X6x-Em-MFH" firstAttribute="centerX" secondItem="bB2-zd-yUm" secondAttribute="centerX" id="7VB-1a-DmB"/>
-                            <constraint firstItem="1y1-Sz-6IO" firstAttribute="centerY" secondItem="bB2-zd-yUm" secondAttribute="centerY" id="AkL-Ao-LB2"/>
-                            <constraint firstItem="1y1-Sz-6IO" firstAttribute="centerX" secondItem="bB2-zd-yUm" secondAttribute="centerX" id="wvy-q0-qhg"/>
-                            <constraint firstItem="X6x-Em-MFH" firstAttribute="top" secondItem="1y1-Sz-6IO" secondAttribute="bottom" constant="80" id="yhJ-vh-C9s"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="关于微北洋" id="OGh-Eq-TxM"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gzM-aV-Eb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2489" y="1046"/>
-        </scene>
-        <!--设置-->
-        <scene sceneID="9Hi-mc-Vhm">
-            <objects>
-                <navigationController id="79T-xM-nQv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="settingTab" id="dh7-wI-x9I"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lh3-Lc-Y90">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Xgd-5Z-hD4" kind="relationship" relationship="rootViewController" id="4JS-bb-Ktd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k4P-XS-0W0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1119" y="1046"/>
-        </scene>
-        <!--设置-->
-        <scene sceneID="4n2-4m-lyV">
-            <objects>
-                <tableViewController id="Xgd-5Z-hD4" customClass="SettingViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="PeS-xF-8kc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="simpleTableViewIdentifier" id="UFI-WD-NlZ">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UFI-WD-NlZ" id="DWA-Qg-BUm">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Xgd-5Z-hD4" id="eEt-cZ-DmT"/>
-                            <outlet property="delegate" destination="Xgd-5Z-hD4" id="EN9-7Q-JIc"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="设置" id="8aN-pp-RM6"/>
-                    <connections>
-                        <segue destination="Jzp-Rg-p5F" kind="show" identifier="pushAbout" id="0lA-KL-lYr"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KxL-Rk-Y3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1803" y="1044"/>
-        </scene>
         <!--新闻-->
         <scene sceneID="2Du-6I-fSn">
             <objects>
@@ -346,7 +255,7 @@
         <!--Title-->
         <scene sceneID="j8M-St-2EZ">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="euG-X3-L8T" customClass="NewsContentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsContentViewController" hidesBottomBarWhenPushed="YES" id="euG-X3-L8T" customClass="NewsContentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ggd-P3-KL1"/>
                         <viewControllerLayoutGuide type="bottom" id="g5M-Sf-oG0"/>
@@ -484,7 +393,6 @@
         <!--成绩-->
         <scene sceneID="RSM-Th-5fl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VKa-Z0-wyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="EMI-dr-t4a" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="成绩" image="gpaTab" id="yju-nD-rpc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IdH-aP-ONg">
@@ -495,12 +403,13 @@
                         <segue destination="8gz-MA-cms" kind="relationship" relationship="rootViewController" id="Fzt-bv-TK2"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VKa-Z0-wyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1117" y="358"/>
         </scene>
     </scenes>
     <resources>
-        <image name="08A47DA7-E321-4BF1-83EC-72BA5BB712C7" width="1000" height="1000">
+        <image name="1018B821-6331-44D1-A166-EA63568A4923" width="1000" height="1000">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ERYbHCUmJygwMzY8P1UkbnVsbNQJCgsMDQ4PEFYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVwc1dOU0Nv
@@ -1707,7 +1616,5 @@ RgAAAAAAAAAAAAAAAAABGBk
         </image>
         <image name="gpaTab" width="30" height="30"/>
         <image name="newsTab" width="30" height="30"/>
-        <image name="settingTab" width="30" height="30"/>
-        <image name="twtLogo" width="360" height="269"/>
     </resources>
 </document>

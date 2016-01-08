@@ -7,57 +7,34 @@
 //
 
 import UIKit
-import MK
 import BlocksKit
 import JZNavigationExtension
+import RESideMenu
+import MJRefresh
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate {
     
-    @IBOutlet var mainScrollView: UIScrollView!
-    let navigationBarView: NavigationBarView = NavigationBarView()
+    @IBOutlet var mainTableView: UITableView!
+    
+    var carouselArr = []
+    var campusArr = []
+    var announceArr = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = ""
-
-        // Do any additional setup after loading the view.
-        navigationBarView.backgroundColor = UIColor(red: 28/255, green: 66/255, blue: 95/255, alpha: 1.0)
-        navigationBarView.statusBarStyle = .LightContent
+        self.title = "微北洋"
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
         
-        // Title label.
-        let titleLabel: UILabel = UILabel()
-        titleLabel.text = "微北洋"
-        titleLabel.textAlignment = .Left
-        titleLabel.textColor = MaterialColor.white
-        titleLabel.font = UIFont.systemFontOfSize(20)
-        navigationBarView.titleLabel = titleLabel
-        navigationBarView.titleLabelInset.left = 64
-        navigationBarView.titleLabelInset.top = 16
+        let menuBtn = UIBarButtonItem().bk_initWithImage(UIImage(named: "menu"), style: .Plain, handler: {handler in
+            self.sideMenuViewController.presentLeftMenuViewController()
+        }) as! UIBarButtonItem
+        self.navigationItem.leftBarButtonItem = menuBtn
         
-        // Menu button.
-        let menuImg: UIImage? = UIImage(named: "menu")
-        let menuBtn: FlatButton = FlatButton()
-        menuBtn.pulseColor = MaterialColor.white
-        menuBtn.pulseFill = true
-        menuBtn.pulseScale = false
-        menuBtn.setImage(menuImg, forState: .Normal)
-        menuBtn.setImage(menuImg, forState: .Highlighted)
-        menuBtn.bk_addEventHandler({handler in
-            self.sideNavigationViewController?.setSideViewWidth(self.view.frame.width - 80, hidden: true, animated: true)
-            self.sideNavigationViewController?.toggle()
-        }, forControlEvents: .TouchUpInside)
-        
-        // Add buttons to left side.
-        navigationBarView.leftButtons = [menuBtn]
-        
-        // To support orientation changes, use MaterialLayout.
-        view.addSubview(navigationBarView)
-        navigationBarView.translatesAutoresizingMaskIntoConstraints = false
-        MaterialLayout.alignFromTop(view, child: navigationBarView)
-        MaterialLayout.alignToParentHorizontally(view, child: navigationBarView)
-        MaterialLayout.height(view, child: navigationBarView, height: 70)
-        
-        self.initializeScrollView()
+        self.mainTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.getData()
+        })
+        self.getData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,38 +42,103 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-//        self.navigationController?.navigationBarHidden = true
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        mainTableView.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationBarView.statusBarStyle = .LightContent
+    // Private
+    
+    private func getData() {
+        HomeDataManager.getHomeDataWithClosure({(_carouselArr, _campusArr, _announceArr) in
+            self.carouselArr = _carouselArr
+            self.campusArr = _campusArr
+            self.announceArr = _announceArr
+            
+            self.mainTableView.reloadData()
+            self.mainTableView.mj_header.endRefreshing()
+        }, failure: {(error, description) in
+            
+        })
     }
     
-    override func viewWillDisappear(animated: Bool) {
-//        self.viewWillDisappear(animated)
-//        self.navigationController?.navigationBarHidden = false
+    // TABLE VIEW DATA SOURCE
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 5
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1 // Header
+        case 1:
+            return 1 // Functions
+        case 2:
+            return 1 // Weather
+        case 3:
+            return 3 // News
+        case 4:
+            return 3 // Announcements
+        default:
+            return 0
+        }
+    }
     
-    func initializeScrollView() {
-        let img: UIImage? = UIImage(named: "gpaBtn")
-        let button: FabButton = FabButton(frame: CGRectMake(20, 20, 120, 120))
-        button.setImage(img, forState: .Normal)
-        button.setImage(img, forState: .Highlighted)
-        button.shape = .Circle
-        button.depth = .Depth1
-        button.backgroundColor = UIColor.clearColor()
-        button.bk_addEventHandler({handler in
-            print("Hello")
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let gpaController = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
-            self.navigationController?.showViewController(gpaController, sender: nil)
-        }, forControlEvents: .TouchUpInside)
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let section = indexPath.section
+        let row = indexPath.row
+        let width = self.view.bounds.size.width
+        switch section {
+        case 0:
+            return width*2/3
+        case 1, 2:
+            return 120
+        default:
+            return 64
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+        let section = indexPath.section
+        let row = indexPath.row
+        switch section {
+        case 0:
+            let carouselCell = HomeCarouselCell(style: .Default, reuseIdentifier: "identifier")
+            carouselCell.delegate = self
+            if carouselArr.count > 0 {
+                carouselCell.setArrayObject(carouselArr as! [HomeCellData])
+            }
+            return carouselCell
+        default:
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 3:
+            return "新闻"
+        case 4:
+            return "公告"
+        default:
+            return nil
+        }
+    }
+    
+    // HOME CAROUSEL DELEGATE
+    
+    func goToContent(content: HomeCellData) {
+        let newsData = NewsData()
+        newsData.index = content.index
+        newsData.subject = content.subject
+        newsData.pic = content.pic
         
-        self.mainScrollView.addSubview(button)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let contentVC = storyboard.instantiateViewControllerWithIdentifier("NewsContentViewController") as! NewsContentViewController
+        contentVC.newsData = newsData
+        self.navigationController?.showViewController(contentVC, sender: nil)
     }
     
 

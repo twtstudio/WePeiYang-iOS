@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WXApi.h"
+#import "RESideMenu.h"
 
 @interface twtAppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate, WXApiDelegate>
 

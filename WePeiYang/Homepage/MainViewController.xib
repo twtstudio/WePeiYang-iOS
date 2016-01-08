@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
-                <outlet property="mainScrollView" destination="wTL-wx-PO3" id="VVG-OL-P6Y"/>
+                <outlet property="mainTableView" destination="rbk-jP-lGz" id="U27-zw-ZBi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,15 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTL-wx-PO3">
-                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
-                </scrollView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rbk-jP-lGz">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="wTL-wx-PO3" secondAttribute="trailing" id="97J-Oa-Xex"/>
-                <constraint firstAttribute="bottom" secondItem="wTL-wx-PO3" secondAttribute="bottom" id="QHl-on-xoq"/>
-                <constraint firstItem="wTL-wx-PO3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Snf-T7-eFr"/>
-                <constraint firstItem="wTL-wx-PO3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="U9v-RY-ebi"/>
+                <constraint firstAttribute="bottom" secondItem="rbk-jP-lGz" secondAttribute="bottom" id="V5V-za-7PS"/>
+                <constraint firstItem="rbk-jP-lGz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="W1m-DQ-oQZ"/>
+                <constraint firstAttribute="trailing" secondItem="rbk-jP-lGz" secondAttribute="trailing" id="kAc-VM-0Kb"/>
+                <constraint firstItem="rbk-jP-lGz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ueZ-pR-dsM"/>
             </constraints>
         </view>
     </objects>

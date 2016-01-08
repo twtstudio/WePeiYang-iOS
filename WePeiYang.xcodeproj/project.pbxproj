@@ -54,6 +54,10 @@
 		E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE41BF7AE8800520536 /* twtSDK.m */; };
 		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
+		E98ACE0F1C3FF9F50012C762 /* HomeCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE0E1C3FF9F50012C762 /* HomeCellData.m */; };
+		E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE101C3FFA350012C762 /* HomeDataManager.swift */; };
+		E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */; };
+		E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE161C4002610012C762 /* HomeImageTitleView.swift */; };
 		E9941B411C15E30800626A56 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9941B401C15E30800626A56 /* jquery.min.js */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
 		E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */; };
@@ -157,10 +161,10 @@
 		E9472BE81C14872900EC229C /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsData.m; path = "Data Model/NewsData.m"; sourceTree = "<group>"; };
 		E9472BEA1C14879D00EC229C /* NewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContent.h; path = "Data Model/NewsContent.h"; sourceTree = "<group>"; };
 		E9472BEB1C14879D00EC229C /* NewsContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsContent.m; path = "Data Model/NewsContent.m"; sourceTree = "<group>"; };
-		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "Data Model/GPAData.h"; sourceTree = "<group>"; };
-		E94B1FCE1BF79A5000520536 /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "Data Model/GPAData.m"; sourceTree = "<group>"; };
-		E94B1FD01BF79BF900520536 /* GPAClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAClassData.h; path = "Data Model/GPAClassData.h"; sourceTree = "<group>"; };
-		E94B1FD11BF79BF900520536 /* GPAClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAClassData.m; path = "Data Model/GPAClassData.m"; sourceTree = "<group>"; };
+		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "../../Models/Data Model/GPAData.h"; sourceTree = "<group>"; };
+		E94B1FCE1BF79A5000520536 /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "../../Models/Data Model/GPAData.m"; sourceTree = "<group>"; };
+		E94B1FD01BF79BF900520536 /* GPAClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAClassData.h; path = "../../Models/Data Model/GPAClassData.h"; sourceTree = "<group>"; };
+		E94B1FD11BF79BF900520536 /* GPAClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAClassData.m; path = "../../Models/Data Model/GPAClassData.m"; sourceTree = "<group>"; };
 		E94B1FDB1BF7AE8800520536 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		E94B1FDC1BF7AE8800520536 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		E94B1FDD1BF7AE8800520536 /* SolaFoundationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolaFoundationKit.h; sourceTree = "<group>"; };
@@ -175,6 +179,11 @@
 		E958E7891A9384EE0055B7C4 /* MsgDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgDisplay.m; path = "Message Display/MsgDisplay.m"; sourceTree = "<group>"; };
 		E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarEventActivity.h; path = Sharing/CalendarEventActivity.h; sourceTree = "<group>"; };
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
+		E98ACE0D1C3FF9F50012C762 /* HomeCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCellData.h; path = Model/HomeCellData.h; sourceTree = "<group>"; };
+		E98ACE0E1C3FF9F50012C762 /* HomeCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCellData.m; path = Model/HomeCellData.m; sourceTree = "<group>"; };
+		E98ACE101C3FFA350012C762 /* HomeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeDataManager.swift; path = Model/HomeDataManager.swift; sourceTree = "<group>"; };
+		E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCarouselCell.swift; path = View/HomeCarouselCell.swift; sourceTree = "<group>"; };
+		E98ACE161C4002610012C762 /* HomeImageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeImageTitleView.swift; path = View/HomeImageTitleView.swift; sourceTree = "<group>"; };
 		E9941B401C15E30800626A56 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
@@ -200,8 +209,8 @@
 		E9D743F91BF9AE38005F2EF9 /* WePeiYang.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYang.entitlements; sourceTree = "<group>"; };
 		E9D743FC1BF9AE38005F2EF9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		E9D743FE1BF9AE38005F2EF9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
-		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "Data Model/GPAStat.h"; sourceTree = "<group>"; };
-		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "Data Model/GPAStat.m"; sourceTree = "<group>"; };
+		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "../../Models/Data Model/GPAStat.h"; sourceTree = "<group>"; };
+		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "../../Models/Data Model/GPAStat.m"; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -302,8 +311,8 @@
 			children = (
 				E9D744081BF9AE3C005F2EF9 /* Main */,
 				E9AF6BB91A7CFCE2008B5214 /* Models */,
-				E90105331C3B994E002901AC /* GPA */,
 				E901053D1C3B994E002901AC /* Homepage */,
+				E90105331C3B994E002901AC /* GPA */,
 				E90105411C3B994E002901AC /* News */,
 				E901054D1C3B994E002901AC /* Setting */,
 			);
@@ -361,6 +370,12 @@
 		E90105391C3B994E002901AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E94B1FCD1BF79A5000520536 /* GPAData.h */,
+				E94B1FCE1BF79A5000520536 /* GPAData.m */,
+				E94B1FD01BF79BF900520536 /* GPAClassData.h */,
+				E94B1FD11BF79BF900520536 /* GPAClassData.m */,
+				E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */,
+				E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,11 +392,9 @@
 		E901053D1C3B994E002901AC /* Homepage */ = {
 			isa = PBXGroup;
 			children = (
-				E901053E1C3B994E002901AC /* Main.storyboard */,
-				E901056E1C3B9F4D002901AC /* MainViewController.swift */,
-				E901056F1C3B9F4D002901AC /* MainViewController.xib */,
-				E901056A1C3B9F40002901AC /* SidebarViewController.swift */,
-				E901056B1C3B9F40002901AC /* SidebarViewController.xib */,
+				E96921CE1C3BEEAF002B4319 /* Controller */,
+				E96921CD1C3BEEAB002B4319 /* View */,
+				E96921CC1C3BEEA4002B4319 /* Model */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";
@@ -467,22 +480,9 @@
 			name = "Cache Manager";
 			sourceTree = "<group>";
 		};
-		E91C43DC1BF78FC9001B1B98 /* Sections */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Sections;
-			sourceTree = "<group>";
-		};
 		E94B1FCC1BF79A3600520536 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				E94B1FCD1BF79A5000520536 /* GPAData.h */,
-				E94B1FCE1BF79A5000520536 /* GPAData.m */,
-				E94B1FD01BF79BF900520536 /* GPAClassData.h */,
-				E94B1FD11BF79BF900520536 /* GPAClassData.m */,
-				E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */,
-				E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */,
 				E9472BE71C14872900EC229C /* NewsData.h */,
 				E9472BE81C14872900EC229C /* NewsData.m */,
 				E9472BEA1C14879D00EC229C /* NewsContent.h */,
@@ -517,6 +517,37 @@
 			name = "Message Display";
 			sourceTree = "<group>";
 		};
+		E96921CC1C3BEEA4002B4319 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E98ACE0D1C3FF9F50012C762 /* HomeCellData.h */,
+				E98ACE0E1C3FF9F50012C762 /* HomeCellData.m */,
+				E98ACE101C3FFA350012C762 /* HomeDataManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E96921CD1C3BEEAB002B4319 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */,
+				E98ACE161C4002610012C762 /* HomeImageTitleView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E96921CE1C3BEEAF002B4319 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E901053E1C3B994E002901AC /* Main.storyboard */,
+				E901056E1C3B9F4D002901AC /* MainViewController.swift */,
+				E901056F1C3B9F4D002901AC /* MainViewController.xib */,
+				E901056A1C3B9F40002901AC /* SidebarViewController.swift */,
+				E901056B1C3B9F40002901AC /* SidebarViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		E9941B431C15E8AC00626A56 /* WXSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,7 +580,6 @@
 			children = (
 				E94B1FDA1BF7AE8800520536 /* twtSDK */,
 				E94B1FCC1BF79A3600520536 /* DataModel */,
-				E91C43DC1BF78FC9001B1B98 /* Sections */,
 				E9A48CD41A6FE8FE001D8420 /* UIActivity */,
 				E91A26FC1ABAC1E00080CB6F /* Cache Manager */,
 				E958E7871A9384CA0055B7C4 /* Message Display */,
@@ -828,15 +858,19 @@
 				E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
+				E98ACE0F1C3FF9F50012C762 /* HomeCellData.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
+				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
+				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
+				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E901055C1C3B994E002901AC /* SettingViewController.m in Sources */,

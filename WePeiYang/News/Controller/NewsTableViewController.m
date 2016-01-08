@@ -9,7 +9,7 @@
 #import "NewsTableViewController.h"
 #import "twtSDK.h"
 #import "MJExtension.h"
-#import "SVPullToRefresh.h"
+#import "MJRefresh.h"
 #import "NewsData.h"
 #import "NewsTableViewCell.h"
 #import "MsgDisplay.h"
@@ -55,13 +55,13 @@
         self.tableView.scrollIndicatorInsets = insets;
     }
     
-    __weak NewsTableViewController *weakSelf = self;
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf refreshData];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshData];
     }];
-    [self.tableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf nextPage];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self nextPage];
     }];
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,11 +84,9 @@
             }
         }
         [self.tableView reloadData];
-        [self.tableView.pullToRefreshView stopAnimating];
-        [self.tableView.infiniteScrollingView stopAnimating];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [self.tableView.pullToRefreshView stopAnimating];
-        [self.tableView.infiniteScrollingView stopAnimating];
+        
     }];
 }
 

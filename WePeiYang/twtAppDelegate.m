@@ -11,7 +11,6 @@
 #import "data.h"
 #import "twtSecretKeys.h"
 #import "twtSDK.h"
-#import "MK-Swift.h"
 #import "UINavigationController+JZExtension.h"
 
 @class SideNavigationViewController;
@@ -19,8 +18,6 @@
 @implementation twtAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self.window setBackgroundColor:[UIColor whiteColor]];
-    
     [WXApi registerApp:[twtSecretKeys getWechatAppId]];
     
     // Set NSURLCache
@@ -31,13 +28,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
-    SidebarViewController *sidebarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
-    SideNavigationViewController *sideNav = [[SideNavigationViewController alloc] initWithMainViewController:mainController sideViewController:sidebarController];
-    sideNav.automaticallyAdjustsScrollViewInsets = NO;
-    sideNav.wantsNavigationBarVisible = NO;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:sideNav];
-    navigationController.view.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = navigationController;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
+    SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
+    sideMenuViewController.scaleContentView = NO;
+    sideMenuViewController.contentViewShadowEnabled = YES;
+    self.window.rootViewController = sideMenuViewController;
+    [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     return YES;
 }

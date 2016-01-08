@@ -6,11 +6,11 @@ use_frameworks!
 pod 'AFNetworking'
 pod 'pop'
 pod 'KVOController'
-pod 'SVPullToRefresh'
 pod 'FXForms'
 pod 'FDStackView', '~> 1.0-alpha'
 pod 'BlocksKit'
 pod 'MJExtension'
+pod 'MJRefresh'
 pod 'CRToast'
 pod 'ChameleonFramework'
 pod 'JZNavigationExtension'
@@ -21,7 +21,7 @@ pod 'JBChartView'
 pod 'Masonry'
 pod 'WMPageController'
 pod 'FMDB'
-pod 'MK'
+pod 'RESideMenu'
 
 target 'WePeiYang' do
 
