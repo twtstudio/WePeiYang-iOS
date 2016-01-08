@@ -19,13 +19,13 @@ class HomeDataManager: NSObject {
             let dic = responseObject as! Dictionary<String, AnyObject>
             if (dic["error_code"] as! Int == -1) {
                 let carouselData = (dic["data"])!["carousel"] as! [AnyObject]
-                let carouselArr = HomeCellData.mj_objectArrayWithKeyValuesArray(carouselData) as [AnyObject]
+                let carouselArr = NewsData.mj_objectArrayWithKeyValuesArray(carouselData) as [AnyObject]
                 
                 let campusData = (((dic["data"])!["news"]!!)["campus"]) as! [AnyObject]
-                let campusArr = HomeCellData.mj_objectArrayWithKeyValuesArray(campusData) as [AnyObject]
+                let campusArr = NewsData.mj_objectArrayWithKeyValuesArray(campusData) as [AnyObject]
                 
                 let announceData = (((dic["data"])!["news"]!!)["annoucements"]) as! [AnyObject]
-                let announceArr = HomeCellData.mj_objectArrayWithKeyValuesArray(announceData) as [AnyObject]
+                let announceArr = NewsData.mj_objectArrayWithKeyValuesArray(announceData) as [AnyObject]
                 
                 closure(caroselArr: carouselArr, campusArr: campusArr, announcementArr: announceArr)
             }

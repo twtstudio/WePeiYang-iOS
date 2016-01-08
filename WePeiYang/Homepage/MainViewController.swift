@@ -12,7 +12,7 @@ import JZNavigationExtension
 import RESideMenu
 import MJRefresh
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, SidebarDelegate {
     
     @IBOutlet var mainTableView: UITableView!
     
@@ -25,6 +25,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.title = "微北洋"
         mainTableView.dataSource = self
         mainTableView.delegate = self
+        let sidebar = self.sideMenuViewController.leftMenuViewController as! SidebarViewController
+        sidebar.delegate = self
         
         let menuBtn = UIBarButtonItem().bk_initWithImage(UIImage(named: "menu"), style: .Plain, handler: {handler in
             self.sideMenuViewController.presentLeftMenuViewController()
@@ -77,9 +79,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 2:
             return 1 // Weather
         case 3:
-            return 3 // News
+            return campusArr.count // News
         case 4:
-            return 3 // Announcements
+            return announceArr.count // Announcements
         default:
             return 0
         }
@@ -105,12 +107,46 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let row = indexPath.row
         switch section {
         case 0:
-            let carouselCell = HomeCarouselCell(style: .Default, reuseIdentifier: "identifier")
+            let carouselCell = HomeCarouselCell(style: .Default, reuseIdentifier: "carouidentifier")
             carouselCell.delegate = self
             if carouselArr.count > 0 {
-                carouselCell.setArrayObject(carouselArr as! [HomeCellData])
+                carouselCell.setArrayObject(carouselArr as! [NewsData])
             }
+            carouselCell.selectionStyle = .None
             return carouselCell
+        case 1:
+            var toolsCell = tableView.dequeueReusableCellWithIdentifier("toolidentifier") as? HomeToolsCell
+            if toolsCell == nil {
+                let nib = NSBundle.mainBundle().loadNibNamed("HomeToolsCell", owner: self, options: nil)
+                toolsCell = nib[0] as? HomeToolsCell
+            }
+            toolsCell?.selectionStyle = .None
+            return toolsCell!
+        case 2:
+            var weatherCell = tableView.dequeueReusableCellWithIdentifier("weatheridentifier") as? HomeWeatherCell
+            if weatherCell == nil {
+                let nib = NSBundle.mainBundle().loadNibNamed("HomeWeatherCell", owner: self, options: nil)
+                weatherCell = nib[0] as? HomeWeatherCell
+            }
+            weatherCell?.selectionStyle = .None
+            return weatherCell!
+        case 3, 4:
+            var newsCell = tableView.dequeueReusableCellWithIdentifier("identifier") as? HomeNewsTableViewCell
+            if newsCell == nil {
+                let nib = NSBundle.mainBundle().loadNibNamed("HomeNewsTableViewCell", owner: self, options: nil)
+                newsCell = nib[0] as? HomeNewsTableViewCell
+            }
+            if section == 3 {
+                if campusArr.count > 0 {
+                    newsCell!.setObject(campusArr[row] as! NewsData)
+                }
+            }
+            if section == 4 {
+                if announceArr.count > 0 {
+                    newsCell!.setObject(announceArr[row] as! NewsData)
+                }
+            }
+            return newsCell!
         default:
             return cell
         }
@@ -127,18 +163,35 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        switch section {
+        case 3:
+            self.goToContent(campusArr[row] as! NewsData)
+        case 4:
+            self.goToContent(announceArr[row] as! NewsData)
+        default:
+            break
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     // HOME CAROUSEL DELEGATE
     
-    func goToContent(content: HomeCellData) {
-        let newsData = NewsData()
-        newsData.index = content.index
-        newsData.subject = content.subject
-        newsData.pic = content.pic
-        
+    func goToContent(content: NewsData) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let contentVC = storyboard.instantiateViewControllerWithIdentifier("NewsContentViewController") as! NewsContentViewController
-        contentVC.newsData = newsData
+        contentVC.newsData = content
         self.navigationController?.showViewController(contentVC, sender: nil)
+    }
+    
+    // SIDE BAR DELEGATE
+    
+    func showGPAController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+        self.navigationController?.showViewController(gpaVC, sender: nil)
     }
     
 

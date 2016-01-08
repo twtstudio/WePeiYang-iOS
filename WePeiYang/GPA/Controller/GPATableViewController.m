@@ -115,9 +115,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-//    self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    self.navigationController.navigationBar.tintColor = self.view.tintColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+    self.navigationController.navigationBarBackgroundAlpha = 1.0;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

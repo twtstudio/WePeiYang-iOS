@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SidebarViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
+                <outlet property="sideTableView" destination="YfI-gQ-WHe" id="8k7-yH-zDX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +15,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YfI-gQ-WHe">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="YfI-gQ-WHe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6ug-2u-3BM"/>
+                <constraint firstItem="YfI-gQ-WHe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hbH-Xx-Y1p"/>
+                <constraint firstAttribute="bottom" secondItem="YfI-gQ-WHe" secondAttribute="bottom" id="jSt-ZD-M5d"/>
+                <constraint firstAttribute="trailing" secondItem="YfI-gQ-WHe" secondAttribute="trailing" id="kTA-d1-6nP"/>
+            </constraints>
         </view>
     </objects>
 </document>

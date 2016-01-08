@@ -8,5 +8,4 @@
 #import "NewsContentViewController.h"
 
 // Data Models
-#import "HomeCellData.h"
 #import "NewsData.h"

@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol HomeCarouselCellDelegate {
-    optional func goToContent(content: HomeCellData)
+    optional func goToContent(content: NewsData)
 }
 
 class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
@@ -58,7 +58,7 @@ class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
         // Configure the view for the selected state
     }
     
-    func setArrayObject(objArr: [HomeCellData]) {
+    func setArrayObject(objArr: [NewsData]) {
 //        let count = objArr.count
         let width = UIScreen.mainScreen().bounds.width
         let height = UIScreen.mainScreen().bounds.width * 2 / 3

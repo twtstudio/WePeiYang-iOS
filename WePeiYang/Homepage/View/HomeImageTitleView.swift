@@ -64,7 +64,7 @@ class HomeImageTitleView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setObject(obj: HomeCellData) {
+    func setObject(obj: NewsData) {
         self.imgView.setImageWithURL(NSURL(string: obj.pic)!)
         self.titleLabel.text = obj.subject
     }

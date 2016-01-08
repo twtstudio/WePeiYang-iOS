@@ -33,6 +33,7 @@
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
     sideMenuViewController.scaleContentView = NO;
     sideMenuViewController.contentViewShadowEnabled = YES;
+    sideMenuViewController.contentViewInPortraitOffsetCenterX = 100;
     self.window.rootViewController = sideMenuViewController;
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
