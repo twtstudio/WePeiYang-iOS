@@ -12,7 +12,11 @@
 @interface SolaFoundationKit : NSObject
 
 + (UIViewController *)topViewController;
++ (NSString *)appName;
 + (NSString *)appVersion;
 + (NSString *)appBuild;
++ (NSString *)deviceModel;
++ (NSString *)deviceOSVersion;
++ (NSString *)userAgentString;
 
 @end

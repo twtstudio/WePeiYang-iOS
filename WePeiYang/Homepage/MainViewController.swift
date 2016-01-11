@@ -38,6 +38,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
         self.getData()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintColor = self.view.tintColor
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,6 +67,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }, failure: {(error, description) in
             
         })
+    }
+    
+    private func showGPA() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+        
+        let userDefaults = NSUserDefaults()
+        let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
+        if (touchIdEnabled) {
+            
+        } else {
+            self.navigationController?.showViewController(gpaVC, sender: nil)
+        }
+    }
+    
+    private func showNews() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
+        self.navigationController?.showViewController(newsVC, sender: nil)
+    }
+    
+    private func showSettings() {
+        let settingsVC = SettingViewController(style: .Grouped)
+        self.navigationController?.showViewController(settingsVC, sender: nil)
     }
     
     // TABLE VIEW DATA SOURCE
@@ -89,7 +118,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
-        let row = indexPath.row
+//        let row = indexPath.row
         let width = self.view.bounds.size.width
         switch section {
         case 0:
@@ -189,9 +218,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // SIDE BAR DELEGATE
     
     func showGPAController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
-        self.navigationController?.showViewController(gpaVC, sender: nil)
+        self.showGPA()
+    }
+    
+    func showNewsController() {
+        self.showNews()
+    }
+    
+    func showSettingsController() {
+        self.showSettings()
     }
     
 

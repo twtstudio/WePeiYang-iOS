@@ -6,6 +6,9 @@
 #import "GPATableViewController.h"
 #import "NewsViewController.h"
 #import "NewsContentViewController.h"
+#import "wpyDeviceStatus.h"
+#import "wpyCacheManager.h"
+#import "MsgDisplay.h"
 
 // Data Models
 #import "NewsData.h"

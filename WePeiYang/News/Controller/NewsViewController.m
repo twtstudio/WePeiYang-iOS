@@ -27,8 +27,8 @@
         self.viewControllerClasses = @[[NewsTableViewController class], [NewsTableViewController class], [NewsTableViewController class], [NewsTableViewController class], [NewsTableViewController class]];
         self.titles = @[@"天大要闻", @"校园公告", @"社团风采", @"院系动态", @"视点观察"];
         // KVO value passing
-        self.keys = @[@"type", @"type", @"type", @"type", @"type"];
-        self.values = @[@1, @2, @3, @4, @5];
+        self.keys = [@[@"type", @"type", @"type", @"type", @"type"] mutableCopy];
+        self.values = [@[@1, @2, @3, @4, @5] mutableCopy];
         
         // customization
         self.pageAnimatable = YES;

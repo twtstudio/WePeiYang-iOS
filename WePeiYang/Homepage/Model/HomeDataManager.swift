@@ -15,6 +15,7 @@ class HomeDataManager: NSObject {
     class func getHomeDataWithClosure(closure: (caroselArr: [AnyObject], campusArr: [AnyObject], announcementArr: [AnyObject]) -> (), failure: (NSError, String) -> ()) {
         
         let manager = AFHTTPSessionManager()
+        manager.requestSerializer.setValue(wpyDeviceStatus.getUserAgentString(), forHTTPHeaderField: "User-Agent")
         manager.GET("http://open.twtstudio.com/api/v1/app/index", parameters: nil, progress: nil, success: {(task, responseObject) in
             let dic = responseObject as! Dictionary<String, AnyObject>
             if (dic["error_code"] as! Int == -1) {

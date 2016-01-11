@@ -12,6 +12,7 @@
 #import "SolaInstance.h"
 #import "twtSDK.h"
 #import "NSString+Hashes.h"
+#import "SolaFoundationKit.h"
 
 @implementation SolaSessionManager
 
@@ -39,6 +40,7 @@
     [para setObject:[SolaInstance shareInstance].appKey forKey:@"app_key"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:[SolaFoundationKit userAgentString] forHTTPHeaderField:@"User-Agent"];
     if (type == SessionTypeGET) {
         [manager GET:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             success(task, responseObject);

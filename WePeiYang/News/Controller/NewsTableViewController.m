@@ -50,7 +50,7 @@
         
         UIEdgeInsets insets = self.tableView.contentInset;
         insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height + MENU_VIEW_HEIGHT;
-        insets.bottom = 49; // Default height of UITabBar
+//        insets.bottom = 49;
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -84,9 +84,11 @@
             }
         }
         [self.tableView reloadData];
-        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 

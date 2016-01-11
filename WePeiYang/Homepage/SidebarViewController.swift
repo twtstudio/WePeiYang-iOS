@@ -10,6 +10,8 @@ import UIKit
 
 protocol SidebarDelegate {
     func showGPAController();
+    func showNewsController();
+    func showSettingsController();
 }
 
 class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -92,8 +94,12 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.sideMenuViewController.hideMenuViewController()
         switch row {
+        case 0:
+            delegate.showNewsController()
         case 1:
             delegate.showGPAController()
+        case 3:
+            delegate.showSettingsController()
         default:
             break
         }
