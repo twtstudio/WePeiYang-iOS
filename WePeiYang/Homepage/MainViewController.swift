@@ -11,6 +11,7 @@ import BlocksKit
 import JZNavigationExtension
 import RESideMenu
 import MJRefresh
+import LocalAuthentication
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, SidebarDelegate {
     
@@ -76,7 +77,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let userDefaults = NSUserDefaults()
         let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
         if (touchIdEnabled) {
-            
+            let authContext = LAContext()
+            var error: NSError?
+            guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                return
+            }
+            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA信息要求指纹验证", reply: {(success, error) in
+                if success {
+                    print("SUCCESS")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.showViewController(gpaVC, sender: nil)
+                    })
+                } else {
+                    MsgDisplay.showErrorMsg("指纹验证失败")
+                }
+            })
         } else {
             self.navigationController?.showViewController(gpaVC, sender: nil)
         }

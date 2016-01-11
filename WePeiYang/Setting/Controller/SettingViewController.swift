@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import LocalAuthentication
+import BlocksKit
 
 class SettingViewController: UITableViewController {
     
@@ -32,6 +34,7 @@ class SettingViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.clearsSelectionOnViewWillAppear = true
+        self.title = "设置"
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -98,7 +101,7 @@ class SettingViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
+            return 2
         case 1:
             return 1
         default:
@@ -115,6 +118,48 @@ class SettingViewController: UITableViewController {
             switch row {
             case 0:
                 cell.textLabel?.text = wpyCacheManager.cacheDataExistsWithKey(GPA_USER_NAME_CACHE) ? "注销 GPA 登录信息" : "登录办公网"
+            case 1:
+                cell.textLabel?.text = "使用 Touch ID"
+                let TOUCH_ID_KEY = "touchIdEnabled"
+                let touchIDSwitch = UISwitch()
+                let defaults = NSUserDefaults()
+                touchIDSwitch.on = defaults.boolForKey(TOUCH_ID_KEY)
+                touchIDSwitch.bk_addEventHandler({handler in
+                    if touchIDSwitch.on == false {
+                        // 关闭touchID，需要验证
+                        let authContext = LAContext()
+                        var error: NSError?
+                        guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                            MsgDisplay.showErrorMsg("您的设备不支持 Touch ID")
+                            touchIDSwitch.setOn(false, animated: true)
+                            defaults.setBool(false, forKey: TOUCH_ID_KEY)
+                            return
+                        }
+                        authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "改变Touch ID相关设置须验证您的指纹", reply: {(success, error) in
+                            if success {
+                                defaults.setBool(false, forKey: TOUCH_ID_KEY)
+                            } else {
+                                // 注意：TouchID之后的UI操作放在主线程
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    touchIDSwitch.setOn(true, animated: true)
+                                })
+                                defaults.setBool(true, forKey: TOUCH_ID_KEY)
+                            }
+                        })
+                    } else {
+                        // 打开touchID，不需要验证
+                        let authContext = LAContext()
+                        var error: NSError?
+                        guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                            MsgDisplay.showErrorMsg("您的设备不支持 Touch ID")
+                            touchIDSwitch.setOn(false, animated: true)
+                            return
+                        }
+                        defaults.setBool(true, forKey: TOUCH_ID_KEY)
+                    }
+                }, forControlEvents: .ValueChanged)
+                cell.accessoryView = touchIDSwitch
+                cell.selectionStyle = .None
             default:
                 break
             }
