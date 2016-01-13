@@ -9,6 +9,7 @@
 import UIKit
 import LocalAuthentication
 import BlocksKit
+import CoreSpotlight
 
 class SettingViewController: UITableViewController {
     
@@ -21,7 +22,7 @@ class SettingViewController: UITableViewController {
     }
     var titleArr = ["设置", "关于"]
     var footerArr: [String] {
-        return ["", "微北洋 \(appVer) Build \(appBuild)"]
+        return ["允许 Spotlight 索引后，您可以在主屏幕搜索页里搜索您的成绩信息。", "微北洋 \(appVer) Build \(appBuild)"]
     }
 
     override func viewDidLoad() {
@@ -57,15 +58,15 @@ class SettingViewController: UITableViewController {
             MsgDisplay.showSuccessMsg("Successful")
             closure()
         })
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Default, handler: {action in
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: {action in
             
         })
         alert.addAction(clearAction)
         alert.addAction(cancel)
         alert.modalPresentationStyle = .Popover
         alert.popoverPresentationController?.permittedArrowDirections = .Any
-        alert.popoverPresentationController?.sourceView = self.view
-        alert.popoverPresentationController?.sourceRect = self.view.frame
+        alert.popoverPresentationController?.sourceView = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        alert.popoverPresentationController?.sourceRect = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!.bounds
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -101,7 +102,7 @@ class SettingViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 3
         case 1:
             return 1
         default:
@@ -159,6 +160,39 @@ class SettingViewController: UITableViewController {
                     }
                 }, forControlEvents: .ValueChanged)
                 cell.accessoryView = touchIDSwitch
+                cell.selectionStyle = .None
+            case 2:
+                cell.textLabel?.text = "允许 Spotlight 索引"
+                let ALLOW_SPOTLIGHT_KEY = "allowSpotlightIndex"
+                let spotlightSwitch = UISwitch()
+                let defaults = NSUserDefaults()
+                if defaults.objectForKey(ALLOW_SPOTLIGHT_KEY) == nil {
+                    if #available(iOS 9.0, *) {
+                        defaults.setBool(true, forKey: ALLOW_SPOTLIGHT_KEY)
+                    } else {
+                        defaults.setBool(false, forKey: ALLOW_SPOTLIGHT_KEY)
+                    }
+                }
+                spotlightSwitch.on = defaults.boolForKey(ALLOW_SPOTLIGHT_KEY)
+                spotlightSwitch.bk_addEventHandler({handler in
+                    if #available(iOS 9.0, *) {
+                        if spotlightSwitch.on == false {
+                            // 关闭
+                            CSSearchableIndex.defaultSearchableIndex().deleteAllSearchableItemsWithCompletionHandler({error in
+                                if (error != nil) {
+                                   print(error)
+                                }
+                            })
+                            defaults.setBool(false, forKey: ALLOW_SPOTLIGHT_KEY)
+                        } else {
+                            defaults.setBool(true, forKey: ALLOW_SPOTLIGHT_KEY)
+                        }
+                    } else {
+                        // Fallback on earlier versions
+                        MsgDisplay.showErrorMsg("您的 iOS 版本不支持 Spotlight 索引\n请升级至最新版本")
+                    }
+                }, forControlEvents: .ValueChanged)
+                cell.accessoryView = spotlightSwitch
                 cell.selectionStyle = .None
             default:
                 break

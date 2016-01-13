@@ -71,6 +71,7 @@
 		E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */; };
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
 		E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C7D93D1BF9A94100DCB34A /* Images.xcassets */; };
+		E9C8B7B31C462AE5007D4EE7 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */; };
 		E9D743FF1BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743EF1BF9AE38005F2EF9 /* InfoPlist.strings */; };
 		E9D744001BF9AE38005F2EF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F11BF9AE38005F2EF9 /* Localizable.strings */; };
 		E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */; };
@@ -205,6 +206,7 @@
 		E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
 		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		E9C7D93D1BF9A94100DCB34A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		E9D743F01BF9AE38005F2EF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		E9D743F21BF9AE38005F2EF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9C8B7B31C462AE5007D4EE7 /* CoreSpotlight.framework in Frameworks */,
 				E90105731C3BA02E002901AC /* libc++.tbd in Frameworks */,
 				E90105691C3B9D89002901AC /* Pods.framework in Frameworks */,
 				E93F0E371BF9BCC1004B997C /* CoreTelephony.framework in Frameworks */,
@@ -280,6 +283,7 @@
 		188842111846E6F4007B92CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */,
 				E90105741C3BA44F002901AC /* MK.framework */,
 				E90105721C3BA02E002901AC /* libc++.tbd */,
 				E90105681C3B9D89002901AC /* Pods.framework */,

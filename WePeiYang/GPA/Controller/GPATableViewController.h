@@ -11,6 +11,7 @@
 
 #define GPA_CACHE @"gpaCache"
 #define GPA_USER_NAME_CACHE @"gpaUserNameAndPassword"
+#define ALLOW_SPOTLIGHT_KEY @"allowSpotlightIndex"
 
 @interface GPATableViewController : UITableViewController<JBLineChartViewDelegate, JBLineChartViewDataSource>
 

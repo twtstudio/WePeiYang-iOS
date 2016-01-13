@@ -22,6 +22,8 @@
 #import "twtSecretKeys.h"
 #import "wpyCacheManager.h"
 #import "BlocksKit.h"
+#import <CoreSpotlight/CoreSpotlight.h>
+#import "wpyDeviceStatus.h"
 
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
@@ -174,6 +176,14 @@
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(responseObject[@"data"])[@"data"]];
             stat = [GPAStat mj_objectWithKeyValues:(responseObject[@"data"])[@"stat"]];
             [self updateView];
+            if ([wpyDeviceStatus getOSVersionFloat] >= 9.0) {
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:ALLOW_SPOTLIGHT_KEY] == nil) {
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ALLOW_SPOTLIGHT_KEY];
+                }
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:ALLOW_SPOTLIGHT_KEY] == YES) {
+                    [self saveGPADataForCoreSpotlight];
+                }
+            }
         } else {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
@@ -239,6 +249,30 @@
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
         self.navigationController.navigationBarBackgroundAlpha = 1.0;
     }
+}
+
+- (void)saveGPADataForCoreSpotlight {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
+            
+        }];
+        NSMutableArray *searchableItems = [[NSMutableArray alloc] init];
+        for (GPAData *data in dataArr) {
+            for (GPAClassData *tmp in data.data) {
+                CSSearchableItemAttributeSet *attributeSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:@"image"];
+                attributeSet.title = tmp.name;
+                attributeSet.contentDescription = [NSString stringWithFormat:@"成绩：%@   学分：%@", tmp.score, tmp.credit];
+                attributeSet.thumbnailData = UIImagePNGRepresentation([UIImage imageNamed:@"thumbAppIcon"]);
+                CSSearchableItem *item = [[CSSearchableItem alloc] initWithUniqueIdentifier:tmp.name domainIdentifier:@"cn.edu.twt.WePeiYang" attributeSet:attributeSet];
+                [searchableItems addObject:item];
+            }
+        }
+        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:searchableItems completionHandler:^(NSError *error) {
+            if (error) {
+                NSLog(error.localizedDescription);
+            }
+        }];
+    });
 }
 
 #pragma mark - IBActions
