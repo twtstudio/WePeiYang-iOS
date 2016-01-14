@@ -1,26 +1,32 @@
 # WePeiYang Podfile
 
-platform :ios, '7.0'
+platform :ios, '8.0'
+use_frameworks!
 
 pod 'AFNetworking'
-pod 'SVProgressHUD'
 pod 'pop'
-pod "AHKActionSheet"
-pod 'JBChartView'
-pod 'JSONKit'
 pod 'KVOController'
-pod 'SVPullToRefresh'
 pod 'FXForms'
-pod 'FIR.im'
+pod 'FDStackView', '~> 1.0-alpha'
+pod 'BlocksKit'
+pod 'MJExtension'
+pod 'MJRefresh'
+pod 'CRToast'
+pod 'ChameleonFramework'
+pod 'JZNavigationExtension'
+pod 'WebViewJavascriptBridge'
+pod 'DZNEmptyDataSet'
+pod 'PNChart'
+pod 'JBChartView'
+pod 'Masonry'
+pod 'WMPageController'
+pod 'FMDB'
+pod 'RESideMenu'
 
 target 'WePeiYang' do
 
 end
 
 target 'WePeiYangTests' do
-
-end
-
-target 'WePeiYangToday' do
 
 end

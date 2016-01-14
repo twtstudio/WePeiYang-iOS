@@ -11,11 +11,11 @@
 @interface wpyDeviceStatus : NSObject
 
 + (NSString *)getAppVersion;
++ (NSString *)getAppBuild;
 + (NSString *)getDeviceModel;
 + (NSString *)getDeviceOSVersion;
-+ (NSString *)getScreenSize;
 + (float)getOSVersionFloat;
-
++ (NSString *)getUserAgentString;
 + (UIImage *)getImageFromView:(UIView *)view;
 + (UIImage *)captureScreen;
 

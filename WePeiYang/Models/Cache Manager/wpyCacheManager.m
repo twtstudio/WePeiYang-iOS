@@ -28,11 +28,12 @@
     [toSaveCache writeToFile:cachePath atomically:YES];
 }
 
-+ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void (^)(id))block {
++ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void (^)(id))block failed:(void (^)())failed {
     NSString *cachePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:keyStr];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:cachePath]) {
         NSLog(@"Cache file %@ doesn't Exist!", keyStr);
+        failed();
         return;
     } else {
         NSData *cacheData = [[NSData alloc]initWithContentsOfFile:cachePath];

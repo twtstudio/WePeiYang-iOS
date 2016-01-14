@@ -7,31 +7,66 @@
 //
 
 #import "MsgDisplay.h"
-#import "SVProgressHUD.h"
+#import "CRToast.h"
+#import "Chameleon.h"
 
 @implementation MsgDisplay
 
 + (void)showSuccessMsg:(NSString *)successStr {
     dispatch_async(dispatch_get_main_queue(), ^() {
-        [SVProgressHUD showSuccessWithStatus:successStr maskType:SVProgressHUDMaskTypeBlack];
+        NSDictionary *options = @{kCRToastNotificationTypeKey: @(CRToastTypeNavigationBar),
+                                  kCRToastNotificationPresentationTypeKey: @(CRToastPresentationTypeCover),
+                                  kCRToastTextKey: successStr,
+                                  kCRToastTextAlignmentKey: @(NSTextAlignmentCenter),
+                                  kCRToastTimeIntervalKey: @(1.0),
+                                  kCRToastBackgroundColorKey: [UIColor flatMintColor],
+                                  kCRToastAnimationInTypeKey: @(CRToastAnimationTypeLinear),
+                                  kCRToastAnimationOutTypeKey: @(CRToastAnimationTypeLinear),
+                                  kCRToastAnimationInDirectionKey: @(CRToastAnimationDirectionTop),
+                                  kCRToastAnimationOutDirectionKey: @(CRToastAnimationDirectionTop),
+                                  kCRToastInteractionRespondersKey: @[[CRToastInteractionResponder interactionResponderWithInteractionType:CRToastInteractionTypeTap automaticallyDismiss:YES block:nil]]};
+        [CRToastManager showNotificationWithOptions:options completionBlock:nil];
     });
 }
 
 + (void)showErrorMsg:(NSString *)errorStr {
     dispatch_async(dispatch_get_main_queue(), ^(){
-        [SVProgressHUD showErrorWithStatus:errorStr maskType:SVProgressHUDMaskTypeBlack];
+        NSDictionary *options = @{kCRToastNotificationTypeKey: @(CRToastTypeNavigationBar),
+                                  kCRToastNotificationPresentationTypeKey: @(CRToastPresentationTypeCover),
+                                  kCRToastTextKey: errorStr,
+                                  kCRToastTextAlignmentKey: @(NSTextAlignmentCenter),
+                                  kCRToastTimeIntervalKey: @(1.0),
+                                  kCRToastBackgroundColorKey: [UIColor flatWatermelonColorDark],
+                                  kCRToastAnimationInTypeKey: @(CRToastAnimationTypeLinear),
+                                  kCRToastAnimationOutTypeKey: @(CRToastAnimationTypeLinear),
+                                  kCRToastAnimationInDirectionKey: @(CRToastAnimationDirectionTop),
+                                  kCRToastAnimationOutDirectionKey: @(CRToastAnimationDirectionTop),
+                                  kCRToastInteractionRespondersKey: @[[CRToastInteractionResponder interactionResponderWithInteractionType:CRToastInteractionTypeTap automaticallyDismiss:YES block:nil]]};
+        [CRToastManager showNotificationWithOptions:options completionBlock:nil];
     });
 }
 
 + (void)showLoading {
     dispatch_async(dispatch_get_main_queue(), ^(){
-        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        NSDictionary *options = @{kCRToastNotificationTypeKey: @(CRToastTypeStatusBar),
+                                  kCRToastNotificationPresentationTypeKey: @(CRToastPresentationTypeCover),
+                                  kCRToastTextKey: NSLocalizedString(@"Loading...", nil),
+                                  kCRToastTextAlignmentKey: @(NSTextAlignmentCenter),
+                                  kCRToastShowActivityIndicatorKey: @YES,
+                                  kCRToastActivityIndicatorAlignmentKey: @(CRToastAccessoryViewAlignmentCenter),
+                                  kCRToastForceUserInteractionKey: @YES,
+                                  kCRToastBackgroundColorKey: [UIColor flatSkyBlueColor],
+                                  kCRToastAnimationInTypeKey: @(CRToastAnimationTypeLinear),
+                                  kCRToastAnimationOutTypeKey: @(CRToastAnimationTypeLinear),
+                                  kCRToastAnimationInDirectionKey: @(CRToastAnimationDirectionTop),
+                                  kCRToastAnimationOutDirectionKey: @(CRToastAnimationDirectionTop)};
+        [CRToastManager showNotificationWithOptions:options completionBlock:nil];
     });
 }
 
 + (void)dismiss {
     dispatch_async(dispatch_get_main_queue(), ^(){
-        [SVProgressHUD dismiss];
+        [CRToastManager dismissNotification:YES];
     });
 }
 

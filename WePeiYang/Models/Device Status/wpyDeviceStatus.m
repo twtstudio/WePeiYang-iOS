@@ -10,12 +10,19 @@
 #include <sys/types.h>
 #import <sys/sysctl.h>
 #import "data.h"
+#import "SolaFoundationKit.h"
 
 @implementation wpyDeviceStatus
 
 + (NSString *)getAppVersion {
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    return appVersion;
+}
+
++ (NSString *)getAppBuild {
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appVersion = [infoDic objectForKey:@"CFBundleVersion"];
     return appVersion;
 }
 
@@ -27,56 +34,7 @@
     NSString *platform = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
     //NSString *platform = [NSStringstringWithUTF8String:machine];二者等效
     free(machine);
-    NSString *device;
-    if ([platform isEqualToString:@"x86_64"]) device = @"iPhone Simulator";
-    else if ([platform isEqualToString:@"i386"]) device = @"iPhone Simulator";
-    
-    else if ([platform isEqualToString:@"iPhone2,1"]) device = @"iPhone 3GS";
-    else if ([platform isEqualToString:@"iPhone3,1"]) device = @"iPhone 4";
-    else if ([platform isEqualToString:@"iPhone3,2"]) device = @"iPhone 4";
-    else if ([platform isEqualToString:@"iPhone3,3"]) device = @"iPhone 4";
-    else if ([platform isEqualToString:@"iPhone4,1"]) device = @"iPhone 4S";
-    else if ([platform isEqualToString:@"iPhone5,1"]) device = @"iPhone 5";
-    else if ([platform isEqualToString:@"iPhone5,2"]) device = @"iPhone 5";
-    else if ([platform isEqualToString:@"iPhone5,3"]) device = @"iPhone 5c";
-    else if ([platform isEqualToString:@"iPhone5,4"]) device = @"iPhone 5c";
-    else if ([platform isEqualToString:@"iPhone6,1"]) device = @"iPhone 5s";
-    else if ([platform isEqualToString:@"iPhone6,2"]) device = @"iPhone 5s";
-    else if ([platform isEqualToString:@"iPhone7,1"]) device = @"iPhone 6 Plus";
-    else if ([platform isEqualToString:@"iPhone7,2"]) device = @"iPhone 6";
-    
-    else if ([platform isEqualToString:@"iPod4,1"]) device = @"iPod touch 4";
-    else if ([platform isEqualToString:@"iPod5,1"]) device = @"iPod touch 5";
-    
-    else if ([platform isEqualToString:@"iPad2,1"]) device = @"iPad 2";
-    else if ([platform isEqualToString:@"iPad2,2"]) device = @"iPad 2";
-    else if ([platform isEqualToString:@"iPad2,3"]) device = @"iPad 2";
-    else if ([platform isEqualToString:@"iPad2,4"]) device = @"iPad 2 rev_a";
-    else if ([platform isEqualToString:@"iPad3,1"]) device = @"iPad 3";
-    else if ([platform isEqualToString:@"iPad3,2"]) device = @"iPad 3";
-    else if ([platform isEqualToString:@"iPad3,3"]) device = @"iPad 3";
-    else if ([platform isEqualToString:@"iPad3,4"]) device = @"iPad 4";
-    else if ([platform isEqualToString:@"iPad3,5"]) device = @"iPad 4";
-    else if ([platform isEqualToString:@"iPad3,6"]) device = @"iPad 4";
-    else if ([platform isEqualToString:@"iPad4,1"]) device = @"iPad Air";
-    else if ([platform isEqualToString:@"iPad4,2"]) device = @"iPad Air";
-    else if ([platform isEqualToString:@"iPad4,3"]) device = @"iPad Air";
-    else if ([platform isEqualToString:@"iPad5,3"]) device = @"iPad Air 2";
-    else if ([platform isEqualToString:@"iPad5,4"]) device = @"iPad Air 2";
-    
-    else if ([platform isEqualToString:@"iPad2,5"]) device = @"iPad mini";
-    else if ([platform isEqualToString:@"iPad2,6"]) device = @"iPad mini";
-    else if ([platform isEqualToString:@"iPad2,7"]) device = @"iPad mini";
-    else if ([platform isEqualToString:@"iPad4,4"]) device = @"iPad mini 2";
-    else if ([platform isEqualToString:@"iPad4,5"]) device = @"iPad mini 2";
-    else if ([platform isEqualToString:@"iPad4,6"]) device = @"iPad mini 2";
-    else if ([platform isEqualToString:@"iPad4,7"]) device = @"iPad mini 3";
-    else if ([platform isEqualToString:@"iPad4,8"]) device = @"iPad mini 3";
-    else if ([platform isEqualToString:@"iPad4,9"]) device = @"iPad mini 3";
-    
-    else device = platform;
-
-    return device;
+    return platform;
 }
 
 + (NSString *)getDeviceOSVersion {
@@ -92,20 +50,8 @@
     return device_.systemVersion;
 }
 
-+ (NSString *)getScreenSize {
-    
-    NSString *device = [self getDeviceModel];
-    
-    NSString *screenSize;
-    if ([device isEqualToString:@"iPhone Simulator"]) screenSize = @"Unlimited";
-    else if ([device isEqualToString:@"iPhone 3GS"]) screenSize = @"320x480";
-    else if ([device isEqualToString:@"iPhone 4"] || [device isEqualToString:@"iPhone 4S"] || [device isEqualToString:@"iPod touch 4"] || [device isEqualToString:@"iPad 2"] || [device isEqualToString:@"iPad 2 rev_a"] || [device isEqualToString:@"iPad 3"] || [device isEqualToString:@"iPad mini"] || [device isEqualToString:@"iPad 4"] || [device isEqualToString:@"iPad mini 2"] || [device isEqualToString:@"iPad Air"] || [device isEqualToString:@"iPad Air 2"] || [device isEqualToString:@"iPad mini 3"]) screenSize = @"640x960";
-    else if ([device isEqualToString:@"iPhone 5"] || [device isEqualToString:@"iPhone 5c"] || [device isEqualToString:@"iPhone 5s"] || [device isEqualToString:@"iPod touch 5"]) screenSize = @"640x1136";
-    else if ([device isEqualToString:@"iPhone 6"]) screenSize = @"750x1334";
-    else if ([device isEqualToString:@"iPhone 6 Plus"]) screenSize = @"1080x1920";
-    else screenSize = @"Unknown";
-
-    return screenSize;
++ (NSString *)getUserAgentString {
+    return [SolaFoundationKit userAgentString];
 }
 
 + (float)getOSVersionFloat {

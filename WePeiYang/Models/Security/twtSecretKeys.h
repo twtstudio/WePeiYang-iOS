@@ -11,10 +11,14 @@
 @interface twtSecretKeys : NSObject
 
 + (NSString *)getSecretKey;
-+ (NSString *)getRavenKey;
+//+ (NSString *)getRavenKey;
 + (NSString *)getDevKey;
-+ (NSString *)getFIRKey;
+//+ (NSString *)getFIRKey;
 + (NSString *)getWechatAppId;
++ (NSString *)getTWTAppKey;
++ (NSString *)getTWTAppSecret;
++ (NSString *)getTestGPAID;
++ (NSString *)getTestGPAPasswd;
 /*
 + (NSString *)getShareSDKAppKey;
 + (NSString *)getWeiboAppKey;
