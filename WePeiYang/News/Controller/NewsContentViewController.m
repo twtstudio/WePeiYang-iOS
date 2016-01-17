@@ -15,8 +15,9 @@
 #import "OpenInSafariActivity.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
+#import <SafariServices/SafariServices.h>
 
-@interface NewsContentViewController ()
+@interface NewsContentViewController ()<UIWebViewDelegate>
 
 @end
 
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = newsData.subject;
+    contentWebView.delegate = self;
     
     [twtSDK getNewsContentWithIndex:newsData.index success:^(NSURLSessionDataTask *task, id responseObject) {
         [self processNewsContent:[NewsContent mj_objectWithKeyValues:responseObject[@"data"]]];
@@ -61,6 +63,22 @@
 
 - (void)processNewsContent:(NewsContent *)content {
     [contentWebView loadHTMLString:[FrontEndProcessor convertToBootstrapHTMLWithNewsContent:content] baseURL:nil];
+}
+
+#pragma mark - WebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0) {
+            SFSafariViewController *SafariVC = [[SFSafariViewController alloc] initWithURL:[request URL]];
+            [self presentViewController:SafariVC animated:YES completion:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:[request URL]];
+        }
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 /*

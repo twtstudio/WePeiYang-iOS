@@ -169,6 +169,11 @@
     stat = [[GPAStat alloc] init];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
+        dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
+        stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
+        [self updateView];
+    } failed:nil];
     [twtSDK getGpaWithTjuUsername:userName password:userPasswd success:^(NSURLSessionTask *task, id responseObject) {
         if ([responseObject[@"error_code"] isEqual: @-1]) {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -191,13 +196,11 @@
     } failure:^(NSURLSessionTask *task, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [MsgDisplay showErrorMsg:error.description];
-        [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
-            dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
-            stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
-            [self updateView];
-        } failed:^{
-            
-        }];
+//        [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
+//            dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
+//            stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
+//            [self updateView];
+//        } failed:nil];
         isRequestingData = NO;
     } userCanceledCaptcha:^() {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

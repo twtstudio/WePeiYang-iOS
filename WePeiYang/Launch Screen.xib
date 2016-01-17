@@ -7,36 +7,26 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tabBarController id="B8W-t4-7Yg">
-            <tabBar key="tabBar" contentMode="scaleToFill" selectedItem="vQ1-vp-TVO" id="p67-Jf-w1H">
-                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+        <navigationController id="K2W-vg-1LX">
+            <navigationBar key="navigationBar" contentMode="scaleToFill" id="BHD-dR-FwL">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            </tabBar>
+            </navigationBar>
             <viewControllers>
-                <navigationController id="yXX-vj-ROr">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="vQ1-vp-TVO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZG3-nt-THD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <viewControllers>
-                        <viewController id="zKr-aE-u60">
-                            <layoutGuides>
-                                <viewControllerLayoutGuide type="top" id="EhM-B7-A5Y"/>
-                                <viewControllerLayoutGuide type="bottom" id="Ffk-04-pk9"/>
-                            </layoutGuides>
-                            <view key="view" contentMode="scaleToFill" id="Xi6-if-PP8">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <navigationItem key="navigationItem" id="T35-D7-Pz1"/>
-                        </viewController>
-                    </viewControllers>
-                </navigationController>
+                <viewController id="Scw-RO-zX8">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iFo-YG-yKx"/>
+                        <viewControllerLayoutGuide type="bottom" id="l0R-NT-Llu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oc1-Nh-L4X">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="微北洋" id="AGQ-Lw-gHp"/>
+                </viewController>
             </viewControllers>
-            <point key="canvasLocation" x="441" y="474"/>
-        </tabBarController>
+            <point key="canvasLocation" x="640" y="386"/>
+        </navigationController>
     </objects>
 </document>

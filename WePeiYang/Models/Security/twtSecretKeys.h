@@ -17,8 +17,6 @@
 + (NSString *)getWechatAppId;
 + (NSString *)getTWTAppKey;
 + (NSString *)getTWTAppSecret;
-+ (NSString *)getTestGPAID;
-+ (NSString *)getTestGPAPasswd;
 /*
 + (NSString *)getShareSDKAppKey;
 + (NSString *)getWeiboAppKey;
