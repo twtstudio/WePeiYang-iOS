@@ -32,7 +32,7 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
         let doneBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Done, handler: {sender in
             let form = self.formController.form as! FeedbackForm
             let email = form.email == nil ? "" : form.email
-            let content = "\(form.content) (WePeiyang \(form.appVersion), \(form.deviceModel), iOS \(form.iosVersion))"
+            let content = "\(form.content) (WePeiyang \(form.appVersion), \(form.deviceModel), \(form.iosVersion))"
             if form.content == nil {
                 MsgDisplay.showErrorMsg("请输入反馈内容！")
             } else {
