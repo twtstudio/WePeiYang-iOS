@@ -104,7 +104,7 @@ class SettingViewController: UITableViewController {
         case 0:
             return 3
         case 1:
-            return 1
+            return 2
         default:
             return 0
         }
@@ -200,7 +200,10 @@ class SettingViewController: UITableViewController {
         case 1:
             switch row {
             case 0:
-                cell.textLabel?.text = "关于"
+                cell.textLabel?.text = "关于微北洋"
+                cell.accessoryType = .DisclosureIndicator
+            case 1:
+                cell.textLabel?.text = "反馈"
                 cell.accessoryType = .DisclosureIndicator
             default:
                 break
@@ -238,6 +241,9 @@ class SettingViewController: UITableViewController {
             switch row {
             case 0:
                 break
+            case 1:
+                let feedbackVC = FeedbackViewController(style: .Grouped)
+                self.navigationController?.showViewController(feedbackVC, sender: nil)
             default:
                 break
             }

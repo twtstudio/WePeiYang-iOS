@@ -26,7 +26,8 @@
     
     [twtSDK setAppKey:[twtSecretKeys getTWTAppKey] appSecret:[twtSecretKeys getTWTAppSecret]];
     
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    // 为适配 iOS 9 分屏，此处不需使用 initWithFrame，这样 app 获取的 frame 始终是正确的
+    self.window = [[UIWindow alloc] init];
     MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
     SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];

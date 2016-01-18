@@ -60,13 +60,23 @@ class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
     
     func setArrayObject(objArr: [NewsData]) {
 //        let count = objArr.count
-        let width = UIScreen.mainScreen().bounds.width
-        let height = UIScreen.mainScreen().bounds.width * 2 / 3
+        var imgViewArr = [HomeImageTitleView]()
         for i in 0...4 {
-            let imgView = HomeImageTitleView(frame: CGRectMake(CGFloat(i) * width, 0, width, height))
+            let imgView = HomeImageTitleView()
             imgView.setObject(objArr[i])
             imgView.tag = i
+            imgViewArr.append(imgView)
             scrollView.addSubview(imgView)
+            imgView.mas_makeConstraints({make in
+                make.width.mas_equalTo()(self.scrollView)
+                make.height.mas_equalTo()(self.scrollView)
+                // 需要写splitView时轮播的动态约束
+                if i == 0 {
+                    make.left.mas_equalTo()(self.scrollView).offset()(0)
+                } else {
+                    make.left.mas_equalTo()(imgViewArr[i-1].mas_right).offset()(0)
+                }
+            })
             
             let tapRecognizer = UITapGestureRecognizer().bk_initWithHandler({(recognizer, state, point) in
                 self.delegate.goToContent!(objArr[i])

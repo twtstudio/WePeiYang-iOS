@@ -33,7 +33,9 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:cachePath]) {
         NSLog(@"Cache file %@ doesn't Exist!", keyStr);
-        failed();
+        if (failed) {
+            failed();
+        }
         return;
     } else {
         NSData *cacheData = [[NSData alloc]initWithContentsOfFile:cachePath];
