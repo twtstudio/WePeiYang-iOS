@@ -20,9 +20,9 @@ class SettingViewController: UITableViewController {
     var appBuild: String {
         return wpyDeviceStatus.getAppBuild()
     }
-    var titleArr = ["设置", "关于"]
+    var titleArr = ["账号", "设置", "关于"]
     var footerArr: [String] {
-        return ["允许 Spotlight 索引后，您可以在主屏幕搜索页里搜索您的成绩信息。", "微北洋 \(appVer) Build \(appBuild)"]
+        return ["", "允许 Spotlight 索引后，您可以在主屏幕搜索页里搜索您的成绩信息。", "微北洋 \(appVer) Build \(appBuild)"]
     }
 
     override func viewDidLoad() {
@@ -50,60 +50,45 @@ class SettingViewController: UITableViewController {
     
     // MARK: - Private methods
     
-    private func clearGPACacheWithFinishClosure(closure: () -> ()) {
-        let alert = UIAlertController(title: "清除", message: "确定要清除吗", preferredStyle: .ActionSheet)
-        let clearAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Destructive, handler: {action in
-            wpyCacheManager.removeCacheDataForKey(GPA_USER_NAME_CACHE)
-            wpyCacheManager.removeCacheDataForKey(GPA_CACHE)
-            MsgDisplay.showSuccessMsg("Successful")
-            closure()
-        })
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: {action in
+    private func loginOrLogout() {
+        if AccountManager.tokenExists() {
+            let alert = UIAlertController(title: "注销", message: "确定要注销吗？", preferredStyle: .ActionSheet)
+            let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Destructive, handler: {action in
+                AccountManager.removeToken()
+                wpyCacheManager.removeCacheDataForKey(GPA_CACHE)
+                wpyCacheManager.removeCacheDataForKey(GPA_USER_NAME_CACHE)
+                MsgDisplay.showSuccessMsg("注销成功！")
+                self.tableView.reloadData()
+            })
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil)
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            alert.modalPresentationStyle = .Popover
+            alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
+            alert.popoverPresentationController?.sourceView = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+            alert.popoverPresentationController?.sourceRect = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!.bounds
+            self.presentViewController(alert, animated: true, completion: nil)
             
-        })
-        alert.addAction(clearAction)
-        alert.addAction(cancel)
-        alert.modalPresentationStyle = .Popover
-        alert.popoverPresentationController?.permittedArrowDirections = .Any
-        alert.popoverPresentationController?.sourceView = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
-        alert.popoverPresentationController?.sourceRect = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!.bounds
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    private func loginGPAWithFinishCLosure(closure: () -> ()) {
-        let alert = UIAlertController(title: "登录", message: "23333", preferredStyle: .Alert)
-        alert.addTextFieldWithConfigurationHandler({textField in
-            textField.placeholder = "ID"
-        })
-        alert.addTextFieldWithConfigurationHandler({textField in
-            textField.placeholder = "Password"
-            textField.secureTextEntry = true
-        })
-        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: {action in
-            let dic = [
-                "username": alert.textFields![0].text!,
-                "password": alert.textFields![1].text!
-            ]
-            wpyCacheManager.saveCacheData(dic, withKey: GPA_USER_NAME_CACHE)
-            closure()
-        })
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Default, handler: nil)
-        alert.addAction(cancel)
-        alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        }
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 1
         case 1:
+            return 2
+        case 2:
             return 2
         default:
             return 0
@@ -118,8 +103,13 @@ class SettingViewController: UITableViewController {
         case 0:
             switch row {
             case 0:
-                cell.textLabel?.text = wpyCacheManager.cacheDataExistsWithKey(GPA_USER_NAME_CACHE) ? "注销 GPA 登录信息" : "登录办公网"
-            case 1:
+                cell.textLabel?.text = AccountManager.tokenExists() ? "注销" : "登录"
+            default:
+                break
+            }
+        case 1:
+            switch row {
+            case 0:
                 cell.textLabel?.text = "使用 Touch ID"
                 let TOUCH_ID_KEY = "touchIdEnabled"
                 let touchIDSwitch = UISwitch()
@@ -161,7 +151,7 @@ class SettingViewController: UITableViewController {
                 }, forControlEvents: .ValueChanged)
                 cell.accessoryView = touchIDSwitch
                 cell.selectionStyle = .None
-            case 2:
+            case 1:
                 cell.textLabel?.text = "允许 Spotlight 索引"
                 let ALLOW_SPOTLIGHT_KEY = "allowSpotlightIndex"
                 let spotlightSwitch = UISwitch()
@@ -197,7 +187,7 @@ class SettingViewController: UITableViewController {
             default:
                 break
             }
-        case 1:
+        case 2:
             switch row {
             case 0:
                 cell.textLabel?.text = "关于微北洋"
@@ -228,16 +218,15 @@ class SettingViewController: UITableViewController {
         
         switch section {
         case 0:
-            if (wpyCacheManager.cacheDataExistsWithKey(GPA_USER_NAME_CACHE)) {
-                self.clearGPACacheWithFinishClosure({
-                    self.tableView.reloadData()
-                })
-            } else {
-                self.loginGPAWithFinishCLosure({
-                    self.tableView.reloadData()
-                })
+            switch row {
+            case 0:
+                self.loginOrLogout()
+            default:
+                break
             }
         case 1:
+            break
+        case 2:
             switch row {
             case 0:
                 break

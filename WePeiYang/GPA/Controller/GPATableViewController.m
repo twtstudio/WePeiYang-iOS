@@ -24,6 +24,8 @@
 #import "BlocksKit.h"
 #import <CoreSpotlight/CoreSpotlight.h>
 #import "wpyDeviceStatus.h"
+#import "AccountManager.h"
+#import "AFNetworking.h"
 
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
@@ -52,22 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([wpyCacheManager cacheDataExistsWithKey:GPA_USER_NAME_CACHE]) {
-        if (dataArr.count == 0) {
-            [self getGPAData];
-        } else {
-            [self updateView];
-        }
-    } else {
-        dataArr = [[NSArray alloc] init];
-        chartDataArr = [[NSMutableArray alloc] init];
-        stat = [[GPAStat alloc] init];
-        currentTerm = 0;
-        graphIsTouched = NO;
-        lastSelected = 0;
-        [self.tableView reloadData];
-        [self updateView];
-    }
+    
 }
 
 - (void)viewDidLoad {
@@ -101,7 +88,22 @@
     gpaLabel.text = @"";
     scoreLabel.text = @"";
     
-    [self getGPAData];
+    if ([AccountManager tokenExists]) {
+        if (dataArr.count == 0) {
+            [self getGPAData];
+        } else {
+            [self updateView];
+        }
+    } else {
+        dataArr = [[NSArray alloc] init];
+        chartDataArr = [[NSMutableArray alloc] init];
+        stat = [[GPAStat alloc] init];
+        currentTerm = 0;
+        graphIsTouched = NO;
+        lastSelected = 0;
+        [self.tableView reloadData];
+        [self updateView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,31 +137,33 @@
 - (void)getGPAData {
     if (!isRequestingData) {
         isRequestingData = YES;
-        [wpyCacheManager loadCacheDataWithKey:GPA_USER_NAME_CACHE andBlock:^(id cacheData) {
-            userName = cacheData[@"username"];
-            userPasswd = cacheData[@"password"];
-            [self fetchGPAData];
-        } failed:^{
-            isRequestingData = NO;
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入天大办公网的账号密码" message:@"由于部分原因，暂时无法校验您账号密码是否正确，请保证输入准确无误。\n如反复要求您输入验证码，可能是您输入错误，请进入［设置］注销后重新登录。" preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-                textField.placeholder = @"请输入办公网账号";
-            }];
-            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-                textField.placeholder = @"请输入办公网密码";
-                textField.secureTextEntry = YES;
-            }];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSDictionary *dic = @{@"username": alertController.textFields[0].text,
-                                      @"password": alertController.textFields[1].text};
-                [wpyCacheManager saveCacheData:dic withKey:GPA_USER_NAME_CACHE];
-                [self getGPAData];
-            }];
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-            [alertController addAction:cancel];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-        }];
+        // 继承旧版本
+        [self fetchGPAData];
+//        [wpyCacheManager loadCacheDataWithKey:GPA_USER_NAME_CACHE andBlock:^(id cacheData) {
+//            userName = cacheData[@"username"];
+//            userPasswd = cacheData[@"password"];
+//            [self fetchGPAData];
+//        } failed:^{
+//            isRequestingData = NO;
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入天大办公网的账号密码" message:@"由于部分原因，暂时无法校验您账号密码是否正确，请保证输入准确无误。\n如反复要求您输入验证码，可能是您输入错误，请进入［设置］注销后重新登录。" preferredStyle:UIAlertControllerStyleAlert];
+//            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//                textField.placeholder = @"请输入办公网账号";
+//            }];
+//            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//                textField.placeholder = @"请输入办公网密码";
+//                textField.secureTextEntry = YES;
+//            }];
+//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//                NSDictionary *dic = @{@"username": alertController.textFields[0].text,
+//                                      @"password": alertController.textFields[1].text};
+//                [wpyCacheManager saveCacheData:dic withKey:GPA_USER_NAME_CACHE];
+//                [self getGPAData];
+//            }];
+//            UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+//            [alertController addAction:cancel];
+//            [alertController addAction:okAction];
+//            [self presentViewController:alertController animated:YES completion:nil];
+//        }];
     }
 }
 
@@ -167,6 +171,7 @@
     dataArr = [[NSArray alloc] init];
     chartDataArr = [[NSMutableArray alloc] init];
     stat = [[GPAStat alloc] init];
+    [MsgDisplay showLoading];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
@@ -174,7 +179,7 @@
         stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
         [self updateView];
     } failed:nil];
-    [twtSDK getGpaWithTjuUsername:userName password:userPasswd success:^(NSURLSessionTask *task, id responseObject) {
+    [twtSDK getGpaWithToken:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] success:^(NSURLSessionTask *task, id responseObject) {
         if ([responseObject[@"error_code"] isEqual: @-1]) {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [wpyCacheManager saveCacheData:responseObject withKey:GPA_CACHE];
@@ -195,12 +200,30 @@
         isRequestingData = NO;
     } failure:^(NSURLSessionTask *task, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [MsgDisplay showErrorMsg:error.description];
-//        [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
-//            dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
-//            stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
-//            [self updateView];
-//        } failed:nil];
+        NSError *jsonError;
+        NSData *errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:errorResponse options:NSJSONReadingMutableContainers error:&jsonError];
+        if (dic != nil) {
+            if ([dic objectForKey:@"error_code"] != nil) {
+                NSString *errorCode = [dic[@"error_code"] stringValue];
+                if ([errorCode isEqualToString:@"20001"]) {
+                    // 未绑定
+                    [MsgDisplay showErrorMsg:dic[@"message"]];
+                } else if ([errorCode isEqualToString:@"20002"]) {
+                    // TJU 验证失败
+                    [MsgDisplay showErrorMsg:dic[@"message"]];
+                }
+            } else {
+                if ([dic objectForKey:@"message"] != nil) {
+                    [MsgDisplay showErrorMsg:dic[@"message"]];
+                } else {
+                    [MsgDisplay showErrorMsg:error.description];
+                }
+            }
+        } else {
+            [MsgDisplay showErrorMsg:error.description];
+        }
+        
         isRequestingData = NO;
     } userCanceledCaptcha:^() {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

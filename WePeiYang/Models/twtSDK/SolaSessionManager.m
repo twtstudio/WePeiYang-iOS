@@ -16,7 +16,7 @@
 
 @implementation SolaSessionManager
 
-+ (void)solaSessionWithSessionType:(SessionType)type URL:(NSString *)url parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
++ (void)solaSessionWithSessionType:(SessionType)type URL:(NSString *)url token:(NSString *)token parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     NSString *fullURL = [NSString stringWithFormat:@"%@%@", TWT_ROOT_URL, url];
     NSString *timeStamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
     NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:parameters];
@@ -41,6 +41,9 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:[SolaFoundationKit userAgentString] forHTTPHeaderField:@"User-Agent"];
+    if (token != nil && token.length > 0) {
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", token] forHTTPHeaderField:@"Authorization"];
+    }
     if (type == SessionTypeGET) {
         [manager GET:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             success(task, responseObject);
@@ -54,6 +57,7 @@
             failure(task, error);
         }];
     }
+
 }
 
 @end

@@ -19,9 +19,20 @@
     [SolaInstance shareInstance].appSecret = appSecret;
 }
 
-+ (void)getGpaWithTjuUsername:(NSString *)username password:(NSString *)password success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void (^)())userCanceled {
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"tjuuname": username, @"tjupasswd": password}];
-    [self getGpaWithParameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//+ (void)getGpaWithTjuUsername:(NSString *)username password:(NSString *)password success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void (^)())userCanceled {
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"tjuuname": username, @"tjupasswd": password}];
+//    [self getGpaWithParameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        success(task, responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        failure(task, error);
+//    } userCanceledCaptcha:^{
+//        userCanceled();
+//    }];
+//}
+
++ (void)getGpaWithToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void (^)())userCanceled {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"token": token}];
+    [self getGpaWithParameters:parameters token:token success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
@@ -30,8 +41,8 @@
     }];
 }
 
-+ (void)getGpaWithParameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void(^)())userCanceled  {
-    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/tmp/gpa" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
++ (void)getGpaWithParameters:(NSDictionary *)parameters token:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void(^)())userCanceled  {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/gpa" token:token parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([[dic objectForKey:@"error_code"] isEqual: @20003]) {
             dic = dic[@"data"];
@@ -54,7 +65,7 @@
                 NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:parameters];
                 [para setObject:[dic objectForKey:@"token"] forKey:@"token"];
                 [para setObject:captchaAlert.textFields[0].text forKey:@"captcha"];
-                [self getGpaWithParameters:para success:success failure:failure userCanceledCaptcha:userCanceled];
+                [self getGpaWithParameters:para token:token success:success failure:failure userCanceledCaptcha:userCanceled];
             }];
             [captchaAlert addAction:cancel];
             [captchaAlert addAction:ok];
@@ -83,6 +94,32 @@
     [manager.requestSerializer setValue:[SolaFoundationKit userAgentString] forHTTPHeaderField:@"User-Agent"];
     NSString *url = [NSString stringWithFormat:@"http://open.twtstudio.com/api/v1/news/%@", index];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getTokenWithTwtUserName:(NSString *)twtuname password:(NSString *)twtpasswd success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSDictionary *parameters = @{@"twtuname": twtuname,
+                                 @"twtpasswd": twtpasswd};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/get" token:nil parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)refreshTokenWithOldToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/refresh" token:nil parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)checkToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/check" token:nil parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);

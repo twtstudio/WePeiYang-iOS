@@ -43,6 +43,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
+        // GREAT TRICK!!!!
+        (self.sideMenuViewController.leftMenuViewController as! SidebarViewController).updateView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +55,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         mainTableView.reloadData()
-        (mainTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HomeCarouselCell).scrollView.contentSize = CGSizeMake(size.width * 5, size.width*2/3)
+        if mainTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) != nil {
+            (mainTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HomeCarouselCell).scrollView.contentSize = CGSizeMake(size.width * 5, size.width*2/3)
+        }
     }
     
     // Private
@@ -83,7 +87,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
                 return
             }
-            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA信息要求指纹验证", reply: {(success, error) in
+            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
                 if success {
                     print("SUCCESS")
                     dispatch_async(dispatch_get_main_queue(), {

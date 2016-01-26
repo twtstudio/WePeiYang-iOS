@@ -43,6 +43,7 @@
 		E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */; };
 		E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */; };
 		E93F0E371BF9BCC1004B997C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C93185D4D6200F76085 /* CoreTelephony.framework */; };
+		E943F6181C5508AE00258FD4 /* SchemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E943F6171C5508AE00258FD4 /* SchemeManager.m */; };
 		E9472BE91C14872900EC229C /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BE81C14872900EC229C /* NewsData.m */; };
 		E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BEB1C14879D00EC229C /* NewsContent.m */; };
 		E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949E3DF1C43F3A900A5212B /* SettingViewController.swift */; };
@@ -72,6 +73,9 @@
 		E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */; };
 		E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */; };
 		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
+		E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B972C91C565290001E480E /* LoginViewController.swift */; };
+		E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B972CA1C565290001E480E /* LoginViewController.xib */; };
+		E9B972D01C565DFB001E480E /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B972CF1C565DFB001E480E /* AccountManager.m */; };
 		E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C7D93D1BF9A94100DCB34A /* Images.xcassets */; };
 		E9C8B7B31C462AE5007D4EE7 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */; };
 		E9D743FF1BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743EF1BF9AE38005F2EF9 /* InfoPlist.strings */; };
@@ -164,6 +168,8 @@
 		E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatMomentsActivity.m; path = Sharing/WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922985C1AF0F907000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeChatSessionActivity.h; path = Sharing/WeChatSessionActivity.h; sourceTree = "<group>"; };
 		E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatSessionActivity.m; path = Sharing/WeChatSessionActivity.m; sourceTree = "<group>"; };
+		E943F6161C5508AE00258FD4 /* SchemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchemeManager.h; path = Scheme/SchemeManager.h; sourceTree = "<group>"; };
+		E943F6171C5508AE00258FD4 /* SchemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchemeManager.m; path = Scheme/SchemeManager.m; sourceTree = "<group>"; };
 		E9472BE71C14872900EC229C /* NewsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsData.h; path = "../../Models/Data Model/NewsData.h"; sourceTree = "<group>"; };
 		E9472BE81C14872900EC229C /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsData.m; path = "../../Models/Data Model/NewsData.m"; sourceTree = "<group>"; };
 		E9472BEA1C14879D00EC229C /* NewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContent.h; path = "../../Models/Data Model/NewsContent.h"; sourceTree = "<group>"; };
@@ -209,6 +215,10 @@
 		E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontEndProcessor.m; sourceTree = "<group>"; };
 		E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
 		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
+		E9B972C91C565290001E480E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Account/LoginViewController.swift; sourceTree = "<group>"; };
+		E9B972CA1C565290001E480E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Account/LoginViewController.xib; sourceTree = "<group>"; };
+		E9B972CE1C565DFB001E480E /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Account/AccountManager.h; sourceTree = "<group>"; };
+		E9B972CF1C565DFB001E480E /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Account/AccountManager.m; sourceTree = "<group>"; };
 		E9C7D93D1BF9A94100DCB34A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		E9D743F01BF9AE38005F2EF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -325,6 +335,7 @@
 			children = (
 				E9D744081BF9AE3C005F2EF9 /* Main */,
 				E9AF6BB91A7CFCE2008B5214 /* Models */,
+				E9B972C71C5651FF001E480E /* Account */,
 				E901053D1C3B994E002901AC /* Homepage */,
 				E90105331C3B994E002901AC /* GPA */,
 				E90105411C3B994E002901AC /* News */,
@@ -498,6 +509,15 @@
 			name = "Cache Manager";
 			sourceTree = "<group>";
 		};
+		E943F6151C55088D00258FD4 /* Scheme */ = {
+			isa = PBXGroup;
+			children = (
+				E943F6161C5508AE00258FD4 /* SchemeManager.h */,
+				E943F6171C5508AE00258FD4 /* SchemeManager.m */,
+			);
+			name = Scheme;
+			sourceTree = "<group>";
+		};
 		E94B1FDA1BF7AE8800520536 /* twtSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +618,8 @@
 		E9AF6BB91A7CFCE2008B5214 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9B972CD1C565DE0001E480E /* Account */,
+				E943F6151C55088D00258FD4 /* Scheme */,
 				E94B1FDA1BF7AE8800520536 /* twtSDK */,
 				E9A48CD41A6FE8FE001D8420 /* UIActivity */,
 				E91A26FC1ABAC1E00080CB6F /* Cache Manager */,
@@ -656,6 +678,32 @@
 				E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */,
 			);
 			path = bootstrap;
+			sourceTree = "<group>";
+		};
+		E9B972C71C5651FF001E480E /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E9B972C81C565230001E480E /* Controller */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		E9B972C81C565230001E480E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E9B972C91C565290001E480E /* LoginViewController.swift */,
+				E9B972CA1C565290001E480E /* LoginViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E9B972CD1C565DE0001E480E /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E9B972CE1C565DFB001E480E /* AccountManager.h */,
+				E9B972CF1C565DFB001E480E /* AccountManager.m */,
+			);
+			name = Account;
 			sourceTree = "<group>";
 		};
 		E9C7D93C1BF9A94100DCB34A /* Resource */ = {
@@ -801,6 +849,7 @@
 				E90105561C3B994E002901AC /* Main.storyboard in Resources */,
 				E90105711C3B9F4D002901AC /* MainViewController.xib in Resources */,
 				E9D744001BF9AE38005F2EF9 /* Localizable.strings in Resources */,
+				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
 				E9D744041BF9AE38005F2EF9 /* WePeiYang-Info.plist in Resources */,
@@ -876,11 +925,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
 				E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */,
 				E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */,
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
+				E943F6181C5508AE00258FD4 /* SchemeManager.m in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
 				E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */,
@@ -892,6 +943,7 @@
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E98ACE1A1C4026780012C762 /* HomeNewsTableViewCell.swift in Sources */,
+				E9B972D01C565DFB001E480E /* AccountManager.m in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,

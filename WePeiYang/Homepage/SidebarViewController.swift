@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 protocol SidebarDelegate {
     func showGPAController();
@@ -17,6 +18,9 @@ protocol SidebarDelegate {
 class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var sideTableView: UITableView!
+    var headerView: UIView!
+    var logHeaderView: UIView!
+    var nameLabel: UILabel!
     
     var delegate: SidebarDelegate!
 
@@ -27,21 +31,23 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         sideTableView.delegate = self
         sideTableView.dataSource = self
         
-        let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
+        headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
+        headerView.backgroundColor = UIColor.flatBlueColorDark()
         let avatarView = UIImageView(image: UIImage(named: "thumbIcon"))
         headerView.addSubview(avatarView)
         avatarView.mas_makeConstraints({make in
-            make.top.equalTo()(headerView).offset()(70)
+            make.top.equalTo()(self.headerView).offset()(70)
             make.width.equalTo()(120)
             make.height.equalTo()(120)
-            make.centerX.equalTo()(headerView).offset()(-45)
+            make.centerX.equalTo()(self.headerView).offset()(-45)
         })
         avatarView.layer.cornerRadius = 60
         avatarView.clipsToBounds = true
         
-        let nameLabel = UILabel()
-        nameLabel.text = "秦昱博"
+        nameLabel = UILabel()
+        nameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey(ID_SAVE_KEY)
         nameLabel.textAlignment = .Center
+        nameLabel.textColor = UIColor.whiteColor()
         headerView.addSubview(nameLabel)
         nameLabel.mas_makeConstraints({make in
             make.top.equalTo()(avatarView).offset()(140)
@@ -49,12 +55,31 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
             make.width.equalTo()(240)
         })
         
-        sideTableView.tableHeaderView = headerView
+        logHeaderView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
+        let logBtn = UIButton(type: .System)
+        logBtn.setTitle("登录", forState: .Normal)
+        logBtn.bk_addEventHandler({handler in
+            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        }, forControlEvents: .TouchUpInside)
+        logHeaderView.addSubview(logBtn)
+        logBtn.mas_makeConstraints({make in
+            make.center.equalTo()(self.logHeaderView)
+            make.width.equalTo()(160)
+            make.height.equalTo()(80)
+        })
+        
+        sideTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateView() {
+        sideTableView.reloadData()
+        nameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey(ID_SAVE_KEY)
     }
     
     // TABLE VIEW
@@ -65,6 +90,23 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if AccountManager.tokenExists() {
+            return headerView
+        } else {
+            return logHeaderView
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 260
+        default:
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

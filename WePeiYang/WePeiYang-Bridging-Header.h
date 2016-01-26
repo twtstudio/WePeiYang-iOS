@@ -9,6 +9,8 @@
 #import "wpyDeviceStatus.h"
 #import "wpyCacheManager.h"
 #import "MsgDisplay.h"
+#import "AccountManager.h"
+#import "data.h"
 
 // Data Models
 #import "NewsData.h"

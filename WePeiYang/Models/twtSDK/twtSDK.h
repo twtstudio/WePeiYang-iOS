@@ -36,10 +36,18 @@ typedef NS_ENUM(NSInteger, NewsType) {
  *  @param failure  失败 block
  *  @param userCanceled 用户取消验证框的回调
  */
-+ (void)getGpaWithTjuUsername:(NSString *)username password:(NSString *)password success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure userCanceledCaptcha:(void(^)())userCanceled;
+//+ (void)getGpaWithTjuUsername:(NSString *)username password:(NSString *)password success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure userCanceledCaptcha:(void(^)())userCanceled;
+
++ (void)getGpaWithToken:(NSString *)token success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure userCanceledCaptcha:(void(^)())userCanceled;
 
 + (void)getNewsListWithType:(NewsType)type page:(NSUInteger)page success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 + (void)getNewsContentWithIndex:(NSString *)index success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+// Account Related
+
++ (void)getTokenWithTwtUserName:(NSString *)twtuname password:(NSString *)twtpasswd success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)refreshTokenWithOldToken:(NSString *)token success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)checkToken:(NSString *)token success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 @end

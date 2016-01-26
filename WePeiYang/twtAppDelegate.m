@@ -11,6 +11,7 @@
 #import "data.h"
 #import "twtSecretKeys.h"
 #import "twtSDK.h"
+#import "SchemeManager.h"
 #import "UINavigationController+JZExtension.h"
 
 @class SideNavigationViewController;
@@ -46,7 +47,15 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:self];
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL query: %@", [url query]);
+    
+    if ([[url scheme] isEqualToString:@"wepeiyang"]) {
+        [SchemeManager handleSchemeWithQueryString:[url query]];
+        return YES;
+    } else {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
