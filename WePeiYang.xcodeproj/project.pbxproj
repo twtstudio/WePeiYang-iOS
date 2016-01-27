@@ -54,6 +54,8 @@
 		E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE01BF7AE8800520536 /* SolaInstance.m */; };
 		E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE21BF7AE8800520536 /* SolaSessionManager.m */; };
 		E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE41BF7AE8800520536 /* twtSDK.m */; };
+		E955AE9E1C58F80C008BB576 /* BindTjuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955AE9C1C58F80C008BB576 /* BindTjuViewController.swift */; };
+		E955AE9F1C58F80C008BB576 /* BindTjuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E955AE9D1C58F80C008BB576 /* BindTjuViewController.xib */; };
 		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA841C4BF17E00EFC107 /* FeedbackForm.swift */; };
@@ -189,6 +191,8 @@
 		E94B1FE21BF7AE8800520536 /* SolaSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolaSessionManager.m; sourceTree = "<group>"; };
 		E94B1FE31BF7AE8800520536 /* twtSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSDK.h; sourceTree = "<group>"; };
 		E94B1FE41BF7AE8800520536 /* twtSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSDK.m; sourceTree = "<group>"; };
+		E955AE9C1C58F80C008BB576 /* BindTjuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindTjuViewController.swift; path = Account/BindTjuViewController.swift; sourceTree = "<group>"; };
+		E955AE9D1C58F80C008BB576 /* BindTjuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BindTjuViewController.xib; path = Account/BindTjuViewController.xib; sourceTree = "<group>"; };
 		E958E7881A9384EE0055B7C4 /* MsgDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MsgDisplay.h; path = "Message Display/MsgDisplay.h"; sourceTree = "<group>"; };
 		E958E7891A9384EE0055B7C4 /* MsgDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgDisplay.m; path = "Message Display/MsgDisplay.m"; sourceTree = "<group>"; };
 		E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarEventActivity.h; path = Sharing/CalendarEventActivity.h; sourceTree = "<group>"; };
@@ -693,6 +697,8 @@
 			children = (
 				E9B972C91C565290001E480E /* LoginViewController.swift */,
 				E9B972CA1C565290001E480E /* LoginViewController.xib */,
+				E955AE9C1C58F80C008BB576 /* BindTjuViewController.swift */,
+				E955AE9D1C58F80C008BB576 /* BindTjuViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
+				E955AE9F1C58F80C008BB576 /* BindTjuViewController.xib in Resources */,
 				E9D744041BF9AE38005F2EF9 /* WePeiYang-Info.plist in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
 				E98ACE251C4039BC0012C762 /* HomeToolsCell.xib in Resources */,
@@ -930,6 +937,7 @@
 				E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */,
 				E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */,
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
+				E955AE9E1C58F80C008BB576 /* BindTjuViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E943F6181C5508AE00258FD4 /* SchemeManager.m in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,

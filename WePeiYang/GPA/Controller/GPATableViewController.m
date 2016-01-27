@@ -26,6 +26,7 @@
 #import "wpyDeviceStatus.h"
 #import "AccountManager.h"
 #import "AFNetworking.h"
+#import "WePeiYang-Swift.h"
 
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
@@ -53,8 +54,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -88,22 +87,10 @@
     gpaLabel.text = @"";
     scoreLabel.text = @"";
     
-    if ([AccountManager tokenExists]) {
-        if (dataArr.count == 0) {
-            [self getGPAData];
-        } else {
-            [self updateView];
-        }
-    } else {
-        dataArr = [[NSArray alloc] init];
-        chartDataArr = [[NSMutableArray alloc] init];
-        stat = [[GPAStat alloc] init];
-        currentTerm = 0;
-        graphIsTouched = NO;
-        lastSelected = 0;
-        [self.tableView reloadData];
-        [self updateView];
-    }
+    [self refresh:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"PleaseRefresh" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"PleaseGetBack" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -132,7 +119,19 @@
     } repeats:NO];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Private methods
+
+- (void)refreshNotificationReceived {
+    [self refresh:self];
+}
+
+- (void)backNotificationReceived {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)getGPAData {
     if (!isRequestingData) {
@@ -209,9 +208,12 @@
                 if ([errorCode isEqualToString:@"20001"]) {
                     // 未绑定
                     [MsgDisplay showErrorMsg:dic[@"message"]];
+                    BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithNibName:nil bundle:nil];
+                    [self presentViewController:bindTju animated:YES completion:nil];
                 } else if ([errorCode isEqualToString:@"20002"]) {
                     // TJU 验证失败
                     [MsgDisplay showErrorMsg:dic[@"message"]];
+                    
                 }
             } else {
                 if ([dic objectForKey:@"message"] != nil) {
@@ -304,7 +306,23 @@
 #pragma mark - IBActions
 
 - (IBAction)refresh:(id)sender {
-    [self getGPAData];
+    if ([AccountManager tokenExists]) {
+        if (dataArr.count == 0) {
+            [self getGPAData];
+        } else {
+            [self updateView];
+        }
+    } else {
+        dataArr = [[NSArray alloc] init];
+        chartDataArr = [[NSMutableArray alloc] init];
+        stat = [[GPAStat alloc] init];
+        currentTerm = 0;
+        graphIsTouched = NO;
+        lastSelected = 0;
+        [self.tableView reloadData];
+        [self updateView];
+        
+    }
 }
 
 #pragma mark - JBChartView data source

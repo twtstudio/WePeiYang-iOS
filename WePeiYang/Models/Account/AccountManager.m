@@ -112,8 +112,8 @@
 }
 
 + (void)bindTjuAccountWithTjuUserName:(NSString *)tjuuname password:(NSString *)tjupwd success:(void (^)())success failure:(void (^)(NSString *))failure {
-    NSDictionary *parameters = @{@"tjuname": tjuuname,
-                                 @"tjupwd": tjupwd};
+    NSDictionary *parameters = @{@"tjuuname": tjuuname,
+                                 @"tjupasswd": tjupwd};
     [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/bind/tju" token:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSDictionary *dic = (NSDictionary *)responseObject;
 //        if ([dic objectForKey:@"error_code"] != nil) {

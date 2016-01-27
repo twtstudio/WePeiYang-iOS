@@ -20,6 +20,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var sideTableView: UITableView!
     var headerView: UIView!
     var logHeaderView: UIView!
+    var avatarView: UIImageView!
     var nameLabel: UILabel!
     
     var delegate: SidebarDelegate!
@@ -33,7 +34,8 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
         headerView.backgroundColor = UIColor.flatBlueColorDark()
-        let avatarView = UIImageView(image: UIImage(named: "thumbIcon"))
+        
+        avatarView = UIImageView(image: UIImage(named: "thumbIcon"))
         headerView.addSubview(avatarView)
         avatarView.mas_makeConstraints({make in
             make.top.equalTo()(self.headerView).offset()(70)
@@ -50,8 +52,8 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         nameLabel.textColor = UIColor.whiteColor()
         headerView.addSubview(nameLabel)
         nameLabel.mas_makeConstraints({make in
-            make.top.equalTo()(avatarView).offset()(140)
-            make.centerX.equalTo()(avatarView)
+            make.top.equalTo()(self.avatarView).offset()(140)
+            make.centerX.equalTo()(self.avatarView)
             make.width.equalTo()(240)
         })
         
