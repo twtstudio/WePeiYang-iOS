@@ -113,6 +113,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.showViewController(settingsVC, sender: nil)
     }
     
+    private func showClasstable() {
+        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        self.navigationController?.showViewController(classtableVC, sender: nil)
+    }
+    
     // TABLE VIEW DATA SOURCE
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -126,7 +131,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 1:
             return 1 // Functions
         case 2:
-            return 1 // Weather
+            return 0 // Weather
         case 3:
             return campusArr.count // News
         case 4:
@@ -243,6 +248,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func showNewsController() {
         self.showNews()
+    }
+    
+    func showClasstableController() {
+        self.showClasstable()
     }
     
     func showSettingsController() {

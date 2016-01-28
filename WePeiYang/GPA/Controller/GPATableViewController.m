@@ -163,33 +163,8 @@
 - (void)getGPAData {
     if (!isRequestingData) {
         isRequestingData = YES;
-        // 继承旧版本
+        // 继承旧版本？
         [self fetchGPAData];
-//        [wpyCacheManager loadCacheDataWithKey:GPA_USER_NAME_CACHE andBlock:^(id cacheData) {
-//            userName = cacheData[@"username"];
-//            userPasswd = cacheData[@"password"];
-//            [self fetchGPAData];
-//        } failed:^{
-//            isRequestingData = NO;
-//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入天大办公网的账号密码" message:@"由于部分原因，暂时无法校验您账号密码是否正确，请保证输入准确无误。\n如反复要求您输入验证码，可能是您输入错误，请进入［设置］注销后重新登录。" preferredStyle:UIAlertControllerStyleAlert];
-//            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//                textField.placeholder = @"请输入办公网账号";
-//            }];
-//            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//                textField.placeholder = @"请输入办公网密码";
-//                textField.secureTextEntry = YES;
-//            }];
-//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//                NSDictionary *dic = @{@"username": alertController.textFields[0].text,
-//                                      @"password": alertController.textFields[1].text};
-//                [wpyCacheManager saveCacheData:dic withKey:GPA_USER_NAME_CACHE];
-//                [self getGPAData];
-//            }];
-//            UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-//            [alertController addAction:cancel];
-//            [alertController addAction:okAction];
-//            [self presentViewController:alertController animated:YES completion:nil];
-//        }];
     }
 }
 

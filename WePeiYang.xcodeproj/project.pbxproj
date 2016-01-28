@@ -78,6 +78,9 @@
 		E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B972C91C565290001E480E /* LoginViewController.swift */; };
 		E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B972CA1C565290001E480E /* LoginViewController.xib */; };
 		E9B972D01C565DFB001E480E /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B972CF1C565DFB001E480E /* AccountManager.m */; };
+		E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA7BB21C5A1550009A4E9A /* ClasstableViewController.swift */; };
+		E9BA7BB51C5A1550009A4E9A /* ClasstableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7BB31C5A1550009A4E9A /* ClasstableViewController.xib */; };
+		E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA7BB61C5A1AE1009A4E9A /* ClasstableDataManager.swift */; };
 		E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C7D93D1BF9A94100DCB34A /* Images.xcassets */; };
 		E9C8B7B31C462AE5007D4EE7 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */; };
 		E9D743FF1BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743EF1BF9AE38005F2EF9 /* InfoPlist.strings */; };
@@ -223,6 +226,9 @@
 		E9B972CA1C565290001E480E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Account/LoginViewController.xib; sourceTree = "<group>"; };
 		E9B972CE1C565DFB001E480E /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Account/AccountManager.h; sourceTree = "<group>"; };
 		E9B972CF1C565DFB001E480E /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManager.m; path = Account/AccountManager.m; sourceTree = "<group>"; };
+		E9BA7BB21C5A1550009A4E9A /* ClasstableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClasstableViewController.swift; path = Classtable/Controller/ClasstableViewController.swift; sourceTree = "<group>"; };
+		E9BA7BB31C5A1550009A4E9A /* ClasstableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClasstableViewController.xib; path = Classtable/Controller/ClasstableViewController.xib; sourceTree = "<group>"; };
+		E9BA7BB61C5A1AE1009A4E9A /* ClasstableDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClasstableDataManager.swift; path = Classtable/Model/ClasstableDataManager.swift; sourceTree = "<group>"; };
 		E9C7D93D1BF9A94100DCB34A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		E9D743F01BF9AE38005F2EF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -343,6 +349,7 @@
 				E901053D1C3B994E002901AC /* Homepage */,
 				E90105331C3B994E002901AC /* GPA */,
 				E90105411C3B994E002901AC /* News */,
+				E9BA7BAE1C5A1509009A4E9A /* Classtable */,
 				E901054D1C3B994E002901AC /* Setting */,
 			);
 			path = WePeiYang;
@@ -712,6 +719,40 @@
 			name = Account;
 			sourceTree = "<group>";
 		};
+		E9BA7BAE1C5A1509009A4E9A /* Classtable */ = {
+			isa = PBXGroup;
+			children = (
+				E9BA7BB11C5A1527009A4E9A /* Controller */,
+				E9BA7BB01C5A1520009A4E9A /* View */,
+				E9BA7BAF1C5A151A009A4E9A /* Model */,
+			);
+			name = Classtable;
+			sourceTree = "<group>";
+		};
+		E9BA7BAF1C5A151A009A4E9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E9BA7BB61C5A1AE1009A4E9A /* ClasstableDataManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E9BA7BB01C5A1520009A4E9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E9BA7BB11C5A1527009A4E9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E9BA7BB21C5A1550009A4E9A /* ClasstableViewController.swift */,
+				E9BA7BB31C5A1550009A4E9A /* ClasstableViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		E9C7D93C1BF9A94100DCB34A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -861,6 +902,7 @@
 				E955AE9F1C58F80C008BB576 /* BindTjuViewController.xib in Resources */,
 				E9D744041BF9AE38005F2EF9 /* WePeiYang-Info.plist in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
+				E9BA7BB51C5A1550009A4E9A /* ClasstableViewController.xib in Resources */,
 				E98ACE251C4039BC0012C762 /* HomeToolsCell.xib in Resources */,
 				E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */,
 				E9941B411C15E30800626A56 /* jquery.min.js in Resources */,
@@ -937,6 +979,7 @@
 				E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */,
 				E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */,
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
+				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
 				E955AE9E1C58F80C008BB576 /* BindTjuViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E943F6181C5508AE00258FD4 /* SchemeManager.m in Sources */,
@@ -952,6 +995,7 @@
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E98ACE1A1C4026780012C762 /* HomeNewsTableViewCell.swift in Sources */,
 				E9B972D01C565DFB001E480E /* AccountManager.m in Sources */,
+				E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,

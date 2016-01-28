@@ -17,7 +17,7 @@
 + (BOOL)tokenExists;
 + (void)removeToken;
 + (void)getTokenWithTwtUserName:(NSString *)twtuname password:(NSString *)password success:(void(^)())success failure:(void(^)(NSString *errorMsg))failure;
-+ (void)refreshTokenSuccess:(void(^)())success failure:(void(^)(NSString *errorMsg))failure;
++ (void)refreshTokenSuccess:(void(^)(NSString *newToken))success failure:(void(^)(NSString *errorMsg))failure;
 + (void)tokenIsValid:(void(^)())success failure:(void(^)(NSString *errorMsg))failure;
 
 + (void)bindTjuAccountWithTjuUserName:(NSString *)tjuuname password:(NSString *)tjupwd success:(void(^)())success failure:(void(^)(NSString *errorMsg))failure;

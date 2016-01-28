@@ -113,7 +113,7 @@
 }
 
 + (void)refreshTokenWithOldToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/refresh" token:nil parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/refresh" token:token parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
@@ -121,7 +121,16 @@
 }
 
 + (void)checkToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/check" token:nil parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/token/check" token:token parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getClasstableWithToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/classtable" token:token parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *dic = (NSDictionary *)responseObject;
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);

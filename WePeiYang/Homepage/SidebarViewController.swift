@@ -12,6 +12,7 @@ import ChameleonFramework
 protocol SidebarDelegate {
     func showGPAController();
     func showNewsController();
+    func showClasstableController();
     func showSettingsController();
 }
 
@@ -122,7 +123,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.textLabel?.text = "成绩"
             cell.imageView?.image = UIImage(named: "gpaTab")
         case 2:
-            cell.textLabel?.text = "图书馆"
+            cell.textLabel?.text = "课程表"
             cell.imageView?.image = UIImage(named: "libTab")
         case 3:
             cell.textLabel?.text = "设置"
@@ -142,6 +143,8 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
             delegate.showNewsController()
         case 1:
             delegate.showGPAController()
+        case 2:
+            delegate.showClasstableController()
         case 3:
             delegate.showSettingsController()
         default:

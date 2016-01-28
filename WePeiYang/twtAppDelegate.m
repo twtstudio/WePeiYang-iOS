@@ -13,6 +13,8 @@
 #import "twtSDK.h"
 #import "SchemeManager.h"
 #import "UINavigationController+JZExtension.h"
+#import "AccountManager.h"
+#import "MsgDisplay.h"
 
 @class SideNavigationViewController;
 
@@ -26,6 +28,11 @@
     [NSURLCache setSharedURLCache:sharedCache];
     
     [twtSDK setAppKey:[twtSecretKeys getTWTAppKey] appSecret:[twtSecretKeys getTWTAppSecret]];
+    if ([AccountManager tokenExists]) {
+        [AccountManager tokenIsValid:nil failure:^(NSString *errorMsg) {
+            [MsgDisplay showErrorMsg:errorMsg];
+        }];
+    }
     
     // 为适配 iOS 9 分屏，此处不需使用 initWithFrame，这样 app 获取的 frame 始终是正确的
     self.window = [[UIWindow alloc] init];

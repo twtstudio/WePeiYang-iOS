@@ -50,4 +50,6 @@ typedef NS_ENUM(NSInteger, NewsType) {
 + (void)refreshTokenWithOldToken:(NSString *)token success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 + (void)checkToken:(NSString *)token success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
++ (void)getClasstableWithToken:(NSString *)token success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end
