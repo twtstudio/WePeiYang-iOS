@@ -54,9 +54,7 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
     
     private func postFeedbackContent(content: String, email: String) {
         MsgDisplay.showLoading()
-        let manager = AFHTTPSessionManager()
-        manager.requestSerializer.setValue(wpyDeviceStatus.getUserAgentString(), forHTTPHeaderField: "User-Agent")
-        manager.GET("http://open.twtstudio.com/api/v1/feedback", parameters: ["content": content, "email": email], progress: nil, success: {(task, responseObj) in
+        SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/app/feedback", token: nil, parameters: ["content": content, "email": email], success: {(task, responseObj) in
             let dic = responseObj as! [String: AnyObject]
             if dic["error_code"] as! Int == -1 {
                 MsgDisplay.showSuccessMsg("反馈发送成功！")
@@ -65,7 +63,13 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
                 MsgDisplay.showErrorMsg("反馈发送失败！")
             }
         }, failure: {(task, error) in
-            MsgDisplay.showErrorMsg("反馈发送失败！\n\(error.localizedDescription)")
+            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
+            do {
+                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
+                MsgDisplay.showErrorMsg("反馈发送失败！\n\(dic["message"])")
+            } catch {
+                MsgDisplay.showErrorMsg("反馈发送失败！")
+            }
         })
     }
 

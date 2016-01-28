@@ -87,7 +87,7 @@
     gpaLabel.text = @"";
     scoreLabel.text = @"";
     
-    [self refresh:self];
+    [self refresh];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"PleaseRefresh" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"PleaseGetBack" object:nil];
@@ -126,11 +126,34 @@
 #pragma mark - Private methods
 
 - (void)refreshNotificationReceived {
-    [self refresh:self];
+    [self refresh];
 }
 
 - (void)backNotificationReceived {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)refresh {
+    if ([AccountManager tokenExists]) {
+        if (dataArr.count == 0) {
+            [self getGPAData];
+        } else {
+            [self updateView];
+        }
+    } else {
+        [self clearTableContent];
+    }
+}
+
+- (void)clearTableContent {
+    dataArr = [[NSArray alloc] init];
+    chartDataArr = [[NSMutableArray alloc] init];
+    stat = [[GPAStat alloc] init];
+    currentTerm = 0;
+    graphIsTouched = NO;
+    lastSelected = 0;
+    [self.tableView reloadData];
+    [self updateView];
 }
 
 - (void)getGPAData {
@@ -197,8 +220,10 @@
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
         isRequestingData = NO;
+        [MsgDisplay dismiss];
     } failure:^(NSURLSessionTask *task, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [MsgDisplay dismiss];
         NSError *jsonError;
         NSData *errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:errorResponse options:NSJSONReadingMutableContainers error:&jsonError];
@@ -208,11 +233,13 @@
                 if ([errorCode isEqualToString:@"20001"]) {
                     // 未绑定
                     [MsgDisplay showErrorMsg:dic[@"message"]];
+                    [self clearTableContent];
                     BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithNibName:nil bundle:nil];
                     [self presentViewController:bindTju animated:YES completion:nil];
                 } else if ([errorCode isEqualToString:@"20002"]) {
                     // TJU 验证失败
                     [MsgDisplay showErrorMsg:dic[@"message"]];
+                    [self clearTableContent];
                     
                 }
             } else {
@@ -229,6 +256,7 @@
         isRequestingData = NO;
     } userCanceledCaptcha:^() {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [MsgDisplay dismiss];
         [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
             stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
@@ -303,26 +331,41 @@
     });
 }
 
+- (void)unbindTju {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定要解除绑定办公网账号吗？" message:@"解除绑定后您将无法获得成绩等信息" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [AccountManager unbindTjuAccountSuccess:^{
+            [MsgDisplay showSuccessMsg:@"解除绑定成功！"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSString *errorMsg) {
+            [MsgDisplay showErrorMsg:[NSString stringWithFormat:@"解除绑定失败！\n%@", errorMsg]];
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - IBActions
 
-- (IBAction)refresh:(id)sender {
-    if ([AccountManager tokenExists]) {
-        if (dataArr.count == 0) {
-            [self getGPAData];
-        } else {
-            [self updateView];
-        }
-    } else {
-        dataArr = [[NSArray alloc] init];
-        chartDataArr = [[NSMutableArray alloc] init];
-        stat = [[GPAStat alloc] init];
-        currentTerm = 0;
-        graphIsTouched = NO;
-        lastSelected = 0;
-        [self.tableView reloadData];
-        [self updateView];
-        
-    }
+- (IBAction)moreActions:(id)sender {
+    UIAlertController *actions = [UIAlertController alertControllerWithTitle:@"更多" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *refreshAction = [UIAlertAction actionWithTitle:@"刷新" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self refresh];
+    }];
+    UIAlertAction *unbindAction = [UIAlertAction actionWithTitle:@"解绑办公网账号" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [self unbindTju];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    [actions addAction:refreshAction];
+    [actions addAction:unbindAction];
+    [actions addAction:cancelAction];
+    actions.modalPresentationStyle = UIModalPresentationPopover;
+    actions.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    actions.popoverPresentationController.sourceView = self.view;
+    actions.popoverPresentationController.sourceRect = self.view.bounds;
+    [self presentViewController:actions animated:YES completion:nil];
 }
 
 #pragma mark - JBChartView data source

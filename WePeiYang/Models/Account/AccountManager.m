@@ -11,6 +11,9 @@
 #import "SolaFoundationKit.h"
 #import "SolaInstance.h"
 #import "SolaSessionManager.h"
+#import "wpyCacheManager.h"
+#import "GPATableViewController.h"
+#import <CoreSpotlight/CoreSpotlight.h>
 
 @implementation AccountManager
 
@@ -26,7 +29,11 @@
 + (void)removeToken {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN_SAVE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:ID_SAVE_KEY];
+    [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
     [SolaInstance shareInstance].token = nil;
+    [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
+        NSLog(error.localizedDescription);
+    }];
 }
 
 + (void)getTokenWithTwtUserName:(NSString *)twtuname password:(NSString *)password success:(void (^)())success failure:(void (^)(NSString *))failure {
@@ -141,6 +148,11 @@
 + (void)unbindTjuAccountSuccess:(void (^)())success failure:(void (^)(NSString *))failure {
     [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/auth/unbind/tju" token:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:TJU_BIND_KEY];
+        [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
+        [wpyCacheManager removeCacheDataForKey:GPA_USER_NAME_CACHE];
+        [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
+            NSLog(error.localizedDescription);
+        }];
         if (success != nil) {
             success();
         }

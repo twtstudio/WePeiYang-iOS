@@ -11,6 +11,7 @@
 #import "SolaSessionManager.h"
 #import "SolaFoundationKit.h"
 #import "AFNetworking.h"
+#import "MsgDisplay.h"
 
 @implementation twtSDK
 
@@ -31,8 +32,8 @@
 //}
 
 + (void)getGpaWithToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void (^)())userCanceled {
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"token": token}];
-    [self getGpaWithParameters:parameters token:token success:^(NSURLSessionDataTask *task, id responseObject) {
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"token": token}];
+    [self getGpaWithParameters:nil token:token success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
@@ -70,6 +71,7 @@
             [captchaAlert addAction:cancel];
             [captchaAlert addAction:ok];
             [[SolaFoundationKit topViewController] presentViewController:captchaAlert animated:YES completion:nil];
+            [MsgDisplay dismiss];
         } else {
             success(task, responseObject);
         }

@@ -11,6 +11,7 @@
 #import "MsgDisplay.h"
 #import "AccountManager.h"
 #import "data.h"
+#import "SolaSessionManager.h"
 
 // Data Models
 #import "NewsData.h"
