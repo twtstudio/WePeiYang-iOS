@@ -34,6 +34,7 @@
     SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
     sideMenuViewController.scaleContentView = NO;
+    sideMenuViewController.scaleMenuView = NO;
     sideMenuViewController.contentViewShadowEnabled = YES;
     sideMenuViewController.contentViewInPortraitOffsetCenterX = 100;
     self.window.rootViewController = sideMenuViewController;

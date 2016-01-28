@@ -18,7 +18,8 @@ protocol SidebarDelegate {
 class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var sideTableView: UITableView!
-    var headerView: UIView!
+    @IBOutlet weak var headerView: UIView!
+    var userHeaderView: UIView!
     var logHeaderView: UIView!
     var avatarView: UIImageView!
     var nameLabel: UILabel!
@@ -32,11 +33,12 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         sideTableView.delegate = self
         sideTableView.dataSource = self
         
-        headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
-        headerView.backgroundColor = UIColor.flatBlueColorDark()
+        userHeaderView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
+        userHeaderView.backgroundColor = UIColor.flatBlueColorDark()
+        headerView.addSubview(userHeaderView)
         
         avatarView = UIImageView(image: UIImage(named: "thumbIcon"))
-        headerView.addSubview(avatarView)
+        userHeaderView.addSubview(avatarView)
         avatarView.mas_makeConstraints({make in
             make.top.equalTo()(self.headerView).offset()(70)
             make.width.equalTo()(120)
@@ -50,7 +52,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         nameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey(ID_SAVE_KEY)
         nameLabel.textAlignment = .Center
         nameLabel.textColor = UIColor.whiteColor()
-        headerView.addSubview(nameLabel)
+        userHeaderView.addSubview(nameLabel)
         nameLabel.mas_makeConstraints({make in
             make.top.equalTo()(self.avatarView).offset()(140)
             make.centerX.equalTo()(self.avatarView)
@@ -58,20 +60,29 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
         
         logHeaderView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
+        logHeaderView.backgroundColor = UIColor.flatBlueColorDark()
+        headerView.addSubview(logHeaderView)
         let logBtn = UIButton(type: .System)
         logBtn.setTitle("登录", forState: .Normal)
+        logBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         logBtn.bk_addEventHandler({handler in
             let loginVC = LoginViewController(nibName: nil, bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         }, forControlEvents: .TouchUpInside)
         logHeaderView.addSubview(logBtn)
         logBtn.mas_makeConstraints({make in
-            make.center.equalTo()(self.logHeaderView)
-            make.width.equalTo()(160)
-            make.height.equalTo()(80)
+            make.centerX.equalTo()(self.headerView).offset()(-45)
+            make.centerY.equalTo()(self.headerView).offset()
+            make.width.equalTo()(130)
+            make.height.equalTo()(46)
         })
+        logBtn.backgroundColor = UIColor.clearColor()
+        logBtn.layer.borderColor = UIColor.whiteColor().CGColor
+        logBtn.layer.borderWidth = 1.0
+        logBtn.layer.cornerRadius = 7.0
+        logBtn.clipsToBounds = true
         
-        sideTableView.reloadData()
+        self.updateView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +91,13 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func updateView() {
-        sideTableView.reloadData()
+        if AccountManager.tokenExists() {
+            logHeaderView.alpha = 0
+            userHeaderView.alpha = 1
+        } else {
+            logHeaderView.alpha = 1
+            userHeaderView.alpha = 0
+        }
         nameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey(ID_SAVE_KEY)
     }
     
@@ -92,23 +109,6 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if AccountManager.tokenExists() {
-            return headerView
-        } else {
-            return logHeaderView
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 260
-        default:
-            return 0
-        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

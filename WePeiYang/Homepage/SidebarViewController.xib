@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SidebarViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
+                <outlet property="headerView" destination="k0y-V8-uqp" id="0WD-Vp-0dR"/>
                 <outlet property="sideTableView" destination="YfI-gQ-WHe" id="8k7-yH-zDX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,14 +18,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YfI-gQ-WHe">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="260" width="600" height="340"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0y-V8-uqp">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="260"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="260" id="Wdv-6b-jJV"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="k0y-V8-uqp" secondAttribute="trailing" id="4mm-rr-b4G"/>
                 <constraint firstItem="YfI-gQ-WHe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6ug-2u-3BM"/>
-                <constraint firstItem="YfI-gQ-WHe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hbH-Xx-Y1p"/>
+                <constraint firstItem="k0y-V8-uqp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ECj-xA-mOz"/>
+                <constraint firstItem="YfI-gQ-WHe" firstAttribute="top" secondItem="k0y-V8-uqp" secondAttribute="bottom" id="EuU-XW-gnE"/>
+                <constraint firstItem="k0y-V8-uqp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dYs-DB-VWy"/>
                 <constraint firstAttribute="bottom" secondItem="YfI-gQ-WHe" secondAttribute="bottom" id="jSt-ZD-M5d"/>
                 <constraint firstAttribute="trailing" secondItem="YfI-gQ-WHe" secondAttribute="trailing" id="kTA-d1-6nP"/>
             </constraints>

@@ -89,8 +89,10 @@
     
     [self refresh];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"PleaseRefresh" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"PleaseGetBack" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"BindTju" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"BindTjuCancelled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"LoginCancelled" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -142,6 +144,8 @@
         }
     } else {
         [self clearTableContent];
+        LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+        [self presentViewController:loginVC animated:YES completion:nil];
     }
 }
 

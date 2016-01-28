@@ -29,7 +29,9 @@ class LoginViewController: UIViewController {
             MsgDisplay.showLoading()
             AccountManager.getTokenWithTwtUserName(unameField.text, password: passwdField.text, success: {
                 MsgDisplay.showSuccessMsg("登录成功！")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: {
+                    NSNotificationCenter.defaultCenter().postNotificationName("Login", object: nil)
+                })
             }, failure: {errorMsg in
                 MsgDisplay.showErrorMsg(errorMsg)
             })
@@ -40,7 +42,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelLogin() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {
+            NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
+        })
     }
     
     @IBAction func nextField() {

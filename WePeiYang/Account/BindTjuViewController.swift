@@ -30,7 +30,7 @@ class BindTjuViewController: UIViewController {
             AccountManager.bindTjuAccountWithTjuUserName(unameField.text, password: passwdField.text, success: {
                 MsgDisplay.showSuccessMsg("办公网账号绑定成功！")
                 self.dismissViewControllerAnimated(true, completion: {
-                    NSNotificationCenter.defaultCenter().postNotificationName("PleaseRefresh", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("BindTju", object: nil)
                 })
             }, failure: {errorMsg in
                 MsgDisplay.showErrorMsg(errorMsg)
@@ -43,7 +43,7 @@ class BindTjuViewController: UIViewController {
     
     @IBAction func cancelBind() {
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("PleaseGetBack", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("BindTjuCancelled", object: nil)
         })
     }
     
