@@ -13,8 +13,131 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="391" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AL6-H4-2bh">
+                        <rect key="frame" x="0.0" y="0.0" width="391" height="119"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bm-aK-jTK">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="119"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="新闻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fo4-1d-abf">
+                                        <rect key="frame" x="0.0" y="90" width="130" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.23137254901960785" green="0.4392156862745098" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newsBtn" translatesAutoresizingMaskIntoConstraints="NO" id="OXh-0s-jV0">
+                                        <rect key="frame" x="33" y="18" width="64" height="64"/>
+                                        <color key="tintColor" red="0.23137254901960785" green="0.4392156862745098" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="3Og-Cd-yjI"/>
+                                            <constraint firstAttribute="width" constant="64" id="QGI-ad-hNN"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="Fo4-1d-abf" firstAttribute="centerX" secondItem="0Bm-aK-jTK" secondAttribute="centerX" id="48H-1u-cHN"/>
+                                    <constraint firstItem="OXh-0s-jV0" firstAttribute="centerX" secondItem="0Bm-aK-jTK" secondAttribute="centerX" id="8GK-r7-Wcb"/>
+                                    <constraint firstItem="Fo4-1d-abf" firstAttribute="leading" secondItem="0Bm-aK-jTK" secondAttribute="leading" id="E11-mm-xas"/>
+                                    <constraint firstItem="Fo4-1d-abf" firstAttribute="top" secondItem="OXh-0s-jV0" secondAttribute="bottom" constant="8" id="EP4-lP-H94"/>
+                                    <constraint firstItem="OXh-0s-jV0" firstAttribute="top" secondItem="0Bm-aK-jTK" secondAttribute="top" constant="18" id="TwP-lW-xf3"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fo4-1d-abf" secondAttribute="trailing" id="iaC-zz-Sry"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kpE-RB-j0T" appends="YES" id="9HA-ds-kX5"/>
+                                </connections>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOx-yj-mOH">
+                                <rect key="frame" x="130" y="0.0" width="131" height="119"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gpaBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Cvy-xp-Sk6">
+                                        <rect key="frame" x="33" y="18" width="64" height="64"/>
+                                        <color key="tintColor" red="0.83137254901960778" green="0.35686274509803922" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="mOn-CX-MAv"/>
+                                            <constraint firstAttribute="width" constant="64" id="vhR-jQ-PIC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="成绩" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPr-QK-ppk">
+                                        <rect key="frame" x="0.0" y="90" width="131" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.83137254900000002" green="0.35686274509999999" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="Cvy-xp-Sk6" firstAttribute="top" secondItem="bOx-yj-mOH" secondAttribute="top" constant="18" id="5Wg-SR-qJa"/>
+                                    <constraint firstAttribute="trailing" secondItem="IPr-QK-ppk" secondAttribute="trailing" id="BBl-cS-ozg"/>
+                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="top" secondItem="Cvy-xp-Sk6" secondAttribute="bottom" constant="8" id="RXb-RK-STy"/>
+                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="leading" secondItem="bOx-yj-mOH" secondAttribute="leading" id="bTT-hC-VEn"/>
+                                    <constraint firstItem="Cvy-xp-Sk6" firstAttribute="centerX" secondItem="bOx-yj-mOH" secondAttribute="centerX" id="dFy-aV-TUJ"/>
+                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="centerX" secondItem="bOx-yj-mOH" secondAttribute="centerX" id="qbO-bl-R6v"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="KkV-Fk-TQt" appends="YES" id="m0h-yo-ZO3"/>
+                                </connections>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8i-EC-EtT">
+                                <rect key="frame" x="261" y="0.0" width="130" height="119"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newsBtn" translatesAutoresizingMaskIntoConstraints="NO" id="QId-Qr-HpE">
+                                        <rect key="frame" x="33" y="18" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="U8e-bx-cyF"/>
+                                            <constraint firstAttribute="height" constant="64" id="bTB-Yg-4DT"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="新闻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-De-zxj">
+                                        <rect key="frame" x="0.0" y="90" width="130" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="kXk-De-zxj" firstAttribute="leading" secondItem="p8i-EC-EtT" secondAttribute="leading" id="0Dj-0V-XI4"/>
+                                    <constraint firstItem="kXk-De-zxj" firstAttribute="top" secondItem="QId-Qr-HpE" secondAttribute="bottom" constant="8" id="3cx-zY-P9P"/>
+                                    <constraint firstAttribute="trailing" secondItem="kXk-De-zxj" secondAttribute="trailing" id="4ua-Nf-vmu"/>
+                                    <constraint firstItem="QId-Qr-HpE" firstAttribute="top" secondItem="p8i-EC-EtT" secondAttribute="top" constant="18" id="Can-uq-Xs3"/>
+                                    <constraint firstItem="QId-Qr-HpE" firstAttribute="centerX" secondItem="p8i-EC-EtT" secondAttribute="centerX" id="EHs-jY-NeU"/>
+                                    <constraint firstItem="kXk-De-zxj" firstAttribute="centerX" secondItem="p8i-EC-EtT" secondAttribute="centerX" id="eok-0b-Inj"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="oPr-fa-7ow" appends="YES" id="uLw-ZG-QLj"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="AL6-H4-2bh" secondAttribute="trailing" id="2LO-4F-Unk"/>
+                    <constraint firstItem="AL6-H4-2bh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9NW-Mw-6m3"/>
+                    <constraint firstAttribute="bottom" secondItem="AL6-H4-2bh" secondAttribute="bottom" id="mk4-dr-sum"/>
+                    <constraint firstItem="AL6-H4-2bh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xST-Za-1wr"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="firstGestureRecognizer" destination="kpE-RB-j0T" id="QAo-EQ-0lH"/>
+                <outlet property="firstImgView" destination="OXh-0s-jV0" id="ETI-Mt-Dhf"/>
+                <outlet property="secondGestureRecognizer" destination="KkV-Fk-TQt" id="33P-Mf-xuT"/>
+                <outlet property="secondImgView" destination="Cvy-xp-Sk6" id="MZ4-el-5RG"/>
+                <outlet property="thirdGestureRecognizer" destination="oPr-fa-7ow" id="QZF-IC-eHw"/>
+                <outlet property="thirdImgView" destination="QId-Qr-HpE" id="zN7-TA-2P1"/>
+            </connections>
             <point key="canvasLocation" x="391.5" y="522"/>
         </tableViewCell>
+        <tapGestureRecognizer id="kpE-RB-j0T"/>
+        <tapGestureRecognizer id="KkV-Fk-TQt"/>
+        <tapGestureRecognizer id="oPr-fa-7ow"/>
     </objects>
+    <resources>
+        <image name="gpaBtn" width="72" height="72"/>
+        <image name="newsBtn" width="72" height="72"/>
+    </resources>
 </document>

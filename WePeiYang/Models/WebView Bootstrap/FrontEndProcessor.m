@@ -49,6 +49,7 @@
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
                       "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> \n"
+                      "<h3>%@</h3> \n"
                       "%@ \n"
                       "<br> \n"
                       "</div> \n"
@@ -57,7 +58,7 @@
                       "<script src=\"%@\"></script> \n"
                       "<script src=\"%@\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, [NSString stringWithFormat:@"来源：%@", newsContent.source], [NSString stringWithFormat:@"供稿：%@", newsContent.author], [NSString stringWithFormat:@"审稿：%@", newsContent.reviewer], (newsContent.photographer.length == 0) ? @"" : [NSString stringWithFormat:@"摄影：%@", newsContent.photographer], jsPath, jqueryPath];
+                      "</html>" , cssPath, newsContent.subject, contentStr, [NSString stringWithFormat:@"来源：%@", newsContent.source], [NSString stringWithFormat:@"供稿：%@", newsContent.author], [NSString stringWithFormat:@"审稿：%@", newsContent.reviewer], (newsContent.photographer.length == 0) ? @"" : [NSString stringWithFormat:@"摄影：%@", newsContent.photographer], jsPath, jqueryPath];
     
     return load;
 }

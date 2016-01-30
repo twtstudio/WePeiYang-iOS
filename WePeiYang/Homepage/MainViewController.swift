@@ -13,7 +13,7 @@ import RESideMenu
 import MJRefresh
 import LocalAuthentication
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, SidebarDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate, SidebarDelegate {
     
     @IBOutlet var mainTableView: UITableView!
     
@@ -38,6 +38,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.getData()
         })
         self.getData()
+        
+        if !AccountManager.tokenExists() {
+            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,49 +78,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }, failure: {(error, description) in
             
         })
-    }
-    
-    private func showGPA() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
-        
-        let userDefaults = NSUserDefaults()
-        let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
-        if (touchIdEnabled) {
-            let authContext = LAContext()
-            var error: NSError?
-            guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
-                return
-            }
-            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
-                if success {
-                    print("SUCCESS")
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.navigationController?.showViewController(gpaVC, sender: nil)
-                    })
-                } else {
-                    MsgDisplay.showErrorMsg("指纹验证失败")
-                }
-            })
-        } else {
-            self.navigationController?.showViewController(gpaVC, sender: nil)
-        }
-    }
-    
-    private func showNews() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
-        self.navigationController?.showViewController(newsVC, sender: nil)
-    }
-    
-    private func showSettings() {
-        let settingsVC = SettingViewController(style: .Grouped)
-        self.navigationController?.showViewController(settingsVC, sender: nil)
-    }
-    
-    private func showClasstable() {
-        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
-        self.navigationController?.showViewController(classtableVC, sender: nil)
     }
     
     // TABLE VIEW DATA SOURCE
@@ -175,6 +137,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 toolsCell = nib[0] as? HomeToolsCell
             }
             toolsCell?.selectionStyle = .None
+            toolsCell?.delegate = self
             return toolsCell!
         case 2:
             var weatherCell = tableView.dequeueReusableCellWithIdentifier("weatheridentifier") as? HomeWeatherCell
@@ -240,24 +203,68 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.showViewController(contentVC, sender: nil)
     }
     
+    // TOOLS CELL DELEGATE
+    
+    func toolsTappedAtIndex(index: Int) {
+        switch index {
+        case 0:
+            self.showNewsController()
+        case 1:
+            self.showGPAController()
+        default:
+            break
+        }
+    }
+    
     // SIDE BAR DELEGATE
     
     func showGPAController() {
-        self.showGPA()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+        
+        let userDefaults = NSUserDefaults()
+        let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
+        if (touchIdEnabled) {
+            let authContext = LAContext()
+            var error: NSError?
+            guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                return
+            }
+            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
+                if success {
+                    print("SUCCESS")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.showViewController(gpaVC, sender: nil)
+                    })
+                } else {
+                    MsgDisplay.showErrorMsg("指纹验证失败")
+                }
+            })
+        } else {
+            self.navigationController?.showViewController(gpaVC, sender: nil)
+        }
     }
     
     func showNewsController() {
-        self.showNews()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
+        self.navigationController?.showViewController(newsVC, sender: nil)
     }
     
     func showClasstableController() {
-        self.showClasstable()
+        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        self.navigationController?.showViewController(classtableVC, sender: nil)
     }
     
     func showSettingsController() {
-        self.showSettings()
+        let settingsVC = SettingViewController(style: .Grouped)
+        self.navigationController?.showViewController(settingsVC, sender: nil)
     }
     
+    func showLibraryController() {
+        let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        self.navigationController?.showViewController(libVC, sender: nil)
+    }
 
     /*
     // MARK: - Navigation

@@ -38,8 +38,10 @@
     self.window = [[UIWindow alloc] init];
     MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
+    navigationController.view.backgroundColor = [UIColor whiteColor];
     SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
+    sideMenuViewController.parallaxEnabled = NO;
     sideMenuViewController.scaleContentView = NO;
     sideMenuViewController.scaleMenuView = NO;
     sideMenuViewController.contentViewShadowEnabled = YES;

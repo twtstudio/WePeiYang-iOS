@@ -7,16 +7,26 @@
 //
 
 import UIKit
+import ChameleonFramework
+import pop
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet var unameField: UITextField!
-    @IBOutlet var passwdField: UITextField!
+    @IBOutlet weak var unameField: UITextField!
+    @IBOutlet weak var passwdField: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loginBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        loginBtn.layer.cornerRadius = 7.0
+        loginBtn.clipsToBounds = true
+        loginBtn.backgroundColor = UIColor.flatSkyBlueColor()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,13 +34,39 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func keyboardWillShow() {
+        if self.view.frame.size.height <= 568 {
+            let viewAnim = POPBasicAnimation(propertyNamed: kPOPLayerPosition)
+            let point = self.view.center
+            let halfHeight = 0.5*UIScreen.mainScreen().bounds.size.height
+            let upHeight = self.view.frame.size.height > 480 ? 66 : 150
+            viewAnim.toValue = NSValue(CGPoint: CGPointMake(point.x, CGFloat(halfHeight) - CGFloat(upHeight)))
+            self.view.layer.pop_addAnimation(viewAnim, forKey: "viewAnimation")
+        }
+    }
+    
+    func keyboardWillHide() {
+        if self.view.frame.size.height <= 568 {
+            let viewAnim = POPBasicAnimation(propertyNamed: kPOPLayerPosition)
+            let point = self.view.center
+            let halfHeight = 0.5*UIScreen.mainScreen().bounds.size.height
+            viewAnim.toValue = NSValue(CGPoint: CGPointMake(point.x, CGFloat(halfHeight)))
+            self.view.layer.pop_addAnimation(viewAnim, forKey: "viewAnimation")
+        }
+    }
+    
     @IBAction func submitLogin() {
         if unameField.text != "" && passwdField.text != "" {
             MsgDisplay.showLoading()
             AccountManager.getTokenWithTwtUserName(unameField.text, password: passwdField.text, success: {
                 MsgDisplay.showSuccessMsg("登录成功！")
+                NSNotificationCenter.defaultCenter().postNotificationName("Login", object: nil)
                 self.dismissViewControllerAnimated(true, completion: {
-                    NSNotificationCenter.defaultCenter().postNotificationName("Login", object: nil)
+                    
                 })
             }, failure: {errorMsg in
                 MsgDisplay.showErrorMsg(errorMsg)
@@ -42,8 +78,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelLogin() {
+        NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
+            
         })
     }
     

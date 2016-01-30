@@ -6,12 +6,13 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "login-password@2x.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_240.png",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "login-password@3x.png"
     }
   ],
   "info" : {

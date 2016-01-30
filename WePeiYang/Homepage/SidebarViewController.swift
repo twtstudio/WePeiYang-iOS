@@ -12,6 +12,7 @@ import ChameleonFramework
 protocol SidebarDelegate {
     func showGPAController();
     func showNewsController();
+    func showLibraryController();
     func showClasstableController();
     func showSettingsController();
 }
@@ -35,10 +36,12 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         sideTableView.dataSource = self
         
         userHeaderView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
-        userHeaderView.backgroundColor = UIColor.flatBlueColorDark()
+        userHeaderView.backgroundColor = UIColor.flatSkyBlueColor()
         headerView.addSubview(userHeaderView)
         
-        avatarView = UIImageView(image: UIImage(named: "thumbIcon"))
+        let img = UIImage(named: "accountIcon")?.imageWithRenderingMode(.AlwaysTemplate)
+        avatarView = UIImageView(image: img)
+        avatarView.tintColor = UIColor.whiteColor()
         userHeaderView.addSubview(avatarView)
         avatarView.mas_makeConstraints({make in
             make.top.equalTo()(self.headerView).offset()(70)
@@ -61,7 +64,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
         
         logHeaderView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
-        logHeaderView.backgroundColor = UIColor.flatBlueColorDark()
+        logHeaderView.backgroundColor = UIColor.flatSkyBlueColor()
         headerView.addSubview(logHeaderView)
         let logBtn = UIButton(type: .System)
         logBtn.setTitle("登录", forState: .Normal)
@@ -118,19 +121,21 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch row {
         case 0:
             cell.textLabel?.text = "新闻"
-            cell.imageView?.image = UIImage(named: "newsTab")
+            cell.imageView?.image = UIImage(named: "newsTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 1:
             cell.textLabel?.text = "成绩"
-            cell.imageView?.image = UIImage(named: "gpaTab")
+            cell.imageView?.image = UIImage(named: "gpaTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 2:
-            cell.textLabel?.text = "课程表"
-            cell.imageView?.image = UIImage(named: "libTab")
+            cell.textLabel?.text = "图书馆"
+            cell.imageView?.image = UIImage(named: "libTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 3:
             cell.textLabel?.text = "设置"
-            cell.imageView?.image = UIImage(named: "settingTab")
+            cell.imageView?.image = UIImage(named: "settingTab")?.imageWithRenderingMode(.AlwaysTemplate)
         default:
             break
         }
+        cell.textLabel?.textColor = UIColor.darkGrayColor()
+        cell.imageView?.tintColor = UIColor.darkGrayColor()
         return cell
     }
     
@@ -144,7 +149,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             delegate.showGPAController()
         case 2:
-            delegate.showClasstableController()
+            delegate.showLibraryController()
         case 3:
             delegate.showSettingsController()
         default:

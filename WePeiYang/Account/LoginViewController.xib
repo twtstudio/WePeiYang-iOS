@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
+                <outlet property="loginBtn" destination="V6P-Z3-Lsq" id="LeS-CS-I2U"/>
                 <outlet property="passwdField" destination="fXC-4i-uMj" id="RJX-3x-4nI"/>
                 <outlet property="unameField" destination="Wao-4Q-7O6" id="LCy-d3-uKW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -17,41 +18,77 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wao-4Q-7O6">
-                    <rect key="frame" x="8" y="127" width="379" height="30"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="loginUser" translatesAutoresizingMaskIntoConstraints="NO" id="ORv-q2-pcb">
+                    <rect key="frame" x="158" y="180" width="284" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="284" id="vvk-qb-Apb"/>
+                        <constraint firstAttribute="height" constant="45" id="y5P-Mz-sGS"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="loginPassword" translatesAutoresizingMaskIntoConstraints="NO" id="wU7-Os-lKS">
+                    <rect key="frame" x="158" y="233" width="284" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="6Sl-wR-0aL"/>
+                        <constraint firstAttribute="width" constant="284" id="jiB-wv-ifM"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入天外天账号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wao-4Q-7O6">
+                    <rect key="frame" x="199" y="188" width="243" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                    <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next"/>
                     <connections>
                         <action selector="nextField" destination="-1" eventType="editingDidEndOnExit" id="pc4-Lz-qbw"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fXC-4i-uMj">
-                    <rect key="frame" x="8" y="177" width="379" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fXC-4i-uMj">
+                    <rect key="frame" x="199" y="241" width="243" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                     <connections>
                         <action selector="submitLogin" destination="-1" eventType="editingDidEndOnExit" id="BSF-vL-RjI"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6P-Z3-Lsq">
-                    <rect key="frame" x="8" y="232" width="115" height="30"/>
-                    <state key="normal" title="Login"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6P-Z3-Lsq">
+                    <rect key="frame" x="158" y="286" width="284" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="284" id="0eQ-JX-2WA"/>
+                        <constraint firstAttribute="height" constant="46" id="Aiz-pi-HI8"/>
+                    </constraints>
+                    <state key="normal" title="登录"/>
                     <connections>
                         <action selector="submitLogin" destination="-1" eventType="touchUpInside" id="E4t-vN-TBv"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aV-i0-mgr">
-                    <rect key="frame" x="8" y="285" width="115" height="30"/>
-                    <state key="normal" title="Cancel"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aV-i0-mgr">
+                    <rect key="frame" x="358" y="347" width="84" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="暂不登录">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="cancelLogin" destination="-1" eventType="touchUpInside" id="pwu-Zz-Pfd"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fXC-4i-uMj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="20.5" id="0Zi-O3-zJU"/>
+                <constraint firstItem="wU7-Os-lKS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3QR-Ej-EZC"/>
+                <constraint firstItem="8aV-i0-mgr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="84.5" id="59e-V2-Plp"/>
+                <constraint firstItem="V6P-Z3-Lsq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HPp-VT-Ttu"/>
+                <constraint firstItem="8aV-i0-mgr" firstAttribute="top" secondItem="V6P-Z3-Lsq" secondAttribute="bottom" constant="15" id="K3C-I3-KdL"/>
+                <constraint firstItem="Wao-4Q-7O6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="20.5" id="Yoz-hq-7II"/>
+                <constraint firstItem="wU7-Os-lKS" firstAttribute="top" secondItem="ORv-q2-pcb" secondAttribute="bottom" constant="8" id="bJF-oA-pnl"/>
+                <constraint firstItem="ORv-q2-pcb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="n7N-jO-I4E"/>
+                <constraint firstItem="V6P-Z3-Lsq" firstAttribute="top" secondItem="wU7-Os-lKS" secondAttribute="bottom" constant="8" id="w9G-y6-i1I"/>
+            </constraints>
             <connections>
                 <action selector="backgroundTapped" destination="-1" eventType="touchDown" id="59j-xr-nae"/>
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="loginPassword" width="284" height="49"/>
+        <image name="loginUser" width="284" height="49"/>
+    </resources>
 </document>

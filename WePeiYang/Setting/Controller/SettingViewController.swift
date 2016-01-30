@@ -229,7 +229,8 @@ class SettingViewController: UITableViewController {
         case 2:
             switch row {
             case 0:
-                break
+                let aboutVC = AboutViewController(nibName: nil, bundle: nil)
+                self.navigationController?.showViewController(aboutVC, sender: nil)
             case 1:
                 let feedbackVC = FeedbackViewController(style: .Grouped)
                 self.navigationController?.showViewController(feedbackVC, sender: nil)

@@ -11,12 +11,19 @@ import UIKit
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 
 class ClasstableViewController: UIViewController {
+    
+    @IBOutlet weak var classTableScrollView: UIScrollView!
+    
+    var dataArr = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.edgesForExtendedLayout = .None
+        
         self.title = "课程表"
+        self.dataArr = []
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshNotificationReceived", name: "Login", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshNotificationReceived", name: "BindTju", object: nil)
@@ -41,7 +48,8 @@ class ClasstableViewController: UIViewController {
         if AccountManager.tokenExists() {
             if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_CACHE_KEY) {
                 wpyCacheManager.loadCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {cacheData in
-                    
+                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(cacheData)
+                    self.updateView(self.view.bounds.size)
                 }, failed: nil)
             } else {
                 self.refresh()
@@ -53,12 +61,30 @@ class ClasstableViewController: UIViewController {
     }
     
     private func refresh() {
+        ClasstableDataManager.getClasstableData({data in
+            if data.count > 0 {
+                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+                self.updateView(self.view.bounds.size)
+                wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+            }
+        }, notBinded: {
+            
+        }, otherFailure: {errorMsg in
+            
+        })
+    }
+    
+    private func updateView(size: CGSize) {
         
     }
     
-    private func updateView() {
-        
-    }
+//    private func classCellSizeWithScreenSize(screenSize: CGSize) -> CGSize {
+//        
+//    }
+//    
+//    private func contentSizeWithScreenSize(screenSize: CGSize) -> CGSize {
+//        
+//    }
     
     // MARK: - Public Methods
     
