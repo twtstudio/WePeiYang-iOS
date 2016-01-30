@@ -213,8 +213,8 @@
                     // 未绑定
                     [MsgDisplay showErrorMsg:dic[@"message"]];
                     [self clearTableContent];
-                    BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithNibName:nil bundle:nil];
-                    [self presentViewController:bindTju animated:YES completion:nil];
+                    BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:bindTju] animated:YES completion:nil];
                 } else if ([errorCode isEqualToString:@"20002"]) {
                     // TJU 验证失败
                     [MsgDisplay showErrorMsg:dic[@"message"]];
