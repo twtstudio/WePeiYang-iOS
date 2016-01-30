@@ -76,7 +76,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.mainTableView.reloadData()
             self.mainTableView.mj_header.endRefreshing()
         }, failure: {(error, description) in
-            
+            MsgDisplay.showErrorMsg(description)
         })
     }
     
@@ -211,6 +211,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.showNewsController()
         case 1:
             self.showGPAController()
+        case 2:
+            self.showMicroservicesController()
         default:
             break
         }
@@ -264,6 +266,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func showLibraryController() {
         let libVC = LibraryViewController(nibName: nil, bundle: nil)
         self.navigationController?.showViewController(libVC, sender: nil)
+    }
+    
+    func showMicroservicesController() {
+        let msVC = MicroservicesTableViewController(style: .Plain)
+        self.navigationController?.showViewController(msVC, sender: nil)
     }
 
     /*

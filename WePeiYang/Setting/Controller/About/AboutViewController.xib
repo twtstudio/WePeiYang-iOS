@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1.6 Build 0131" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuK-sh-DOH">
-                    <rect key="frame" x="192" y="547" width="217" height="21"/>
+                    <rect key="frame" x="192" y="389" width="217" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -40,11 +40,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="kuK-sh-DOH" firstAttribute="top" secondItem="24e-3u-uDf" secondAttribute="bottom" constant="8" id="8TF-yl-7Ed"/>
                 <constraint firstItem="aQV-ih-OUO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-22" id="Dcy-kZ-zyH"/>
                 <constraint firstItem="aQV-ih-OUO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RpE-Ul-3jS"/>
                 <constraint firstItem="WsW-40-mQH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZPP-k4-og5"/>
                 <constraint firstItem="kuK-sh-DOH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="f7s-HU-3DQ"/>
-                <constraint firstItem="WsW-40-mQH" firstAttribute="top" secondItem="kuK-sh-DOH" secondAttribute="bottom" constant="3" id="gUF-8h-ik5"/>
                 <constraint firstAttribute="bottom" secondItem="WsW-40-mQH" secondAttribute="bottom" constant="8" id="nRp-dY-C3W"/>
                 <constraint firstItem="24e-3u-uDf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="70.5" id="oWH-j8-xaV"/>
                 <constraint firstItem="24e-3u-uDf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qtL-6g-mTk"/>

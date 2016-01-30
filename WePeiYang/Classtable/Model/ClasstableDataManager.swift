@@ -15,7 +15,6 @@ class ClasstableDataManager: NSObject {
             let dic = responseObject as! Dictionary<String, AnyObject>
             if dic["error_code"] as! Int == -1 {
                 if dic["data"] != nil {
-                    print("\(dic)")
                     success(data: dic["data"]!)
                 } else {
                     

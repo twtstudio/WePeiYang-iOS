@@ -34,6 +34,9 @@ class HomeToolsCell: UITableViewCell {
         secondImgView.tintColor = UIColor.flatPinkColorDark()
         secondImgView.image = UIImage(named: "gpaBtn")?.imageWithRenderingMode(.AlwaysTemplate)
         
+        thirdImgView.tintColor = UIColor.flatSkyBlueColor()
+        thirdImgView.image = UIImage(named: "msBtn")?.imageWithRenderingMode(.AlwaysTemplate)
+        
         firstGestureRecognizer.addTarget(self, action: "gestureHandler:")
         secondGestureRecognizer.addTarget(self, action: "gestureHandler:")
         thirdGestureRecognizer.addTarget(self, action: "gestureHandler:")

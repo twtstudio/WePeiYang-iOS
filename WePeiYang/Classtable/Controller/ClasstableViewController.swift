@@ -68,9 +68,10 @@ class ClasstableViewController: UIViewController {
                 wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
             }
         }, notBinded: {
-            
+            let bindTjuVC = BindTjuViewController(style: .Grouped)
+            self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
         }, otherFailure: {errorMsg in
-            
+            MsgDisplay.showErrorMsg(errorMsg)
         })
     }
     

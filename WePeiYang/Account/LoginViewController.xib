@@ -69,6 +69,19 @@
                         <action selector="cancelLogin" destination="-1" eventType="touchUpInside" id="pwu-Zz-Pfd"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twtCloud" translatesAutoresizingMaskIntoConstraints="NO" id="cjT-XR-drM">
+                    <rect key="frame" x="248" y="53" width="105" height="89"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="105" id="4Bp-fN-n8p"/>
+                        <constraint firstAttribute="height" constant="89" id="xM2-0I-WSz"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="天外天工作室" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bio-2D-zmL">
+                    <rect key="frame" x="13" y="540" width="575" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -78,8 +91,12 @@
                 <constraint firstItem="V6P-Z3-Lsq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HPp-VT-Ttu"/>
                 <constraint firstItem="8aV-i0-mgr" firstAttribute="top" secondItem="V6P-Z3-Lsq" secondAttribute="bottom" constant="15" id="K3C-I3-KdL"/>
                 <constraint firstItem="Wao-4Q-7O6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="20.5" id="Yoz-hq-7II"/>
+                <constraint firstItem="Bio-2D-zmL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ah5-82-BWs"/>
                 <constraint firstItem="wU7-Os-lKS" firstAttribute="top" secondItem="ORv-q2-pcb" secondAttribute="bottom" constant="8" id="bJF-oA-pnl"/>
+                <constraint firstAttribute="bottom" secondItem="Bio-2D-zmL" secondAttribute="bottom" constant="39" id="g3a-92-3lF"/>
                 <constraint firstItem="ORv-q2-pcb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="n7N-jO-I4E"/>
+                <constraint firstItem="cjT-XR-drM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="phv-V5-qvk"/>
+                <constraint firstItem="cjT-XR-drM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="53" id="uhN-Rw-tHx"/>
                 <constraint firstItem="V6P-Z3-Lsq" firstAttribute="top" secondItem="wU7-Os-lKS" secondAttribute="bottom" constant="8" id="w9G-y6-i1I"/>
             </constraints>
             <connections>
@@ -90,5 +107,6 @@
     <resources>
         <image name="loginPassword" width="284" height="49"/>
         <image name="loginUser" width="284" height="49"/>
+        <image name="twtCloud" width="105" height="89"/>
     </resources>
 </document>
