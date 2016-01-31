@@ -15,6 +15,7 @@
 #import "UINavigationController+JZExtension.h"
 #import "AccountManager.h"
 #import "MsgDisplay.h"
+#import "wpyDeviceStatus.h"
 
 @class SideNavigationViewController;
 

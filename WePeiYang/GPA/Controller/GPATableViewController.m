@@ -342,8 +342,8 @@
     [actions addAction:cancelAction];
     actions.modalPresentationStyle = UIModalPresentationPopover;
     actions.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    actions.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
     actions.popoverPresentationController.sourceView = self.view;
-    actions.popoverPresentationController.sourceRect = self.view.bounds;
     [self presentViewController:actions animated:YES completion:nil];
 }
 

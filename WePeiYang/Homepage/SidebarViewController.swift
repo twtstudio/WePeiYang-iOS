@@ -36,6 +36,8 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         sideTableView.delegate = self
         sideTableView.dataSource = self
         
+        let centerXOffset = CGFloat(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone ? 45 : 145)
+        
         userHeaderView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 260))
         userHeaderView.backgroundColor = UIColor.flatSkyBlueColor()
         headerView.addSubview(userHeaderView)
@@ -48,7 +50,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
             make.top.equalTo()(self.headerView).offset()(70)
             make.width.equalTo()(120)
             make.height.equalTo()(120)
-            make.centerX.equalTo()(self.headerView).offset()(-45)
+            make.centerX.equalTo()(self.headerView).offset()(-centerXOffset)
         })
         avatarView.layer.cornerRadius = 60
         avatarView.clipsToBounds = true
@@ -76,7 +78,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         }, forControlEvents: .TouchUpInside)
         logHeaderView.addSubview(logBtn)
         logBtn.mas_makeConstraints({make in
-            make.centerX.equalTo()(self.headerView).offset()(-45)
+            make.centerX.equalTo()(self.headerView).offset()(-centerXOffset)
             make.centerY.equalTo()(self.headerView).offset()
             make.width.equalTo()(130)
             make.height.equalTo()(46)

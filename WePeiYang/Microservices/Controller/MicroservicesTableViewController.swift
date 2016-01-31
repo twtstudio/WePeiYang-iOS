@@ -40,6 +40,7 @@ class MicroservicesTableViewController: UITableViewController {
     // MARK: - Private methods
     
     private func refresh() {
+        MsgDisplay.showLoading()
         SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
             let dic = responseObject as! [String: AnyObject]
             if dic["error_code"] as? Int == -1 {
@@ -47,7 +48,7 @@ class MicroservicesTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }
-            
+            MsgDisplay.dismiss()
         }, failure: {(task, error) in
             let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
             do {
