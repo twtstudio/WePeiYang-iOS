@@ -12,8 +12,10 @@
 #import "AccountManager.h"
 #import "data.h"
 #import "SolaSessionManager.h"
+#import "wpyWebViewController.h"
 
 // Data Models
 #import "NewsData.h"
 #import "ClassData.h"
 #import "ArrangeModel.h"
+#import "WebAppItem.h"

@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import SafariServices
 
 class MicroservicesTableViewController: UITableViewController {
     
@@ -23,6 +24,8 @@ class MicroservicesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.title = "实验室"
         self.tableView.tableFooterView = UIView()
+        self.tableView.estimatedRowHeight = 65
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.refresh()
         })
@@ -37,36 +40,55 @@ class MicroservicesTableViewController: UITableViewController {
     // MARK: - Private methods
     
     private func refresh() {
-        print("begin to refresh")
         SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
-            print(responseObject)
-        }, failure: {(task, error) in
-            print(error.localizedDescription)
+            let dic = responseObject as! [String: AnyObject]
+            if dic["error_code"] as? Int == -1 {
+                self.dataArr = WebAppItem.mj_objectArrayWithKeyValuesArray(dic["data"])
+                self.tableView.reloadData()
+                self.tableView.mj_header.endRefreshing()
+            }
             
+        }, failure: {(task, error) in
+            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
+            do {
+                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
+                MsgDisplay.showErrorMsg("获取数据失败\n\(dic["message"])")
+            } catch {
+                MsgDisplay.showErrorMsg("获取数据失败\n请稍后再试...")
+            }
         })
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dataArr.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? WebAppTableViewCell
+        if cell == nil {
+            let nib = NSBundle.mainBundle().loadNibNamed("WebAppTableViewCell", owner: self, options: nil)
+            cell = nib[0] as? WebAppTableViewCell
+        }
+        let row = indexPath.row
+        cell?.setObject(dataArr[row] as! WebAppItem)
+        return cell!
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let row = indexPath.row
+        let dataItem = dataArr[row] as! WebAppItem
+
+        let webViewController = wpyWebViewController(address: dataItem.sites)
+        self.navigationController?.showViewController(webViewController, sender: nil)
+        
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
