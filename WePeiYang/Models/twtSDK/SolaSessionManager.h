@@ -16,6 +16,6 @@ typedef NS_ENUM(NSInteger, SessionType) {
 
 @interface SolaSessionManager : NSObject
 
-+ (void)solaSessionWithSessionType:(SessionType)type URL:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)solaSessionWithSessionType:(SessionType)type URL:(NSString *)url token:(NSString *)token parameters:(NSDictionary *)parameters success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 @end

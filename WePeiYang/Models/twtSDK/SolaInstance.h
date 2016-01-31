@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) NSString *appKey;
 @property (strong, nonatomic) NSString *appSecret;
+@property (strong, nonatomic) NSString *token;
 
 + (SolaInstance *)shareInstance;
 

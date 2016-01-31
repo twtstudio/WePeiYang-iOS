@@ -13,7 +13,7 @@ import RESideMenu
 import MJRefresh
 import LocalAuthentication
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, SidebarDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate, SidebarDelegate {
     
     @IBOutlet var mainTableView: UITableView!
     
@@ -38,11 +38,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.getData()
         })
         self.getData()
+        
+        if !AccountManager.tokenExists() {
+            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
+        // GREAT TRICK!!!!
+        (self.sideMenuViewController.leftMenuViewController as! SidebarViewController).updateView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +60,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         mainTableView.reloadData()
-        (mainTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HomeCarouselCell).scrollView.contentSize = CGSizeMake(size.width * 5, size.width*2/3)
+        if mainTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) != nil {
+            (mainTableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HomeCarouselCell).scrollView.contentSize = CGSizeMake(size.width * 5, size.width*2/3)
+        }
     }
     
     // Private
@@ -67,46 +76,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.mainTableView.reloadData()
             self.mainTableView.mj_header.endRefreshing()
         }, failure: {(error, description) in
-            
+            MsgDisplay.showErrorMsg(description)
         })
-    }
-    
-    private func showGPA() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
-        
-        let userDefaults = NSUserDefaults()
-        let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
-        if (touchIdEnabled) {
-            let authContext = LAContext()
-            var error: NSError?
-            guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
-                return
-            }
-            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA信息要求指纹验证", reply: {(success, error) in
-                if success {
-                    print("SUCCESS")
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.navigationController?.showViewController(gpaVC, sender: nil)
-                    })
-                } else {
-                    MsgDisplay.showErrorMsg("指纹验证失败")
-                }
-            })
-        } else {
-            self.navigationController?.showViewController(gpaVC, sender: nil)
-        }
-    }
-    
-    private func showNews() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
-        self.navigationController?.showViewController(newsVC, sender: nil)
-    }
-    
-    private func showSettings() {
-        let settingsVC = SettingViewController(style: .Grouped)
-        self.navigationController?.showViewController(settingsVC, sender: nil)
     }
     
     // TABLE VIEW DATA SOURCE
@@ -122,7 +93,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 1:
             return 1 // Functions
         case 2:
-            return 1 // Weather
+            return 0 // Weather
         case 3:
             return campusArr.count // News
         case 4:
@@ -166,6 +137,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 toolsCell = nib[0] as? HomeToolsCell
             }
             toolsCell?.selectionStyle = .None
+            toolsCell?.delegate = self
             return toolsCell!
         case 2:
             var weatherCell = tableView.dequeueReusableCellWithIdentifier("weatheridentifier") as? HomeWeatherCell
@@ -231,20 +203,75 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.showViewController(contentVC, sender: nil)
     }
     
+    // TOOLS CELL DELEGATE
+    
+    func toolsTappedAtIndex(index: Int) {
+        switch index {
+        case 0:
+            self.showNewsController()
+        case 1:
+            self.showGPAController()
+        case 2:
+            self.showMicroservicesController()
+        default:
+            break
+        }
+    }
+    
     // SIDE BAR DELEGATE
     
     func showGPAController() {
-        self.showGPA()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+        
+        let userDefaults = NSUserDefaults()
+        let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
+        if (touchIdEnabled) {
+            let authContext = LAContext()
+            var error: NSError?
+            guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                return
+            }
+            authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
+                if success {
+                    print("SUCCESS")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.showViewController(gpaVC, sender: nil)
+                    })
+                } else {
+                    MsgDisplay.showErrorMsg("指纹验证失败")
+                }
+            })
+        } else {
+            self.navigationController?.showViewController(gpaVC, sender: nil)
+        }
     }
     
     func showNewsController() {
-        self.showNews()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
+        self.navigationController?.showViewController(newsVC, sender: nil)
+    }
+    
+    func showClasstableController() {
+        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        self.navigationController?.showViewController(classtableVC, sender: nil)
     }
     
     func showSettingsController() {
-        self.showSettings()
+        let settingsVC = SettingViewController(style: .Grouped)
+        self.navigationController?.showViewController(settingsVC, sender: nil)
     }
     
+    func showLibraryController() {
+        let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        self.navigationController?.showViewController(libVC, sender: nil)
+    }
+    
+    func showMicroservicesController() {
+        let msVC = MicroservicesTableViewController(style: .Plain)
+        self.navigationController?.showViewController(msVC, sender: nil)
+    }
 
     /*
     // MARK: - Navigation

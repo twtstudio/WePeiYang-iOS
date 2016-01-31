@@ -16,7 +16,7 @@
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
-    [SVProgressHUD showInfoWithStatus:successStr];
+    [SVProgressHUD showSuccessWithStatus:successStr];
 }
 
 + (void)showErrorMsg:(NSString *)errorStr {

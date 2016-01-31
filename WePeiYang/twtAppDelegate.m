@@ -11,7 +11,11 @@
 #import "data.h"
 #import "twtSecretKeys.h"
 #import "twtSDK.h"
+#import "SchemeManager.h"
 #import "UINavigationController+JZExtension.h"
+#import "AccountManager.h"
+#import "MsgDisplay.h"
+#import "wpyDeviceStatus.h"
 
 @class SideNavigationViewController;
 
@@ -25,14 +29,22 @@
     [NSURLCache setSharedURLCache:sharedCache];
     
     [twtSDK setAppKey:[twtSecretKeys getTWTAppKey] appSecret:[twtSecretKeys getTWTAppSecret]];
+    if ([AccountManager tokenExists]) {
+        [AccountManager tokenIsValid:nil failure:^(NSString *errorMsg) {
+            [MsgDisplay showErrorMsg:errorMsg];
+        }];
+    }
     
     // 为适配 iOS 9 分屏，此处不需使用 initWithFrame，这样 app 获取的 frame 始终是正确的
     self.window = [[UIWindow alloc] init];
     MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
+    navigationController.view.backgroundColor = [UIColor whiteColor];
     SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
     RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
+    sideMenuViewController.parallaxEnabled = NO;
     sideMenuViewController.scaleContentView = NO;
+    sideMenuViewController.scaleMenuView = NO;
     sideMenuViewController.contentViewShadowEnabled = YES;
     sideMenuViewController.contentViewInPortraitOffsetCenterX = 100;
     self.window.rootViewController = sideMenuViewController;
@@ -46,7 +58,15 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:self];
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL query: %@", [url query]);
+    
+    if ([[url scheme] isEqualToString:@"wepeiyang"]) {
+        [SchemeManager handleSchemeWithQueryString:[url query]];
+        return YES;
+    } else {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

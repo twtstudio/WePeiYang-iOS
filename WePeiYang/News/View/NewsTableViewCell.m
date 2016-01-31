@@ -30,7 +30,7 @@
     titleLabel.text = data.subject;
     commentCount.text = data.comments;
     visitCount.text = data.visitcount;
-    [newsImg setImageWithURL:[NSURL URLWithString:data.pic] placeholderImage:[UIImage imageNamed:@"thumbIcon"]];
+    [newsImg setImageWithURL:[NSURL URLWithString:data.pic] placeholderImage:[UIImage imageNamed:@"twtLogo"]];
 }
 
 @end

@@ -31,9 +31,9 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
         
         let doneBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Done, handler: {sender in
             let form = self.formController.form as! FeedbackForm
-            let email = form.email == nil ? "" : form.email
+            let email = form.email == nil ? "" : form.email!
             let content = "\(form.content) (WePeiyang \(form.appVersion), \(form.deviceModel), \(form.iosVersion))"
-            if form.content == nil {
+            if form.content == nil || form.content!.isEmpty {
                 MsgDisplay.showErrorMsg("请输入反馈内容！")
             } else {
                 self.postFeedbackContent(content, email: email)
@@ -54,9 +54,7 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
     
     private func postFeedbackContent(content: String, email: String) {
         MsgDisplay.showLoading()
-        let manager = AFHTTPSessionManager()
-        manager.requestSerializer.setValue(wpyDeviceStatus.getUserAgentString(), forHTTPHeaderField: "User-Agent")
-        manager.GET("http://open.twtstudio.com/api/v1/feedback", parameters: ["content": content, "email": email], progress: nil, success: {(task, responseObj) in
+        SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/app/feedback", token: nil, parameters: ["content": content, "email": email], success: {(task, responseObj) in
             let dic = responseObj as! [String: AnyObject]
             if dic["error_code"] as! Int == -1 {
                 MsgDisplay.showSuccessMsg("反馈发送成功！")
@@ -65,7 +63,13 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
                 MsgDisplay.showErrorMsg("反馈发送失败！")
             }
         }, failure: {(task, error) in
-            MsgDisplay.showErrorMsg("反馈发送失败！\n\(error.localizedDescription)")
+            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
+            do {
+                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
+                MsgDisplay.showErrorMsg("反馈发送失败！\n\(dic["message"])")
+            } catch {
+                MsgDisplay.showErrorMsg("反馈发送失败！")
+            }
         })
     }
 
