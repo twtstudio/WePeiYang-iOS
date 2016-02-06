@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MJExtension.h"
+#import <MJExtension/MJExtension.h>
 #import "ArrangeModel.h"
 
 @interface ClassData : NSObject

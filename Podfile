@@ -22,6 +22,7 @@ pod 'Masonry'
 pod 'WMPageController'
 pod 'FMDB'
 pod 'RESideMenu'
+pod 'IDMPhotoBrowser'
 
 target 'WePeiYang' do
 

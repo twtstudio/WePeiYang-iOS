@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16649DA48D35C3D8BD60E24E /* libPods-WePeiYang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57851E1234C31D4E22E64294 /* libPods-WePeiYang.a */; };
 		180F1C90185D4D2B00F76085 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C8F185D4D2B00F76085 /* SystemConfiguration.framework */; };
 		180F1C92185D4D3200F76085 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C91185D4D3200F76085 /* QuartzCore.framework */; };
 		180F1CAA185D4DF500F76085 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1CA9185D4DF500F76085 /* MessageUI.framework */; };
@@ -104,6 +103,7 @@
 		E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA7BB61C5A1AE1009A4E9A /* ClasstableDataManager.swift */; };
 		E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C7D93D1BF9A94100DCB34A /* Images.xcassets */; };
 		E9C8B7B31C462AE5007D4EE7 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */; };
+		E9D0522B1C66338900DFBDDA /* bridge.js in Resources */ = {isa = PBXBuildFile; fileRef = E9D0522A1C66338900DFBDDA /* bridge.js */; };
 		E9D743FF1BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743EF1BF9AE38005F2EF9 /* InfoPlist.strings */; };
 		E9D744001BF9AE38005F2EF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F11BF9AE38005F2EF9 /* Localizable.strings */; };
 		E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */; };
@@ -241,14 +241,7 @@
 		E98DF69C1C5D1673003943A4 /* WebAppItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebAppItem.m; path = Microservices/Model/WebAppItem.m; sourceTree = "<group>"; };
 		E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppTableViewCell.swift; path = Microservices/View/WebAppTableViewCell.swift; sourceTree = "<group>"; };
 		E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebAppTableViewCell.xib; path = Microservices/View/WebAppTableViewCell.xib; sourceTree = "<group>"; };
-		E98DF6D11C5DF5BF003943A4 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D21C5DF5BF003943A4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
 		E98DF6D31C5DF5BF003943A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D41C5DF5BF003943A4 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
-		E98DF6D51C5DF5BF003943A4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D61C5DF5BF003943A4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D71C5DF5BF003943A4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D81C5DF5BF003943A4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
 		E98DF6D91C5DF5BF003943A4 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
 		E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
 		E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
@@ -267,7 +260,6 @@
 		E98DF6EB1C5DF5BF003943A4 /* SVWebViewControllerActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivity.h; sourceTree = "<group>"; };
 		E98DF6EC1C5DF5BF003943A4 /* SVWebViewControllerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivity.m; sourceTree = "<group>"; };
 		E98DF6ED1C5DF5BF003943A4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
-		E98DF6EE1C5DF5BF003943A4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
 		E9941B401C15E30800626A56 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
@@ -290,6 +282,7 @@
 		E9BA7BB61C5A1AE1009A4E9A /* ClasstableDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClasstableDataManager.swift; path = Classtable/Model/ClasstableDataManager.swift; sourceTree = "<group>"; };
 		E9C7D93D1BF9A94100DCB34A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		E9D0522A1C66338900DFBDDA /* bridge.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bridge.js; sourceTree = "<group>"; };
 		E9D743F01BF9AE38005F2EF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		E9D743F21BF9AE38005F2EF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -329,7 +322,6 @@
 				188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */,
 				188842171846E6F4007B92CB /* UIKit.framework in Frameworks */,
 				188842131846E6F4007B92CB /* Foundation.framework in Frameworks */,
-				16649DA48D35C3D8BD60E24E /* libPods-WePeiYang.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +873,7 @@
 				E9941B401C15E30800626A56 /* jquery.min.js */,
 				E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */,
 				E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */,
+				E9D0522A1C66338900DFBDDA /* bridge.js */,
 			);
 			path = bootstrap;
 			sourceTree = "<group>";
@@ -1069,14 +1062,6 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
-				da,
-				de,
-				"es-ES",
-				es,
-				fr,
-				ja,
-				pt,
-				"zh-Hant",
 			);
 			mainGroup = 188842061846E6F4007B92CB;
 			productRefGroup = 188842101846E6F4007B92CB /* Products */;
@@ -1105,6 +1090,7 @@
 				E90105711C3B9F4D002901AC /* MainViewController.xib in Resources */,
 				E9D744001BF9AE38005F2EF9 /* Localizable.strings in Resources */,
 				E98DF6F11C5DF5BF003943A4 /* SVWebViewController.bundle in Resources */,
+				E9D0522B1C66338900DFBDDA /* bridge.js in Resources */,
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
@@ -1283,16 +1269,8 @@
 		E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E98DF6D11C5DF5BF003943A4 /* da */,
-				E98DF6D21C5DF5BF003943A4 /* de */,
 				E98DF6D31C5DF5BF003943A4 /* en */,
-				E98DF6D41C5DF5BF003943A4 /* es-ES */,
-				E98DF6D51C5DF5BF003943A4 /* es */,
-				E98DF6D61C5DF5BF003943A4 /* fr */,
-				E98DF6D71C5DF5BF003943A4 /* ja */,
-				E98DF6D81C5DF5BF003943A4 /* pt */,
 				E98DF6ED1C5DF5BF003943A4 /* zh-Hans */,
-				E98DF6EE1C5DF5BF003943A4 /* zh-Hant */,
 			);
 			name = SVWebViewController.strings;
 			sourceTree = "<group>";

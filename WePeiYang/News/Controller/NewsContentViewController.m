@@ -15,9 +15,13 @@
 #import "OpenInSafariActivity.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
+#import "WebViewJavascriptBridge.h"
 #import <SafariServices/SafariServices.h>
+#import "IDMPhotoBrowser.h"
 
-@interface NewsContentViewController ()<UIWebViewDelegate>
+@interface NewsContentViewController ()<UIWebViewDelegate, IDMPhotoBrowserDelegate>
+
+@property WebViewJavascriptBridge *bridge;
 
 @end
 
@@ -25,12 +29,18 @@
 
 @synthesize contentWebView;
 @synthesize newsData;
+@synthesize bridge;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = newsData.subject;
     contentWebView.delegate = self;
+    
+    bridge = [WebViewJavascriptBridge bridgeForWebView:contentWebView];
+    [bridge registerHandler:@"imgCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self presentHDImageWithURL:data];
+    }];
     
     [twtSDK getNewsContentWithIndex:newsData.index success:^(NSURLSessionDataTask *task, id responseObject) {
         [self processNewsContent:[NewsContent mj_objectWithKeyValues:responseObject[@"data"]]];
@@ -62,7 +72,15 @@
 #pragma mark - Private method
 
 - (void)processNewsContent:(NewsContent *)content {
-    [contentWebView loadHTMLString:[FrontEndProcessor convertToBootstrapHTMLWithNewsContent:content] baseURL:nil];
+    [contentWebView loadHTMLString:[FrontEndProcessor convertToBootstrapHTMLWithNewsContent:content] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES]];
+}
+
+- (void)presentHDImageWithURL:(NSString *)url {
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[[NSURL URLWithString:url]]];
+    browser.displayArrowButton = NO;
+    browser.displayCounterLabel = NO;
+    browser.delegate = self;
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark - WebViewDelegate

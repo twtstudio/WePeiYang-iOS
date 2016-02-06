@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JBLineChartView.h"
+#import <JBChartView/JBLineChartView.h>
 
 #define GPA_CACHE @"gpaCache"
 #define GPA_USER_NAME_CACHE @"gpaUserNameAndPassword"

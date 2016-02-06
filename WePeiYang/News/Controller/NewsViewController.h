@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WMPageController.h"
+#import <WMPageController/WMPageController.h>
 
 #define MENU_VIEW_HEIGHT 36
 
