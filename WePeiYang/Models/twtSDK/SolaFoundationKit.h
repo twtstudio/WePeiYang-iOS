@@ -18,5 +18,6 @@
 + (NSString *)deviceModel;
 + (NSString *)deviceOSVersion;
 + (NSString *)userAgentString;
++ (NSString *)IPAddress:(BOOL)preferIPv4;
 
 @end

@@ -178,6 +178,7 @@
     [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
         dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
         stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
+        [self.tableView reloadData];
         [self updateView];
     } failed:nil];
     [twtSDK getGpaWithToken:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] success:^(NSURLSessionTask *task, id responseObject) {
@@ -205,28 +206,32 @@
         [MsgDisplay dismiss];
         NSError *jsonError;
         NSData *errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:errorResponse options:NSJSONReadingMutableContainers error:&jsonError];
-        if (dic != nil) {
-            if ([dic objectForKey:@"error_code"] != nil) {
-                NSString *errorCode = [dic[@"error_code"] stringValue];
-                if ([errorCode isEqualToString:@"20001"]) {
-                    // 未绑定
-                    [MsgDisplay showErrorMsg:dic[@"message"]];
-                    [self clearTableContent];
-                    BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:bindTju] animated:YES completion:nil];
-                } else if ([errorCode isEqualToString:@"20002"]) {
-                    // TJU 验证失败
-                    [MsgDisplay showErrorMsg:dic[@"message"]];
-                    [self clearTableContent];
-                    
+        if (errorResponse) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:errorResponse options:NSJSONReadingMutableContainers error:&jsonError];
+            if (dic != nil) {
+                if ([dic objectForKey:@"error_code"] != nil) {
+                    NSString *errorCode = [dic[@"error_code"] stringValue];
+                    if ([errorCode isEqualToString:@"20001"]) {
+                        // 未绑定
+                        [MsgDisplay showErrorMsg:dic[@"message"]];
+                        [self clearTableContent];
+                        BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:bindTju] animated:YES completion:nil];
+                    } else if ([errorCode isEqualToString:@"20002"]) {
+                        // TJU 验证失败
+                        [MsgDisplay showErrorMsg:dic[@"message"]];
+                        [self clearTableContent];
+                        
+                    }
+                } else {
+                    if ([dic objectForKey:@"message"] != nil) {
+                        [MsgDisplay showErrorMsg:dic[@"message"]];
+                    } else {
+                        [MsgDisplay showErrorMsg:error.description];
+                    }
                 }
             } else {
-                if ([dic objectForKey:@"message"] != nil) {
-                    [MsgDisplay showErrorMsg:dic[@"message"]];
-                } else {
-                    [MsgDisplay showErrorMsg:error.description];
-                }
+                [MsgDisplay showErrorMsg:error.description];
             }
         } else {
             [MsgDisplay showErrorMsg:error.description];

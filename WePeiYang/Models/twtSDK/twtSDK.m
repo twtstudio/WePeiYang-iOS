@@ -99,6 +99,17 @@
     }];
 }
 
++ (void)postNewsCommentWithIndex:(NSString *)index content:(NSString *)content success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSString *url = [NSString stringWithFormat:@"/comment/%@", index];
+    NSDictionary *parameters = @{@"content": content,
+                                 @"ip": [SolaFoundationKit IPAddress:YES]};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:url token:[AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
 + (void)getTokenWithTwtUserName:(NSString *)twtuname password:(NSString *)twtpasswd success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     NSDictionary *parameters = @{@"twtuname": twtuname,
                                  @"twtpasswd": twtpasswd};

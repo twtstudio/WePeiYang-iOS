@@ -23,6 +23,7 @@ pod 'WMPageController'
 pod 'FMDB'
 pod 'RESideMenu'
 pod 'IDMPhotoBrowser'
+pod 'SlackTextViewController'
 
 target 'WePeiYang' do
 

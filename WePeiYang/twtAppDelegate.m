@@ -58,11 +58,8 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    NSLog(@"URL scheme:%@", [url scheme]);
-    NSLog(@"URL query: %@", [url query]);
-    
     if ([[url scheme] isEqualToString:@"wepeiyang"]) {
-        [SchemeManager handleSchemeWithQueryString:[url query]];
+        [SchemeManager handleSchemeURL:url];
         return YES;
     } else {
         return [WXApi handleOpenURL:url delegate:self];

@@ -105,30 +105,32 @@
             if (failure != nil) {
                 NSError *jsonError;
                 NSData *errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:errorResponse options:NSJSONReadingMutableContainers error:&jsonError];
-                if ([[[dic objectForKey:@"error_code"] stringValue] isEqualToString:@"10003"]) {
-                    // 过期
-                    [self refreshTokenSuccess:^(NSString *newToken) {
-                        [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:TOKEN_SAVE_KEY];
-                        if (success != nil) {
-                            success();
-                        }
-                    } failure:^(NSString *errorMsg) {
+                if (errorResponse) {
+                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:errorResponse options:NSJSONReadingMutableContainers error:&jsonError];
+                    if ([[[dic objectForKey:@"error_code"] stringValue] isEqualToString:@"10003"]) {
+                        // 过期
+                        [self refreshTokenSuccess:^(NSString *newToken) {
+                            [[NSUserDefaults standardUserDefaults] setObject:newToken forKey:TOKEN_SAVE_KEY];
+                            if (success != nil) {
+                                success();
+                            }
+                        } failure:^(NSString *errorMsg) {
+                            if (failure != nil) {
+                                failure(errorMsg);
+                            }
+                            [self removeToken];
+                        }];
+                    } else if ([dic objectForKey:@"message"] != nil) {
                         if (failure != nil) {
-                            failure(errorMsg);
+                            failure(dic[@"message"]);
                         }
                         [self removeToken];
-                    }];
-                } else if ([dic objectForKey:@"message"] != nil) {
-                    if (failure != nil) {
-                        failure(dic[@"message"]);
+                    } else {
+                        if (failure != nil) {
+                            failure(error.localizedDescription);
+                        }
+                        [self removeToken];
                     }
-                    [self removeToken];
-                } else {
-                    if (failure != nil) {
-                        failure(error.localizedDescription);
-                    }
-                    [self removeToken];
                 }
             }
         }];

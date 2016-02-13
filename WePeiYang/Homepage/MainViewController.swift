@@ -77,6 +77,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.mainTableView.mj_header.endRefreshing()
         }, failure: {(error, description) in
             MsgDisplay.showErrorMsg(description)
+            self.mainTableView.mj_header.endRefreshing()
         })
     }
     

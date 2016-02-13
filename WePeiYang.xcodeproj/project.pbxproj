@@ -41,6 +41,9 @@
 		E92298541AF0F797000CC8F7 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */; };
 		E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */; };
 		E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */; };
+		E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */; };
+		E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C7F401C6EF4590022857A /* NewsCommentTableViewCell.m */; };
+		E92C7F431C6EF4590022857A /* NewsCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92C7F411C6EF4590022857A /* NewsCommentTableViewCell.xib */; };
 		E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93701831C5CA97800C87E84 /* LibraryViewController.swift */; };
 		E93701861C5CA97800C87E84 /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93701841C5CA97800C87E84 /* LibraryViewController.xib */; };
 		E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93701881C5CCE6000C87E84 /* AboutViewController.swift */; };
@@ -116,6 +119,8 @@
 		E9DB21751C5A372200CC6F63 /* ClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB21741C5A372200CC6F63 /* ClassData.m */; };
 		E9DB21781C5A373500CC6F63 /* ArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB21771C5A373500CC6F63 /* ArrangeModel.m */; };
 		E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */; };
+		E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD13E1C6EEE760060BF21 /* NewsComment.m */; };
+		E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD1431C6EF0870060BF21 /* NewsCommentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +201,11 @@
 		E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatMomentsActivity.m; path = Sharing/WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922985C1AF0F907000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeChatSessionActivity.h; path = Sharing/WeChatSessionActivity.h; sourceTree = "<group>"; };
 		E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatSessionActivity.m; path = Sharing/WeChatSessionActivity.m; sourceTree = "<group>"; };
+		E92C7F3C1C6EF1E80022857A /* NewsCommentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentTextView.h; sourceTree = "<group>"; };
+		E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentTextView.m; sourceTree = "<group>"; };
+		E92C7F3F1C6EF4590022857A /* NewsCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentTableViewCell.h; sourceTree = "<group>"; };
+		E92C7F401C6EF4590022857A /* NewsCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentTableViewCell.m; sourceTree = "<group>"; };
+		E92C7F411C6EF4590022857A /* NewsCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCommentTableViewCell.xib; sourceTree = "<group>"; };
 		E93701831C5CA97800C87E84 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryViewController.swift; path = Library/Controller/LibraryViewController.swift; sourceTree = "<group>"; };
 		E93701841C5CA97800C87E84 /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryViewController.xib; path = Library/Controller/LibraryViewController.xib; sourceTree = "<group>"; };
 		E93701881C5CCE6000C87E84 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutViewController.swift; path = About/AboutViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +311,10 @@
 		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "../../Models/Data Model/GPAStat.h"; sourceTree = "<group>"; };
 		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "../../Models/Data Model/GPAStat.m"; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		E9FBD13D1C6EEE760060BF21 /* NewsComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsComment.h; sourceTree = "<group>"; };
+		E9FBD13E1C6EEE760060BF21 /* NewsComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsComment.m; sourceTree = "<group>"; };
+		E9FBD1421C6EF0870060BF21 /* NewsCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentViewController.h; sourceTree = "<group>"; };
+		E9FBD1431C6EF0870060BF21 /* NewsCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,6 +526,8 @@
 				E90105461C3B994E002901AC /* NewsTableViewController.m */,
 				E90105471C3B994E002901AC /* NewsViewController.h */,
 				E90105481C3B994E002901AC /* NewsViewController.m */,
+				E9FBD1421C6EF0870060BF21 /* NewsCommentViewController.h */,
+				E9FBD1431C6EF0870060BF21 /* NewsCommentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -523,6 +539,8 @@
 				E9472BE81C14872900EC229C /* NewsData.m */,
 				E9472BEA1C14879D00EC229C /* NewsContent.h */,
 				E9472BEB1C14879D00EC229C /* NewsContent.m */,
+				E9FBD13D1C6EEE760060BF21 /* NewsComment.h */,
+				E9FBD13E1C6EEE760060BF21 /* NewsComment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -532,6 +550,11 @@
 			children = (
 				E901054B1C3B994E002901AC /* NewsTableViewCell.h */,
 				E901054C1C3B994E002901AC /* NewsTableViewCell.m */,
+				E92C7F3C1C6EF1E80022857A /* NewsCommentTextView.h */,
+				E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */,
+				E92C7F3F1C6EF4590022857A /* NewsCommentTableViewCell.h */,
+				E92C7F401C6EF4590022857A /* NewsCommentTableViewCell.m */,
+				E92C7F411C6EF4590022857A /* NewsCommentTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1079,6 +1102,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92C7F431C6EF4590022857A /* NewsCommentTableViewCell.xib in Resources */,
 				E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */,
 				E98DF6F61C5DF5BF003943A4 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				E98ACE1B1C4026780012C762 /* HomeNewsTableViewCell.xib in Resources */,
@@ -1182,6 +1206,7 @@
 				E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */,
 				E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */,
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
+				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
 				E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */,
@@ -1200,6 +1225,7 @@
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
+				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
 				E98DF6F51C5DF5BF003943A4 /* SVWebViewControllerActivityChrome.m in Sources */,
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
@@ -1212,8 +1238,10 @@
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
+				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
+				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,
 				E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E90105531C3B994E002901AC /* GPAAnalysisTableViewController.m in Sources */,
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "NewsContentViewController.h"
+#import "NewsCommentViewController.h"
 #import "FrontEndProcessor.h"
 #import "twtSDK.h"
 #import "NewsContent.h"
@@ -25,7 +26,9 @@
 
 @end
 
-@implementation NewsContentViewController
+@implementation NewsContentViewController {
+    NSArray *commentArr;
+}
 
 @synthesize contentWebView;
 @synthesize newsData;
@@ -36,6 +39,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = newsData.subject;
     contentWebView.delegate = self;
+    commentArr = [[NSArray alloc] init];
     
     bridge = [WebViewJavascriptBridge bridgeForWebView:contentWebView];
     [bridge registerHandler:@"imgCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -69,9 +73,17 @@
     [self presentViewController:activityController animated:YES completion:nil];
 }
 
+- (IBAction)presentCommentViewController:(id)sender {
+    NewsCommentViewController *commentVC = [[NewsCommentViewController alloc] init];
+    commentVC.commentArray = commentArr;
+    commentVC.index = newsData.index;
+    [self.navigationController showViewController:commentVC sender:nil];
+}
+
 #pragma mark - Private method
 
 - (void)processNewsContent:(NewsContent *)content {
+    commentArr = content.comments;
     [contentWebView loadHTMLString:[FrontEndProcessor convertToBootstrapHTMLWithNewsContent:content] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES]];
 }
 
