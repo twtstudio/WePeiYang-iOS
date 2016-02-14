@@ -20,3 +20,4 @@
 #import "ClassData.h"
 #import "ArrangeModel.h"
 #import "WebAppItem.h"
+#import "LostFoundDetail.h"

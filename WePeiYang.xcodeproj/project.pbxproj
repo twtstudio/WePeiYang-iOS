@@ -66,6 +66,8 @@
 		E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */; };
 		E96D79741C6F815200550746 /* LostFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D79731C6F815200550746 /* LostFoundViewController.m */; };
 		E96D797F1C6F836700550746 /* LostFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D797E1C6F836700550746 /* LostFoundTableViewController.m */; };
+		E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */; };
+		E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */; };
 		E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE101C3FFA350012C762 /* HomeDataManager.swift */; };
 		E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */; };
 		E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE161C4002610012C762 /* HomeImageTitleView.swift */; };
@@ -247,6 +249,8 @@
 		E96D79731C6F815200550746 /* LostFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundViewController.m; path = LostFound/Controller/LostFoundViewController.m; sourceTree = "<group>"; };
 		E96D797D1C6F836700550746 /* LostFoundTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LostFoundTableViewController.h; path = LostFound/Controller/LostFoundTableViewController.h; sourceTree = "<group>"; };
 		E96D797E1C6F836700550746 /* LostFoundTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundTableViewController.m; path = LostFound/Controller/LostFoundTableViewController.m; sourceTree = "<group>"; };
+		E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailViewController.swift; path = LostFound/Controller/LostFoundDetailViewController.swift; sourceTree = "<group>"; };
+		E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailForm.swift; path = LostFound/Controller/LostFoundDetailForm.swift; sourceTree = "<group>"; };
 		E98ACE101C3FFA350012C762 /* HomeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeDataManager.swift; path = Model/HomeDataManager.swift; sourceTree = "<group>"; };
 		E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCarouselCell.swift; path = View/HomeCarouselCell.swift; sourceTree = "<group>"; };
 		E98ACE161C4002610012C762 /* HomeImageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeImageTitleView.swift; path = View/HomeImageTitleView.swift; sourceTree = "<group>"; };
@@ -779,6 +783,8 @@
 				E96D79731C6F815200550746 /* LostFoundViewController.m */,
 				E96D797D1C6F836700550746 /* LostFoundTableViewController.h */,
 				E96D797E1C6F836700550746 /* LostFoundTableViewController.m */,
+				E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */,
+				E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1296,12 +1302,14 @@
 				E9B972D01C565DFB001E480E /* AccountManager.m in Sources */,
 				E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
+				E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */,
 				E98DF69D1C5D1673003943A4 /* WebAppItem.m in Sources */,
 				E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				E9AE97D91C6F8EBB00641B08 /* LostFoundItem.m in Sources */,
+				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,

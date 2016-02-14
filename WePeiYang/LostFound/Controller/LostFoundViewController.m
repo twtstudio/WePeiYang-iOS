@@ -54,7 +54,22 @@
     self.menuView.layer.shadowRadius = 0.5;
     
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemCompose handler:^(id sender) {
-        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择类型" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *lostAction = [UIAlertAction actionWithTitle:@"丢失物品" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }];
+        UIAlertAction *foundAction = [UIAlertAction actionWithTitle:@"捡到物品" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:lostAction];
+        [alertController addAction:foundAction];
+        [alertController addAction:cancelAction];
+        alertController.modalPresentationStyle = UIModalPresentationPopover;
+        alertController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        alertController.popoverPresentationController.sourceView = self.view;
+        alertController.popoverPresentationController.barButtonItem = (UIBarButtonItem *)sender;
+        [self presentViewController:alertController animated:YES completion:nil];
     }];
     self.navigationItem.rightBarButtonItem = addBtn;
 }

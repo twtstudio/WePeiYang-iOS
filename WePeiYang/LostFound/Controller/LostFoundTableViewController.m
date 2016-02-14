@@ -15,6 +15,7 @@
 #import "LostFoundDetail.h"
 #import "LostFoundTableViewCell.h"
 #import "MsgDisplay.h"
+#import "WePeiYang-Swift.h"
 
 @interface LostFoundTableViewController ()
 
@@ -66,9 +67,11 @@
 // type 1: Found
 
 - (void)refreshData {
-    [dataArr removeAllObjects];
-    currentPage = 1;
-    [self fetchData];
+    if (![self.tableView.mj_header isRefreshing]) {
+        [dataArr removeAllObjects];
+        currentPage = 1;
+        [self fetchData];
+    }
 }
 
 - (void)nextPage {
@@ -118,6 +121,16 @@
     NSInteger row = [indexPath row];
     [cell setLostFoundItem:dataArr[row] withType:type];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = [indexPath row];
+    LostFoundItem *tmp = dataArr[row];
+    LostFoundDetailViewController *lfDetailVC = [[LostFoundDetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    lfDetailVC.index = tmp.index;
+    lfDetailVC.type = [NSString stringWithFormat:@"%ld", type];
+    [self.navigationController showViewController:lfDetailVC sender:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
