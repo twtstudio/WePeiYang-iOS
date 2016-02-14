@@ -13,6 +13,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "MsgDisplay.h"
 #import "twtSDK.h"
+#import "AFNetworking.h"
 
 @interface NewsCommentViewController ()<DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -66,14 +67,14 @@
 #pragma mark - Text Action
 
 - (void)didPressRightButton:(id)sender {
-    [self.textView refreshFirstResponder];
+//    [self.textView refreshFirstResponder];
     [MsgDisplay showLoading];
     [twtSDK postNewsCommentWithIndex:index content:self.textView.text success:^(NSURLSessionDataTask *task, id responseObj) {
         [self.navigationController popViewControllerAnimated:YES];
         [MsgDisplay showSuccessMsg:@"评论发送成功"];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MsgDisplay showErrorMsg:@"评论发送失败"];
-        NSLog(error.localizedDescription);
+        NSLog(error.description);
     }];
     
     [super didPressRightButton:sender];

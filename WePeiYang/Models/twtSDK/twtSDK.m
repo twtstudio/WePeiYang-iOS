@@ -21,19 +21,7 @@
     [SolaInstance shareInstance].appSecret = appSecret;
 }
 
-//+ (void)getGpaWithTjuUsername:(NSString *)username password:(NSString *)password success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void (^)())userCanceled {
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"tjuuname": username, @"tjupasswd": password}];
-//    [self getGpaWithParameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-//        success(task, responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        failure(task, error);
-//    } userCanceledCaptcha:^{
-//        userCanceled();
-//    }];
-//}
-
 + (void)getGpaWithToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure userCanceledCaptcha:(void (^)())userCanceled {
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:@{@"token": token}];
     [self getGpaWithParameters:nil token:token success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -82,8 +70,9 @@
 }
 
 + (void)getNewsListWithType:(NewsType)type page:(NSUInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+//    NSString *url = [NSString stringWithFormat:@"/news/type/%ld?page=%ld", type, page];
     NSString *url = [NSString stringWithFormat:@"/news/%ld/page/%ld", type, page];
-    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
@@ -92,7 +81,7 @@
 
 + (void)getNewsContentWithIndex:(NSString *)index success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     NSString *url = [NSString stringWithFormat:@"/news/%@", index];
-    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
@@ -100,10 +89,10 @@
 }
 
 + (void)postNewsCommentWithIndex:(NSString *)index content:(NSString *)content success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    NSString *url = [NSString stringWithFormat:@"/comment/%@", index];
+    NSString *url = [NSString stringWithFormat:@"/news/comment/%@", index];
     NSDictionary *parameters = @{@"content": content,
                                  @"ip": [SolaFoundationKit IPAddress:YES]};
-    [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:url token:[AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:url token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
@@ -142,6 +131,29 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
     }];
+}
+
++ (void)getLostFoundListWithType:(NSInteger)type page:(NSInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSString *url = (type == 0) ? @"/lostfound/lost" : @"/lostfound/found";
+    NSDictionary *parameters = @{@"page": @(page)};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getLostFoundDetailWithID:(NSString *)index success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSString *url = [NSString stringWithFormat:@"/lostfound/%@", index];
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (NSString *)wpyToken {
+    return [AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil;
 }
 
 @end

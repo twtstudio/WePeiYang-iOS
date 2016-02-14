@@ -269,6 +269,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.showViewController(libVC, sender: nil)
     }
     
+    func showLostFoundController() {
+        let lfVC = LostFoundViewController()
+        self.navigationController?.showViewController(lfVC, sender: nil)
+    }
+    
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
         self.navigationController?.showViewController(msVC, sender: nil)

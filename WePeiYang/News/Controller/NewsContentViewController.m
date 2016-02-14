@@ -62,7 +62,7 @@
 
 - (IBAction)shareContent:(id)sender {
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@", newsData.index]];
-    NSArray *activityItems = @[shareURL, newsData.subject];
+    NSArray *activityItems = @[shareURL];
     OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
     WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
     WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];

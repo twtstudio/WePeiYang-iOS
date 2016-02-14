@@ -61,13 +61,16 @@ class ClasstableViewController: UIViewController {
     }
     
     private func refresh() {
+        MsgDisplay.showLoading()
         ClasstableDataManager.getClasstableData({data in
+            MsgDisplay.dismiss()
             if data.count > 0 {
                 self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
                 self.updateView(self.view.bounds.size)
                 wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
             }
         }, notBinded: {
+            MsgDisplay.dismiss()
             let bindTjuVC = BindTjuViewController(style: .Grouped)
             self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
         }, otherFailure: {errorMsg in

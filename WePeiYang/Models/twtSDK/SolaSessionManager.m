@@ -51,7 +51,7 @@
             failure(task, error);
         }];
     } else if (type == SessionTypePOST) {
-        [manager POST:fullURL parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [manager POST:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure(task, error);
