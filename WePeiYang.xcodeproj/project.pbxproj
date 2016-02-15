@@ -68,6 +68,9 @@
 		E96D797F1C6F836700550746 /* LostFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D797E1C6F836700550746 /* LostFoundTableViewController.m */; };
 		E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */; };
 		E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */; };
+		E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336531C71EC9B00ACA06B /* LostFoundPostViewController.swift */; };
+		E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336571C7213A200ACA06B /* LostFoundPostForm.swift */; };
+		E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336591C721E9600ACA06B /* LostFoundTypeTransformer.swift */; };
 		E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE101C3FFA350012C762 /* HomeDataManager.swift */; };
 		E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */; };
 		E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE161C4002610012C762 /* HomeImageTitleView.swift */; };
@@ -251,6 +254,9 @@
 		E96D797E1C6F836700550746 /* LostFoundTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundTableViewController.m; path = LostFound/Controller/LostFoundTableViewController.m; sourceTree = "<group>"; };
 		E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailViewController.swift; path = LostFound/Controller/LostFoundDetailViewController.swift; sourceTree = "<group>"; };
 		E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailForm.swift; path = LostFound/Controller/LostFoundDetailForm.swift; sourceTree = "<group>"; };
+		E97336531C71EC9B00ACA06B /* LostFoundPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundPostViewController.swift; path = LostFound/Controller/LostFoundPostViewController.swift; sourceTree = "<group>"; };
+		E97336571C7213A200ACA06B /* LostFoundPostForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundPostForm.swift; path = LostFound/Controller/LostFoundPostForm.swift; sourceTree = "<group>"; };
+		E97336591C721E9600ACA06B /* LostFoundTypeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundTypeTransformer.swift; path = LostFound/Model/LostFoundTypeTransformer.swift; sourceTree = "<group>"; };
 		E98ACE101C3FFA350012C762 /* HomeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeDataManager.swift; path = Model/HomeDataManager.swift; sourceTree = "<group>"; };
 		E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCarouselCell.swift; path = View/HomeCarouselCell.swift; sourceTree = "<group>"; };
 		E98ACE161C4002610012C762 /* HomeImageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeImageTitleView.swift; path = View/HomeImageTitleView.swift; sourceTree = "<group>"; };
@@ -762,6 +768,7 @@
 				E9AE97D81C6F8EBB00641B08 /* LostFoundItem.m */,
 				E9AE97DA1C6F91B100641B08 /* LostFoundDetail.h */,
 				E9AE97DB1C6F91B100641B08 /* LostFoundDetail.m */,
+				E97336591C721E9600ACA06B /* LostFoundTypeTransformer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -785,6 +792,8 @@
 				E96D797E1C6F836700550746 /* LostFoundTableViewController.m */,
 				E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */,
 				E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */,
+				E97336571C7213A200ACA06B /* LostFoundPostForm.swift */,
+				E97336531C71EC9B00ACA06B /* LostFoundPostViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1277,6 +1286,7 @@
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
 				E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */,
+				E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E943F6181C5508AE00258FD4 /* SchemeManager.m in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
@@ -1324,6 +1334,7 @@
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
 				E9AE97DC1C6F91B100641B08 /* LostFoundDetail.m in Sources */,
+				E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
@@ -1337,6 +1348,7 @@
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				E901056C1C3B9F40002901AC /* SidebarViewController.swift in Sources */,
 				E9D744031BF9AE38005F2EF9 /* twtAppDelegate.m in Sources */,
+				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,11 +67,8 @@
 // type 1: Found
 
 - (void)refreshData {
-    if (![self.tableView.mj_header isRefreshing]) {
-        [dataArr removeAllObjects];
-        currentPage = 1;
-        [self fetchData];
-    }
+    currentPage = 1;
+    [self fetchData];
 }
 
 - (void)nextPage {
@@ -83,6 +80,7 @@
     [twtSDK getLostFoundListWithType:type page:currentPage success:^(NSURLSessionDataTask *task, id responseObj) {
         if ([responseObj objectForKey:@"data"]) {
             if (currentPage == 0) {
+                [dataArr removeAllObjects];
                 dataArr = [[LostFoundItem mj_objectArrayWithKeyValuesArray:[responseObj objectForKey:@"data"]] mutableCopy];
             } else {
                 [dataArr addObjectsFromArray:[LostFoundItem mj_objectArrayWithKeyValuesArray:[responseObj objectForKey:@"data"]]];

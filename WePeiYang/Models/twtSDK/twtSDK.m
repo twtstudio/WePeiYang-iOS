@@ -152,6 +152,37 @@
     }];
 }
 
++ (void)postLostInfoWithTitle:(NSString *)title name:(NSString *)name time:(NSDate *)time place:(NSString *)place phone:(NSString *)phone content:(NSString *)content lostType:(NSString *)lostType otherTag:(NSString *)otherTag success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSDictionary *parameters = @{@"title": title,
+                                 @"name": name,
+                                 @"time": @([time timeIntervalSince1970]),
+                                 @"place": place,
+                                 @"phone": phone,
+                                 @"content": content,
+                                 @"lost_type": lostType,
+                                 @"other_tag": otherTag};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:@"/lostfound/lost" token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)postFoundInfoWithTitle:(NSString *)title name:(NSString *)name time:(NSDate *)time place:(NSString *)place phone:(NSString *)phone content:(NSString *)content foundPic:(NSString *)foundPic success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSDictionary *parameters = @{@"title": title,
+                                 @"name": name,
+                                 @"time": @([time timeIntervalSince1970]),
+                                 @"place": place,
+                                 @"phone": phone,
+                                 @"content": content,
+                                 @"found_pic": foundPic};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:@"/lostfound/found" token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
 + (NSString *)wpyToken {
     return [AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil;
 }

@@ -9,6 +9,7 @@
 #import "LostFoundViewController.h"
 #import "LostFoundTableViewController.h"
 #import "BlocksKit+UIKit.h"
+#import "WePeiYang-Swift.h"
 
 @interface LostFoundViewController ()
 
@@ -56,10 +57,16 @@
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemCompose handler:^(id sender) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择类型" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *lostAction = [UIAlertAction actionWithTitle:@"丢失物品" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
+            LostFoundPostViewController *postViewController = [[LostFoundPostViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            postViewController.postType = 0;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postViewController];
+            [self presentViewController:nav animated:YES completion:nil];
         }];
         UIAlertAction *foundAction = [UIAlertAction actionWithTitle:@"捡到物品" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
+            LostFoundPostViewController *postViewController = [[LostFoundPostViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            postViewController.postType = 1;
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postViewController];
+            [self presentViewController:nav animated:YES completion:nil];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:lostAction];

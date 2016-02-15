@@ -45,5 +45,7 @@ typedef NS_ENUM(NSInteger, NewsType) {
 
 + (void)getLostFoundListWithType:(NSInteger)type page:(NSInteger)page success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 + (void)getLostFoundDetailWithID:(NSString *)index success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)postLostInfoWithTitle:(NSString *)title name:(NSString *)name time:(NSDate *)time place:(NSString *)place phone:(NSString *)phone content:(NSString *)content lostType:(NSString *)lostType otherTag:(NSString *)otherTag success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)postFoundInfoWithTitle:(NSString *)title name:(NSString *)name time:(NSDate *)time place:(NSString *)place phone:(NSString *)phone content:(NSString *)content foundPic:(NSString *)foundPic success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 @end

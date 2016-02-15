@@ -98,10 +98,8 @@
 }
 
 - (void)refreshData {
-    if (![self.tableView.mj_header isRefreshing]) {
-        currentPage = 1;
-        [self getData];
-    }
+    currentPage = 1;
+    [self getData];
 }
 
 #pragma mark - Table view data source
