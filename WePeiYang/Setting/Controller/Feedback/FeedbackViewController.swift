@@ -29,7 +29,7 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
         formController.delegate = self
         formController.form = FeedbackForm()
         
-        let doneBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Done, handler: {sender in
+        let doneBtn = UIBarButtonItem().bk_initWithTitle(NSLocalizedString("Send", comment: ""), style: .Plain, handler: {sender in
             let form = self.formController.form as! FeedbackForm
             let email = form.email == nil ? "" : form.email!
             if form.content == nil || form.content!.isEmpty {

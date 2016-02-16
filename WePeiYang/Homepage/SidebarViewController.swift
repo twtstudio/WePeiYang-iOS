@@ -129,9 +129,12 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             cell.textLabel?.text = "成绩"
             cell.imageView?.image = UIImage(named: "gpaTab")?.imageWithRenderingMode(.AlwaysTemplate)
+//        case 2:
+//            cell.textLabel?.text = "图书馆"
+//            cell.imageView?.image = UIImage(named: "libTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 2:
-            cell.textLabel?.text = "图书馆"
-            cell.imageView?.image = UIImage(named: "gpaTab")?.imageWithRenderingMode(.AlwaysTemplate)
+            cell.textLabel?.text = "课程表"
+            cell.imageView?.image = UIImage(named: "libTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 3:
             cell.textLabel?.text = "失物招领"
             cell.imageView?.image = UIImage(named: "lfTab")?.imageWithRenderingMode(.AlwaysTemplate)
@@ -159,7 +162,8 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             delegate.showGPAController()
         case 2:
-            delegate.showLibraryController()
+//            delegate.showLibraryController()
+            delegate.showClasstableController()
         case 3:
             delegate.showLostFoundController()
         case 4:

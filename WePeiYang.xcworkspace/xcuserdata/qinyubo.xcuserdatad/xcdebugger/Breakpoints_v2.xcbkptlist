@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WePeiYang/Classtable/Model/ClasstableDataManager.swift"
@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WePeiYang/Classtable/Model/ClasstableDataManager.swift"
@@ -35,49 +35,34 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static WePeiYang.ClasstableDataManager.(getClasstableData (WePeiYang.ClasstableDataManager.Type) -&gt; ((data : Swift.AnyObject) -&gt; (), notBinded : () -&gt; (), otherFailure : (errorMsg : Swift.String) -&gt; ()) -&gt; ()).(closure #2)"
                   moduleName = "WePeiYang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/qinyubo/Documents/Xcode%20Development/WePeiYang_iOS/WePeiYang/Classtable/Model/ClasstableDataManager.swift"
-                  timestampString = "477246051.505137"
+                  timestampString = "477320762.222757"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"
                   endingLineNumber = "29"
-                  offsetFromSymbolStart = "800">
+                  offsetFromSymbolStart = "977">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static WePeiYang.ClasstableDataManager.(getClasstableData (WePeiYang.ClasstableDataManager.Type) -&gt; ((data : Swift.AnyObject) -&gt; (), notBinded : () -&gt; (), otherFailure : (errorMsg : Swift.String) -&gt; ()) -&gt; ()).(closure #2)"
                   moduleName = "WePeiYang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/qinyubo/Documents/Xcode%20Development/WePeiYang_iOS/WePeiYang/Classtable/Model/ClasstableDataManager.swift"
-                  timestampString = "477246051.505402"
+                  timestampString = "477320762.223481"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"
                   endingLineNumber = "29"
-                  offsetFromSymbolStart = "812">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WePeiYang.ClasstableDataManager.(getClasstableData (WePeiYang.ClasstableDataManager.Type) -&gt; ((data : Swift.AnyObject) -&gt; (), notBinded : () -&gt; (), otherFailure : (errorMsg : Swift.String) -&gt; ()) -&gt; ()).(closure #2)"
-                  moduleName = "WePeiYang"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qinyubo/Documents/Xcode%20Development/WePeiYang_iOS/WePeiYang/Classtable/Model/ClasstableDataManager.swift"
-                  timestampString = "477246051.505619"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "880">
+                  offsetFromSymbolStart = "1074">
                </Location>
             </Locations>
          </BreakpointContent>
