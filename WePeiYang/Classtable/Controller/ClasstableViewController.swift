@@ -12,7 +12,7 @@ import Masonry
 
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 let CLASSTABLE_COLOR_CONFIG_KEY = "CLASSTABLE_COLOR_CONFIG"
-let colorArr = [UIColor.flatRedColor(), UIColor.flatOrangeColor(), UIColor.flatMagentaColor(), UIColor.flatYellowColorDark(), UIColor.flatGreenColor(), UIColor.flatSkyBlueColor(), UIColor.flatMintColor(), UIColor.flatTealColor(), UIColor.flatPinkColorDark(), UIColor.flatBlueColor(), UIColor.flatLimeColor(), UIColor.flatPurpleColor()]
+let colorArr = [UIColor.flatRedColor(), UIColor.flatOrangeColor(), UIColor.flatMagentaColor(), UIColor.flatGreenColor(), UIColor.flatSkyBlueColor(), UIColor.flatMintColor(), UIColor.flatTealColor(), UIColor.flatPinkColorDark(), UIColor.flatBlueColor(), UIColor.flatLimeColor(), UIColor.flatPurpleColor()]
 
 class ClasstableViewController: UIViewController {
     
@@ -108,6 +108,21 @@ class ClasstableViewController: UIViewController {
         let classSize = self.classCellSizeWithScreenSize(size)
         classTableScrollView.contentSize = self.contentSizeWithScreenSize(size)
         
+        for i in 0...11 {
+            let classNumberCell = ClassCellView()
+            classNumberCell.classLabel.text = "第\(i+1)节"
+            classNumberCell.backgroundColor = UIColor.clearColor()
+            classNumberCell.classLabel.textColor = UIColor.lightGrayColor()
+            classNumberCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
+            classTableScrollView.addSubview(classNumberCell)
+            classNumberCell.mas_makeConstraints({make in
+                make.top.mas_equalTo()(CGFloat(i) * classSize.height)
+                make.left.mas_equalTo()(0)
+                make.width.mas_equalTo()(classSize.width)
+                make.height.mas_equalTo()(classSize.height)
+            })
+        }
+        
         var colorConfig = [String: UIColor]()
         wpyCacheManager.loadCacheDataWithKey(CLASSTABLE_COLOR_CONFIG_KEY, andBlock: {obj in
             colorConfig = obj as! [String: UIColor]
@@ -150,7 +165,7 @@ class ClasstableViewController: UIViewController {
                 
                 classCell.classLabel.text = "\(tmpClass.courseName)@\(tmpArrange.room)"
                 // 针对设备宽度控制字号
-                classCell.classLabel.font = UIFont.systemFontOfSize((size.width > 320) ? 12 : 10)
+                classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
                 classCell.backgroundColor = classBgColor
                 // 考虑不在当前周数内的科目
 //                if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
@@ -167,7 +182,22 @@ class ClasstableViewController: UIViewController {
     private func classCellSizeWithScreenSize(screenSize: CGSize) -> CGSize {
         let width = screenSize.width / 8
         // 高度的参数需要针对不同设备进行不同的控制，甚至对不同屏幕方向也要有所适配
-        let height = width * 1.5
+        var height: CGFloat = 0
+        if screenSize.width <= 320 {
+            height = width * 1.5
+        } else if screenSize.width <= 414 {
+            height = width * 1.3
+        } else if screenSize.width <= 768 {
+            if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone {
+                height = width * 0.45
+            } else {
+                height = width * 0.8
+            }
+        } else if screenSize.width <= 1024 {
+            height = width * 0.6
+        } else {
+            height = width * 0.4
+        }
         return CGSizeMake(width, height)
     }
 
