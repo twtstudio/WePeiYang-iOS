@@ -9,9 +9,16 @@
 import UIKit
 import Masonry
 
+@objc protocol ClassCellViewDelegate {
+    optional func cellViewTouched(cellView: ClassCellView)
+}
+
 class ClassCellView: UIView {
     
     var classLabel: UILabel!
+    var classData: ClassData?
+    
+    var delegate: ClassCellViewDelegate!
     
     init() {
         super.init(frame: CGRectZero)
@@ -27,6 +34,14 @@ class ClassCellView: UIView {
         classLabel.numberOfLines = 0
         classLabel.textColor = UIColor.whiteColor()
         classLabel.textAlignment = .Center
+        
+        let tapRecognizer = UITapGestureRecognizer().bk_initWithHandler({(recognizer, state, point) in
+            if self.classData != nil {
+                self.delegate.cellViewTouched!(self)
+            }
+        }) as! UITapGestureRecognizer
+        self.userInteractionEnabled = true
+        self.addGestureRecognizer(tapRecognizer)
     }
 
     required init?(coder aDecoder: NSCoder) {

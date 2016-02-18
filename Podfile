@@ -24,6 +24,7 @@ pod 'FMDB'
 pod 'RESideMenu'
 pod 'IDMPhotoBrowser'
 pod 'SlackTextViewController'
+pod 'STPopup'
 
 target 'WePeiYang' do
 

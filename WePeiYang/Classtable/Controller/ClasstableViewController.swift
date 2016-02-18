@@ -9,16 +9,18 @@
 import UIKit
 import MJExtension
 import Masonry
+import STPopup
 
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 let CLASSTABLE_COLOR_CONFIG_KEY = "CLASSTABLE_COLOR_CONFIG"
-let colorArr = [UIColor.flatRedColor(), UIColor.flatOrangeColor(), UIColor.flatMagentaColor(), UIColor.flatGreenColor(), UIColor.flatSkyBlueColor(), UIColor.flatMintColor(), UIColor.flatTealColor(), UIColor.flatPinkColorDark(), UIColor.flatBlueColor(), UIColor.flatLimeColor(), UIColor.flatPurpleColor()]
+let colorArr = [UIColor.flatRedColor(), UIColor.flatOrangeColor(), UIColor.flatMagentaColor(), UIColor.flatGreenColor(), UIColor.flatSkyBlueColor(), UIColor.flatMintColor(), UIColor.flatTealColor(), UIColor.flatPinkColorDark(), UIColor.flatBlueColor(), UIColor.flatLimeColor(), UIColor.flatPurpleColor(), UIColor.flatYellowColor()]
 
-class ClasstableViewController: UIViewController {
+class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     @IBOutlet weak var classTableScrollView: UIScrollView!
     
     var dataArr = []
+    var detailController: STPopupController!
     let currentWeek = 5
 
     override func viewDidLoad() {
@@ -142,20 +144,19 @@ class ClasstableViewController: UIViewController {
                     classBgColor = UIColor.randomFlatColor()
                 }
             } else {
-                if colorArray.count > 0 {
-                    classBgColor = colorArray.first
-                    colorConfig[tmpClass.courseId] = classBgColor
-                    colorArray.removeFirst()
-                } else {
-                    classBgColor = UIColor.randomFlatColor()
-                    colorConfig[tmpClass.courseId] = classBgColor
+                if colorArray.count <= 0 {
+                    colorArray = colorArr
                 }
+                classBgColor = colorArray.first
+                colorConfig[tmpClass.courseId] = classBgColor
+                colorArray.removeFirst()
             }
             
             for arrange in tmpClass.arrange {
                 let tmpArrange: ArrangeModel = arrange as! ArrangeModel
                 let classCell = ClassCellView()
                 classTableScrollView.addSubview(classCell)
+                classCell.classData = tmpClass
                 classCell.mas_makeConstraints({make in
                     make.width.mas_equalTo()(classSize.width)
                     make.height.mas_equalTo()(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
@@ -167,6 +168,7 @@ class ClasstableViewController: UIViewController {
                 // 针对设备宽度控制字号
                 classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
                 classCell.backgroundColor = classBgColor
+                classCell.delegate = self
                 // 考虑不在当前周数内的科目
 //                if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
 //                    classCell.backgroundColor = classBgColor
@@ -216,6 +218,21 @@ class ClasstableViewController: UIViewController {
     
     func backNotificationReceived() {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func cellViewTouched(cellView: ClassCellView) {
+        print("\(cellView.classData!.courseName) : \(cellView.frame)")
+        
+        let classDetailController = ClassDetailViewController(nibName: "ClassDetailViewController", bundle: nil)
+        classDetailController.classData = cellView.classData!
+        classDetailController.classColor = cellView.backgroundColor
+        detailController = STPopupController(rootViewController: classDetailController)
+        let blurEffect = UIBlurEffect(style: .Dark)
+        detailController.backgroundView = UIVisualEffectView(effect: blurEffect)
+        detailController.backgroundView.addGestureRecognizer((UITapGestureRecognizer().bk_initWithHandler({(recognizer, state, point) in
+            self.detailController.dismiss()
+        }) as! UITapGestureRecognizer))
+        detailController.presentInViewController(self)
     }
     
     // MARK: - IBActions
