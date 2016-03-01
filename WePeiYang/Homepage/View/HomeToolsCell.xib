@@ -85,14 +85,14 @@
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8i-EC-EtT">
                                 <rect key="frame" x="261" y="0.0" width="130" height="119"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="msBtn" translatesAutoresizingMaskIntoConstraints="NO" id="QId-Qr-HpE">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classtableTab" translatesAutoresizingMaskIntoConstraints="NO" id="QId-Qr-HpE">
                                         <rect key="frame" x="40" y="22" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="CUQ-qd-zJa"/>
                                             <constraint firstAttribute="width" constant="50" id="DcR-2T-4pp"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="实验室" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-De-zxj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="课程表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-De-zxj">
                                         <rect key="frame" x="0.0" y="77" width="130" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.20784313730000001" green="0.59999999999999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -139,8 +139,8 @@
         <tapGestureRecognizer id="oPr-fa-7ow"/>
     </objects>
     <resources>
+        <image name="classtableTab" width="30" height="30"/>
         <image name="gpaBtn" width="72" height="72"/>
-        <image name="msBtn" width="72" height="72"/>
         <image name="newsBtn" width="72" height="72"/>
     </resources>
 </document>

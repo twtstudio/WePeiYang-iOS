@@ -213,7 +213,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 1:
             self.showGPAController()
         case 2:
-            self.showMicroservicesController()
+            self.showClasstableController()
         default:
             break
         }

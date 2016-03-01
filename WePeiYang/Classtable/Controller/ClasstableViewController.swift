@@ -10,10 +10,12 @@ import UIKit
 import MJExtension
 import Masonry
 import STPopup
+import DateTools
 
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 let CLASSTABLE_COLOR_CONFIG_KEY = "CLASSTABLE_COLOR_CONFIG"
-let colorArr = [UIColor.flatRedColor(), UIColor.flatOrangeColor(), UIColor.flatMagentaColor(), UIColor.flatGreenColor(), UIColor.flatSkyBlueColor(), UIColor.flatMintColor(), UIColor.flatTealColor(), UIColor.flatPinkColorDark(), UIColor.flatBlueColor(), UIColor.flatLimeColor(), UIColor.flatPurpleColor(), UIColor.flatYellowColor()]
+let CLASSTABLE_TERM_START_KEY = "CLASSTABLE_TERM_START"
+let colorArr = [UIColor.flatRedColor(), UIColor.flatOrangeColor(), UIColor.flatMagentaColor(), UIColor.flatGreenColor(), UIColor.flatSkyBlueColor(), UIColor.flatMintColor(), UIColor.flatTealColor(), UIColor.flatPinkColorDark(), UIColor.flatBlueColor(), UIColor.flatLimeColor(), UIColor.flatPurpleColor(), UIColor.flatYellowColorDark(), UIColor.flatWatermelonColorDark(), UIColor.flatCoffeeColor()]
 
 class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
@@ -21,16 +23,21 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     var dataArr = []
     var detailController: STPopupController!
-    let currentWeek = 5
+    var currentWeek = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.edgesForExtendedLayout = .None
+        let refreshBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Refresh, handler: {sender in
+            self.refresh()
+        }) as! UIBarButtonItem
+        self.navigationItem.rightBarButtonItem = refreshBtn
         
         self.title = "课程表"
         self.dataArr = []
+        self.currentWeek = 0
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshNotificationReceived", name: "Login", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshNotificationReceived", name: "BindTju", object: nil)
@@ -57,14 +64,31 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     private func loadClassTable() {
         if AccountManager.tokenExists() {
-            if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_CACHE_KEY) {
-                wpyCacheManager.loadCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {cacheData in
-                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(cacheData)
+            wpyCacheManager.loadGroupCacheDataWithKey(CLASSTABLE_TERM_START_KEY, andBlock: {termStart in
+                if termStart != nil {
+                    let startDate = NSDate(timeIntervalSince1970: Double(termStart as! Int))
+                    self.currentWeek = NSDate().weeksFrom(startDate) + 1
+                    self.title = "第 \(self.currentWeek) 周"
+                } else {
+                    self.refresh()
+                }
+            })
+            wpyCacheManager.loadGroupCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {data in
+                if data != nil {
+                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
                     self.updateView(UIScreen.mainScreen().bounds.size)
-                }, failed: nil)
-            } else {
-                self.refresh()
-            }
+                } else {
+                    self.refresh()
+                }
+            })
+//            if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_CACHE_KEY) {
+//                wpyCacheManager.loadCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {cacheData in
+//                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(cacheData)
+//                    self.updateView(UIScreen.mainScreen().bounds.size)
+//                }, failed: nil)
+//            } else {
+//                self.refresh()
+//            }
         } else {
             let loginVC = LoginViewController(nibName: nil, bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
@@ -72,35 +96,46 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     }
     
     private func refresh() {
-//        MsgDisplay.showLoading()
-//        ClasstableDataManager.getClasstableData({data in
-//            MsgDisplay.dismiss()
+        MsgDisplay.showLoading()
+        ClasstableDataManager.getClasstableData({(data, termStart) in
+            MsgDisplay.dismiss()
 //            if data.count > 0 {
-//                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
-//                self.updateView(self.view.bounds.size)
+            wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
+                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+                self.updateView(self.view.bounds.size)
 //                wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+                wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+                wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
+            let startDate = NSDate(timeIntervalSince1970: Double(termStart))
+            self.currentWeek = NSDate().weeksFrom(startDate) + 1
+            self.title = "第 \(self.currentWeek) 周"
+//            } else {
+//
 //            }
-//        }, notBinded: {
-//            MsgDisplay.dismiss()
-//            let bindTjuVC = BindTjuViewController(style: .Grouped)
-//            self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
-//        }, otherFailure: {errorMsg in
-//            MsgDisplay.showErrorMsg(errorMsg)
-//        })
+        }, notBinded: {
+            MsgDisplay.dismiss()
+            let bindTjuVC = BindTjuViewController(style: .Grouped)
+            self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
+        }, otherFailure: {errorMsg in
+            MsgDisplay.showErrorMsg(errorMsg)
+        })
         
         // Load demo data
         
-        let demoJson = NSBundle.mainBundle().pathForResource("class_demo", ofType: "json")
-        do {
-            let obj = try NSJSONSerialization.JSONObjectWithData(NSData(contentsOfFile: demoJson!)!, options: .MutableLeaves)
-            let data = obj["data"]!
-            dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
-            wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
-            self.updateView(UIScreen.mainScreen().bounds.size)
-        } catch {
-            
-        }
+//        let demoJson = NSBundle.mainBundle().pathForResource("class_demo", ofType: "json")
+//        do {
+//            let obj = try NSJSONSerialization.JSONObjectWithData(NSData(contentsOfFile: demoJson!)!, options: .MutableLeaves)
+//            let data = obj["data"]!
+//            dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+//            wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+//            wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
+//            self.updateView(UIScreen.mainScreen().bounds.size)
+//        } catch {
+//            
+//        }
     }
+    
+    
     
     private func updateView(size: CGSize) {
         for view in classTableScrollView.subviews {
@@ -167,14 +202,20 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 classCell.classLabel.text = "\(tmpClass.courseName)@\(tmpArrange.room)"
                 // 针对设备宽度控制字号
                 classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
-                classCell.backgroundColor = classBgColor
                 classCell.delegate = self
                 // 考虑不在当前周数内的科目
-//                if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
-//                    classCell.backgroundColor = classBgColor
-//                } else {
-//                    classCell.backgroundColor = UIColor.flatGrayColor()
-//                }
+                if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
+                    // 单双周判断
+                    if (tmpArrange.week == "单双周") || (currentWeek % 2 == 0 && tmpArrange.week == "双周") || (currentWeek % 2 == 1 && tmpArrange.week == "单周") {
+                        classCell.backgroundColor = classBgColor
+                    } else {
+                        classCell.backgroundColor = UIColor.flatWhiteColor()
+                        classCell.classLabel.textColor = UIColor.flatGrayColorDark()
+                    }
+                } else {
+                    classCell.backgroundColor = UIColor.flatWhiteColor()
+                    classCell.classLabel.textColor = UIColor.flatGrayColorDark()
+                }
             }
         }
         
@@ -221,7 +262,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     }
     
     func cellViewTouched(cellView: ClassCellView) {
-        print("\(cellView.classData!.courseName) : \(cellView.frame)")
+//        print("\(cellView.classData!.courseName) : \(cellView.frame)")
         
         let classDetailController = ClassDetailViewController(nibName: "ClassDetailViewController", bundle: nil)
         classDetailController.classData = cellView.classData!

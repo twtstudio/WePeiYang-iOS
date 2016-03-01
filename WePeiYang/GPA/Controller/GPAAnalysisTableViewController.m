@@ -7,7 +7,7 @@
 //
 
 #import "GPAAnalysisTableViewController.h"
-#import "PNChart.h"
+//#import "PNChart.h"
 #import "GPAData.h"
 #import "GPAClassData.h"
 #import "Chameleon.h"
@@ -65,24 +65,24 @@
         }
     }
     
-    NSArray *items = @[
-                       [PNPieChartDataItem dataItemWithValue:gradeA color:[UIColor flatGreenColor] description:@"90~100"],
-                       [PNPieChartDataItem dataItemWithValue:gradeB color:[UIColor flatMagentaColor] description:@"80~90"],
-                       [PNPieChartDataItem dataItemWithValue:gradeC color:[UIColor flatSkyBlueColor] description:@"70~80"],
-                       [PNPieChartDataItem dataItemWithValue:gradeD color:[UIColor flatYellowColorDark] description:@"60~70"],
-                       [PNPieChartDataItem dataItemWithValue:gradeE color:[UIColor flatRedColor] description:@"0~60"]
-                       ];
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(24, 8, self.view.frame.size.width - 48, 360) items:items];
-    pieChart.descriptionTextColor = [UIColor whiteColor];
-    pieChart.descriptionTextFont = [UIFont systemFontOfSize:17.0];
-    [headerView addSubview:pieChart];
-    [pieChart strokeChart];
-    
-    pieChart.legendFont = [UIFont systemFontOfSize:14.0];
-    pieChart.legendStyle = PNLegendItemStyleStacked;
-    UIView *legend = [pieChart getLegendWithMaxWidth:200];
-    [legend setFrame:CGRectMake(24, 400, legend.frame.size.width, legend.frame.size.height)];
-    [headerView addSubview:legend];
+//    NSArray *items = @[
+//                       [PNPieChartDataItem dataItemWithValue:gradeA color:[UIColor flatGreenColor] description:@"90~100"],
+//                       [PNPieChartDataItem dataItemWithValue:gradeB color:[UIColor flatMagentaColor] description:@"80~90"],
+//                       [PNPieChartDataItem dataItemWithValue:gradeC color:[UIColor flatSkyBlueColor] description:@"70~80"],
+//                       [PNPieChartDataItem dataItemWithValue:gradeD color:[UIColor flatYellowColorDark] description:@"60~70"],
+//                       [PNPieChartDataItem dataItemWithValue:gradeE color:[UIColor flatRedColor] description:@"0~60"]
+//                       ];
+//    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(24, 8, self.view.frame.size.width - 48, 360) items:items];
+//    pieChart.descriptionTextColor = [UIColor whiteColor];
+//    pieChart.descriptionTextFont = [UIFont systemFontOfSize:17.0];
+//    [headerView addSubview:pieChart];
+//    [pieChart strokeChart];
+//    
+//    pieChart.legendFont = [UIFont systemFontOfSize:14.0];
+//    pieChart.legendStyle = PNLegendItemStyleStacked;
+//    UIView *legend = [pieChart getLegendWithMaxWidth:200];
+//    [legend setFrame:CGRectMake(24, 400, legend.frame.size.width, legend.frame.size.height)];
+//    [headerView addSubview:legend];
 }
 
 #pragma mark - Table view data source

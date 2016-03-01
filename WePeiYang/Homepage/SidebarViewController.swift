@@ -134,7 +134,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            cell.imageView?.image = UIImage(named: "libTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 2:
             cell.textLabel?.text = "课程表"
-            cell.imageView?.image = UIImage(named: "libTab")?.imageWithRenderingMode(.AlwaysTemplate)
+            cell.imageView?.image = UIImage(named: "classtableTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 3:
             cell.textLabel?.text = "失物招领"
             cell.imageView?.image = UIImage(named: "lfTab")?.imageWithRenderingMode(.AlwaysTemplate)

@@ -17,7 +17,7 @@ class ClassDetailViewController: UIViewController, UITableViewDelegate, UITableV
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.contentSizeInPopup = CGSizeMake(300, 400)
-        self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
+        self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +30,6 @@ class ClassDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Do any additional setup after loading the view.
         self.title = "详情"
         self.detailTableView.allowsSelection = false
-        
     }
 
     override func didReceiveMemoryWarning() {

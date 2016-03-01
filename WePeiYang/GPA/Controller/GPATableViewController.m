@@ -9,7 +9,6 @@
 #import "GPATableViewController.h"
 #import "Chameleon.h"
 #import "JZNavigationExtension.h"
-#import "PNChart.h"
 #import "MJExtension.h"
 #import "twtSDK.h"
 #import "GPAData.h"

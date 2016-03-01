@@ -15,7 +15,7 @@ function setupWebViewJavascriptBridge(callback) {
 
 setupWebViewJavascriptBridge(function(bridge) {
 
-    /* Initialize your app here */
+    /* Initialize WePeiYang here */
     $(".img-responsive").each(function() {
         $(this).unbind().bind('click', function() {
             bridge.callHandler('imgCallback', $(this).attr('src'), function(response) {
