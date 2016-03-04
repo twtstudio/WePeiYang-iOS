@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NewsData *newsData;
 
 - (IBAction)shareContent:(id)sender;
+- (IBAction)presentCommentViewController:(id)sender;
 
 @end

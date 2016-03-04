@@ -77,6 +77,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.mainTableView.mj_header.endRefreshing()
         }, failure: {(error, description) in
             MsgDisplay.showErrorMsg(description)
+            self.mainTableView.mj_header.endRefreshing()
         })
     }
     
@@ -212,7 +213,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 1:
             self.showGPAController()
         case 2:
-            self.showMicroservicesController()
+            self.showClasstableController()
         default:
             break
         }
@@ -266,6 +267,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func showLibraryController() {
         let libVC = LibraryViewController(nibName: nil, bundle: nil)
         self.navigationController?.showViewController(libVC, sender: nil)
+    }
+    
+    func showLostFoundController() {
+        let lfVC = LostFoundViewController()
+        self.navigationController?.showViewController(lfVC, sender: nil)
     }
     
     func showMicroservicesController() {

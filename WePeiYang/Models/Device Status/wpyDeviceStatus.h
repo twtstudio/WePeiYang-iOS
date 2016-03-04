@@ -18,5 +18,6 @@
 + (NSString *)getUserAgentString;
 + (UIImage *)getImageFromView:(UIView *)view;
 + (UIImage *)captureScreen;
++ (NSString *)getIPAddress:(BOOL)preferIPv4;
 
 @end

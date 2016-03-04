@@ -16,12 +16,15 @@ pod 'ChameleonFramework'
 pod 'JZNavigationExtension'
 pod 'WebViewJavascriptBridge'
 pod 'DZNEmptyDataSet'
-pod 'PNChart'
 pod 'JBChartView'
 pod 'Masonry'
 pod 'WMPageController'
 pod 'FMDB'
 pod 'RESideMenu'
+pod 'IDMPhotoBrowser'
+pod 'SlackTextViewController'
+pod 'STPopup'
+pod 'DateTools'
 
 target 'WePeiYang' do
 

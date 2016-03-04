@@ -7,6 +7,7 @@
 //
 
 #import "NewsContentViewController.h"
+#import "NewsCommentViewController.h"
 #import "FrontEndProcessor.h"
 #import "twtSDK.h"
 #import "NewsContent.h"
@@ -15,22 +16,35 @@
 #import "OpenInSafariActivity.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
+#import "WebViewJavascriptBridge.h"
 #import <SafariServices/SafariServices.h>
+#import "IDMPhotoBrowser.h"
 
-@interface NewsContentViewController ()<UIWebViewDelegate>
+@interface NewsContentViewController ()<UIWebViewDelegate, IDMPhotoBrowserDelegate>
+
+@property WebViewJavascriptBridge *bridge;
 
 @end
 
-@implementation NewsContentViewController
+@implementation NewsContentViewController {
+    NSArray *commentArr;
+}
 
 @synthesize contentWebView;
 @synthesize newsData;
+@synthesize bridge;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = newsData.subject;
     contentWebView.delegate = self;
+    commentArr = [[NSArray alloc] init];
+    
+    bridge = [WebViewJavascriptBridge bridgeForWebView:contentWebView];
+    [bridge registerHandler:@"imgCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [self presentHDImageWithURL:data];
+    }];
     
     [twtSDK getNewsContentWithIndex:newsData.index success:^(NSURLSessionDataTask *task, id responseObject) {
         [self processNewsContent:[NewsContent mj_objectWithKeyValues:responseObject[@"data"]]];
@@ -48,7 +62,7 @@
 
 - (IBAction)shareContent:(id)sender {
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@", newsData.index]];
-    NSArray *activityItems = @[shareURL, newsData.subject];
+    NSArray *activityItems = @[shareURL];
     OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
     WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
     WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
@@ -59,10 +73,26 @@
     [self presentViewController:activityController animated:YES completion:nil];
 }
 
+- (IBAction)presentCommentViewController:(id)sender {
+    NewsCommentViewController *commentVC = [[NewsCommentViewController alloc] init];
+    commentVC.commentArray = commentArr;
+    commentVC.index = newsData.index;
+    [self.navigationController showViewController:commentVC sender:nil];
+}
+
 #pragma mark - Private method
 
 - (void)processNewsContent:(NewsContent *)content {
-    [contentWebView loadHTMLString:[FrontEndProcessor convertToBootstrapHTMLWithNewsContent:content] baseURL:nil];
+    commentArr = content.comments;
+    [contentWebView loadHTMLString:[FrontEndProcessor convertToBootstrapHTMLWithNewsContent:content] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES]];
+}
+
+- (void)presentHDImageWithURL:(NSString *)url {
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[[NSURL URLWithString:url]]];
+    browser.displayArrowButton = NO;
+    browser.displayCounterLabel = NO;
+    browser.delegate = self;
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark - WebViewDelegate

@@ -4,6 +4,7 @@
         <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--成绩-->
@@ -124,7 +125,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8D9D4DFE-4398-4309-9869-29B3D8AED893" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5F374EC0-BE16-4C72-96A2-0E043CC2E39E" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
                                             <rect key="frame" x="8" y="12" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="Rl6-ca-WxZ"/>
@@ -278,11 +279,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="qXM-GF-9ec">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Qef-wD-7Jj">
-                            <connections>
-                                <action selector="shareContent:" destination="euG-X3-L8T" id="URu-U2-r7O"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="Qef-wD-7Jj">
+                                <connections>
+                                    <action selector="shareContent:" destination="euG-X3-L8T" id="URu-U2-r7O"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="comment" id="mFh-vV-F4A">
+                                <connections>
+                                    <action selector="presentCommentViewController:" destination="euG-X3-L8T" id="bjP-aR-n30"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -393,7 +401,6 @@
         <!--成绩-->
         <scene sceneID="RSM-Th-5fl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VKa-Z0-wyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="EMI-dr-t4a" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="成绩" image="gpaTab" id="yju-nD-rpc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IdH-aP-ONg">
@@ -404,12 +411,13 @@
                         <segue destination="8gz-MA-cms" kind="relationship" relationship="rootViewController" id="Fzt-bv-TK2"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VKa-Z0-wyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1117" y="358"/>
         </scene>
     </scenes>
     <resources>
-        <image name="8D9D4DFE-4398-4309-9869-29B3D8AED893" width="1000" height="1000">
+        <image name="5F374EC0-BE16-4C72-96A2-0E043CC2E39E" width="1000" height="1000">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ERYbHCUmJygwMzY8P1UkbnVsbNQJCgsMDQ4PEFYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVwc1dOU0Nv
@@ -1614,6 +1622,7 @@ XAABF2oAARduAAEXfAABF4cAAReQAAEXlQABF50AARegAAEXpQABF7QAARe4AAEXvwABF8cAARfUAAEX
 RgAAAAAAAAAAAAAAAAABGBk
 </mutableData>
         </image>
+        <image name="comment" width="30" height="30"/>
         <image name="gpaTab" width="30" height="30"/>
         <image name="newsTab" width="30" height="30"/>
     </resources>

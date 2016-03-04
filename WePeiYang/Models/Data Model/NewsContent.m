@@ -8,6 +8,7 @@
 
 #import "NewsContent.h"
 #import "MJExtension.h"
+#import "NewsComment.h"
 
 @implementation NewsContent
 
@@ -21,6 +22,10 @@
              @"photographer": @"sheying",
              @"visitCount": @"visitcount",
              @"comments": @"comments"};
+}
+
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"comments": [NewsComment class]};
 }
 
 @end

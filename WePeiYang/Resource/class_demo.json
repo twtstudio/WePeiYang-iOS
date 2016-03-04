@@ -1,0 +1,197 @@
+{
+  "term": "15161",
+  "data": [
+    {
+      "classid": "2611",
+      "courseid": "2090095",
+      "coursename": "运筹学(1)",
+      "coursetype": "学科基础",
+      "coursenature": "必修",
+      "credit": "4.0",
+      "teacher": "夏一",
+      "arrange": [
+        {
+          "week": "单双周",
+          "day": "2",
+          "start": "3",
+          "end": "4",
+          "room": "23楼202"
+        },
+        {
+          "week": "单双周",
+          "day": "5",
+          "start": "3",
+          "end": "4",
+          "room": "23楼202"
+        }
+      ],
+      "week": {
+        "start": "4",
+        "end": "17"
+      },
+      "college": "经管学部",
+      "campus": "卫津路校区",
+      "ext": "重修"
+    },
+    {
+      "classid": "2522",
+      "courseid": "2090826",
+      "coursename": "IT项目管理",
+      "coursetype": "专业核心",
+      "coursenature": "必修",
+      "credit": "3.5",
+      "teacher": "窦润亮",
+      "arrange": [
+        {
+          "week": "单双周",
+          "day": "1",
+          "start": "5",
+          "end": "6",
+          "room": "26楼A217"
+        },
+        {
+          "week": "单双周",
+          "day": "4",
+          "start": "3",
+          "end": "4",
+          "room": "26楼A213"
+        }
+      ],
+      "week": {
+        "start": "4",
+        "end": "17"
+      },
+      "college": "经管学部",
+      "campus": "卫津路校区",
+      "ext": ""
+    },
+    {
+      "classid": "2524",
+      "courseid": "2090927",
+      "coursename": "基于图形处理的信息系统",
+      "coursetype": "专业选修",
+      "coursenature": "选修",
+      "credit": "3.0",
+      "teacher": "马丰宁",
+      "arrange": [
+        {
+          "week": "单双周",
+          "day": "3",
+          "start": "3",
+          "end": "4",
+          "room": "26楼A313"
+        },
+        {
+          "week": "单双周",
+          "day": "5",
+          "start": "3",
+          "end": "4",
+          "room": "26楼A313"
+        }
+      ],
+      "week": {
+        "start": "8",
+        "end": "17"
+      },
+      "college": "经管学部",
+      "campus": "卫津路校区",
+      "ext": ""
+    },
+    {
+      "classid": "2521",
+      "courseid": "2090602",
+      "coursename": "人工智能与专家系统",
+      "coursetype": "专业选修",
+      "coursenature": "选修",
+      "credit": "2.0",
+      "teacher": "徐梅",
+      "arrange": [
+        {
+          "week": "单双周",
+          "day": "1",
+          "start": "3",
+          "end": "4",
+          "room": "26楼A303"
+        },
+        {
+          "week": "单双周",
+          "day": "3",
+          "start": "5",
+          "end": "6",
+          "room": "26楼A303"
+        }
+      ],
+      "week": {
+        "start": "10",
+        "end": "17"
+      },
+      "college": "经管学部",
+      "campus": "卫津路校区",
+      "ext": ""
+    },
+    {
+      "classid": "2511",
+      "courseid": "2090817",
+      "coursename": "专业前沿讨论班",
+      "coursetype": "研究与创新",
+      "coursenature": "选修",
+      "credit": "1.0",
+      "teacher": "李敏强",
+      "arrange": [
+        {
+          "week": "单双周",
+          "day": "3",
+          "start": "5",
+          "end": "6",
+          "room": "26楼A305"
+        },
+        {
+          "week": "单双周",
+          "day": "5",
+          "start": "5",
+          "end": "6",
+          "room": "26楼A305"
+        }
+      ],
+      "week": {
+        "start": "5",
+        "end": "8"
+      },
+      "college": "经管学部",
+      "campus": "卫津路校区",
+      "ext": ""
+    },
+    {
+      "classid": "2615",
+      "courseid": "2090598",
+      "coursename": "信息经济学",
+      "coursetype": "跨学科选修",
+      "coursenature": "选修",
+      "credit": "2.0",
+      "teacher": "高宏",
+      "arrange": [
+        {
+          "week": "单双周",
+          "day": "3",
+          "start": "7",
+          "end": "8",
+          "room": "23楼204"
+        },
+        {
+          "week": "单双周",
+          "day": "5",
+          "start": "1",
+          "end": "2",
+          "room": "23楼204"
+        }
+      ],
+      "week": {
+        "start": "5",
+        "end": "15"
+      },
+      "college": "经管学部",
+      "campus": "卫津路校区",
+      "ext": "重修"
+    }
+  ]
+}

@@ -10,6 +10,6 @@
 
 @interface SchemeManager : NSObject
 
-+ (void)handleSchemeWithQueryString:(NSString *)query;
++ (void)handleSchemeURL:(NSURL *)url;
 
 @end

@@ -14,6 +14,7 @@ protocol SidebarDelegate {
     func showNewsController();
     func showLibraryController();
     func showClasstableController();
+    func showLostFoundController();
     func showMicroservicesController();
     func showSettingsController();
 }
@@ -115,7 +116,7 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -128,10 +129,19 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             cell.textLabel?.text = "成绩"
             cell.imageView?.image = UIImage(named: "gpaTab")?.imageWithRenderingMode(.AlwaysTemplate)
+//        case 2:
+//            cell.textLabel?.text = "图书馆"
+//            cell.imageView?.image = UIImage(named: "libTab")?.imageWithRenderingMode(.AlwaysTemplate)
         case 2:
+            cell.textLabel?.text = "课程表"
+            cell.imageView?.image = UIImage(named: "classtableTab")?.imageWithRenderingMode(.AlwaysTemplate)
+        case 3:
+            cell.textLabel?.text = "失物招领"
+            cell.imageView?.image = UIImage(named: "lfTab")?.imageWithRenderingMode(.AlwaysTemplate)
+        case 4:
             cell.textLabel?.text = "实验室"
             cell.imageView?.image = UIImage(named: "msTab")?.imageWithRenderingMode(.AlwaysTemplate)
-        case 3:
+        case 5:
             cell.textLabel?.text = "设置"
             cell.imageView?.image = UIImage(named: "settingTab")?.imageWithRenderingMode(.AlwaysTemplate)
         default:
@@ -152,8 +162,13 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             delegate.showGPAController()
         case 2:
-            delegate.showMicroservicesController()
+//            delegate.showLibraryController()
+            delegate.showClasstableController()
         case 3:
+            delegate.showLostFoundController()
+        case 4:
+            delegate.showMicroservicesController()
+        case 5:
             delegate.showSettingsController()
         default:
             break
