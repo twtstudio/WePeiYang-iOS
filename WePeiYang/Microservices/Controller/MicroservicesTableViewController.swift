@@ -10,6 +10,7 @@ import UIKit
 import AFNetworking
 import MJRefresh
 import SafariServices
+import SwiftyJSON
 
 class MicroservicesTableViewController: UITableViewController {
     
@@ -43,19 +44,18 @@ class MicroservicesTableViewController: UITableViewController {
     private func refresh() {
         MsgDisplay.showLoading()
         SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
-            let dic = responseObject as! [String: AnyObject]
-            if dic["error_code"] as? Int == -1 {
-                self.dataArr = WebAppItem.mj_objectArrayWithKeyValuesArray(dic["data"])
+            let dic = JSON(responseObject)
+            if dic["error_code"].int == -1 {
+                self.dataArr = WebAppItem.mj_objectArrayWithKeyValuesArray(dic["data"].arrayObject)
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }
             MsgDisplay.dismiss()
         }, failure: {(task, error) in
-            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
-            do {
-                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
-                MsgDisplay.showErrorMsg("获取数据失败\n\(dic["message"])")
-            } catch {
+            if let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? NSData {
+                let errorJSON = JSON(errorResponse)
+                MsgDisplay.showErrorMsg("获取数据失败\n\(errorJSON["message"])")
+            } else {
                 MsgDisplay.showErrorMsg("获取数据失败\n请稍后再试...")
             }
         })

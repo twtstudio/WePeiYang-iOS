@@ -162,7 +162,6 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             delegate.showGPAController()
         case 2:
-//            delegate.showLibraryController()
             delegate.showClasstableController()
         case 3:
             delegate.showLostFoundController()
@@ -170,6 +169,20 @@ class SidebarViewController: UIViewController, UITableViewDelegate, UITableViewD
             delegate.showMicroservicesController()
         case 5:
             delegate.showSettingsController()
+//        case 0:
+//            delegate.showNewsController()
+//        case 1:
+//            delegate.showGPAController()
+//        case 2:
+//            delegate.showLibraryController()
+//        case 3:
+//            delegate.showClasstableController()
+//        case 4:
+//            delegate.showLostFoundController()
+//        case 5:
+//            delegate.showMicroservicesController()
+//        case 6:
+//            delegate.showSettingsController()
         default:
             break
         }

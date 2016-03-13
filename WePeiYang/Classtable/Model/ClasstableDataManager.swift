@@ -8,33 +8,31 @@
 
 import UIKit
 import AFNetworking
+import SwiftyJSON
 
 class ClasstableDataManager: NSObject {
     
     class func getClasstableData(success: (data: AnyObject, termStartTime: Int) -> (), notBinded: () -> (), otherFailure: (errorMsg: String) -> ()) {
         twtSDK.getClasstableWithToken(NSUserDefaults.standardUserDefaults().stringForKey(TOKEN_SAVE_KEY), success: {(task, responseObject) in
-            let dic = responseObject as! Dictionary<String, AnyObject>
-            if dic["error_code"] as! Int == -1 {
-                if dic["data"] != nil {
-                    success(data: (dic["data"]!).objectForKey("data")!, termStartTime: (dic["data"]!).objectForKey("term_start")! as! Int)
+            let dic = JSON(responseObject)
+            if dic["error_code"].int == -1 {
+                if dic["data"].isExists() {
+                    success(data: dic["data", "data"].object, termStartTime: dic["data", "term_start"].intValue)
                 } else {
-                    otherFailure(errorMsg: dic["message"] as! String)
+                    otherFailure(errorMsg: dic["message"].stringValue)
                 }
             }
         }, failure: {(task, error) in
-            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
-            do {
-                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
-                let errorCodeStr = dic["error_code"] as! String
-                if errorCodeStr == "403" {
+            if let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? NSData {
+                let errorJSON = JSON(data: errorResponse)
+                if errorJSON["error_code"].int == 403 {
                     notBinded()
                 } else {
-                    otherFailure(errorMsg: dic["message"] as! String)
+                    otherFailure(errorMsg: errorJSON["message"].stringValue)
                 }
-            } catch {
-                
+            } else {
+                otherFailure(errorMsg: error.localizedDescription)
             }
-            
         })
     }
 

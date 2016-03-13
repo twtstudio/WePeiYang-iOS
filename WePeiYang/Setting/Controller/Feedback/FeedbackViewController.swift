@@ -10,6 +10,7 @@ import UIKit
 import FXForms
 import BlocksKit
 import AFNetworking
+import SwiftyJSON
 
 class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
     
@@ -55,19 +56,18 @@ class FeedbackViewController: UITableViewController, FXFormControllerDelegate {
     private func postFeedbackContent(content: String, email: String) {
         MsgDisplay.showLoading()
         SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/app/feedback", token: nil, parameters: ["content": content, "email": email], success: {(task, responseObj) in
-            let dic = responseObj as! [String: AnyObject]
-            if dic["error_code"] as! Int == -1 {
+            let dic = JSON(responseObj)
+            if dic["error_code"].int == -1 {
                 MsgDisplay.showSuccessMsg("反馈发送成功！")
                 self.navigationController?.popViewControllerAnimated(true)
             } else {
                 MsgDisplay.showErrorMsg("反馈发送失败！")
             }
         }, failure: {(task, error) in
-            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
-            do {
-                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
-                MsgDisplay.showErrorMsg("反馈发送失败！\n\(dic["message"])")
-            } catch {
+            if let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? NSData {
+                let errorJSON = JSON(errorResponse)
+                MsgDisplay.showErrorMsg("反馈发送失败！\n\(errorJSON["message"].stringValue)")
+            } else {
                 MsgDisplay.showErrorMsg("反馈发送失败！")
             }
         })
