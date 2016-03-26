@@ -37,9 +37,9 @@ class HomeToolsCell: UITableViewCell {
         thirdImgView.tintColor = UIColor.flatSkyBlueColor()
         thirdImgView.image = UIImage(named: "classtableTab")?.imageWithRenderingMode(.AlwaysTemplate)
         
-        firstGestureRecognizer.addTarget(self, action: "gestureHandler:")
-        secondGestureRecognizer.addTarget(self, action: "gestureHandler:")
-        thirdGestureRecognizer.addTarget(self, action: "gestureHandler:")
+        firstGestureRecognizer.addTarget(self, action: #selector(HomeToolsCell.gestureHandler(_:)))
+        secondGestureRecognizer.addTarget(self, action: #selector(HomeToolsCell.gestureHandler(_:)))
+        thirdGestureRecognizer.addTarget(self, action: #selector(HomeToolsCell.gestureHandler(_:)))
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

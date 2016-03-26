@@ -36,19 +36,19 @@
     }
     
     // 为适配 iOS 9 分屏，此处不需使用 initWithFrame，这样 app 获取的 frame 始终是正确的
-    self.window = [[UIWindow alloc] init];
-    MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
-    navigationController.view.backgroundColor = [UIColor whiteColor];
-    SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
-    sideMenuViewController.parallaxEnabled = NO;
-    sideMenuViewController.scaleContentView = NO;
-    sideMenuViewController.scaleMenuView = NO;
-    sideMenuViewController.contentViewShadowEnabled = YES;
-    sideMenuViewController.contentViewInPortraitOffsetCenterX = 100;
-    self.window.rootViewController = sideMenuViewController;
-    [self.window setBackgroundColor:[UIColor whiteColor]];
+//    self.window = [[UIWindow alloc] init];
+//    MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainController];
+//    navigationController.view.backgroundColor = [UIColor whiteColor];
+//    SidebarViewController *siderbarController = [[SidebarViewController alloc] initWithNibName:nil bundle:nil];
+//    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:navigationController leftMenuViewController:siderbarController rightMenuViewController:nil];
+//    sideMenuViewController.parallaxEnabled = NO;
+//    sideMenuViewController.scaleContentView = NO;
+//    sideMenuViewController.scaleMenuView = NO;
+//    sideMenuViewController.contentViewShadowEnabled = YES;
+//    sideMenuViewController.contentViewInPortraitOffsetCenterX = 100;
+//    self.window.rootViewController = sideMenuViewController;
+//    [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -25,8 +25,8 @@ class LoginViewController: UIViewController {
         loginBtn.clipsToBounds = true
         loginBtn.backgroundColor = UIColor.flatSkyBlueColor()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,9 +78,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelLogin() {
-        NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
+        
         self.dismissViewControllerAnimated(true, completion: {
-            
+            NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
         })
     }
     

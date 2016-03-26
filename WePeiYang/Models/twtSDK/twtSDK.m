@@ -70,8 +70,8 @@
 }
 
 + (void)getNewsListWithType:(NewsType)type page:(NSUInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    NSString *url = [NSString stringWithFormat:@"/news/type/%ld?page=%ld", type, page];
-//    NSString *url = [NSString stringWithFormat:@"/news/%ld/page/%ld", type, page];
+//    NSString *url = [NSString stringWithFormat:@"/news/type/%ld?page=%ld", type, page];
+    NSString *url = [NSString stringWithFormat:@"/news/%ld/page/%ld", type, page];
     [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

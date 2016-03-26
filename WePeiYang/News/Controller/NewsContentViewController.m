@@ -49,7 +49,7 @@
     [twtSDK getNewsContentWithIndex:newsData.index success:^(NSURLSessionDataTask *task, id responseObject) {
         [self processNewsContent:[NewsContent mj_objectWithKeyValues:responseObject[@"data"]]];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MsgDisplay showErrorMsg:error.description];
+        [MsgDisplay showErrorMsg:error.localizedDescription];
     }];
 }
 

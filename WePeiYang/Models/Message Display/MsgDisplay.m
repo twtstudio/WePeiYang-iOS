@@ -17,6 +17,7 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
     [SVProgressHUD showSuccessWithStatus:successStr];
 }
 
@@ -25,6 +26,7 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
     [SVProgressHUD showErrorWithStatus:errorStr];
 }
 

@@ -35,7 +35,7 @@
         self.titleSizeSelected = 15.0;
         self.titleSizeNormal = 15.0;
         self.menuViewStyle = WMMenuViewStyleLine;
-        self.titleColorSelected = [UIColor flatTealColor];
+        self.titleColorSelected = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
         self.titleColorNormal = [UIColor darkGrayColor];
         self.menuItemWidth = 100;
         self.bounces = YES;
@@ -50,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name: PUSH_NOTIFICATION object:nil];
-    self.navigationController.navigationBar.tintColor = [UIColor flatTealColor];
+//    self.navigationController.navigationBar.tintColor = [UIColor flatTealColor];
     
     // Appearance Customization
     self.menuView.layer.shadowColor = [UIColor darkGrayColor].CGColor;

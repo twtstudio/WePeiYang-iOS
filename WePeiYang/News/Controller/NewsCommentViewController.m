@@ -74,7 +74,7 @@
         [MsgDisplay showSuccessMsg:@"评论发送成功"];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MsgDisplay showErrorMsg:@"评论发送失败"];
-        NSLog(error.description);
+        NSLog(error.localizedDescription);
     }];
     
     [super didPressRightButton:sender];

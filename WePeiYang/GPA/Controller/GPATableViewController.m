@@ -60,7 +60,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBarBackgroundAlpha = 0.0;
+    self.navigationController.jz_navigationBarBackgroundAlpha = 0.0;
     self.clearsSelectionOnViewWillAppear = YES;
     headerView.backgroundColor = [UIColor flatPinkColorDark];
     
@@ -110,7 +110,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     self.navigationController.navigationBar.tintColor = self.view.tintColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-    self.navigationController.navigationBarBackgroundAlpha = 1.0;
+    self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -226,14 +226,14 @@
                     if ([dic objectForKey:@"message"] != nil) {
                         [MsgDisplay showErrorMsg:dic[@"message"]];
                     } else {
-                        [MsgDisplay showErrorMsg:error.description];
+                        [MsgDisplay showErrorMsg:error.localizedDescription];
                     }
                 }
             } else {
-                [MsgDisplay showErrorMsg:error.description];
+                [MsgDisplay showErrorMsg:error.localizedDescription];
             }
         } else {
-            [MsgDisplay showErrorMsg:error.description];
+            [MsgDisplay showErrorMsg:error.localizedDescription];
         }
         
         isRequestingData = NO;
@@ -276,17 +276,17 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
+        self.navigationController.jz_navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
     } else if (offSetY <= -60) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        self.navigationController.navigationBarBackgroundAlpha = 0.0;
+        self.navigationController.jz_navigationBarBackgroundAlpha = 0.0;
     } else {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.navigationBarBackgroundAlpha = 1.0;
+        self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
     }
 }
 
@@ -503,7 +503,7 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.navigationBarBackgroundAlpha = 1.0;
+        self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
         GPAAnalysisTableViewController *destVC = (GPAAnalysisTableViewController *)[segue destinationViewController];
         destVC.dataArr = dataArr;
     }

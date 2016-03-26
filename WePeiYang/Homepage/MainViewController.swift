@@ -13,7 +13,7 @@ import RESideMenu
 import MJRefresh
 import LocalAuthentication
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate, SidebarDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate{
     
     @IBOutlet var mainTableView: UITableView!
     
@@ -23,21 +23,22 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "微北洋"
+//        self.title = "微北洋"
+        self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        let sidebar = self.sideMenuViewController.leftMenuViewController as! SidebarViewController
-        sidebar.delegate = self
+//        let sidebar = self.sideMenuViewController.leftMenuViewController as! SidebarViewController
+//        sidebar.delegate = self
         
-        let menuBtn = UIBarButtonItem().bk_initWithImage(UIImage(named: "menu"), style: .Plain, handler: {handler in
-            self.sideMenuViewController.presentLeftMenuViewController()
-        }) as! UIBarButtonItem
-        self.navigationItem.leftBarButtonItem = menuBtn
+//        let menuBtn = UIBarButtonItem().bk_initWithImage(UIImage(named: "menu"), style: .Plain, handler: {handler in
+//            self.sideMenuViewController.presentLeftMenuViewController()
+//        }) as! UIBarButtonItem
+//        self.navigationItem.leftBarButtonItem = menuBtn
         
         self.mainTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.getData()
         })
-        self.getData()
+        self.mainTableView.mj_header.beginRefreshing()
         
         if !AccountManager.tokenExists() {
             let loginVC = LoginViewController(nibName: nil, bundle: nil)
@@ -48,8 +49,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
+//        self.navigationController?.tabBarController?.tabBar.hidden = false
         // GREAT TRICK!!!!
-        (self.sideMenuViewController.leftMenuViewController as! SidebarViewController).updateView()
+//        (self.sideMenuViewController.leftMenuViewController as! SidebarViewController).updateView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,13 +70,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Private
     
     private func getData() {
-        HomeDataManager.getHomeDataWithClosure({(_carouselArr, _campusArr, _announceArr) in
+        HomeDataManager.getHomeDataWithClosure({(isCached, _carouselArr, _campusArr, _announceArr) in
             self.carouselArr = _carouselArr
             self.campusArr = _campusArr
             self.announceArr = _announceArr
             
             self.mainTableView.reloadData()
-            self.mainTableView.mj_header.endRefreshing()
+            if isCached == false {
+                self.mainTableView.mj_header.endRefreshing()
+            }
         }, failure: {(error, description) in
             MsgDisplay.showErrorMsg(description)
             self.mainTableView.mj_header.endRefreshing()
@@ -106,7 +110,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
-//        let row = indexPath.row
         let width = self.view.bounds.size.width
         switch section {
         case 0:
@@ -219,11 +222,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    // SIDE BAR DELEGATE
+    // PRESENT VIEW CONTROLLERS
     
     func showGPAController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+        gpaVC.hidesBottomBarWhenPushed = true
         
         let userDefaults = NSUserDefaults()
         let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
@@ -235,7 +239,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
                 if success {
-                    print("SUCCESS")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.navigationController?.showViewController(gpaVC, sender: nil)
                     })
@@ -251,31 +254,37 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func showNewsController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
+        newsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(newsVC, sender: nil)
     }
     
     func showClasstableController() {
         let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        classtableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(classtableVC, sender: nil)
     }
     
-    func showSettingsController() {
-        let settingsVC = SettingViewController(style: .Grouped)
-        self.navigationController?.showViewController(settingsVC, sender: nil)
-    }
+//    func showSettingsController() {
+//        let settingsVC = SettingViewController(style: .Grouped)
+//        settingsVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.showViewController(settingsVC, sender: nil)
+//    }
     
     func showLibraryController() {
         let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        libVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(libVC, sender: nil)
     }
     
     func showLostFoundController() {
         let lfVC = LostFoundViewController()
+        lfVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(lfVC, sender: nil)
     }
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
+        msVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(msVC, sender: nil)
     }
 

@@ -29,10 +29,7 @@
 		E901055B1C3B994E002901AC /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E901054C1C3B994E002901AC /* NewsTableViewCell.m */; };
 		E90105651C3B9C2C002901AC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90105611C3B9C2C002901AC /* libWeChatSDK.a */; };
 		E90105691C3B9D89002901AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90105681C3B9D89002901AC /* Pods.framework */; };
-		E901056C1C3B9F40002901AC /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E901056A1C3B9F40002901AC /* SidebarViewController.swift */; };
-		E901056D1C3B9F40002901AC /* SidebarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E901056B1C3B9F40002901AC /* SidebarViewController.xib */; };
 		E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E901056E1C3B9F4D002901AC /* MainViewController.swift */; };
-		E90105711C3B9F4D002901AC /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E901056F1C3B9F4D002901AC /* MainViewController.xib */; };
 		E90105731C3BA02E002901AC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90105721C3BA02E002901AC /* libc++.tbd */; };
 		E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */; };
 		E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A9B231C4040E300ADABA0 /* HomeWeatherCell.swift */; };
@@ -41,6 +38,9 @@
 		E92298541AF0F797000CC8F7 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */; };
 		E922985E1AF0F907000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */; };
 		E922985F1AF0F907000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */; };
+		E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925971C1CA62AD600D4E812 /* ToolsCollectionViewController.swift */; };
+		E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92597221CA62E1B00D4E812 /* ToolsCollectionViewCell.swift */; };
+		E92597251CA62E1B00D4E812 /* ToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92597231CA62E1B00D4E812 /* ToolsCollectionViewCell.xib */; };
 		E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */; };
 		E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C7F401C6EF4590022857A /* NewsCommentTableViewCell.m */; };
 		E92C7F431C6EF4590022857A /* NewsCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92C7F411C6EF4590022857A /* NewsCommentTableViewCell.xib */; };
@@ -53,7 +53,6 @@
 		E9472BE91C14872900EC229C /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BE81C14872900EC229C /* NewsData.m */; };
 		E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BEB1C14879D00EC229C /* NewsContent.m */; };
 		E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949E3DF1C43F3A900A5212B /* SettingViewController.swift */; };
-		E94AC15D1C7355EA00C82C4E /* class_demo.json in Resources */ = {isa = PBXBuildFile; fileRef = E94AC15C1C7355EA00C82C4E /* class_demo.json */; };
 		E94AC15F1C737B6300C82C4E /* ClassCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94AC15E1C737B6300C82C4E /* ClassCellView.swift */; };
 		E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FCE1BF79A5000520536 /* GPAData.m */; };
 		E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FD11BF79BF900520536 /* GPAClassData.m */; };
@@ -125,7 +124,6 @@
 		E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */; };
 		E9D744021BF9AE38005F2EF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D743F41BF9AE38005F2EF9 /* main.m */; };
 		E9D744031BF9AE38005F2EF9 /* twtAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D743F61BF9AE38005F2EF9 /* twtAppDelegate.m */; };
-		E9D744041BF9AE38005F2EF9 /* WePeiYang-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F71BF9AE38005F2EF9 /* WePeiYang-Info.plist */; };
 		E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F91BF9AE38005F2EF9 /* WePeiYang.entitlements */; };
 		E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FB1BF9AE38005F2EF9 /* InfoPlist.strings */; };
 		E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FD1BF9AE38005F2EF9 /* Localizable.strings */; };
@@ -184,7 +182,7 @@
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
 		E901053B1C3B994E002901AC /* GPATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewCell.h; sourceTree = "<group>"; };
 		E901053C1C3B994E002901AC /* GPATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewCell.m; sourceTree = "<group>"; };
-		E901053E1C3B994E002901AC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E901053E1C3B994E002901AC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Homepage/Main.storyboard; sourceTree = "<group>"; };
 		E90105431C3B994E002901AC /* NewsContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsContentViewController.h; sourceTree = "<group>"; };
 		E90105441C3B994E002901AC /* NewsContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsContentViewController.m; sourceTree = "<group>"; };
 		E90105451C3B994E002901AC /* NewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewController.h; sourceTree = "<group>"; };
@@ -200,10 +198,7 @@
 		E90105641C3B9C2C002901AC /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		E90105661C3B9D4D002901AC /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_WePeiYang.framework; path = "Pods/../build/Debug-iphoneos/Pods_WePeiYang.framework"; sourceTree = "<group>"; };
 		E90105681C3B9D89002901AC /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		E901056A1C3B9F40002901AC /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		E901056B1C3B9F40002901AC /* SidebarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidebarViewController.xib; sourceTree = "<group>"; };
 		E901056E1C3B9F4D002901AC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		E901056F1C3B9F4D002901AC /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		E90105721C3BA02E002901AC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E90105741C3BA44F002901AC /* MK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MK.framework; path = "Pods/../build/Debug-iphoneos/MK.framework"; sourceTree = "<group>"; };
 		E91A26FD1ABAC21C0080CB6F /* wpyCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wpyCacheManager.h; path = "Cache Manager/wpyCacheManager.h"; sourceTree = "<group>"; };
@@ -216,6 +211,9 @@
 		E922985B1AF0F907000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatMomentsActivity.m; path = Sharing/WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922985C1AF0F907000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeChatSessionActivity.h; path = Sharing/WeChatSessionActivity.h; sourceTree = "<group>"; };
 		E922985D1AF0F907000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatSessionActivity.m; path = Sharing/WeChatSessionActivity.m; sourceTree = "<group>"; };
+		E925971C1CA62AD600D4E812 /* ToolsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToolsCollectionViewController.swift; path = Tools/Controller/ToolsCollectionViewController.swift; sourceTree = "<group>"; };
+		E92597221CA62E1B00D4E812 /* ToolsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToolsCollectionViewCell.swift; path = Tools/View/ToolsCollectionViewCell.swift; sourceTree = "<group>"; };
+		E92597231CA62E1B00D4E812 /* ToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ToolsCollectionViewCell.xib; path = Tools/View/ToolsCollectionViewCell.xib; sourceTree = "<group>"; };
 		E92C7F3C1C6EF1E80022857A /* NewsCommentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentTextView.h; sourceTree = "<group>"; };
 		E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentTextView.m; sourceTree = "<group>"; };
 		E92C7F3F1C6EF4590022857A /* NewsCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentTableViewCell.h; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 		E9472BEA1C14879D00EC229C /* NewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContent.h; path = "../../Models/Data Model/NewsContent.h"; sourceTree = "<group>"; };
 		E9472BEB1C14879D00EC229C /* NewsContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsContent.m; path = "../../Models/Data Model/NewsContent.m"; sourceTree = "<group>"; };
 		E949E3DF1C43F3A900A5212B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		E94AC15C1C7355EA00C82C4E /* class_demo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = class_demo.json; sourceTree = "<group>"; };
 		E94AC15E1C737B6300C82C4E /* ClassCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassCellView.swift; path = Classtable/View/ClassCellView.swift; sourceTree = "<group>"; };
 		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "../../Models/Data Model/GPAData.h"; sourceTree = "<group>"; };
 		E94B1FCE1BF79A5000520536 /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "../../Models/Data Model/GPAData.m"; sourceTree = "<group>"; };
@@ -451,6 +448,7 @@
 				E9AF6BB91A7CFCE2008B5214 /* Models */,
 				E9B972C71C5651FF001E480E /* Account */,
 				E901053D1C3B994E002901AC /* Homepage */,
+				E9C3978A1CA520ED00E89813 /* Tools */,
 				E90105331C3B994E002901AC /* GPA */,
 				E90105411C3B994E002901AC /* News */,
 				E9BA7BAE1C5A1509009A4E9A /* Classtable */,
@@ -750,11 +748,7 @@
 		E96921CE1C3BEEAF002B4319 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E901053E1C3B994E002901AC /* Main.storyboard */,
 				E901056E1C3B9F4D002901AC /* MainViewController.swift */,
-				E901056F1C3B9F4D002901AC /* MainViewController.xib */,
-				E901056A1C3B9F40002901AC /* SidebarViewController.swift */,
-				E901056B1C3B9F40002901AC /* SidebarViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1053,10 +1047,43 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		E9C3978A1CA520ED00E89813 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				E9C3978D1CA5210F00E89813 /* Controller */,
+				E9C3978C1CA5210B00E89813 /* View */,
+				E9C3978B1CA5210500E89813 /* Model */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		E9C3978B1CA5210500E89813 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E9C3978C1CA5210B00E89813 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E92597221CA62E1B00D4E812 /* ToolsCollectionViewCell.swift */,
+				E92597231CA62E1B00D4E812 /* ToolsCollectionViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E9C3978D1CA5210F00E89813 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E925971C1CA62AD600D4E812 /* ToolsCollectionViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		E9C7D93C1BF9A94100DCB34A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				E94AC15C1C7355EA00C82C4E /* class_demo.json */,
 				E9C7D93D1BF9A94100DCB34A /* Images.xcassets */,
 				E9941B431C15E8AC00626A56 /* WXSDK */,
 			);
@@ -1094,6 +1121,7 @@
 				E9D743F81BF9AE38005F2EF9 /* WePeiYang-Prefix.pch */,
 				E90105601C3B99AB002901AC /* WePeiYang-Bridging-Header.h */,
 				E9D743F91BF9AE38005F2EF9 /* WePeiYang.entitlements */,
+				E901053E1C3B994E002901AC /* Main.storyboard */,
 				E9D743FA1BF9AE38005F2EF9 /* zh-Hans.lproj */,
 			);
 			name = Main;
@@ -1149,7 +1177,7 @@
 				CLASSPREFIX = twt;
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Qin Yubo";
 				TargetAttributes = {
 					1888420E1846E6F4007B92CB = {
@@ -1193,13 +1221,12 @@
 				E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */,
 				E98DF6F61C5DF5BF003943A4 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				E98ACE1B1C4026780012C762 /* HomeNewsTableViewCell.xib in Resources */,
+				E92597251CA62E1B00D4E812 /* ToolsCollectionViewCell.xib in Resources */,
 				E98DF6F81C5DF5BF003943A4 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
 				E9E42A451C74558B00C871D6 /* ClassDetailViewController.xib in Resources */,
 				E9D743FF1BF9AE38005F2EF9 /* InfoPlist.strings in Resources */,
-				E901056D1C3B9F40002901AC /* SidebarViewController.xib in Resources */,
 				E9C7D9411BF9A94100DCB34A /* Images.xcassets in Resources */,
 				E90105561C3B994E002901AC /* Main.storyboard in Resources */,
-				E90105711C3B9F4D002901AC /* MainViewController.xib in Resources */,
 				E9D744001BF9AE38005F2EF9 /* Localizable.strings in Resources */,
 				E98DF6F11C5DF5BF003943A4 /* SVWebViewController.bundle in Resources */,
 				E9D0522B1C66338900DFBDDA /* bridge.js in Resources */,
@@ -1207,9 +1234,7 @@
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E9AE97E11C6F978500641B08 /* LostFoundTableViewCell.xib in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
-				E94AC15D1C7355EA00C82C4E /* class_demo.json in Resources */,
 				E98DF6FA1C5DF5BF003943A4 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
-				E9D744041BF9AE38005F2EF9 /* WePeiYang-Info.plist in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
 				E98DF6F31C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				E98DF6EF1C5DF5BF003943A4 /* SVWebViewController.strings in Resources */,
@@ -1291,6 +1316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
+				E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */,
 				E98DF6F91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
 				E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */,
@@ -1345,6 +1371,7 @@
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
 				E96D797F1C6F836700550746 /* LostFoundTableViewController.m in Sources */,
 				E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */,
+				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
@@ -1362,7 +1389,6 @@
 				E901055B1C3B994E002901AC /* NewsTableViewCell.m in Sources */,
 				E90105581C3B994E002901AC /* NewsContentViewController.m in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
-				E901056C1C3B9F40002901AC /* SidebarViewController.swift in Sources */,
 				E9D744031BF9AE38005F2EF9 /* twtAppDelegate.m in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
 			);
@@ -1459,6 +1485,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1537,6 +1564,7 @@
 					"$(PROJECT_DIR)/WePeiYang/Resource",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang/WePeiYang-Bridging-Header.h";
@@ -1571,6 +1599,7 @@
 					"$(PROJECT_DIR)/WePeiYang/Resource",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang/WePeiYang-Bridging-Header.h";
@@ -1596,6 +1625,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "WePeiYangTests/WePeiYangTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1614,6 +1644,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WePeiYang/WePeiYang-Prefix.pch";
 				INFOPLIST_FILE = "WePeiYangTests/WePeiYangTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
