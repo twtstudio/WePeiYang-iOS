@@ -65,8 +65,8 @@
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA841C4BF17E00EFC107 /* FeedbackForm.swift */; };
 		E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */; };
+		E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */; };
 		E96D79741C6F815200550746 /* LostFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D79731C6F815200550746 /* LostFoundViewController.m */; };
-		E96D797F1C6F836700550746 /* LostFoundTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96D797E1C6F836700550746 /* LostFoundTableViewController.m */; };
 		E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */; };
 		E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */; };
 		E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336531C71EC9B00ACA06B /* LostFoundPostViewController.swift */; };
@@ -251,10 +251,9 @@
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
 		E95BDA841C4BF17E00EFC107 /* FeedbackForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackForm.swift; path = Feedback/FeedbackForm.swift; sourceTree = "<group>"; };
 		E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackViewController.swift; path = Feedback/FeedbackViewController.swift; sourceTree = "<group>"; };
+		E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundTableViewController.swift; path = LostFound/Controller/LostFoundTableViewController.swift; sourceTree = "<group>"; };
 		E96D79721C6F815200550746 /* LostFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LostFoundViewController.h; path = LostFound/Controller/LostFoundViewController.h; sourceTree = "<group>"; };
 		E96D79731C6F815200550746 /* LostFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundViewController.m; path = LostFound/Controller/LostFoundViewController.m; sourceTree = "<group>"; };
-		E96D797D1C6F836700550746 /* LostFoundTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LostFoundTableViewController.h; path = LostFound/Controller/LostFoundTableViewController.h; sourceTree = "<group>"; };
-		E96D797E1C6F836700550746 /* LostFoundTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundTableViewController.m; path = LostFound/Controller/LostFoundTableViewController.m; sourceTree = "<group>"; };
 		E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailViewController.swift; path = LostFound/Controller/LostFoundDetailViewController.swift; sourceTree = "<group>"; };
 		E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailForm.swift; path = LostFound/Controller/LostFoundDetailForm.swift; sourceTree = "<group>"; };
 		E97336531C71EC9B00ACA06B /* LostFoundPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundPostViewController.swift; path = LostFound/Controller/LostFoundPostViewController.swift; sourceTree = "<group>"; };
@@ -790,8 +789,7 @@
 			children = (
 				E96D79721C6F815200550746 /* LostFoundViewController.h */,
 				E96D79731C6F815200550746 /* LostFoundViewController.m */,
-				E96D797D1C6F836700550746 /* LostFoundTableViewController.h */,
-				E96D797E1C6F836700550746 /* LostFoundTableViewController.m */,
+				E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */,
 				E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */,
 				E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */,
 				E97336571C7213A200ACA06B /* LostFoundPostForm.swift */,
@@ -1369,7 +1367,6 @@
 				E90105531C3B994E002901AC /* GPAAnalysisTableViewController.m in Sources */,
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
-				E96D797F1C6F836700550746 /* LostFoundTableViewController.m in Sources */,
 				E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
@@ -1381,6 +1378,7 @@
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
+				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,

@@ -15,6 +15,8 @@ class LibraryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.title = "图书馆"
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

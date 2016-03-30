@@ -7,7 +7,7 @@
 //
 
 #import "LostFoundViewController.h"
-#import "LostFoundTableViewController.h"
+//#import "LostFoundTableViewController.h"
 #import "BlocksKit+UIKit.h"
 #import "WePeiYang-Swift.h"
 
@@ -79,6 +79,11 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }];
     self.navigationItem.rightBarButtonItem = addBtn;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
 }
 
 - (void)didReceiveMemoryWarning {

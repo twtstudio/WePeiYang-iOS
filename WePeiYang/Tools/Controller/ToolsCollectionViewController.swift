@@ -16,12 +16,14 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     private let toolsData: [(title: String, image: UIImage)] = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "课程表", image: UIImage(named: "classtableTab")!),
+        (title: "图书馆", image: UIImage(named: "libTab")!),
         (title: "失物招领", image: UIImage(named: "lfTab")!),
         (title: "实验室", image: UIImage(named: "msBtn")!)
     ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.alwaysBounceVertical = true
 
@@ -62,7 +64,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return toolsData.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -91,8 +93,10 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         case 1:
             self.showClasstableController()
         case 2:
-            self.showLostFoundController()
+            self.showLibraryController()
         case 3:
+            self.showLostFoundController()
+        case 4:
             self.showMicroservicesController()
         default:
             return

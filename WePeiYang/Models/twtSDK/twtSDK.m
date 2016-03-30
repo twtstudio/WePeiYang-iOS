@@ -183,6 +183,31 @@
     }];
 }
 
++ (void)getLibrarySearchResultWithTitle:(NSString *)title page:(NSInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSString *url = [NSString stringWithFormat:@"/lib/search/%@?page=%ld", title, page];
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getLibraryReaderRank:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/lib/rank/reader" token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getLibraryBookRank:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/lib/rank/book" token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
 + (NSString *)wpyToken {
     return [AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil;
 }
