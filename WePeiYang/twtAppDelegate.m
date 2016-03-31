@@ -22,7 +22,7 @@
 @implementation twtAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WXApi registerApp:[twtSecretKeys getWechatAppId]];
+//    [WXApi registerApp:[twtSecretKeys getWechatAppId]];
     
     // Set NSURLCache
     NSURLCache *sharedCache = [[NSURLCache alloc]initWithMemoryCapacity:2 * 1024 * 1024 diskCapacity:30 * 1024 * 1024 diskPath:nil];
@@ -53,16 +53,13 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [WXApi handleOpenURL:url delegate:self];
-}
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     if ([[url scheme] isEqualToString:@"wepeiyang"]) {
         [SchemeManager handleSchemeURL:url];
         return YES;
     } else {
-        return [WXApi handleOpenURL:url delegate:self];
+        return NO;
     }
 }
 
@@ -107,15 +104,5 @@
 //- (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
 //    
 //}
-
-// WeChat Delegate
-
-- (void)onReq:(BaseReq *)req {
-    
-}
-
-- (void)onResp:(BaseResp *)resp {
-    
-}
 
 @end

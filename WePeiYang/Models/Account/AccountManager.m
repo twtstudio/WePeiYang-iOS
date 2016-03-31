@@ -32,7 +32,7 @@
     [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
     [SolaInstance shareInstance].token = nil;
     [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
-        NSLog(error.localizedDescription);
+//        NSLog(error.localizedDescription);
     }];
 }
 
@@ -174,7 +174,7 @@
         [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
         [wpyCacheManager removeCacheDataForKey:GPA_USER_NAME_CACHE];
         [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
-            NSLog(error.localizedDescription);
+//            NSLog(error.localizedDescription);
         }];
         if (success != nil) {
             success();

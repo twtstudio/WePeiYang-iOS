@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WXApi.h"
+//#import "WXApi.h"
 
-@interface twtAppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate, WXApiDelegate>
+@interface twtAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

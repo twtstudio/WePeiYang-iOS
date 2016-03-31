@@ -91,7 +91,7 @@ class LostFoundTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath) as! LostFoundTableViewCell
-        cell.setLostFoundItem(dataArr[indexPath.row] as! LostFoundItem, withType: type)
+        cell.setLostFoundItem(dataArr[indexPath.row] as! LostFoundItem, type: type)
         return cell
     }
     

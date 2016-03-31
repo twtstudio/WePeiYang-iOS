@@ -17,7 +17,6 @@
 #import "GPATableViewCell.h"
 #import "wpyCacheManager.h"
 #import "MsgDisplay.h"
-#import "GPAAnalysisTableViewController.h"
 #import "twtSecretKeys.h"
 #import "wpyCacheManager.h"
 #import "BlocksKit.h"
@@ -308,7 +307,7 @@
         }
         [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:searchableItems completionHandler:^(NSError *error) {
             if (error) {
-                NSLog(error.localizedDescription);
+//                NSLog(error.localizedDescription);
             }
         }];
     });
@@ -499,14 +498,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //     Get the new view controller using [segue destinationViewController].
 //     Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"showStat"]) {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-        self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
-        GPAAnalysisTableViewController *destVC = (GPAAnalysisTableViewController *)[segue destinationViewController];
-        destVC.dataArr = dataArr;
-    }
+
 }
 
 @end

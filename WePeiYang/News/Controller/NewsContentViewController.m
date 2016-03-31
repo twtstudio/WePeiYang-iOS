@@ -14,8 +14,6 @@
 #import "MJExtension.h"
 #import "MsgDisplay.h"
 #import "OpenInSafariActivity.h"
-#import "WeChatMomentsActivity.h"
-#import "WeChatSessionActivity.h"
 #import "WebViewJavascriptBridge.h"
 #import <SafariServices/SafariServices.h>
 #import "IDMPhotoBrowser.h"
@@ -64,9 +62,7 @@
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@", newsData.index]];
     NSArray *activityItems = @[shareURL];
     OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
-    WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
-    WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
-    UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari, wxMoment, wxSession]];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari]];
     activityController.modalPresentationStyle = UIModalPresentationPopover;
     activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
     activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
