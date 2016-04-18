@@ -62,7 +62,7 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self nextPage];
     }];
-    [self refreshData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,6 +126,7 @@
     NewsData *tmp = (NewsData *)dataArr[indexPath.row];
 //    [delegate pushContentWithIndex:tmp.index];
     [[NSNotificationCenter defaultCenter] postNotificationName:PUSH_NOTIFICATION object:tmp];
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

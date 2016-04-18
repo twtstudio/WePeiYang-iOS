@@ -61,7 +61,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     */
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -89,7 +89,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
@@ -137,7 +137,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     */
     
-    // MARK: push tools
+    // MARK: - push tools
     
     func showGPAController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

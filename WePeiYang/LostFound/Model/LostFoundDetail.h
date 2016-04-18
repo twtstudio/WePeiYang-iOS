@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MJExtension/MJExtension.h>
+@import MJExtension;
 
 @interface LostFoundDetail : NSObject
 

@@ -9,31 +9,24 @@
 import UIKit
 import BlocksKit
 import JZNavigationExtension
-import RESideMenu
 import MJRefresh
 import LocalAuthentication
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate{
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate {
     
     @IBOutlet var mainTableView: UITableView!
     
     var carouselArr = []
     var campusArr = []
     var announceArr = []
+    var lostArr = []
+    var foundArr = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.title = "微北洋"
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         mainTableView.dataSource = self
         mainTableView.delegate = self
-//        let sidebar = self.sideMenuViewController.leftMenuViewController as! SidebarViewController
-//        sidebar.delegate = self
-        
-//        let menuBtn = UIBarButtonItem().bk_initWithImage(UIImage(named: "menu"), style: .Plain, handler: {handler in
-//            self.sideMenuViewController.presentLeftMenuViewController()
-//        }) as! UIBarButtonItem
-//        self.navigationItem.leftBarButtonItem = menuBtn
         
         self.mainTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.getData()
@@ -49,9 +42,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
-//        self.navigationController?.tabBarController?.tabBar.hidden = false
-        // GREAT TRICK!!!!
-//        (self.sideMenuViewController.leftMenuViewController as! SidebarViewController).updateView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,10 +60,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Private
     
     private func getData() {
-        HomeDataManager.getHomeDataWithClosure({(isCached, _carouselArr, _campusArr, _announceArr) in
+        HomeDataManager.getHomeDataWithClosure({(isCached, _carouselArr, _campusArr, _announceArr, _lostArr, _foundArr) in
             self.carouselArr = _carouselArr
             self.campusArr = _campusArr
             self.announceArr = _announceArr
+            self.lostArr = _lostArr
+            self.foundArr = _foundArr
             
             self.mainTableView.reloadData()
             if isCached == false {
@@ -88,7 +80,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // TABLE VIEW DATA SOURCE
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 5
+        return 7
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,6 +95,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return campusArr.count // News
         case 4:
             return announceArr.count // Announcements
+        case 5:
+            return lostArr.count
+        case 6:
+            return foundArr.count
         default:
             return 0
         }
@@ -116,6 +112,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return width*2/3
         case 1, 2:
             return 120
+        case 5, 6:
+            return 132
         default:
             return 64
         }
@@ -168,6 +166,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             return newsCell!
+        case 5, 6:
+            var lfCell = tableView.dequeueReusableCellWithIdentifier("lfIdentifier") as? LostFoundTableViewCell
+            if lfCell == nil {
+                let nib = NSBundle.mainBundle().loadNibNamed("LostFoundTableViewCell", owner: self, options: nil)
+                lfCell = nib[0] as? LostFoundTableViewCell
+            }
+            if section == 5 {
+                lfCell?.setLostFoundItem(lostArr[row] as! LostFoundItem, type: 0)
+            }
+            if section == 6 {
+                lfCell?.setLostFoundItem(foundArr[row] as! LostFoundItem, type: 1)
+            }
+            return lfCell!
         default:
             return cell
         }
@@ -179,6 +190,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return "新闻"
         case 4:
             return "公告"
+        case 5:
+            return "丢失"
+        case 6:
+            return "捡到"
         default:
             return nil
         }
@@ -192,6 +207,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.goToContent(campusArr[row] as! NewsData)
         case 4:
             self.goToContent(announceArr[row] as! NewsData)
+        case 5:
+            self.showLostFoundDetail((lostArr[row] as! LostFoundItem).index, type: "0")
+        case 6:
+            self.showLostFoundDetail((foundArr[row] as! LostFoundItem).index, type: "1")
         default:
             break
         }
@@ -212,11 +231,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func toolsTappedAtIndex(index: Int) {
         switch index {
         case 0:
-            self.showNewsController()
-        case 1:
             self.showGPAController()
-        case 2:
+        case 1:
             self.showClasstableController()
+        case 2:
+            self.showLibraryController()
+        case 3:
+            self.showLostFoundController()
         default:
             break
         }
@@ -280,6 +301,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let lfVC = LostFoundViewController()
         lfVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(lfVC, sender: nil)
+    }
+    
+    func showLostFoundDetail(index: String, type: String) {
+        let detail = LostFoundDetailViewController(style: .Grouped)
+        detail.index = index
+        detail.type = type
+        detail.hidesBottomBarWhenPushed = true
+        self.navigationController?.showViewController(detail, sender: nil)
     }
     
     func showMicroservicesController() {

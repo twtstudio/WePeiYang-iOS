@@ -12,16 +12,18 @@ import SwiftyJSON
 
 class LostFoundTableViewController: UITableViewController {
     
-    @objc var type: Int = 0
+    var type: Int = 0
     private var currentPage: Int = 1
     private var dataArr: NSMutableArray = []
+    
+    // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.clearsSelectionOnViewWillAppear = false
         self.tableView.tableFooterView = UIView()
-        self.tableView.registerNib(UINib(nibName: "LostFoundTableViewCell", bundle: nil), forCellReuseIdentifier: "cellIdentifier")
+        self.tableView.registerNib(UINib(nibName: "LostFoundTableViewCell", bundle: nil), forCellReuseIdentifier: "lfIdentifier")
         
         if self.navigationController?.navigationBar.translucent == true {
             self.automaticallyAdjustsScrollViewInsets = false
@@ -45,6 +47,8 @@ class LostFoundTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Private methods
     
     private func refreshData() {
         currentPage = 1
@@ -90,7 +94,7 @@ class LostFoundTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath) as! LostFoundTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("lfIdentifier", forIndexPath: indexPath) as! LostFoundTableViewCell
         cell.setLostFoundItem(dataArr[indexPath.row] as! LostFoundItem, type: type)
         return cell
     }

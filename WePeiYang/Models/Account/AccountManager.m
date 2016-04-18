@@ -68,8 +68,8 @@
 + (void)refreshTokenSuccess:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY] != nil) {
         [twtSDK refreshTokenWithOldToken:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] success:^(NSURLSessionDataTask *task, id responseObject) {
-            if ([responseObject objectForKey:@"token"] != nil) {
-                success([responseObject objectForKey:@"token"]);
+            if ([responseObject objectForKey:@"data"] != nil) {
+                success([responseObject objectForKey:@"data"]);
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (failure != nil) {

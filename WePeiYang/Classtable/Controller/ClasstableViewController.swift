@@ -177,11 +177,13 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 // 考虑不在当前周数内的科目
                 if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
                     // 单双周判断
+                    // MARK: - WARNING 单双周可能有课不一样
                     if (tmpArrange.week == "单双周") || (currentWeek % 2 == 0 && tmpArrange.week == "双周") || (currentWeek % 2 == 1 && tmpArrange.week == "单周") {
                         classCell.backgroundColor = classBgColor
                     } else {
-                        classCell.backgroundColor = UIColor.flatWhiteColor()
-                        classCell.classLabel.textColor = UIColor.flatGrayColorDark()
+//                        classCell.backgroundColor = UIColor.flatWhiteColor()
+//                        classCell.classLabel.textColor = UIColor.flatGrayColorDark()
+                        classCell.removeFromSuperview()
                     }
                 } else {
                     classCell.backgroundColor = UIColor.flatWhiteColor()
@@ -202,7 +204,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         } else if screenSize.width <= 414 {
             height = width * 1.3
         } else if screenSize.width <= 768 {
-            if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone {
+            if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
                 height = width * 0.45
             } else {
                 height = width * 0.8

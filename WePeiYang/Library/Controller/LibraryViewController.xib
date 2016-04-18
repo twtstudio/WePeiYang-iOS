@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
-                <outlet property="searchDisplayController" destination="oxX-vY-rGs" id="slk-mJ-eNZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,16 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="310" y="280"/>
         </view>
-        <searchDisplayController id="oxX-vY-rGs">
-            <connections>
-                <outlet property="delegate" destination="-1" id="XfE-Zt-CE6"/>
-                <outlet property="searchContentsController" destination="-1" id="wVc-jG-rdt"/>
-                <outlet property="searchResultsDataSource" destination="-1" id="mGI-Fw-KAP"/>
-                <outlet property="searchResultsDelegate" destination="-1" id="tWz-oq-ewL"/>
-            </connections>
-        </searchDisplayController>
     </objects>
 </document>

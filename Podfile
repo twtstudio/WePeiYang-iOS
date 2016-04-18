@@ -24,6 +24,7 @@ pod 'IDMPhotoBrowser'
 pod 'SlackTextViewController'
 pod 'STPopup'
 pod 'DateTools'
+pod 'ObjectMapper'
 
 target 'WePeiYang' do
 

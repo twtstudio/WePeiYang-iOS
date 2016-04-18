@@ -9,19 +9,28 @@
 import UIKit
 
 class LibraryViewController: UIViewController {
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.jz_navigationBarBackgroundHidden = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.title = "图书馆"
-        
+        self.title = ""
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.jz_navigationBarBackgroundHidden = false
     }
     
 

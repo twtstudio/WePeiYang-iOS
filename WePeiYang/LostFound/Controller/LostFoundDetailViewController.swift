@@ -9,12 +9,15 @@
 import UIKit
 import FXForms
 import MJExtension
+import SwiftyJSON
 
 class LostFoundDetailViewController: UITableViewController, FXFormControllerDelegate {
     
     var formController: FXFormController!
     var type: String!
     var index: String!
+    
+    private var phoneNum = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +32,33 @@ class LostFoundDetailViewController: UITableViewController, FXFormControllerDele
         formController.tableView = self.tableView
         formController.delegate = self
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem().bk_initWithImage(UIImage(named: "lf_phone"), style: .Plain, handler: { handler in
+            if !self.phoneNum.isEmpty {
+                let phoneNumber = Int(self.phoneNum)
+                if phoneNumber != nil {
+                    
+                    let alert = UIAlertController(title: "呼叫", message: "", preferredStyle: .ActionSheet)
+                    let callAction = UIAlertAction(title: "\(phoneNumber!)", style: .Destructive, handler: {handler in
+                        UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(self.phoneNum)")!)
+                    })
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil)
+                    alert.addAction(callAction)
+                    alert.addAction(cancelAction)
+                    alert.modalPresentationStyle = .Popover
+                    alert.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+                    alert.popoverPresentationController?.sourceView = self.view
+                    alert.popoverPresentationController?.sourceRect = self.view.bounds
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                }
+            }
+        }) as? UIBarButtonItem
+        
         twtSDK.getLostFoundDetailWithID(index, success: {(task, responseObj) in
-            let dic = responseObj as! [String: AnyObject]
-            if dic["error_code"] as? Int == -1 {
-                let lostFoundDetail = LostFoundDetail.mj_objectWithKeyValues(dic["data"])
+            let dic = JSON(responseObj)
+            if dic["error_code"].int == -1 {
+                let lostFoundDetail = LostFoundDetail.mj_objectWithKeyValues(dic["data"].object)
+                self.phoneNum = lostFoundDetail.phone
                 let form = LostFoundDetailForm()
                 form.detailItem = lostFoundDetail
                 self.formController.form = form

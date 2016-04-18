@@ -28,6 +28,7 @@ class MicroservicesTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 65
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.registerNib(UINib(nibName: "WebAppTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.refresh()
         })
@@ -72,11 +73,7 @@ class MicroservicesTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? WebAppTableViewCell
-        if cell == nil {
-            let nib = NSBundle.mainBundle().loadNibNamed("WebAppTableViewCell", owner: self, options: nil)
-            cell = nib[0] as? WebAppTableViewCell
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? WebAppTableViewCell
         let row = indexPath.row
         cell?.setObject(dataArr[row] as! WebAppItem)
         return cell!
