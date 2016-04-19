@@ -13,7 +13,8 @@ private let reuseIdentifier = "Cell"
 
 class ToolsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private let toolsData: [(title: String, image: UIImage)] = [
+    typealias ToolCell = (title: String, image: UIImage)
+    private let toolsData: [ToolCell] = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "课程表", image: UIImage(named: "classtableTab")!),
         (title: "图书馆", image: UIImage(named: "libTab")!),
