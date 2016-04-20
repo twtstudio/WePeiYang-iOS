@@ -11,10 +11,11 @@ import AFNetworking
 import MJRefresh
 import SafariServices
 import SwiftyJSON
+import ObjectMapper
 
 class MicroservicesTableViewController: UITableViewController {
     
-    var dataArr = []
+    var dataArr: [WebAppItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class MicroservicesTableViewController: UITableViewController {
         SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
             let dic = JSON(responseObject)
             if dic["error_code"].int == -1 {
-                self.dataArr = WebAppItem.mj_objectArrayWithKeyValuesArray(dic["data"].arrayObject)
+                self.dataArr = Mapper<WebAppItem>().mapArray(dic["data"].arrayObject)!
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }
@@ -75,13 +76,13 @@ class MicroservicesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? WebAppTableViewCell
         let row = indexPath.row
-        cell?.setObject(dataArr[row] as! WebAppItem)
+        cell?.setObject(dataArr[row])
         return cell!
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
-        let dataItem = dataArr[row] as! WebAppItem
+        let dataItem = dataArr[row]
 
         let webViewController = wpyWebViewController(address: dataItem.sites)
         self.navigationController?.showViewController(webViewController, sender: nil)

@@ -25,6 +25,5 @@
 #import "NewsData.h"
 #import "ClassData.h"
 #import "ArrangeModel.h"
-#import "WebAppItem.h"
 #import "LostFoundItem.h"
 #import "LostFoundDetail.h"

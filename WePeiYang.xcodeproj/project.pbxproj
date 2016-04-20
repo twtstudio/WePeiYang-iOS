@@ -53,6 +53,9 @@
 		E942BC7B1CACCCDE007A956C /* LostFoundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E942BC791CACCCDE007A956C /* LostFoundTableViewCell.xib */; };
 		E9472BE91C14872900EC229C /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BE81C14872900EC229C /* NewsData.m */; };
 		E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BEB1C14879D00EC229C /* NewsContent.m */; };
+		E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9480D5B1CC7D76A00AA707A /* LibraryDataManager.swift */; };
+		E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9480D5D1CC7D79200AA707A /* LibraryDataItem.swift */; };
+		E9480D601CC7E98700AA707A /* WebAppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9480D5F1CC7E98700AA707A /* WebAppItem.swift */; };
 		E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949E3DF1C43F3A900A5212B /* SettingViewController.swift */; };
 		E94AC15F1C737B6300C82C4E /* ClassCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94AC15E1C737B6300C82C4E /* ClassCellView.swift */; };
 		E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FCE1BF79A5000520536 /* GPAData.m */; };
@@ -83,7 +86,6 @@
 		E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6911C5CEDE0003943A4 /* BindTjuViewController.swift */; };
 		E98DF6941C5CEDFF003943A4 /* BindTjuForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6931C5CEDFF003943A4 /* BindTjuForm.swift */; };
 		E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6991C5D044B003943A4 /* MicroservicesTableViewController.swift */; };
-		E98DF69D1C5D1673003943A4 /* WebAppItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF69C1C5D1673003943A4 /* WebAppItem.m */; };
 		E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */; };
 		E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */; };
 		E98DF6EF1C5DF5BF003943A4 /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */; };
@@ -227,6 +229,9 @@
 		E9472BE81C14872900EC229C /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsData.m; path = "../../Models/Data Model/NewsData.m"; sourceTree = "<group>"; };
 		E9472BEA1C14879D00EC229C /* NewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContent.h; path = "../../Models/Data Model/NewsContent.h"; sourceTree = "<group>"; };
 		E9472BEB1C14879D00EC229C /* NewsContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsContent.m; path = "../../Models/Data Model/NewsContent.m"; sourceTree = "<group>"; };
+		E9480D5B1CC7D76A00AA707A /* LibraryDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryDataManager.swift; path = Library/Model/LibraryDataManager.swift; sourceTree = "<group>"; };
+		E9480D5D1CC7D79200AA707A /* LibraryDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryDataItem.swift; path = Library/Model/LibraryDataItem.swift; sourceTree = "<group>"; };
+		E9480D5F1CC7E98700AA707A /* WebAppItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppItem.swift; path = Microservices/Model/WebAppItem.swift; sourceTree = "<group>"; };
 		E949E3DF1C43F3A900A5212B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E94AC15E1C737B6300C82C4E /* ClassCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassCellView.swift; path = Classtable/View/ClassCellView.swift; sourceTree = "<group>"; };
 		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "../../Models/Data Model/GPAData.h"; sourceTree = "<group>"; };
@@ -267,8 +272,6 @@
 		E98DF6911C5CEDE0003943A4 /* BindTjuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindTjuViewController.swift; path = Account/BindTjuViewController.swift; sourceTree = "<group>"; };
 		E98DF6931C5CEDFF003943A4 /* BindTjuForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindTjuForm.swift; path = Account/BindTjuForm.swift; sourceTree = "<group>"; };
 		E98DF6991C5D044B003943A4 /* MicroservicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MicroservicesTableViewController.swift; path = Microservices/Controller/MicroservicesTableViewController.swift; sourceTree = "<group>"; };
-		E98DF69B1C5D1673003943A4 /* WebAppItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebAppItem.h; path = Microservices/Model/WebAppItem.h; sourceTree = "<group>"; };
-		E98DF69C1C5D1673003943A4 /* WebAppItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebAppItem.m; path = Microservices/Model/WebAppItem.m; sourceTree = "<group>"; };
 		E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppTableViewCell.swift; path = Microservices/View/WebAppTableViewCell.swift; sourceTree = "<group>"; };
 		E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebAppTableViewCell.xib; path = Microservices/View/WebAppTableViewCell.xib; sourceTree = "<group>"; };
 		E98DF6D31C5DF5BF003943A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
@@ -657,6 +660,8 @@
 		E93701821C5CA8BB00C87E84 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9480D5D1CC7D79200AA707A /* LibraryDataItem.swift */,
+				E9480D5B1CC7D76A00AA707A /* LibraryDataManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -804,8 +809,7 @@
 		E98DF6961C5D03C5003943A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E98DF69B1C5D1673003943A4 /* WebAppItem.h */,
-				E98DF69C1C5D1673003943A4 /* WebAppItem.m */,
+				E9480D5F1CC7E98700AA707A /* WebAppItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1384,7 +1388,9 @@
 				E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
+				E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
+				E9480D601CC7E98700AA707A /* WebAppItem.swift in Sources */,
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
@@ -1401,7 +1407,6 @@
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
 				E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */,
 				E99923AD1CC605E6008963C8 /* WeChatMomentsActivity.m in Sources */,
-				E98DF69D1C5D1673003943A4 /* WebAppItem.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
@@ -1428,6 +1433,7 @@
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
+				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,
 				E98DF6941C5CEDFF003943A4 /* BindTjuForm.swift in Sources */,
