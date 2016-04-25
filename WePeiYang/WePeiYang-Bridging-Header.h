@@ -12,6 +12,7 @@
 #import "AccountManager.h"
 #import "data.h"
 #import "SolaSessionManager.h"
+#import "WKWebViewController.h"
 #import "wpyWebViewController.h"
 #import "LostFoundViewController.h"
 #import "SVModalWebViewController.h"

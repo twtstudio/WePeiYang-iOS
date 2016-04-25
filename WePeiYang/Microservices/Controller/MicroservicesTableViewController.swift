@@ -84,8 +84,30 @@ class MicroservicesTableViewController: UITableViewController {
         let row = indexPath.row
         let dataItem = dataArr[row]
 
-        let webViewController = wpyWebViewController(address: dataItem.sites)
-        self.navigationController?.showViewController(webViewController, sender: nil)
+        if dataItem.requireLogin {
+            if AccountManager.tokenExists() {
+                if dataItem.requireFullscreen {
+                    let wkWebViewController = WKWebViewController(address: dataItem.sites)
+                    self.navigationController?.showViewController(wkWebViewController, sender: nil)
+                    self.navigationController?.navigationBarHidden = true;
+                }else {
+                    let webViewController = wpyWebViewController(address: dataItem.sites)
+                    self.navigationController?.showViewController(webViewController, sender: nil)
+                }
+            }else {
+                let vc = LoginViewController()
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+        }else {
+            if dataItem.requireFullscreen {
+                let wkWebViewController = WKWebViewController(address: dataItem.sites)
+                self.navigationController?.showViewController(wkWebViewController, sender: nil)
+                self.navigationController?.navigationBarHidden = true;
+            }else {
+                let webViewController = wpyWebViewController(address: dataItem.sites)
+                self.navigationController?.showViewController(webViewController, sender: nil)
+            }
+        }
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

@@ -15,6 +15,9 @@ class WebAppItem: NSObject, Mappable {
     var iconUrl: String!
     var name: String!
     var sites: String!
+    var requireLogin = Bool()
+    var requireFullscreen = Bool()
+    
     
     required init?(_ map: Map) {
         
@@ -25,6 +28,8 @@ class WebAppItem: NSObject, Mappable {
         iconUrl <- map["icon_url"]
         name <- map["name"]
         sites <- map["sites"]
+        requireLogin <- map["requireLogin"]
+        requireFullscreen <- map["requireFullScreen"]
     }
 
 }
