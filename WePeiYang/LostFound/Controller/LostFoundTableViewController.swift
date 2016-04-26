@@ -63,12 +63,13 @@ class LostFoundTableViewController: UITableViewController {
     
     private func fetchData() {
         twtSDK.getLostFoundListWithType(type, page: currentPage, success: {task, responseObj in
+            print(responseObj)
             let responseData = JSON(responseObj)
             if self.currentPage == 1 {
                 self.dataArr = []
-                self.dataArr = Mapper<LostFoundItem>().mapArray(responseData["data"].object)!
+                self.dataArr = Mapper<LostFoundItem>().mapArray(responseData["data"].arrayObject)!
             } else {
-                self.dataArr.appendContentsOf(Mapper<LostFoundItem>().mapArray(responseData["data"].object)!)
+                self.dataArr.appendContentsOf(Mapper<LostFoundItem>().mapArray(responseData["data"].arrayObject)!)
             }
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
@@ -103,8 +104,9 @@ class LostFoundTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
         let tmp = dataArr[row]
+        print("INDEX: \(tmp.index)")
         let lfDetailVC = LostFoundDetailViewController(style: .Grouped)
-        lfDetailVC.index = tmp.index
+        lfDetailVC.index = "\(tmp.index)"
         lfDetailVC.type = "\(type)"
         self.navigationController?.showViewController(lfDetailVC, sender: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

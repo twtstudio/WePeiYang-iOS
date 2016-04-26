@@ -51,6 +51,7 @@
 		E93F0E371BF9BCC1004B997C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C93185D4D6200F76085 /* CoreTelephony.framework */; };
 		E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942BC781CACCCDE007A956C /* LostFoundTableViewCell.swift */; };
 		E942BC7B1CACCCDE007A956C /* LostFoundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E942BC791CACCCDE007A956C /* LostFoundTableViewCell.xib */; };
+		E945C64F1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C64E1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift */; };
 		E9472BE91C14872900EC229C /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BE81C14872900EC229C /* NewsData.m */; };
 		E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9472BEB1C14879D00EC229C /* NewsContent.m */; };
 		E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9480D5B1CC7D76A00AA707A /* LibraryDataManager.swift */; };
@@ -227,6 +228,7 @@
 		E93701891C5CCE6000C87E84 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutViewController.xib; path = About/AboutViewController.xib; sourceTree = "<group>"; };
 		E942BC781CACCCDE007A956C /* LostFoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundTableViewCell.swift; path = LostFound/View/LostFoundTableViewCell.swift; sourceTree = "<group>"; };
 		E942BC791CACCCDE007A956C /* LostFoundTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LostFoundTableViewCell.xib; path = LostFound/View/LostFoundTableViewCell.xib; sourceTree = "<group>"; };
+		E945C64E1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryFavoriteTableViewController.swift; path = Library/Controller/LibraryFavoriteTableViewController.swift; sourceTree = "<group>"; };
 		E9472BE71C14872900EC229C /* NewsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsData.h; path = "../../Models/Data Model/NewsData.h"; sourceTree = "<group>"; };
 		E9472BE81C14872900EC229C /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsData.m; path = "../../Models/Data Model/NewsData.m"; sourceTree = "<group>"; };
 		E9472BEA1C14879D00EC229C /* NewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsContent.h; path = "../../Models/Data Model/NewsContent.h"; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 			children = (
 				E93701831C5CA97800C87E84 /* LibraryViewController.swift */,
 				E93701841C5CA97800C87E84 /* LibraryViewController.xib */,
+				E945C64E1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1413,6 +1416,7 @@
 				E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */,
 				E99923AD1CC605E6008963C8 /* WeChatMomentsActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
+				E945C64F1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,

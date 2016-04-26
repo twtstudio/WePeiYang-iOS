@@ -11,7 +11,7 @@ import ObjectMapper
 
 class LostFoundItem: NSObject, Mappable {
     
-    var index = ""
+    var index = 0
     var name = ""
     var title = ""
     var place = ""

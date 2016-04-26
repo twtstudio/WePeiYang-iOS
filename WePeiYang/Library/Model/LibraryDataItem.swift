@@ -17,6 +17,14 @@ class LibraryDataItem: NSObject, Mappable {
     var location = ""
     var index = ""
     
+    init(index: String, title: String, author: String, publisher: String, location: String) {
+        self.index = index
+        self.title = title
+        self.author = author
+        self.publisher = publisher
+        self.location = location
+    }
+    
     required init?(_ map: Map) {
         
     }

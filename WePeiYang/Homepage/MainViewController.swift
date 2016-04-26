@@ -208,9 +208,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 4:
             self.goToContent(announceArr[row] as! NewsData)
         case 5:
-            self.showLostFoundDetail(lostArr[row].index, type: "0")
+            self.showLostFoundDetail("\(lostArr[row].index)", type: "0")
         case 6:
-            self.showLostFoundDetail(foundArr[row].index, type: "1")
+            self.showLostFoundDetail("\(foundArr[row].index)", type: "1")
         default:
             break
         }

@@ -21,7 +21,6 @@ class LostFoundDetailViewController: UITableViewController, FXFormControllerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if type == "0" {
             self.title = "丢失物品"
         } else {

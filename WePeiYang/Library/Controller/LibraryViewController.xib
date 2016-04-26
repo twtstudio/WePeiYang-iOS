@@ -42,6 +42,7 @@
             <textInputTraits key="textInputTraits" returnKeyType="search"/>
             <connections>
                 <action selector="search:" destination="-1" eventType="editingDidEndOnExit" id="JZY-gG-3Cu"/>
+                <outlet property="delegate" destination="-1" id="4dn-EX-WLr"/>
             </connections>
             <point key="canvasLocation" x="310" y="-99"/>
         </textField>

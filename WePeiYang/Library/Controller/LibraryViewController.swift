@@ -12,7 +12,7 @@ import MJRefresh
 import DZNEmptyDataSet
 import BlocksKit
 
-class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIScrollViewAccessibilityDelegate {
+class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIScrollViewAccessibilityDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var resultTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -33,13 +33,17 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        self.title = "图书馆"
         self.navigationItem.titleView = searchTextField
         self.navigationItem.rightBarButtonItem = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Bookmarks, handler: { handler in
-            
+            let favController = LibraryFavoriteTableViewController(style: .Plain)
+            self.navigationController?.showViewController(favController, sender: nil)
         }) as? UIBarButtonItem
 //        resultTableView.tableHeaderView = {
 //            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 120))
 //            view.backgroundColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
 //            return view
 //        }()
+        
+        searchTextField.addTarget(self, action: #selector(LibraryViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+        
         resultTableView.registerNib(UINib(nibName: "LibraryTableViewCell", bundle: nil), forCellReuseIdentifier: "libCellIdentifier")
         resultTableView.rowHeight = UITableViewAutomaticDimension
         resultTableView.estimatedRowHeight = 98.0
@@ -78,6 +82,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private func fetchData() {
         if self.searchTextField.text!.isEmpty {
+            self.resultTableView.mj_footer.endRefreshing()
             MsgDisplay.showErrorMsg("请输入搜索关键字")
         } else {
             MsgDisplay.showLoading()
@@ -109,6 +114,11 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func textChanged(textField: UITextField) {
+        self.resultData = []
+        self.resultTableView.reloadData()
+    }
+    
     // MARK: - Table View Data Source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -128,7 +138,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Table View Delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -141,7 +151,8 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToFavAction = UITableViewRowAction(style: .Default, title: "添加到收藏", handler: { (action, indexPath) in
-            print(self.resultData[indexPath.row].title)
+            LibraryDataManager.addLibraryItemToFavorite(self.resultData[indexPath.row])
+            MsgDisplay.showSuccessMsg("已添加至收藏夹")
             tableView.setEditing(false, animated: true)
         })
         addToFavAction.backgroundColor = UIColor.flatSkyBlueColor()
