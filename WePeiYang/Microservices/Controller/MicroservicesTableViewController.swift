@@ -85,6 +85,7 @@ class MicroservicesTableViewController: UITableViewController {
         let dataItem = dataArr[row]
 
         let webViewController = wpyWebViewController(address: dataItem.sites)
+        webViewController.fullScreen = dataItem.fullScreen
         self.navigationController?.showViewController(webViewController, sender: nil)
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)

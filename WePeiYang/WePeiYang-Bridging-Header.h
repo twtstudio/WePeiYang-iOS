@@ -25,5 +25,5 @@
 #import "NewsData.h"
 #import "ClassData.h"
 #import "ArrangeModel.h"
-#import "LostFoundItem.h"
-#import "LostFoundDetail.h"
+//#import "LostFoundItem.h"
+//#import "LostFoundDetail.h"

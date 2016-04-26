@@ -11,10 +11,11 @@ import ObjectMapper
 
 class WebAppItem: NSObject, Mappable {
     
-    var desc: String!
-    var iconUrl: String!
-    var name: String!
-    var sites: String!
+    var desc = ""
+    var iconUrl = ""
+    var name = ""
+    var sites = ""
+    var fullScreen = false
     
     required init?(_ map: Map) {
         
@@ -25,6 +26,7 @@ class WebAppItem: NSObject, Mappable {
         iconUrl <- map["icon_url"]
         name <- map["name"]
         sites <- map["sites"]
+        fullScreen <- map["requireFullScreen"]
     }
 
 }

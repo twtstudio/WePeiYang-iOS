@@ -9,12 +9,13 @@
 import UIKit
 import MJRefresh
 import SwiftyJSON
+import ObjectMapper
 
 class LostFoundTableViewController: UITableViewController {
     
     var type: Int = 0
     private var currentPage: Int = 1
-    private var dataArr: NSMutableArray = []
+    private var dataArr: [LostFoundItem] = []
     
     // MARK: - Life cycle
 
@@ -64,10 +65,10 @@ class LostFoundTableViewController: UITableViewController {
         twtSDK.getLostFoundListWithType(type, page: currentPage, success: {task, responseObj in
             let responseData = JSON(responseObj)
             if self.currentPage == 1 {
-                self.dataArr.removeAllObjects()
-                self.dataArr = LostFoundItem.mj_objectArrayWithKeyValuesArray(responseData["data"].object)
+                self.dataArr = []
+                self.dataArr = Mapper<LostFoundItem>().mapArray(responseData["data"].object)!
             } else {
-                self.dataArr.addObjectsFromArray(LostFoundItem.mj_objectArrayWithKeyValuesArray(responseData["data"].object) as [AnyObject])
+                self.dataArr.appendContentsOf(Mapper<LostFoundItem>().mapArray(responseData["data"].object)!)
             }
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
@@ -95,13 +96,13 @@ class LostFoundTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("lfIdentifier", forIndexPath: indexPath) as! LostFoundTableViewCell
-        cell.setLostFoundItem(dataArr[indexPath.row] as! LostFoundItem, type: type)
+        cell.setLostFoundItem(dataArr[indexPath.row], type: type)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
-        let tmp = dataArr[row] as! LostFoundItem
+        let tmp = dataArr[row]
         let lfDetailVC = LostFoundDetailViewController(style: .Grouped)
         lfDetailVC.index = tmp.index
         lfDetailVC.type = "\(type)"

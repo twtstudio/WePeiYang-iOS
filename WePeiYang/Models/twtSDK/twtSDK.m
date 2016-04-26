@@ -185,8 +185,10 @@
 
 + (void)getLibrarySearchResultWithTitle:(NSString *)title page:(NSInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     NSString *titleString = [title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = [NSString stringWithFormat:@"/lib/search/%@?page=%ld", titleString, page];
-    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSString *url = [NSString stringWithFormat:@"/library/book"];
+    NSDictionary *parameters = @{@"title": titleString,
+                                 @"page": @(page)};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);

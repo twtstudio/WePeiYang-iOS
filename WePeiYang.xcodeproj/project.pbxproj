@@ -65,6 +65,8 @@
 		E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE01BF7AE8800520536 /* SolaInstance.m */; };
 		E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE21BF7AE8800520536 /* SolaSessionManager.m */; };
 		E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE41BF7AE8800520536 /* twtSDK.m */; };
+		E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95459321CCF403D002B5297 /* LibraryTableViewCell.swift */; };
+		E95459351CCF403D002B5297 /* LibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E95459331CCF403D002B5297 /* LibraryTableViewCell.xib */; };
 		E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E958E7891A9384EE0055B7C4 /* MsgDisplay.m */; };
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA841C4BF17E00EFC107 /* FeedbackForm.swift */; };
@@ -101,6 +103,8 @@
 		E98DF6F91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6E91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m */; };
 		E98DF6FA1C5DF5BF003943A4 /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6EA1C5DF5BF003943A4 /* SVWebViewControllerActivitySafari@2x.png */; };
 		E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6EC1C5DF5BF003943A4 /* SVWebViewControllerActivity.m */; };
+		E98F868E1CCA1F9E00252DA8 /* LostFoundDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98F868D1CCA1F9E00252DA8 /* LostFoundDetail.swift */; };
+		E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98F868F1CCA223400252DA8 /* LostFoundItem.swift */; };
 		E9941B411C15E30800626A56 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9941B401C15E30800626A56 /* jquery.min.js */; };
 		E99923A01CC5FA65008963C8 /* SchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E999239F1CC5FA65008963C8 /* SchemeManager.swift */; };
 		E99923A71CC60499008963C8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E99923A21CC60499008963C8 /* libWeChatSDK.a */; };
@@ -108,8 +112,6 @@
 		E99923AD1CC605E6008963C8 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E99923AA1CC605E6008963C8 /* WeChatMomentsActivity.m */; };
 		E99923AE1CC605E6008963C8 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E99923AC1CC605E6008963C8 /* WeChatSessionActivity.m */; };
 		E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */; };
-		E9AE97D91C6F8EBB00641B08 /* LostFoundItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE97D81C6F8EBB00641B08 /* LostFoundItem.m */; };
-		E9AE97DC1C6F91B100641B08 /* LostFoundDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AE97DB1C6F91B100641B08 /* LostFoundDetail.m */; };
 		E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */; };
 		E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BC21A7CFCE2008B5214 /* data.m */; };
 		E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */; };
@@ -248,6 +250,8 @@
 		E94B1FE21BF7AE8800520536 /* SolaSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolaSessionManager.m; sourceTree = "<group>"; };
 		E94B1FE31BF7AE8800520536 /* twtSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSDK.h; sourceTree = "<group>"; };
 		E94B1FE41BF7AE8800520536 /* twtSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSDK.m; sourceTree = "<group>"; };
+		E95459321CCF403D002B5297 /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LibraryTableViewCell.swift; path = Library/View/LibraryTableViewCell.swift; sourceTree = "<group>"; };
+		E95459331CCF403D002B5297 /* LibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LibraryTableViewCell.xib; path = Library/View/LibraryTableViewCell.xib; sourceTree = "<group>"; };
 		E958E7881A9384EE0055B7C4 /* MsgDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MsgDisplay.h; path = "Message Display/MsgDisplay.h"; sourceTree = "<group>"; };
 		E958E7891A9384EE0055B7C4 /* MsgDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgDisplay.m; path = "Message Display/MsgDisplay.m"; sourceTree = "<group>"; };
 		E95B112E1A8BA9FE00ACF69A /* CalendarEventActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalendarEventActivity.h; path = Sharing/CalendarEventActivity.h; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 		E98DF6EB1C5DF5BF003943A4 /* SVWebViewControllerActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivity.h; sourceTree = "<group>"; };
 		E98DF6EC1C5DF5BF003943A4 /* SVWebViewControllerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivity.m; sourceTree = "<group>"; };
 		E98DF6ED1C5DF5BF003943A4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
+		E98F868D1CCA1F9E00252DA8 /* LostFoundDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetail.swift; path = LostFound/Model/LostFoundDetail.swift; sourceTree = "<group>"; };
+		E98F868F1CCA223400252DA8 /* LostFoundItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundItem.swift; path = LostFound/Model/LostFoundItem.swift; sourceTree = "<group>"; };
 		E9941B401C15E30800626A56 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		E999239F1CC5FA65008963C8 /* SchemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchemeManager.swift; path = Scheme/SchemeManager.swift; sourceTree = "<group>"; };
 		E99923A21CC60499008963C8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -306,10 +312,6 @@
 		E99923AC1CC605E6008963C8 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeChatSessionActivity.m; path = Sharing/WeChatSessionActivity.m; sourceTree = "<group>"; };
 		E9A48CD91A6FE9E2001D8420 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInSafariActivity.h; path = Sharing/OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E9A48CDA1A6FE9E2001D8420 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInSafariActivity.m; path = Sharing/OpenInSafariActivity.m; sourceTree = "<group>"; };
-		E9AE97D71C6F8EBB00641B08 /* LostFoundItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LostFoundItem.h; path = LostFound/Model/LostFoundItem.h; sourceTree = "<group>"; };
-		E9AE97D81C6F8EBB00641B08 /* LostFoundItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundItem.m; path = LostFound/Model/LostFoundItem.m; sourceTree = "<group>"; };
-		E9AE97DA1C6F91B100641B08 /* LostFoundDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LostFoundDetail.h; path = LostFound/Model/LostFoundDetail.h; sourceTree = "<group>"; };
-		E9AE97DB1C6F91B100641B08 /* LostFoundDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundDetail.m; path = LostFound/Model/LostFoundDetail.m; sourceTree = "<group>"; };
 		E9AF6BBB1A7CFCE2008B5214 /* wpyDeviceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyDeviceStatus.h; sourceTree = "<group>"; };
 		E9AF6BBC1A7CFCE2008B5214 /* wpyDeviceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyDeviceStatus.m; sourceTree = "<group>"; };
 		E9AF6BC11A7CFCE2008B5214 /* data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = "<group>"; };
@@ -653,6 +655,8 @@
 		E93701811C5CA8B800C87E84 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E95459321CCF403D002B5297 /* LibraryTableViewCell.swift */,
+				E95459331CCF403D002B5297 /* LibraryTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -764,10 +768,8 @@
 		E96D796D1C6F807E00550746 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E9AE97D71C6F8EBB00641B08 /* LostFoundItem.h */,
-				E9AE97D81C6F8EBB00641B08 /* LostFoundItem.m */,
-				E9AE97DA1C6F91B100641B08 /* LostFoundDetail.h */,
-				E9AE97DB1C6F91B100641B08 /* LostFoundDetail.m */,
+				E98F868F1CCA223400252DA8 /* LostFoundItem.swift */,
+				E98F868D1CCA1F9E00252DA8 /* LostFoundDetail.swift */,
 				E97336591C721E9600ACA06B /* LostFoundTypeTransformer.swift */,
 			);
 			name = Model;
@@ -1220,6 +1222,7 @@
 			files = (
 				E92C7F431C6EF4590022857A /* NewsCommentTableViewCell.xib in Resources */,
 				E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */,
+				E95459351CCF403D002B5297 /* LibraryTableViewCell.xib in Resources */,
 				E98DF6F61C5DF5BF003943A4 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				E98ACE1B1C4026780012C762 /* HomeNewsTableViewCell.xib in Resources */,
 				E99923A81CC60499008963C8 /* read_me.txt in Resources */,
@@ -1376,9 +1379,11 @@
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
+				E98F868E1CCA1F9E00252DA8 /* LostFoundDetail.swift in Sources */,
 				E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */,
 				E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
+				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
 				E9DB21781C5A373500CC6F63 /* ArrangeModel.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
@@ -1410,7 +1415,6 @@
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
-				E9AE97D91C6F8EBB00641B08 /* LostFoundItem.m in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
@@ -1422,10 +1426,10 @@
 				E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
+				E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
-				E9AE97DC1C6F91B100641B08 /* LostFoundDetail.m in Sources */,
 				E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,

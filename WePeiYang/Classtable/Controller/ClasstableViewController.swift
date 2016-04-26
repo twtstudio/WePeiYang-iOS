@@ -52,6 +52,11 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 1.0, green: 152/255.0, blue: 0, alpha: 1.0)
+    }
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         self.updateView(size)
     }
