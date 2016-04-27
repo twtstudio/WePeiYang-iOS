@@ -9,8 +9,14 @@
 #import "SVWebViewControllerActivityChrome.h"
 #import "SVWebViewControllerActivitySafari.h"
 #import "wpyWebViewController.h"
+<<<<<<< HEAD
 #import "WebViewJavascriptBridge.h"
 #import "AccountManager.h"
+=======
+#import "JZNavigationExtension.h"
+#import "AccountManager.h"
+#import "WebViewJavascriptBridge.h"
+>>>>>>> xnth97/master
 
 @interface wpyWebViewController () <UIWebViewDelegate>
 
@@ -29,6 +35,8 @@
 
 
 @implementation wpyWebViewController
+
+@synthesize fullScreen;
 
 #pragma mark - Initialization
 
@@ -51,6 +59,7 @@
     self = [super init];
     if (self) {
         self.request = request;
+        self.fullScreen = NO;
     }
     return self;
 }
@@ -79,9 +88,11 @@
     _refreshBarButtonItem = nil;
     _stopBarButtonItem = nil;
     _actionBarButtonItem = nil;
+    _bridge = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+<<<<<<< HEAD
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
     [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         responseCallback([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY]);
@@ -91,20 +102,29 @@
     self.webView.delegate = self;
     
     NSAssert(self.navigationController, @"SVWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
+=======
+    NSAssert(self.navigationController, @"wpyWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
+>>>>>>> xnth97/master
     
     [super viewWillAppear:animated];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        [self.navigationController setToolbarHidden:NO animated:animated];
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (fullScreen) {
         [self.navigationController setToolbarHidden:YES animated:animated];
+        [self.navigationController setNavigationBarHidden:YES animated:animated];
+    } else {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            [self.navigationController setToolbarHidden:NO animated:animated];
+        } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self.navigationController setToolbarHidden:YES animated:animated];
+        }
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    if (fullScreen) {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+    }
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.navigationController setToolbarHidden:YES animated:animated];
     }
@@ -127,8 +147,17 @@
 - (UIWebView*)webView {
     if(!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _webView.delegate = self;
+//        _webView.delegate = self;
         _webView.scalesPageToFit = YES;
+        
+        _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
+        [_bridge setWebViewDelegate:self];
+        [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
+            responseCallback([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY]);
+        }];
+        [_bridge registerHandler:@"backHandler" handler:^(id data, WVJBResponseCallback responseCallback) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
     return _webView;
 }

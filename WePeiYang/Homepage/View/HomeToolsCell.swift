@@ -20,9 +20,9 @@ class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     let homeTools = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
-        (title: "课程表", image: UIImage(named: "classtableTab")!),
-        (title: "图书馆", image: UIImage(named: "libTab")!),
-        (title: "失物招领", image: UIImage(named: "lfTab")!)
+        (title: "课程表", image: UIImage(named: "classtableBtn")!),
+        (title: "图书馆", image: UIImage(named: "libBtn")!),
+        (title: "失物招领", image: UIImage(named: "lfBtn")!)
     ]
 
     override func awakeFromNib() {

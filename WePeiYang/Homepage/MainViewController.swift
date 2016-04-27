@@ -19,8 +19,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var carouselArr = []
     var campusArr = []
     var announceArr = []
-    var lostArr = []
-    var foundArr = []
+    var lostArr: [LostFoundItem] = []
+    var foundArr: [LostFoundItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,10 +173,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 lfCell = nib[0] as? LostFoundTableViewCell
             }
             if section == 5 {
-                lfCell?.setLostFoundItem(lostArr[row] as! LostFoundItem, type: 0)
+                lfCell?.setLostFoundItem(lostArr[row], type: 0)
             }
             if section == 6 {
-                lfCell?.setLostFoundItem(foundArr[row] as! LostFoundItem, type: 1)
+                lfCell?.setLostFoundItem(foundArr[row], type: 1)
             }
             return lfCell!
         default:
@@ -208,9 +208,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 4:
             self.goToContent(announceArr[row] as! NewsData)
         case 5:
-            self.showLostFoundDetail((lostArr[row] as! LostFoundItem).index, type: "0")
+            self.showLostFoundDetail("\(lostArr[row].index)", type: "0")
         case 6:
-            self.showLostFoundDetail((foundArr[row] as! LostFoundItem).index, type: "1")
+            self.showLostFoundDetail("\(foundArr[row].index)", type: "1")
         default:
             break
         }

@@ -8,7 +8,7 @@
 
 import UIKit
 import FXForms
-import MJExtension
+import ObjectMapper
 import SwiftyJSON
 
 class LostFoundDetailViewController: UITableViewController, FXFormControllerDelegate {
@@ -21,7 +21,6 @@ class LostFoundDetailViewController: UITableViewController, FXFormControllerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if type == "0" {
             self.title = "丢失物品"
         } else {
@@ -57,12 +56,13 @@ class LostFoundDetailViewController: UITableViewController, FXFormControllerDele
         twtSDK.getLostFoundDetailWithID(index, success: {(task, responseObj) in
             let dic = JSON(responseObj)
             if dic["error_code"].int == -1 {
-                let lostFoundDetail = LostFoundDetail.mj_objectWithKeyValues(dic["data"].object)
-                self.phoneNum = lostFoundDetail.phone
-                let form = LostFoundDetailForm()
-                form.detailItem = lostFoundDetail
-                self.formController.form = form
-                self.tableView.reloadData()
+                if let lostFoundDetail = Mapper<LostFoundDetail>().map(dic["data"].object) {
+                    self.phoneNum = lostFoundDetail.phone
+                    let form = LostFoundDetailForm()
+                    form.detailItem = lostFoundDetail
+                    self.formController.form = form
+                    self.tableView.reloadData()
+                }
             }
         }, failure: {(task, error) in
             MsgDisplay.showErrorMsg(error.localizedDescription)

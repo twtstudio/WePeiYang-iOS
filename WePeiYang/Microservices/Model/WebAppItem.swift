@@ -11,6 +11,7 @@ import ObjectMapper
 
 class WebAppItem: NSObject, Mappable {
     
+<<<<<<< HEAD
     var desc: String!
     var iconUrl: String!
     var name: String!
@@ -18,6 +19,13 @@ class WebAppItem: NSObject, Mappable {
     var requireLogin = Bool()
     var requireFullscreen = Bool()
     
+=======
+    var desc = ""
+    var iconUrl = ""
+    var name = ""
+    var sites = ""
+    var fullScreen = false
+>>>>>>> xnth97/master
     
     required init?(_ map: Map) {
         
@@ -28,8 +36,12 @@ class WebAppItem: NSObject, Mappable {
         iconUrl <- map["icon_url"]
         name <- map["name"]
         sites <- map["sites"]
+<<<<<<< HEAD
         requireLogin <- map["requireLogin"]
         requireFullscreen <- map["requireFullScreen"]
+=======
+        fullScreen <- map["requireFullScreen"]
+>>>>>>> xnth97/master
     }
 
 }

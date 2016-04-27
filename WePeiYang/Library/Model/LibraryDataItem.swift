@@ -11,9 +11,19 @@ import ObjectMapper
 
 class LibraryDataItem: NSObject, Mappable {
     
-    var author: String!
-    var publisher: String!
-    var title: String!
+    var author = ""
+    var publisher = ""
+    var title = ""
+    var location = ""
+    var index = ""
+    
+    init(index: String, title: String, author: String, publisher: String, location: String) {
+        self.index = index
+        self.title = title
+        self.author = author
+        self.publisher = publisher
+        self.location = location
+    }
     
     required init?(_ map: Map) {
         
@@ -23,6 +33,8 @@ class LibraryDataItem: NSObject, Mappable {
         author <- map["author"]
         publisher <- map["publisher"]
         title <- map["title"]
+        location <- map["location"]
+        index <- map["index"]
     }
     
 }
