@@ -79,6 +79,7 @@
 		E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336571C7213A200ACA06B /* LostFoundPostForm.swift */; };
 		E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336591C721E9600ACA06B /* LostFoundTypeTransformer.swift */; };
 		E976B3691CBF33A90008E268 /* LostFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E976B3681CBF33A90008E268 /* LostFoundViewController.m */; };
+		E97704D01CD0A4DD0017A1CB /* WebAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97704CF1CD0A4DD0017A1CB /* WebAppViewController.m */; };
 		E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE101C3FFA350012C762 /* HomeDataManager.swift */; };
 		E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */; };
 		E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98ACE161C4002610012C762 /* HomeImageTitleView.swift */; };
@@ -268,6 +269,8 @@
 		E97336591C721E9600ACA06B /* LostFoundTypeTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundTypeTransformer.swift; path = LostFound/Model/LostFoundTypeTransformer.swift; sourceTree = "<group>"; };
 		E976B3671CBF33A90008E268 /* LostFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LostFoundViewController.h; path = LostFound/Controller/LostFoundViewController.h; sourceTree = "<group>"; };
 		E976B3681CBF33A90008E268 /* LostFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LostFoundViewController.m; path = LostFound/Controller/LostFoundViewController.m; sourceTree = "<group>"; };
+		E97704CE1CD0A4DD0017A1CB /* WebAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebAppViewController.h; sourceTree = "<group>"; };
+		E97704CF1CD0A4DD0017A1CB /* WebAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebAppViewController.m; sourceTree = "<group>"; };
 		E98ACE101C3FFA350012C762 /* HomeDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeDataManager.swift; path = Model/HomeDataManager.swift; sourceTree = "<group>"; };
 		E98ACE141C3FFA8F0012C762 /* HomeCarouselCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCarouselCell.swift; path = View/HomeCarouselCell.swift; sourceTree = "<group>"; };
 		E98ACE161C4002610012C762 /* HomeImageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeImageTitleView.swift; path = View/HomeImageTitleView.swift; sourceTree = "<group>"; };
@@ -846,6 +849,8 @@
 				E98DF6DC1C5DF5BF003943A4 /* wpyWebViewController.h */,
 				E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */,
 				E98DF6DE1C5DF5BF003943A4 /* UIActivities */,
+				E97704CE1CD0A4DD0017A1CB /* WebAppViewController.h */,
+				E97704CF1CD0A4DD0017A1CB /* WebAppViewController.m */,
 			);
 			path = WebViewController;
 			sourceTree = "<group>";
@@ -1371,6 +1376,7 @@
 			files = (
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
 				E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */,
+				E97704D01CD0A4DD0017A1CB /* WebAppViewController.m in Sources */,
 				E98DF6F91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m in Sources */,
 				E90C139B1CAF74F700E1F353 /* HomeToolsCollectionViewCell.swift in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,

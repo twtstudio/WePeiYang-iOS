@@ -49,6 +49,8 @@ class MicroservicesTableViewController: UITableViewController {
             let dic = JSON(responseObject)
             if dic["error_code"].int == -1 {
                 self.dataArr = Mapper<WebAppItem>().mapArray(dic["data"].arrayObject)!
+                // 约吧测试
+                // self.dataArr.append(WebAppItem(name: "yueba", sites: "http://yueba.twtstudio.com", desc: "", iconURL: "", fullScreen: true))
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }
@@ -84,9 +86,13 @@ class MicroservicesTableViewController: UITableViewController {
         let row = indexPath.row
         let dataItem = dataArr[row]
 
-        let webViewController = wpyWebViewController(address: dataItem.sites)
-        webViewController.fullScreen = dataItem.fullScreen
-        self.navigationController?.showViewController(webViewController, sender: nil)
+        if dataItem.fullScreen {
+            let webAppController = WebAppViewController(address: dataItem.sites)
+            self.navigationController?.showViewController(webAppController, sender: nil)
+        } else {
+            let webViewController = wpyWebViewController(address: dataItem.sites)
+            self.navigationController?.showViewController(webViewController, sender: nil)
+        }
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

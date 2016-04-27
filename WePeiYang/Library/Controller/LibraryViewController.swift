@@ -161,7 +161,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - UIScrollViewDelegate
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         searchTextField.resignFirstResponder()
     }
     

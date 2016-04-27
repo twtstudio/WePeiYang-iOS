@@ -17,6 +17,14 @@ class WebAppItem: NSObject, Mappable {
     var sites = ""
     var fullScreen = false
     
+    init(name: String, sites: String, desc: String, iconURL: String, fullScreen: Bool) {
+        self.name = name
+        self.sites = sites
+        self.desc = desc
+        self.iconUrl = iconURL
+        self.fullScreen = fullScreen
+    }
+    
     required init?(_ map: Map) {
         
     }
