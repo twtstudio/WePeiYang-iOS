@@ -9,6 +9,8 @@
 #import "WebAppViewController.h"
 #import "WKWebViewJavascriptBridge.h"
 #import "AccountManager.h"
+#import "WePeiYang-Swift.h"
+#import "SolaFoundationKit.h"
 @import Masonry;
 
 @interface WebAppViewController ()
@@ -55,21 +57,26 @@
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
 //    _wkWebView.navigationDelegate = self;
     [_wkWebView loadRequest:_request];
+    [_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
     _wkWebView.allowsBackForwardNavigationGestures = YES;
     self.view = _wkWebView;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"LoginCancelled" object:nil];
+    
     _bridge = [WKWebViewJavascriptBridge bridgeForWebView:_wkWebView];
     [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
-        responseCallback([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY]);
+        if ([AccountManager tokenExists]) {
+            responseCallback([[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY]);
+        } else {
+            LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            [self presentViewController:loginVC animated:YES completion:nil];
+        }
     }];
     [_bridge registerHandler:@"navigationHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
-        if (self.navigationController) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
+        [self backAnimated:YES];
     }];
 }
 
@@ -87,6 +94,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshNotificationReceived {
+    [_wkWebView reload];
+}
+
+- (void)backNotificationReceived {
+    [self backAnimated:NO];
+}
+
+- (void)backAnimated: (BOOL)animated {
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:animated];
+    } else {
+        [self dismissViewControllerAnimated:animated completion:nil];
+    }
 }
 
 - (void)webView: (WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
