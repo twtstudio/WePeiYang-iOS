@@ -25,7 +25,7 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSURLRequest *request;
 
-@property WebViewJavascriptBridge *bridge;
+@property (strong) WebViewJavascriptBridge *bridge;
 
 @end
 
@@ -147,7 +147,7 @@
         [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
             responseCallback([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY]);
         }];
-        [_bridge registerHandler:@"backHandler" handler:^(id data, WVJBResponseCallback responseCallback) {
+        [_bridge registerHandler:@"navigationHandler" handler:^(id data, WVJBResponseCallback responseCallback) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
