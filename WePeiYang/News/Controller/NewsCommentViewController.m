@@ -50,6 +50,9 @@
     self.tableView.estimatedRowHeight = 80;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
+    //slk 1.9.2 bug 临时解决方案
+    [self registerPrefixesForAutoCompletion:@[@"#"]];
+    
     [self.tableView reloadData];
 }
 
@@ -78,6 +81,7 @@
     }];
     
     [super didPressRightButton:sender];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate & Data Source
