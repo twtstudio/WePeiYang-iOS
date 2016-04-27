@@ -84,7 +84,6 @@ class MicroservicesTableViewController: UITableViewController {
         let row = indexPath.row
         let dataItem = dataArr[row]
 
-<<<<<<< HEAD
         if dataItem.requireLogin {
             if AccountManager.tokenExists() {
                 if dataItem.requireFullscreen {
@@ -109,11 +108,6 @@ class MicroservicesTableViewController: UITableViewController {
                 self.navigationController?.showViewController(webViewController, sender: nil)
             }
         }
-=======
-        let webViewController = wpyWebViewController(address: dataItem.sites)
-        webViewController.fullScreen = dataItem.fullScreen
-        self.navigationController?.showViewController(webViewController, sender: nil)
->>>>>>> xnth97/master
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

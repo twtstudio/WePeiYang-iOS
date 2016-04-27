@@ -9,14 +9,10 @@
 #import "SVWebViewControllerActivityChrome.h"
 #import "SVWebViewControllerActivitySafari.h"
 #import "wpyWebViewController.h"
-<<<<<<< HEAD
-#import "WebViewJavascriptBridge.h"
-#import "AccountManager.h"
-=======
 #import "JZNavigationExtension.h"
 #import "AccountManager.h"
 #import "WebViewJavascriptBridge.h"
->>>>>>> xnth97/master
+
 
 @interface wpyWebViewController () <UIWebViewDelegate>
 
@@ -92,7 +88,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-<<<<<<< HEAD
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
     [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         responseCallback([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY]);
@@ -102,9 +97,6 @@
     self.webView.delegate = self;
     
     NSAssert(self.navigationController, @"SVWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
-=======
-    NSAssert(self.navigationController, @"wpyWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
->>>>>>> xnth97/master
     
     [super viewWillAppear:animated];
     
