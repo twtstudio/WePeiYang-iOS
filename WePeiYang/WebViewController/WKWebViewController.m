@@ -22,10 +22,6 @@
 
 
 #pragma mark - Initialization
-/*- (void) dealloc {
-    [self.wkWebVIew stopLoading];
-    self.wkWebVIew.navigationDelegate = nil;
-}*/
 
 - (instancetype)initWithAddress:(NSString *)URLString {
     return [self initWithURL:[NSURL URLWithString:URLString]];
@@ -86,9 +82,13 @@
     
 }
 
--(void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
     
 }
+
+#pragma mark - WKWebViewDelegate
+
+
 
 /*
 #pragma mark - Navigation

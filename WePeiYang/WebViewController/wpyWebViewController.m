@@ -88,6 +88,8 @@
         self.webView.delegate = self;
     }];
     
+    self.webView.delegate = self;
+    
     NSAssert(self.navigationController, @"SVWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
     
     [super viewWillAppear:animated];

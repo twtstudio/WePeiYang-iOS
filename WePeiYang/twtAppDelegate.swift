@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        //Custom UA for WebApps
+        let oldAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
+        let newAgent = oldAgent! + " WePeiYang_iOS"
+        NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent": newAgent])
+        
         WXApi.registerApp(twtSecretKeys.getWechatAppId())
         
         twtSDK.setAppKey(twtSecretKeys.getTWTAppKey(), appSecret: twtSecretKeys.getTWTAppSecret())
