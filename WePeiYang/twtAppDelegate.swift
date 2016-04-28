@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
+        //GPA 界面后台模糊
         if UIViewController.currentViewController().isKindOfClass(GPATableViewController){
             let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
             frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
