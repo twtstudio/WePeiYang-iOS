@@ -10,7 +10,7 @@ import UIKit
 import ChameleonFramework
 import pop
 
-class LoginViewController: UIViewController {
+@objc class LoginViewController: UIViewController {
     
     @IBOutlet weak var unameField: UITextField!
     @IBOutlet weak var passwdField: UITextField!

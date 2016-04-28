@@ -11,6 +11,7 @@
 #import "AccountManager.h"
 #import "WePeiYang-Swift.h"
 #import "SolaFoundationKit.h"
+#import "MsgDisplay.h"
 @import Masonry;
 
 @interface WebAppViewController ()
@@ -53,6 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
 //    _wkWebView.navigationDelegate = self;
@@ -60,7 +62,7 @@
     //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
-    _wkWebView.allowsBackForwardNavigationGestures = YES;
+    //_wkWebView.allowsBackForwardNavigationGestures = YES;
     self.view = _wkWebView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
@@ -72,6 +74,7 @@
             responseCallback([[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY]);
         } else {
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            [MsgDisplay showSuccessMsg:@"此应用需要你先登录"];
             [self presentViewController:loginVC animated:YES completion:nil];
         }
     }];
@@ -120,12 +123,13 @@
     
 }
 
--(void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
     
 }
 
 /*
  #pragma mark - Navigation
+
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

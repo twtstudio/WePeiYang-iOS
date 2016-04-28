@@ -38,11 +38,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
+        if UIViewController.currentViewController().isKindOfClass(GPATableViewController){
+            let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+            frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
+            //let frostedView = UIView(frame: (UIApplication.sharedApplication().keyWindow?.frame)!)
+            let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+            blurView.frame = frostedView.frame
+            
+            UIApplication.sharedApplication().keyWindow?.addSubview(frostedView)
+            frostedView.contentView.addSubview(blurView)
+        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        let array = UIApplication.sharedApplication().keyWindow?.subviews
+        for view in array! {
+            if view.isKindOfClass(UIVisualEffectView) {
+                view.removeFromSuperview()
+            }
+        }
+
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     

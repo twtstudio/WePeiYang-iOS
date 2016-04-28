@@ -14,6 +14,8 @@
 #import "MsgDisplay.h"
 #import "twtSDK.h"
 #import "AFNetworking.h"
+#import "AccountManager.h"
+#import "WePeiYang-Swift.h"
 
 @interface NewsCommentViewController ()<DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -71,14 +73,22 @@
 
 - (void)didPressRightButton:(id)sender {
 //    [self.textView refreshFirstResponder];
-    [MsgDisplay showLoading];
-    [twtSDK postNewsCommentWithIndex:index content:self.textView.text success:^(NSURLSessionDataTask *task, id responseObj) {
-        [self.navigationController popViewControllerAnimated:YES];
-        [MsgDisplay showSuccessMsg:@"评论发送成功"];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MsgDisplay showErrorMsg:@"评论发送失败"];
-//        NSLog(error.localizedDescription);
-    }];
+    
+    // MARK: 判断 token 是否存在
+    if ([AccountManager tokenExists]) {
+        [MsgDisplay showLoading];
+        [twtSDK postNewsCommentWithIndex:index content:self.textView.text success:^(NSURLSessionDataTask *task, id responseObj) {
+            [self.navigationController popViewControllerAnimated:YES];
+            [MsgDisplay showSuccessMsg:@"评论成功"];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [MsgDisplay showErrorMsg:@"评论失败"];
+            //NSLog(error.localizedDescription);
+        }];
+    } else {
+        LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [MsgDisplay showSuccessMsg:@"要先登录才能评论噢！"];
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }
     
     [super didPressRightButton:sender];
     [self.tableView reloadData];

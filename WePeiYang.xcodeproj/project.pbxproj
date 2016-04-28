@@ -21,6 +21,7 @@
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		27B4F0949B75D8717BD819AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDB6280259E22DE141F518E /* Pods.framework */; };
+		B17233371CD24F1700A13736 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B17233361CD24F1700A13736 /* UIViewController+Utils.m */; };
 		B1B712F11CCE4A7500B80F39 /* WKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B712F01CCE4A7500B80F39 /* WKWebViewController.m */; };
 		E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */; };
 		E90105541C3B994E002901AC /* GPATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90105381C3B994E002901AC /* GPATableViewController.m */; };
@@ -189,6 +190,8 @@
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D625594C2CB3A80AC2395D /* Pods-WePeiYang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.release.xcconfig"; sourceTree = "<group>"; };
+		B17233351CD24F0100A13736 /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		B17233361CD24F1700A13736 /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
 		B1B712EF1CCE4A7500B80F39 /* WKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewController.h; sourceTree = "<group>"; };
 		B1B712F01CCE4A7500B80F39 /* WKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewController.m; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1121,6 +1124,8 @@
 				E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */,
 				E9D743F41BF9AE38005F2EF9 /* main.m */,
 				E9325F501CC5EB57005FAD8B /* twtAppDelegate.swift */,
+				B17233351CD24F0100A13736 /* UIViewController+Utils.h */,
+				B17233361CD24F1700A13736 /* UIViewController+Utils.m */,
 				E9D743F71BF9AE38005F2EF9 /* WePeiYang-Info.plist */,
 				E9D743F81BF9AE38005F2EF9 /* WePeiYang-Prefix.pch */,
 				E90105601C3B99AB002901AC /* WePeiYang-Bridging-Header.h */,
@@ -1492,6 +1497,7 @@
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
 				E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */,
+				B17233371CD24F1700A13736 /* UIViewController+Utils.m in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
@@ -1669,6 +1675,7 @@
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1685,7 +1692,7 @@
 					"$(PROJECT_DIR)/WePeiYang/Resource/WXSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYang;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYangTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang/WePeiYang-Bridging-Header.h";
@@ -1705,6 +1712,7 @@
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -1721,7 +1729,7 @@
 					"$(PROJECT_DIR)/WePeiYang/Resource/WXSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYang;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYangTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang/WePeiYang-Bridging-Header.h";
