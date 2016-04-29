@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSURLRequest *request;
 @property (strong, nonatomic) WKWebView *wkWebView;
 @property WKWebViewJavascriptBridge *bridge;
+@property UIStatusBarStyle *customPreferredStatusBarStyle;
 
 @end
 
@@ -47,14 +48,18 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    _customPreferredStatusBarStyle = UIStatusBarStyleLightContent;
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
 }
 
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return _customPreferredStatusBarStyle;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
 //    _wkWebView.navigationDelegate = self;
@@ -62,7 +67,6 @@
     //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
-    //_wkWebView.allowsBackForwardNavigationGestures = YES;
     self.view = _wkWebView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
@@ -72,6 +76,7 @@
     [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         if ([AccountManager tokenExists]) {
             responseCallback([[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY]);
+            NSLog(@"Yay");
         } else {
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
             [MsgDisplay showSuccessMsg:@"此应用需要你先登录"];
@@ -80,6 +85,29 @@
     }];
     [_bridge registerHandler:@"navigationHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         [self backAnimated:YES];
+        NSSet *websiteDataTypes
+        = [NSSet setWithArray:@[
+                                WKWebsiteDataTypeDiskCache,
+                                WKWebsiteDataTypeOfflineWebApplicationCache,
+                                WKWebsiteDataTypeMemoryCache,
+                                WKWebsiteDataTypeLocalStorage,
+                                WKWebsiteDataTypeCookies,
+                                WKWebsiteDataTypeSessionStorage,
+                                WKWebsiteDataTypeIndexedDBDatabases,
+                                WKWebsiteDataTypeWebSQLDatabases
+                                ]];
+        //// All kinds of data
+        //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        //// Date from
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        //// Execute
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+            NSLog(@"Cleared!");
+        }];
+    }];
+    [_bridge registerHandler:@"setStatusBarHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
+        _customPreferredStatusBarStyle = UIStatusBarStyleDefault;
+        [self setNeedsStatusBarAppearanceUpdate];
     }];
 }
 

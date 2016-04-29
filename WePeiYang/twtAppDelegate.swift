@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         if UIViewController.currentViewController().isKindOfClass(GPATableViewController){
             let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
             frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
-            //let frostedView = UIView(frame: (UIApplication.sharedApplication().keyWindow?.frame)!)
             let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
             blurView.frame = frostedView.frame
             
