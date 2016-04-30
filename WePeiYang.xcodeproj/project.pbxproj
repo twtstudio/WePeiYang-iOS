@@ -469,6 +469,7 @@
 			children = (
 				E9D744081BF9AE3C005F2EF9 /* Main */,
 				E9AF6BB91A7CFCE2008B5214 /* Models */,
+				B18AB9EF1CD4A2B10050FA8F /* UserGuide */,
 				E9B972C71C5651FF001E480E /* Account */,
 				E901053D1C3B994E002901AC /* Homepage */,
 				E9C3978A1CA520ED00E89813 /* Tools */,
@@ -500,6 +501,14 @@
 				188842341846E6F4007B92CB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B18AB9EF1CD4A2B10050FA8F /* UserGuide */ = {
+			isa = PBXGroup;
+			children = (
+				B18AB9EB1CD342BD0050FA8F /* UserGuideViewController.swift */,
+			);
+			name = UserGuide;
 			sourceTree = "<group>";
 		};
 		E90105331C3B994E002901AC /* GPA */ = {
@@ -1124,7 +1133,6 @@
 			children = (
 				E9D743EE1BF9AE38005F2EF9 /* en.lproj */,
 				E9D743F31BF9AE38005F2EF9 /* Launch Screen.xib */,
-				B18AB9EB1CD342BD0050FA8F /* UserGuideViewController.swift */,
 				E9D743F41BF9AE38005F2EF9 /* main.m */,
 				E9325F501CC5EB57005FAD8B /* twtAppDelegate.swift */,
 				B17233351CD24F0100A13736 /* UIViewController+Utils.h */,

@@ -50,7 +50,7 @@ class MicroservicesTableViewController: UITableViewController {
             if dic["error_code"].int == -1 {
                 self.dataArr = Mapper<WebAppItem>().mapArray(dic["data"].arrayObject)!
                 // 约吧测试
-                self.dataArr.append(WebAppItem(name: "约吧", sites: "http://yueba.twtstudio.com", desc: "", iconURL: "", fullScreen: true))
+                //self.dataArr.append(WebAppItem(name: "约吧", sites: "http://yueba.twtstudio.com", desc: "", iconURL: "", fullScreen: true))
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }

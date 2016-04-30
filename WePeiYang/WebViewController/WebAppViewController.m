@@ -105,7 +105,7 @@
             NSLog(@"Cleared!");
         }];
     }];
-    [_bridge registerHandler:@"setStatusBarHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
+    [_bridge registerHandler:@"setStatusBarHandlerBlack_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         _customPreferredStatusBarStyle = UIStatusBarStyleDefault;
         [self setNeedsStatusBarAppearanceUpdate];
     }];
