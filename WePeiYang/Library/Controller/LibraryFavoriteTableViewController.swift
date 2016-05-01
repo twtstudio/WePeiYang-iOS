@@ -74,6 +74,10 @@ class LibraryFavoriteTableViewController: UITableViewController, DZNEmptyDataSet
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
+            if self.dataArr.count == 0 {
+                tableView.reloadData()
+            }
+            
         } // else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         // }
@@ -97,7 +101,7 @@ class LibraryFavoriteTableViewController: UITableViewController, DZNEmptyDataSet
     // MARK: - EmptyDataSet
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return nil
+        return UIImage(named: "libEmpty")
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

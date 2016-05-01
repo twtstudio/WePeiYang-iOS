@@ -85,8 +85,9 @@ class MicroservicesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
         let dataItem = dataArr[row]
-        var webController: UIViewController
         
+        var webController: UIViewController
+
         if dataItem.fullScreen {
             webController = WebAppViewController(address: dataItem.sites)
         } else {
@@ -97,6 +98,7 @@ class MicroservicesTableViewController: UITableViewController {
             }
         }
         self.navigationController?.showViewController(webController, sender: nil)
+        
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

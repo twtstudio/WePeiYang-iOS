@@ -8,10 +8,16 @@ WePeiYang(微北洋) is a widely-used utility in Tianjin University. This projec
 
 # Features
 
-WePeiYang is under a complete refactoring work. The additional content would be added to this document once we complete the refactoring.
+
+WePeiYang is under a complete refactory work. The additional content would be added to this document once we complete the refactory.
+
+# Build
+
+Requirements: Xcode 7, CocoaPods, iOS 8.0+
+
 
 # Acknowledgements
 
-I would like to extend my sincere gratitude to the included open-source projects, without which this project would never be completed. 
+All included fabulous open-source projects are appreciated.
 
 > Copyright 2002-2016 TWT Studio

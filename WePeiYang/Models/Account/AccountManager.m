@@ -14,6 +14,12 @@
 #import "wpyCacheManager.h"
 #import "GPATableViewController.h"
 #import <CoreSpotlight/CoreSpotlight.h>
+#import "WePeiYang-Swift.h"
+
+/*#define CLASSTABLE_CACHE_KEY @"CLASSTABLE_CACHE"
+#define CLASSTABLE_COLOR_CONFIG_KEY @"CLASSTABLE_COLOR_CONFIG"
+#define CLASSTABLE_TERM_START_KEY @"CLASSTABLE_TERM_START"
+*/
 
 @implementation AccountManager
 
@@ -30,6 +36,9 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN_SAVE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:ID_SAVE_KEY];
     [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
+    //[wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_TERM_START_KEY];
+    //[wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_CACHE_KEY];
+    //[wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_COLOR_CONFIG_KEY];
     [SolaInstance shareInstance].token = nil;
     [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
 //        NSLog(error.localizedDescription);
@@ -173,6 +182,9 @@
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:TJU_BIND_KEY];
         [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
         [wpyCacheManager removeCacheDataForKey:GPA_USER_NAME_CACHE];
+        //[wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_COLOR_CONFIG_KEY];
+        //[wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_CACHE_KEY];
+        //[wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_TERM_START_KEY];
         [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
 //            NSLog(error.localizedDescription);
         }];

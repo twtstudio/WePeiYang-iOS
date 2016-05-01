@@ -94,14 +94,42 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     private func refresh() {
         MsgDisplay.showLoading()
-        ClasstableDataManager.getClasstableData({(data, termStart) in
+        if (ClassData.mj_objectArrayWithKeyValuesArray(data) != nil) {
+            ClasstableDataManager.getClasstableData({(data, termStart) in
+                MsgDisplay.dismiss()
+                wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
+                
+                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+                self.updateView(self.view.bounds.size)
+                
+                wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+                wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
+                
+                let startDate = NSDate(timeIntervalSince1970: Double(termStart))
+                self.currentWeek = NSDate().weeksFrom(startDate) + 1
+                self.title = "第 \(self.currentWeek) 周"
+                }, notBinded: {
+                    MsgDisplay.dismiss()
+                    let bindTjuVC = BindTjuViewController(style: .Grouped)
+                    self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
+                }, otherFailure: {errorMsg in
+                    MsgDisplay.showErrorMsg(errorMsg)
+            })
+        } else {
+            let errorMsg = ["不好意思，服务器开小差了😭", "有外星人潜入了我们的服务器", "课程表找不到啦，要不就放个假！", "我们正在追踪那个偷走你课程表的外星人", "这条🐶拿着你的课程表饱餐了一顿而且现在还在睡觉", "风太大，你的课程表被吹走了", "服务器君又傲娇了，我们还在劝他"]
+            let i = Int(arc4random_uniform(7))
+            MsgDisplay.showErrorMsg(errorMsg[i])
+        }
+        /*ClasstableDataManager.getClasstableData({(data, termStart) in
             MsgDisplay.dismiss()
             wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
+            
                 self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
                 self.updateView(self.view.bounds.size)
 
                 wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
                 wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
+    
             let startDate = NSDate(timeIntervalSince1970: Double(termStart))
             self.currentWeek = NSDate().weeksFrom(startDate) + 1
             self.title = "第 \(self.currentWeek) 周"
@@ -111,7 +139,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
         }, otherFailure: {errorMsg in
             MsgDisplay.showErrorMsg(errorMsg)
-        })
+        })*/
     }
     
     private func updateView(size: CGSize) {

@@ -63,6 +63,7 @@
         [self nextPage];
     }];
     [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_footer.automaticallyHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {

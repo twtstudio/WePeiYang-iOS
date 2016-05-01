@@ -168,7 +168,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Empty Data Set Source
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return nil
+        return UIImage(named: "libEmpty")
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

@@ -233,9 +233,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 0:
             self.showGPAController()
         case 1:
-            self.showClasstableController()
-        case 2:
             self.showLibraryController()
+        case 2:
+            self.showClasstableController()
         case 3:
             self.showMicroservicesController()
         default:

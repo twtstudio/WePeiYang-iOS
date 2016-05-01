@@ -20,8 +20,8 @@ class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     
     let homeTools = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
-        (title: "课程表", image: UIImage(named: "classtableBtn")!),
         (title: "图书馆", image: UIImage(named: "libBtn")!),
+        (title: "课程表", image: UIImage(named: "classtableBtn")!),
         (title: "实验室", image: UIImage(named: "msBtn")!)
     ]
 
