@@ -141,6 +141,8 @@
 		E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E42A421C74558B00C871D6 /* ClassDetailViewController.swift */; };
 		E9E42A451C74558B00C871D6 /* ClassDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E42A431C74558B00C871D6 /* ClassDetailViewController.xib */; };
 		E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */; };
+		E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */; };
+		E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */; };
 		E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD13E1C6EEE760060BF21 /* NewsComment.m */; };
 		E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD1431C6EF0870060BF21 /* NewsCommentViewController.m */; };
 /* End PBXBuildFile section */
@@ -354,6 +356,9 @@
 		E9E42A431C74558B00C871D6 /* ClassDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClassDetailViewController.xib; path = Classtable/Controller/ClassDetailViewController.xib; sourceTree = "<group>"; };
 		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "../../Models/Data Model/GPAStat.h"; sourceTree = "<group>"; };
 		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "../../Models/Data Model/GPAStat.m"; sourceTree = "<group>"; };
+		E9F1F8611CD6560F00C4F2AA /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Utils.h"; path = "Utilities/UIViewController+Utils.h"; sourceTree = "<group>"; };
+		E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Utils.m"; path = "Utilities/UIViewController+Utils.m"; sourceTree = "<group>"; };
+		E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGuideViewController.swift; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E9FBD13D1C6EEE760060BF21 /* NewsComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsComment.h; sourceTree = "<group>"; };
 		E9FBD13E1C6EEE760060BF21 /* NewsComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsComment.m; sourceTree = "<group>"; };
@@ -459,6 +464,7 @@
 			children = (
 				E9D744081BF9AE3C005F2EF9 /* Main */,
 				E9AF6BB91A7CFCE2008B5214 /* Models */,
+				E9F1F8641CD6561D00C4F2AA /* Guide */,
 				E9B972C71C5651FF001E480E /* Account */,
 				E901053D1C3B994E002901AC /* Homepage */,
 				E9C3978A1CA520ED00E89813 /* Tools */,
@@ -921,6 +927,7 @@
 		E9AF6BB91A7CFCE2008B5214 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9F1F85D1CD655ED00C4F2AA /* Utilities */,
 				E9B972CD1C565DE0001E480E /* Account */,
 				E943F6151C55088D00258FD4 /* Scheme */,
 				E94B1FDA1BF7AE8800520536 /* twtSDK */,
@@ -1122,6 +1129,24 @@
 				E9D743FA1BF9AE38005F2EF9 /* zh-Hans.lproj */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		E9F1F85D1CD655ED00C4F2AA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E9F1F8611CD6560F00C4F2AA /* UIViewController+Utils.h */,
+				E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		E9F1F8641CD6561D00C4F2AA /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */,
+			);
+			name = Guide;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FE76EA6F6EBCA9F257E8AE6F /* Pods */ = {
@@ -1436,6 +1461,7 @@
 				E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
+				E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */,
 				E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
@@ -1447,6 +1473,7 @@
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
+				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,

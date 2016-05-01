@@ -17,6 +17,7 @@
 #import "SVModalWebViewController.h"
 #import "SolaFoundationKit.h"
 #import "WebAppViewController.h"
+#import "UIViewController+Utils.h"
 
 #import "twtSDK.h"
 #import "twtSecretKeys.h"

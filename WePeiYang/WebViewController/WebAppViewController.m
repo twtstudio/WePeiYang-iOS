@@ -11,12 +11,14 @@
 #import "AccountManager.h"
 #import "WePeiYang-Swift.h"
 #import "SolaFoundationKit.h"
+#import "MsgDisplay.h"
 @import Masonry;
 
 @interface WebAppViewController ()
 @property (strong, nonatomic) NSURLRequest *request;
 @property (strong, nonatomic) WKWebView *wkWebView;
 @property WKWebViewJavascriptBridge *bridge;
+@property UIStatusBarStyle *customPreferredStatusBarStyle;
 
 @end
 
@@ -46,21 +48,27 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    _customPreferredStatusBarStyle = UIStatusBarStyleLightContent;
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
 }
 
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return *(_customPreferredStatusBarStyle);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
-//    _wkWebView.navigationDelegate = self;
+    _wkWebView.navigationDelegate = self;
     [_wkWebView loadRequest:_request];
-    [_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
+    //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
+    _wkWebView.allowsBackForwardNavigationGestures = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
-    _wkWebView.allowsBackForwardNavigationGestures = YES;
     self.view = _wkWebView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
@@ -72,11 +80,16 @@
             responseCallback([[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY]);
         } else {
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+            [MsgDisplay showErrorMsg:@"此应用需要先登录"];
             [self presentViewController:loginVC animated:YES completion:nil];
         }
     }];
     [_bridge registerHandler:@"navigationHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         [self backAnimated:YES];
+    }];
+    [_bridge registerHandler:@"setStatusBarHandlerBlack_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
+        _customPreferredStatusBarStyle = UIStatusBarStyleDefault;
+        [self setNeedsStatusBarAppearanceUpdate];
     }];
 }
 
@@ -87,9 +100,28 @@
     }
 }
 
-/*- (BOOL)shouldAutorotate{
- return NO;
- }*/
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSSet *websiteDataTypes
+    = [NSSet setWithArray:@[
+                            WKWebsiteDataTypeDiskCache,
+                            WKWebsiteDataTypeOfflineWebApplicationCache,
+                            WKWebsiteDataTypeMemoryCache,
+                            WKWebsiteDataTypeLocalStorage,
+                            WKWebsiteDataTypeCookies,
+                            WKWebsiteDataTypeSessionStorage,
+                            WKWebsiteDataTypeIndexedDBDatabases,
+                            WKWebsiteDataTypeWebSQLDatabases
+                            ]];
+    //// All kinds of data
+    //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    //// Date from
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    //// Execute
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        NSLog(@"Cleared!");
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -104,7 +136,7 @@
     [self backAnimated:NO];
 }
 
-- (void)backAnimated: (BOOL)animated {
+- (void)backAnimated:(BOOL)animated {
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:animated];
     } else {
@@ -112,7 +144,7 @@
     }
 }
 
-- (void)webView: (WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
     
 }
 
@@ -120,12 +152,13 @@
     
 }
 
--(void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
+- (void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
     
 }
 
 /*
  #pragma mark - Navigation
+
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
