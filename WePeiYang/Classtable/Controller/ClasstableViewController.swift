@@ -97,11 +97,10 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         ClasstableDataManager.getClasstableData({(data, termStart) in
             MsgDisplay.dismiss()
             wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
-                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
-                self.updateView(self.view.bounds.size)
-
-                wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
-                wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
+            self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+            self.updateView(self.view.bounds.size)
+            wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+            wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
             let startDate = NSDate(timeIntervalSince1970: Double(termStart))
             self.currentWeek = NSDate().weeksFrom(startDate) + 1
             self.title = "第 \(self.currentWeek) 周"
