@@ -60,13 +60,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    //self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
     _wkWebView.navigationDelegate = self;
     [_wkWebView loadRequest:_request];
     //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
-    _wkWebView.allowsBackForwardNavigationGestures = YES;
+    _wkWebView.allowsBackForwardNavigationGestures = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
     self.view = _wkWebView;

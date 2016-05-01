@@ -31,16 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         })
         
         //判断用户是否第一次启动新版本
-        let infoDic = NSBundle.mainBundle().infoDictionary
-        let currentAppVersion = infoDic!["CFBundleShortVersionString"] as! String
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let appVersion = userDefaults.stringForKey("appVersion")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if appVersion == nil || appVersion != currentAppVersion {
-            userDefaults.setValue(currentAppVersion, forKey: "appVersion")
-            
-            let guide = storyboard.instantiateViewControllerWithIdentifier("guide") as! UserGuideViewController
-            self.window?.rootViewController = guide
+        if self.window?.frame.size.height<1024 {
+            let infoDic = NSBundle.mainBundle().infoDictionary
+            let currentAppVersion = infoDic!["CFBundleShortVersionString"] as! String
+            let userDefaults = NSUserDefaults.standardUserDefaults()
+            let appVersion = userDefaults.stringForKey("appVersion")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if appVersion == nil || appVersion != currentAppVersion {
+                userDefaults.setValue(currentAppVersion, forKey: "appVersion")
+                
+                let guide = storyboard.instantiateViewControllerWithIdentifier("guide") as! UserGuideViewController
+                self.window?.rootViewController = guide
+            }
+
         }
         return true
     }
