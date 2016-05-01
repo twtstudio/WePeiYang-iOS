@@ -60,11 +60,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
-//    _wkWebView.navigationDelegate = self;
+    _wkWebView.navigationDelegate = self;
     [_wkWebView loadRequest:_request];
     //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
+    _wkWebView.allowsBackForwardNavigationGestures = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
     self.view = _wkWebView;
@@ -76,7 +78,6 @@
     [_bridge registerHandler:@"tokenHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         if ([AccountManager tokenExists]) {
             responseCallback([[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY]);
-            NSLog(@"Yay");
         } else {
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
             [MsgDisplay showSuccessMsg:@"此应用需要你先登录"];
@@ -85,25 +86,6 @@
     }];
     [_bridge registerHandler:@"navigationHandler_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         [self backAnimated:YES];
-        NSSet *websiteDataTypes
-        = [NSSet setWithArray:@[
-                                WKWebsiteDataTypeDiskCache,
-                                WKWebsiteDataTypeOfflineWebApplicationCache,
-                                WKWebsiteDataTypeMemoryCache,
-                                WKWebsiteDataTypeLocalStorage,
-                                WKWebsiteDataTypeCookies,
-                                WKWebsiteDataTypeSessionStorage,
-                                WKWebsiteDataTypeIndexedDBDatabases,
-                                WKWebsiteDataTypeWebSQLDatabases
-                                ]];
-        //// All kinds of data
-        //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
-        //// Date from
-        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
-        //// Execute
-        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
-            NSLog(@"Cleared!");
-        }];
     }];
     [_bridge registerHandler:@"setStatusBarHandlerBlack_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
         _customPreferredStatusBarStyle = UIStatusBarStyleDefault;
@@ -113,6 +95,25 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    NSSet *websiteDataTypes
+    = [NSSet setWithArray:@[
+                            WKWebsiteDataTypeDiskCache,
+                            WKWebsiteDataTypeOfflineWebApplicationCache,
+                            WKWebsiteDataTypeMemoryCache,
+                            WKWebsiteDataTypeLocalStorage,
+                            WKWebsiteDataTypeCookies,
+                            WKWebsiteDataTypeSessionStorage,
+                            WKWebsiteDataTypeIndexedDBDatabases,
+                            WKWebsiteDataTypeWebSQLDatabases
+                            ]];
+    //// All kinds of data
+    //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    //// Date from
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    //// Execute
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        NSLog(@"Cleared!");
+    }];
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
