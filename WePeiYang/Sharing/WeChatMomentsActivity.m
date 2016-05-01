@@ -11,10 +11,15 @@
 @implementation WeChatMomentsActivity {
     NSURL *url;
     NSString *titleStr;
+    UIImage *image;
 }
 
 - (NSString *)activityType {
     return @"com.tecent.wechat.moment";
+}
+
++ (UIActivityCategory)activityCategory {
+    return UIActivityCategoryShare;
 }
 
 - (NSString *)activityTitle {
@@ -22,7 +27,7 @@
 }
 
 - (UIImage *)activityImage {
-    return [UIImage imageNamed:@"wxTimeline"];
+    return [UIImage imageNamed:@"wxMoment"];
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -35,6 +40,8 @@
             url = [tmp copy];
         } else if ([tmp isKindOfClass:[NSString class]]) {
             titleStr = [tmp copy];
+        } else if ([tmp isKindOfClass:[UIImage class]]) {
+            image = [tmp copy];
         } else {
             continue;
         }
@@ -45,7 +52,7 @@
     
     WXMediaMessage *msg = [WXMediaMessage message];
     msg.title = titleStr;
-    [msg setThumbImage:[UIImage imageNamed:@"thumbIcon"]];
+    [msg setThumbImage: image != nil ? image : [UIImage imageNamed:@"thumbIcon"]];
     
     WXWebpageObject *webObj = [WXWebpageObject object];
     webObj.webpageUrl = [url absoluteString];

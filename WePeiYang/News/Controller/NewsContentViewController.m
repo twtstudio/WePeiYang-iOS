@@ -14,11 +14,11 @@
 #import "MJExtension.h"
 #import "MsgDisplay.h"
 #import "OpenInSafariActivity.h"
-#import "WeChatMomentsActivity.h"
-#import "WeChatSessionActivity.h"
 #import "WebViewJavascriptBridge.h"
 #import <SafariServices/SafariServices.h>
 #import "IDMPhotoBrowser.h"
+#import "WeChatMomentsActivity.h"
+#import "WeChatSessionActivity.h"
 
 @interface NewsContentViewController ()<UIWebViewDelegate, IDMPhotoBrowserDelegate>
 
@@ -49,7 +49,7 @@
     [twtSDK getNewsContentWithIndex:newsData.index success:^(NSURLSessionDataTask *task, id responseObject) {
         [self processNewsContent:[NewsContent mj_objectWithKeyValues:responseObject[@"data"]]];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [MsgDisplay showErrorMsg:error.description];
+        [MsgDisplay showErrorMsg:error.localizedDescription];
     }];
 }
 
@@ -62,11 +62,11 @@
 
 - (IBAction)shareContent:(id)sender {
     NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://news.twt.edu.cn/?c=default&a=pernews&id=%@", newsData.index]];
-    NSArray *activityItems = @[shareURL];
+    NSArray *activityItems = @[shareURL, newsData.subject];
     OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
-    WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
-    WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
-    UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari, wxMoment, wxSession]];
+    WeChatMomentsActivity *wechatMoments = [[WeChatMomentsActivity alloc] init];
+    WeChatSessionActivity *wechatSession = [[WeChatSessionActivity alloc] init];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari, wechatMoments, wechatSession]];
     activityController.modalPresentationStyle = UIModalPresentationPopover;
     activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
     activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;

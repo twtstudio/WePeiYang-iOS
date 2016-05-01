@@ -70,8 +70,8 @@
 }
 
 + (void)getNewsListWithType:(NewsType)type page:(NSUInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
-    NSString *url = [NSString stringWithFormat:@"/news/type/%ld?page=%ld", type, page];
-//    NSString *url = [NSString stringWithFormat:@"/news/%ld/page/%ld", type, page];
+//    NSString *url = [NSString stringWithFormat:@"/news/type/%ld?page=%ld", type, page];
+    NSString *url = [NSString stringWithFormat:@"/news/%ld/page/%ld", type, page];
     [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -177,6 +177,34 @@
                                  @"content": content,
                                  @"found_pic": foundPic};
     [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:@"/lostfound/found" token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getLibrarySearchResultWithTitle:(NSString *)title page:(NSInteger)page success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    NSString *titleString = [title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *url = [NSString stringWithFormat:@"/library/book"];
+    NSDictionary *parameters = @{@"title": titleString,
+                                 @"page": @(page)};
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:url token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getLibraryReaderRank:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/lib/rank/reader" token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getLibraryBookRank:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/lib/rank/book" token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);

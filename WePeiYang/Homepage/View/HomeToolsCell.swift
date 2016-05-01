@@ -7,39 +7,32 @@
 //
 
 import UIKit
-import ChameleonFramework
-import BlocksKit
 
 @objc protocol HomeToolsCellDelegate {
     optional func toolsTappedAtIndex(index: Int)
 }
 
-class HomeToolsCell: UITableViewCell {
+class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+    @IBOutlet weak var toolsCollectionView: UICollectionView!
     
-    @IBOutlet weak var firstGestureRecognizer: UITapGestureRecognizer!
-    @IBOutlet weak var secondGestureRecognizer: UITapGestureRecognizer!
-    @IBOutlet weak var thirdGestureRecognizer: UITapGestureRecognizer!
-    @IBOutlet weak var firstImgView: UIImageView!
-    @IBOutlet weak var secondImgView: UIImageView!
-    @IBOutlet weak var thirdImgView: UIImageView!
+    weak var delegate: HomeToolsCellDelegate!
     
-    var delegate: HomeToolsCellDelegate!
+    let homeTools = [
+        (title: "成绩", image: UIImage(named: "gpaBtn")!),
+        (title: "图书馆", image: UIImage(named: "libBtn")!),
+        (title: "课程表", image: UIImage(named: "classtableBtn")!),
+//        (title: "失物招领", image: UIImage(named: "lfBtn")!)
+        (title: "实验室", image: UIImage(named: "msBtn")!)
+    ]
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        firstImgView.tintColor = UIColor.flatTealColor()
-        firstImgView.image = UIImage(named: "newsBtn")?.imageWithRenderingMode(.AlwaysTemplate)
         
-        secondImgView.tintColor = UIColor.flatPinkColorDark()
-        secondImgView.image = UIImage(named: "gpaBtn")?.imageWithRenderingMode(.AlwaysTemplate)
-        
-        thirdImgView.tintColor = UIColor.flatSkyBlueColor()
-        thirdImgView.image = UIImage(named: "classtableTab")?.imageWithRenderingMode(.AlwaysTemplate)
-        
-        firstGestureRecognizer.addTarget(self, action: "gestureHandler:")
-        secondGestureRecognizer.addTarget(self, action: "gestureHandler:")
-        thirdGestureRecognizer.addTarget(self, action: "gestureHandler:")
+        let nib = UINib(nibName: "HomeToolsCollectionViewCell", bundle: nil)
+        toolsCollectionView.registerNib(nib, forCellWithReuseIdentifier: "cellIdentifier")
+        toolsCollectionView.backgroundColor = UIColor.whiteColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -48,9 +41,32 @@ class HomeToolsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func gestureHandler(recognizer: UITapGestureRecognizer) {
-        let view = recognizer.view
-        delegate.toolsTappedAtIndex!(view!.tag)
+    // MARK: - UICollectionViewDataSource
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return homeTools.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(collectionView.bounds.width/CGFloat(homeTools.count), collectionView.bounds.height)
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellIdentifier", forIndexPath: indexPath) as! HomeToolsCollectionViewCell
+        let row = indexPath.row
+        cell.iconImage.image = homeTools[row].image
+        cell.titleLabel.text = homeTools[row].title
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        delegate.toolsTappedAtIndex!(indexPath.row)
     }
     
 }

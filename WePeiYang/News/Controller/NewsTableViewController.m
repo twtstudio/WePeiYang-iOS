@@ -50,7 +50,8 @@
         
         UIEdgeInsets insets = self.tableView.contentInset;
         insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height + MENU_VIEW_HEIGHT;
-//        insets.bottom = 49;
+        insets.bottom = 49;
+        // 同时WMPageController.m的calculateSize函数要加49
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -61,7 +62,8 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self nextPage];
     }];
-    [self refreshData];
+    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_footer.automaticallyHidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,6 +127,7 @@
     NewsData *tmp = (NewsData *)dataArr[indexPath.row];
 //    [delegate pushContentWithIndex:tmp.index];
     [[NSNotificationCenter defaultCenter] postNotificationName:PUSH_NOTIFICATION object:tmp];
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

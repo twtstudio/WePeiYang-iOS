@@ -9,35 +9,29 @@
 import UIKit
 import BlocksKit
 import JZNavigationExtension
-import RESideMenu
 import MJRefresh
 import LocalAuthentication
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate, SidebarDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate {
     
     @IBOutlet var mainTableView: UITableView!
     
     var carouselArr = []
     var campusArr = []
     var announceArr = []
+    var lostArr: [LostFoundItem] = []
+    var foundArr: [LostFoundItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "微北洋"
+        self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        let sidebar = self.sideMenuViewController.leftMenuViewController as! SidebarViewController
-        sidebar.delegate = self
-        
-        let menuBtn = UIBarButtonItem().bk_initWithImage(UIImage(named: "menu"), style: .Plain, handler: {handler in
-            self.sideMenuViewController.presentLeftMenuViewController()
-        }) as! UIBarButtonItem
-        self.navigationItem.leftBarButtonItem = menuBtn
         
         self.mainTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.getData()
         })
-        self.getData()
+        self.mainTableView.mj_header.beginRefreshing()
         
         if !AccountManager.tokenExists() {
             let loginVC = LoginViewController(nibName: nil, bundle: nil)
@@ -48,8 +42,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = self.view.tintColor
-        // GREAT TRICK!!!!
-        (self.sideMenuViewController.leftMenuViewController as! SidebarViewController).updateView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,13 +60,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Private
     
     private func getData() {
-        HomeDataManager.getHomeDataWithClosure({(_carouselArr, _campusArr, _announceArr) in
+        HomeDataManager.getHomeDataWithClosure({(isCached, _carouselArr, _campusArr, _announceArr, _lostArr, _foundArr) in
             self.carouselArr = _carouselArr
             self.campusArr = _campusArr
             self.announceArr = _announceArr
+            self.lostArr = _lostArr
+            self.foundArr = _foundArr
             
             self.mainTableView.reloadData()
-            self.mainTableView.mj_header.endRefreshing()
+            if isCached == false {
+                self.mainTableView.mj_header.endRefreshing()
+            }
         }, failure: {(error, description) in
             MsgDisplay.showErrorMsg(description)
             self.mainTableView.mj_header.endRefreshing()
@@ -84,7 +80,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // TABLE VIEW DATA SOURCE
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 5
+        return 7
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,6 +95,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return campusArr.count // News
         case 4:
             return announceArr.count // Announcements
+        case 5:
+            return lostArr.count
+        case 6:
+            return foundArr.count
         default:
             return 0
         }
@@ -106,13 +106,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
-//        let row = indexPath.row
         let width = self.view.bounds.size.width
         switch section {
         case 0:
             return width*2/3
         case 1, 2:
             return 120
+        case 5, 6:
+            return 132
         default:
             return 64
         }
@@ -165,6 +166,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             return newsCell!
+        case 5, 6:
+            var lfCell = tableView.dequeueReusableCellWithIdentifier("lfIdentifier") as? LostFoundTableViewCell
+            if lfCell == nil {
+                let nib = NSBundle.mainBundle().loadNibNamed("LostFoundTableViewCell", owner: self, options: nil)
+                lfCell = nib[0] as? LostFoundTableViewCell
+            }
+            if section == 5 {
+                lfCell?.setLostFoundItem(lostArr[row], type: 0)
+            }
+            if section == 6 {
+                lfCell?.setLostFoundItem(foundArr[row], type: 1)
+            }
+            return lfCell!
         default:
             return cell
         }
@@ -176,6 +190,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return "新闻"
         case 4:
             return "公告"
+        case 5:
+            return "丢失"
+        case 6:
+            return "捡到"
         default:
             return nil
         }
@@ -189,6 +207,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.goToContent(campusArr[row] as! NewsData)
         case 4:
             self.goToContent(announceArr[row] as! NewsData)
+        case 5:
+            self.showLostFoundDetail("\(lostArr[row].index)", type: "0")
+        case 6:
+            self.showLostFoundDetail("\(foundArr[row].index)", type: "1")
         default:
             break
         }
@@ -209,21 +231,25 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func toolsTappedAtIndex(index: Int) {
         switch index {
         case 0:
-            self.showNewsController()
-        case 1:
             self.showGPAController()
+        case 1:
+            self.showLibraryController()
         case 2:
             self.showClasstableController()
+        case 3:
+//            self.showLostFoundController()
+            self.showMicroservicesController()
         default:
             break
         }
     }
     
-    // SIDE BAR DELEGATE
+    // PRESENT VIEW CONTROLLERS
     
     func showGPAController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+        gpaVC.hidesBottomBarWhenPushed = true
         
         let userDefaults = NSUserDefaults()
         let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
@@ -235,7 +261,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
                 if success {
-                    print("SUCCESS")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.navigationController?.showViewController(gpaVC, sender: nil)
                     })
@@ -251,31 +276,45 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func showNewsController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let newsVC = storyboard.instantiateViewControllerWithIdentifier("NewsViewController") as! NewsViewController
+        newsVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(newsVC, sender: nil)
     }
     
     func showClasstableController() {
         let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        classtableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(classtableVC, sender: nil)
     }
     
-    func showSettingsController() {
-        let settingsVC = SettingViewController(style: .Grouped)
-        self.navigationController?.showViewController(settingsVC, sender: nil)
-    }
+//    func showSettingsController() {
+//        let settingsVC = SettingViewController(style: .Grouped)
+//        settingsVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.showViewController(settingsVC, sender: nil)
+//    }
     
     func showLibraryController() {
         let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        libVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(libVC, sender: nil)
     }
     
     func showLostFoundController() {
         let lfVC = LostFoundViewController()
+        lfVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(lfVC, sender: nil)
+    }
+    
+    func showLostFoundDetail(index: String, type: String) {
+        let detail = LostFoundDetailViewController(style: .Grouped)
+        detail.index = index
+        detail.type = type
+        detail.hidesBottomBarWhenPushed = true
+        self.navigationController?.showViewController(detail, sender: nil)
     }
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
+        msVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(msVC, sender: nil)
     }
 

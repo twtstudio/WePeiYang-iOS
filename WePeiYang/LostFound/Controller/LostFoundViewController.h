@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Qin Yubo. All rights reserved.
 //
 
-#import <WMPageController/WMPageController.h>
+@import WMPageController;
 
 #define MENU_VIEW_HEIGHT 36
 

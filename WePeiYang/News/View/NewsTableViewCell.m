@@ -30,6 +30,8 @@
     titleLabel.text = data.subject;
     commentCount.text = data.comments;
     visitCount.text = data.visitcount;
+    newsImg.contentMode = UIViewContentModeScaleAspectFill;
+    newsImg.clipsToBounds = YES;
     [newsImg setImageWithURL:[NSURL URLWithString:data.pic] placeholderImage:[UIImage imageNamed:@"twtLogo"]];
 }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,136 +11,34 @@
             <rect key="frame" x="0.0" y="0.0" width="391" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="391" height="119"/>
+                <rect key="frame" x="0.0" y="0.0" width="391" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AL6-H4-2bh">
-                        <rect key="frame" x="0.0" y="0.0" width="391" height="119"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bm-aK-jTK">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="119"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="新闻" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fo4-1d-abf">
-                                        <rect key="frame" x="0.0" y="77" width="130" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.23137254901960785" green="0.4392156862745098" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newsBtn" translatesAutoresizingMaskIntoConstraints="NO" id="OXh-0s-jV0">
-                                        <rect key="frame" x="40" y="22" width="50" height="50"/>
-                                        <color key="tintColor" red="0.23137254901960785" green="0.4392156862745098" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="4iS-Jr-bga"/>
-                                            <constraint firstAttribute="height" constant="50" id="eVG-S0-aUy"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="Fo4-1d-abf" firstAttribute="centerX" secondItem="0Bm-aK-jTK" secondAttribute="centerX" id="48H-1u-cHN"/>
-                                    <constraint firstItem="OXh-0s-jV0" firstAttribute="centerX" secondItem="0Bm-aK-jTK" secondAttribute="centerX" id="8GK-r7-Wcb"/>
-                                    <constraint firstItem="Fo4-1d-abf" firstAttribute="top" secondItem="OXh-0s-jV0" secondAttribute="bottom" constant="5" id="Anl-Cy-LDN"/>
-                                    <constraint firstItem="Fo4-1d-abf" firstAttribute="leading" secondItem="0Bm-aK-jTK" secondAttribute="leading" id="E11-mm-xas"/>
-                                    <constraint firstItem="OXh-0s-jV0" firstAttribute="top" secondItem="0Bm-aK-jTK" secondAttribute="top" constant="22" id="NBZ-um-BNJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Fo4-1d-abf" secondAttribute="trailing" id="iaC-zz-Sry"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="kpE-RB-j0T" appends="YES" id="9HA-ds-kX5"/>
-                                </connections>
-                            </view>
-                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOx-yj-mOH">
-                                <rect key="frame" x="130" y="0.0" width="131" height="119"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="成绩" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPr-QK-ppk">
-                                        <rect key="frame" x="0.0" y="78" width="131" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.83137254900000002" green="0.35686274509999999" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gpaBtn" translatesAutoresizingMaskIntoConstraints="NO" id="Cvy-xp-Sk6">
-                                        <rect key="frame" x="40" y="22" width="50" height="50"/>
-                                        <color key="tintColor" red="0.83137254901960778" green="0.35686274509803922" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="8HW-y3-HUo"/>
-                                            <constraint firstAttribute="height" constant="50" id="BhA-T8-aPQ"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="top" secondItem="Cvy-xp-Sk6" secondAttribute="bottom" constant="5" id="AYn-tn-Lzh"/>
-                                    <constraint firstAttribute="trailing" secondItem="IPr-QK-ppk" secondAttribute="trailing" id="BBl-cS-ozg"/>
-                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="top" secondItem="Cvy-xp-Sk6" secondAttribute="bottom" constant="8" id="RXb-RK-STy"/>
-                                    <constraint firstItem="Cvy-xp-Sk6" firstAttribute="top" secondItem="bOx-yj-mOH" secondAttribute="top" constant="22" id="Rmx-5A-rcA"/>
-                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="leading" secondItem="bOx-yj-mOH" secondAttribute="leading" id="bTT-hC-VEn"/>
-                                    <constraint firstItem="Cvy-xp-Sk6" firstAttribute="centerX" secondItem="bOx-yj-mOH" secondAttribute="centerX" id="dFy-aV-TUJ"/>
-                                    <constraint firstItem="IPr-QK-ppk" firstAttribute="centerX" secondItem="bOx-yj-mOH" secondAttribute="centerX" id="qbO-bl-R6v"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="KkV-Fk-TQt" appends="YES" id="m0h-yo-ZO3"/>
-                                </connections>
-                            </view>
-                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8i-EC-EtT">
-                                <rect key="frame" x="261" y="0.0" width="130" height="119"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classtableTab" translatesAutoresizingMaskIntoConstraints="NO" id="QId-Qr-HpE">
-                                        <rect key="frame" x="40" y="22" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="CUQ-qd-zJa"/>
-                                            <constraint firstAttribute="width" constant="50" id="DcR-2T-4pp"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="课程表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXk-De-zxj">
-                                        <rect key="frame" x="0.0" y="77" width="130" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.20784313730000001" green="0.59999999999999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="kXk-De-zxj" firstAttribute="leading" secondItem="p8i-EC-EtT" secondAttribute="leading" id="0Dj-0V-XI4"/>
-                                    <constraint firstItem="kXk-De-zxj" firstAttribute="top" secondItem="QId-Qr-HpE" secondAttribute="bottom" constant="8" id="3cx-zY-P9P"/>
-                                    <constraint firstAttribute="trailing" secondItem="kXk-De-zxj" secondAttribute="trailing" id="4ua-Nf-vmu"/>
-                                    <constraint firstItem="QId-Qr-HpE" firstAttribute="centerX" secondItem="p8i-EC-EtT" secondAttribute="centerX" id="EHs-jY-NeU"/>
-                                    <constraint firstItem="kXk-De-zxj" firstAttribute="centerX" secondItem="p8i-EC-EtT" secondAttribute="centerX" id="eok-0b-Inj"/>
-                                    <constraint firstItem="QId-Qr-HpE" firstAttribute="top" secondItem="p8i-EC-EtT" secondAttribute="top" constant="22" id="rrL-wh-Xrx"/>
-                                    <constraint firstItem="kXk-De-zxj" firstAttribute="top" secondItem="QId-Qr-HpE" secondAttribute="bottom" constant="5" id="waT-4e-evb"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="oPr-fa-7ow" appends="YES" id="uLw-ZG-QLj"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                    </stackView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="e8N-xG-8Qd">
+                        <rect key="frame" x="0.0" y="0.0" width="391" height="119.5"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mlf-tv-R3X">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="R4d-GT-F22"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="rwN-1H-WJT"/>
+                        </connections>
+                    </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="AL6-H4-2bh" secondAttribute="trailing" id="2LO-4F-Unk"/>
-                    <constraint firstItem="AL6-H4-2bh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9NW-Mw-6m3"/>
-                    <constraint firstAttribute="bottom" secondItem="AL6-H4-2bh" secondAttribute="bottom" id="mk4-dr-sum"/>
-                    <constraint firstItem="AL6-H4-2bh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xST-Za-1wr"/>
+                    <constraint firstAttribute="bottom" secondItem="e8N-xG-8Qd" secondAttribute="bottom" id="0Mx-2C-6YQ"/>
+                    <constraint firstItem="e8N-xG-8Qd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="IoH-8S-jRm"/>
+                    <constraint firstItem="e8N-xG-8Qd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q70-ps-hJb"/>
+                    <constraint firstAttribute="trailing" secondItem="e8N-xG-8Qd" secondAttribute="trailing" id="u9T-Lk-tnU"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="firstGestureRecognizer" destination="kpE-RB-j0T" id="QAo-EQ-0lH"/>
-                <outlet property="firstImgView" destination="OXh-0s-jV0" id="ETI-Mt-Dhf"/>
-                <outlet property="secondGestureRecognizer" destination="KkV-Fk-TQt" id="33P-Mf-xuT"/>
-                <outlet property="secondImgView" destination="Cvy-xp-Sk6" id="MZ4-el-5RG"/>
-                <outlet property="thirdGestureRecognizer" destination="oPr-fa-7ow" id="QZF-IC-eHw"/>
-                <outlet property="thirdImgView" destination="QId-Qr-HpE" id="zN7-TA-2P1"/>
+                <outlet property="toolsCollectionView" destination="e8N-xG-8Qd" id="ktO-FF-QTI"/>
             </connections>
             <point key="canvasLocation" x="391.5" y="522"/>
         </tableViewCell>
-        <tapGestureRecognizer id="kpE-RB-j0T"/>
-        <tapGestureRecognizer id="KkV-Fk-TQt"/>
-        <tapGestureRecognizer id="oPr-fa-7ow"/>
     </objects>
-    <resources>
-        <image name="classtableTab" width="30" height="30"/>
-        <image name="gpaBtn" width="72" height="72"/>
-        <image name="newsBtn" width="72" height="72"/>
-    </resources>
 </document>

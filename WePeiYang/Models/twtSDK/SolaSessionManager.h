@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AFNetworking/AFNetworking.h>
+@import AFNetworking;
 
 typedef NS_ENUM(NSInteger, SessionType) {
     SessionTypeGET = 0,

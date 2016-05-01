@@ -14,6 +14,11 @@
 #import "wpyCacheManager.h"
 #import "GPATableViewController.h"
 #import <CoreSpotlight/CoreSpotlight.h>
+#import "WePeiYang-Swift.h"
+
+#define CLASSTABLE_CACHE_KEY @"CLASSTABLE_CACHE"
+#define CLASSTABLE_COLOR_CONFIG_KEY @"CLASSTABLE_COLOR_CONFIG"
+#define CLASSTABLE_TERM_START_KEY @"CLASSTABLE_TERM_START"
 
 @implementation AccountManager
 
@@ -30,9 +35,12 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN_SAVE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:ID_SAVE_KEY];
     [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
+    [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_TERM_START_KEY];
+    [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_CACHE_KEY];
+    [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_COLOR_CONFIG_KEY];
     [SolaInstance shareInstance].token = nil;
     [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
-        NSLog(error.localizedDescription);
+//        NSLog(error.localizedDescription);
     }];
 }
 
@@ -68,8 +76,8 @@
 + (void)refreshTokenSuccess:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:TOKEN_SAVE_KEY] != nil) {
         [twtSDK refreshTokenWithOldToken:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] success:^(NSURLSessionDataTask *task, id responseObject) {
-            if ([responseObject objectForKey:@"token"] != nil) {
-                success([responseObject objectForKey:@"token"]);
+            if ([responseObject objectForKey:@"data"] != nil) {
+                success([responseObject objectForKey:@"data"]);
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (failure != nil) {
@@ -173,8 +181,11 @@
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:TJU_BIND_KEY];
         [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
         [wpyCacheManager removeCacheDataForKey:GPA_USER_NAME_CACHE];
+        [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_COLOR_CONFIG_KEY];
+        [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_CACHE_KEY];
+        [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_TERM_START_KEY];
         [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:^(NSError *error) {
-            NSLog(error.localizedDescription);
+//            NSLog(error.localizedDescription);
         }];
         if (success != nil) {
             success();

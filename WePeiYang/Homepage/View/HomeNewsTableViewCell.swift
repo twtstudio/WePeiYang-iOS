@@ -26,6 +26,8 @@ class HomeNewsTableViewCell: UITableViewCell {
     
     func setObject(obj: NewsData) {
         titleLabel.text = obj.subject
+        imgView.contentMode = .ScaleAspectFill
+        imgView.clipsToBounds = true
         imgView.setImageWithURL(NSURL(string: obj.pic ?? "")!, placeholderImage: UIImage(named: "twtLogo"))
     }
     

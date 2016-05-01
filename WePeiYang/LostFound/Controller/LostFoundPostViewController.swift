@@ -9,6 +9,7 @@
 import UIKit
 import FXForms
 import BlocksKit
+import SwiftyJSON
 
 class LostFoundPostViewController: UITableViewController, FXFormControllerDelegate {
     
@@ -74,7 +75,8 @@ class LostFoundPostViewController: UITableViewController, FXFormControllerDelega
                 let lostType = form.lostType == nil ? "0" : form.lostType
                 let otherTag = form.otherTag == nil ? "" : form.otherTag
                 twtSDK.postLostInfoWithTitle(form.title!, name: form.name!, time: time!, place: place!, phone: form.phone!, content:content! , lostType: lostType!, otherTag: otherTag!, success: {(task, responseObj) in
-                    if responseObj["error_code"] as! Int == -1 {
+                    let responseData = JSON(responseObj)
+                    if responseData["error_code"].int == -1 {
                         MsgDisplay.showSuccessMsg("发布成功！")
                         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                     } else {
@@ -89,7 +91,8 @@ class LostFoundPostViewController: UITableViewController, FXFormControllerDelega
                 let content = form.content == nil ? "" : form.content
                 let foundPic = form.foundPic == nil ? "" : form.foundPic
                 twtSDK.postFoundInfoWithTitle(form.title!, name: form.name!, time: time!, place: place!, phone: form.phone!, content: content!, foundPic: foundPic!, success: {(task, responseObj) in
-                    if responseObj["error_code"] as! Int == -1 {
+                    let responseData = JSON(responseObj)
+                    if responseData["error_code"].int == -1 {
                         MsgDisplay.showSuccessMsg("发布成功！")
                         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                     } else {

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "twtAppDelegate.h"
-
-int main(int argc, char * argv[])
-{
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([twtAppDelegate class]));
-    }
-}
+//#import "twtAppDelegate.h"
+//
+//int main(int argc, char * argv[])
+//{
+//    @autoreleasepool {
+//        return UIApplicationMain(argc, argv, nil, NSStringFromClass([twtAppDelegate class]));
+//    }
+//}

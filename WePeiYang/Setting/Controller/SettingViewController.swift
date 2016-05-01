@@ -57,11 +57,10 @@ class SettingViewController: UITableViewController {
                 AccountManager.removeToken()
                 wpyCacheManager.removeCacheDataForKey(GPA_CACHE)
                 wpyCacheManager.removeCacheDataForKey(GPA_USER_NAME_CACHE)
-//                wpyCacheManager.removeCacheDataForKey(CLASSTABLE_CACHE_KEY)
                 wpyCacheManager.removeGroupCacheDataForKey(CLASSTABLE_CACHE_KEY)
                 wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
                 MsgDisplay.showSuccessMsg("注销成功！")
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             })
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil)
             alert.addAction(okAction)
@@ -233,9 +232,11 @@ class SettingViewController: UITableViewController {
             switch row {
             case 0:
                 let aboutVC = AboutViewController(nibName: nil, bundle: nil)
+                aboutVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.showViewController(aboutVC, sender: nil)
             case 1:
                 let feedbackVC = FeedbackViewController(style: .Grouped)
+                feedbackVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.showViewController(feedbackVC, sender: nil)
             default:
                 break

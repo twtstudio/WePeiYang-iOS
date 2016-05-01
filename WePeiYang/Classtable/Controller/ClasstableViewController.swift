@@ -39,10 +39,10 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         self.dataArr = []
         self.currentWeek = 0
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshNotificationReceived", name: "Login", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshNotificationReceived", name: "BindTju", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "backNotificationReceived", name: "LoginCancelled", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "backNotificationReceived", name: "BindTjuCancelled", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: "Login", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: "BindTju", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: "LoginCancelled", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: "BindTjuCancelled", object: nil)
         
         self.loadClassTable()
     }
@@ -50,6 +50,11 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 1.0, green: 152/255.0, blue: 0, alpha: 1.0)
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -81,14 +86,6 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                     self.refresh()
                 }
             })
-//            if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_CACHE_KEY) {
-//                wpyCacheManager.loadCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {cacheData in
-//                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(cacheData)
-//                    self.updateView(UIScreen.mainScreen().bounds.size)
-//                }, failed: nil)
-//            } else {
-//                self.refresh()
-//            }
         } else {
             let loginVC = LoginViewController(nibName: nil, bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
@@ -99,19 +96,15 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         MsgDisplay.showLoading()
         ClasstableDataManager.getClasstableData({(data, termStart) in
             MsgDisplay.dismiss()
-//            if data.count > 0 {
             wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
                 self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
                 self.updateView(self.view.bounds.size)
-//                wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+
                 wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
                 wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
             let startDate = NSDate(timeIntervalSince1970: Double(termStart))
             self.currentWeek = NSDate().weeksFrom(startDate) + 1
             self.title = "第 \(self.currentWeek) 周"
-//            } else {
-//
-//            }
         }, notBinded: {
             MsgDisplay.dismiss()
             let bindTjuVC = BindTjuViewController(style: .Grouped)
@@ -119,23 +112,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         }, otherFailure: {errorMsg in
             MsgDisplay.showErrorMsg(errorMsg)
         })
-        
-        // Load demo data
-        
-//        let demoJson = NSBundle.mainBundle().pathForResource("class_demo", ofType: "json")
-//        do {
-//            let obj = try NSJSONSerialization.JSONObjectWithData(NSData(contentsOfFile: demoJson!)!, options: .MutableLeaves)
-//            let data = obj["data"]!
-//            dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
-//            wpyCacheManager.saveCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
-//            wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
-//            self.updateView(UIScreen.mainScreen().bounds.size)
-//        } catch {
-//            
-//        }
     }
-    
-    
     
     private func updateView(size: CGSize) {
         for view in classTableScrollView.subviews {
@@ -163,7 +140,6 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         var colorConfig = [String: UIColor]()
         wpyCacheManager.loadCacheDataWithKey(CLASSTABLE_COLOR_CONFIG_KEY, andBlock: {obj in
             colorConfig = obj as! [String: UIColor]
-//            print("\(colorConfig)")
         }, failed: nil)
         
         var colorArray = colorArr
@@ -206,11 +182,13 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 // 考虑不在当前周数内的科目
                 if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
                     // 单双周判断
+                    // MARK: - WARNING 单双周可能有课不一样
                     if (tmpArrange.week == "单双周") || (currentWeek % 2 == 0 && tmpArrange.week == "双周") || (currentWeek % 2 == 1 && tmpArrange.week == "单周") {
                         classCell.backgroundColor = classBgColor
                     } else {
-                        classCell.backgroundColor = UIColor.flatWhiteColor()
-                        classCell.classLabel.textColor = UIColor.flatGrayColorDark()
+//                        classCell.backgroundColor = UIColor.flatWhiteColor()
+//                        classCell.classLabel.textColor = UIColor.flatGrayColorDark()
+                        classCell.removeFromSuperview()
                     }
                 } else {
                     classCell.backgroundColor = UIColor.flatWhiteColor()
@@ -231,7 +209,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         } else if screenSize.width <= 414 {
             height = width * 1.3
         } else if screenSize.width <= 768 {
-            if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone {
+            if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
                 height = width * 0.45
             } else {
                 height = width * 0.8

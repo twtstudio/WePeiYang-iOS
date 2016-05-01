@@ -17,7 +17,7 @@ class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
     var scrollView: UIScrollView!
     var pageControl: UIPageControl!
     
-    var delegate: HomeCarouselCellDelegate!
+    weak var delegate: HomeCarouselCellDelegate!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

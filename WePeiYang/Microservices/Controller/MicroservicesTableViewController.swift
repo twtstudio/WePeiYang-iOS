@@ -10,10 +10,12 @@ import UIKit
 import AFNetworking
 import MJRefresh
 import SafariServices
+import SwiftyJSON
+import ObjectMapper
 
 class MicroservicesTableViewController: UITableViewController {
     
-    var dataArr = []
+    var dataArr: [WebAppItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class MicroservicesTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 65
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.registerNib(UINib(nibName: "WebAppTableViewCell", bundle: nil), forCellReuseIdentifier: "reuseIdentifier")
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.refresh()
         })
@@ -43,19 +46,20 @@ class MicroservicesTableViewController: UITableViewController {
     private func refresh() {
         MsgDisplay.showLoading()
         SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
-            let dic = responseObject as! [String: AnyObject]
-            if dic["error_code"] as? Int == -1 {
-                self.dataArr = WebAppItem.mj_objectArrayWithKeyValuesArray(dic["data"])
+            let dic = JSON(responseObject)
+            if dic["error_code"].int == -1 {
+                self.dataArr = Mapper<WebAppItem>().mapArray(dic["data"].arrayObject)!
+                // 约吧测试
+                // self.dataArr.append(WebAppItem(name: "yueba", sites: "http://yueba.twtstudio.com", desc: "", iconURL: "", fullScreen: true))
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }
             MsgDisplay.dismiss()
         }, failure: {(task, error) in
-            let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! NSData
-            do {
-                let dic = try NSJSONSerialization.JSONObjectWithData(errorResponse, options: .MutableContainers)
-                MsgDisplay.showErrorMsg("获取数据失败\n\(dic["message"])")
-            } catch {
+            if let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? NSData {
+                let errorJSON = JSON(errorResponse)
+                MsgDisplay.showErrorMsg("获取数据失败\n\(errorJSON["message"])")
+            } else {
                 MsgDisplay.showErrorMsg("获取数据失败\n请稍后再试...")
             }
         })
@@ -72,22 +76,27 @@ class MicroservicesTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? WebAppTableViewCell
-        if cell == nil {
-            let nib = NSBundle.mainBundle().loadNibNamed("WebAppTableViewCell", owner: self, options: nil)
-            cell = nib[0] as? WebAppTableViewCell
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as? WebAppTableViewCell
         let row = indexPath.row
-        cell?.setObject(dataArr[row] as! WebAppItem)
+        cell?.setObject(dataArr[row])
         return cell!
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
-        let dataItem = dataArr[row] as! WebAppItem
-
-        let webViewController = wpyWebViewController(address: dataItem.sites)
-        self.navigationController?.showViewController(webViewController, sender: nil)
+        let dataItem = dataArr[row]
+        
+        var webController: UIViewController
+        if dataItem.fullScreen {
+            webController = WebAppViewController(address: dataItem.sites)
+        } else {
+            if #available(iOS 9.0, *) {
+                webController = SFSafariViewController(URL: NSURL(string: dataItem.sites)!)
+            } else {
+                webController = wpyWebViewController(address: dataItem.sites)
+            }
+        }
+        self.navigationController?.showViewController(webController, sender: nil)
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
