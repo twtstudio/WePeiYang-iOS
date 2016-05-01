@@ -85,14 +85,18 @@ class MicroservicesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
         let dataItem = dataArr[row]
-
+        
+        var webController: UIViewController
         if dataItem.fullScreen {
-            let webAppController = WebAppViewController(address: dataItem.sites)
-            self.navigationController?.showViewController(webAppController, sender: nil)
+            webController = WebAppViewController(address: dataItem.sites)
         } else {
-            let webViewController = wpyWebViewController(address: dataItem.sites)
-            self.navigationController?.showViewController(webViewController, sender: nil)
+            if #available(iOS 9.0, *) {
+                webController = SFSafariViewController(URL: NSURL(string: dataItem.sites)!)
+            } else {
+                webController = wpyWebViewController(address: dataItem.sites)
+            }
         }
+        self.navigationController?.showViewController(webController, sender: nil)
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

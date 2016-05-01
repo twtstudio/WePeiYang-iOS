@@ -63,7 +63,6 @@ class LostFoundTableViewController: UITableViewController {
     
     private func fetchData() {
         twtSDK.getLostFoundListWithType(type, page: currentPage, success: {task, responseObj in
-            print(responseObj)
             let responseData = JSON(responseObj)
             if self.currentPage == 1 {
                 self.dataArr = []
@@ -104,7 +103,6 @@ class LostFoundTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
         let tmp = dataArr[row]
-        print("INDEX: \(tmp.index)")
         let lfDetailVC = LostFoundDetailViewController(style: .Grouped)
         lfDetailVC.index = "\(tmp.index)"
         lfDetailVC.type = "\(type)"
