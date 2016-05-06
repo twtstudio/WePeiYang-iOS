@@ -27,6 +27,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.alwaysBounceVertical = true
+        self.jz_navigationBarBackgroundHidden = false
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

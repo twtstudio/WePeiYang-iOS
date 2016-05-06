@@ -25,6 +25,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
+        self.jz_navigationBarBackgroundHidden = false
         mainTableView.dataSource = self
         mainTableView.delegate = self
         

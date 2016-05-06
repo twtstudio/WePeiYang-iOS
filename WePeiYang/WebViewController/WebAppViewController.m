@@ -12,7 +12,6 @@
 #import "WePeiYang-Swift.h"
 #import "SolaFoundationKit.h"
 #import "MsgDisplay.h"
-@import Masonry;
 
 @interface WebAppViewController ()
 @property (strong, nonatomic) NSURLRequest *request;

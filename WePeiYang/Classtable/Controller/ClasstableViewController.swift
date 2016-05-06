@@ -8,7 +8,7 @@
 
 import UIKit
 import MJExtension
-import Masonry
+import SnapKit
 import STPopup
 import DateTools
 
@@ -128,11 +128,11 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             classNumberCell.classLabel.textColor = UIColor.lightGrayColor()
             classNumberCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
             classTableScrollView.addSubview(classNumberCell)
-            classNumberCell.mas_makeConstraints({make in
-                make.top.mas_equalTo()(CGFloat(i) * classSize.height)
-                make.left.mas_equalTo()(0)
-                make.width.mas_equalTo()(classSize.width)
-                make.height.mas_equalTo()(classSize.height)
+            classNumberCell.snp_makeConstraints(closure: { make in
+                make.top.equalTo(CGFloat(i) * classSize.height)
+                make.left.equalTo(0)
+                make.width.equalTo(classSize.width)
+                make.height.equalTo(classSize.height)
             })
         }
         
@@ -167,11 +167,11 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 let classCell = ClassCellView()
                 classTableScrollView.addSubview(classCell)
                 classCell.classData = tmpClass
-                classCell.mas_makeConstraints({make in
-                    make.width.mas_equalTo()(classSize.width)
-                    make.height.mas_equalTo()(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
-                    make.left.mas_equalTo()(CGFloat(tmpArrange.day) * classSize.width)
-                    make.top.mas_equalTo()(CGFloat(tmpArrange.start - 1) * classSize.height)
+                classCell.snp_makeConstraints(closure: { make in
+                    make.width.equalTo(classSize.width)
+                    make.height.equalTo(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
+                    make.left.equalTo(CGFloat(tmpArrange.day) * classSize.width)
+                    make.top.equalTo(CGFloat(tmpArrange.start - 1) * classSize.height)
                 })
                 
                 classCell.classLabel.text = "\(tmpClass.courseName)@\(tmpArrange.room)"
