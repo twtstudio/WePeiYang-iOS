@@ -74,6 +74,7 @@
 		E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */; };
 		E961E6181CDF5FE4003E574F /* ClassData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961E6171CDF5FE4003E574F /* ClassData.swift */; };
 		E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961E6191CDF5FF8003E574F /* ArrangeModel.swift */; };
+		E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */; };
 		E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */; };
 		E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */; };
 		E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */; };
@@ -265,6 +266,7 @@
 		E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackViewController.swift; path = Feedback/FeedbackViewController.swift; sourceTree = "<group>"; };
 		E961E6171CDF5FE4003E574F /* ClassData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassData.swift; path = Classtable/Model/ClassData.swift; sourceTree = "<group>"; };
 		E961E6191CDF5FF8003E574F /* ArrangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrangeModel.swift; path = Classtable/Model/ArrangeModel.swift; sourceTree = "<group>"; };
+		E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevControlViewController.swift; path = Dev/DevControlViewController.swift; sourceTree = "<group>"; };
 		E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundTableViewController.swift; path = LostFound/Controller/LostFoundTableViewController.swift; sourceTree = "<group>"; };
 		E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailViewController.swift; path = LostFound/Controller/LostFoundDetailViewController.swift; sourceTree = "<group>"; };
 		E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailForm.swift; path = LostFound/Controller/LostFoundDetailForm.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 		E901054E1C3B994E002901AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E961E61B1CDF6BF5003E574F /* Dev */,
 				E93701871C5CCE5000C87E84 /* About */,
 				E95BDA801C4BF12500EFC107 /* Feedback */,
 				E949E3DF1C43F3A900A5212B /* SettingViewController.swift */,
@@ -730,6 +733,14 @@
 				E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */,
 			);
 			name = Feedback;
+			sourceTree = "<group>";
+		};
+		E961E61B1CDF6BF5003E574F /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */,
+			);
+			name = Dev;
 			sourceTree = "<group>";
 		};
 		E96921CC1C3BEEA4002B4319 /* Model */ = {
@@ -1427,6 +1438,7 @@
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
+				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,

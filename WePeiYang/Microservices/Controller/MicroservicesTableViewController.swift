@@ -55,12 +55,13 @@ class MicroservicesTableViewController: UITableViewController {
     
     private func refresh() {
         MsgDisplay.showLoading()
-        SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
+        
+        let parameters = NSUserDefaults().boolForKey(DEV_DISPLAY_DEV_WEB_APP) ? ["env": "development"] : [:]
+        
+        SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: parameters, success: {(task, responseObject) in
             let dic = JSON(responseObject)
             if dic["error_code"].int == -1 {
                 self.dataArr = Mapper<WebAppItem>().mapArray(dic["data"].arrayObject)!
-                // 约吧测试
-//                 self.dataArr.append(WebAppItem(name: "yueba", sites: "http://yueba.twtstudio.com", desc: "", iconURL: "", fullScreen: true))
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }

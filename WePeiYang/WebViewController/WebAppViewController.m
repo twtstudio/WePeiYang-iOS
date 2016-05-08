@@ -51,6 +51,7 @@
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
@@ -87,7 +88,7 @@
         [self backAnimated:YES];
     }];
     [_bridge registerHandler:@"setStatusBarHandlerBlack_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
-        _customPreferredStatusBarStyle = UIStatusBarStyleDefault;
+        _customPreferredStatusBarStyle = (UIStatusBarStyle *)UIStatusBarStyleDefault;
         [self setNeedsStatusBarAppearanceUpdate];
     }];
 }
@@ -97,6 +98,7 @@
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
