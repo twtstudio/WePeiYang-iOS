@@ -16,6 +16,16 @@ import ObjectMapper
 class MicroservicesTableViewController: UITableViewController {
     
     var dataArr: [WebAppItem] = []
+    
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        self.contentSizeInPopup = CGSizeMake(300, 400)
+        self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,11 +103,11 @@ class MicroservicesTableViewController: UITableViewController {
             if #available(iOS 9.0, *) {
                 webController = SFSafariViewController(URL: NSURL(string: dataItem.sites)!)
             } else {
-                webController = wpyWebViewController(address: dataItem.sites)
+                webController = wpyModalWebViewController(address: dataItem.sites)
             }
         }
-        self.navigationController?.showViewController(webController, sender: nil)
-        
+//        self.navigationController?.showViewController(webController, sender: nil)
+        self.presentViewController(webController, animated: true, completion: nil)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 

@@ -93,7 +93,7 @@
 		E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */; };
 		E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */; };
 		E98DF6EF1C5DF5BF003943A4 /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */; };
-		E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */; };
+		E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6DA1C5DF5BF003943A4 /* wpyModalWebViewController.m */; };
 		E98DF6F11C5DF5BF003943A4 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */; };
 		E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */; };
 		E98DF6F31C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6E01C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png */; };
@@ -286,8 +286,8 @@
 		E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppTableViewCell.swift; path = Microservices/View/WebAppTableViewCell.swift; sourceTree = "<group>"; };
 		E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebAppTableViewCell.xib; path = Microservices/View/WebAppTableViewCell.xib; sourceTree = "<group>"; };
 		E98DF6D31C5DF5BF003943A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D91C5DF5BF003943A4 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
-		E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		E98DF6D91C5DF5BF003943A4 /* wpyModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyModalWebViewController.h; sourceTree = "<group>"; };
+		E98DF6DA1C5DF5BF003943A4 /* wpyModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyModalWebViewController.m; sourceTree = "<group>"; };
 		E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
 		E98DF6DC1C5DF5BF003943A4 /* wpyWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyWebViewController.h; sourceTree = "<group>"; };
 		E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyWebViewController.m; sourceTree = "<group>"; };
@@ -849,8 +849,8 @@
 			isa = PBXGroup;
 			children = (
 				E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */,
-				E98DF6D91C5DF5BF003943A4 /* SVModalWebViewController.h */,
-				E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */,
+				E98DF6D91C5DF5BF003943A4 /* wpyModalWebViewController.h */,
+				E98DF6DA1C5DF5BF003943A4 /* wpyModalWebViewController.m */,
 				E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */,
 				E98DF6DC1C5DF5BF003943A4 /* wpyWebViewController.h */,
 				E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */,
@@ -1458,7 +1458,7 @@
 				E976B3691CBF33A90008E268 /* LostFoundViewController.m in Sources */,
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
-				E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */,
+				E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
 				E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */,

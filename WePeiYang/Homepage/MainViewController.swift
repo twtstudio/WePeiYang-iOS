@@ -11,6 +11,7 @@ import BlocksKit
 import JZNavigationExtension
 import MJRefresh
 import LocalAuthentication
+import STPopup
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate {
     
@@ -21,6 +22,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var announceArr = []
     var lostArr: [LostFoundItem] = []
     var foundArr: [LostFoundItem] = []
+    
+    var microserviceController: STPopupController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -315,8 +318,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
-        msVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.showViewController(msVC, sender: nil)
+//        msVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.showViewController(msVC, sender: nil)
+        microserviceController = STPopupController(rootViewController: msVC)
+        microserviceController.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        microserviceController.backgroundView.addGestureRecognizer((UITapGestureRecognizer().bk_initWithHandler({ (recognizer, state, point) in
+            self.microserviceController.dismiss()
+        }) as! UIGestureRecognizer))
+        microserviceController.containerView.layer.shadowOffset = CGSizeMake(0.0, 0.0)
+        microserviceController.containerView.layer.shadowOpacity = 0.5
+        microserviceController.containerView.layer.shadowRadius = 20.0
+        microserviceController.containerView.clipsToBounds = false
+        microserviceController.containerView.layer.cornerRadius = 5.0
+        microserviceController.presentInViewController(self)
     }
 
     /*

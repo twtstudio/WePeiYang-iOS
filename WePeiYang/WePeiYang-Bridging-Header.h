@@ -14,7 +14,7 @@
 #import "SolaSessionManager.h"
 #import "wpyWebViewController.h"
 #import "LostFoundViewController.h"
-#import "SVModalWebViewController.h"
+#import "wpyModalWebViewController.h"
 #import "SolaFoundationKit.h"
 #import "WebAppViewController.h"
 #import "UIViewController+Utils.h"
