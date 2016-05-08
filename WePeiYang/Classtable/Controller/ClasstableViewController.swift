@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import MJExtension
 import SnapKit
 import STPopup
 import DateTools
+import ObjectMapper
 
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 let CLASSTABLE_COLOR_CONFIG_KEY = "CLASSTABLE_COLOR_CONFIG"
@@ -21,7 +21,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     @IBOutlet weak var classTableScrollView: UIScrollView!
     
-    var dataArr = []
+    var dataArr: [ClassData] = []
     var detailController: STPopupController!
     var currentWeek = 0
 
@@ -80,7 +80,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             })
             wpyCacheManager.loadGroupCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {data in
                 if data != nil {
-                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+                    self.dataArr = Mapper<ClassData>().mapArray(data)!
                     self.updateView(UIScreen.mainScreen().bounds.size)
                 } else {
                     self.refresh()
@@ -97,7 +97,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         ClasstableDataManager.getClasstableData({(data, termStart) in
             MsgDisplay.dismiss()
             wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
-            self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+            self.dataArr = Mapper<ClassData>().mapArray(data)!
             self.updateView(self.view.bounds.size)
             wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
             wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
@@ -143,9 +143,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         
         var colorArray = colorArr
         
-        for tmpItem in dataArr {
-            let tmpClass: ClassData = tmpItem as! ClassData
-            
+        for tmpClass in dataArr {
             var classBgColor: UIColor!
             if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_COLOR_CONFIG_KEY) {
                 if colorConfig[tmpClass.courseId] != nil {
@@ -162,8 +160,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 colorArray.removeFirst()
             }
             
-            for arrange in tmpClass.arrange {
-                let tmpArrange: ArrangeModel = arrange as! ArrangeModel
+            for tmpArrange in tmpClass.arrange {
                 let classCell = ClassCellView()
                 classTableScrollView.addSubview(classCell)
                 classCell.classData = tmpClass
