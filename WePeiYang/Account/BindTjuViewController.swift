@@ -30,7 +30,8 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
         
         let cancelBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Cancel, handler: {sender in
             NSNotificationCenter.defaultCenter().postNotificationName("BindTjuCancelled", object: nil)
-            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            //self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         }) as! UIBarButtonItem
         self.navigationItem.leftBarButtonItem = cancelBtn
         
@@ -38,12 +39,15 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
             let form = self.formController.form as! BindTjuForm
             let username = form.username
             let password = form.password
+            self.navigationController?.popViewControllerAnimated(true)
             if username != nil && password != nil && username != "" && password != "" {
                 MsgDisplay.showLoading()
                 AccountManager.bindTjuAccountWithTjuUserName(username, password: password, success: {
                     MsgDisplay.showSuccessMsg("办公网账号绑定成功！")
                     NSNotificationCenter.defaultCenter().postNotificationName("BindTju", object: nil)
-                    self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                    //self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                    //使用 dismiss 会爆炸
+                    self.navigationController?.popViewControllerAnimated(true)
                 }, failure: {errorMsg in
                     MsgDisplay.showErrorMsg(errorMsg)
                 })
