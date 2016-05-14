@@ -21,7 +21,9 @@
 
 @end
 
-@implementation WebAppViewController
+@implementation WebAppViewController {
+    BOOL _flagged;
+}
 
 #pragma mark - Initialization
 /*- (void) dealloc {
@@ -143,8 +145,41 @@
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:animated];
     } else {
-        [self dismissViewControllerAnimated:animated completion:nil];
+        [self trueDismissViewControllerAnimated:animated completion:nil];
     }
+}
+
+#pragma mark - Avoiding iOS bug
+
+- (UIViewController *)presentingViewController {
+    
+    // Avoiding iOS bug. UIWebView with file input doesn't work in modal view controller
+    
+    if (_flagged) {
+        return nil;
+    } else {
+        return [super presentingViewController];
+    }
+}
+
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    
+    // Avoiding iOS bug. UIWebView with file input doesn't work in modal view controller
+    
+    if ([viewControllerToPresent isKindOfClass:[UIDocumentMenuViewController class]]
+        ||[viewControllerToPresent isKindOfClass:[UIImagePickerController class]]) {
+        _flagged = YES;
+    }
+    
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
+- (void)trueDismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
+    
+    // Avoiding iOS bug. UIWebView with file input doesn't work in modal view controller
+    
+    _flagged = NO;
+    [self dismissViewControllerAnimated:flag completion:completion];
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
