@@ -232,7 +232,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     }
     
     func backNotificationReceived() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(false)
     }
     
     func cellViewTouched(cellView: ClassCellView) {

@@ -13,7 +13,7 @@
 #import "SolaFoundationKit.h"
 #import "MsgDisplay.h"
 
-@interface WebAppViewController ()
+@interface WebAppViewController ()<WKNavigationDelegate, WKUIDelegate>
 @property (strong, nonatomic) NSURLRequest *request;
 @property (strong, nonatomic) WKWebView *wkWebView;
 @property WKWebViewJavascriptBridge *bridge;
@@ -61,12 +61,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.selectionGranularity = NO;
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
     _wkWebView.navigationDelegate = self;
+    _wkWebView.UIDelegate = self;
     [_wkWebView loadRequest:_request];
     //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
-    _wkWebView.allowsBackForwardNavigationGestures = NO;
+    _wkWebView.allowsBackForwardNavigationGestures = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
     self.view = _wkWebView;
@@ -146,15 +148,15 @@
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
-    
+    [MsgDisplay showLoading];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation: (WKNavigation *)navigation{
-    
+    [MsgDisplay dismiss];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
-    
+    [MsgDisplay dismiss];
 }
 
 /*

@@ -9,13 +9,15 @@
 import UIKit
 
 let DEV_DISPLAY_DEV_WEB_APP = "DEV_DISPLAY_DEV_WEB_APP"
+let DEV_MODE_PASSWORD_NOT_REQUIRED = "DEV_MODE_PASSWORD_NOT_REQUIRED"
 
 class DevControlViewController: UITableViewController {
     
     typealias DevSwitchOption = (key: String, description: String)
     let options: [DevSwitchOption] = [
         (DEV_DISPLAY_DEV_WEB_APP, "显示测试 Web App"),
-        (TOUCH_ID_KEY, "复写 Touch ID 设置")
+        (TOUCH_ID_KEY, "复写 Touch ID 设置"),
+        (DEV_MODE_PASSWORD_NOT_REQUIRED, "进入 DevKit 无需密码")
     ]
 
     override func viewDidLoad() {
@@ -27,7 +29,7 @@ class DevControlViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        self.title = "Dev Mode"
+        self.title = "DevKit"
         self.navigationController?.navigationBar.barStyle = .BlackTranslucent
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
