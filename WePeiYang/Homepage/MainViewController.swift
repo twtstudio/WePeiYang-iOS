@@ -34,9 +34,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.mainTableView.mj_header.beginRefreshing()
         
         if !AccountManager.tokenExists() {
-            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         }
+        print("OHMYGOD")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,6 +76,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             MsgDisplay.showErrorMsg(description)
             self.mainTableView.mj_header.endRefreshing()
         })
+        print("OHMYGOD get data done")
     }
     
     // TABLE VIEW DATA SOURCE

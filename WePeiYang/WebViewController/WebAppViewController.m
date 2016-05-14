@@ -95,7 +95,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSSet *websiteDataTypes
+    /*NSSet *websiteDataTypes
     = [NSSet setWithArray:@[
                             WKWebsiteDataTypeDiskCache,
                             WKWebsiteDataTypeOfflineWebApplicationCache,
@@ -105,9 +105,9 @@
                             WKWebsiteDataTypeSessionStorage,
                             WKWebsiteDataTypeIndexedDBDatabases,
                             WKWebsiteDataTypeWebSQLDatabases
-                            ]];
+                            ]];*/
     //// All kinds of data
-    //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
     //// Date from
     NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
     //// Execute

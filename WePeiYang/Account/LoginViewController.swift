@@ -16,6 +16,11 @@ import pop
     @IBOutlet weak var passwdField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
 
+    /*
+    override var nibName: String? {
+        return "\(self.dynamicType)"
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

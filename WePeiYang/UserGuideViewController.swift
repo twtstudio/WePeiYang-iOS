@@ -14,7 +14,8 @@ class UserGuideViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startButton(sender: UIButton) {
-        
+        let mainTab = storyboard?.instantiateViewControllerWithIdentifier("mainTab") as! UITabBarController
+        self.presentViewController(mainTab, animated: true, completion: nil)
     }
     
     private var scrollView: UIScrollView!

@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
                 let guide = storyboard.instantiateViewControllerWithIdentifier("guide") as! UserGuideViewController
                 self.window?.rootViewController = guide
             }
-
         }
         return true
     }

@@ -39,7 +39,6 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
             let form = self.formController.form as! BindTjuForm
             let username = form.username
             let password = form.password
-            self.navigationController?.popViewControllerAnimated(true)
             if username != nil && password != nil && username != "" && password != "" {
                 MsgDisplay.showLoading()
                 AccountManager.bindTjuAccountWithTjuUserName(username, password: password, success: {
