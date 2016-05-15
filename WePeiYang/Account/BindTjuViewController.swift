@@ -10,6 +10,9 @@ import UIKit
 import FXForms
 import BlocksKit
 
+let NOTIFICATION_BINDTJU_SUCCESSED = "NOTIFICATION_BINDTJU_SUCCESSED"
+let NOTIFICATION_BINDTJU_CANCELLED = "NOTIFICATION_BINDTJU_CANCELLED"
+
 class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
     
     var formController: FXFormController!
@@ -29,7 +32,7 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
         formController.form = BindTjuForm()
         
         let cancelBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Cancel, handler: {sender in
-            NSNotificationCenter.defaultCenter().postNotificationName("BindTjuCancelled", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_BINDTJU_CANCELLED, object: nil)
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         }) as! UIBarButtonItem
         self.navigationItem.leftBarButtonItem = cancelBtn
@@ -42,7 +45,7 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
                 MsgDisplay.showLoading()
                 AccountManager.bindTjuAccountWithTjuUserName(username, password: password, success: {
                     MsgDisplay.showSuccessMsg("办公网账号绑定成功！")
-                    NSNotificationCenter.defaultCenter().postNotificationName("BindTju", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_BINDTJU_SUCCESSED, object: nil)
                     self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                 }, failure: {errorMsg in
                     MsgDisplay.showErrorMsg(errorMsg)

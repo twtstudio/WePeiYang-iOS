@@ -87,10 +87,10 @@
     
     [self refresh];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"BindTju" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"BindTjuCancelled" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"LoginCancelled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_BINDTJU_SUCCESSED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_BINDTJU_CANCELLED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_LOGIN_SUCCESSED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_LOGIN_CANCELLED" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -125,7 +125,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E675AA29-F45F-4B39-9C6E-8FBF6B001CFB" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="28D021C4-1D01-496C-9EFD-6693593B50C7" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
                                             <rect key="frame" x="8" y="12" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="Rl6-ca-WxZ"/>
@@ -395,21 +395,18 @@
                                 </constraints>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHH-1d-TJ3">
-                                <rect key="frame" x="256" y="513" width="89" height="30"/>
+                                <rect key="frame" x="229" y="496" width="142" height="47"/>
                                 <color key="backgroundColor" red="0.91764705882352937" green="0.45098039215686275" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1Z0-L2-TbR"/>
-                                    <constraint firstAttribute="width" constant="89" id="k28-jw-34H"/>
+                                    <constraint firstAttribute="height" constant="47" id="4y2-rf-nRY"/>
+                                    <constraint firstAttribute="width" constant="142" id="SaP-xv-tf6"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="寻找实验室">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startButton:" destination="ytM-ba-MhI" eventType="touchUpInside" id="xMs-c1-06H"/>
-                                    <segue destination="MUO-OE-scN" kind="popoverPresentation" popoverAnchorView="sHH-1d-TJ3" id="C4v-re-46g">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="dismissSelf" destination="ytM-ba-MhI" eventType="touchUpInside" id="xzz-kX-ub4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -600,7 +597,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E675AA29-F45F-4B39-9C6E-8FBF6B001CFB" width="1000" height="1000">
+        <image name="28D021C4-1D01-496C-9EFD-6693593B50C7" width="1000" height="1000">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGSUpYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEAcI
 ERYbHCUmJysyNzo9Q0ZVJG51bGzUCQoLDA0ODxBWJGNsYXNzXE5TSW1hZ2VGbGFnc1ZOU1JlcHNXTlND
