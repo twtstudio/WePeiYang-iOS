@@ -23,7 +23,6 @@
 		27B4F0949B75D8717BD819AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDB6280259E22DE141F518E /* Pods.framework */; };
 		B17233371CD24F1700A13736 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B17233361CD24F1700A13736 /* UIViewController+Utils.m */; };
 		B18AB9EC1CD342BD0050FA8F /* UserGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18AB9EB1CD342BD0050FA8F /* UserGuideViewController.swift */; };
-		B1B712F11CCE4A7500B80F39 /* WKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B712F01CCE4A7500B80F39 /* WKWebViewController.m */; };
 		B1EB41351CE77F12001D6D53 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EB41341CE77F12001D6D53 /* tabBarViewController.swift */; };
 		E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */; };
 		E90105541C3B994E002901AC /* GPATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90105381C3B994E002901AC /* GPATableViewController.m */; };
@@ -195,8 +194,6 @@
 		B17233351CD24F0100A13736 /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
 		B17233361CD24F1700A13736 /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
 		B18AB9EB1CD342BD0050FA8F /* UserGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGuideViewController.swift; sourceTree = "<group>"; };
-		B1B712EF1CCE4A7500B80F39 /* WKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewController.h; sourceTree = "<group>"; };
-		B1B712F01CCE4A7500B80F39 /* WKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewController.m; sourceTree = "<group>"; };
 		B1EB41341CE77F12001D6D53 /* tabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
@@ -864,8 +861,6 @@
 			isa = PBXGroup;
 			children = (
 				E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */,
-				B1B712EF1CCE4A7500B80F39 /* WKWebViewController.h */,
-				B1B712F01CCE4A7500B80F39 /* WKWebViewController.m */,
 				E98DF6D91C5DF5BF003943A4 /* SVModalWebViewController.h */,
 				E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */,
 				E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */,
@@ -1531,7 +1526,6 @@
 				E901055B1C3B994E002901AC /* NewsTableViewCell.m in Sources */,
 				E90105581C3B994E002901AC /* NewsContentViewController.m in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
-				B1B712F11CCE4A7500B80F39 /* WKWebViewController.m in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
