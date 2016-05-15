@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Masonry
 
 @objc protocol ClassCellViewDelegate {
     optional func cellViewTouched(cellView: ClassCellView)
@@ -25,11 +24,11 @@ class ClassCellView: UIView {
         
         classLabel = UILabel()
         self.addSubview(classLabel)
-        classLabel.mas_makeConstraints({make in
-            make.left.mas_equalTo()(4)
-            make.right.mas_equalTo()(-4)
-            make.top.mas_equalTo()(4)
-            make.bottom.mas_equalTo()(-4)
+        classLabel.snp_makeConstraints(closure: { make in
+            make.left.equalTo(4)
+            make.right.equalTo(-4)
+            make.top.equalTo(4)
+            make.bottom.equalTo(-4)
         })
         classLabel.numberOfLines = 0
         classLabel.textColor = UIColor.whiteColor()

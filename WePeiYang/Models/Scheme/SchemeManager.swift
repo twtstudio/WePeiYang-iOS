@@ -33,7 +33,7 @@ class SchemeManager: NSObject {
                         case "h5":
                             if queryDic["url"] != nil {
                                 let url = queryDic["url"]
-                                let webViewController = SVModalWebViewController(address: url!)
+                                let webViewController = wpyModalWebViewController(address: url!)
                                 SolaFoundationKit.topViewController().presentViewController(webViewController, animated: true, completion: nil)
                             }
                         case "main":

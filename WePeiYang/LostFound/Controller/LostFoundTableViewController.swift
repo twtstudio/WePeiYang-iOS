@@ -41,6 +41,7 @@ class LostFoundTableViewController: UITableViewController {
         self.tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
             self.nextPage()
         })
+        self.tableView.mj_footer.automaticallyHidden = true
         self.tableView.mj_header.beginRefreshing()
     }
 

@@ -59,7 +59,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.jz_navigationBarBackgroundAlpha = 0.0;
+    self.jz_navigationBarBackgroundAlpha = 0.0;
     self.clearsSelectionOnViewWillAppear = YES;
     headerView.backgroundColor = [UIColor flatPinkColorDark];
     
@@ -109,7 +109,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     self.navigationController.navigationBar.tintColor = self.view.tintColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-    self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
+//    self.jz_navigationBarBackgroundAlpha = 1.0;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -130,7 +130,7 @@
 }
 
 - (void)backNotificationReceived {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)refresh {
@@ -275,17 +275,17 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.jz_navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
+        self.jz_navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
     } else if (offSetY <= -60) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        self.navigationController.jz_navigationBarBackgroundAlpha = 0.0;
+        self.jz_navigationBarBackgroundAlpha = 0.0;
     } else {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
+        self.jz_navigationBarBackgroundAlpha = 1.0;
     }
 }
 

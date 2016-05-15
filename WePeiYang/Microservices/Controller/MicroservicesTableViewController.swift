@@ -16,6 +16,23 @@ import ObjectMapper
 class MicroservicesTableViewController: UITableViewController {
     
     var dataArr: [WebAppItem] = []
+    
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        self.contentSizeInPopup = CGSizeMake(300, 400)
+        self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // iOS 8 FUCKING BUG
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(style: .Plain)
+        self.contentSizeInPopup = CGSizeMake(300, 400)
+        self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +62,13 @@ class MicroservicesTableViewController: UITableViewController {
     
     private func refresh() {
         MsgDisplay.showLoading()
-        SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: nil, success: {(task, responseObject) in
+        
+        let parameters = NSUserDefaults().boolForKey(DEV_DISPLAY_DEV_WEB_APP) ? ["env": "development"] : [:]
+        
+        SolaSessionManager.solaSessionWithSessionType(.GET, URL: "/microservices", token: nil, parameters: parameters, success: {(task, responseObject) in
             let dic = JSON(responseObject)
             if dic["error_code"].int == -1 {
                 self.dataArr = Mapper<WebAppItem>().mapArray(dic["data"].arrayObject)!
-                // 约吧测试
-//                 self.dataArr.append(WebAppItem(name: "yueba", sites: "http://yueba.twtstudio.com", desc: "", iconURL: "", fullScreen: true))
                 self.tableView.reloadData()
                 self.tableView.mj_header.endRefreshing()
             }
@@ -93,11 +111,11 @@ class MicroservicesTableViewController: UITableViewController {
             if #available(iOS 9.0, *) {
                 webController = SFSafariViewController(URL: NSURL(string: dataItem.sites)!)
             } else {
-                webController = wpyWebViewController(address: dataItem.sites)
+                webController = wpyModalWebViewController(address: dataItem.sites)
             }
         }
-        self.navigationController?.showViewController(webController, sender: nil)
-        
+//        self.navigationController?.showViewController(webController, sender: nil)
+        self.presentViewController(webController, animated: true, completion: nil)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 

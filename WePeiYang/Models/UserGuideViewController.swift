@@ -39,7 +39,7 @@ class UserGuideViewController: UIViewController {
             if frame.size.height == 480.0 {
                 imageView = UIImageView(image: UIImage(named: "guideFor4s\(page + 1)"))
             } else {
-                    imageView = UIImageView(image: UIImage(named: "guide\(page + 1)"))
+                imageView = UIImageView(image: UIImage(named: "guide\(page + 1)"))
             }
             imageView.frame = CGRect(x: frame.size.width * CGFloat(page), y: 0, width: frame.size.width, height: frame.size.height)
             scrollView.addSubview(imageView)
