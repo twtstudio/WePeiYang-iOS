@@ -27,6 +27,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.checkGuide()
+        
+        if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {
+            UIApplication.sharedApplication().keyWindow?.rootViewController = self.navigationController?.tabBarController
+        }
+        
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.jz_navigationBarBackgroundHidden = false
         mainTableView.dataSource = self
@@ -37,11 +44,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
         self.mainTableView.mj_header.beginRefreshing()
         
-        if !AccountManager.tokenExists() {
+        if !AccountManager.tokenExists() && SolaFoundationKit.topViewController() == self {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         }
-        print("OHMYGOD")
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.guideDismissNotificationReceived), name: NOTIFICATION_GUIDE_DISMISSED, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,6 +89,26 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.mainTableView.mj_header.endRefreshing()
         })
         print("OHMYGOD get data done")
+    }
+    
+    private func checkGuide() {
+        let infoDic = NSBundle.mainBundle().infoDictionary
+        let currentAppVersion = infoDic!["CFBundleShortVersionString"] as! String
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let appVersion = userDefaults.stringForKey("appVersion")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if appVersion == nil || appVersion != currentAppVersion {
+            userDefaults.setValue(currentAppVersion, forKey: "appVersion")
+            let guide = storyboard.instantiateViewControllerWithIdentifier("guide") as! UserGuideViewController
+            self.presentViewController(guide, animated: false, completion: nil)
+        }
+    }
+    
+    func guideDismissNotificationReceived() {
+        if !AccountManager.tokenExists() {
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        }
     }
     
     // TABLE VIEW DATA SOURCE
@@ -286,7 +314,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func showClasstableController() {
-        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        let classtableVC = ClasstableViewController(nibName: "ClasstableViewController", bundle: nil)
         classtableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(classtableVC, sender: nil)
     }
@@ -298,7 +326,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    }
     
     func showLibraryController() {
-        let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        let libVC = LibraryViewController(nibName: "LibraryViewController", bundle: nil)
         libVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(libVC, sender: nil)
     }

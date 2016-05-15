@@ -39,10 +39,10 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         self.dataArr = []
         self.currentWeek = 0
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: "Login", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: "BindTju", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: "LoginCancelled", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: "BindTjuCancelled", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: NOTIFICATION_LOGIN_SUCCESSED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: NOTIFICATION_BINDTJU_SUCCESSED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: NOTIFICATION_LOGIN_CANCELLED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: NOTIFICATION_BINDTJU_CANCELLED, object: nil)
         
         self.loadClassTable()
     }

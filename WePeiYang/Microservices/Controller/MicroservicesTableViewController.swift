@@ -28,6 +28,13 @@ class MicroservicesTableViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // iOS 8 FUCKING BUG
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(style: .Plain)
+        self.contentSizeInPopup = CGSizeMake(300, 400)
+        self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
+    }
 
 >>>>>>> xnth97/master
     override func viewDidLoad() {

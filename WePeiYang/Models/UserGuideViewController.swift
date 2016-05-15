@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import SnapKit
+
+let NOTIFICATION_GUIDE_DISMISSED = "NOTIFICATION_GUIDE_DISMISSED"
 
 class UserGuideViewController: UIViewController {
 
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var startButton: UIButton!
-    
-    @IBAction func startButton(sender: UIButton) {
-        
-    }
     
     private var scrollView: UIScrollView!
     private let numberOfPages = 3
@@ -34,13 +33,9 @@ class UserGuideViewController: UIViewController {
 
         scrollView.delegate = self
         
-        for page in 0..<numberOfPages {
+        for page in 0 ..< numberOfPages {
             var imageView = UIImageView()
-            if frame.size.height == 480.0 {
-                imageView = UIImageView(image: UIImage(named: "guideFor4s\(page + 1)"))
-            } else {
-                imageView = UIImageView(image: UIImage(named: "guide\(page + 1)"))
-            }
+            imageView = UIImageView(image: UIImage(named: "guide\(page + 1)"))
             imageView.frame = CGRect(x: frame.size.width * CGFloat(page), y: 0, width: frame.size.width, height: frame.size.height)
             scrollView.addSubview(imageView)
         }
@@ -61,6 +56,12 @@ class UserGuideViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func dismissSelf() {
+        self.dismissViewControllerAnimated(true, completion: {
+            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_GUIDE_DISMISSED, object: nil)
+        })
     }
     
 
