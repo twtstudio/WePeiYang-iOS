@@ -284,7 +284,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func showClasstableController() {
-        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        let classtableVC = ClasstableViewController(nibName: "ClasstableViewController", bundle: nil)
         classtableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(classtableVC, sender: nil)
     }
@@ -296,7 +296,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    }
     
     func showLibraryController() {
-        let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        let libVC = LibraryViewController(nibName: "LibraryViewController", bundle: nil)
         libVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(libVC, sender: nil)
     }
