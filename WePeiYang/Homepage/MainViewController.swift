@@ -11,6 +11,7 @@ import BlocksKit
 import JZNavigationExtension
 import MJRefresh
 import LocalAuthentication
+import STPopup
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, HomeCarouselCellDelegate, HomeToolsCellDelegate {
     
@@ -21,10 +22,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var announceArr = []
     var lostArr: [LostFoundItem] = []
     var foundArr: [LostFoundItem] = []
+    
+    var microserviceController: STPopupController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.checkGuide()
+        
+        if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {
+            UIApplication.sharedApplication().keyWindow?.rootViewController = self.navigationController?.tabBarController
+        }
+        
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
+        self.jz_navigationBarBackgroundHidden = false
         mainTableView.dataSource = self
         mainTableView.delegate = self
         
@@ -33,11 +44,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
         self.mainTableView.mj_header.beginRefreshing()
         
-        if !AccountManager.tokenExists() {
+        if !AccountManager.tokenExists() && SolaFoundationKit.topViewController() == self {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         }
-        print("OHMYGOD")
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.guideDismissNotificationReceived), name: NOTIFICATION_GUIDE_DISMISSED, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,7 +88,26 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             MsgDisplay.showErrorMsg(description)
             self.mainTableView.mj_header.endRefreshing()
         })
-        print("OHMYGOD get data done")
+    }
+    
+    private func checkGuide() {
+        let infoDic = NSBundle.mainBundle().infoDictionary
+        let currentAppVersion = infoDic!["CFBundleShortVersionString"] as! String
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let appVersion = userDefaults.stringForKey("appVersion")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if appVersion == nil || appVersion != currentAppVersion {
+            userDefaults.setValue(currentAppVersion, forKey: "appVersion")
+            let guide = storyboard.instantiateViewControllerWithIdentifier("guide") as! UserGuideViewController
+            self.presentViewController(guide, animated: false, completion: nil)
+        }
+    }
+    
+    func guideDismissNotificationReceived() {
+        if !AccountManager.tokenExists() {
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        }
     }
     
     // TABLE VIEW DATA SOURCE
@@ -282,7 +313,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func showClasstableController() {
-        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
+        let classtableVC = ClasstableViewController(nibName: "ClasstableViewController", bundle: nil)
         classtableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(classtableVC, sender: nil)
     }
@@ -294,7 +325,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    }
     
     func showLibraryController() {
-        let libVC = LibraryViewController(nibName: nil, bundle: nil)
+        let libVC = LibraryViewController(nibName: "LibraryViewController", bundle: nil)
         libVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(libVC, sender: nil)
     }
@@ -315,8 +346,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
-        msVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.showViewController(msVC, sender: nil)
+//        msVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.showViewController(msVC, sender: nil)
+        microserviceController = STPopupController(rootViewController: msVC)
+        microserviceController.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        microserviceController.backgroundView.addGestureRecognizer((UITapGestureRecognizer().bk_initWithHandler({ (recognizer, state, point) in
+            self.microserviceController.dismiss()
+        }) as! UIGestureRecognizer))
+        microserviceController.containerView.layer.shadowOffset = CGSizeMake(0.0, 0.0)
+        microserviceController.containerView.layer.shadowOpacity = 0.5
+        microserviceController.containerView.layer.shadowRadius = 20.0
+        microserviceController.containerView.clipsToBounds = false
+        microserviceController.containerView.layer.cornerRadius = 5.0
+        microserviceController.presentInViewController(self)
     }
 
     /*

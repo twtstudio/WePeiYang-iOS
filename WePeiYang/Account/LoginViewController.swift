@@ -10,17 +10,15 @@ import UIKit
 import ChameleonFramework
 import pop
 
-@objc class LoginViewController: UIViewController {
+let NOTIFICATION_LOGIN_CANCELLED = "NOTIFICATION_LOGIN_CANCELLED"
+let NOTIFICATION_LOGIN_SUCCESSED = "NOTIFICATION_LOGIN_SUCCESSED"
+
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var unameField: UITextField!
     @IBOutlet weak var passwdField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
 
-    /*
-    override var nibName: String? {
-        return "\(self.dynamicType)"
-    }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,7 +67,7 @@ import pop
             MsgDisplay.showLoading()
             AccountManager.getTokenWithTwtUserName(unameField.text, password: passwdField.text, success: {
                 MsgDisplay.showSuccessMsg("登录成功！")
-                NSNotificationCenter.defaultCenter().postNotificationName("Login", object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_SUCCESSED, object: nil)
                 self.dismissViewControllerAnimated(true, completion: {
                     
                 })
@@ -83,9 +81,8 @@ import pop
     }
     
     @IBAction func cancelLogin() {
-        
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_CANCELLED, object: nil)
         })
     }
     

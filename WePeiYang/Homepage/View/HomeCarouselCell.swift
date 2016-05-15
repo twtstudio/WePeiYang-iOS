@@ -25,8 +25,8 @@ class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
         scrollView = UIScrollView(frame: self.frame)
         scrollView.pagingEnabled = true
         self.addSubview(scrollView)
-        scrollView.mas_makeConstraints({make in
-            make.edges.equalTo()(self).with().offset()(0)
+        scrollView.snp_makeConstraints(closure: { make in
+            make.edges.equalTo(self).offset(0)
         })
         scrollView.delegate = self
         scrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width*5, scrollView.frame.size.height)
@@ -37,9 +37,9 @@ class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
         self.addSubview(pageControl)
         pageControl.numberOfPages = 5
         pageControl.userInteractionEnabled = false
-        pageControl.mas_makeConstraints({make in
-            make.bottom.equalTo()(self).with().offset()(8)
-            make.centerX.equalTo()(self).with().offset()(0)
+        pageControl.snp_makeConstraints(closure: { make in
+            make.bottom.equalTo(self).offset(8)
+            make.centerX.equalTo(self).offset(0)
         })
     }
 
@@ -67,14 +67,14 @@ class HomeCarouselCell: UITableViewCell, UIScrollViewAccessibilityDelegate {
             imgView.tag = i
             imgViewArr.append(imgView)
             scrollView.addSubview(imgView)
-            imgView.mas_makeConstraints({make in
-                make.width.mas_equalTo()(self.scrollView)
-                make.height.mas_equalTo()(self.scrollView)
+            imgView.snp_makeConstraints(closure: { make in
+                make.width.equalTo(self.scrollView)
+                make.height.equalTo(self.scrollView)
                 // 需要写splitView时轮播的动态约束
                 if i == 0 {
-                    make.left.mas_equalTo()(self.scrollView).offset()(0)
+                    make.left.equalTo(self.scrollView).offset(0)
                 } else {
-                    make.left.mas_equalTo()(imgViewArr[i-1].mas_right).offset()(0)
+                    make.left.equalTo(imgViewArr[i-1].snp_right).offset(0)
                 }
             })
             

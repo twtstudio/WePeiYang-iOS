@@ -6,10 +6,10 @@
 //
 //  https://github.com/samvermette/SVWebViewController
 
-#import "SVModalWebViewController.h"
+#import "wpyModalWebViewController.h"
 #import "wpyWebViewController.h"
 
-@interface SVModalWebViewController ()
+@interface wpyModalWebViewController ()
 
 @property (nonatomic, strong) wpyWebViewController *webViewController;
 
@@ -22,7 +22,7 @@
 @end
 
 
-@implementation SVModalWebViewController
+@implementation wpyModalWebViewController
 
 #pragma mark - Initialization
 

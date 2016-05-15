@@ -13,6 +13,6 @@
 
 - (instancetype)initWithAddress:(NSString*)URLString;
 - (instancetype)initWithURL:(NSURL *)pageURL;
-- (instancetype)initWithURLRequest: (NSURLRequest*)request;
+- (instancetype)initWithURLRequest:(NSURLRequest*)request;
 
 @end

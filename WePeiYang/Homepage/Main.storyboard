@@ -125,7 +125,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3E7BDBE6-C59A-4F42-990B-F76B7FA0D1FC" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="009E3708-DB23-4C92-885E-FF032E23164E" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-oF-9eY">
                                             <rect key="frame" x="8" y="12" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="Rl6-ca-WxZ"/>
@@ -395,18 +395,18 @@
                                 </constraints>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHH-1d-TJ3">
-                                <rect key="frame" x="256" y="513" width="89" height="30"/>
+                                <rect key="frame" x="229" y="496" width="142" height="47"/>
                                 <color key="backgroundColor" red="0.91764705882352937" green="0.45098039215686275" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1Z0-L2-TbR"/>
-                                    <constraint firstAttribute="width" constant="89" id="k28-jw-34H"/>
+                                    <constraint firstAttribute="height" constant="47" id="4y2-rf-nRY"/>
+                                    <constraint firstAttribute="width" constant="142" id="SaP-xv-tf6"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="寻找实验室">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startButton:" destination="ytM-ba-MhI" eventType="touchUpInside" id="xMs-c1-06H"/>
+                                    <action selector="dismissSelf" destination="ytM-ba-MhI" eventType="touchUpInside" id="xzz-kX-ub4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -425,13 +425,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhW-Ef-7gp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2280" y="142"/>
+            <point key="canvasLocation" x="-2333" y="-159"/>
         </scene>
-        <!--Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="L1I-kA-N6Z">
             <objects>
-                <tabBarController storyboardIdentifier="mainTab" id="MUO-OE-scN" customClass="tabBarViewController" customModule="WePeiYang" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="oj0-kv-o4v"/>
+                <tabBarController id="MUO-OE-scN" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Xvx-Oa-oGZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -598,7 +597,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3E7BDBE6-C59A-4F42-990B-F76B7FA0D1FC" width="1000" height="1000">
+        <image name="009E3708-DB23-4C92-885E-FF032E23164E" width="1000" height="1000">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ERYbHCUmJygwMzY8P1UkbnVsbNQJCgsMDQ4PEFYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVwc1dOU0Nv

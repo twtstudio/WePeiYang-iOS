@@ -11,6 +11,9 @@ import LocalAuthentication
 import BlocksKit
 import CoreSpotlight
 
+let TOUCH_ID_KEY = "touchIdEnabled"
+let ALLOW_SPOTLIGHT_KEY = "allowSpotlightIndex"
+
 class SettingViewController: UITableViewController {
     
     // 用 map 来定义需要计算的全局变量
@@ -113,7 +116,6 @@ class SettingViewController: UITableViewController {
             switch row {
             case 0:
                 cell.textLabel?.text = "使用 Touch ID"
-                let TOUCH_ID_KEY = "touchIdEnabled"
                 let touchIDSwitch = UISwitch()
                 let defaults = NSUserDefaults()
                 touchIDSwitch.on = defaults.boolForKey(TOUCH_ID_KEY)
@@ -155,7 +157,6 @@ class SettingViewController: UITableViewController {
                 cell.selectionStyle = .None
             case 1:
                 cell.textLabel?.text = "允许 Spotlight 索引"
-                let ALLOW_SPOTLIGHT_KEY = "allowSpotlightIndex"
                 let spotlightSwitch = UISwitch()
                 let defaults = NSUserDefaults()
                 if defaults.objectForKey(ALLOW_SPOTLIGHT_KEY) == nil {

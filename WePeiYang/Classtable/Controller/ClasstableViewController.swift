@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import MJExtension
-import Masonry
+import SnapKit
 import STPopup
 import DateTools
+import ObjectMapper
 
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 let CLASSTABLE_COLOR_CONFIG_KEY = "CLASSTABLE_COLOR_CONFIG"
@@ -21,7 +21,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     @IBOutlet weak var classTableScrollView: UIScrollView!
     
-    var dataArr = []
+    var dataArr: [ClassData] = []
     var detailController: STPopupController!
     var currentWeek = 0
 
@@ -39,10 +39,10 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         self.dataArr = []
         self.currentWeek = 0
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: "Login", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: "BindTju", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: "LoginCancelled", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: "BindTjuCancelled", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: NOTIFICATION_LOGIN_SUCCESSED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.refreshNotificationReceived), name: NOTIFICATION_BINDTJU_SUCCESSED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: NOTIFICATION_LOGIN_CANCELLED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ClasstableViewController.backNotificationReceived), name: NOTIFICATION_BINDTJU_CANCELLED, object: nil)
         
         self.loadClassTable()
     }
@@ -80,7 +80,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             })
             wpyCacheManager.loadGroupCacheDataWithKey(CLASSTABLE_CACHE_KEY, andBlock: {data in
                 if data != nil {
-                    self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
+                    self.dataArr = Mapper<ClassData>().mapArray(data)!
                     self.updateView(UIScreen.mainScreen().bounds.size)
                 } else {
                     self.refresh()
@@ -94,42 +94,13 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     
     private func refresh() {
         MsgDisplay.showLoading()
-        if (ClassData.mj_objectArrayWithKeyValuesArray(data) != nil) {
-            ClasstableDataManager.getClasstableData({(data, termStart) in
-                MsgDisplay.dismiss()
-                wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
-                
-                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
-                self.updateView(self.view.bounds.size)
-                
-                wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
-                wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
-                
-                let startDate = NSDate(timeIntervalSince1970: Double(termStart))
-                self.currentWeek = NSDate().weeksFrom(startDate) + 1
-                self.title = "第 \(self.currentWeek) 周"
-                }, notBinded: {
-                    MsgDisplay.dismiss()
-                    let bindTjuVC = BindTjuViewController(style: .Grouped)
-                    self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
-                }, otherFailure: {errorMsg in
-                    MsgDisplay.showErrorMsg(errorMsg)
-            })
-        } else {
-            let errorMsg = ["不好意思，服务器开小差了😭", "有外星人潜入了我们的服务器", "课程表找不到啦，要不就放个假！", "我们正在追踪那个偷走你课程表的外星人", "这条🐶拿着你的课程表饱餐了一顿而且现在还在睡觉", "风太大，你的课程表被吹走了", "服务器君又傲娇了，我们还在劝他"]
-            let i = Int(arc4random_uniform(7))
-            MsgDisplay.showErrorMsg(errorMsg[i])
-        }
-        /*ClasstableDataManager.getClasstableData({(data, termStart) in
+        ClasstableDataManager.getClasstableData({(data, termStart) in
             MsgDisplay.dismiss()
             wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
-            
-                self.dataArr = ClassData.mj_objectArrayWithKeyValuesArray(data)
-                self.updateView(self.view.bounds.size)
-
-                wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
-                wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
-    
+            self.dataArr = Mapper<ClassData>().mapArray(data)!
+            self.updateView(self.view.bounds.size)
+            wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
+            wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
             let startDate = NSDate(timeIntervalSince1970: Double(termStart))
             self.currentWeek = NSDate().weeksFrom(startDate) + 1
             self.title = "第 \(self.currentWeek) 周"
@@ -139,7 +110,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             self.presentViewController(UINavigationController(rootViewController: bindTjuVC), animated: true, completion: nil)
         }, otherFailure: {errorMsg in
             MsgDisplay.showErrorMsg(errorMsg)
-        })*/
+        })
     }
     
     private func updateView(size: CGSize) {
@@ -157,11 +128,11 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             classNumberCell.classLabel.textColor = UIColor.lightGrayColor()
             classNumberCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
             classTableScrollView.addSubview(classNumberCell)
-            classNumberCell.mas_makeConstraints({make in
-                make.top.mas_equalTo()(CGFloat(i) * classSize.height)
-                make.left.mas_equalTo()(0)
-                make.width.mas_equalTo()(classSize.width)
-                make.height.mas_equalTo()(classSize.height)
+            classNumberCell.snp_makeConstraints(closure: { make in
+                make.top.equalTo(CGFloat(i) * classSize.height)
+                make.left.equalTo(0)
+                make.width.equalTo(classSize.width)
+                make.height.equalTo(classSize.height)
             })
         }
         
@@ -172,9 +143,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         
         var colorArray = colorArr
         
-        for tmpItem in dataArr {
-            let tmpClass: ClassData = tmpItem as! ClassData
-            
+        for tmpClass in dataArr {
             var classBgColor: UIColor!
             if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_COLOR_CONFIG_KEY) {
                 if colorConfig[tmpClass.courseId] != nil {
@@ -191,16 +160,15 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 colorArray.removeFirst()
             }
             
-            for arrange in tmpClass.arrange {
-                let tmpArrange: ArrangeModel = arrange as! ArrangeModel
+            for tmpArrange in tmpClass.arrange {
                 let classCell = ClassCellView()
                 classTableScrollView.addSubview(classCell)
                 classCell.classData = tmpClass
-                classCell.mas_makeConstraints({make in
-                    make.width.mas_equalTo()(classSize.width)
-                    make.height.mas_equalTo()(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
-                    make.left.mas_equalTo()(CGFloat(tmpArrange.day) * classSize.width)
-                    make.top.mas_equalTo()(CGFloat(tmpArrange.start - 1) * classSize.height)
+                classCell.snp_makeConstraints(closure: { make in
+                    make.width.equalTo(classSize.width)
+                    make.height.equalTo(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
+                    make.left.equalTo(CGFloat(tmpArrange.day) * classSize.width)
+                    make.top.equalTo(CGFloat(tmpArrange.start - 1) * classSize.height)
                 })
                 
                 classCell.classLabel.text = "\(tmpClass.courseName)@\(tmpArrange.room)"
@@ -264,7 +232,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     }
     
     func backNotificationReceived() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(false)
     }
     
     func cellViewTouched(cellView: ClassCellView) {

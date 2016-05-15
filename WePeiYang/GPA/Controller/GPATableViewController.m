@@ -59,7 +59,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.jz_navigationBarBackgroundAlpha = 0.0;
+    self.jz_navigationBarBackgroundAlpha = 0.0;
     self.clearsSelectionOnViewWillAppear = YES;
     headerView.backgroundColor = [UIColor flatPinkColorDark];
     
@@ -87,10 +87,10 @@
     
     [self refresh];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"BindTju" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"BindTjuCancelled" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"LoginCancelled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_BINDTJU_SUCCESSED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_BINDTJU_CANCELLED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_LOGIN_SUCCESSED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_LOGIN_CANCELLED" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,7 +109,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     self.navigationController.navigationBar.tintColor = self.view.tintColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-    self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
+//    self.jz_navigationBarBackgroundAlpha = 1.0;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -130,7 +130,7 @@
 }
 
 - (void)backNotificationReceived {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)refresh {
@@ -199,7 +199,6 @@
         }
         isRequestingData = NO;
         [MsgDisplay dismiss];
-        
     } failure:^(NSURLSessionTask *task, NSError *error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [MsgDisplay dismiss];
@@ -215,9 +214,7 @@
                         [MsgDisplay showErrorMsg:dic[@"message"]];
                         [self clearTableContent];
                         BindTjuViewController *bindTju = [[BindTjuViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                        //[self.navigationController presentViewController:[[UINavigationController alloc] initWithRootViewController:bindTju] animated:YES completion:nil];
-                        //present 的 dismiss 会引起 tabbar 消失、主界面崩掉
-                        [self.navigationController pushViewController:bindTju animated:YES];
+                        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:bindTju] animated:YES completion:nil];
                     } else if ([errorCode isEqualToString:@"20002"]) {
                         // TJU 验证失败
                         [MsgDisplay showErrorMsg:dic[@"message"]];
@@ -278,17 +275,17 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.jz_navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
+        self.jz_navigationBarBackgroundAlpha = (offSetY + 60) * 0.02;
     } else if (offSetY <= -60) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        self.navigationController.jz_navigationBarBackgroundAlpha = 0.0;
+        self.jz_navigationBarBackgroundAlpha = 0.0;
     } else {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
         self.navigationController.navigationBar.tintColor = [UIColor flatPinkColorDark];
-        self.navigationController.jz_navigationBarBackgroundAlpha = 1.0;
+        self.jz_navigationBarBackgroundAlpha = 1.0;
     }
 }
 

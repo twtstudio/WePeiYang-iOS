@@ -90,7 +90,8 @@
 
 + (void)postNewsCommentWithIndex:(NSString *)index content:(NSString *)content success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     NSString *url = [NSString stringWithFormat:@"/news/comment/%@", index];
-    NSDictionary *parameters = @{@"content": content};
+    NSDictionary *parameters = @{@"content": content,
+                                 @"ip": [SolaFoundationKit IPAddress:YES]};
     [SolaSessionManager solaSessionWithSessionType:SessionTypePOST URL:url token:[self wpyToken] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

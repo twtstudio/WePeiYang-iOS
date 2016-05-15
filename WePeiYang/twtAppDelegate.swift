@@ -29,21 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
                 })
             }
         })
-        
-        //判断用户是否第一次启动新版本
-        if self.window?.frame.size.height<1024 {
-            let infoDic = NSBundle.mainBundle().infoDictionary
-            let currentAppVersion = infoDic!["CFBundleShortVersionString"] as! String
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            let appVersion = userDefaults.stringForKey("appVersion")
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if appVersion == nil || appVersion != currentAppVersion {
-                userDefaults.setValue(currentAppVersion, forKey: "appVersion")
-                
-                let guide = storyboard.instantiateViewControllerWithIdentifier("guide") as! UserGuideViewController
-                self.window?.rootViewController = guide
-            }
-        }
+
         return true
     }
     
@@ -54,14 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     func applicationDidEnterBackground(application: UIApplication) {
         //GPA 界面后台模糊
-        if UIViewController.currentViewController().isKindOfClass(GPATableViewController){
+        if UIViewController.currentViewController().isKindOfClass(GPATableViewController) {
             let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
             frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
-            let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
-            blurView.frame = frostedView.frame
+//            let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+//            blurView.frame = frostedView.frame
             
             UIApplication.sharedApplication().keyWindow?.addSubview(frostedView)
-            frostedView.contentView.addSubview(blurView)
+//            frostedView.contentView.addSubview(blurView)
         }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
