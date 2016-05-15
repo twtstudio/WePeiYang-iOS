@@ -8,7 +8,6 @@
 
 import UIKit
 import AFNetworking
-import Masonry
 
 class HomeImageTitleView: UIView {
     
@@ -21,8 +20,8 @@ class HomeImageTitleView: UIView {
         
         imgView = UIImageView(frame: frame)
         self.addSubview(imgView)
-        imgView.mas_makeConstraints({make in
-            make.edges.equalTo()(self).with().insets()(UIEdgeInsetsMake(0, 0, 0, 0))
+        imgView.snp_makeConstraints(closure: { make in
+            make.edges.equalTo(self).inset(UIEdgeInsetsMake(0, 0, 0, 0))
         })
         
         let blurEffect = UIBlurEffect(style: .Dark)
@@ -30,11 +29,11 @@ class HomeImageTitleView: UIView {
         let bgView = UIVisualEffectView(effect: blurEffect)
 //        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         self.addSubview(bgView)
-        bgView.mas_makeConstraints({make in
-            make.bottom.equalTo()(self)
-            make.left.equalTo()(self)
-            make.right.equalTo()(self)
-            make.height.mas_equalTo()(46)
+        bgView.snp_makeConstraints(closure: { make in
+            make.bottom.equalTo(self)
+            make.left.equalTo(self)
+            make.right.equalTo(self)
+            make.height.equalTo(46)
         })
 //        bgView.contentView.addSubview(vibrancyEffectView)
 //        vibrancyEffectView.mas_makeConstraints({make in
@@ -43,11 +42,11 @@ class HomeImageTitleView: UIView {
         
         titleLabel = UILabel()
         bgView.contentView.addSubview(titleLabel)
-        titleLabel.mas_makeConstraints({make in
-            make.top.equalTo()(bgView).with().offset()(8)
-            make.bottom.equalTo()(bgView).with().offset()(-20)
-            make.left.equalTo()(bgView).with().offset()(8)
-            make.right.equalTo()(bgView).with().offset()(8)
+        titleLabel.snp_makeConstraints(closure: { make in
+            make.top.equalTo(bgView).offset(8)
+            make.bottom.equalTo(bgView).offset(-20)
+            make.left.equalTo(bgView).offset(8)
+            make.right.equalTo(bgView).offset(8)
         })
         titleLabel.font = UIFont.systemFontOfSize(16)
         titleLabel.textColor = UIColor.whiteColor()

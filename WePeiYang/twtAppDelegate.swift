@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     func applicationDidEnterBackground(application: UIApplication) {
         //GPA 界面后台模糊
+<<<<<<< HEAD
         if UIViewController.currentViewController().isKindOfClass(GPATableViewController){
             let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
             frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
@@ -62,6 +63,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
             
             UIApplication.sharedApplication().keyWindow?.addSubview(frostedView)
             frostedView.contentView.addSubview(blurView)
+=======
+        if UIViewController.currentViewController().isKindOfClass(GPATableViewController) {
+            let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+            frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
+//            let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+//            blurView.frame = frostedView.frame
+            
+            UIApplication.sharedApplication().keyWindow?.addSubview(frostedView)
+//            frostedView.contentView.addSubview(blurView)
+>>>>>>> xnth97/master
         }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.

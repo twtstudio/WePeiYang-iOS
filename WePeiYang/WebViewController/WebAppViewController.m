@@ -12,9 +12,12 @@
 #import "WePeiYang-Swift.h"
 #import "SolaFoundationKit.h"
 #import "MsgDisplay.h"
+<<<<<<< HEAD
 @import Masonry;
+=======
+>>>>>>> xnth97/master
 
-@interface WebAppViewController ()
+@interface WebAppViewController ()<WKNavigationDelegate, WKUIDelegate>
 @property (strong, nonatomic) NSURLRequest *request;
 @property (strong, nonatomic) WKWebView *wkWebView;
 @property WKWebViewJavascriptBridge *bridge;
@@ -52,6 +55,11 @@
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return *(_customPreferredStatusBarStyle);
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
@@ -61,12 +69,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+<<<<<<< HEAD
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
     _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
     _wkWebView.navigationDelegate = self;
     [_wkWebView loadRequest:_request];
     //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
     _wkWebView.allowsBackForwardNavigationGestures = NO;
+=======
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.selectionGranularity = NO;
+    _wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
+    _wkWebView.navigationDelegate = self;
+    _wkWebView.UIDelegate = self;
+    [_wkWebView loadRequest:_request];
+    //[_wkWebView setCustomUserAgent:[SolaFoundationKit userAgentString]];
+    _wkWebView.allowsBackForwardNavigationGestures = YES;
+>>>>>>> xnth97/master
     self.automaticallyAdjustsScrollViewInsets = NO;
     _wkWebView.scrollView.bounces = NO;
     self.view = _wkWebView;
@@ -80,7 +99,11 @@
             responseCallback([[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY]);
         } else {
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+<<<<<<< HEAD
             [MsgDisplay showSuccessMsg:@"此应用需要你先登录"];
+=======
+            [MsgDisplay showErrorMsg:@"此应用需要先登录"];
+>>>>>>> xnth97/master
             [self presentViewController:loginVC animated:YES completion:nil];
         }
     }];
@@ -88,7 +111,11 @@
         [self backAnimated:YES];
     }];
     [_bridge registerHandler:@"setStatusBarHandlerBlack_iOS" handler:^(id data, WVJBResponseCallback responseCallback) {
+<<<<<<< HEAD
         _customPreferredStatusBarStyle = UIStatusBarStyleDefault;
+=======
+        _customPreferredStatusBarStyle = (UIStatusBarStyle *)UIStatusBarStyleDefault;
+>>>>>>> xnth97/master
         [self setNeedsStatusBarAppearanceUpdate];
     }];
 }
@@ -117,11 +144,31 @@
     if (self.navigationController) {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
-/*- (BOOL)shouldAutorotate{
- return NO;
- }*/
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSSet *websiteDataTypes
+    = [NSSet setWithArray:@[
+                            WKWebsiteDataTypeDiskCache,
+                            WKWebsiteDataTypeOfflineWebApplicationCache,
+                            WKWebsiteDataTypeMemoryCache,
+                            WKWebsiteDataTypeLocalStorage,
+                            WKWebsiteDataTypeCookies,
+                            WKWebsiteDataTypeSessionStorage,
+                            WKWebsiteDataTypeIndexedDBDatabases,
+                            WKWebsiteDataTypeWebSQLDatabases
+                            ]];
+    //// All kinds of data
+    //NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+    //// Date from
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    //// Execute
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        NSLog(@"Cleared!");
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -136,7 +183,7 @@
     [self backAnimated:NO];
 }
 
-- (void)backAnimated: (BOOL)animated {
+- (void)backAnimated:(BOOL)animated {
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:animated];
     } else {
@@ -144,16 +191,20 @@
     }
 }
 
-- (void)webView: (WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
-    
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
+    [MsgDisplay showLoading];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation: (WKNavigation *)navigation{
-    
+    [MsgDisplay dismiss];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation: (WKNavigation *)navigation withError:(NSError *)error {
+<<<<<<< HEAD
     
+=======
+    [MsgDisplay dismiss];
+>>>>>>> xnth97/master
 }
 
 /*

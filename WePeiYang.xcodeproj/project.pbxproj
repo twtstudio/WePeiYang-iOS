@@ -77,6 +77,9 @@
 		E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */; };
 		E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA841C4BF17E00EFC107 /* FeedbackForm.swift */; };
 		E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */; };
+		E961E6181CDF5FE4003E574F /* ClassData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961E6171CDF5FE4003E574F /* ClassData.swift */; };
+		E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961E6191CDF5FF8003E574F /* ArrangeModel.swift */; };
+		E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */; };
 		E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */; };
 		E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */; };
 		E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */; };
@@ -98,7 +101,7 @@
 		E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */; };
 		E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */; };
 		E98DF6EF1C5DF5BF003943A4 /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */; };
-		E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */; };
+		E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6DA1C5DF5BF003943A4 /* wpyModalWebViewController.m */; };
 		E98DF6F11C5DF5BF003943A4 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */; };
 		E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */; };
 		E98DF6F31C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = E98DF6E01C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png */; };
@@ -141,11 +144,11 @@
 		E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E9D743F91BF9AE38005F2EF9 /* WePeiYang.entitlements */; };
 		E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FB1BF9AE38005F2EF9 /* InfoPlist.strings */; };
 		E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FD1BF9AE38005F2EF9 /* Localizable.strings */; };
-		E9DB21751C5A372200CC6F63 /* ClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB21741C5A372200CC6F63 /* ClassData.m */; };
-		E9DB21781C5A373500CC6F63 /* ArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB21771C5A373500CC6F63 /* ArrangeModel.m */; };
 		E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E42A421C74558B00C871D6 /* ClassDetailViewController.swift */; };
 		E9E42A451C74558B00C871D6 /* ClassDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E42A431C74558B00C871D6 /* ClassDetailViewController.xib */; };
 		E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */; };
+		E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */; };
+		E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */; };
 		E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD13E1C6EEE760060BF21 /* NewsComment.m */; };
 		E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD1431C6EF0870060BF21 /* NewsCommentViewController.m */; };
 /* End PBXBuildFile section */
@@ -272,6 +275,9 @@
 		E95B112F1A8BA9FE00ACF69A /* CalendarEventActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalendarEventActivity.m; path = Sharing/CalendarEventActivity.m; sourceTree = "<group>"; };
 		E95BDA841C4BF17E00EFC107 /* FeedbackForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackForm.swift; path = Feedback/FeedbackForm.swift; sourceTree = "<group>"; };
 		E95BDA861C4BF18C00EFC107 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedbackViewController.swift; path = Feedback/FeedbackViewController.swift; sourceTree = "<group>"; };
+		E961E6171CDF5FE4003E574F /* ClassData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassData.swift; path = Classtable/Model/ClassData.swift; sourceTree = "<group>"; };
+		E961E6191CDF5FF8003E574F /* ArrangeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrangeModel.swift; path = Classtable/Model/ArrangeModel.swift; sourceTree = "<group>"; };
+		E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevControlViewController.swift; path = Dev/DevControlViewController.swift; sourceTree = "<group>"; };
 		E96D1F5D1CAB738A00BC07D8 /* LostFoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundTableViewController.swift; path = LostFound/Controller/LostFoundTableViewController.swift; sourceTree = "<group>"; };
 		E973364D1C70F9CB00ACA06B /* LostFoundDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailViewController.swift; path = LostFound/Controller/LostFoundDetailViewController.swift; sourceTree = "<group>"; };
 		E97336511C71036F00ACA06B /* LostFoundDetailForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LostFoundDetailForm.swift; path = LostFound/Controller/LostFoundDetailForm.swift; sourceTree = "<group>"; };
@@ -295,8 +301,8 @@
 		E98DF69E1C5D211A003943A4 /* WebAppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppTableViewCell.swift; path = Microservices/View/WebAppTableViewCell.swift; sourceTree = "<group>"; };
 		E98DF69F1C5D211A003943A4 /* WebAppTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebAppTableViewCell.xib; path = Microservices/View/WebAppTableViewCell.xib; sourceTree = "<group>"; };
 		E98DF6D31C5DF5BF003943A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
-		E98DF6D91C5DF5BF003943A4 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
-		E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		E98DF6D91C5DF5BF003943A4 /* wpyModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyModalWebViewController.h; sourceTree = "<group>"; };
+		E98DF6DA1C5DF5BF003943A4 /* wpyModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyModalWebViewController.m; sourceTree = "<group>"; };
 		E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
 		E98DF6DC1C5DF5BF003943A4 /* wpyWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wpyWebViewController.h; sourceTree = "<group>"; };
 		E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wpyWebViewController.m; sourceTree = "<group>"; };
@@ -357,14 +363,13 @@
 		E9D743F91BF9AE38005F2EF9 /* WePeiYang.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WePeiYang.entitlements; sourceTree = "<group>"; };
 		E9D743FC1BF9AE38005F2EF9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		E9D743FE1BF9AE38005F2EF9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
-		E9DB21731C5A372200CC6F63 /* ClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClassData.h; path = Classtable/Model/ClassData.h; sourceTree = "<group>"; };
-		E9DB21741C5A372200CC6F63 /* ClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClassData.m; path = Classtable/Model/ClassData.m; sourceTree = "<group>"; };
-		E9DB21761C5A373500CC6F63 /* ArrangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrangeModel.h; path = Classtable/Model/ArrangeModel.h; sourceTree = "<group>"; };
-		E9DB21771C5A373500CC6F63 /* ArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArrangeModel.m; path = Classtable/Model/ArrangeModel.m; sourceTree = "<group>"; };
 		E9E42A421C74558B00C871D6 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassDetailViewController.swift; path = Classtable/Controller/ClassDetailViewController.swift; sourceTree = "<group>"; };
 		E9E42A431C74558B00C871D6 /* ClassDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClassDetailViewController.xib; path = Classtable/Controller/ClassDetailViewController.xib; sourceTree = "<group>"; };
 		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "../../Models/Data Model/GPAStat.h"; sourceTree = "<group>"; };
 		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "../../Models/Data Model/GPAStat.m"; sourceTree = "<group>"; };
+		E9F1F8611CD6560F00C4F2AA /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Utils.h"; path = "Utilities/UIViewController+Utils.h"; sourceTree = "<group>"; };
+		E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Utils.m"; path = "Utilities/UIViewController+Utils.m"; sourceTree = "<group>"; };
+		E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGuideViewController.swift; sourceTree = "<group>"; };
 		E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E9FBD13D1C6EEE760060BF21 /* NewsComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsComment.h; sourceTree = "<group>"; };
 		E9FBD13E1C6EEE760060BF21 /* NewsComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsComment.m; sourceTree = "<group>"; };
@@ -469,20 +474,20 @@
 		188842181846E6F4007B92CB /* WePeiYang */ = {
 			isa = PBXGroup;
 			children = (
-				E9D744081BF9AE3C005F2EF9 /* Main */,
-				E9AF6BB91A7CFCE2008B5214 /* Models */,
-				B18AB9EF1CD4A2B10050FA8F /* UserGuide */,
-				E9B972C71C5651FF001E480E /* Account */,
-				E901053D1C3B994E002901AC /* Homepage */,
-				E9C3978A1CA520ED00E89813 /* Tools */,
-				E90105331C3B994E002901AC /* GPA */,
-				E90105411C3B994E002901AC /* News */,
-				E9BA7BAE1C5A1509009A4E9A /* Classtable */,
-				E96D796C1C6F805F00550746 /* LostFound */,
-				E98DF6951C5D03B6003943A4 /* Microservices */,
-				E937017F1C5CA8A800C87E84 /* Library */,
-				E98DF6CF1C5DF5BF003943A4 /* WebViewController */,
-				E901054D1C3B994E002901AC /* Setting */,
+                    E9D744081BF9AE3C005F2EF9 /* Main */,
+                    E9AF6BB91A7CFCE2008B5214 /* Models */,
+                    E9F1F8641CD6561D00C4F2AA /* Guide */,
+                    E9B972C71C5651FF001E480E /* Account */,
+                    E901053D1C3B994E002901AC /* Homepage */,
+                    E9C3978A1CA520ED00E89813 /* Tools */,
+                    E90105331C3B994E002901AC /* GPA */,
+                    E90105411C3B994E002901AC /* News */,
+                    E9BA7BAE1C5A1509009A4E9A /* Classtable */,
+                    E96D796C1C6F805F00550746 /* LostFound */,
+                    E98DF6951C5D03B6003943A4 /* Microservices */,
+                    E937017F1C5CA8A800C87E84 /* Library */,
+                    E98DF6CF1C5DF5BF003943A4 /* WebViewController */,
+                    E901054D1C3B994E002901AC /* Setting */,
 			);
 			path = WePeiYang;
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 		E901054E1C3B994E002901AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E961E61B1CDF6BF5003E574F /* Dev */,
 				E93701871C5CCE5000C87E84 /* About */,
 				E95BDA801C4BF12500EFC107 /* Feedback */,
 				E949E3DF1C43F3A900A5212B /* SettingViewController.swift */,
@@ -749,6 +755,14 @@
 			name = Feedback;
 			sourceTree = "<group>";
 		};
+		E961E61B1CDF6BF5003E574F /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */,
+			);
+			name = Dev;
+			sourceTree = "<group>";
+		};
 		E96921CC1C3BEEA4002B4319 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,17 +877,15 @@
 		E98DF6CF1C5DF5BF003943A4 /* WebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */,
-				B1B712EF1CCE4A7500B80F39 /* WKWebViewController.h */,
-				B1B712F01CCE4A7500B80F39 /* WKWebViewController.m */,
-				E98DF6D91C5DF5BF003943A4 /* SVModalWebViewController.h */,
-				E98DF6DA1C5DF5BF003943A4 /* SVModalWebViewController.m */,
-				E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */,
-				E98DF6DC1C5DF5BF003943A4 /* wpyWebViewController.h */,
-				E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */,
-				E98DF6DE1C5DF5BF003943A4 /* UIActivities */,
-				E97704CE1CD0A4DD0017A1CB /* WebAppViewController.h */,
-				E97704CF1CD0A4DD0017A1CB /* WebAppViewController.m */,
+                    E98DF6D01C5DF5BF003943A4 /* SVWebViewController.strings */,
+                    E98DF6D91C5DF5BF003943A4 /* wpyModalWebViewController.h */,
+                    E98DF6DA1C5DF5BF003943A4 /* wpyModalWebViewController.m */,
+                    E98DF6DB1C5DF5BF003943A4 /* SVWebViewController.bundle */,
+                    E98DF6DC1C5DF5BF003943A4 /* wpyWebViewController.h */,
+                    E98DF6DD1C5DF5BF003943A4 /* wpyWebViewController.m */,
+                    E98DF6DE1C5DF5BF003943A4 /* UIActivities */,
+                    E97704CE1CD0A4DD0017A1CB /* WebAppViewController.h */,
+                    E97704CF1CD0A4DD0017A1CB /* WebAppViewController.m */,
 			);
 			path = WebViewController;
 			sourceTree = "<group>";
@@ -944,6 +956,7 @@
 		E9AF6BB91A7CFCE2008B5214 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9F1F85D1CD655ED00C4F2AA /* Utilities */,
 				E9B972CD1C565DE0001E480E /* Account */,
 				E943F6151C55088D00258FD4 /* Scheme */,
 				E94B1FDA1BF7AE8800520536 /* twtSDK */,
@@ -1049,10 +1062,8 @@
 			isa = PBXGroup;
 			children = (
 				E9BA7BB61C5A1AE1009A4E9A /* ClasstableDataManager.swift */,
-				E9DB21731C5A372200CC6F63 /* ClassData.h */,
-				E9DB21741C5A372200CC6F63 /* ClassData.m */,
-				E9DB21761C5A373500CC6F63 /* ArrangeModel.h */,
-				E9DB21771C5A373500CC6F63 /* ArrangeModel.m */,
+				E961E6171CDF5FE4003E574F /* ClassData.swift */,
+				E961E6191CDF5FF8003E574F /* ArrangeModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1148,6 +1159,24 @@
 				E9D743FA1BF9AE38005F2EF9 /* zh-Hans.lproj */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		E9F1F85D1CD655ED00C4F2AA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E9F1F8611CD6560F00C4F2AA /* UIViewController+Utils.h */,
+				E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		E9F1F8641CD6561D00C4F2AA /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */,
+			);
+			name = Guide;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FE76EA6F6EBCA9F257E8AE6F /* Pods */ = {
@@ -1469,12 +1498,9 @@
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
 				B1EB41351CE77F12001D6D53 /* tabBarViewController.swift in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
-				B18AB9EC1CD342BD0050FA8F /* UserGuideViewController.swift in Sources */,
-				E9DB21781C5A373500CC6F63 /* ArrangeModel.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
 				E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
-				E9DB21751C5A372200CC6F63 /* ClassData.m in Sources */,
 				E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
@@ -1484,6 +1510,7 @@
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
+				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
@@ -1496,6 +1523,7 @@
 				E94AC15F1C737B6300C82C4E /* ClassCellView.swift in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
 				E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */,
+				E961E6181CDF5FE4003E574F /* ClassData.swift in Sources */,
 				E99923AD1CC605E6008963C8 /* WeChatMomentsActivity.m in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
 				E945C64F1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift in Sources */,
@@ -1509,9 +1537,10 @@
 				E976B3691CBF33A90008E268 /* LostFoundViewController.m in Sources */,
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
-				E98DF6F01C5DF5BF003943A4 /* SVModalWebViewController.m in Sources */,
+				E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
+				E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */,
 				E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */,
 				B17233371CD24F1700A13736 /* UIViewController+Utils.m in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
@@ -1524,6 +1553,8 @@
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
+				E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */,
+				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,
@@ -1722,39 +1753,23 @@
 		1888423D1846E6F4007B92CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A7D625594C2CB3A80AC2395D /* Pods-WePeiYang.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WePeiYang/WePeiYang-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/WePeiYang/WePeiYang-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/WePeiYang",
-					"$(PROJECT_DIR)/WePeiYang/Resource",
-					"$(PROJECT_DIR)/WePeiYang/Resource/WXSDK",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.twt.WeiPeiYangTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "WePeiYang/WePeiYang-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 arm64 armv7s";
-				WRAPPER_EXTENSION = app;
-			};
+            buildSettings = {
+                    BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WePeiYang.app/WePeiYang";
+                    FRAMEWORK_SEARCH_PATHS = (
+                    "$(SDKROOT)/Developer/Library/Frameworks",
+                    "$(inherited)",
+                    "$(DEVELOPER_FRAMEWORKS_DIR)",
+            );
+            GCC_PRECOMPILE_PREFIX_HEADER = YES;
+            GCC_PREFIX_HEADER = "WePeiYang/WePeiYang-Prefix.pch";
+            INFOPLIST_FILE = "WePeiYangTests/WePeiYangTests-Info.plist";
+            PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.${PRODUCT_NAME:rfc1034identifier}";
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            TEST_HOST = "$(BUNDLE_LOADER)";
+            WRAPPER_EXTENSION = xctest;
+            };
 			name = Release;
-		};
+        };
 		1888423F1846E6F4007B92CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */;

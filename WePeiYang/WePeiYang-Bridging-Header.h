@@ -18,9 +18,10 @@
 #import "WKWebViewController.h"
 #import "wpyWebViewController.h"
 #import "LostFoundViewController.h"
-#import "SVModalWebViewController.h"
+#import "wpyModalWebViewController.h"
 #import "SolaFoundationKit.h"
 #import "WebAppViewController.h"
+#import "UIViewController+Utils.h"
 
 #import "twtSDK.h"
 #import "twtSecretKeys.h"
@@ -28,5 +29,3 @@
 
 // Data Models
 #import "NewsData.h"
-#import "ClassData.h"
-#import "ArrangeModel.h"
