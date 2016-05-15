@@ -10,9 +10,6 @@ import UIKit
 import FXForms
 import BlocksKit
 
-let NOTIFICATION_BINDTJU_SUCCESSED = "NOTIFICATION_BINDTJU_SUCCESSED"
-let NOTIFICATION_BINDTJU_CANCELLED = "NOTIFICATION_BINDTJU_CANCELLED"
-
 class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
     
     var formController: FXFormController!
@@ -32,8 +29,9 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
         formController.form = BindTjuForm()
         
         let cancelBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Cancel, handler: {sender in
-            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_BINDTJU_CANCELLED, object: nil)
-            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("BindTjuCancelled", object: nil)
+            //self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         }) as! UIBarButtonItem
         self.navigationItem.leftBarButtonItem = cancelBtn
         
@@ -45,8 +43,10 @@ class BindTjuViewController: UITableViewController, FXFormControllerDelegate {
                 MsgDisplay.showLoading()
                 AccountManager.bindTjuAccountWithTjuUserName(username, password: password, success: {
                     MsgDisplay.showSuccessMsg("办公网账号绑定成功！")
-                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_BINDTJU_SUCCESSED, object: nil)
-                    self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("BindTju", object: nil)
+                    //self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                    //使用 dismiss 会爆炸
+                    self.navigationController?.popViewControllerAnimated(true)
                 }, failure: {errorMsg in
                     MsgDisplay.showErrorMsg(errorMsg)
                 })

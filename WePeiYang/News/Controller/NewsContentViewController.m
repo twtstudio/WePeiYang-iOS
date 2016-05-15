@@ -46,9 +46,7 @@
         [self presentHDImageWithURL:data];
     }];
     
-    [MsgDisplay showLoading];
     [twtSDK getNewsContentWithIndex:newsData.index success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MsgDisplay dismiss];
         [self processNewsContent:[NewsContent mj_objectWithKeyValues:responseObject[@"data"]]];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MsgDisplay showErrorMsg:error.localizedDescription];

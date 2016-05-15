@@ -8,7 +8,6 @@
 
 import UIKit
 import LocalAuthentication
-import STPopup
 
 private let reuseIdentifier = "Cell"
 
@@ -22,15 +21,12 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "实验室", image: UIImage(named: "msBtn")!)
     ]
-    
-    var microserviceController: STPopupController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.alwaysBounceVertical = true
-        self.jz_navigationBarBackgroundHidden = false
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -172,13 +168,13 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func showClasstableController() {
-        let classtableVC = ClasstableViewController(nibName: "ClasstableViewController", bundle: nil)
+        let classtableVC = ClasstableViewController(nibName: nil, bundle: nil)
         classtableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(classtableVC, sender: nil)
     }
     
     func showLibraryController() {
-        let libVC = LibraryViewController(nibName: "LibraryViewController", bundle: nil)
+        let libVC = LibraryViewController(nibName: nil, bundle: nil)
         libVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(libVC, sender: nil)
     }
@@ -191,19 +187,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
-//        msVC.hidesBottomBarWhenPushed = true
-//        self.navigationController?.showViewController(msVC, sender: nil)
-        microserviceController = STPopupController(rootViewController: msVC)
-        microserviceController.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        microserviceController.backgroundView.addGestureRecognizer((UITapGestureRecognizer().bk_initWithHandler({ (recognizer, state, point) in
-            self.microserviceController.dismiss()
-        }) as! UIGestureRecognizer))
-        microserviceController.containerView.layer.shadowOffset = CGSizeMake(0.0, 0.0)
-        microserviceController.containerView.layer.shadowOpacity = 0.5
-        microserviceController.containerView.layer.shadowRadius = 20.0
-        microserviceController.containerView.clipsToBounds = false
-        microserviceController.containerView.layer.cornerRadius = 5.0
-        microserviceController.presentInViewController(self)
+        msVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.showViewController(msVC, sender: nil)
     }
 
 }

@@ -16,14 +16,10 @@ class ClasstableDataManager: NSObject {
         twtSDK.getClasstableWithToken(NSUserDefaults.standardUserDefaults().stringForKey(TOKEN_SAVE_KEY), success: {(task, responseObject) in
             let dic = JSON(responseObject)
             if dic["error_code"].int == -1 {
-                if dic["data", "data"] != nil && dic["data", "term_start"] != nil {
+                if dic["data"].isExists() {
                     success(data: dic["data", "data"].object, termStartTime: dic["data", "term_start"].intValue)
                 } else {
-                    if dic["message"].stringValue != "" {
-                        otherFailure(errorMsg: dic["message"].stringValue)
-                    } else {
-                        otherFailure(errorMsg: "服务器开小差了🙄️")
-                    }
+                    otherFailure(errorMsg: dic["message"].stringValue)
                 }
             }
         }, failure: {(task, error) in

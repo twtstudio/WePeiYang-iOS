@@ -94,7 +94,7 @@ class ClassDetailViewController: UIViewController, UITableViewDelegate, UITableV
                 break
             }
         } else {
-            let arrange = classData.arrange[section - 1]
+            let arrange = classData.arrange[section - 1] as! ArrangeModel
             switch row {
             case 0:
                 cell?.textLabel?.text = "周数"

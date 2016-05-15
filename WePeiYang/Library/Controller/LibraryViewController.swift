@@ -54,7 +54,6 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         resultTableView.emptyDataSetSource = self
         resultTableView.emptyDataSetDelegate = self
         resultTableView.tableFooterView = UIView()
-        resultTableView.keyboardDismissMode = .OnDrag
     }
     
     override func didReceiveMemoryWarning() {
@@ -162,9 +161,9 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - UIScrollViewDelegate
     
-//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-//        searchTextField.resignFirstResponder()
-//    }
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchTextField.resignFirstResponder()
+    }
     
     // MARK: - Empty Data Set Source
     

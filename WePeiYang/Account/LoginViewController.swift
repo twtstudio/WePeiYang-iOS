@@ -10,10 +10,7 @@ import UIKit
 import ChameleonFramework
 import pop
 
-let NOTIFICATION_LOGIN_CANCELLED = "NOTIFICATION_LOGIN_CANCELLED"
-let NOTIFICATION_LOGIN_SUCCESSED = "NOTIFICATION_LOGIN_SUCCESSED"
-
-class LoginViewController: UIViewController {
+@objc class LoginViewController: UIViewController {
     
     @IBOutlet weak var unameField: UITextField!
     @IBOutlet weak var passwdField: UITextField!
@@ -72,7 +69,7 @@ class LoginViewController: UIViewController {
             MsgDisplay.showLoading()
             AccountManager.getTokenWithTwtUserName(unameField.text, password: passwdField.text, success: {
                 MsgDisplay.showSuccessMsg("登录成功！")
-                NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_SUCCESSED, object: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("Login", object: nil)
                 self.dismissViewControllerAnimated(true, completion: {
                     
                 })
@@ -86,8 +83,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelLogin() {
+        
         self.dismissViewControllerAnimated(true, completion: {
-            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_CANCELLED, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("LoginCancelled", object: nil)
         })
     }
     

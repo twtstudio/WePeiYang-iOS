@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface wpyModalWebViewController : UINavigationController
+@interface SVModalWebViewController : UINavigationController
 
 - (instancetype)initWithAddress:(NSString*)urlString;
 - (instancetype)initWithURL:(NSURL *)URL;
