@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08D7498D4F343AD0D783465B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDB6280259E22DE141F518E /* Pods.framework */; };
 		0A87B7A170FBA2752EDEAB69 /* Pods_WePeiYangTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */; };
 		180F1C90185D4D2B00F76085 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C8F185D4D2B00F76085 /* SystemConfiguration.framework */; };
 		180F1C92185D4D3200F76085 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F1C91185D4D3200F76085 /* QuartzCore.framework */; };
@@ -385,6 +386,7 @@
 				188842171846E6F4007B92CB /* UIKit.framework in Frameworks */,
 				188842131846E6F4007B92CB /* Foundation.framework in Frameworks */,
 				E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */,
+				08D7498D4F343AD0D783465B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,12 +1176,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1888423B1846E6F4007B92CB /* Build configuration list for PBXNativeTarget "WePeiYang" */;
 			buildPhases = (
+				BDE753BF7C1B4F7349E11AC1 /* Check Pods Manifest.lock */,
 				D9C136042C7A8EC8D58BF857 /* 📦 Check Pods Manifest.lock */,
 				1888420B1846E6F4007B92CB /* Sources */,
 				1888420C1846E6F4007B92CB /* Frameworks */,
 				1888420D1846E6F4007B92CB /* Resources */,
 				C80D36F4608847CD14E098CA /* 📦 Embed Pods Frameworks */,
 				DF4672E71670B9F93A1FE678 /* 📦 Copy Pods Resources */,
+				2402E27FA5C267866284626F /* Embed Pods Frameworks */,
+				7E284829471DF2209C17DD03 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1324,6 +1329,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2402E27FA5C267866284626F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		38CDC4A434CF101C79F5B2AF /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1332,6 +1352,36 @@
 			inputPaths = (
 			);
 			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7E284829471DF2209C17DD03 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDE753BF7C1B4F7349E11AC1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
