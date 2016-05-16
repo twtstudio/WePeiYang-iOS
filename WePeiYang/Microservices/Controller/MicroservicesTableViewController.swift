@@ -27,17 +27,13 @@ class MicroservicesTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: iOS 8 FUCKING BUG
+    // iOS 8 FUCKING BUG
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName:nibNameOrNil, bundle: nibBundleOrNil)
+        super.init(style: .Plain)
         self.contentSizeInPopup = CGSizeMake(300, 400)
         self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
     }
 
-    /*override var nibName: String? {
-        return "\(self.dynamicType)"
-    }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
