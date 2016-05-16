@@ -191,6 +191,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
+        //let msVC = MicroservicesTableViewController(nibName: nil, bundle: nil)
 //        msVC.hidesBottomBarWhenPushed = true
 //        self.navigationController?.showViewController(msVC, sender: nil)
         microserviceController = STPopupController(rootViewController: msVC)
