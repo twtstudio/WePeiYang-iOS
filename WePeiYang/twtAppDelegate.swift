@@ -36,36 +36,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        //GPA 界面后台模糊
+        if UIViewController.currentViewController().isKindOfClass(GPATableViewController) && NSUserDefaults().boolForKey(BACKGROUND_BLUR_KEY) == true {
+            let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+            frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
+            //            let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+            //            blurView.frame = frostedView.frame
+            
+            UIApplication.sharedApplication().keyWindow?.addSubview(frostedView)
+            //            frostedView.contentView.addSubview(blurView)
+        }
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        //GPA 界面后台模糊
-        if UIViewController.currentViewController().isKindOfClass(GPATableViewController) {
-            let frostedView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-            frostedView.frame = (UIApplication.sharedApplication().keyWindow?.frame)!
-//            let blurView = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
-//            blurView.frame = frostedView.frame
-            
-            UIApplication.sharedApplication().keyWindow?.addSubview(frostedView)
-//            frostedView.contentView.addSubview(blurView)
-        }
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        let array = UIApplication.sharedApplication().keyWindow?.subviews
-        for view in array! {
-            if view.isKindOfClass(UIVisualEffectView) {
-                view.removeFromSuperview()
-            }
-        }
-
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        let array = UIApplication.sharedApplication().keyWindow?.subviews
+        for view in array! {
+            if view.isKindOfClass(UIVisualEffectView) {
+                view.removeFromSuperview()
+                break
+            }
+        }
     }
     
     func applicationWillTerminate(application: UIApplication) {

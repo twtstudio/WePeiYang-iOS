@@ -35,7 +35,7 @@
         self.menuItemWidth = 100;
         self.bounces = YES;
         self.menuHeight = MENU_VIEW_HEIGHT;
-        self.menuViewBottom = -(self.menuHeight + 64.0);
+        self.menuViewBottomSpace = -(self.menuHeight + 64.0);
         
     }
     return self;

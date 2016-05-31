@@ -26,6 +26,8 @@
 #import "AFNetworking.h"
 #import "WePeiYang-Swift.h"
 
+#define BACKGROUND_BLUR_KEY @"backgroundBlurGPA"
+
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
 @end

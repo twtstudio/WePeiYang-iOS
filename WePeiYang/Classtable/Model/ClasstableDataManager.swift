@@ -15,6 +15,7 @@ class ClasstableDataManager: NSObject {
     class func getClasstableData(success: (data: AnyObject, termStartTime: Int) -> (), notBinded: () -> (), otherFailure: (errorMsg: String) -> ()) {
         twtSDK.getClasstableWithToken(NSUserDefaults.standardUserDefaults().stringForKey(TOKEN_SAVE_KEY), success: {(task, responseObject) in
             let dic = JSON(responseObject)
+            print(dic)
             if dic["error_code"].int == -1 {
                 if dic["data", "data"] != nil && dic["data", "term_start"] != nil {
                     success(data: dic["data", "data"].object, termStartTime: dic["data", "term_start"].intValue)
