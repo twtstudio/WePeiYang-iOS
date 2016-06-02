@@ -140,6 +140,7 @@ class DevControlViewController: UITableViewController {
         default:
             break
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     /*

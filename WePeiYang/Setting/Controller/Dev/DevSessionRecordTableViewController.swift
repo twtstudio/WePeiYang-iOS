@@ -92,6 +92,7 @@ class DevSessionRecordTableViewController: UITableViewController {
         let devSessionViewController = DevSessionViewController(nibName: nil, bundle: nil)
         devSessionViewController.sessionRecord = dataArr[indexPath.row]
         self.navigationController?.showViewController(devSessionViewController, sender: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     /*

@@ -50,26 +50,26 @@
     if (type == SessionTypeGET) {
         [manager GET:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
-                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseObject];
+                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
             }
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            id responseData = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+            id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
-                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseData];
+                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
             }
             failure(task, error);
         }];
     } else if (type == SessionTypePOST) {
         [manager POST:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
-                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseObject];
+                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
             }
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            id responseData = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+            id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
-                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseData];
+                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
             }
             failure(task, error);
         }];

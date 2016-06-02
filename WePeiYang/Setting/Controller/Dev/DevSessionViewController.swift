@@ -7,19 +7,21 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class DevSessionViewController: UIViewController {
     
     var sessionRecord: DevSessionRecord?
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var codeView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.navigationItem.titleView = segmentedControl
-        textView.text = "\(sessionRecord?.parameters)"
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.showJSONCode(JSON(sessionRecord!.parameters!))
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,10 +41,15 @@ class DevSessionViewController: UIViewController {
     
     @IBAction func segmentedControlChanged() {
         if segmentedControl.selectedSegmentIndex == 0 {
-            textView.text = "\(sessionRecord!.parameters!)"
+            self.showJSONCode(JSON(sessionRecord!.parameters!))
         } else {
-            textView.text = "\(sessionRecord!.response!)"
+            self.showJSONCode(JSON(sessionRecord!.response!))
         }
+    }
+    
+    private func showJSONCode(json: JSON) {
+        let htmlStr = "<!DOCTYPE html><html><head></head><body><link rel=\"stylesheet\" href=\"color-brewer.css\"><script src=\"highlight.js\"></script><script>hljs.initHighlightingOnLoad();</script> <pre><code class=\"JSON\">\(json)</code></pre></body></html>"
+        codeView.loadHTMLString(htmlStr, baseURL: NSURL(fileURLWithPath: NSBundle.mainBundle().resourcePath!))
     }
 
     /*
