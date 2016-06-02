@@ -25,12 +25,12 @@ class ArrangeModel: NSObject, Mappable {
         let transform = TransformOf<Int, String>(fromJSON: { (value: String?) -> Int? in
             // transform value from String? to Int?
             return Int(value!)
-            }, toJSON: { (value: Int?) -> String? in
-                // transform value from Int? to String?
-                if let value = value {
-                    return String(value)
-                }
-                return nil
+        }, toJSON: { (value: Int?) -> String? in
+            // transform value from Int? to String?
+            if let value = value {
+                return String(value)
+            }
+            return nil
         })
         
         week <- map["week"]
@@ -39,5 +39,5 @@ class ArrangeModel: NSObject, Mappable {
         end <- (map["end"], transform)
         room <- map["room"]
     }
-
+    
 }

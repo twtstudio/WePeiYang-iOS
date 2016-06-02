@@ -7,12 +7,14 @@
 //
 
 #define TWT_ROOT_URL @"http://open.twtstudio.com/api/v1"
+#define DEV_RECORD_SESSION_INFO @"DEV_RECORD_SESSION_INFO"
 
 #import "SolaSessionManager.h"
 #import "SolaInstance.h"
 #import "twtSDK.h"
 #import "NSString+Hashes.h"
 #import "SolaFoundationKit.h"
+#import "WePeiyang-Swift.h"
 
 @implementation SolaSessionManager
 
@@ -44,20 +46,34 @@
     if (token != nil && token.length > 0) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", token] forHTTPHeaderField:@"Authorization"];
     }
+
     if (type == SessionTypeGET) {
         [manager GET:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
+                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseObject];
+            }
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            id responseData = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
+                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseData];
+            }
             failure(task, error);
         }];
     } else if (type == SessionTypePOST) {
         [manager POST:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
+                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseObject];
+            }
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            id responseData = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
+                [DevSessionRecorder recordSessionType:type parameters:parameters response:responseData];
+            }
             failure(task, error);
         }];
     }
-
 }
 
 @end
