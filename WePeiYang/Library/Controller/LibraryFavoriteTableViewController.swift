@@ -12,10 +12,16 @@ import DZNEmptyDataSet
 class LibraryFavoriteTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var dataArr: [LibraryDataItem] = []
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "收藏夹"
+        self.jz_navigationBarBackgroundHidden = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import BlocksKit
 
 class DevSessionViewController: UIViewController {
     
@@ -21,6 +22,16 @@ class DevSessionViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.titleView = segmentedControl
         self.navigationController?.navigationBar.topItem?.title = ""
+        let shareBtn = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Action, handler: { handler in
+            let activityItems = [self.sessionRecord!.parameters!, self.sessionRecord!.response!]
+            let activityController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            activityController.modalPresentationStyle = .Popover
+            activityController.popoverPresentationController!.permittedArrowDirections = .Any
+            activityController.popoverPresentationController!.barButtonItem = self.navigationItem.rightBarButtonItem
+            self.presentViewController(activityController, animated: true, completion: nil)
+        }) as! UIBarButtonItem
+        self.navigationItem.rightBarButtonItem = shareBtn
+        
         self.showJSONCode(JSON(sessionRecord!.parameters!))
     }
 

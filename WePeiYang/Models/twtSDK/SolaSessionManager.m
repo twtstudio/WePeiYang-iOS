@@ -54,9 +54,11 @@
             }
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
-                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
+                if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] != nil) {
+                    id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+                    [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
+                }
             }
             failure(task, error);
         }];
@@ -67,9 +69,11 @@
             }
             success(task, responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
-                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
+                if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] != nil) {
+                    id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+                    [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
+                }
             }
             failure(task, error);
         }];

@@ -9,21 +9,29 @@
 import UIKit
 import ObjectMapper
 import MJRefresh
-import DZNEmptyDataSet
+//import DZNEmptyDataSet
 import BlocksKit
 
-class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIScrollViewAccessibilityDelegate, UITextFieldDelegate {
+class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewAccessibilityDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var resultTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var blurView: UIVisualEffectView!
     
     var resultData: [LibraryDataItem] = []
     var currentPage = 1
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        self.jz_navigationBarBackgroundAlpha = 0.0
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
+//        self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
+        if self.blurView.alpha == 0 {
+            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        } else {
+            self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
+            if self.resultData.count == 0 {
+                self.searchTextField.becomeFirstResponder()
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -32,10 +40,14 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
 //        self.title = "图书馆"
         self.navigationItem.titleView = searchTextField
+        
+        self.jz_navigationBarBackgroundHidden = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem().bk_initWithBarButtonSystemItem(.Bookmarks, handler: { handler in
             let favController = LibraryFavoriteTableViewController(style: .Plain)
             self.navigationController?.showViewController(favController, sender: nil)
         }) as? UIBarButtonItem
+        self.blurView.alpha = 0
+//        self.searchTextField.alpha = 0.3
 //        resultTableView.tableHeaderView = {
 //            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 120))
 //            view.backgroundColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
@@ -43,6 +55,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        }()
         
         searchTextField.addTarget(self, action: #selector(LibraryViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+        searchTextField.delegate = self
         
         resultTableView.registerNib(UINib(nibName: "LibraryTableViewCell", bundle: nil), forCellReuseIdentifier: "libCellIdentifier")
         resultTableView.rowHeight = UITableViewAutomaticDimension
@@ -51,10 +64,31 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.nextPage()
         })
         resultTableView.mj_footer.automaticallyHidden = true
-        resultTableView.emptyDataSetSource = self
-        resultTableView.emptyDataSetDelegate = self
+//        resultTableView.emptyDataSetSource = self
+//        resultTableView.emptyDataSetDelegate = self
         resultTableView.tableFooterView = UIView()
         resultTableView.keyboardDismissMode = .OnDrag
+        resultTableView.backgroundColor = UIColor.whiteColor()
+        resultTableView.alpha = 0.0
+        
+        var insets = resultTableView.contentInset
+        insets.top = (self.navigationController?.navigationBar.bounds.size.height)!
+        resultTableView.contentInset = insets
+        resultTableView.scrollIndicatorInsets = insets
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillDismiss(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer().bk_initWithHandler({(recognizer, state, point) in
+            if self.resultData.count == 0 {
+                self.searchTextField.resignFirstResponder()
+                UIView.animateWithDuration(0.3, animations: {
+                    self.blurView.alpha = 0.0
+                    self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+                })
+            }
+        }) as! UITapGestureRecognizer
+        blurView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,6 +118,12 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func fetchData() {
         if self.searchTextField.text!.isEmpty {
             self.resultTableView.mj_footer.endRefreshing()
+            UIView.animateWithDuration(0.3, animations: {
+                self.blurView.alpha = 0.0
+                self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+                self.resultTableView.alpha = 0.0
+                self.jz_navigationBarBackgroundAlpha = 0.0
+            })
             MsgDisplay.showErrorMsg("请输入搜索关键字")
         } else {
             MsgDisplay.showLoading()
@@ -91,6 +131,10 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if self.currentPage == 1 {
                     self.resultData = data
                     self.resultTableView.reloadData()
+                    UIView.animateWithDuration(0.3, animations: {
+                        self.resultTableView.alpha = 1.0
+                        self.jz_navigationBarBackgroundAlpha = 1.0
+                    })
                     if data.count > 0 {
                         self.resultTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: true)
                         MsgDisplay.dismiss()
@@ -118,6 +162,25 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func textChanged(textField: UITextField) {
         self.resultData = []
         self.resultTableView.reloadData()
+        UIView.animateWithDuration(0.3, animations: {
+            self.resultTableView.alpha = 0.0
+            self.jz_navigationBarBackgroundAlpha = 0.0
+        })
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        UIView.animateWithDuration(0.3, animations: {
+            self.blurView.alpha = 1.0
+            self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
+        })
+    }
+    
+    func keyboardWillShow(note: NSNotification) {
+        
+    }
+    
+    func keyboardWillDismiss(note: NSNotification) {
+
     }
     
     // MARK: - Table View Data Source
@@ -134,6 +197,10 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("libCellIdentifier") as! LibraryTableViewCell
         cell.setLibraryItem(resultData[indexPath.row])
         return cell
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     // MARK: - Table View Delegate
@@ -168,31 +235,31 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - Empty Data Set Source
     
-    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "libEmpty")
-    }
-    
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "暂无内容"
-        let attr = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
-        ]
-        return NSAttributedString(string: text, attributes: attr)
-    }
-    
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "请从搜索栏开始搜索书目"
-        let para = NSMutableParagraphStyle()
-        para.lineBreakMode = .ByWordWrapping
-        para.alignment = .Center
-        let attr = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14.0),
-            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
-            NSParagraphStyleAttributeName: para
-        ]
-        return NSAttributedString(string: text, attributes: attr)
-    }
+//    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+//        return UIImage(named: "libEmpty")
+//    }
+//    
+//    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "暂无内容"
+//        let attr = [
+//            NSFontAttributeName: UIFont.boldSystemFontOfSize(18.0),
+//            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+//        ]
+//        return NSAttributedString(string: text, attributes: attr)
+//    }
+//    
+//    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "请从搜索栏开始搜索书目"
+//        let para = NSMutableParagraphStyle()
+//        para.lineBreakMode = .ByWordWrapping
+//        para.alignment = .Center
+//        let attr = [
+//            NSFontAttributeName: UIFont.systemFontOfSize(14.0),
+//            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+//            NSParagraphStyleAttributeName: para
+//        ]
+//        return NSAttributedString(string: text, attributes: attr)
+//    }
 
     /*
     // MARK: - Navigation

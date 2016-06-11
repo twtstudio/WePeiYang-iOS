@@ -24,6 +24,8 @@ class DevSessionRecordTableViewController: UITableViewController {
         self.title = "Session 记录"
         dataArr = DevSessionRecorder.allSessionRecords()
         self.tableView.reloadData()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 68.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,12 +58,14 @@ class DevSessionRecordTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier")
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "reuseIdentifier")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "reuseIdentifier")
         }
         let record = dataArr[indexPath.row]
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-        cell!.textLabel?.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(record.id!)))
+        cell!.textLabel?.text = record.url
+        cell!.textLabel?.numberOfLines = 0
+        cell!.detailTextLabel?.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(record.id!)))
         cell!.accessoryType = .DisclosureIndicator
         return cell!
     }
