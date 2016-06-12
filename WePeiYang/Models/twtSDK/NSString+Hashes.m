@@ -31,8 +31,7 @@
 
 - (NSString *)sha1
 {
-    const char *cstr = [self cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [NSData dataWithBytes:cstr length:self.length];
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     
     uint8_t digest[CC_SHA1_DIGEST_LENGTH];
     

@@ -43,7 +43,7 @@ class AboutViewController: UIViewController {
                 }
                 
             }) as! UITapGestureRecognizer
-            tapRecognizer.numberOfTapsRequired = 10
+            tapRecognizer.numberOfTapsRequired = NSUserDefaults.standardUserDefaults().boolForKey(DEV_MODE_PASSWORD_NOT_REQUIRED) == true ? 1 : 10
             return tapRecognizer
         }())
     }

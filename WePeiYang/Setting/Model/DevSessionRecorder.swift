@@ -48,7 +48,7 @@ class DevSessionRecorder: NSObject {
         
         var dataArr: [DevSessionRecord] = []
         do {
-            let result = try database.executeQuery("select * from SessionRecord", values: nil)
+            let result = try database.executeQuery("SELECT * FROM SessionRecord ORDER BY id DESC", values: nil)
             while result.next() {
                 let item = DevSessionRecord(id: Int(result.intForColumn("id")), url: result.stringForColumn("url"), type: Int(result.intForColumn("type")), parameters: (NSKeyedUnarchiver.unarchiveObjectWithData(result.dataForColumn("parameters")) as! [String: AnyObject]), response: NSKeyedUnarchiver.unarchiveObjectWithData(result.dataForColumn("response"))!)
                 dataArr.append(item)

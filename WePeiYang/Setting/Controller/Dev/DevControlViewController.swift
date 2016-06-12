@@ -18,7 +18,7 @@ class DevControlViewController: UITableViewController {
     let options: [DevSwitchOption] = [
         (DEV_DISPLAY_DEV_WEB_APP, "显示测试 Web App"),
         (TOUCH_ID_KEY, "复写 Touch ID 设置"),
-        (DEV_MODE_PASSWORD_NOT_REQUIRED, "进入 DevKit 无需密码")
+        (DEV_MODE_PASSWORD_NOT_REQUIRED, "简化 DevKit 进入流程")
     ]
 
     override func viewDidLoad() {
