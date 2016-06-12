@@ -46,7 +46,7 @@
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
                       "<div class=\"col-sm-12\" style=\"font-size: 16px;\"> \n"
-                      "<h3>%@</h3> \n"
+                      "<h3>%@</h3><br>\n"
                       "%@ \n"
                       "<br> \n"
                       "</div> \n"

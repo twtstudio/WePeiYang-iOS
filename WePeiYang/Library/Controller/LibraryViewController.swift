@@ -26,11 +26,13 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
         if self.blurView.alpha == 0 {
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
         } else {
             self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
             if self.resultData.count == 0 {
                 self.searchTextField.becomeFirstResponder()
             }
+            UIApplication.sharedApplication().statusBarStyle = .Default
         }
     }
 
@@ -85,6 +87,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 UIView.animateWithDuration(0.3, animations: {
                     self.blurView.alpha = 0.0
                     self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+                    UIApplication.sharedApplication().statusBarStyle = .LightContent
                 })
             }
         }) as! UITapGestureRecognizer
@@ -100,6 +103,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillDisappear(animated)
 //        self.jz_navigationBarBackgroundAlpha = 1.0
         searchTextField.resignFirstResponder()
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     // MARK: - Methods
@@ -123,6 +127,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
                 self.resultTableView.alpha = 0.0
                 self.jz_navigationBarBackgroundAlpha = 0.0
+                UIApplication.sharedApplication().statusBarStyle = .LightContent
             })
             MsgDisplay.showErrorMsg("请输入搜索关键字")
         } else {
@@ -172,6 +177,7 @@ class LibraryViewController: UIViewController, UITableViewDelegate, UITableViewD
         UIView.animateWithDuration(0.3, animations: {
             self.blurView.alpha = 1.0
             self.navigationController?.navigationBar.tintColor = UIColor(red: 22/255.0, green: 151/255.0, blue: 166/255.0, alpha: 1.0)
+            UIApplication.sharedApplication().statusBarStyle = .Default
         })
     }
     

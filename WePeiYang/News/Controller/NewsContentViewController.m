@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = newsData.subject;
+    self.navigationItem.title = @"详情";
     contentWebView.delegate = self;
     commentArr = [[NSArray alloc] init];
     

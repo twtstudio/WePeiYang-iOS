@@ -69,6 +69,6 @@
         </textField>
     </objects>
     <resources>
-        <image name="libhome" width="426" height="426"/>
+        <image name="libhome" width="640" height="426"/>
     </resources>
 </document>
