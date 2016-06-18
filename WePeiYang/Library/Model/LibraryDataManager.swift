@@ -11,6 +11,8 @@ import ObjectMapper
 import SwiftyJSON
 import FMDB
 
+let LIBRARY_FAVORITE_DB_NAME = "fav.db"
+
 class LibraryDataManager: NSObject {
     
     class func searchLibrary(keyword: String, page: Int, success: (data: [LibraryDataItem]) -> (), failure: (errorMsg: String) -> ()) {
@@ -28,7 +30,7 @@ class LibraryDataManager: NSObject {
     
     class func addLibraryItemToFavorite(item: LibraryDataItem) {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-        let fileURL = documents.URLByAppendingPathComponent("fav.db")
+        let fileURL = documents.URLByAppendingPathComponent(LIBRARY_FAVORITE_DB_NAME)
         let database = FMDatabase(path: fileURL.path)
         
         if !database.open() {
@@ -36,13 +38,13 @@ class LibraryDataManager: NSObject {
         }
         
         do {
-            try database.executeUpdate("create table Libfav(id, title, author, publisher, location)", values: nil)
+            try database.executeUpdate("CREATE TABLE Libfav(id, title, author, publisher, location)", values: nil)
         } catch let error as NSError {
             print("Failed: \(error.localizedDescription)")
         }
         
         do {
-            try database.executeUpdate("insert into Libfav values(?, ?, ?, ?, ?)", values: [item.index, item.title, item.author, item.publisher, item.location])
+            try database.executeUpdate("INSERT INTO Libfav VALUES(?, ?, ?, ?, ?)", values: [item.index, item.title, item.author, item.publisher, item.location])
         } catch let error as NSError {
             print("Failed: \(error.localizedDescription)")
         }
@@ -52,7 +54,7 @@ class LibraryDataManager: NSObject {
     
     class func favoriteLibraryItems() -> [LibraryDataItem] {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-        let fileURL = documents.URLByAppendingPathComponent("fav.db")
+        let fileURL = documents.URLByAppendingPathComponent(LIBRARY_FAVORITE_DB_NAME)
         let database = FMDatabase(path: fileURL.path)
         
         if !database.open() {
@@ -61,7 +63,7 @@ class LibraryDataManager: NSObject {
         
         var dataArr: [LibraryDataItem] = []
         do {
-            let result = try database.executeQuery("select * from Libfav", values: nil)
+            let result = try database.executeQuery("SELECT * FROM Libfav", values: nil)
             while result.next() {
                 let item = LibraryDataItem(index: result.stringForColumn("id"), title: result.stringForColumn("title"), author: result.stringForColumn("author"), publisher: result.stringForColumn("publisher"), location: result.stringForColumn("location"))
                 dataArr.append(item)
@@ -76,7 +78,7 @@ class LibraryDataManager: NSObject {
     
     class func removeLibraryItem(item: LibraryDataItem) {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-        let fileURL = documents.URLByAppendingPathComponent("fav.db")
+        let fileURL = documents.URLByAppendingPathComponent(LIBRARY_FAVORITE_DB_NAME)
         let database = FMDatabase(path: fileURL.path)
         
         if !database.open() {
@@ -84,7 +86,7 @@ class LibraryDataManager: NSObject {
         }
         
         do {
-            try database.executeUpdate("delete from Libfav where id=?", values: [item.index])
+            try database.executeUpdate("DELETE FROM Libfav WHERE id=?", values: [item.index])
         } catch let error as NSError {
             print("Failed: \(error.localizedDescription)")
         }

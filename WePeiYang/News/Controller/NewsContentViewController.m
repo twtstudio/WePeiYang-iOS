@@ -42,6 +42,7 @@
     commentArr = [[NSArray alloc] init];
     
     bridge = [WebViewJavascriptBridge bridgeForWebView:contentWebView];
+    [bridge setWebViewDelegate:self];
     [bridge registerHandler:@"imgCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
         [self presentHDImageWithURL:data];
     }];

@@ -1,6 +1,6 @@
 WePeiYang-iOS
 =============
-The iOS Client for Tianjin University
+The iOS Client for Tianjin University.
 
 # Introduction
 
