@@ -23,7 +23,7 @@ Objective-C 中写在`#import`下面，视是否需要暴露决定放在头文�
 Swift 中由于取消宏，通过`let`定义，写在`import`下面。形式：
 
 ```swift
-let THIS_IS_A_MACRO "realString"
+let THIS_IS_A_MACRO = "realString"
 ```
 
 ## 空格
@@ -87,15 +87,30 @@ dic = ["key1": "value1", "key2": "value2"]
 
 ## 网络请求
 
+网络请求部分通过`SolaSessionManager`类封装 API 所要求的参数加签、SHA-1、加 HTTP header 等操作，并直接通过 block 传递解析到的对象和`NSURLSessionDataTask`。twtSDK 类通过调用封装的`+ (void)solaSessionWithSessionType:(SessionType)type URL:(NSString *)url token:(NSString *)token parameters:(NSDictionary *)parameters success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;`方法对 API 进行调用，其他各 DataManager 类通过调用 twtSDK 中的方法根据不同情况进行数据解析处理。
+
+TODO：twtSDK 类应抽出为一个单独 .a 库和一个 .h 头文件以方便调用。
+
+在通过`DevKit`类进行数据记录后，`SolaSessionManager`类还具有根据是否打开调试选项而执行将 response 和 request 存储到本地的功能。
+
 ## 账户管理
+
+主要通过`AccountManager`类封装的功能。Token 主要通过`NSUserDefaults`存储在本地，同时在 App 加载之后会被写入一个特殊的单例`SolaInstance`中。每次启动会在后台线程验证 token 是否有效，若 token 过期则尝试刷新，若刷新失败则本地删除 token，即恢复未登录状态。
 
 ## 消息显示
 
+`MsgDisplay`类。需要注意现在这样可以实现是因为 SVProgressHUD 使用了单例模式，之后如果改用其他组件需根据具体情况进行调整。
+
 ## 前端处理
+
+`FrontEndProcessor`类主要是将新闻详情部分返回的 HTML 更改为适配移动端显示的网页内容。首先通过`NSScanner`解析 HTML 中的图片标签，提取地址并将可能为尺寸固定的图片修改为`img-responsive`。`img-responsive`类不仅实现图片的自适应，而且通过 WebViewJavaScriptBridge 可以实现图片点击放大的功能。然后在整个页面之外套一层 Bootstrap 以自适配移动端。最后把 API 返回的标题、来源、审稿等信息也嵌入页面内。JS 和 CSS 文件均直接放入本地，直接在前端中通过`<script src=\"bridge.js\"></script>`无需其他路径。
+
+在需要展示前端的 ViewController（如`NewsContentViewController`），加 UIWebView，实现 WebViewJavaScriptBridge。可以直接在 UIWebView 中加载之前通过`FrontEndProcessor`处理过的 HTML。需要注意的是此时 baseURL 必须为 Bundle 中的资源路径，这样才能加载我们本地的 css 和 js。
+
+```objc
+[self.webView loadHTMLString:processedHTML baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES]];
+```
 
 ## UIActivity
 
-# 其他
-
-## 新闻详情页面
-
+一些针对部分内容的操作可以封装为 UIActivity 的形式通过 UIActivityViewController 调用，这样比较符合系统规范。UIActivity 主要需要实现几个特定方法，随便参考某个已有实现就可以了。
