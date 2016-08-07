@@ -52,4 +52,7 @@ typedef NS_ENUM(NSInteger, NewsType) {
 + (void)getLibraryReaderRank:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 + (void)getLibraryBookRank:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
 
++ (void)getClassrooms:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)getAvaliableClassroomsWithBuildingID:(NSInteger)bid success:(void(^)(NSURLSessionDataTask *task, id responseObject))success failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @end

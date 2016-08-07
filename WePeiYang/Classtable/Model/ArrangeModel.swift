@@ -22,11 +22,22 @@ class ArrangeModel: NSObject, Mappable {
     }
     
     func mapping(map: Map) {
+        let transform = TransformOf<Int, String>(fromJSON: { (value: String?) -> Int? in
+            // transform value from String? to Int?
+            return Int(value!)
+        }, toJSON: { (value: Int?) -> String? in
+            // transform value from Int? to String?
+            if let value = value {
+                return String(value)
+            }
+            return nil
+        })
+        
         week <- map["week"]
-        day <- map["day"]
-        start <- map["start"]
-        end <- map["end"]
+        day <- (map["day"], transform)
+        start <- (map["start"], transform)
+        end <- (map["end"], transform)
         room <- map["room"]
     }
-
+    
 }

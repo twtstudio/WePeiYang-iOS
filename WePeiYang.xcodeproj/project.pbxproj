@@ -35,11 +35,21 @@
 		E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */; };
 		E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A9B231C4040E300ADABA0 /* HomeWeatherCell.swift */; };
 		E91A9B261C4040E300ADABA0 /* HomeWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91A9B241C4040E300ADABA0 /* HomeWeatherCell.xib */; };
+		E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E515A1CFF421C00A5BED7 /* DevSessionRecorder.swift */; };
+		E91E515D1CFF498500A5BED7 /* DevSessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E515C1CFF498500A5BED7 /* DevSessionRecord.swift */; };
+		E91E515F1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E515E1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift */; };
+		E91E51621D00529400A5BED7 /* DevSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E51601D00529400A5BED7 /* DevSessionViewController.swift */; };
+		E91E51631D00529400A5BED7 /* DevSessionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E91E51611D00529400A5BED7 /* DevSessionViewController.xib */; };
+		E91E51651D007F0300A5BED7 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = E91E51641D007F0300A5BED7 /* highlight.js */; };
+		E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */ = {isa = PBXBuildFile; fileRef = E91E51681D00820B00A5BED7 /* color-brewer.css */; };
 		E92298521AF0F78E000CC8F7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298511AF0F78E000CC8F7 /* libz.dylib */; };
 		E92298541AF0F797000CC8F7 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */; };
 		E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925971C1CA62AD600D4E812 /* ToolsCollectionViewController.swift */; };
 		E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92597221CA62E1B00D4E812 /* ToolsCollectionViewCell.swift */; };
 		E92597251CA62E1B00D4E812 /* ToolsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92597231CA62E1B00D4E812 /* ToolsCollectionViewCell.xib */; };
+		E92808491D14633200E4380D /* StudySearchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92808481D14633200E4380D /* StudySearchDataManager.swift */; };
+		E928084C1D14696F00E4380D /* StudySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E928084A1D14696F00E4380D /* StudySearchViewController.swift */; };
+		E928084D1D14696F00E4380D /* StudySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E928084B1D14696F00E4380D /* StudySearchViewController.xib */; };
 		E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */; };
 		E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C7F401C6EF4590022857A /* NewsCommentTableViewCell.m */; };
 		E92C7F431C6EF4590022857A /* NewsCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92C7F411C6EF4590022857A /* NewsCommentTableViewCell.xib */; };
@@ -215,11 +225,21 @@
 		E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wpyCacheManager.m; path = "Cache Manager/wpyCacheManager.m"; sourceTree = "<group>"; };
 		E91A9B231C4040E300ADABA0 /* HomeWeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeWeatherCell.swift; path = View/HomeWeatherCell.swift; sourceTree = "<group>"; };
 		E91A9B241C4040E300ADABA0 /* HomeWeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeWeatherCell.xib; path = View/HomeWeatherCell.xib; sourceTree = "<group>"; };
+		E91E515A1CFF421C00A5BED7 /* DevSessionRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevSessionRecorder.swift; sourceTree = "<group>"; };
+		E91E515C1CFF498500A5BED7 /* DevSessionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevSessionRecord.swift; sourceTree = "<group>"; };
+		E91E515E1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevSessionRecordTableViewController.swift; path = Dev/DevSessionRecordTableViewController.swift; sourceTree = "<group>"; };
+		E91E51601D00529400A5BED7 /* DevSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevSessionViewController.swift; path = Dev/DevSessionViewController.swift; sourceTree = "<group>"; };
+		E91E51611D00529400A5BED7 /* DevSessionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DevSessionViewController.xib; path = Dev/DevSessionViewController.xib; sourceTree = "<group>"; };
+		E91E51641D007F0300A5BED7 /* highlight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highlight.js; sourceTree = "<group>"; };
+		E91E51681D00820B00A5BED7 /* color-brewer.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "color-brewer.css"; sourceTree = "<group>"; };
 		E92298511AF0F78E000CC8F7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		E925971C1CA62AD600D4E812 /* ToolsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToolsCollectionViewController.swift; path = Tools/Controller/ToolsCollectionViewController.swift; sourceTree = "<group>"; };
 		E92597221CA62E1B00D4E812 /* ToolsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToolsCollectionViewCell.swift; path = Tools/View/ToolsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E92597231CA62E1B00D4E812 /* ToolsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ToolsCollectionViewCell.xib; path = Tools/View/ToolsCollectionViewCell.xib; sourceTree = "<group>"; };
+		E92808481D14633200E4380D /* StudySearchDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudySearchDataManager.swift; path = StudySearch/Model/StudySearchDataManager.swift; sourceTree = "<group>"; };
+		E928084A1D14696F00E4380D /* StudySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudySearchViewController.swift; path = StudySearch/Controller/StudySearchViewController.swift; sourceTree = "<group>"; };
+		E928084B1D14696F00E4380D /* StudySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudySearchViewController.xib; path = StudySearch/Controller/StudySearchViewController.xib; sourceTree = "<group>"; };
 		E92C7F3C1C6EF1E80022857A /* NewsCommentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentTextView.h; sourceTree = "<group>"; };
 		E92C7F3D1C6EF1E80022857A /* NewsCommentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCommentTextView.m; sourceTree = "<group>"; };
 		E92C7F3F1C6EF4590022857A /* NewsCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCommentTableViewCell.h; sourceTree = "<group>"; };
@@ -470,6 +490,7 @@
 				E9C3978A1CA520ED00E89813 /* Tools */,
 				E90105331C3B994E002901AC /* GPA */,
 				E90105411C3B994E002901AC /* News */,
+				E92808441D14629300E4380D /* StudySearch */,
 				E9BA7BAE1C5A1509009A4E9A /* Classtable */,
 				E96D796C1C6F805F00550746 /* LostFound */,
 				E98DF6951C5D03B6003943A4 /* Microservices */,
@@ -625,6 +646,8 @@
 		E90105511C3B994E002901AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E91E515A1CFF421C00A5BED7 /* DevSessionRecorder.swift */,
+				E91E515C1CFF498500A5BED7 /* DevSessionRecord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -643,6 +666,40 @@
 				E91A26FE1ABAC21C0080CB6F /* wpyCacheManager.m */,
 			);
 			name = "Cache Manager";
+			sourceTree = "<group>";
+		};
+		E92808441D14629300E4380D /* StudySearch */ = {
+			isa = PBXGroup;
+			children = (
+				E92808471D1462A700E4380D /* Controller */,
+				E92808461D1462A400E4380D /* View */,
+				E92808451D14629F00E4380D /* Model */,
+			);
+			name = StudySearch;
+			sourceTree = "<group>";
+		};
+		E92808451D14629F00E4380D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E92808481D14633200E4380D /* StudySearchDataManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E92808461D1462A400E4380D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E92808471D1462A700E4380D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E928084A1D14696F00E4380D /* StudySearchViewController.swift */,
+				E928084B1D14696F00E4380D /* StudySearchViewController.xib */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		E937017F1C5CA8A800C87E84 /* Library */ = {
@@ -739,6 +796,11 @@
 			isa = PBXGroup;
 			children = (
 				E961E61C1CDF6C2E003E574F /* DevControlViewController.swift */,
+				E91E515E1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift */,
+				E91E51601D00529400A5BED7 /* DevSessionViewController.swift */,
+				E91E51611D00529400A5BED7 /* DevSessionViewController.xib */,
+				E91E51681D00820B00A5BED7 /* color-brewer.css */,
+				E91E51641D007F0300A5BED7 /* highlight.js */,
 			);
 			name = Dev;
 			sourceTree = "<group>";
@@ -1278,11 +1340,14 @@
 				E9D0522B1C66338900DFBDDA /* bridge.js in Resources */,
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
+				E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
 				E98DF6FA1C5DF5BF003943A4 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
 				E98DF6F31C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				E98DF6EF1C5DF5BF003943A4 /* SVWebViewController.strings in Resources */,
+				E91E51651D007F0300A5BED7 /* highlight.js in Resources */,
+				E91E51631D00529400A5BED7 /* DevSessionViewController.xib in Resources */,
 				E98DF6F41C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
 				E9BA7BB51C5A1550009A4E9A /* ClasstableViewController.xib in Resources */,
 				E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */,
@@ -1293,6 +1358,7 @@
 				E9941B411C15E30800626A56 /* jquery.min.js in Resources */,
 				E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */,
 				E98DF6F71C5DF5BF003943A4 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
+				E928084D1D14696F00E4380D /* StudySearchViewController.xib in Resources */,
 				E937018B1C5CCE6000C87E84 /* AboutViewController.xib in Resources */,
 				E91A9B261C4040E300ADABA0 /* HomeWeatherCell.xib in Resources */,
 			);
@@ -1417,6 +1483,7 @@
 				E99923AE1CC605E6008963C8 /* WeChatSessionActivity.m in Sources */,
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
 				E99923A01CC5FA65008963C8 /* SchemeManager.swift in Sources */,
+				E91E51621D00529400A5BED7 /* DevSessionViewController.swift in Sources */,
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
@@ -1427,6 +1494,7 @@
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
+				E91E515F1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift in Sources */,
 				E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
 				E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */,
@@ -1434,10 +1502,12 @@
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
 				E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
+				E928084C1D14696F00E4380D /* StudySearchViewController.swift in Sources */,
 				E9480D601CC7E98700AA707A /* WebAppItem.swift in Sources */,
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
+				E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */,
 				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
@@ -1446,6 +1516,7 @@
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E98ACE1A1C4026780012C762 /* HomeNewsTableViewCell.swift in Sources */,
+				E91E515D1CFF498500A5BED7 /* DevSessionRecord.swift in Sources */,
 				E9B972D01C565DFB001E480E /* AccountManager.m in Sources */,
 				E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */,
 				E94AC15F1C737B6300C82C4E /* ClassCellView.swift in Sources */,
@@ -1464,6 +1535,7 @@
 				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,
 				E976B3691CBF33A90008E268 /* LostFoundViewController.m in Sources */,
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,
+				E92808491D14633200E4380D /* StudySearchDataManager.swift in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
 				E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,

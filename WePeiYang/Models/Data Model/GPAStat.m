@@ -7,7 +7,7 @@
 //
 
 #import "GPAStat.h"
-#import "MJExtension.h"
+#import <MJExtension/MJExtension.h>
 
 @implementation GPAStat
 

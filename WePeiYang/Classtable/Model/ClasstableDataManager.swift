@@ -22,7 +22,7 @@ class ClasstableDataManager: NSObject {
                     if dic["message"].stringValue != "" {
                         otherFailure(errorMsg: dic["message"].stringValue)
                     } else {
-                        otherFailure(errorMsg: "服务器开小差了🙄️")
+                        otherFailure(errorMsg: "服务器开小差了😘")
                     }
                 }
             }

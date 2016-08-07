@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LibraryViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
+                <outlet property="blurView" destination="2KJ-46-yr5" id="BuQ-cr-p6m"/>
                 <outlet property="resultTableView" destination="Upf-5S-kqC" id="ioE-CQ-jdv"/>
                 <outlet property="searchTextField" destination="YT0-tW-b5l" id="Mkz-CO-nrk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -17,6 +18,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="libhome" translatesAutoresizingMaskIntoConstraints="NO" id="k2R-Ow-dvE">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-46-yr5">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dQi-dC-htc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Upf-5S-kqC">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,9 +40,17 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Upf-5S-kqC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9eX-6y-RN6"/>
+                <constraint firstAttribute="trailing" secondItem="2KJ-46-yr5" secondAttribute="trailing" id="IVS-ra-Yq7"/>
+                <constraint firstItem="k2R-Ow-dvE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WLD-Dw-JUo"/>
+                <constraint firstAttribute="bottom" secondItem="k2R-Ow-dvE" secondAttribute="bottom" id="XEB-mq-B1N"/>
+                <constraint firstAttribute="bottom" secondItem="2KJ-46-yr5" secondAttribute="bottom" id="ac7-38-dGH"/>
                 <constraint firstItem="Upf-5S-kqC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ct6-at-3se"/>
-                <constraint firstItem="Upf-5S-kqC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kU1-dc-N1u"/>
+                <constraint firstItem="2KJ-46-yr5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jI3-Rr-134"/>
+                <constraint firstAttribute="trailing" secondItem="k2R-Ow-dvE" secondAttribute="trailing" id="lYq-2v-wyt"/>
+                <constraint firstItem="k2R-Ow-dvE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nxu-5b-hDe"/>
                 <constraint firstAttribute="bottom" secondItem="Upf-5S-kqC" secondAttribute="bottom" id="pUf-hF-FFQ"/>
+                <constraint firstItem="2KJ-46-yr5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qTt-6s-ZMM"/>
                 <constraint firstAttribute="trailing" secondItem="Upf-5S-kqC" secondAttribute="trailing" id="rgu-XL-Pwf"/>
             </constraints>
             <point key="canvasLocation" x="310" y="280"/>
@@ -38,6 +58,7 @@
         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入搜索关键字" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="YT0-tW-b5l">
             <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="0.39350754310344827" colorSpace="calibratedWhite"/>
             <fontDescription key="fontDescription" type="system" pointSize="14"/>
             <textInputTraits key="textInputTraits" returnKeyType="search"/>
             <connections>
@@ -47,4 +68,7 @@
             <point key="canvasLocation" x="310" y="-99"/>
         </textField>
     </objects>
+    <resources>
+        <image name="libhome" width="640" height="426"/>
+    </resources>
 </document>

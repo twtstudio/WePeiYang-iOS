@@ -211,6 +211,22 @@
     }];
 }
 
++ (void)getClassrooms:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/classrooms/buildings" token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
++ (void)getAvaliableClassroomsWithBuildingID:(NSInteger)bid success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+    [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:[NSString stringWithFormat:@"/classrooms?bid=%ld", bid] token:[self wpyToken] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(task, responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(task, error);
+    }];
+}
+
 + (NSString *)wpyToken {
     return [AccountManager tokenExists] ? [[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] : nil;
 }

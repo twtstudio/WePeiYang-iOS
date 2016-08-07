@@ -29,7 +29,7 @@ class MicroservicesTableViewController: UITableViewController {
     
     // iOS 8 FUCKING BUG
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(style: .Plain)
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.contentSizeInPopup = CGSizeMake(300, 400)
         self.landscapeContentSizeInPopup = CGSizeMake(400, 260)
     }

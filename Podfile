@@ -25,7 +25,6 @@ pod 'IDMPhotoBrowser'
 pod 'SlackTextViewController'
 pod 'STPopup'
 pod 'DateTools'
-pod 'SQLite.swift'
 
 target 'WePeiYang' do
 

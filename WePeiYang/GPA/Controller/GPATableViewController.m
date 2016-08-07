@@ -26,6 +26,8 @@
 #import "AFNetworking.h"
 #import "WePeiYang-Swift.h"
 
+#define BACKGROUND_BLUR_KEY @"backgroundBlurGPA"
+
 @interface GPATableViewController ()<UIScrollViewAccessibilityDelegate>
 
 @end
@@ -35,6 +37,7 @@
     NSMutableArray *chartDataArr;
     NSInteger currentTerm;
     GPAStat *stat;
+    NSMutableSet *oldClassNamesSet;
     
     BOOL graphIsTouched;
     NSInteger lastSelected;
@@ -70,6 +73,7 @@
     graphIsTouched = NO;
     lastSelected = 0;
     isRequestingData = NO;
+    oldClassNamesSet = [[NSMutableSet alloc] init];
     
     [headerView addSubview:({
         CGFloat biggerValue = (self.view.frame.size.height > self.view.frame.size.width) ? self.view.frame.size.height : self.view.frame.size.width;
@@ -87,10 +91,10 @@
     
     [self refresh];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"BindTju" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"BindTjuCancelled" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"Login" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"LoginCancelled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_BINDTJU_SUCCESSED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_BINDTJU_CANCELLED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_LOGIN_SUCCESSED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_LOGIN_CANCELLED" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -176,6 +180,11 @@
     [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
         dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
         stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
+        for (GPAData *tmpData in dataArr) {
+            for (GPAClassData *tmpClass in tmpData.data) {
+                [oldClassNamesSet addObject:tmpClass.name];
+            }
+        }
         [self.tableView reloadData];
         [self updateView];
     } failed:nil];
@@ -475,7 +484,7 @@
     cell.nameLabel.text = tmp.name;
     cell.creditLabel.text = tmp.credit;
     cell.scoreLabel.text = tmp.score;
-    cell.dotView.hidden = YES;
+    cell.dotView.hidden = ([oldClassNamesSet containsObject:tmp.name] || oldClassNamesSet.count == 0) ? YES : NO;
     return cell;
 }
 
