@@ -27,6 +27,8 @@ class Applicant: NSObject {
         print(self.personalStatus)
     }
     
+    
+    //TODO: 未完成
     func getStudentNumber() {
         
         let parameters = ["token": NSUserDefaults.standardUserDefaults().objectForKey("twtToken")!]
@@ -57,7 +59,7 @@ class Applicant: NSObject {
         
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
         
-        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: PartyAPI.personalStatusParams, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             
@@ -104,7 +106,7 @@ class Applicant: NSObject {
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: PartyAPI.scoreInfoParams, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             

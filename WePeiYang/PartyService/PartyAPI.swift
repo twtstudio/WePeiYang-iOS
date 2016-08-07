@@ -8,9 +8,12 @@
 
 struct PartyAPI {
     static let rootURL = "http://www.twt.edu.cn/party"
-    static let studentID = "3015218062"
     
-    //personalStatusParamsEasy = ["page": "api", "do": "personalstatus", "sno": studentID]
+    //Only for test
+    //static let studentID = "3015218062"
+    static let studentID = Applicant.sharedInstance.studentNumber!
+    
+
     //个人信息参数
     static let personalStatusParams = ["page": "api", "do": "personalstatus", "sno": studentID]
     
