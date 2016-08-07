@@ -135,6 +135,16 @@
     //// Date from
     NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
     //// Execute
+    //[_wkWebView.configuration.processPool];
+    NSSet *cookiesType = [NSSet setWithArray:@[WKWebsiteDataTypeCookies]];
+    [[WKWebsiteDataStore defaultDataStore] fetchDataRecordsOfTypes:cookiesType completionHandler:^(NSArray<WKWebsiteDataRecord *> * cookies) {
+        for (WKWebsiteDataRecord *cookie in cookies) {
+            NSLog(@"The cookie is: %@", cookie);
+        }
+    }];
+    
+    
+    
     [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
         NSLog(@"Cleared!");
     }];

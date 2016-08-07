@@ -73,7 +73,7 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        whereAmI.addTarget(self, action: Selector("whereAmI:"), forControlEvents: .TouchUpInside)
+        whereAmI.addTarget(self, action: #selector(BicycleServiceMapController.whereAmI(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(newMapView)
         newMapView.addSubview(whereAmI)
         

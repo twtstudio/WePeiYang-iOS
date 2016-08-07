@@ -23,7 +23,7 @@ class PartyServiceViewController: UIViewController {
         let button = UIButton(frame: CGRectMake(300, 300, 300, 300))
         button.setTitle("普通状态", forState:UIControlState.Normal)
         button.setTitleColor(UIColor.blackColor(),forState: .Normal)
-        button.addTarget(self, action:Selector("test"), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action:#selector(PartyServiceViewController.test), forControlEvents: .TouchUpInside)
         self.view.addSubview(button)
         
     }

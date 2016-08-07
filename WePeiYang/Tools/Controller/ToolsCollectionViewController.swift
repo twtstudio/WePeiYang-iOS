@@ -22,24 +22,24 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "实验室", image: UIImage(named: "msBtn")!),
         (title: "自行车", image: UIImage(named: "msBtn")!),
-        (title: "党建" , image: UIImage(named: "msBtn")!)
+        (title: "党建" , image: UIImage(named: "partyBtn")!)
     ]
     
     var microserviceController: STPopupController!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.alwaysBounceVertical = true
         self.jz_navigationBarBackgroundHidden = false
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
+
         // Register cell classes
         self.collectionView!.registerClass(ToolsCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+
         // Do any additional setup after loading the view.
     }
     
@@ -47,7 +47,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,24 +57,24 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         self.collectionView?.reloadData()
     }
-    
+
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+    }
+    */
+
     // MARK: - UICollectionViewDataSource
-    
+
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-    
+
+
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return toolsData.count
     }
@@ -82,7 +82,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(collectionView.bounds.width/3, 152)
     }
-    
+
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var nibCellLoaded = false
         if !nibCellLoaded {
@@ -95,7 +95,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         cell.titleLabel.text = toolsData[indexPath.row].title
         return cell
     }
-    
+
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -118,35 +118,35 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             return
         }
     }
-    
+
     /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return true
-     }
-     */
-    
+    // Uncomment this method to specify if the specified item should be highlighted during tracking
+    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    */
+
     /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return true
-     }
-     */
-    
+    // Uncomment this method to specify if the specified item should be selected
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    */
+
     /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-     
-     }
-     */
+    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+
+    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+        return false
+    }
+
+    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+    
+    }
+    */
     
     // MARK: - push tools
     
@@ -197,8 +197,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     
     func showMicroservicesController() {
         let msVC = MicroservicesTableViewController(style: .Plain)
-        //        msVC.hidesBottomBarWhenPushed = true
-        //        self.navigationController?.showViewController(msVC, sender: nil)
+//        msVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.showViewController(msVC, sender: nil)
         microserviceController = STPopupController(rootViewController: msVC)
         microserviceController.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
         microserviceController.backgroundView.addGestureRecognizer((UITapGestureRecognizer().bk_initWithHandler({ (recognizer, state, point) in
@@ -211,7 +211,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         microserviceController.containerView.layer.cornerRadius = 5.0
         microserviceController.presentInViewController(self)
     }
-    
+
     func showBicycleServiceController() {
         let bikeVC = BicycleServiceViewController()
         //隐藏tabbar

@@ -20,22 +20,35 @@
 		188842361846E6F4007B92CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188842341846E6F4007B92CB /* InfoPlist.strings */; };
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
-		4A4E464C8DB0A7472AFAC256 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDB6280259E22DE141F518E /* Pods.framework */; };
-		6825E5BC1D57825B00F25D59 /* BicycleServiceInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5AE1D57825B00F25D59 /* BicycleServiceInfoController.swift */; };
-		6825E5BD1D57825B00F25D59 /* BicycleServiceMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5AF1D57825B00F25D59 /* BicycleServiceMapController.swift */; };
-		6825E5BE1D57825B00F25D59 /* BicycleServiceNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5B01D57825B00F25D59 /* BicycleServiceNotificationController.swift */; };
-		6825E5BF1D57825B00F25D59 /* BicycleServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5B21D57825B00F25D59 /* BicycleServiceViewController.m */; };
-		6825E5C01D57825B00F25D59 /* BicycleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5B41D57825B00F25D59 /* BicycleUser.swift */; };
-		6825E5C11D57825B00F25D59 /* NotificationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5B51D57825B00F25D59 /* NotificationItem.swift */; };
-		6825E5C21D57825B00F25D59 /* BicycleServiceInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6825E5B71D57825B00F25D59 /* BicycleServiceInfoController.xib */; };
-		6825E5C31D57825B00F25D59 /* BicycleServiceNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5B81D57825B00F25D59 /* BicycleServiceNotificationCell.swift */; };
-		6825E5C41D57825B00F25D59 /* BicycleServiceNotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6825E5B91D57825B00F25D59 /* BicycleServiceNotificationController.xib */; };
-		6825E5C51D57825B00F25D59 /* ParkingSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5BA1D57825B00F25D59 /* ParkingSpots.swift */; };
-		6825E5C61D57825B00F25D59 /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5BB1D57825B00F25D59 /* SpotDetailsView.swift */; };
-		6825E5CB1D57826E00F25D59 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5C81D57826E00F25D59 /* Applicant.swift */; };
-		6825E5CC1D57826E00F25D59 /* PartyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5C91D57826E00F25D59 /* PartyAPI.swift */; };
-		6825E5CD1D57826E00F25D59 /* PartyServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6825E5CA1D57826E00F25D59 /* PartyServiceViewController.swift */; };
-		6876307F1D57560500ED4B3D /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 6876307E1D57560500ED4B3D /* twtSecretKeys.m */; };
+		B113C6E81D57A2500072726F /* BicycleServiceInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6DB1D57A2500072726F /* BicycleServiceInfoController.swift */; };
+		B113C6E91D57A2500072726F /* BicycleServiceMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6DC1D57A2500072726F /* BicycleServiceMapController.swift */; };
+		B113C6EA1D57A2500072726F /* BicycleServiceNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6DD1D57A2500072726F /* BicycleServiceNotificationController.swift */; };
+		B113C6EB1D57A2500072726F /* BicycleServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B113C6DF1D57A2500072726F /* BicycleServiceViewController.m */; };
+		B113C6EC1D57A2500072726F /* BicycleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6E11D57A2500072726F /* BicycleUser.swift */; };
+		B113C6ED1D57A2500072726F /* NotificationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6E21D57A2500072726F /* NotificationItem.swift */; };
+		B113C6EE1D57A2500072726F /* BicycleServiceInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B113C6E41D57A2500072726F /* BicycleServiceInfoController.xib */; };
+		B113C6EF1D57A2500072726F /* BicycleServiceNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6E51D57A2500072726F /* BicycleServiceNotificationCell.swift */; };
+		B113C6F01D57A2500072726F /* BicycleServiceNotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B113C6E61D57A2500072726F /* BicycleServiceNotificationController.xib */; };
+		B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6E71D57A2500072726F /* SpotDetailsView.swift */; };
+		B113C6F61D57A2660072726F /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F31D57A2660072726F /* Applicant.swift */; };
+		B113C6F71D57A2660072726F /* PartyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F41D57A2660072726F /* PartyAPI.swift */; };
+		B113C6F81D57A2660072726F /* PartyServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F51D57A2660072726F /* PartyServiceViewController.swift */; };
+		B113C6FA1D57A2F00072726F /* ParkingSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F91D57A2F00072726F /* ParkingSpots.swift */; };
+		B113C6FC1D57A3930072726F /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FB1D57A3930072726F /* Courses.swift */; };
+		B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F64F1D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		B1C4F6501D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F6511D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F6521D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F6531D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		B1C4F6541D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F6551D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		B1C4F6561D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F6591D543EB9000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F65B1D543EF1000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F65D1D548377000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F65F1D548E62000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		B1C4F6611D5584EB000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */; };
 		E90105541C3B994E002901AC /* GPATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90105381C3B994E002901AC /* GPATableViewController.m */; };
 		E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E901053C1C3B994E002901AC /* GPATableViewCell.m */; };
@@ -148,6 +161,7 @@
 		E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BC91A7CFCE2008B5214 /* bootstrap.css */; };
 		E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9AF6BCA1A7CFCE2008B5214 /* bootstrap.min.js */; };
 		E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */; };
+		E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */; };
 		E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B972C91C565290001E480E /* LoginViewController.swift */; };
 		E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B972CA1C565290001E480E /* LoginViewController.xib */; };
 		E9B972D01C565DFB001E480E /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B972CF1C565DFB001E480E /* AccountManager.m */; };
@@ -211,26 +225,25 @@
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.release.xcconfig"; sourceTree = "<group>"; };
-		5FDB6280259E22DE141F518E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6825E5AE1D57825B00F25D59 /* BicycleServiceInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceInfoController.swift; sourceTree = "<group>"; };
-		6825E5AF1D57825B00F25D59 /* BicycleServiceMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceMapController.swift; sourceTree = "<group>"; };
-		6825E5B01D57825B00F25D59 /* BicycleServiceNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceNotificationController.swift; sourceTree = "<group>"; };
-		6825E5B11D57825B00F25D59 /* BicycleServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycleServiceViewController.h; sourceTree = "<group>"; };
-		6825E5B21D57825B00F25D59 /* BicycleServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycleServiceViewController.m; sourceTree = "<group>"; };
-		6825E5B41D57825B00F25D59 /* BicycleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleUser.swift; sourceTree = "<group>"; };
-		6825E5B51D57825B00F25D59 /* NotificationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationItem.swift; sourceTree = "<group>"; };
-		6825E5B71D57825B00F25D59 /* BicycleServiceInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleServiceInfoController.xib; sourceTree = "<group>"; };
-		6825E5B81D57825B00F25D59 /* BicycleServiceNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceNotificationCell.swift; sourceTree = "<group>"; };
-		6825E5B91D57825B00F25D59 /* BicycleServiceNotificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleServiceNotificationController.xib; sourceTree = "<group>"; };
-		6825E5BA1D57825B00F25D59 /* ParkingSpots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpots.swift; sourceTree = "<group>"; };
-		6825E5BB1D57825B00F25D59 /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
-		6825E5C81D57826E00F25D59 /* Applicant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
-		6825E5C91D57826E00F25D59 /* PartyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyAPI.swift; sourceTree = "<group>"; };
-		6825E5CA1D57826E00F25D59 /* PartyServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyServiceViewController.swift; sourceTree = "<group>"; };
-		6876307E1D57560500ED4B3D /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D625594C2CB3A80AC2395D /* Pods-WePeiYang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.release.xcconfig"; sourceTree = "<group>"; };
+		B113C6DB1D57A2500072726F /* BicycleServiceInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceInfoController.swift; sourceTree = "<group>"; };
+		B113C6DC1D57A2500072726F /* BicycleServiceMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceMapController.swift; sourceTree = "<group>"; };
+		B113C6DD1D57A2500072726F /* BicycleServiceNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceNotificationController.swift; sourceTree = "<group>"; };
+		B113C6DE1D57A2500072726F /* BicycleServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BicycleServiceViewController.h; sourceTree = "<group>"; };
+		B113C6DF1D57A2500072726F /* BicycleServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BicycleServiceViewController.m; sourceTree = "<group>"; };
+		B113C6E11D57A2500072726F /* BicycleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleUser.swift; sourceTree = "<group>"; };
+		B113C6E21D57A2500072726F /* NotificationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationItem.swift; sourceTree = "<group>"; };
+		B113C6E41D57A2500072726F /* BicycleServiceInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleServiceInfoController.xib; sourceTree = "<group>"; };
+		B113C6E51D57A2500072726F /* BicycleServiceNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceNotificationCell.swift; sourceTree = "<group>"; };
+		B113C6E61D57A2500072726F /* BicycleServiceNotificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleServiceNotificationController.xib; sourceTree = "<group>"; };
+		B113C6E71D57A2500072726F /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
+		B113C6F31D57A2660072726F /* Applicant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
+		B113C6F41D57A2660072726F /* PartyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyAPI.swift; sourceTree = "<group>"; };
+		B113C6F51D57A2660072726F /* PartyServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyServiceViewController.swift; sourceTree = "<group>"; };
+		B113C6F91D57A2F00072726F /* ParkingSpots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpots.swift; sourceTree = "<group>"; };
+		B113C6FB1D57A3930072726F /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
@@ -246,7 +259,6 @@
 		E901054B1C3B994E002901AC /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
 		E901054C1C3B994E002901AC /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 		E90105601C3B99AB002901AC /* WePeiYang-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WePeiYang-Bridging-Header.h"; sourceTree = "<group>"; };
-		E90105681C3B9D89002901AC /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		E901056E1C3B9F4D002901AC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E90105721C3BA02E002901AC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		E90105741C3BA44F002901AC /* MK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MK.framework; path = "Pods/../build/Debug-iphoneos/MK.framework"; sourceTree = "<group>"; };
@@ -383,6 +395,7 @@
 		E9AF6BCB1A7CFCE2008B5214 /* FrontEndProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontEndProcessor.h; sourceTree = "<group>"; };
 		E9AF6BCC1A7CFCE2008B5214 /* FrontEndProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontEndProcessor.m; sourceTree = "<group>"; };
 		E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twtSecretKeys.h; sourceTree = "<group>"; };
+		E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		E9B972C91C565290001E480E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Account/LoginViewController.swift; sourceTree = "<group>"; };
 		E9B972CA1C565290001E480E /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Account/LoginViewController.xib; sourceTree = "<group>"; };
 		E9B972CE1C565DFB001E480E /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManager.h; path = Account/AccountManager.h; sourceTree = "<group>"; };
@@ -435,7 +448,6 @@
 				188842171846E6F4007B92CB /* UIKit.framework in Frameworks */,
 				188842131846E6F4007B92CB /* Foundation.framework in Frameworks */,
 				E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */,
-				4A4E464C8DB0A7472AFAC256 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +492,6 @@
 				E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */,
 				E90105741C3BA44F002901AC /* MK.framework */,
 				E90105721C3BA02E002901AC /* libc++.tbd */,
-				E90105681C3B9D89002901AC /* Pods.framework */,
 				E92298531AF0F797000CC8F7 /* libsqlite3.0.dylib */,
 				E92298511AF0F78E000CC8F7 /* libz.dylib */,
 				180F1CA9185D4DF500F76085 /* MessageUI.framework */,
@@ -503,7 +514,6 @@
 				188842161846E6F4007B92CB /* UIKit.framework */,
 				1888422B1846E6F4007B92CB /* XCTest.framework */,
 				E9F933B719FBA5B200E53E03 /* NotificationCenter.framework */,
-				5FDB6280259E22DE141F518E /* Pods.framework */,
 				48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */,
 				69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */,
 			);
@@ -526,8 +536,8 @@
 				E96D796C1C6F805F00550746 /* LostFound */,
 				E98DF6951C5D03B6003943A4 /* Microservices */,
 				E937017F1C5CA8A800C87E84 /* Library */,
-				6825E5AC1D57825B00F25D59 /* Bicycle */,
-				6825E5C71D57826E00F25D59 /* PartyService */,
+				B113C6D91D57A2500072726F /* Bicycle */,
+				B113C6F21D57A2660072726F /* PartyService */,
 				E98DF6CF1C5DF5BF003943A4 /* WebViewController */,
 				E901054D1C3B994E002901AC /* Setting */,
 			);
@@ -552,55 +562,56 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6825E5AC1D57825B00F25D59 /* Bicycle */ = {
+		B113C6D91D57A2500072726F /* Bicycle */ = {
 			isa = PBXGroup;
 			children = (
-				6825E5AD1D57825B00F25D59 /* Controller */,
-				6825E5B31D57825B00F25D59 /* Modal */,
-				6825E5B61D57825B00F25D59 /* View */,
+				B113C6DA1D57A2500072726F /* Controller */,
+				B113C6E01D57A2500072726F /* Model */,
+				B113C6E31D57A2500072726F /* View */,
 			);
 			path = Bicycle;
 			sourceTree = "<group>";
 		};
-		6825E5AD1D57825B00F25D59 /* Controller */ = {
+		B113C6DA1D57A2500072726F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6825E5AE1D57825B00F25D59 /* BicycleServiceInfoController.swift */,
-				6825E5AF1D57825B00F25D59 /* BicycleServiceMapController.swift */,
-				6825E5B01D57825B00F25D59 /* BicycleServiceNotificationController.swift */,
-				6825E5B11D57825B00F25D59 /* BicycleServiceViewController.h */,
-				6825E5B21D57825B00F25D59 /* BicycleServiceViewController.m */,
+				B113C6DB1D57A2500072726F /* BicycleServiceInfoController.swift */,
+				B113C6DC1D57A2500072726F /* BicycleServiceMapController.swift */,
+				B113C6DD1D57A2500072726F /* BicycleServiceNotificationController.swift */,
+				B113C6DE1D57A2500072726F /* BicycleServiceViewController.h */,
+				B113C6DF1D57A2500072726F /* BicycleServiceViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		6825E5B31D57825B00F25D59 /* Modal */ = {
+		B113C6E01D57A2500072726F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6825E5B41D57825B00F25D59 /* BicycleUser.swift */,
-				6825E5B51D57825B00F25D59 /* NotificationItem.swift */,
+				B113C6F91D57A2F00072726F /* ParkingSpots.swift */,
+				B113C6E11D57A2500072726F /* BicycleUser.swift */,
+				B113C6E21D57A2500072726F /* NotificationItem.swift */,
 			);
-			path = Modal;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		6825E5B61D57825B00F25D59 /* View */ = {
+		B113C6E31D57A2500072726F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6825E5B71D57825B00F25D59 /* BicycleServiceInfoController.xib */,
-				6825E5B81D57825B00F25D59 /* BicycleServiceNotificationCell.swift */,
-				6825E5B91D57825B00F25D59 /* BicycleServiceNotificationController.xib */,
-				6825E5BA1D57825B00F25D59 /* ParkingSpots.swift */,
-				6825E5BB1D57825B00F25D59 /* SpotDetailsView.swift */,
+				B113C6E41D57A2500072726F /* BicycleServiceInfoController.xib */,
+				B113C6E51D57A2500072726F /* BicycleServiceNotificationCell.swift */,
+				B113C6E61D57A2500072726F /* BicycleServiceNotificationController.xib */,
+				B113C6E71D57A2500072726F /* SpotDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		6825E5C71D57826E00F25D59 /* PartyService */ = {
+		B113C6F21D57A2660072726F /* PartyService */ = {
 			isa = PBXGroup;
 			children = (
-				6825E5C81D57826E00F25D59 /* Applicant.swift */,
-				6825E5C91D57826E00F25D59 /* PartyAPI.swift */,
-				6825E5CA1D57826E00F25D59 /* PartyServiceViewController.swift */,
+				B113C6F31D57A2660072726F /* Applicant.swift */,
+				B113C6FB1D57A3930072726F /* Courses.swift */,
+				B113C6F41D57A2660072726F /* PartyAPI.swift */,
+				B113C6F51D57A2660072726F /* PartyServiceViewController.swift */,
 			);
 			path = PartyService;
 			sourceTree = "<group>";
@@ -1121,8 +1132,8 @@
 		E9AF6BC41A7CFCE2008B5214 /* Security */ = {
 			isa = PBXGroup;
 			children = (
-				6876307E1D57560500ED4B3D /* twtSecretKeys.m */,
 				E9AF6BDB1A7CFD4D008B5214 /* twtSecretKeys.h */,
+				E9AF6BDC1A7CFD4D008B5214 /* twtSecretKeys.m */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -1322,15 +1333,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1888423B1846E6F4007B92CB /* Build configuration list for PBXNativeTarget "WePeiYang" */;
 			buildPhases = (
-				652F7CA24C1EB9E4A503BF0A /* Check Pods Manifest.lock */,
+				82614A5A6725933C2749E412 /* Check Pods Manifest.lock */,
 				D9C136042C7A8EC8D58BF857 /* 📦 Check Pods Manifest.lock */,
 				1888420B1846E6F4007B92CB /* Sources */,
 				1888420C1846E6F4007B92CB /* Frameworks */,
 				1888420D1846E6F4007B92CB /* Resources */,
 				C80D36F4608847CD14E098CA /* 📦 Embed Pods Frameworks */,
 				DF4672E71670B9F93A1FE678 /* 📦 Copy Pods Resources */,
-				66C790D1CD30BAE306F47DC3 /* Embed Pods Frameworks */,
-				88E64D3CBC2DD8A216D1C1B8 /* Copy Pods Resources */,
+				166CCDE56D74A1A190A2F21E /* Embed Pods Frameworks */,
+				DD70F2877DB5C4D8F3B0F43B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1413,7 +1424,7 @@
 			files = (
 				E92C7F431C6EF4590022857A /* NewsCommentTableViewCell.xib in Resources */,
 				E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */,
-				6825E5C21D57825B00F25D59 /* BicycleServiceInfoController.xib in Resources */,
+				B1C4F64F1D543DD0000CD0D8 /* (null) in Resources */,
 				E95459351CCF403D002B5297 /* LibraryTableViewCell.xib in Resources */,
 				E98DF6F61C5DF5BF003943A4 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				E98ACE1B1C4026780012C762 /* HomeNewsTableViewCell.xib in Resources */,
@@ -1428,13 +1439,14 @@
 				E98DF6F11C5DF5BF003943A4 /* SVWebViewController.bundle in Resources */,
 				E942BC7B1CACCCDE007A956C /* LostFoundTableViewCell.xib in Resources */,
 				E9D0522B1C66338900DFBDDA /* bridge.js in Resources */,
+				B113C6EE1D57A2500072726F /* BicycleServiceInfoController.xib in Resources */,
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
 				E98DF6FA1C5DF5BF003943A4 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
-				6825E5C41D57825B00F25D59 /* BicycleServiceNotificationController.xib in Resources */,
+				B1C4F6531D543DD0000CD0D8 /* (null) in Resources */,
 				E98DF6F31C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				E98DF6EF1C5DF5BF003943A4 /* SVWebViewController.strings in Resources */,
 				E91E51651D007F0300A5BED7 /* highlight.js in Resources */,
@@ -1446,8 +1458,10 @@
 				E90C139C1CAF74F700E1F353 /* HomeToolsCollectionViewCell.xib in Resources */,
 				E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */,
 				E93701861C5CA97800C87E84 /* LibraryViewController.xib in Resources */,
+				B113C6F01D57A2500072726F /* BicycleServiceNotificationController.xib in Resources */,
 				E9941B411C15E30800626A56 /* jquery.min.js in Resources */,
 				E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */,
+				B1C4F6551D543DD0000CD0D8 /* (null) in Resources */,
 				E98DF6F71C5DF5BF003943A4 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				E928084D1D14696F00E4380D /* StudySearchViewController.xib in Resources */,
 				E937018B1C5CCE6000C87E84 /* AboutViewController.xib in Resources */,
@@ -1466,6 +1480,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		166CCDE56D74A1A190A2F21E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1970DD043C460F1ED9C311F3 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1496,7 +1525,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		652F7CA24C1EB9E4A503BF0A /* Check Pods Manifest.lock */ = {
+		82614A5A6725933C2749E412 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1509,36 +1538,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		66C790D1CD30BAE306F47DC3 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88E64D3CBC2DD8A216D1C1B8 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C80D36F4608847CD14E098CA /* 📦 Embed Pods Frameworks */ = {
@@ -1569,6 +1568,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD70F2877DB5C4D8F3B0F43B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF4672E71670B9F93A1FE678 /* 📦 Copy Pods Resources */ = {
@@ -1610,9 +1624,8 @@
 			files = (
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
 				E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */,
-				6825E5C51D57825B00F25D59 /* ParkingSpots.swift in Sources */,
+				B113C6EF1D57A2500072726F /* BicycleServiceNotificationCell.swift in Sources */,
 				E97704D01CD0A4DD0017A1CB /* WebAppViewController.m in Sources */,
-				6825E5C31D57825B00F25D59 /* BicycleServiceNotificationCell.swift in Sources */,
 				E98DF6F91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m in Sources */,
 				E90C139B1CAF74F700E1F353 /* HomeToolsCollectionViewCell.swift in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
@@ -1621,79 +1634,92 @@
 				E99923AE1CC605E6008963C8 /* WeChatSessionActivity.m in Sources */,
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
 				E99923A01CC5FA65008963C8 /* SchemeManager.swift in Sources */,
+				B113C6FA1D57A2F00072726F /* ParkingSpots.swift in Sources */,
 				E91E51621D00529400A5BED7 /* DevSessionViewController.swift in Sources */,
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
-				6825E5BF1D57825B00F25D59 /* BicycleServiceViewController.m in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
-				6876307F1D57560500ED4B3D /* twtSecretKeys.m in Sources */,
+				B1C4F65D1D548377000CD0D8 /* (null) in Sources */,
+				B113C6F81D57A2660072726F /* PartyServiceViewController.swift in Sources */,
 				E98F868E1CCA1F9E00252DA8 /* LostFoundDetail.swift in Sources */,
 				E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */,
 				E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
+				B1C4F6511D543DD0000CD0D8 /* (null) in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
 				E9AF6BCD1A7CFCE2008B5214 /* wpyDeviceStatus.m in Sources */,
-				6825E5BE1D57825B00F25D59 /* BicycleServiceNotificationController.swift in Sources */,
 				E91E515F1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift in Sources */,
 				E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
-				6825E5BD1D57825B00F25D59 /* BicycleServiceMapController.swift in Sources */,
 				E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
 				E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */,
+				B113C6EC1D57A2500072726F /* BicycleUser.swift in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
+				B113C6EB1D57A2500072726F /* BicycleServiceViewController.m in Sources */,
 				E928084C1D14696F00E4380D /* StudySearchViewController.swift in Sources */,
-				6825E5CC1D57826E00F25D59 /* PartyAPI.swift in Sources */,
+				B1C4F6561D543DD0000CD0D8 /* (null) in Sources */,
 				E9480D601CC7E98700AA707A /* WebAppItem.swift in Sources */,
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
+				B1C4F6611D5584EB000CD0D8 /* (null) in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
+				B1C4F6501D543DD0000CD0D8 /* (null) in Sources */,
+				B113C6E81D57A2500072726F /* BicycleServiceInfoController.swift in Sources */,
 				E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */,
 				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
-				6825E5BC1D57825B00F25D59 /* BicycleServiceInfoController.swift in Sources */,
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
 				E98DF6F51C5DF5BF003943A4 /* SVWebViewControllerActivityChrome.m in Sources */,
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E98ACE1A1C4026780012C762 /* HomeNewsTableViewCell.swift in Sources */,
+				B113C6F71D57A2660072726F /* PartyAPI.swift in Sources */,
 				E91E515D1CFF498500A5BED7 /* DevSessionRecord.swift in Sources */,
 				E9B972D01C565DFB001E480E /* AccountManager.m in Sources */,
 				E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */,
 				E94AC15F1C737B6300C82C4E /* ClassCellView.swift in Sources */,
 				E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */,
+				B113C6ED1D57A2500072726F /* NotificationItem.swift in Sources */,
 				E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */,
 				E961E6181CDF5FE4003E574F /* ClassData.swift in Sources */,
-				6825E5CB1D57826E00F25D59 /* Applicant.swift in Sources */,
 				E99923AD1CC605E6008963C8 /* WeChatMomentsActivity.m in Sources */,
+				B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
-				6825E5C61D57825B00F25D59 /* SpotDetailsView.swift in Sources */,
 				E945C64F1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift in Sources */,
+				B1C4F6591D543EB9000CD0D8 /* (null) in Sources */,
+				B1C4F65F1D548E62000CD0D8 /* (null) in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
+				B113C6FC1D57A3930072726F /* Courses.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,
 				E976B3691CBF33A90008E268 /* LostFoundViewController.m in Sources */,
-				6825E5C01D57825B00F25D59 /* BicycleUser.swift in Sources */,
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,
 				E92808491D14633200E4380D /* StudySearchDataManager.swift in Sources */,
+				B1C4F6541D543DD0000CD0D8 /* (null) in Sources */,
+				B1C4F6521D543DD0000CD0D8 /* (null) in Sources */,
+				B113C6E91D57A2500072726F /* BicycleServiceMapController.swift in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
-				6825E5C11D57825B00F25D59 /* NotificationItem.swift in Sources */,
 				E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
 				E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */,
 				E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */,
+				B113C6F61D57A2660072726F /* Applicant.swift in Sources */,
+				B1C4F65B1D543EF1000CD0D8 /* (null) in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
+				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
 				E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
+				B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
@@ -1702,11 +1728,11 @@
 				E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */,
 				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
-				6825E5CD1D57826E00F25D59 /* PartyServiceViewController.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,
 				E98DF6941C5CEDFF003943A4 /* BindTjuForm.swift in Sources */,
 				E901055B1C3B994E002901AC /* NewsTableViewCell.m in Sources */,
+				B113C6EA1D57A2500072726F /* BicycleServiceNotificationController.swift in Sources */,
 				E90105581C3B994E002901AC /* NewsContentViewController.m in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,

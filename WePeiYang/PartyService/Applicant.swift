@@ -57,7 +57,7 @@ class Applicant: NSObject {
         
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
         
-        manager.GET(PartyAPI.rootURL(), parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             
@@ -81,7 +81,7 @@ class Applicant: NSObject {
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL(), parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             
@@ -104,7 +104,7 @@ class Applicant: NSObject {
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL(), parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             
@@ -126,7 +126,7 @@ class Applicant: NSObject {
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL(), parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             if dic?.objectForKey("status") as? NSNumber == 1 {
@@ -147,7 +147,7 @@ class Applicant: NSObject {
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL(), parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
             let dic = responseObject as? NSDictionary
             
