@@ -26,7 +26,7 @@ class PartyServiceViewController: UIViewController {
         button.addTarget(self, action:#selector(PartyServiceViewController.test), forControlEvents: .TouchUpInside)
         self.view.addSubview(button)
         
-        print("HI" + PartyAPI.studentID)
+        log.word(PartyAPI.studentID)/
         
     }
     

@@ -35,6 +35,7 @@
 		B113C6F81D57A2660072726F /* PartyServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F51D57A2660072726F /* PartyServiceViewController.swift */; };
 		B113C6FA1D57A2F00072726F /* ParkingSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F91D57A2F00072726F /* ParkingSpots.swift */; };
 		B113C6FC1D57A3930072726F /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FB1D57A3930072726F /* Courses.swift */; };
+		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
 		B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B1C4F64F1D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B1C4F6501D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -244,6 +245,7 @@
 		B113C6F51D57A2660072726F /* PartyServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyServiceViewController.swift; sourceTree = "<group>"; };
 		B113C6F91D57A2F00072726F /* ParkingSpots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpots.swift; sourceTree = "<group>"; };
 		B113C6FB1D57A3930072726F /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		B113C6FF1D57B5B80072726F /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
@@ -1291,6 +1293,7 @@
 				E9D743F81BF9AE38005F2EF9 /* WePeiYang-Prefix.pch */,
 				E90105601C3B99AB002901AC /* WePeiYang-Bridging-Header.h */,
 				E9D743F91BF9AE38005F2EF9 /* WePeiYang.entitlements */,
+				B113C6FF1D57B5B80072726F /* log.swift */,
 				E901053E1C3B994E002901AC /* Main.storyboard */,
 				E9D743FA1BF9AE38005F2EF9 /* zh-Hans.lproj */,
 			);
@@ -1669,6 +1672,7 @@
 				B1C4F6501D543DD0000CD0D8 /* (null) in Sources */,
 				B113C6E81D57A2500072726F /* BicycleServiceInfoController.swift in Sources */,
 				E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */,
+				B113C7001D57B5B80072726F /* log.swift in Sources */,
 				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
