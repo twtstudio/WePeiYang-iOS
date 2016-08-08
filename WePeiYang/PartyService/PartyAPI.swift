@@ -11,19 +11,26 @@ struct PartyAPI {
     
     //Only for test
     //static let studentID = "3015218062"
-    static let studentID = Applicant.sharedInstance.studentNumber!
+    
+    static var studentID: String? {
+        guard let foo = Applicant.sharedInstance.studentNumber else {
+            return nil
+        }
+        return foo
+    }
+
     
 
     //个人信息参数
-    static let personalStatusParams = ["page": "api", "do": "personalstatus", "sno": studentID]
+    static let personalStatusParams = ["page": "api", "do": "personalstatus", "sno": studentID!]
     
-    static let applicantEntryParams = ["page": "api", "do": "applicant_entry", "sno": studentID]
+    static let applicantEntryParams = ["page": "api", "do": "applicant_entry", "sno": studentID!]
     
     //20 课简要列表，不知道 sno 要不要传
-    static let courseStudyParams = ["page": "api", "do": "applicant_coursestudy", "sno": studentID]
+    static let courseStudyParams = ["page": "api", "do": "applicant_coursestudy", "sno": studentID!]
     
     static func courseStudyDetailParams (of courseID: String) -> [String: String] {
-        return ["page": "api", "do": "applicant_coursestudy_detail", "course_id": courseID, "sno": studentID]
+        return ["page": "api", "do": "applicant_coursestudy_detail", "course_id": courseID, "sno": studentID!]
     }
     
     //预备党员党校课程学习之理论经典
@@ -33,5 +40,5 @@ struct PartyAPI {
         return ["page": "api", "do": "study_textArticle", "file_type": textID]
     }
     
-    static let scoreInfoParams = ["page": "api", "do": "20score", "sno": studentID]
+    static let scoreInfoParams = ["page": "api", "do": "20score", "sno": studentID!]
 }
