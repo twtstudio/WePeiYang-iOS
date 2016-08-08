@@ -221,6 +221,9 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     
     func showPartyServiceController() {
         let partyVC = PartyServiceViewController()
-        self.navigationController?.showViewController(partyVC, sender: nil)
+        Applicant.sharedInstance.getStudentNumber({
+            self.navigationController?.showViewController(partyVC, sender: nil)
+        })
+        
     }
 }

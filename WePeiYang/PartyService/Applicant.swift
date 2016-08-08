@@ -29,10 +29,10 @@ class Applicant: NSObject {
     
     
     //TODO: 未完成
-    func getStudentNumber() {
+    func getStudentNumber(success: Void -> Void) {
         
         let parameters = ["token": NSUserDefaults.standardUserDefaults().objectForKey("twtToken")!]
-        
+        //let parameters = ["token": "aabbcc"]
         let manager = AFHTTPSessionManager()
         
         manager.GET("http://open.twtstudio.com/api/v2/auth/self", parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
@@ -41,6 +41,8 @@ class Applicant: NSObject {
             
             self.realName = dic?.objectForKey("realName") as? String
             self.studentNumber = dic?.objectForKey("studentid") as? String
+            
+            success()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
                 print("error: \(error)")
