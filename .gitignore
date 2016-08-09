@@ -2,4 +2,5 @@ Pods/
 Podfile.lock
 WePeiYang/Models/Security/twtSecretKeys.m
 WePeiYang/Models/Security/twtAPIs.m
+WePeiYang/PartyService/Model/PartyAPI.swift
 .idea/
