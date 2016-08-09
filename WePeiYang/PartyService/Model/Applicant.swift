@@ -31,7 +31,14 @@ class Applicant: NSObject {
     //TODO: 未完成
     func getStudentNumber(success: Void -> Void) {
         
-        let parameters = ["token": NSUserDefaults.standardUserDefaults().objectForKey("twtToken")!]
+        //TODO:这样做还不够优雅，应该在登录完成之后自动重新加载
+        guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
+            MsgDisplay.showErrorMsg("你需要登录才能访问党建功能")
+            let loginVC = LoginViewController()
+            UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
+            return
+        }
+        let parameters = ["token": token]
         //let parameters = ["token": "aabbcc"]
         let manager = AFHTTPSessionManager()
         
@@ -39,7 +46,7 @@ class Applicant: NSObject {
             
             let dic = responseObject as? NSDictionary
             
-            self.realName = dic?.objectForKey("realName") as? String
+            self.realName = dic?.objectForKey("realname") as? String
             self.studentNumber = dic?.objectForKey("studentid") as? String
             
             success()

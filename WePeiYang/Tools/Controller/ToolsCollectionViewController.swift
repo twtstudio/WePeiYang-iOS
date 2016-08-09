@@ -215,12 +215,15 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     func showBicycleServiceController() {
         let bikeVC = BicycleServiceViewController()
         //隐藏tabbar
-        bikeVC.hidesBottomBarWhenPushed = true;
+        bikeVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(bikeVC, sender: nil)
     }
     
     func showPartyServiceController() {
-        let partyVC = PartyServiceViewController()
+        let partyVC = PartyMainViewController()
+        partyVC.hidesBottomBarWhenPushed = true
+        
+        //FIXME: This takes an awful lot of time and makes the main thread laggggggg
         Applicant.sharedInstance.getStudentNumber({
             self.navigationController?.showViewController(partyVC, sender: nil)
         })
