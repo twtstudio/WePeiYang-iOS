@@ -13,17 +13,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
-    let data = [
-        ["time":"13:00", "dist":0.5],
-        ["time":"14:00", "dist":7.6],
-        ["time":"15:00", "dist":2.8],
-        ["time":"16:00", "dist":2.1],
-        ["time":"17:00", "dist":5.0],
-        ["time":"18:00", "dist":6.2],
-        ["time":"19:00", "dist":7.4],
-        ["time":"20:00", "dist":2.6]
-    ]
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,6 +29,15 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         //设置delegate, dataSource
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        if BicycleUser.sharedInstance.status == 1 {
+            BicycleUser.sharedInstance.getUserInfo({
+                self.updateUI()
+            })
+        }
+    }
+    
+    func updateUI() {
         
         //UI
         //chartViewBackground
@@ -56,8 +55,12 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         self.view.addSubview(chartView)
         chartView.reloadData()
         
-        self.infoLabel.text = "\(data.last!["time"] as! String)  距离：\(data.last!["dist"] as! Double)m"
+        let lastHour = BicycleUser.sharedInstance.recent![BicycleUser.sharedInstance.recent!.count-1][0]
+        let lastDuration = BicycleUser.sharedInstance.recent![BicycleUser.sharedInstance.recent!.count-1][1]
+        self.infoLabel.text = "\(lastHour):00  骑行时间：\(lastDuration)s"
         
+        //tableView
+        tableView.reloadData()
     }
     
     func calculateChartViewFrame() -> CGRect {
@@ -79,12 +82,14 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     }
     
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        return UInt(data.count)
+        log.any(BicycleUser.sharedInstance.recent!.count)
+        return UInt(BicycleUser.sharedInstance.recent!.count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         
-        let res = data[Int(horizontalIndex)]["dist"] as! CGFloat
+        //let res = data[Int(horizontalIndex)]["dist"] as! CGFloat
+        let res = BicycleUser.sharedInstance.recent![Int(horizontalIndex)][1] as CGFloat
         return res
     }
     
@@ -114,7 +119,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //delegate of chartView
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt) {
-        self.infoLabel.text = "\(data[Int(horizontalIndex)]["time"] as! String)  骑行距离：\(data[Int(horizontalIndex)]["dist"] as! Double)m"
+        self.infoLabel.text = "\(BicycleUser.sharedInstance.recent![Int(horizontalIndex)][0]):00  骑行时间：\(BicycleUser.sharedInstance.recent![Int(horizontalIndex)][1])s"
     }
     
     //dataSource of tableView
@@ -135,10 +140,17 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         }
         
         if indexPath.section == 0 {
-            cell!.textLabel?.text = "卡号:123123123"
+            //未完成
+            cell!.textLabel?.text = "用户："
+            if let name = BicycleUser.sharedInstance.name {
+                cell!.textLabel?.text = "用户：\(name)"
+            }
             cell!.selectionStyle = .None
         } else if indexPath.section == 1 {
-            cell!.textLabel?.text = "余额:16.5"
+            cell!.textLabel?.text = "余额："
+            if let balance = BicycleUser.sharedInstance.balance {
+                cell!.textLabel?.text = "余额：\(balance)"
+            }
             cell!.selectionStyle = .None
         } else if indexPath.section == 2 {
             cell!.textLabel?.text = "查询记录"
