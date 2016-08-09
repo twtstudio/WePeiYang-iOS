@@ -214,9 +214,17 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
 
     func showBicycleServiceController() {
         let bikeVC = BicycleServiceViewController()
-        //隐藏tabbar
-        bikeVC.hidesBottomBarWhenPushed = true;
-        self.navigationController?.showViewController(bikeVC, sender: nil)
+        log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
+        
+        //坑：让后面能自动弹出要求绑定
+        BicycleUser.sharedInstance.bindCancel = false
+        
+        BicycleUser.sharedInstance.auth({
+            //隐藏tabbar
+            bikeVC.hidesBottomBarWhenPushed = true;
+            self.navigationController?.showViewController(bikeVC, sender: nil)
+        })
+        
     }
     
     func showPartyServiceController() {

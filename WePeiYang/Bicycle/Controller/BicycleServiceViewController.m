@@ -8,6 +8,7 @@
 
 #import "BicycleServiceViewController.h"
 #import "WePeiYang-Swift.h"
+#import "MsgDisplay.h"
 #define SMALL_ICON_WIDTH 30
 #define BIG_ICON_WIDTH 36
 @interface BicycleServiceViewController(){
@@ -19,6 +20,9 @@
 @property (strong, nonatomic) UIImageView *mapIconImageView;
 @property (strong, nonatomic) UIImageView *infoIconImageView;
 @property (strong, nonatomic) UIImageView *notificationIconImageView;
+//避免经常性的重复添加icon
+@property (nonatomic) BOOL didAddIcon;
+
 @end
 
 @implementation BicycleServiceViewController
@@ -46,6 +50,8 @@
         self.menuHeight = 44;
         self.menuViewBottomSpace = -(self.menuHeight + 64.0);
         
+        self.didAddIcon = NO;
+        
     }
     return self;
 }
@@ -67,7 +73,12 @@
     //改变 statusBar 颜色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [self addIcons];
+    //添加 icon
+    if (!self.didAddIcon){
+        [self addIcons];
+        self.didAddIcon = YES;
+    }
+    
     
 }
 
@@ -95,6 +106,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    BicycleUser.sharedInstance.bindCancel = NO;
     
 }
 
@@ -140,11 +152,19 @@
         [self changeIconImageView:self.mapIconImageView width:BIG_ICON_WIDTH];
         [self changeIconImageView:self.infoIconImageView width:SMALL_ICON_WIDTH];
         [self changeIconImageView:self.notificationIconImageView width:SMALL_ICON_WIDTH];
+        
     } else if ([[info objectForKey:@"index"] integerValue] == 1){
         self.titleLabel.text = @"信息";
         [self changeIconImageView:self.mapIconImageView width:SMALL_ICON_WIDTH];
         [self changeIconImageView:self.infoIconImageView width:BIG_ICON_WIDTH];
         [self changeIconImageView:self.notificationIconImageView width:SMALL_ICON_WIDTH];
+        
+        //用户绑定
+        if ([BicycleUser.sharedInstance.status isEqual:@0] && !BicycleUser.sharedInstance.bindCancel){
+            [MsgDisplay showErrorMsg:@"请先绑定您的自行车卡"];
+            BicycleUserBindViewController *bindVC = [[BicycleUserBindViewController alloc] initWithNibName:@"BicycleUserBindViewController" bundle:nil];
+            [self presentViewController:bindVC animated:YES completion:nil];
+        }
     } else {
         self.titleLabel.text = @"公告";
         [self changeIconImageView:self.mapIconImageView width:SMALL_ICON_WIDTH];
