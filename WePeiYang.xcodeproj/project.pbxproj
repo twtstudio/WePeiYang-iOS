@@ -30,12 +30,13 @@
 		B113C6EF1D57A2500072726F /* BicycleServiceNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6E51D57A2500072726F /* BicycleServiceNotificationCell.swift */; };
 		B113C6F01D57A2500072726F /* BicycleServiceNotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B113C6E61D57A2500072726F /* BicycleServiceNotificationController.xib */; };
 		B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6E71D57A2500072726F /* SpotDetailsView.swift */; };
-		B113C6F61D57A2660072726F /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F31D57A2660072726F /* Applicant.swift */; };
-		B113C6F71D57A2660072726F /* PartyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F41D57A2660072726F /* PartyAPI.swift */; };
-		B113C6F81D57A2660072726F /* PartyServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F51D57A2660072726F /* PartyServiceViewController.swift */; };
 		B113C6FA1D57A2F00072726F /* ParkingSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6F91D57A2F00072726F /* ParkingSpots.swift */; };
-		B113C6FC1D57A3930072726F /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FB1D57A3930072726F /* Courses.swift */; };
 		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
+		B13FE1501D59B96100B498B1 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE14D1D59B96100B498B1 /* Applicant.swift */; };
+		B13FE1511D59B96100B498B1 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE14E1D59B96100B498B1 /* Courses.swift */; };
+		B13FE1521D59B96100B498B1 /* PartyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE14F1D59B96100B498B1 /* PartyAPI.swift */; };
+		B13FE15C1D59B97700B498B1 /* PartyServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE15A1D59B97700B498B1 /* PartyServiceViewController.swift */; };
+		B13FE15E1D59B9FA00B498B1 /* PartyMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */; };
 		B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B1C4F64F1D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B1C4F6501D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -240,12 +241,13 @@
 		B113C6E51D57A2500072726F /* BicycleServiceNotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleServiceNotificationCell.swift; sourceTree = "<group>"; };
 		B113C6E61D57A2500072726F /* BicycleServiceNotificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleServiceNotificationController.xib; sourceTree = "<group>"; };
 		B113C6E71D57A2500072726F /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
-		B113C6F31D57A2660072726F /* Applicant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
-		B113C6F41D57A2660072726F /* PartyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyAPI.swift; sourceTree = "<group>"; };
-		B113C6F51D57A2660072726F /* PartyServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyServiceViewController.swift; sourceTree = "<group>"; };
 		B113C6F91D57A2F00072726F /* ParkingSpots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkingSpots.swift; sourceTree = "<group>"; };
-		B113C6FB1D57A3930072726F /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		B113C6FF1D57B5B80072726F /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
+		B13FE14D1D59B96100B498B1 /* Applicant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
+		B13FE14E1D59B96100B498B1 /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		B13FE14F1D59B96100B498B1 /* PartyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyAPI.swift; sourceTree = "<group>"; };
+		B13FE15A1D59B97700B498B1 /* PartyServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyServiceViewController.swift; sourceTree = "<group>"; };
+		B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyMainViewController.swift; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
@@ -610,12 +612,29 @@
 		B113C6F21D57A2660072726F /* PartyService */ = {
 			isa = PBXGroup;
 			children = (
-				B113C6F31D57A2660072726F /* Applicant.swift */,
-				B113C6FB1D57A3930072726F /* Courses.swift */,
-				B113C6F41D57A2660072726F /* PartyAPI.swift */,
-				B113C6F51D57A2660072726F /* PartyServiceViewController.swift */,
+				B13FE14C1D59B96100B498B1 /* Model */,
+				B13FE1581D59B97700B498B1 /* Controller */,
 			);
 			path = PartyService;
+			sourceTree = "<group>";
+		};
+		B13FE14C1D59B96100B498B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B13FE14D1D59B96100B498B1 /* Applicant.swift */,
+				B13FE14E1D59B96100B498B1 /* Courses.swift */,
+				B13FE14F1D59B96100B498B1 /* PartyAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B13FE1581D59B97700B498B1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B13FE15A1D59B97700B498B1 /* PartyServiceViewController.swift */,
+				B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		E90105331C3B994E002901AC /* GPA */ = {
@@ -1642,8 +1661,8 @@
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
+				B13FE15C1D59B97700B498B1 /* PartyServiceViewController.swift in Sources */,
 				B1C4F65D1D548377000CD0D8 /* (null) in Sources */,
-				B113C6F81D57A2660072726F /* PartyServiceViewController.swift in Sources */,
 				E98F868E1CCA1F9E00252DA8 /* LostFoundDetail.swift in Sources */,
 				E98DF6F21C5DF5BF003943A4 /* wpyWebViewController.m in Sources */,
 				E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */,
@@ -1669,6 +1688,8 @@
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
 				B1C4F6611D5584EB000CD0D8 /* (null) in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
+				B13FE15E1D59B9FA00B498B1 /* PartyMainViewController.swift in Sources */,
+				B13FE1521D59B96100B498B1 /* PartyAPI.swift in Sources */,
 				B1C4F6501D543DD0000CD0D8 /* (null) in Sources */,
 				B113C6E81D57A2500072726F /* BicycleServiceInfoController.swift in Sources */,
 				E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */,
@@ -1681,7 +1702,6 @@
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
 				E98ACE1A1C4026780012C762 /* HomeNewsTableViewCell.swift in Sources */,
-				B113C6F71D57A2660072726F /* PartyAPI.swift in Sources */,
 				E91E515D1CFF498500A5BED7 /* DevSessionRecord.swift in Sources */,
 				E9B972D01C565DFB001E480E /* AccountManager.m in Sources */,
 				E9BA7BB71C5A1AE1009A4E9A /* ClasstableDataManager.swift in Sources */,
@@ -1700,7 +1720,6 @@
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
-				B113C6FC1D57A3930072726F /* Courses.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,
@@ -1716,7 +1735,6 @@
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
 				E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */,
 				E95459341CCF403D002B5297 /* LibraryTableViewCell.swift in Sources */,
-				B113C6F61D57A2660072726F /* Applicant.swift in Sources */,
 				B1C4F65B1D543EF1000CD0D8 /* (null) in Sources */,
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				E9AF6BDD1A7CFD4D008B5214 /* twtSecretKeys.m in Sources */,
@@ -1726,11 +1744,13 @@
 				B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
+				B13FE1511D59B96100B498B1 /* Courses.swift in Sources */,
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */,
 				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
+				B13FE1501D59B96100B498B1 /* Applicant.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,
 				E9D744021BF9AE38005F2EF9 /* main.m in Sources */,

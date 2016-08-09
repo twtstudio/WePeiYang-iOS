@@ -57,30 +57,36 @@ class SpotDetailsView: UIView {
             self.clipsToBounds = true
             
             //set constraint
-            positionsAvailableLabel.snp_makeConstraints(closure: {(make) in
+            positionsAvailableLabel.snp_makeConstraints {
+                make in
                 make.top.equalTo(self).offset(20)
                 make.left.equalTo(self).offset(10)
                 
-            })
+            }
             
-            spotNameLabel.snp_makeConstraints(closure: {(make) in
+            
+            
+            spotNameLabel.snp_makeConstraints {
+                make in
                 make.top.equalTo(self).offset(20)
                 make.left.equalTo(positionsAvailableLabel.snp_right).offset(15)
                 
-            })
+            }
             
-            distanceFromUserLabel.snp_makeConstraints(closure: {(make) in
+            distanceFromUserLabel.snp_makeConstraints {
+                make in
                 make.top.equalTo(positionsAvailableLabel.snp_bottom).offset(10)
                 make.left.equalTo(self).offset(10)
                 
-            })
+            }
             
-            bgImgView.snp_makeConstraints(closure: {(make) in
+            bgImgView.snp_makeConstraints {
+                make in
                 make.top.equalTo(self)
                 make.left.equalTo(self)
                 make.right.equalTo(self)
                 make.bottom.equalTo(self)
-            })
+            }
         } else {
             super.init(frame:CGRect(x: 10 , y: deviceHeight - 73, width: deviceWidth - 20, height: 88))
             self.layer.cornerRadius = 8
@@ -113,30 +119,34 @@ class SpotDetailsView: UIView {
             distanceFromUserLabel.font = distanceFromUserLabel.font.fontWithSize(16)
             
             //set constraint
-            positionsAvailableLabel.snp_makeConstraints(closure: {(make) in
+            positionsAvailableLabel.snp_makeConstraints {
+                make in
                 make.top.equalTo(self).offset(28)
                 make.left.equalTo(self).offset(10)
                 
-            })
+            }
             
-            spotNameLabel.snp_makeConstraints(closure: {(make) in
+            spotNameLabel.snp_makeConstraints {
+                make in
                 make.top.equalTo(self).offset(28)
                 make.left.equalTo(positionsAvailableLabel.snp_right).offset(10)
                 
-            })
+            }
             
-            distanceFromUserLabel.snp_makeConstraints(closure: {(make) in
+            distanceFromUserLabel.snp_makeConstraints {
+                make in
                 make.top.equalTo(self).offset(28)
                 make.right.equalTo(self).offset(-10)
                 
-            })
+            }
             
-            bgImgView.snp_makeConstraints(closure: {(make) in
+            bgImgView.snp_makeConstraints {
+                make in
                 make.top.equalTo(self)
                 make.left.equalTo(self)
                 make.right.equalTo(self)
                 make.bottom.equalTo(self)
-            })
+            }
         }
         
     }
