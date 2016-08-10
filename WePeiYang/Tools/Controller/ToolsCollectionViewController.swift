@@ -228,7 +228,10 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func showPartyServiceController() {
-        let partyVC = PartyServiceViewController()
+        let partyVC = PartyMainViewController()
+        partyVC.hidesBottomBarWhenPushed = true
+        
+        //FIXME: This takes an awful lot of time and makes the main thread laggggggg
         Applicant.sharedInstance.getStudentNumber({
             self.navigationController?.showViewController(partyVC, sender: nil)
         })

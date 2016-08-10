@@ -15,7 +15,7 @@ class PartyServiceViewController: UIViewController {
         
         //Applicant.sharedInstance.getStudentNumber();
         
-        Applicant.sharedInstance.studentNumber = "3015218062"
+        //Applicant.sharedInstance.studentNumber = "3015218062"
         //Applicant.sharedInstance.getPersonalStatus()
         
         Applicant.sharedInstance.getAcademyGrade()
@@ -26,7 +26,7 @@ class PartyServiceViewController: UIViewController {
         button.addTarget(self, action:#selector(PartyServiceViewController.test), forControlEvents: .TouchUpInside)
         self.view.addSubview(button)
         
-        log.word(PartyAPI.studentID)/
+        log.word(PartyAPI.studentID!)/
         
     }
     
