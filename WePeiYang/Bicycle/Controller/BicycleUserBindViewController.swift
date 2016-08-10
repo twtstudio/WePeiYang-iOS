@@ -12,9 +12,16 @@ class BicycleUserBindViewController: UIViewController {
     
     @IBOutlet var IDTextField: UITextField!
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.tintColor = nil
         super.viewDidLoad()
+        
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+        BicycleUser.sharedInstance.bindCancel = true
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -30,11 +37,5 @@ class BicycleUserBindViewController: UIViewController {
             let cardListVC = BicycleCardListViewController(style: .Grouped)
             self.navigationController?.pushViewController(cardListVC, animated: true)
         })
-    }
-    
-    @IBAction func cancelButton(sender: UIButton) {
-        log.word("cancel")/
-        BicycleUser.sharedInstance.bindCancel = true
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

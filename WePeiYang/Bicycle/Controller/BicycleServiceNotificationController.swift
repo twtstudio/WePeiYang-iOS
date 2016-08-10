@@ -13,8 +13,6 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
     
     @IBOutlet var tableView: UITableView!
     
-    var notificationList = [NotificationItem]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -33,18 +31,13 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
     }
     
     func refreshData() {
-        
-        self.getData()
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
-        self.tableView.mj_header.endRefreshing()
+        NotificationList.sharedInstance.list.removeAll()
+        NotificationList.sharedInstance.getList({
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+            self.tableView.mj_header.endRefreshing()
+        })
     }
     
-    
-    func getData(){
-        
-        self.notificationList = []
-        self.notificationList.append(NotificationItem(dict: ["title": "诚园8斋自行车桩停用", "content": "我们也没有办法"]))
-    }
     
     //UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -52,7 +45,7 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.notificationList.count
+        return NotificationList.sharedInstance.list.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -63,11 +56,29 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "identifier")
         }
         
-        cell?.textLabel?.text = self.notificationList[indexPath.row].title!
-        cell?.detailTextLabel?.text = self.notificationList[indexPath.row].content!
+        cell?.textLabel?.text = NotificationList.sharedInstance.list[indexPath.row].title
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        cell?.detailTextLabel?.text = dateFormatter.stringFromDate(NotificationList.sharedInstance.list[indexPath.row].timeStamp)
+        cell?.detailTextLabel?.textColor = UIColor.lightGrayColor()
         
         return cell!
     }
     
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detailVC = BicycleNotificationDetailViewController(nibName: "BicycleNotificationDetailViewController", bundle: nil)
+        detailVC.notificationTitle = NotificationList.sharedInstance.list[indexPath.row].title
+        detailVC.notificationContent = NotificationList.sharedInstance.list[indexPath.row].content
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        detailVC.time = dateFormatter.stringFromDate(NotificationList.sharedInstance.list[indexPath.row].timeStamp)
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
 }

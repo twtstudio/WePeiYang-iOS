@@ -34,6 +34,8 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             BicycleUser.sharedInstance.getUserInfo({
                 self.updateUI()
             })
+        } else {
+            infoLabel.text = "未绑定自行车卡信息"
         }
     }
     
@@ -124,7 +126,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //dataSource of tableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,6 +156,21 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             cell!.selectionStyle = .None
         } else if indexPath.section == 2 {
             cell!.textLabel?.text = "查询记录"
+        } else if indexPath.section == 3 {
+            cell?.textLabel?.text = "最近记录："
+            if let foo = BicycleUser.sharedInstance.record {
+                var timeStampString = foo.objectForKey("arr_time") as! String
+                print(timeStampString)
+                //借了车，没还车
+                if Int(timeStampString) == 0 {
+                    cell?.textLabel?.text = "最近记录：借车"
+                    timeStampString = foo.objectForKey("dev_time") as! String
+                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                } else {
+                    cell?.textLabel?.text = "最近记录：还车"
+                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                }
+            }
         }
         
         return cell!
@@ -165,6 +182,8 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == 2 {
             MsgDisplay.showErrorMsg("暂时没有这个功能哦")
         }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     

@@ -22,6 +22,7 @@ class BicycleUser: NSObject {
     var balance: String?
     var duration: NSNumber?
     var recent: Array<Array<NSNumber>>?
+    var record: NSDictionary?
     
     //取消绑定时不重复要求绑定
     var bindCancel: Bool = false
@@ -39,14 +40,14 @@ class BicycleUser: NSObject {
             MsgDisplay.showLoading()
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
-                MsgDisplay.dismiss()
                 let dic = responseObject as? NSDictionary
                 log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return
                 }
-            
+                
+                MsgDisplay.dismiss()
                 let dict = dic?.objectForKey("data") as? NSDictionary
                 self.status = dict?.objectForKey("status") as? NSNumber
                 self.version = dict?.objectForKey("version") as? NSNumber
@@ -70,8 +71,7 @@ class BicycleUser: NSObject {
             MsgDisplay.showLoading()
             
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-                
-                MsgDisplay.dismiss()
+            
                 let dic = responseObject as? NSDictionary
                 log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
@@ -79,6 +79,7 @@ class BicycleUser: NSObject {
                     return
                 }
             
+                MsgDisplay.dismiss()
                 let list = dic?.objectForKey("data") as? NSArray
                 
                 for dict in list! {
@@ -105,7 +106,6 @@ class BicycleUser: NSObject {
             
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
-                MsgDisplay.dismiss()
                 let dic = responseObject as? NSDictionary
                 log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
@@ -134,7 +134,6 @@ class BicycleUser: NSObject {
             
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
-                MsgDisplay.dismiss()
                 let dic = responseObject as? NSDictionary
                 log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
@@ -142,12 +141,13 @@ class BicycleUser: NSObject {
                     return
                 }
                 
-                
+                MsgDisplay.dismiss()
                 let dict = dic?.objectForKey("data") as? NSDictionary
                 self.name = dict?.objectForKey("name") as? String
                 self.balance = dict?.objectForKey("balance") as? String
                 self.duration = dict?.objectForKey("duration") as? NSNumber
                 self.recent = dict?.objectForKey("recent") as? Array<Array<NSNumber>>
+                self.record = dict?.objectForKey("record") as? NSDictionary
                 
                 doSomething()
                 
