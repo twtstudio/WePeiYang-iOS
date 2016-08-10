@@ -99,14 +99,15 @@
     self.titleLabel.text = @"地图";
     [self.titleLabel sizeToFit];
     
-    
+    //特地的防灾后面
     [super viewDidLoad];
+    
     
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    BicycleUser.sharedInstance.bindCancel = NO;
+    //BicycleUser.sharedInstance.bindCancel = NO;
     
 }
 
@@ -163,7 +164,8 @@
         if ([BicycleUser.sharedInstance.status isEqual:@0] && !BicycleUser.sharedInstance.bindCancel){
             [MsgDisplay showErrorMsg:@"请先绑定您的自行车卡"];
             BicycleUserBindViewController *bindVC = [[BicycleUserBindViewController alloc] initWithNibName:@"BicycleUserBindViewController" bundle:nil];
-            [self presentViewController:bindVC animated:YES completion:nil];
+            //bindVC.jz_wantsNavigationBarVisible = NO;
+            [self.navigationController pushViewController:bindVC animated:YES];
         }
     } else {
         self.titleLabel.text = @"公告";

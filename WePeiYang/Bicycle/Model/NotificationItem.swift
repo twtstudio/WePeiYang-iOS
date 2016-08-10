@@ -10,18 +10,21 @@ import Foundation
 
 class NotificationItem: NSObject {
     
-    var id: String?
-    var title: String?
-    var content: String?
-    var timeStamp: NSDate?
+    var id: String = "" //坑：类型
+    var title: String = ""
+    var content: String = ""
+    var timeStamp: NSDate = NSDate()
+    var second: Int = 0
     
     init(dict: NSDictionary) {
-        id = String(dict["id"])
-        title = String(dict["title"])
-        content = String(dict["content"])
-        timeStamp = NSDate(string: String(dict["timeStamp"]), formatString: "yyyy-MM-dd")
+        
+        id = dict.objectForKey("id") as! String
+        title = dict.objectForKey("title") as! String
+        content = dict.objectForKey("content") as! String
+        
+        let timeStampString = dict.objectForKey("timestamp") as? String
+        second = Int(timeStampString!)!
+        timeStamp = NSDate(timeIntervalSince1970: Double(second))
     }
-    
-    
     
 }

@@ -56,15 +56,6 @@
                         </mask>
                     </variation>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSv-mh-zcR">
-                    <rect key="frame" x="390" y="252" width="30" height="30"/>
-                    <state key="normal" title="取消">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="cancelButton:" destination="-1" eventType="touchUpInside" id="wGh-4N-2vZ"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -83,8 +74,6 @@
                 <constraint firstItem="8c1-r3-ZKI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wap-5k-ZoV"/>
                 <constraint firstItem="j0Z-dz-cYv" firstAttribute="top" secondItem="8c1-r3-ZKI" secondAttribute="bottom" constant="16" id="d40-Fv-U6h"/>
                 <constraint firstItem="8c1-r3-ZKI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="pzm-QI-wff"/>
-                <constraint firstItem="mSv-mh-zcR" firstAttribute="top" secondItem="VSb-Df-Nfi" secondAttribute="bottom" constant="8" id="sIC-cg-vsH"/>
-                <constraint firstItem="mSv-mh-zcR" firstAttribute="trailing" secondItem="VSb-Df-Nfi" secondAttribute="trailing" id="sbi-dc-2YF"/>
                 <constraint firstItem="dwn-RY-C9h" firstAttribute="top" secondItem="VSb-Df-Nfi" secondAttribute="bottom" constant="8" id="tUC-a4-BiP"/>
                 <constraint firstItem="j0Z-dz-cYv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uAa-JW-UMt"/>
                 <constraint firstItem="j0Z-dz-cYv" firstAttribute="top" secondItem="8c1-r3-ZKI" secondAttribute="bottom" constant="32" id="y2B-cy-WsE"/>
