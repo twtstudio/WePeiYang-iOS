@@ -14,6 +14,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
+    var user = timeStampTransfer()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,6 +77,17 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func refreshInfo() {
+        if BicycleUser.sharedInstance.status == 1 {
+            BicycleUser.sharedInstance.getUserInfo({
+                self.updateUI()
+            })
+        } else {
+            MsgDisplay.showErrorMsg("未绑定自行车卡信息")
+            infoLabel.text = "未绑定自行车卡信息"
+        }
     }
     
     //dataScoure of chartView

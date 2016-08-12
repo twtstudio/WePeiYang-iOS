@@ -10,6 +10,8 @@ import Foundation
 
 class timeStampTransfer: NSObject {
     
+    var foo: String?
+    
     static func stringFromTimeStampWithFormat(format: String, timeStampString: String) -> String {
         
         let second = Int(timeStampString)

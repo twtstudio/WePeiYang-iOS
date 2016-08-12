@@ -11,7 +11,8 @@ import Foundation
 class NotificationList: NSObject {
     
     var list: Array<NotificationItem> = []
-    var newestTimeStamp: NSNumber = 0
+    var newestTimeStamp: Int = 0
+    var didGetNewNotification: Bool = true
     
     static let sharedInstance = NotificationList()
     private override init() {}
@@ -33,6 +34,14 @@ class NotificationList: NSObject {
             guard let foo = dic?.objectForKey("data") as? NSArray else {
                 MsgDisplay.showErrorMsg("获取信息失败")
                 return
+            }
+            
+            if foo.count > 0 {
+                let fooTimeStamp = Int(foo[0].objectForKey("timestamp") as! String)!
+                if fooTimeStamp > self.newestTimeStamp {
+                    self.didGetNewNotification = true
+                    self.newestTimeStamp = fooTimeStamp
+                }
             }
             
             for dict in foo {

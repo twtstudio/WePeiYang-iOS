@@ -22,7 +22,7 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
             self.refreshData()
         })
         
-        self.tableView.mj_header.beginRefreshing()
+        //self.tableView.mj_header.beginRefreshing()
         
     }
     
@@ -34,6 +34,7 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
         NotificationList.sharedInstance.list.removeAll()
         NotificationList.sharedInstance.getList({
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
+            NotificationList.sharedInstance.didGetNewNotification = false;
             self.tableView.mj_header.endRefreshing()
         })
     }
