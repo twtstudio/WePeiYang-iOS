@@ -12,8 +12,12 @@ import SnapKit
 let partyRed = UIColor(colorLiteralRed: 240.0/255.0, green: 22.0/255.0, blue: 22.0/255.0, alpha: 1.0)
 
 
-class PartyMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PartyMainViewController: UIViewController {
 
+    let personalStatusButton = UIButton()
+    
+    let functionList = ["考试报名", "课程列表", "成绩查询"]
+    
     let titleLabel = UILabel(text: "党建生活", color: .whiteColor())
     let aTable = UITableView()
     //let headerView = UIView()
@@ -32,6 +36,11 @@ class PartyMainViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        personalStatusButton.addTarget(self, action: #selector(PartyMainViewController.personalStatusButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        
+        functionTableView.delegate = self
+        functionTableView.dataSource = self
         
         //TEST: API test
         var course = Courses.Study20.Study20Course(courseID: "42", courseName: "FUCK", courseDetails: [nil], courseScore: nil)
@@ -108,20 +117,6 @@ class PartyMainViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    //TODO: functionTableView delegate methods
-    //TODO: all sorts of functions: SignUp | CourseList | ScoreInfoList | NotificationList
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -135,11 +130,45 @@ class PartyMainViewController: UIViewController, UITableViewDataSource, UITableV
 
 }
 
+
+//MARK: TableView Delegate Methods
+extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //TODO: functionTableView delegate methods
+    //TODO: all sorts of functions: SignUp | CourseList | ScoreInfoList | NotificationList
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return functionList.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return FunctionListTableViewCell(iconName: "partyBtn", desc: functionList[indexPath.row])
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+}
+
+//MARK: Button tapped functions
+extension PartyMainViewController {
+    func personalStatusButtonTapped(sender: UIButton!) {
+        
+        //uncomment this after you create the PersonalStatusViewController
+        /*
+        let personalStatusVC = PersonalStatusViewController()
+        navigationController?.showViewController(personalStatusVC, sender: nil)
+        */
+    }
+}
+
+// This class uses gloabl extensions below.
+/*
 extension UILabel {
     convenience init(text: String, color: UIColor) {
         self.init()
         self.text = text
         textColor = color
+        self.sizeToFit()
     }
 }
 
@@ -149,3 +178,4 @@ extension UIView {
         backgroundColor = color
     }
 }
+*/

@@ -28,3 +28,7 @@ class ParkingSpots: NSObject, MKAnnotation {
      }*/
     
 }
+
+extension ParkingSpots {
+    
+}
