@@ -197,7 +197,7 @@
         
         self.navigationItem.rightBarButtonItem = nil;
         
-        //处理 icon
+        //处理 icon, 默认没有新消息
         NotificationList.sharedInstance.didGetNewNotification = NO;
         [self.notificationIconImageView setImage:[UIImage imageNamed:@"公告"]];
     }

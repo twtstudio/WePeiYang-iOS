@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BicycleServiceInfoController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
-                <outlet property="infoLabel" destination="cwo-K9-Qg2" id="eNd-CA-lDJ"/>
                 <outlet property="tableView" destination="axd-r8-Icr" id="2oV-XN-Xkn"/>
                 <outlet property="view" destination="iN0-l3-epB" id="bZR-Wr-V4p"/>
             </connections>
@@ -18,25 +17,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="axd-r8-Icr">
-                    <rect key="frame" x="0.0" y="376" width="600" height="224"/>
+                    <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="骑行时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwo-K9-Qg2">
-                    <rect key="frame" x="260" y="344" width="80" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="axd-r8-Icr" secondAttribute="bottom" id="69e-Mo-nCB"/>
                 <constraint firstItem="axd-r8-Icr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9EO-6t-2nX"/>
                 <constraint firstItem="axd-r8-Icr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="344" id="9cD-uh-VF9"/>
-                <constraint firstItem="cwo-K9-Qg2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="344" id="JSJ-hH-P5S"/>
+                <constraint firstItem="axd-r8-Icr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="108" id="Q9q-jN-2qi"/>
                 <constraint firstAttribute="trailing" secondItem="axd-r8-Icr" secondAttribute="trailing" id="UxM-5i-Jeg"/>
-                <constraint firstItem="axd-r8-Icr" firstAttribute="top" secondItem="cwo-K9-Qg2" secondAttribute="bottom" constant="8" id="XbO-CM-jo3"/>
-                <constraint firstItem="cwo-K9-Qg2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aGI-Tq-6Op"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

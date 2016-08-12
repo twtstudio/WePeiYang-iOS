@@ -8,10 +8,12 @@
 
 import Foundation
 import JBChartView
+import SnapKit
 
 class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITableViewDataSource, JBLineChartViewDelegate, JBLineChartViewDataSource {
     
-    @IBOutlet weak var infoLabel: UILabel!
+    var chartView: JBChartView!
+    var infoLabel = UILabel()
     @IBOutlet weak var tableView: UITableView!
 
     var user = timeStampTransfer()
@@ -35,13 +37,11 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             BicycleUser.sharedInstance.getUserInfo({
                 self.updateUI()
             })
-        } else {
-            infoLabel.text = "未绑定自行车卡信息"
         }
     }
     
     func updateUI() {
-        
+        /*
         //UI
         //chartViewBackground
         let background = UIImage(named: "BicyleChartBackgroundImage")
@@ -57,18 +57,23 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         chartView.backgroundColor = UIColor.clearColor()
         self.view.addSubview(chartView)
         chartView.reloadData()
-        
+
+         
         let lastHour = BicycleUser.sharedInstance.recent![BicycleUser.sharedInstance.recent!.count-1][0]
         let lastDuration = BicycleUser.sharedInstance.recent![BicycleUser.sharedInstance.recent!.count-1][1]
-        self.infoLabel.text = "\(lastHour):00  骑行时间：\(lastDuration)s"
+        self.infoLabel!.text = "\(lastHour):00  骑行时间：\(lastDuration)s"
+ */
         
         //tableView
         tableView.reloadData()
+        
+        //chatrView
+        chartView.reloadData()
     }
     
     func calculateChartViewFrame() -> CGRect {
         let x = CGFloat(24)
-        let y = CGFloat(132)
+        let y = CGFloat(24)
         let width = CGFloat((UIApplication.sharedApplication().keyWindow?.frame.size.width)!-48)
         let height = CGFloat(188)
         
@@ -96,14 +101,14 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     }
     
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        log.any(BicycleUser.sharedInstance.recent!.count)
-        return UInt(BicycleUser.sharedInstance.recent!.count)
+
+        return UInt(BicycleUser.sharedInstance.recent.count)
     }
     
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         
         //let res = data[Int(horizontalIndex)]["dist"] as! CGFloat
-        let res = BicycleUser.sharedInstance.recent![Int(horizontalIndex)][1] as CGFloat
+        let res = BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1] as CGFloat
         return res
     }
     
@@ -133,7 +138,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //delegate of chartView
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt) {
-        self.infoLabel.text = "\(BicycleUser.sharedInstance.recent![Int(horizontalIndex)][0]):00  骑行时间：\(BicycleUser.sharedInstance.recent![Int(horizontalIndex)][1])s"
+        self.infoLabel.text = "\(BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]):00  骑行时间：\(BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1])s"
     }
     
     //dataSource of tableView
@@ -163,16 +168,14 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         } else if indexPath.section == 1 {
             cell!.textLabel?.text = "余额："
             if let balance = BicycleUser.sharedInstance.balance {
-                cell!.textLabel?.text = "余额：\(balance)"
+                cell!.textLabel?.text = "余额：¥\(balance)"
             }
             cell!.selectionStyle = .None
         } else if indexPath.section == 2 {
-            cell!.textLabel?.text = "查询记录"
-        } else if indexPath.section == 3 {
-            cell?.textLabel?.text = "最近记录："
+            cell!.textLabel?.text = "最近记录："
             if let foo = BicycleUser.sharedInstance.record {
                 var timeStampString = foo.objectForKey("arr_time") as! String
-                print(timeStampString)
+                
                 //借了车，没还车
                 if Int(timeStampString) == 0 {
                     cell?.textLabel?.text = "最近记录：借车"
@@ -183,15 +186,61 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
                     cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
                 }
             }
+            cell!.selectionStyle = .None
+        } else if indexPath.section == 3 {
+            cell!.textLabel?.text = "查询记录"
         }
         
         return cell!
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 260
+        }
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section != 0 {
+            return nil
+        }
+        
+        log.word("drawing header view")
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 250))
+        
+        //chartViewBackground
+        let background = UIImage(named: "BicyleChartBackgroundImage")
+        let backgroundView = UIView(frame: CGRect(x: 8, y: 8, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!-16, height: 220))
+        backgroundView.layer.cornerRadius = 8.0
+        backgroundView.backgroundColor = UIColor(patternImage: background!)
+        view.addSubview(backgroundView)
+        
+        //chartView
+        chartView = JBLineChartView(frame: self.calculateChartViewFrame())
+        chartView.delegate = self
+        chartView.dataSource = self
+        chartView.backgroundColor = UIColor.clearColor()
+        view.addSubview(chartView)
+        chartView.reloadData()
+        
+        infoLabel = UILabel()
+        view.addSubview(infoLabel)
+        infoLabel.text = "骑行时间：s"
+        infoLabel.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(backgroundView.snp_bottom).offset(8)
+        }
+        
+        return view
+    }
+    
     
     //delegate of tableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             MsgDisplay.showErrorMsg("暂时没有这个功能哦")
         }
         

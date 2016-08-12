@@ -31,7 +31,7 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
     }
     
     func refreshData() {
-        NotificationList.sharedInstance.list.removeAll()
+        
         NotificationList.sharedInstance.getList({
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Bottom)
             NotificationList.sharedInstance.didGetNewNotification = false;

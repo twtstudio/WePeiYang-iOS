@@ -12,10 +12,6 @@ class Card: NSObject {
     var id: String?
     var sign: String?
     var record: NSDictionary?
-    var action: NSNumber?
-    var station: NSNumber?
-    var dev: NSNumber?
-    var time: NSNumber?
     
     init(dict: NSDictionary) {
         id = dict["id"] as? String

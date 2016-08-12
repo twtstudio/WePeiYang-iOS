@@ -15,11 +15,18 @@ class BicycleUserBindViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = nil
         super.viewDidLoad()
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController!.jz_navigationBarBackgroundAlpha = 0
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         BicycleUser.sharedInstance.bindCancel = true
+        
     }
 
     override func didReceiveMemoryWarning() {

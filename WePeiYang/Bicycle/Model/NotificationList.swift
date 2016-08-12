@@ -12,15 +12,16 @@ class NotificationList: NSObject {
     
     var list: Array<NotificationItem> = []
     var newestTimeStamp: Int = 0
-    var didGetNewNotification: Bool = true
+    var didGetNewNotification: Bool = false
     
     static let sharedInstance = NotificationList()
     private override init() {}
     
     func getList(doSomething: () -> ()) {
         
-        let manager = AFHTTPSessionManager()
+        list.removeAll()
         
+        let manager = AFHTTPSessionManager()
         manager.GET(BicycleAPIs.notificationURL(), parameters: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
             let dic = responseObject as? NSDictionary

@@ -20,6 +20,8 @@
 		188842361846E6F4007B92CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188842341846E6F4007B92CB /* InfoPlist.strings */; };
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
+		680C98281D5DCD4C0062F2C8 /* BicycleRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */; };
+		680C982C1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */; };
 		689702831D59A4A700C3BC96 /* BicycleAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702821D59A4A700C3BC96 /* BicycleAPIs.swift */; };
 		689702851D59B38500C3BC96 /* BicycleUserBindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */; };
 		689702871D59B4B800C3BC96 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702861D59B4B800C3BC96 /* Card.swift */; };
@@ -236,6 +238,8 @@
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.release.xcconfig"; sourceTree = "<group>"; };
+		680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleRecordViewController.swift; sourceTree = "<group>"; };
+		680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleRecordViewController.xib; sourceTree = "<group>"; };
 		689702821D59A4A700C3BC96 /* BicycleAPIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleAPIs.swift; sourceTree = "<group>"; };
 		689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleUserBindViewController.swift; sourceTree = "<group>"; };
 		689702861D59B4B800C3BC96 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -603,6 +607,7 @@
 				68A78FE51D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift */,
 				689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */,
 				6897028A1D59CA7B00C3BC96 /* BicycleCardListViewController.swift */,
+				680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */,
 				B113C6DE1D57A2500072726F /* BicycleServiceViewController.h */,
 				B113C6DF1D57A2500072726F /* BicycleServiceViewController.m */,
 			);
@@ -632,6 +637,7 @@
 				B113C6E61D57A2500072726F /* BicycleServiceNotificationController.xib */,
 				689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */,
 				68A78FE71D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib */,
+				680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1493,6 +1499,7 @@
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */,
+				680C982C1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
 				E98DF6FA1C5DF5BF003943A4 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				E9AF6BD11A7CFCE2008B5214 /* bootstrap.css in Resources */,
@@ -1720,6 +1727,7 @@
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
 				B1C4F6611D5584EB000CD0D8 /* (null) in Sources */,
 				E937018A1C5CCE6000C87E84 /* AboutViewController.swift in Sources */,
+				680C98281D5DCD4C0062F2C8 /* BicycleRecordViewController.swift in Sources */,
 				B13FE15E1D59B9FA00B498B1 /* PartyMainViewController.swift in Sources */,
 				B13FE1521D59B96100B498B1 /* PartyAPI.swift in Sources */,
 				B1C4F6501D543DD0000CD0D8 /* (null) in Sources */,

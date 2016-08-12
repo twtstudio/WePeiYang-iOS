@@ -21,7 +21,7 @@ class BicycleUser: NSObject {
     var name: String?
     var balance: String?
     var duration: NSNumber?
-    var recent: Array<Array<NSNumber>>?
+    var recent: Array<Array<NSNumber>> = []
     var record: NSDictionary?
     
     //取消绑定时不重复要求绑定
@@ -31,7 +31,7 @@ class BicycleUser: NSObject {
     private override init() {}
     
     func auth(presentViewController: () -> ()) {
-        let parameters = ["wpy_tk": "Bearer {\(NSUserDefaults.standardUserDefaults().objectForKey("twtToken")!)}"]
+        let parameters = ["wpy_tk": "\(NSUserDefaults.standardUserDefaults().objectForKey("twtToken")!)}"]
         
         let manager = AFHTTPSessionManager()
         
@@ -146,7 +146,7 @@ class BicycleUser: NSObject {
                 self.name = dict?.objectForKey("name") as? String
                 self.balance = dict?.objectForKey("balance") as? String
                 self.duration = dict?.objectForKey("duration") as? NSNumber
-                self.recent = dict?.objectForKey("recent") as? Array<Array<NSNumber>>
+                self.recent = dict?.objectForKey("recent") as! Array<Array<NSNumber>>
                 self.record = dict?.objectForKey("record") as? NSDictionary
                 
                 doSomething()

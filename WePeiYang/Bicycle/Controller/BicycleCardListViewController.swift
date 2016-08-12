@@ -17,6 +17,8 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = nil
         self.navigationItem.title = "选择绑定的卡片"
+        
+        self.navigationController!.jz_navigationBarBackgroundAlpha = 1
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,13 +37,30 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
         
         var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "identifier")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "identifier")
         }
         
         cell?.contentView.frame.size.height = 64
-        cell?.textLabel?.text = "卡号：\(BicycleUser.sharedInstance.cradList[indexPath.row].id!)"
+        cell!.textLabel?.text = "最近记录："
+        if let foo = BicycleUser.sharedInstance.cradList[indexPath.row].record {
+            var timeStampString = foo.objectForKey("arr_time") as! String
+            
+            //借了车，没还车
+            if Int(timeStampString) == 0 {
+                cell?.textLabel?.text = "卡号：\(BicycleUser.sharedInstance.cradList[indexPath.row].id!)"
+                timeStampString = foo.objectForKey("dev_time") as! String
+                cell?.detailTextLabel?.text = "最近记录：借车        时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+            } else {
+                cell?.textLabel?.text = "卡号：\(BicycleUser.sharedInstance.cradList[indexPath.row].id!)"
+                cell?.detailTextLabel?.text = "最近记录：还车        时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+            }
+        }
         
         return cell!
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 72
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -50,6 +69,8 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
         let alert = UIAlertView(title: "提示", message: "确定绑定此卡？", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
         
         alert.show()
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
     
