@@ -22,6 +22,7 @@
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		680C98281D5DCD4C0062F2C8 /* BicycleRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */; };
 		680C982C1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */; };
+		686F71461D5F0916006565BB /* WMScrollView+gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F71451D5F0916006565BB /* WMScrollView+gesture.m */; };
 		689702851D59B38500C3BC96 /* BicycleUserBindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */; };
 		689702871D59B4B800C3BC96 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702861D59B4B800C3BC96 /* Card.swift */; };
 		689702891D59BCF600C3BC96 /* BicycleUserBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */; };
@@ -245,6 +246,8 @@
 		52AEA422A8EFB3C8A362BF43 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleRecordViewController.swift; sourceTree = "<group>"; };
 		680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleRecordViewController.xib; sourceTree = "<group>"; };
+		686F71441D5F0916006565BB /* WMScrollView+gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMScrollView+gesture.h"; sourceTree = "<group>"; };
+		686F71451D5F0916006565BB /* WMScrollView+gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WMScrollView+gesture.m"; sourceTree = "<group>"; };
 		689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleUserBindViewController.swift; sourceTree = "<group>"; };
 		689702861D59B4B800C3BC96 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleUserBindViewController.xib; sourceTree = "<group>"; };
@@ -620,6 +623,8 @@
 				680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */,
 				B113C6DE1D57A2500072726F /* BicycleServiceViewController.h */,
 				B113C6DF1D57A2500072726F /* BicycleServiceViewController.m */,
+				686F71441D5F0916006565BB /* WMScrollView+gesture.h */,
+				686F71451D5F0916006565BB /* WMScrollView+gesture.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1807,6 +1812,7 @@
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
 				E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
+				686F71461D5F0916006565BB /* WMScrollView+gesture.m in Sources */,
 				68AD41651D5E11F900695DF4 /* PartyAPI.swift in Sources */,
 				B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
