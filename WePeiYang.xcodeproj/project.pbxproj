@@ -23,6 +23,8 @@
 		680C98281D5DCD4C0062F2C8 /* BicycleRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680C98271D5DCD4C0062F2C8 /* BicycleRecordViewController.swift */; };
 		680C982C1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */; };
 		686F71461D5F0916006565BB /* WMScrollView+gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F71451D5F0916006565BB /* WMScrollView+gesture.m */; };
+		686F71481D5F0A29006565BB /* PartyPersonalStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */; };
+		686F714C1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686F714B1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib */; };
 		689702851D59B38500C3BC96 /* BicycleUserBindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */; };
 		689702871D59B4B800C3BC96 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702861D59B4B800C3BC96 /* Card.swift */; };
 		689702891D59BCF600C3BC96 /* BicycleUserBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */; };
@@ -248,6 +250,8 @@
 		680C982B1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleRecordViewController.xib; sourceTree = "<group>"; };
 		686F71441D5F0916006565BB /* WMScrollView+gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMScrollView+gesture.h"; sourceTree = "<group>"; };
 		686F71451D5F0916006565BB /* WMScrollView+gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WMScrollView+gesture.m"; sourceTree = "<group>"; };
+		686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPersonalStatusViewController.swift; sourceTree = "<group>"; };
+		686F714B1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyPersonalStatusViewController.xib; sourceTree = "<group>"; };
 		689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleUserBindViewController.swift; sourceTree = "<group>"; };
 		689702861D59B4B800C3BC96 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleUserBindViewController.xib; sourceTree = "<group>"; };
@@ -683,6 +687,7 @@
 			children = (
 				B13FE15A1D59B97700B498B1 /* PartyServiceViewController.swift */,
 				B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */,
+				686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 			isa = PBXGroup;
 			children = (
 				B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */,
+				686F714B1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1536,6 +1542,7 @@
 				E91E51651D007F0300A5BED7 /* highlight.js in Resources */,
 				E91E51631D00529400A5BED7 /* DevSessionViewController.xib in Resources */,
 				E98DF6F41C5DF5BF003943A4 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
+				686F714C1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib in Resources */,
 				E9BA7BB51C5A1550009A4E9A /* ClasstableViewController.xib in Resources */,
 				E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */,
 				E98ACE251C4039BC0012C762 /* HomeToolsCell.xib in Resources */,
@@ -1732,6 +1739,7 @@
 				E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
+				686F71481D5F0A29006565BB /* PartyPersonalStatusViewController.swift in Sources */,
 				B1C4F6511D543DD0000CD0D8 /* (null) in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
 				68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */,

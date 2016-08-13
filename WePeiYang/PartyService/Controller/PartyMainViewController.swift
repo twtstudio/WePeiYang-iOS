@@ -164,11 +164,10 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
 extension PartyMainViewController {
     func personalStatusButtonTapped(sender: UIButton!) {
         log.word("Button Pressed")/
-        //uncomment this after you create the PersonalStatusViewController
-        /*
-        let personalStatusVC = PersonalStatusViewController()
+
+        let personalStatusVC = PartyPersonalStatusViewController()
         navigationController?.showViewController(personalStatusVC, sender: nil)
-        */
+
     }
 }
 
