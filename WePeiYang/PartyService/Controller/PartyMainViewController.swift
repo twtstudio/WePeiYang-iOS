@@ -72,6 +72,17 @@ class PartyMainViewController: UIViewController {
             make.top.equalTo(anAvatar.snp_bottom).offset(12)
             make.centerX.equalTo(headerView.snp_centerX)
         }
+        
+        
+        personalStatusButton.setTitle("查看个人进度", forState: .Normal)
+        personalStatusButton.titleLabel?.sizeToFit()
+        
+        headerView.addSubview(personalStatusButton)
+        personalStatusButton.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(anAvatar)
+            make.left.equalTo(anAvatar.snp_right).offset(5)
+        }
  
         headerView.layer.shadowOffset = CGSizeMake(0, 4);
         headerView.layer.shadowRadius = 5;
@@ -152,7 +163,7 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: Button tapped functions
 extension PartyMainViewController {
     func personalStatusButtonTapped(sender: UIButton!) {
-        
+        log.word("Button Pressed")/
         //uncomment this after you create the PersonalStatusViewController
         /*
         let personalStatusVC = PersonalStatusViewController()
