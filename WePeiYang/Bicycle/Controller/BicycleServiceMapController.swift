@@ -58,13 +58,14 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
     }
     
     //img processing
+    /*
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.drawInRect(CGRect(x: 0.0, y: 0, width: newSize.width, height: newSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return newImage
-    }
+    }*/
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -90,8 +91,10 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
         })
         
         whereAmI.sizeThatFits(CGSize(width: 48.0, height: 48.0))
-        //let imgForWhereAmI = imageWithImage(#imageLiteral(resourceName: "回到定位"), scaledToSize: CGSize(width: 48.0, height: 48.0))
-        let imgForWhereAmI = imageWithImage(UIImage(named: "回到定位")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
+        
+        let imgForWhereAmI = UIImage.resizedImage(UIImage(named: "回到定位")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
+        
+        
         print(imgForWhereAmI)
         whereAmI.setBackgroundImage(imgForWhereAmI, forState: .Normal)
         
@@ -145,17 +148,17 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
             
             if let fooUserLocation = mapView.userLocation.location {
                 if annotation.coordinate.latitude == fooUserLocation.coordinate.latitude && annotation.coordinate.longitude == fooUserLocation.coordinate.longitude {
-                    fooAnnotationView.image = imageWithImage(UIImage(named: "小箭头")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
+                    fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "小箭头")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
                     print("FUCKIT")
                 } else {
-                    fooAnnotationView.image = imageWithImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
+                    fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
                     print("FUCKITAGAIN")
                 }
             } else {
                 //警告用户无法定位
                 checkLocationAuthorizationStatus()
                 //仍然显示自行车点位
-                fooAnnotationView.image = imageWithImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
+                fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
                 print("ahoh")
             }
             
