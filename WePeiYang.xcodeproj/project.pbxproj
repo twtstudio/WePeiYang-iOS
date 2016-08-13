@@ -50,7 +50,7 @@
 		B13FE15E1D59B9FA00B498B1 /* PartyMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */; };
 		B194CBCD1D5E21C3009615D7 /* FunctionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */; };
 		B194CBCF1D5E234C009615D7 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */; };
-		B1A9B3A21D5E32180094E1CF /* ParkingSpotsLocs.json in Resources */ = {isa = PBXBuildFile; fileRef = B1A9B3A11D5E32180094E1CF /* ParkingSpotsLocs.json */; };
+		B1A9B3A41D5E3A9E0094E1CF /* ParkingSpotsLocs.json in Resources */ = {isa = PBXBuildFile; fileRef = B1A9B3A31D5E3A9E0094E1CF /* ParkingSpotsLocs.json */; };
 		B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B1C4F64F1D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		B1C4F6501D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -275,7 +275,7 @@
 		B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyMainViewController.swift; sourceTree = "<group>"; };
 		B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionListTableViewCell.swift; sourceTree = "<group>"; };
 		B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
-		B1A9B3A11D5E32180094E1CF /* ParkingSpotsLocs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ParkingSpotsLocs.json; path = ../../../../../Downloads/ParkingSpotsLocs.json; sourceTree = "<group>"; };
+		B1A9B3A31D5E3A9E0094E1CF /* ParkingSpotsLocs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ParkingSpotsLocs.json; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
@@ -627,7 +627,7 @@
 				689702821D59A4A700C3BC96 /* BicycleAPIs.swift */,
 				B113C6E11D57A2500072726F /* BicycleUser.swift */,
 				B113C6F91D57A2F00072726F /* ParkingSpots.swift */,
-				B1A9B3A11D5E32180094E1CF /* ParkingSpotsLocs.json */,
+				B1A9B3A31D5E3A9E0094E1CF /* ParkingSpotsLocs.json */,
 				B113C6E21D57A2500072726F /* NotificationItem.swift */,
 				68A78FE31D5AFD6D002BAFCF /* NotificationList.swift */,
 				68A78FE91D5B26DF002BAFCF /* timeStampTransfer.swift */,
@@ -1513,7 +1513,7 @@
 				E9D0522B1C66338900DFBDDA /* bridge.js in Resources */,
 				B113C6EE1D57A2500072726F /* BicycleServiceInfoController.xib in Resources */,
 				689702891D59BCF600C3BC96 /* BicycleUserBindViewController.xib in Resources */,
-				B1A9B3A21D5E32180094E1CF /* ParkingSpotsLocs.json in Resources */,
+				B1A9B3A41D5E3A9E0094E1CF /* ParkingSpotsLocs.json in Resources */,
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
 				E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */,
