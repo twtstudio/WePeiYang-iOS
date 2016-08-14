@@ -1,4 +1,5 @@
-[{"id":324,"name":"31楼北侧西","campus":2,"lat":0,"lng":0,"lat_c":38.999059,"lng_c":117.321688,"updated_at":0},
+{
+    "data": [{"id":324,"name":"31楼北侧西","campus":2,"lat":0,"lng":0,"lat_c":38.999059,"lng_c":117.321688,"updated_at":0},
 {"id":141,"name":"33楼西侧北1","campus":2,"lat":0,"lng":0,"lat_c":38.996937,"lng_c":117.320585,"updated_at":0},
 {"id":311,"name":"33楼西侧北2","campus":2,"lat":0,"lng":0,"lat_c":38.996646,"lng_c":117.320349,"updated_at":0},
 {"id":318,"name":"33楼西侧南1","campus":2,"lat":0,"lng":0,"lat_c":38.995478,"lng_c":117.319695,"updated_at":0},
@@ -103,4 +104,7 @@
 {"id":308,"name":"齐园南侧1","campus":2,"lat":0,"lng":0,"lat_c":38.994035,"lng_c":117.316087,"updated_at":0},
 {"id":309,"name":"齐园南侧2","campus":2,"lat":0,"lng":0,"lat_c":38.994035,"lng_c":117.316259,"updated_at":0},
 {"id":349,"name":"齐园西侧1","campus":2,"lat":0,"lng":0,"lat_c":38.994532,"lng_c":117.315342,"updated_at":0},
-{"id":166,"name":"齐园西侧2","campus":2,"lat":0,"lng":0,"lat_c":38.994422,"lng_c":117.315342,"updated_at":0}]
+{"id":166,"name":"齐园西侧2","campus":2,"lat":0,"lng":0,"lat_c":38.994422,"lng_c":117.315342,"updated_at":0}
+],
+"version": "1.0"
+}

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import SnapKit
 
-class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
+class BicycleServiceMapController: UIViewController {
     
     
     //@IBOutlet var whereAmI: UIButton!
@@ -23,7 +23,7 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
      checkLocationAuthorizationStatus()
      }
      }*/
-    var whereAmI: UIButton! = UIButton()
+    var whereAmI = UIButton(backgroundImageName: "回到定位", desiredSize: CGSize(width: 46.0, height: 46.0))!
     
     func whereAmI(sender: UIButton!) {
         if let userLoc:MKUserLocation? = newMapView.userLocation {
@@ -42,7 +42,8 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
     let regionRadius: CLLocationDistance = 1000
     let BeijingSpot = CLLocation(latitude: 39.903257, longitude: 116.301336)
     var locationManager = CLLocationManager()
-    let spot = ParkingSpots(title: "金家沟", coordinate: CLLocationCoordinate2D(latitude: 38.99677, longitude: 117.30438), numberOfBikes: 32)
+
+    let spots = ParkingSpot.parkingSpots!
     
     func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
@@ -57,16 +58,6 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
         newMapView.setRegion(coordinateRegion, animated: true)
     }
     
-    //img processing
-    /*
-    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.drawInRect(CGRect(x: 0.0, y: 0, width: newSize.width, height: newSize.height))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }*/
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorizationStatus()
@@ -74,32 +65,11 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         whereAmI.addTarget(self, action: #selector(BicycleServiceMapController.whereAmI(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(newMapView)
-        newMapView.addSubview(whereAmI)
-        
-        whereAmI.snp_makeConstraints(closure: {(make) in
-            make.left.equalTo(self.view).offset(20)
-            make.bottom.equalTo(self.view).offset(-46)
-        })
-        
-        newMapView.snp_makeConstraints(closure: {(make) in
-            make.left.equalTo(self.view)
-            make.top.equalTo(self.view)
-            make.right.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-        })
-        
-        whereAmI.sizeThatFits(CGSize(width: 48.0, height: 48.0))
-        
-        let imgForWhereAmI = UIImage.resizedImage(UIImage(named: "回到定位")!, scaledToSize: CGSize(width: 48.0, height: 48.0))
-        
-        
-        print(imgForWhereAmI)
-        whereAmI.setBackgroundImage(imgForWhereAmI, forState: .Normal)
-        
-        
-        
+
+        computeLayout()
+
         centerMapOnLocation(BeijingSpot)
         newMapView.delegate = self
         if #available(iOS 9.0, *) {
@@ -108,9 +78,9 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
             // Fallback on earlier versions
         }
         
-        newMapView.addAnnotation(spot)
-        
-        
+        newMapView.addAnnotations(spots)
+        //newMapView.addAnnotation(spot)
+
         // Do any additional setup after loading the view, typically from a nib.'\
         
     }
@@ -119,17 +89,44 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+}
+
+//MARK: Constraint Layout using Snapkit
+extension BicycleServiceMapController {
+    func computeLayout() {
+        
+        view.addSubview(newMapView)
+        newMapView.snp_makeConstraints {
+            make in
+            make.left.equalTo(view)
+            make.top.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(view)
+        }
+        
+        
+        newMapView.addSubview(whereAmI)
+        whereAmI.snp_makeConstraints {
+            make in
+            make.left.equalTo(view).offset(20)
+            make.bottom.equalTo(view).offset(-46)
+            make.width.height.equalTo(46.0)
+        }
+    }
+}
+
+//MARK: MapView Delegate
+extension BicycleServiceMapController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        let view = SpotDetailsView(positionsAvailable: "123/153", spotName: "诚园宿舍停车位群", distanceFromUser: 314)
+        let detailView = SpotDetailsView(positionsAvailable: "123/153", spotName: "诚园宿舍停车位群", distanceFromUser: 314)
+        
         //let view = SpotDetailsView(positionsAvailable: "\(view.annotation!.currentNumberOfBikes)/\(view.annotation!.numberOfBikes)", spotName: view.annotation!.title, distanceFromUser: "Hello")
         
-        self.view.addSubview(view)
+        mapView.addSubview(detailView)
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        for view in self.view.subviews {
+        for view in mapView.subviews {
             if view.isKindOfClass(SpotDetailsView) {
                 view.removeFromSuperview()
             }
@@ -165,6 +162,4 @@ class BicycleServiceMapController: UIViewController, MKMapViewDelegate {
             return fooAnnotationView
         }
     }
-    
 }
-

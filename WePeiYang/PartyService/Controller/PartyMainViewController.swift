@@ -14,10 +14,14 @@ let partyRed = UIColor(colorLiteralRed: 240.0/255.0, green: 22.0/255.0, blue: 22
 
 class PartyMainViewController: UIViewController {
 
-    let personalStatusButton = UIButton()
+    let personalStatusButton = UIButton(title: "查看个人进度")
     
     let functionList = ["考试报名", "课程列表", "成绩查询"]
-    
+    /*
+    let functionList = [["icon": "考试报名", "desc": "考试报名"],
+                        ["icon": "课程列表", "desc": "课程列表"],
+                        ["icon": "成绩查询", "desc": "成绩查询"]]
+    */
     let titleLabel = UILabel(text: "党建生活", color: .whiteColor())
     let aTable = UITableView()
     //let headerView = UIView()
@@ -27,12 +31,15 @@ class PartyMainViewController: UIViewController {
     let functionTableView = UITableView()
     
     //FIXME: 如果直接使用 Applicant.sharedInstance.realName! 会直接 found nil
-    var aName: String {
+    /*var aNameLabel: UILabel = {
         guard let foo = Applicant.sharedInstance.realName else {
-            return "获取姓名失败"
+            return UILabel(text: "获取姓名失败", color: .whiteColor())
         }
-        return foo
-    }
+        return UILabel(text: foo, color: .whiteColor())
+    }()*/
+    
+    var aNameLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,62 +57,24 @@ class PartyMainViewController: UIViewController {
         
         
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
-        titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
-        
-        let aNameLabel = UILabel(text: aName, color: .whiteColor())
-        aNameLabel.font = UIFont.boldSystemFontOfSize(18)
         
         anAvatar.layer.cornerRadius = 44
         anAvatar.backgroundColor = UIColor.yellowColor()
         
-        headerView.addSubview(anAvatar)
-        headerView.addSubview(aNameLabel)
-        anAvatar.snp_makeConstraints {
-            make in
-            make.centerX.equalTo(headerView)
-            make.centerY.equalTo(headerView.snp_centerY).offset(20)
-            make.width.height.equalTo(88)
+        if let foo = Applicant.sharedInstance.realName {
+            aNameLabel = UILabel(text: foo, color: .whiteColor())
+        } else {
+            aNameLabel = UILabel(text: "获取姓名失败", color: .whiteColor())
         }
-        aNameLabel.snp_makeConstraints {
-            make in
-            make.top.equalTo(anAvatar.snp_bottom).offset(12)
-            make.centerX.equalTo(headerView.snp_centerX)
-        }
-        
-        
-        personalStatusButton.setTitle("查看个人进度", forState: .Normal)
-        personalStatusButton.titleLabel?.sizeToFit()
-        
-        headerView.addSubview(personalStatusButton)
-        personalStatusButton.snp_makeConstraints {
-            make in
-            make.centerY.equalTo(anAvatar)
-            make.left.equalTo(anAvatar.snp_right).offset(5)
-        }
- 
+        aNameLabel.font = UIFont.boldSystemFontOfSize(18)
+
         headerView.layer.shadowOffset = CGSizeMake(0, 4);
         headerView.layer.shadowRadius = 5;
         headerView.layer.shadowOpacity = 0.5;
+
         
-        view.addSubview(headerView)
-        view.addSubview(functionTableView)
-        
-        headerView.snp_makeConstraints {
-            make in
-            make.top.equalTo(view)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-            make.bottom.equalTo(aNameLabel.snp_bottom).offset(20)
-        }
-        functionTableView.snp_makeConstraints{
-            make in
-            make.top.equalTo(headerView.snp_bottom).offset(10)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-            make.bottom.equalTo(view)
-            
-        }
+        computeLayout()
         
         // Do any additional setup after loading the view.
     }
@@ -125,12 +94,16 @@ class PartyMainViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        guard let foo = Applicant.sharedInstance.realName else {
+            log.word("not found")/
+            return
+        }
+        log.word(foo)/
     }
     
     
 
     /*
-    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -153,10 +126,62 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return FunctionListTableViewCell(iconName: "partyBtn", desc: functionList[indexPath.row])
+        //return FunctionListTableViewCell(iconName: functionList[indexPath.row]["icon"], desc: functionList[indexPath.row]["desc"])
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+    }
+}
+
+//MARK: Snapkit Layout
+extension PartyMainViewController {
+    
+    func computeLayout() {
+        
+        headerView.addSubview(anAvatar)
+        anAvatar.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(headerView)
+            make.centerY.equalTo(headerView.snp_centerY).offset(20)
+            make.width.height.equalTo(88)
+        }
+        
+        
+        headerView.addSubview(aNameLabel)
+        aNameLabel.snp_makeConstraints {
+            make in
+            make.top.equalTo(anAvatar.snp_bottom).offset(12)
+            make.centerX.equalTo(headerView.snp_centerX)
+        }
+        
+        
+        headerView.addSubview(personalStatusButton)
+        personalStatusButton.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(anAvatar)
+            make.left.equalTo(anAvatar.snp_right).offset(5)
+        }
+        
+        
+        view.addSubview(headerView)
+        headerView.snp_makeConstraints {
+            make in
+            make.top.equalTo(view)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(aNameLabel.snp_bottom).offset(20)
+        }
+        
+        
+        view.addSubview(functionTableView)
+        functionTableView.snp_makeConstraints{
+            make in
+            make.top.equalTo(headerView.snp_bottom).offset(10)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(view)
+        }
     }
 }
 
@@ -172,7 +197,8 @@ extension PartyMainViewController {
     }
 }
 
-// This class uses gloabl extensions below.
+
+// This class uses gloabl extensions  below.
 /*
 extension UILabel {
     convenience init(text: String, color: UIColor) {
@@ -187,6 +213,14 @@ extension UIView {
     convenience init(color: UIColor) {
         self.init()
         backgroundColor = color
+    }
+}
+
+extension UIButton {
+    convenience init(title: String) {
+        self.init()
+        setTitle(title, forState: .Normal)
+        titleLabel?.sizeToFit()
     }
 }
 */
