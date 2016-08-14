@@ -157,6 +157,11 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //成绩查询
+        if indexPath.row == 2 {
+            let personalStatusVC = PartyScoreViewController()
+            navigationController?.showViewController(personalStatusVC, sender: nil)
+        }
     }
 }
 
