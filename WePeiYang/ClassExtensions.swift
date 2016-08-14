@@ -52,3 +52,20 @@ extension UIImageView {
         image = foo
     }
 }
+
+extension UIButton {
+    convenience init(title: String) {
+        self.init()
+        setTitle(title, forState: .Normal)
+        titleLabel?.sizeToFit()
+    }
+    
+    convenience init?(backgroundImageName: String, desiredSize: CGSize) {
+        guard var foo = UIImage(named: backgroundImageName) else {
+            return nil
+        }
+        foo = UIImage.resizedImage(foo, scaledToSize: desiredSize)
+        self.init()
+        setBackgroundImage(foo, forState: .Normal)
+    }
+}
