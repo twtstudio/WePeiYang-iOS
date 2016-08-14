@@ -155,7 +155,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         
         var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: "identifier")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "identifier")
         }
         
         if indexPath.section == 0 {
@@ -164,12 +164,15 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             if let name = BicycleUser.sharedInstance.name {
                 cell!.textLabel?.text = "用户：\(name)"
             }
+            
+            cell!.imageView?.image = UIImage(named: "ic_account_circle")
             cell!.selectionStyle = .None
         } else if indexPath.section == 1 {
             cell!.textLabel?.text = "余额："
             if let balance = BicycleUser.sharedInstance.balance {
                 cell!.textLabel?.text = "余额：¥\(balance)"
             }
+            cell!.imageView?.image = UIImage(named: "ic_account_balance_wallet")
             cell!.selectionStyle = .None
         } else if indexPath.section == 2 {
             cell!.textLabel?.text = "最近记录："
@@ -186,8 +189,10 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
                     cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
                 }
             }
+            cell!.imageView?.image = UIImage(named: "ic_schedule")
             cell!.selectionStyle = .None
         } else if indexPath.section == 3 {
+            cell!.imageView?.image = UIImage(named: "ic_history")
             cell!.textLabel?.text = "查询记录"
         }
         
@@ -196,7 +201,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 260
+            return 264
         }
         return 0
     }
@@ -232,6 +237,13 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             make in
             make.centerX.equalTo(view)
             make.top.equalTo(backgroundView.snp_bottom).offset(8)
+        }
+        
+        let bicycleIconView = UIImageView(imageName: "ic_motorcycle", desiredSize: CGSize(width: 30, height: 30))
+        view.addSubview(bicycleIconView!)
+        bicycleIconView?.snp_makeConstraints { make in
+            make.centerY.equalTo(infoLabel)
+            make.right.equalTo(infoLabel.snp_left).offset(-8)
         }
         
         return view

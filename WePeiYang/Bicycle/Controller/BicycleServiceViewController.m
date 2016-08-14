@@ -140,8 +140,6 @@
 
 - (void)changeNotificationIcon {
     
-    NSLog(@"2, %d", NotificationList.sharedInstance.didGetNewNotification);
-    
     if (NotificationList.sharedInstance.didGetNewNotification) {
         self.notificationIconImageView.image = [UIImage imageNamed:@"公告2"];
     } else {

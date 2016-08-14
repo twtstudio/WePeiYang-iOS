@@ -214,16 +214,23 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
 
     func showBicycleServiceController() {
         let bikeVC = BicycleServiceViewController()
-        log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
+        //log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
         
-        //坑：让后面能自动弹出要求绑定
-        BicycleUser.sharedInstance.bindCancel = false
+        if NSUserDefaults.standardUserDefaults().objectForKey("twtToken") == nil {
+            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            self.presentViewController(loginVC, animated: true, completion: nil)
+        } else {
         
-        BicycleUser.sharedInstance.auth({
-            //隐藏tabbar
-            bikeVC.hidesBottomBarWhenPushed = true;
-            self.navigationController?.showViewController(bikeVC, sender: nil)
-        })
+            //坑：让后面能自动弹出要求绑定
+            BicycleUser.sharedInstance.bindCancel = false
+        
+            BicycleUser.sharedInstance.auth({
+                //隐藏tabbar
+                bikeVC.hidesBottomBarWhenPushed = true;
+                self.navigationController?.showViewController(bikeVC, sender: nil)
+            })
+        }
+        
         
     }
     

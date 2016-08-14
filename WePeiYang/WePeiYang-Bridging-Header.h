@@ -19,6 +19,7 @@
 #import "WebAppViewController.h"
 #import "UIViewController+Utils.h"
 #import "BicycleServiceViewController.h"
+#import "PartyScoreViewController.h"
 
 #import "twtSDK.h"
 #import "twtSecretKeys.h"

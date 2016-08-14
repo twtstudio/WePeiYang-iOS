@@ -131,6 +131,11 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //成绩查询
+        if indexPath.row == 2 {
+            let personalStatusVC = PartyScoreViewController()
+            navigationController?.showViewController(personalStatusVC, sender: nil)
+        }
     }
 }
 
@@ -189,11 +194,10 @@ extension PartyMainViewController {
 extension PartyMainViewController {
     func personalStatusButtonTapped(sender: UIButton!) {
         log.word("Button Pressed")/
-        //uncomment this after you create the PersonalStatusViewController
-        /*
-        let personalStatusVC = PersonalStatusViewController()
+
+        let personalStatusVC = PartyPersonalStatusViewController()
         navigationController?.showViewController(personalStatusVC, sender: nil)
-        */
+
     }
 }
 
