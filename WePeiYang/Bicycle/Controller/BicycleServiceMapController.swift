@@ -38,8 +38,9 @@ class BicycleServiceMapController: UIViewController {
     
     //@IBOutlet var newMapView: MKMapView!
     
-    let regionRadius: CLLocationDistance = 1000
-    let BeijingSpot = CLLocation(latitude: 39.903257, longitude: 116.301336)
+    let regionRadius: CLLocationDistance = 100
+    //let BeijingSpot = CLLocation(latitude: 39.903257, longitude: 116.301336)
+    let defaultCenterSpot = CLLocation(latitude: 38.994857, longitude: 117.314955)
     var locationManager = CLLocationManager()
 
     let spots = ParkingSpot.parkingSpots!
@@ -70,7 +71,7 @@ class BicycleServiceMapController: UIViewController {
 
         computeLayout()
 
-        centerMapOnLocation(BeijingSpot)
+        centerMapOnLocation(defaultCenterSpot)
         newMapView.delegate = self
         if #available(iOS 9.0, *) {
             newMapView.showsCompass = true
@@ -93,6 +94,7 @@ class BicycleServiceMapController: UIViewController {
 
 //MARK: Constraint Layout using Snapkit
 extension BicycleServiceMapController {
+    
     func computeLayout() {
         
         view.addSubview(newMapView)
@@ -147,6 +149,18 @@ extension BicycleServiceMapController: MKMapViewDelegate {
             return fooAnnotationView
         }
     }
+    
+    
+    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+        for view in views {
+            let endFrame = view.frame
+            view.frame = CGRectOffset(endFrame, 0, -1000)
+            UIView.animateWithDuration(1) {
+                view.frame = endFrame
+            }
+        }
+    }
+    
     /*
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let annotation = annotation as? ParkingSpot {
@@ -168,13 +182,21 @@ extension BicycleServiceMapController: MKMapViewDelegate {
     
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        //let detailView = SpotDetailsView(positionsAvailable: "123/153", spotName: "诚园宿舍停车位群", distanceFromUser: 314)
-        //let detailView = SpotDetailsView(positionsAvailable: "123/153", , distanceFromUser: <#T##Float#>)
-        //let view = SpotDetailsView(positionsAvailable: "\(view.annotation!.currentNumberOfBikes)/\(view.annotation!.numberOfBikes)", spotName: view.annotation!.title, distanceFromUser: "Hello")
-        (view.annotation as! ParkingSpot).getCurrentStatus { 
-            let detailView = SpotDetailsView(positionsAvailable: "\(((view.annotation as! ParkingSpot).currentNumberOfBikes)!)/\((view.annotation as! ParkingSpot).numberOfBikes)", spotName: (view.annotation as! ParkingSpot).title!, distanceFromUser: 32)
+
+        let spot = view.annotation as! ParkingSpot
+        guard let userLoc = newMapView.userLocation as? MKUserLocation else {
+            (view.annotation as! ParkingSpot).getCurrentStatus {
+                let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: nil)
+                mapView.addSubview(detailView)
+                self.checkLocationAuthorizationStatus()
+            }
+        }
+        
+        (view.annotation as! ParkingSpot).getCurrentStatus {
+            let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: spot.calculateDistance(userLoc))
             mapView.addSubview(detailView)
         }
+
     }
     
     

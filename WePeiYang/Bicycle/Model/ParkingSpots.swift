@@ -90,6 +90,19 @@ class ParkingSpot: NSObject, MKAnnotation {
     
 }
 
+
+//Calculate Distance
+extension ParkingSpot {
+    
+    func calculateDistance(userLocation: MKUserLocation) -> CLLocationDistance {
+        
+        let spotLoc = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let userLoc = CLLocation(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        return spotLoc.distanceFromLocation(userLoc)
+        
+    }
+}
+
 //网络请求获得实时状况
 extension ParkingSpot {
     
@@ -147,7 +160,7 @@ extension ParkingSpot {
         }
     }
     
-    //用于对一个 [ParkingSpot] 获取状态，智能对一定区域内点预加载
+    //用于对一个 [ParkingSpot] 获取状态，智能对一定区域内点预加载 (放进 userdefaults)
     static func getCurrentStatusForList(list: [ParkingSpot], and completion: () -> ()) {
         let manager = AFHTTPSessionManager()
         var parameters: [String: String] {
