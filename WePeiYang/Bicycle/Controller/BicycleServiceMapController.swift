@@ -29,7 +29,6 @@ class BicycleServiceMapController: UIViewController {
         if let userLoc:MKUserLocation? = newMapView.userLocation {
             let cl = CLLocation(latitude: (userLoc?.coordinate.latitude)!, longitude: (userLoc?.coordinate.longitude)!)
             centerMapOnLocation(cl)
-            print("How are you")
         } else {
             checkLocationAuthorizationStatus()
             print("FUCKYOU")
@@ -57,6 +56,7 @@ class BicycleServiceMapController: UIViewController {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius*2, regionRadius*2)
         newMapView.setRegion(coordinateRegion, animated: true)
     }
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -117,22 +117,7 @@ extension BicycleServiceMapController {
 
 //MARK: MapView Delegate
 extension BicycleServiceMapController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        let detailView = SpotDetailsView(positionsAvailable: "123/153", spotName: "诚园宿舍停车位群", distanceFromUser: 314)
-        
-        //let view = SpotDetailsView(positionsAvailable: "\(view.annotation!.currentNumberOfBikes)/\(view.annotation!.numberOfBikes)", spotName: view.annotation!.title, distanceFromUser: "Hello")
-        
-        mapView.addSubview(detailView)
-    }
     
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        for view in mapView.subviews {
-            if view.isKindOfClass(SpotDetailsView) {
-                view.removeFromSuperview()
-            }
-            
-        }
-    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationIdentifier = "AnnotationIdentifier"
@@ -162,4 +147,50 @@ extension BicycleServiceMapController: MKMapViewDelegate {
             return fooAnnotationView
         }
     }
+    /*
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if let annotation = annotation as? ParkingSpot {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+                as? MKPinAnnotationView { // 2
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                // 3
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = false
+            }
+            return view
+        }
+        return nil
+    }*/
+    
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        //let detailView = SpotDetailsView(positionsAvailable: "123/153", spotName: "诚园宿舍停车位群", distanceFromUser: 314)
+        //let detailView = SpotDetailsView(positionsAvailable: "123/153", , distanceFromUser: <#T##Float#>)
+        //let view = SpotDetailsView(positionsAvailable: "\(view.annotation!.currentNumberOfBikes)/\(view.annotation!.numberOfBikes)", spotName: view.annotation!.title, distanceFromUser: "Hello")
+        (view.annotation as! ParkingSpot).getCurrentStatus { 
+            let detailView = SpotDetailsView(positionsAvailable: "\(((view.annotation as! ParkingSpot).currentNumberOfBikes)!)/\((view.annotation as! ParkingSpot).numberOfBikes)", spotName: (view.annotation as! ParkingSpot).title!, distanceFromUser: 32)
+            mapView.addSubview(detailView)
+        }
+    }
+    
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        for view in mapView.subviews {
+            if view.isKindOfClass(SpotDetailsView) {
+                view.removeFromSuperview()
+            }
+            
+        }
+    }
+    
+}
+
+
+//MARK: Geograph info Calculation and Fetching
+extension BicycleServiceMapController {
+    
 }

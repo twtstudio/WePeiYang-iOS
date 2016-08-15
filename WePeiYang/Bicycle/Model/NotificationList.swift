@@ -22,7 +22,7 @@ class NotificationList: NSObject {
         list.removeAll()
         
         let manager = AFHTTPSessionManager()
-        manager.GET(BicycleAPIs.notificationURL(), parameters: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(BicycleAPIs.notificationURL, parameters: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
             let dic = responseObject as? NSDictionary
             log.obj(dic!)/
