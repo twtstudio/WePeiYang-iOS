@@ -42,7 +42,7 @@ struct Courses {
             let courseID: String
             let courseName: String
             
-            var courseDetails: [Study20Course.Detail?] = []
+            static var courseDetails: [Study20Course.Detail?] = []
             var courseScore: Int?
             
             
@@ -53,14 +53,14 @@ struct Courses {
                 let articleID: String?
                 let articleName: String?
                 let articleContent: String?
-                let articleIsHidden: Bool?
-                let articleIsDeleted: Bool?
+                let articleIsHidden: String?
+                let articleIsDeleted: String?
                 //types!!
                 let coursePriority: String?
                 let courseDetail: String?
-                let courseInsertTime: NSDate?
-                let courseIsHidden: Bool?
-                let courseIsDeleted: Bool?
+                let courseInsertTime: String?
+                let courseIsHidden: String?
+                let courseIsDeleted: String?
             }
             
             
@@ -82,7 +82,7 @@ struct Courses {
                         guard let courseID = dict["course_id"] as? String, let courseName = dict["course_name"] as? String else {
                             return nil
                         }
-                        return Study20Course(courseID: courseID, courseName: courseName, courseDetails: [nil], courseScore: nil)
+                        return Study20Course(courseID: courseID, courseName: courseName, courseScore: nil)
                     })
                     
                     //Usually the completion is for performing tasks right after the success closure so it won't have bugs with Asynchronous stuff
@@ -93,7 +93,7 @@ struct Courses {
             }
             
             
-            mutating func getCourseDetail(of courseID: String, and completion: () -> ()?) {
+            static func getCourseDetail(of courseID: String, and completion: () -> ()) {
                 let manager = AFHTTPSessionManager()
                 manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
                 manager.GET(PartyAPI.rootURL, parameters: PartyAPI.courseStudyDetailParams(of: courseID), success: {(task: NSURLSessionDataTask, responseObject: AnyObject?) in
@@ -101,25 +101,25 @@ struct Courses {
                         MsgDisplay.showErrorMsg("网络不好，请稍候再试")
                         return
                     }
-                    //courselist 打错
+                    
                     guard responseObject?.objectForKey("status") as? Int == 1, let fooDetails = responseObject?.objectForKey("data") as? Array<NSDictionary> else {
                         MsgDisplay.showErrorMsg("服务器开小差啦！")
                         return
                     }
                     
-                    self.courseDetails = fooDetails.flatMap({ (dict: NSDictionary) -> Detail? in
+                    courseDetails = fooDetails.flatMap({ (dict: NSDictionary) -> Detail? in
                         guard let courseID = dict["course_id"] as? String,
                               let courseName = dict["course_name"] as? String,
                               let articleID = dict["article_id"] as? String,
                               let articleName = dict["article_name"] as? String,
                               let articleContent = dict["article_content"] as? String,
-                              //let articleIsHidden = dict["article_ishidden"] as? Bool,
-                              //let articleIsDeleted = dict["article_isdeleted"] as? Bool,
-                              let coursePriority = dict["course_priority"] as? String
+                              let articleIsHidden = dict["article_ishidden"] as? String,
+                              let articleIsDeleted = dict["article_isdeleted"] as? String,
+                              let coursePriority = dict["course_priority"] as? String,
                               //let courseDetail = dict["course_detail"] as? String,
-                              //let courseInsertTime = dict["course_inserttime"] as? NSDate,
-                              //let courseIsHidden = dict["course_ishidden"] as? Bool,
-                              //let courseIsDeleted = dict["course_isdeleted"] as? Bool
+                              let courseInsertTime = dict["course_inserttime"] as? String,
+                              let courseIsHidden = dict["course_ishidden"] as? String,
+                              let courseIsDeleted = dict["course_isdeleted"] as? String
                             else {
                                 log.word("ah oh")/
                                 return nil
@@ -128,15 +128,19 @@ struct Courses {
                         let courseDetail = dict["course_detail"] as? String
                         
                         //Workaround for JSON type
-                        let articleIsHidden = dict["article_ishidden"] as? Bool
-                        let articleIsDeleted = dict["article_isdeleted"] as? Bool
-                        let courseInsertTime = dict["course_inserttime"] as? NSDate
-                        let courseIsHidden = dict["course_ishidden"] as? Bool
-                        let courseIsDeleted = dict["course_isdeleted"] as? Bool
+                        //let articleIsHidden = dict["article_ishidden"] as? Bool
+                        //let articleIsDeleted = dict["article_isdeleted"] as? Bool
+                        //let courseInsertTime = dict["course_inserttime"] as? NSDate
+                        //let courseIsHidden = dict["course_ishidden"] as? Bool
+                        //let courseIsDeleted = dict["course_isdeleted"] as? Bool
                         
                         return Detail(courseID: courseID, courseName: courseName, articleID: articleID, articleName: articleName, articleContent: articleContent, articleIsHidden: articleIsHidden, articleIsDeleted: articleIsDeleted, coursePriority: coursePriority, courseDetail: courseDetail, courseInsertTime: courseInsertTime, courseIsHidden: courseIsHidden, courseIsDeleted: courseIsDeleted)
                     })
                     
+                    log.word("I have \(self.courseDetails.count) details")/
+                    for detail in self.courseDetails {
+                        log.word((detail?.articleName)!)/
+                    }
                     //Usually the completion is for performing tasks right after the success closure so it won't have bugs with Asynchronous stuff
                     completion()
                     }, failure: { (task: NSURLSessionDataTask?, err: NSError) in

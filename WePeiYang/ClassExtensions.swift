@@ -23,6 +23,13 @@ extension UILabel {
         self.text = text
         self.sizeToFit()
     }
+    
+    convenience init(text: String, fontSize: CGFloat) {
+        self.init()
+        self.text = text
+        self.font = UIFont.boldSystemFontOfSize(fontSize)
+        self.sizeToFit()
+    }
 }
 
 extension UIView {

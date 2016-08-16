@@ -120,35 +120,42 @@ extension BicycleServiceMapController {
 //MARK: MapView Delegate
 extension BicycleServiceMapController: MKMapViewDelegate {
     
-    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationIdentifier = "AnnotationIdentifier"
-        if let fooAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationIdentifier) {
-            fooAnnotationView.annotation = annotation
-            return fooAnnotationView
-        } else {
-            let fooAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            fooAnnotationView.canShowCallout = false
+        
+        if annotation.isKindOfClass(ParkingSpot) {
             
-            if let fooUserLocation = mapView.userLocation.location {
-                if annotation.coordinate.latitude == fooUserLocation.coordinate.latitude && annotation.coordinate.longitude == fooUserLocation.coordinate.longitude {
-                    fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "小箭头")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
-                    print("FUCKIT")
-                } else {
-                    fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
-                    print("FUCKITAGAIN")
-                }
+            let annotationIdentifier = "AnnotationIdentifier"
+            if let dequeuedView = newMapView.dequeueReusableAnnotationViewWithIdentifier(annotationIdentifier) {
+                
+                log.word("Reused AnnotationView!")/
+                return dequeuedView
             } else {
-                //警告用户无法定位
-                checkLocationAuthorizationStatus()
-                //仍然显示自行车点位
+                
+                let fooAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
                 fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
-                print("ahoh")
+                fooAnnotationView.canShowCallout = false
+                log.word("Created New AnnotationView")/
+                return fooAnnotationView
+            }
+        } else {
+            
+            let userPinIdentifier = "UserPinIdentifier"
+            if let dequeuedView = newMapView.dequeueReusableAnnotationViewWithIdentifier(userPinIdentifier) {
+
+                log.word("Reused UserPinView!")/
+                return dequeuedView
+            } else {
+                
+                let fooAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userPinIdentifier)
+                fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "小箭头")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
+                fooAnnotationView.canShowCallout = false
+                log.word("Created New UserPinView!")/
+                return fooAnnotationView
             }
             
-            return fooAnnotationView
         }
     }
+    
     
     
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
@@ -161,29 +168,12 @@ extension BicycleServiceMapController: MKMapViewDelegate {
         }
     }
     
-    /*
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        if let annotation = annotation as? ParkingSpot {
-            let identifier = "pin"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView { // 2
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                // 3
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = false
-            }
-            return view
-        }
-        return nil
-    }*/
-    
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
 
-        let spot = view.annotation as! ParkingSpot
+        guard let spot = view.annotation as? ParkingSpot else {
+            return
+        }
         guard let userLoc = newMapView.userLocation as? MKUserLocation else {
             (view.annotation as! ParkingSpot).getCurrentStatus {
                 let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: nil)
@@ -207,6 +197,15 @@ extension BicycleServiceMapController: MKMapViewDelegate {
             }
             
         }
+    }
+    
+    
+    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        
+    }
+    
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
     }
     
 }
