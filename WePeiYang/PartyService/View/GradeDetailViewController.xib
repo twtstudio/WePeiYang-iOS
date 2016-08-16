@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwentyCourseScoreViewController" customModule="WePeiYang" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GradeDetailViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="8Tz-pE-I4J" id="Xmn-HO-Cos"/>
-                <outlet property="view" destination="iN0-l3-epB" id="2JS-vK-GeT"/>
+                <outlet property="tableView" destination="S4M-7w-xJr" id="Yf8-RA-6FQ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="1s6-zt-qvM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,18 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-pE-I4J">
-                    <rect key="frame" x="0.0" y="92" width="600" height="508"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="S4M-7w-xJr">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="8Tz-pE-I4J" secondAttribute="trailing" id="4Lt-2M-fEx"/>
-                <constraint firstItem="8Tz-pE-I4J" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7oB-6q-99M"/>
-                <constraint firstAttribute="bottom" secondItem="8Tz-pE-I4J" secondAttribute="bottom" id="SVc-So-Kf6"/>
-                <constraint firstItem="8Tz-pE-I4J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="92" id="p85-TR-ytQ"/>
+                <constraint firstItem="S4M-7w-xJr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GvN-LO-vfB"/>
+                <constraint firstAttribute="trailing" secondItem="S4M-7w-xJr" secondAttribute="trailing" id="OLw-pj-1sJ"/>
+                <constraint firstItem="S4M-7w-xJr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ahq-x0-YLg"/>
+                <constraint firstAttribute="bottom" secondItem="S4M-7w-xJr" secondAttribute="bottom" id="dg1-oN-wph"/>
             </constraints>
+            <point key="canvasLocation" x="156" y="303"/>
         </view>
     </objects>
 </document>

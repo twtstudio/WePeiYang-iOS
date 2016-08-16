@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwentyCourseScoreViewController" customModule="WePeiYang" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GradeCheckViewController" customModule="WePeiYang" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="8Tz-pE-I4J" id="Xmn-HO-Cos"/>
-                <outlet property="view" destination="iN0-l3-epB" id="2JS-vK-GeT"/>
+                <outlet property="tableView" destination="uRO-lX-lot" id="BZv-Ji-s0a"/>
+                <outlet property="view" destination="iN0-l3-epB" id="xvu-M9-154"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,17 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-pE-I4J">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uRO-lX-lot">
                     <rect key="frame" x="0.0" y="92" width="600" height="508"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="8Tz-pE-I4J" secondAttribute="trailing" id="4Lt-2M-fEx"/>
-                <constraint firstItem="8Tz-pE-I4J" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7oB-6q-99M"/>
-                <constraint firstAttribute="bottom" secondItem="8Tz-pE-I4J" secondAttribute="bottom" id="SVc-So-Kf6"/>
-                <constraint firstItem="8Tz-pE-I4J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="92" id="p85-TR-ytQ"/>
+                <constraint firstItem="uRO-lX-lot" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vow-rk-8TU"/>
+                <constraint firstItem="uRO-lX-lot" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="92" id="ooB-4e-7St"/>
+                <constraint firstAttribute="trailing" secondItem="uRO-lX-lot" secondAttribute="trailing" id="t10-fr-JqS"/>
+                <constraint firstAttribute="bottom" secondItem="uRO-lX-lot" secondAttribute="bottom" id="yfn-he-Khu"/>
             </constraints>
         </view>
     </objects>
