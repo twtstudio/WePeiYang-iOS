@@ -18,7 +18,7 @@ class PartyServiceViewController: UIViewController {
         //Applicant.sharedInstance.studentNumber = "3015218062"
         //Applicant.sharedInstance.getPersonalStatus()
         
-        Applicant.sharedInstance.getAcademyGrade()
+        //Applicant.sharedInstance.getAcademyGrade()
         
         let button = UIButton(frame: CGRectMake(300, 300, 300, 300))
         button.setTitle("普通状态", forState:UIControlState.Normal)

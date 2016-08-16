@@ -10,14 +10,14 @@ import Foundation
 
 class Applicant: NSObject {
     
-    
+    //FIXME: 还是需要保证数据的正确，再加载UI
     var realName: String?
     var studentNumber: String?
     var personalStatus = [NSDictionary]()
     var scoreOf20Course = [NSDictionary]()
     var applicantGrade = [NSDictionary]()
     var academyGrade = [NSDictionary]()
-    var probationayGrade = [NSDictionary]()
+    var probationaryGrade = [NSDictionary]()
     
     static let sharedInstance = Applicant()
     
@@ -26,7 +26,6 @@ class Applicant: NSObject {
     func testFunc() {
         print(self.personalStatus)
     }
-    
     
     //TODO: 未完成
     func getStudentNumber(success: Void -> Void) {
@@ -52,147 +51,161 @@ class Applicant: NSObject {
             success()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                MsgDisplay.showErrorMsg("网络错误，请稍后再试")
                 print("error: \(error)")
         })
         
     }
     
     
-    func getPersonalStatus() {
+    func getPersonalStatus(doSomething: () -> ()) {
         
         
         //AFNetWorking/Alamofire Works
-        let parameters = ["page": "api", "do": "personalstatus", "sno": studentNumber!]
         
         let manager = AFHTTPSessionManager()
         
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
         
-        manager.GET(PartyAPI.rootURL, parameters: PartyAPI.personalStatusParams, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL,
+                    parameters: PartyAPI.personalStatusParams,
+                    progress: { (progress: NSProgress) in
+                        MsgDisplay.showLoading()
+                    },
+                    success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
-            let dic = responseObject as? NSDictionary
+                        let dic = responseObject as? NSDictionary
             
-            if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.personalStatus = dic?.objectForKey("status_id") as! [NSDictionary]
-                print(self.personalStatus)
-            } else {
-                MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
-            }
-            
-            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print("error: \(error)")
-        })
+                        guard dic?.objectForKey("status") as? NSNumber == 1 else {
+                            MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
+                            return
+                        }
+                        self.personalStatus = dic?.objectForKey("status_id") as! [NSDictionary]
+                        MsgDisplay.dismiss()
+                        doSomething()
+                    },
+                    failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                        MsgDisplay.showErrorMsg("网络错误，请稍后再试")
+                        print("error: \(error)")
+                    }
+        )
         
     }
     
     
     func get20score(doSomething: () -> ()) {
         
-        //let parameters = ["page": "api", "do": "20score", "sno": studentNumber!]
-        let parameters = ["page": "api", "do": "20score", "sno": "3015218062"]
+        let parameters = ["page": "api", "do": "20score", "sno": studentNumber!]
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
         
-        manager.GET(PartyAPI.rootURL, parameters: parameters, progress: { (progress: NSProgress) in
-            
-            MsgDisplay.showLoading()
-            
-            },success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-            
-            let dic = responseObject as? NSDictionary
-            log.obj(dic!)/
-            if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.scoreOf20Course = dic?.objectForKey("score_info") as! [NSDictionary]
-                print(self.scoreOf20Course)
-            } else {
-                MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
-                return
-            }
+        //真是诡异的代码风格
+        manager.GET(PartyAPI.rootURL,
+                    parameters: parameters,
+                    progress: { (progress: NSProgress) in
+                        MsgDisplay.showLoading()
+                    },
+                    success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+                        let dic = responseObject as? NSDictionary
+                        //log.obj(dic!)/
+                        if dic?.objectForKey("status") as? NSNumber == 1 {
+                            self.scoreOf20Course = dic?.objectForKey("score_info") as! [NSDictionary]
+                            //print(self.scoreOf20Course)
+                        } else {
+                            MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
+                            return
+                        }
                 
-            MsgDisplay.dismiss()
+                        MsgDisplay.dismiss()
             
-            doSomething()
+                        doSomething()
             
-            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print("error: \(error)")
-        })
+                    },
+                    failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                        MsgDisplay.showErrorMsg("网络错误，请稍后再试")
+                        print("error: \(error)")
+                    }
+        )
         
     }
     
-    func getApplicantGrade(doSomething: () -> ()) {
+    func getGrade(testType: String, doSomething: () -> ()) {
         
-        let parameters = ["page": "api", "do": "applicant_gradecheck", "sno": studentNumber!]
+        let parameters = ["page": "api", "do": "\(testType)_gradecheck", "sno": studentNumber!]
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL, parameters: parameters, progress: { (progress: NSProgress) in
+        
+        manager.GET(PartyAPI.rootURL,
+                    parameters: parameters,
+                    progress: { (progress: NSProgress) in
+                        MsgDisplay.showLoading()
+                    },
+                    success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
-                MsgDisplay.showLoading()
+                        let dic = responseObject as? NSDictionary
             
-            },success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+                        guard dic?.objectForKey("status") as? NSNumber == 1 else {
+                            MsgDisplay.showErrorMsg(dic?.objectForKey("message") as? String)
+                            return
+                        }
             
-                let dic = responseObject as? NSDictionary
+                        let dict = dic?.objectForKey("data")
+                
+                        if testType == "applicant" {
+                            self.applicantGrade = dict as! [NSDictionary]
+                        } else if testType == "academy" {
+                            self.academyGrade = dict as! [NSDictionary]
+                        } else if testType == "probationary" {
+                            self.probationaryGrade = dict as! [NSDictionary]
+                        }
+                
+                        MsgDisplay.dismiss()
             
-                guard dic?.objectForKey("status") as? NSNumber == 1 else {
-                    MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
-                    return
-                }
-            
-                let dict = dic?.objectForKey("data")
-                self.applicantGrade = dict as! [NSDictionary]
-                print(self.applicantGrade)
-                MsgDisplay.dismiss()
-            
-            
-                doSomething()
-            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print("error: \(error)")
-        })
+                        doSomething()
+                    },
+                    failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                        MsgDisplay.showErrorMsg("网络错误，请稍后再试")
+                        print("error: \(error)")
+                    }
+        )
+        
     }
     
-    func getAcademyGrade() {
+    func complain(ID: String, testType: String, title: String, content: String, doSomething: () -> ()) {
         
-        let parameters = ["page": "api", "do": "academy_gradecheck", "sno": studentNumber!]
+        let parameters = ["page": "api", "do": "\(testType)_shensu", "sno": studentNumber!, "test_id": ID, "title": title, "content": content]
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        
+        manager.GET(PartyAPI.rootURL,
+                    parameters: parameters,
+                    progress: { (progress: NSProgress) in
+                        MsgDisplay.showLoading()
+                    },
+                    success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+                        let dic = responseObject as? NSDictionary
             
-            let dic = responseObject as? NSDictionary
-            if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.academyGrade = dic?.objectForKey("0") as! [NSDictionary]
-                print(self.academyGrade)
-            } else {
-                MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
-            }
-            
-            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print("error: \(error)")
-        })
+                        guard dic?.objectForKey("status") as? NSNumber == 1 else {
+                            MsgDisplay.showErrorMsg(dic?.objectForKey("message") as! String)
+                            return
+                        }
+                        
+                        MsgDisplay.showSuccessMsg(dic?.objectForKey("msg") as! String)
+                        doSomething()
+                    },
+                    failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                        MsgDisplay.showErrorMsg("网络错误，请稍后再试")
+                        print("error: \(error)")
+                    }
+        )
+        
+        
     }
     
-    func getProbationayGrade() {
-        
-        let parameters = ["page": "api", "do": "probationay_gradecheck", "sno": studentNumber!]
-        
-        let manager = AFHTTPSessionManager()
-        manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL, parameters: parameters, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-            
-            let dic = responseObject as? NSDictionary
-            
-            if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.probationayGrade = dic?.objectForKey("0") as! [NSDictionary]
-                print(self.probationayGrade)
-            } else {
-                MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
-            }
-            
-            }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                print("error: \(error)")
-        })
-    }
+    
     
     
     

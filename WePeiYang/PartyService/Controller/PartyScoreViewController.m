@@ -81,4 +81,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)pageController:(WMPageController *)pageController willEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
+    
+    if ([[info objectForKey:@"index"] integerValue] == 0) {
+        
+    } else if ([[info objectForKey:@"index"] integerValue] == 1) {
+        GradeCheckViewController *gradeVC = (GradeCheckViewController *)viewController;
+        gradeVC.testType = @"applicant";
+        [gradeVC fetchData];
+    } else if ([[info objectForKey:@"index"] integerValue] == 2) {
+        GradeCheckViewController *gradeVC = (GradeCheckViewController *)viewController;
+        gradeVC.testType = @"academy";
+        [gradeVC fetchData];
+    } else if ([[info objectForKey:@"index"] integerValue] == 3) {
+        GradeCheckViewController *gradeVC = (GradeCheckViewController *)viewController;
+        gradeVC.testType = @"probationary";
+        [gradeVC fetchData];
+    }
+}
+
+/*- (void)pageController:(WMPageController *)pageController didEnterViewController:(__kindof UIViewController *)viewController withInfo:(NSDictionary *)info {
+    
+    if ([[info objectForKey:@"index"] integerValue] == 0) {
+        
+    } else if ([[info objectForKey:@"index"] integerValue] == 1) {
+        
+    } else if ([[info objectForKey:@"index"] integerValue] == 2) {
+        
+    } else if ([[info objectForKey:@"index"] integerValue] == 3) {
+        
+    }
+    
+}*/
+
 @end

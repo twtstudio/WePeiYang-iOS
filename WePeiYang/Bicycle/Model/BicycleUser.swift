@@ -142,6 +142,7 @@ class BicycleUser: NSObject {
                 }
                 
                 MsgDisplay.dismiss()
+                
                 let dict = dic?.objectForKey("data") as? NSDictionary
                 self.name = dict?.objectForKey("name") as? String
                 self.balance = dict?.objectForKey("balance") as? String

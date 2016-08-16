@@ -35,7 +35,7 @@ class TwentyCourseScoreViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(Applicant.sharedInstance.scoreOf20Course.count)
+        //print(Applicant.sharedInstance.scoreOf20Course.count)
         return scoreList.count
     }
     
