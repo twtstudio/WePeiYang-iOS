@@ -35,7 +35,7 @@ class BicycleUser: NSObject {
         
         let manager = AFHTTPSessionManager()
         
-        manager.POST(BicycleAPIs.authURL(), parameters: parameters, progress: { (progress: NSProgress) in
+        manager.POST(BicycleAPIs.authURL, parameters: parameters, progress: { (progress: NSProgress) in
             
             MsgDisplay.showLoading()
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
@@ -66,7 +66,7 @@ class BicycleUser: NSObject {
         
         let manager = AFHTTPSessionManager()
         
-        manager.POST(BicycleAPIs.cardURL(), parameters: parameters, progress: { (progress: NSProgress) in
+        manager.POST(BicycleAPIs.cardURL, parameters: parameters, progress: { (progress: NSProgress) in
             
             MsgDisplay.showLoading()
             
@@ -100,7 +100,7 @@ class BicycleUser: NSObject {
         
         let manager = AFHTTPSessionManager()
         
-        manager.POST(BicycleAPIs.bindURL(), parameters: parameters, progress: { (progress: NSProgress) in
+        manager.POST(BicycleAPIs.bindURL, parameters: parameters, progress: { (progress: NSProgress) in
             
             MsgDisplay.showLoading()
             
@@ -128,7 +128,7 @@ class BicycleUser: NSObject {
         
         let manager = AFHTTPSessionManager()
         
-        manager.POST(BicycleAPIs.infoURL(), parameters: parameters, progress: { (progress: NSProgress) in
+        manager.POST(BicycleAPIs.infoURL, parameters: parameters, progress: { (progress: NSProgress) in
             
             MsgDisplay.showLoading()
             

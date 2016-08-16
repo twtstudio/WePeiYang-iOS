@@ -635,8 +635,8 @@
 		B113C6DA1D57A2500072726F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B113C6DB1D57A2500072726F /* BicycleServiceInfoController.swift */,
 				B113C6DC1D57A2500072726F /* BicycleServiceMapController.swift */,
+				B113C6DB1D57A2500072726F /* BicycleServiceInfoController.swift */,
 				B113C6DD1D57A2500072726F /* BicycleServiceNotificationController.swift */,
 				68A78FE51D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift */,
 				689702841D59B38500C3BC96 /* BicycleUserBindViewController.swift */,
