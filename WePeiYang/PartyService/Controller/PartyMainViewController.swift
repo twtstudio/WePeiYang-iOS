@@ -49,12 +49,6 @@ class PartyMainViewController: UIViewController {
         functionTableView.delegate = self
         functionTableView.dataSource = self
         
-        //TEST: API test
-        var course = Courses.Study20.Study20Course(courseID: "42", courseName: "FUCK", courseDetails: [nil], courseScore: nil)
-        course.getCourseDetail(of: course.courseID, and: {
-            print("hello")
-        })
-        
         
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
         navigationItem.titleView = titleLabel
@@ -130,6 +124,13 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row == 1 {
+            let courseVC = PartyCoursesViewController()
+            navigationController?.showViewController(courseVC, sender: nil)
+            //let tempVC = TwentyCourseTableViewController()
+            //navigationController?.showViewController(tempVC, sender: nil)
+        }
         
         //成绩查询
         if indexPath.row == 2 {
