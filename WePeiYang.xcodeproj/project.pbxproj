@@ -34,6 +34,9 @@
 		689702871D59B4B800C3BC96 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702861D59B4B800C3BC96 /* Card.swift */; };
 		689702891D59BCF600C3BC96 /* BicycleUserBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */; };
 		6897028B1D59CA7B00C3BC96 /* BicycleCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6897028A1D59CA7B00C3BC96 /* BicycleCardListViewController.swift */; };
+		689CE60F1D617EA600C6F73E /* GradeCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689CE60E1D617EA600C6F73E /* GradeCheckViewController.xib */; };
+		689CE6111D6180D300C6F73E /* GradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689CE6101D6180D300C6F73E /* GradeDetailViewController.xib */; };
+		689CE6131D6180E500C6F73E /* GradeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689CE6121D6180E500C6F73E /* GradeDetailViewController.swift */; };
 		68A78FE41D5AFD6D002BAFCF /* NotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A78FE31D5AFD6D002BAFCF /* NotificationList.swift */; };
 		68A78FE61D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A78FE51D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift */; };
 		68A78FE81D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68A78FE71D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib */; };
@@ -267,6 +270,9 @@
 		689702861D59B4B800C3BC96 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleUserBindViewController.xib; sourceTree = "<group>"; };
 		6897028A1D59CA7B00C3BC96 /* BicycleCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleCardListViewController.swift; sourceTree = "<group>"; };
+		689CE60E1D617EA600C6F73E /* GradeCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeCheckViewController.xib; sourceTree = "<group>"; };
+		689CE6101D6180D300C6F73E /* GradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailViewController.xib; sourceTree = "<group>"; };
+		689CE6121D6180E500C6F73E /* GradeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeDetailViewController.swift; sourceTree = "<group>"; };
 		68A78FE31D5AFD6D002BAFCF /* NotificationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationList.swift; sourceTree = "<group>"; };
 		68A78FE51D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleNotificationDetailViewController.swift; sourceTree = "<group>"; };
 		68A78FE71D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleNotificationDetailViewController.xib; sourceTree = "<group>"; };
@@ -703,6 +709,7 @@
 				6873D6331D60BAEB004E6841 /* PartyScoreViewController.m */,
 				6873D6371D60BC1A004E6841 /* GradeCheckViewController.swift */,
 				68127A641D60C7B5004EF43D /* TwentyCourseScoreViewController.swift */,
+				689CE6121D6180E500C6F73E /* GradeDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -714,6 +721,8 @@
 				68127A6A1D60D252004EF43D /* ScoreTableViewCell.swift */,
 				686F714B1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib */,
 				68127A681D60C86B004EF43D /* TwentyCourseScoreViewController.xib */,
+				689CE60E1D617EA600C6F73E /* GradeCheckViewController.xib */,
+				689CE6101D6180D300C6F73E /* GradeDetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1549,6 +1558,7 @@
 				B1A9B3A41D5E3A9E0094E1CF /* ParkingSpotsLocs.json in Resources */,
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
+				689CE6111D6180D300C6F73E /* GradeDetailViewController.xib in Resources */,
 				E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */,
 				680C982C1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
@@ -1563,6 +1573,7 @@
 				686F714C1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib in Resources */,
 				E9BA7BB51C5A1550009A4E9A /* ClasstableViewController.xib in Resources */,
 				E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */,
+				689CE60F1D617EA600C6F73E /* GradeCheckViewController.xib in Resources */,
 				E98ACE251C4039BC0012C762 /* HomeToolsCell.xib in Resources */,
 				E90C139C1CAF74F700E1F353 /* HomeToolsCollectionViewCell.xib in Resources */,
 				E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */,
@@ -1864,6 +1875,7 @@
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				68A78FEA1D5B26DF002BAFCF /* timeStampTransfer.swift in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
+				689CE6131D6180E500C6F73E /* GradeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

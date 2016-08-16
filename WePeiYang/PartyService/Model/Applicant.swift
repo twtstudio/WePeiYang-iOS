@@ -15,9 +15,9 @@ class Applicant: NSObject {
     var studentNumber: String?
     var personalStatus = [NSDictionary]()
     var scoreOf20Course = [NSDictionary]()
-    var applicantGrade = NSDictionary()
-    var academyGrade = NSDictionary()
-    var probationayGrade = NSDictionary()
+    var applicantGrade = [NSDictionary]()
+    var academyGrade = [NSDictionary]()
+    var probationayGrade = [NSDictionary]()
     
     static let sharedInstance = Applicant()
     
@@ -120,23 +120,32 @@ class Applicant: NSObject {
         
     }
     
-    func getApplicantGrade() {
+    func getApplicantGrade(doSomething: () -> ()) {
         
         let parameters = ["page": "api", "do": "applicant_gradecheck", "sno": studentNumber!]
         
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.GET(PartyAPI.rootURL, parameters: PartyAPI.scoreInfoParams, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+        manager.GET(PartyAPI.rootURL, parameters: parameters, progress: { (progress: NSProgress) in
             
-            let dic = responseObject as? NSDictionary
+                MsgDisplay.showLoading()
             
-            if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.applicantGrade = dic?.objectForKey("0") as! NSDictionary
+            },success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+            
+                let dic = responseObject as? NSDictionary
+            
+                guard dic?.objectForKey("status") as? NSNumber == 1 else {
+                    MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
+                    return
+                }
+            
+                let dict = dic?.objectForKey("data")
+                self.applicantGrade = dict as! [NSDictionary]
                 print(self.applicantGrade)
-            } else {
-                MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
-            }
+                MsgDisplay.dismiss()
             
+            
+                doSomething()
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
                 print("error: \(error)")
         })
@@ -152,7 +161,7 @@ class Applicant: NSObject {
             
             let dic = responseObject as? NSDictionary
             if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.academyGrade = dic?.objectForKey("0") as! NSDictionary
+                self.academyGrade = dic?.objectForKey("0") as! [NSDictionary]
                 print(self.academyGrade)
             } else {
                 MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
@@ -174,7 +183,7 @@ class Applicant: NSObject {
             let dic = responseObject as? NSDictionary
             
             if dic?.objectForKey("status") as? NSNumber == 1 {
-                self.probationayGrade = dic?.objectForKey("0") as! NSDictionary
+                self.probationayGrade = dic?.objectForKey("0") as! [NSDictionary]
                 print(self.probationayGrade)
             } else {
                 MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
