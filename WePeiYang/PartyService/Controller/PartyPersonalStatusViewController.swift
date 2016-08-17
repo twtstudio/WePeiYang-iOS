@@ -66,6 +66,13 @@ class PartyPersonalStatusViewController: UIViewController {
         //NavigationBar 的文字
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         
+        //titleLabel设置
+        let titleLabel = UILabel(text: "个人状态", fontSize: 17)
+        titleLabel.backgroundColor = UIColor.clearColor()
+        titleLabel.textAlignment = .Center
+        titleLabel.textColor = UIColor.whiteColor()
+        self.navigationItem.titleView = titleLabel;
+        
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
@@ -91,7 +98,7 @@ class PartyPersonalStatusViewController: UIViewController {
         mainScrollView.addSubview(scrollView1)
         let scrollView2 = UIScrollView(frame: CGRectMake(-287.5, 572, 932, 164))
         mainScrollView.addSubview(scrollView2)*/
-        print((UIApplication.sharedApplication().keyWindow?.frame.size.width)!)
+        //print((UIApplication.sharedApplication().keyWindow?.frame.size.width)!)
         
         //MARK: 这样做不太好，用了奇怪的数，其实也不是很奇怪啦
         let strangeNumber = (932-(UIApplication.sharedApplication().keyWindow?.frame.size.width)!)/2.0
@@ -432,7 +439,7 @@ class PartyPersonalStatusViewController: UIViewController {
     }
     
     func updateUI() {
-        print(Applicant.sharedInstance.personalStatus)
+        //print(Applicant.sharedInstance.personalStatus)
         
         var dict = Applicant.sharedInstance.personalStatus[0]
         label1.status = dict.objectForKey("status") as? Int
