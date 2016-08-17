@@ -24,7 +24,7 @@ class CourseDetailTableViewCell: UITableViewCell {
 }
 
 extension CourseDetailTableViewCell {
-    convenience init(detail: Courses.Study20.Study20Course.Detail) {
+    convenience init(detail: Courses.Study20.Detail) {
         
         let articleNameLabel = UILabel(text: detail.articleName!, fontSize: 14)
         let tapToReadLabel = UILabel(text: "开始阅读", fontSize: 14)
@@ -43,7 +43,7 @@ extension CourseDetailTableViewCell {
             make in
             make.left.equalTo(contentView).offset(14)
             make.centerY.equalTo(contentView)
-            make.right.lessThanOrEqualTo(tapToReadLabel.snp_left).offset(20)
+            make.right.lessThanOrEqualTo(tapToReadLabel.snp_left).offset(-20)
             
         }
     }

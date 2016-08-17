@@ -63,10 +63,13 @@
 		B13FE1501D59B96100B498B1 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE14D1D59B96100B498B1 /* Applicant.swift */; };
 		B13FE1511D59B96100B498B1 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE14E1D59B96100B498B1 /* Courses.swift */; };
 		B13FE15E1D59B9FA00B498B1 /* PartyMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */; };
-		B184BDCA1D63524700E27971 /* TwentyCourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDC91D63524700E27971 /* TwentyCourseTableViewController.swift */; };
+		B15C09E21D64ADB000A84B00 /* WXWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15C09E11D64ADB000A84B00 /* WXWaveView.m */; };
 		B184BDCC1D6358E600E27971 /* TwentyCourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDCB1D6358E600E27971 /* TwentyCourseDetailViewController.swift */; };
 		B184BDCE1D635B5700E27971 /* CourseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDCD1D635B5700E27971 /* CourseDetailTableViewCell.swift */; };
 		B184BDD21D6372EA00E27971 /* CourseDetailReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDD11D6372EA00E27971 /* CourseDetailReadingView.swift */; };
+		B184BDD41D6438AD00E27971 /* TwentyCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDD31D6438AD00E27971 /* TwentyCourseViewController.swift */; };
+		B184BDD61D64435B00E27971 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDD51D64435B00E27971 /* TextTableViewCell.swift */; };
+		B184BE001D6460A600E27971 /* TheoryCourseArticleReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDFF1D6460A600E27971 /* TheoryCourseArticleReadingView.swift */; };
 		B194CBCD1D5E21C3009615D7 /* FunctionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */; };
 		B194CBCF1D5E234C009615D7 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */; };
 		B1A9B3A41D5E3A9E0094E1CF /* ParkingSpotsLocs.json in Resources */ = {isa = PBXBuildFile; fileRef = B1A9B3A31D5E3A9E0094E1CF /* ParkingSpotsLocs.json */; };
@@ -311,10 +314,14 @@
 		B13FE14D1D59B96100B498B1 /* Applicant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
 		B13FE14E1D59B96100B498B1 /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyMainViewController.swift; sourceTree = "<group>"; };
-		B184BDC91D63524700E27971 /* TwentyCourseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwentyCourseTableViewController.swift; sourceTree = "<group>"; };
+		B15C09E01D64ADB000A84B00 /* WXWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWaveView.h; sourceTree = "<group>"; };
+		B15C09E11D64ADB000A84B00 /* WXWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXWaveView.m; sourceTree = "<group>"; };
 		B184BDCB1D6358E600E27971 /* TwentyCourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwentyCourseDetailViewController.swift; sourceTree = "<group>"; };
 		B184BDCD1D635B5700E27971 /* CourseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailTableViewCell.swift; sourceTree = "<group>"; };
 		B184BDD11D6372EA00E27971 /* CourseDetailReadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailReadingView.swift; sourceTree = "<group>"; };
+		B184BDD31D6438AD00E27971 /* TwentyCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwentyCourseViewController.swift; sourceTree = "<group>"; };
+		B184BDD51D64435B00E27971 /* TextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		B184BDFF1D6460A600E27971 /* TheoryCourseArticleReadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheoryCourseArticleReadingView.swift; sourceTree = "<group>"; };
 		B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionListTableViewCell.swift; sourceTree = "<group>"; };
 		B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		B1A9B3A31D5E3A9E0094E1CF /* ParkingSpotsLocs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ParkingSpotsLocs.json; sourceTree = "<group>"; };
@@ -724,7 +731,7 @@
 				B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */,
 				B1EF110D1D62F91000DFF681 /* PartyCoursesViewController.h */,
 				B1EF110E1D62F91000DFF681 /* PartyCoursesViewController.m */,
-				B184BDC91D63524700E27971 /* TwentyCourseTableViewController.swift */,
+				B184BDD31D6438AD00E27971 /* TwentyCourseViewController.swift */,
 				B184BDCB1D6358E600E27971 /* TwentyCourseDetailViewController.swift */,
 				B1EF11121D62FBDD00DFF681 /* TheoryClassicsTableViewController.swift */,
 				686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */,
@@ -741,8 +748,12 @@
 		B194CBCB1D5E21C3009615D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B15C09E01D64ADB000A84B00 /* WXWaveView.h */,
+				B15C09E11D64ADB000A84B00 /* WXWaveView.m */,
 				B1EF11141D630A1700DFF681 /* CourseTableViewCell.swift */,
 				B184BDCD1D635B5700E27971 /* CourseDetailTableViewCell.swift */,
+				B184BDD51D64435B00E27971 /* TextTableViewCell.swift */,
+				B184BDFF1D6460A600E27971 /* TheoryCourseArticleReadingView.swift */,
 				B184BDD11D6372EA00E27971 /* CourseDetailReadingView.swift */,
 				B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */,
 				68127A6A1D60D252004EF43D /* ScoreTableViewCell.swift */,
@@ -1773,6 +1784,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B184BDD41D6438AD00E27971 /* TwentyCourseViewController.swift in Sources */,
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
 				B184BDD21D6372EA00E27971 /* CourseDetailReadingView.swift in Sources */,
 				E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */,
@@ -1792,6 +1804,7 @@
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
 				E98DF6FB1C5DF5BF003943A4 /* SVWebViewControllerActivity.m in Sources */,
 				68A78FE61D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift in Sources */,
+				B15C09E21D64ADB000A84B00 /* WXWaveView.m in Sources */,
 				6873D6381D60BC1A004E6841 /* GradeCheckViewController.swift in Sources */,
 				E9BA7BB41C5A1550009A4E9A /* ClasstableViewController.swift in Sources */,
 				B1C4F65D1D548377000CD0D8 /* (null) in Sources */,
@@ -1863,6 +1876,7 @@
 				6897028B1D59CA7B00C3BC96 /* BicycleCardListViewController.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				B184BDCE1D635B5700E27971 /* CourseDetailTableViewCell.swift in Sources */,
+				B184BE001D6460A600E27971 /* TheoryCourseArticleReadingView.swift in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
@@ -1878,6 +1892,7 @@
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
 				E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */,
 				E92597241CA62E1B00D4E812 /* ToolsCollectionViewCell.swift in Sources */,
+				B184BDD61D64435B00E27971 /* TextTableViewCell.swift in Sources */,
 				E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */,
 				B184BDCC1D6358E600E27971 /* TwentyCourseDetailViewController.swift in Sources */,
 				B1EF11151D630A1700DFF681 /* CourseTableViewCell.swift in Sources */,
@@ -1888,7 +1903,6 @@
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
 				E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
-				B184BDCA1D63524700E27971 /* TwentyCourseTableViewController.swift in Sources */,
 				686F71461D5F0916006565BB /* WMScrollView+gesture.m in Sources */,
 				68AD41651D5E11F900695DF4 /* PartyAPI.swift in Sources */,
 				B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */,
