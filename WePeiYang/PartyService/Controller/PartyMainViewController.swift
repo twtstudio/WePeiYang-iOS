@@ -24,8 +24,9 @@ class PartyMainViewController: UIViewController {
     */
     let titleLabel = UILabel(text: "党建生活", color: .whiteColor())
     let aTable = UITableView()
-    //let headerView = UIView()
     let headerView = UIView(color: partyRed)
+    var headerWaveView = WXWaveView()
+    
     let anAvatar = UIView()
     
     let functionTableView = UITableView()
@@ -63,12 +64,14 @@ class PartyMainViewController: UIViewController {
         }
         aNameLabel.font = UIFont.boldSystemFontOfSize(18)
 
-        headerView.layer.shadowOffset = CGSizeMake(0, 4);
-        headerView.layer.shadowRadius = 5;
-        headerView.layer.shadowOpacity = 0.5;
-
+        //headerView.layer.shadowOffset = CGSizeMake(0, 4);
+        //headerView.layer.shadowRadius = 5;
+        //headerView.layer.shadowOpacity = 0.5;
+        headerView.userInteractionEnabled = true
         
         computeLayout()
+        wave()
+        
         
         // Do any additional setup after loading the view.
     }
@@ -92,7 +95,6 @@ class PartyMainViewController: UIViewController {
             log.word("not found")/
             return
         }
-        log.word(foo)/
     }
     
     
@@ -162,6 +164,7 @@ extension PartyMainViewController {
         }
         
         
+        
         headerView.addSubview(personalStatusButton)
         personalStatusButton.snp_makeConstraints {
             make in
@@ -169,6 +172,7 @@ extension PartyMainViewController {
             make.left.equalTo(anAvatar.snp_right).offset(5)
         }
         
+    
         
         view.addSubview(headerView)
         headerView.snp_makeConstraints {
@@ -179,26 +183,47 @@ extension PartyMainViewController {
             make.bottom.equalTo(aNameLabel.snp_bottom).offset(20)
         }
         
+        //self.headerWaveView = WXWaveView.addToView(headerView, withFrame: CGRect(x: 0, y: headerView.bounds.height - 10, width: headerView.bounds.width, height: 10))
         
+        
+        //self.functionTableView.tableHeaderView = headerView
         view.addSubview(functionTableView)
         functionTableView.snp_makeConstraints{
             make in
-            make.top.equalTo(headerView.snp_bottom).offset(10)
+            make.top.equalTo(headerView.snp_bottom)
             make.left.equalTo(view)
             make.right.equalTo(view)
             make.bottom.equalTo(view)
         }
+        
+        headerView.addSubview(headerWaveView)
+        headerWaveView.snp_makeConstraints {
+            make in
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.top.equalTo(functionTableView.snp_top).offset(-10)
+            make.height.equalTo(10)
+        }
+        log.any(CGRectGetHeight(functionTableView.frame))/
+        
     }
 }
 
 //MARK: Button tapped functions
 extension PartyMainViewController {
     func personalStatusButtonTapped(sender: UIButton!) {
-        log.word("Button Pressed")/
 
         let personalStatusVC = PartyPersonalStatusViewController()
         navigationController?.showViewController(personalStatusVC, sender: nil)
 
+    }
+    
+    func wave() {
+
+        self.headerWaveView.waveColor = .whiteColor()
+        self.headerWaveView.waveTime = 0.0
+        self.headerWaveView.wave()
+        
     }
 }
 
