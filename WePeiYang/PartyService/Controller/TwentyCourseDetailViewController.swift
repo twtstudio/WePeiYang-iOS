@@ -17,10 +17,20 @@ class TwentyCourseDetailViewController: UITableViewController {
         
         
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let view = UIView(frame: CGRect(x: 0, y: -(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height), width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         
-        view.backgroundColor = partyRed
-        tableView.addSubview(view)
+        //FIXME: Autolayout and Scrolling is bad. 
+        let bgView = UIView(frame: CGRect(x: 0, y: -(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height), width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        //let bgView = UIView(color: partyRed)
+        bgView.backgroundColor = partyRed
+        tableView.addSubview(bgView)
+        /*bgView.snp_makeConstraints {
+            make in
+            make.left.equalTo(0)
+            make.top.equalTo(-(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+            make.right.equalTo((navigationController?.view)!.snp_right)
+            make.height.equalTo(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height)
+        }*/
+        
        
         
         // Uncomment the following line to preserve selection between presentations
