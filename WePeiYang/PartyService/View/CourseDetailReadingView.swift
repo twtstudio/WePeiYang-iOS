@@ -30,17 +30,21 @@ class CourseDetailReadingView: UIView, UIWebViewDelegate {
 }
 
 extension CourseDetailReadingView {
-    convenience init(detail: Courses.Study20.Study20Course.Detail, frame: CGRect) {
+    convenience init(detail: Courses.Study20.Study20Course.Detail) {
         
         let blurEffect = UIBlurEffect(style: .Light)
         let frostView = UIVisualEffectView(effect: blurEffect)
-        //self.init(frame: frame)
-        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.init()
+        //self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         assignGestureRecognizerToView()
         
-        frostView.frame = frame
+        
         self.addSubview(frostView)
+        frostView.snp_makeConstraints {
+            make in
+            make.top.left.bottom.right.equalTo(self)
+        }
         
         
         if detail.articleIsHidden == "1" {
