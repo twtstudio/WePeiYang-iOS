@@ -59,7 +59,8 @@ class TwentyCourseDetailViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let readingView = CourseDetailReadingView(detail: detailList[indexPath.row]!, frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.bounds.height))
+
+        let readingView = CourseDetailReadingView(detail: detailList[indexPath.row]!)
         
         //UIView.beginAnimations("", context: <#T##UnsafeMutablePointer<Void>#>)
         

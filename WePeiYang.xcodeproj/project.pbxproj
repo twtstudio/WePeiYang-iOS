@@ -25,6 +25,9 @@
 		68127A651D60C7B5004EF43D /* TwentyCourseScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68127A641D60C7B5004EF43D /* TwentyCourseScoreViewController.swift */; };
 		68127A691D60C86B004EF43D /* TwentyCourseScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68127A681D60C86B004EF43D /* TwentyCourseScoreViewController.xib */; };
 		68127A6B1D60D252004EF43D /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68127A6A1D60D252004EF43D /* ScoreTableViewCell.swift */; };
+		6850AA521D6353CF000A1056 /* PartyComplainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6850AA511D6353CF000A1056 /* PartyComplainViewController.xib */; };
+		6850AA541D6353E7000A1056 /* PartyComplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6850AA531D6353E7000A1056 /* PartyComplainViewController.swift */; };
+		6850AA561D63798C000A1056 /* PersonalStatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6850AA551D63798C000A1056 /* PersonalStatusLabel.swift */; };
 		686F71461D5F0916006565BB /* WMScrollView+gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F71451D5F0916006565BB /* WMScrollView+gesture.m */; };
 		686F71481D5F0A29006565BB /* PartyPersonalStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */; };
 		686F714C1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686F714B1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib */; };
@@ -34,6 +37,9 @@
 		689702871D59B4B800C3BC96 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689702861D59B4B800C3BC96 /* Card.swift */; };
 		689702891D59BCF600C3BC96 /* BicycleUserBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */; };
 		6897028B1D59CA7B00C3BC96 /* BicycleCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6897028A1D59CA7B00C3BC96 /* BicycleCardListViewController.swift */; };
+		689CE60F1D617EA600C6F73E /* GradeCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689CE60E1D617EA600C6F73E /* GradeCheckViewController.xib */; };
+		689CE6111D6180D300C6F73E /* GradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689CE6101D6180D300C6F73E /* GradeDetailViewController.xib */; };
+		689CE6131D6180E500C6F73E /* GradeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689CE6121D6180E500C6F73E /* GradeDetailViewController.swift */; };
 		68A78FE41D5AFD6D002BAFCF /* NotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A78FE31D5AFD6D002BAFCF /* NotificationList.swift */; };
 		68A78FE61D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A78FE51D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift */; };
 		68A78FE81D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68A78FE71D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib */; };
@@ -262,6 +268,9 @@
 		68127A641D60C7B5004EF43D /* TwentyCourseScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwentyCourseScoreViewController.swift; sourceTree = "<group>"; };
 		68127A681D60C86B004EF43D /* TwentyCourseScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwentyCourseScoreViewController.xib; sourceTree = "<group>"; };
 		68127A6A1D60D252004EF43D /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		6850AA511D6353CF000A1056 /* PartyComplainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartyComplainViewController.xib; sourceTree = "<group>"; };
+		6850AA531D6353E7000A1056 /* PartyComplainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyComplainViewController.swift; sourceTree = "<group>"; };
+		6850AA551D63798C000A1056 /* PersonalStatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalStatusLabel.swift; sourceTree = "<group>"; };
 		686F71441D5F0916006565BB /* WMScrollView+gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WMScrollView+gesture.h"; sourceTree = "<group>"; };
 		686F71451D5F0916006565BB /* WMScrollView+gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WMScrollView+gesture.m"; sourceTree = "<group>"; };
 		686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPersonalStatusViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +282,9 @@
 		689702861D59B4B800C3BC96 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		689702881D59BCF600C3BC96 /* BicycleUserBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleUserBindViewController.xib; sourceTree = "<group>"; };
 		6897028A1D59CA7B00C3BC96 /* BicycleCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleCardListViewController.swift; sourceTree = "<group>"; };
+		689CE60E1D617EA600C6F73E /* GradeCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeCheckViewController.xib; sourceTree = "<group>"; };
+		689CE6101D6180D300C6F73E /* GradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailViewController.xib; sourceTree = "<group>"; };
+		689CE6121D6180E500C6F73E /* GradeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeDetailViewController.swift; sourceTree = "<group>"; };
 		68A78FE31D5AFD6D002BAFCF /* NotificationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationList.swift; sourceTree = "<group>"; };
 		68A78FE51D5B0F9B002BAFCF /* BicycleNotificationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleNotificationDetailViewController.swift; sourceTree = "<group>"; };
 		68A78FE71D5B11A7002BAFCF /* BicycleNotificationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleNotificationDetailViewController.xib; sourceTree = "<group>"; };
@@ -718,8 +730,10 @@
 				686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */,
 				6873D6321D60BAEB004E6841 /* PartyScoreViewController.h */,
 				6873D6331D60BAEB004E6841 /* PartyScoreViewController.m */,
-				6873D6371D60BC1A004E6841 /* GradeCheckViewController.swift */,
 				68127A641D60C7B5004EF43D /* TwentyCourseScoreViewController.swift */,
+				6873D6371D60BC1A004E6841 /* GradeCheckViewController.swift */,
+				689CE6121D6180E500C6F73E /* GradeDetailViewController.swift */,
+				6850AA531D6353E7000A1056 /* PartyComplainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -732,8 +746,12 @@
 				B184BDD11D6372EA00E27971 /* CourseDetailReadingView.swift */,
 				B194CBCC1D5E21C3009615D7 /* FunctionListTableViewCell.swift */,
 				68127A6A1D60D252004EF43D /* ScoreTableViewCell.swift */,
+				6850AA551D63798C000A1056 /* PersonalStatusLabel.swift */,
 				686F714B1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib */,
 				68127A681D60C86B004EF43D /* TwentyCourseScoreViewController.xib */,
+				689CE60E1D617EA600C6F73E /* GradeCheckViewController.xib */,
+				689CE6101D6180D300C6F73E /* GradeDetailViewController.xib */,
+				6850AA511D6353CF000A1056 /* PartyComplainViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1569,6 +1587,7 @@
 				B1A9B3A41D5E3A9E0094E1CF /* ParkingSpotsLocs.json in Resources */,
 				E9B972CC1C565290001E480E /* LoginViewController.xib in Resources */,
 				E9D744051BF9AE38005F2EF9 /* WePeiYang.entitlements in Resources */,
+				689CE6111D6180D300C6F73E /* GradeDetailViewController.xib in Resources */,
 				E91E51691D00820B00A5BED7 /* color-brewer.css in Resources */,
 				680C982C1D5DCDEB0062F2C8 /* BicycleRecordViewController.xib in Resources */,
 				E9D744011BF9AE38005F2EF9 /* Launch Screen.xib in Resources */,
@@ -1583,7 +1602,9 @@
 				686F714C1D5F0B4C006565BB /* PartyPersonalStatusViewController.xib in Resources */,
 				E9BA7BB51C5A1550009A4E9A /* ClasstableViewController.xib in Resources */,
 				E98DF6A11C5D211A003943A4 /* WebAppTableViewCell.xib in Resources */,
+				689CE60F1D617EA600C6F73E /* GradeCheckViewController.xib in Resources */,
 				E98ACE251C4039BC0012C762 /* HomeToolsCell.xib in Resources */,
+				6850AA521D6353CF000A1056 /* PartyComplainViewController.xib in Resources */,
 				E90C139C1CAF74F700E1F353 /* HomeToolsCollectionViewCell.xib in Resources */,
 				E9D744061BF9AE38005F2EF9 /* InfoPlist.strings in Resources */,
 				E93701861C5CA97800C87E84 /* LibraryViewController.xib in Resources */,
@@ -1851,6 +1872,7 @@
 				E90105591C3B994E002901AC /* NewsTableViewController.m in Sources */,
 				E92808491D14633200E4380D /* StudySearchDataManager.swift in Sources */,
 				B1C4F6541D543DD0000CD0D8 /* (null) in Sources */,
+				6850AA561D63798C000A1056 /* PersonalStatusLabel.swift in Sources */,
 				B1C4F6521D543DD0000CD0D8 /* (null) in Sources */,
 				B113C6E91D57A2500072726F /* BicycleServiceMapController.swift in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
@@ -1870,6 +1892,7 @@
 				686F71461D5F0916006565BB /* WMScrollView+gesture.m in Sources */,
 				68AD41651D5E11F900695DF4 /* PartyAPI.swift in Sources */,
 				B113C6F11D57A2500072726F /* SpotDetailsView.swift in Sources */,
+				6850AA541D6353E7000A1056 /* PartyComplainViewController.swift in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
 				B13FE1511D59B96100B498B1 /* Courses.swift in Sources */,
@@ -1890,6 +1913,7 @@
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				68A78FEA1D5B26DF002BAFCF /* timeStampTransfer.swift in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
+				689CE6131D6180E500C6F73E /* GradeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

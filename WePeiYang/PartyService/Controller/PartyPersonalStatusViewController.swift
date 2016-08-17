@@ -10,12 +10,526 @@ import Foundation
 
 class PartyPersonalStatusViewController: UIViewController {
     
+    @IBOutlet var mainScrollView: UIScrollView!
+    
+    var label1 = PersonalStatusLabel()
+    var label2 = PersonalStatusLabel()
+    var label3 = PersonalStatusLabel()
+    var label4 = PersonalStatusLabel()
+    var label5 = PersonalStatusLabel()
+    var label6 = PersonalStatusLabel()
+    var label7 = PersonalStatusLabel()
+    var label8 = PersonalStatusLabel()
+    var label9 = PersonalStatusLabel()
+    var label10 = PersonalStatusLabel()
+    var label11 = PersonalStatusLabel()
+    var label12 = PersonalStatusLabel()
+    var label13 = PersonalStatusLabel()
+    var label14 = PersonalStatusLabel()
+    var label15 = PersonalStatusLabel()
+    var label16 = PersonalStatusLabel()
+    var label17 = PersonalStatusLabel()
+    var label18 = PersonalStatusLabel()
+    var label19 = PersonalStatusLabel()
+    var label20 = PersonalStatusLabel()
+    var label21 = PersonalStatusLabel()
+    var label22 = PersonalStatusLabel()
+    var label23 = PersonalStatusLabel()
+    var label24 = PersonalStatusLabel()
+    var label25 = PersonalStatusLabel()
+    var label26 = PersonalStatusLabel()
+    var label27 = PersonalStatusLabel()
+    var label28 = PersonalStatusLabel()
+    var label29 = PersonalStatusLabel()
+    var label30 = PersonalStatusLabel()
+    var label31 = PersonalStatusLabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initUI()
+        
+        Applicant.sharedInstance.getPersonalStatus({
+            self.updateUI()
+        })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.view.frame.size.width = (UIApplication.sharedApplication().keyWindow?.frame.size.width)!
+        
+        //NavigationBar 的文字
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        
+        //NavigationBar 的背景，使用了View
+        self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        
+        view.backgroundColor = partyRed
+        self.view.addSubview(view)
+        
+        //改变 statusBar 颜色
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        
+        //改变背景颜色
+        mainScrollView.backgroundColor = UIColor(colorLiteralRed: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+    }
+        
+    //MARK: 劳资真的要死了，劳资已经疯了
+    //TODO: 重构成数组,循环
+    //疯狂烧性能 (?)
+    func initUI() {
+    
+        mainScrollView.contentSize = CGSize(width:(UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 944)
+        
+        /*let scrollView1 = UIScrollView(frame: CGRectMake(-287.5, 48, 932, 164))
+        mainScrollView.addSubview(scrollView1)
+        let scrollView2 = UIScrollView(frame: CGRectMake(-287.5, 572, 932, 164))
+        mainScrollView.addSubview(scrollView2)*/
+        print((UIApplication.sharedApplication().keyWindow?.frame.size.width)!)
+        
+        //MARK: 这样做不太好，用了奇怪的数，其实也不是很奇怪啦
+        let strangeNumber = (932-(UIApplication.sharedApplication().keyWindow?.frame.size.width)!)/2.0
+
+        let scrollView1 = UIScrollView()
+        scrollView1.contentSize = CGSize(width: 932, height: 164)
+        scrollView1.setContentOffset(CGPointMake(strangeNumber, 0), animated: true)
+        mainScrollView.addSubview(scrollView1)
+        let scrollView2 = UIScrollView()
+        scrollView2.contentSize = CGSize(width: 932, height: 164)
+        scrollView2.setContentOffset(CGPointMake(strangeNumber, 0), animated: true)
+        mainScrollView.addSubview(scrollView2)
+        
+        
+        label1 = PersonalStatusLabel(title: "递交入党申请书", status: 0)
+        mainScrollView.addSubview(label1)
+        label2 = PersonalStatusLabel(title: "网上党校学习", status: 0)
+        scrollView1.addSubview(label2)
+        label3 = PersonalStatusLabel(title: "结业考试", status: 0)
+        scrollView1.addSubview(label3)
+        label4 = PersonalStatusLabel(title: "院级积极分子党校学习", status: 0)
+        scrollView1.addSubview(label4)
+        label5 = PersonalStatusLabel(title: "递交第一季度思想汇报", status: 0)
+        scrollView1.addSubview(label5)
+        label6 = PersonalStatusLabel(title: "递交第二季度思想汇报", status: 0)
+        scrollView1.addSubview(label6)
+        label7 = PersonalStatusLabel(title: "递交第三季度思想汇报", status: 0)
+        scrollView1.addSubview(label7)
+        label8 = PersonalStatusLabel(title: "递交第四季度思想汇报", status: 0)
+        scrollView1.addSubview(label8)
+        label9 = PersonalStatusLabel(title: "参加学习人申请小组", status: 0)
+        scrollView1.addSubview(label9)
+        label10 = PersonalStatusLabel(title: "被确认为积极分子", status: 0)
+        scrollView1.addSubview(label10)
+        label11 = PersonalStatusLabel(title: "团支部推优", status: 0)
+        scrollView1.addSubview(label11)
+        label12 = PersonalStatusLabel(title: "经支委会同意准备成为发展对象", status: 0)
+        mainScrollView.addSubview(label12)
+        label13 = PersonalStatusLabel(title: "参加集中培训", status: 0)
+        mainScrollView.addSubview(label13)
+        label14 = PersonalStatusLabel(title: "入党材料准备齐全", status: 0)
+        mainScrollView.addSubview(label14)
+        label15 = PersonalStatusLabel(title: "支部向上级汇报", status: 0)
+        mainScrollView.addSubview(label15)
+        label16 = PersonalStatusLabel(title: "党员发展公示", status: 0)
+        mainScrollView.addSubview(label16)
+        label17 = PersonalStatusLabel(title: "填写入党志愿书", status: 0)
+        mainScrollView.addSubview(label17)
+        label18 = PersonalStatusLabel(title: "召开发展大会，党支部表决", status: 0)
+        mainScrollView.addSubview(label18)
+        label19 = PersonalStatusLabel(title: "党委谈话，审批", status: 0)
+        mainScrollView.addSubview(label19)
+        label20 = PersonalStatusLabel(title: "成为预备党员", status: 0)
+        mainScrollView.addSubview(label20)
+        label21 = PersonalStatusLabel(title: "完成预备党员党校学习", status: 0)
+        scrollView2.addSubview(label21)
+        label22 = PersonalStatusLabel(title: "递交第一季度个人小结", status: 0)
+        scrollView2.addSubview(label22)
+        label23 = PersonalStatusLabel(title: "递交第二季度个人小结", status: 0)
+        scrollView2.addSubview(label23)
+        label24 = PersonalStatusLabel(title: "递交第三季度个人小结", status: 0)
+        scrollView2.addSubview(label24)
+        label25 = PersonalStatusLabel(title: "递交第四季度个人小结", status: 0)
+        scrollView2.addSubview(label25)
+        label26 = PersonalStatusLabel(title: "参加党支部组织活动", status: 0)
+        scrollView2.addSubview(label26)
+        label27 = PersonalStatusLabel(title: "递交转正申请", status: 0)
+        mainScrollView.addSubview(label27)
+        label28 = PersonalStatusLabel(title: "党员转正公示", status: 0)
+        mainScrollView.addSubview(label28)
+        label29 = PersonalStatusLabel(title: "党员转正召开大会，表决通过", status: 0)
+        mainScrollView.addSubview(label29)
+        label30 = PersonalStatusLabel(title: "党委审批", status: 0)
+        mainScrollView.addSubview(label30)
+        label31 = PersonalStatusLabel(title: "成为中共正式党员", status: 0)
+        mainScrollView.addSubview(label31)
+        
+        
+        scrollView1.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.top.equalTo(label1.snp_bottom).offset(8)
+            make.width.equalTo(mainScrollView)
+            make.height.equalTo(164)
+        }
+        scrollView2.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.top.equalTo(label20.snp_bottom).offset(8)
+            make.width.equalTo(mainScrollView)
+            make.height.equalTo(164)
+        }
+        
+        
+        
+        label1.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(mainScrollView.snp_top).offset(8)
+            
+        }
+        label2.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.right.equalTo(label5.snp_left).offset(-8)
+            make.top.equalTo(scrollView1.snp_top).offset(8)
+
+        }
+        label3.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.right.equalTo(label5.snp_left).offset(-8)
+            make.top.equalTo(label2.snp_bottom).offset(8)
+        }
+        label4.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.right.equalTo(label5.snp_left).offset(-8)
+            make.top.equalTo(label3.snp_bottom).offset(8)
+        }
+        label5.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView1).offset(strangeNumber)
+            make.top.equalTo(scrollView1.snp_top).offset(8)
+        }
+        label6.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView1).offset(strangeNumber)
+            make.top.equalTo(label5.snp_bottom).offset(8)
+        }
+        label7.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView1).offset(strangeNumber)
+            make.top.equalTo(label6.snp_bottom).offset(8)
+        }
+        label8.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView1).offset(strangeNumber)
+            make.top.equalTo(label7.snp_bottom).offset(8)
+        }
+        label9.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(scrollView1.snp_top).offset(8)
+            make.left.equalTo(label5.snp_right).offset(8)
+        }
+        label10.snp_makeConstraints {
+            make in
+            make.width.equalTo(146)
+            make.height.equalTo(30)
+            make.top.equalTo(label9.snp_bottom).offset(8)
+            make.left.equalTo(label5.snp_right).offset(8)
+        }
+        label11.snp_makeConstraints {
+            make in
+            make.width.equalTo(146)
+            make.height.equalTo(30)
+            make.top.equalTo(label9.snp_bottom).offset(8)
+            make.left.equalTo(label10.snp_right).offset(8)
+        }
+        label12.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(scrollView1.snp_bottom).offset(8)
+        }
+        label13.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label12.snp_bottom).offset(8)
+        }
+        label14.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label13.snp_bottom).offset(8)
+            
+        }
+        label15.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label14.snp_bottom).offset(8)
+
+            
+        }
+        label16.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label15.snp_bottom).offset(8)
+            
+
+        }
+        label17.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label16.snp_bottom).offset(8)
+            
+
+        }
+        label18.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label17.snp_bottom).offset(8)
+            
+
+        }
+        label19.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label18.snp_bottom).offset(8)
+
+        }
+        label20.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label19.snp_bottom).offset(8)
+            
+
+        }
+        label21.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerY.equalTo(scrollView2)
+            make.right.equalTo(label22.snp_left).offset(-8)
+            
+        }
+        label22.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView2).offset(strangeNumber)
+            make.top.equalTo(scrollView2.snp_top).offset(8)
+            
+        }
+        label23.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView2).offset(strangeNumber)
+            make.top.equalTo(label22.snp_bottom).offset(8)
+            
+        }
+        label24.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView2).offset(strangeNumber)
+            make.top.equalTo(label23.snp_bottom).offset(8)
+            
+        }
+        label25.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerX.equalTo(scrollView2).offset(strangeNumber)
+            make.top.equalTo(label24.snp_bottom).offset(8)
+            
+        }
+        label26.snp_makeConstraints {
+            make in
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.centerY.equalTo(scrollView2)
+            make.left.equalTo(label22.snp_right).offset(8)
+        }
+        label27.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(scrollView2.snp_bottom).offset(8)
+
+        }
+        label28.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label27.snp_bottom).offset(8)
+
+        }
+        label29.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label28.snp_bottom).offset(8)
+
+        }
+        label30.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label29.snp_bottom).offset(8)
+
+        }
+        label31.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(mainScrollView)
+            make.width.equalTo(300)
+            make.height.equalTo(30)
+            make.top.equalTo(label30.snp_bottom).offset(8)
+
+        }
+        
+    }
+    
+    func updateUI() {
+        print(Applicant.sharedInstance.personalStatus)
+        
+        var dict = Applicant.sharedInstance.personalStatus[0]
+        label1.status = dict.objectForKey("status") as? Int
+        label1.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[1]
+        label2.status = dict.objectForKey("status") as? Int
+        label2.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[2]
+        label3.status = dict.objectForKey("status") as? Int
+        label3.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[3]
+        label4.status = dict.objectForKey("status") as? Int
+        label4.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[4]
+        label5.status = dict.objectForKey("status") as? Int
+        label5.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[5]
+        label6.status = dict.objectForKey("status") as? Int
+        label6.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[6]
+        label7.status = dict.objectForKey("status") as? Int
+        label7.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[7]
+        label8.status = dict.objectForKey("status") as? Int
+        label8.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[8]
+        label9.status = dict.objectForKey("status") as? Int
+        label9.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[9]
+        label10.status = dict.objectForKey("status") as? Int
+        label10.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[10]
+        label11.status = dict.objectForKey("status") as? Int
+        label11.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[11]
+        label12.status = dict.objectForKey("status") as? Int
+        label12.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[12]
+        label13.status = dict.objectForKey("status") as? Int
+        label13.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[13]
+        label14.status = dict.objectForKey("status") as? Int
+        label14.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[14]
+        label15.status = dict.objectForKey("status") as? Int
+        label15.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[15]
+        label16.status = dict.objectForKey("status") as? Int
+        label16.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[16]
+        label17.status = dict.objectForKey("status") as? Int
+        label17.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[17]
+        label18.status = dict.objectForKey("status") as? Int
+        label18.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[18]
+        label19.status = dict.objectForKey("status") as? Int
+        label19.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[19]
+        label20.status = dict.objectForKey("status") as? Int
+        label20.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[20]
+        label21.status = dict.objectForKey("status") as? Int
+        label21.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[21]
+        label22.status = dict.objectForKey("status") as? Int
+        label22.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[22]
+        label23.status = dict.objectForKey("status") as? Int
+        label23.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[23]
+        label24.status = dict.objectForKey("status") as? Int
+        label24.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[24]
+        label25.status = dict.objectForKey("status") as? Int
+        label25.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[25]
+        label26.status = dict.objectForKey("status") as? Int
+        label26.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[26]
+        label27.status = dict.objectForKey("status") as? Int
+        label27.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[27]
+        label28.status = dict.objectForKey("status") as? Int
+        label28.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[28]
+        label29.status = dict.objectForKey("status") as? Int
+        label29.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[29]
+        label30.status = dict.objectForKey("status") as? Int
+        label30.showStatus()
+        dict = Applicant.sharedInstance.personalStatus[30]
+        label31.status = dict.objectForKey("status") as? Int
+        label31.showStatus()
+        
+        
+        
+    }
+    
 }
