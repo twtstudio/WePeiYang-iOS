@@ -1,14 +1,14 @@
 //
-//  CourseTableViewCell.swift
+//  TextTableViewCell.swift
 //  WePeiYang
 //
-//  Created by Allen X on 8/16/16.
+//  Created by Allen X on 8/17/16.
 //  Copyright © 2016 Qin Yubo. All rights reserved.
 //
 
 import UIKit
 
-class CourseTableViewCell: UITableViewCell {
+class TextTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,12 +23,11 @@ class CourseTableViewCell: UITableViewCell {
 
 }
 
-extension CourseTableViewCell {
-    convenience init(course: Courses.Study20) {
-
+extension TextTableViewCell {
+    convenience init(text: Courses.StudyText) {
         self.init()
         
-        let nameLabel = UILabel(text: course.courseName)
+        let nameLabel = UILabel(text: text.fileTitle!)
         let tapToSeeDetailLabel = UILabel(text: "查看详情")
         nameLabel.font = UIFont.boldSystemFontOfSize(14.0)
         tapToSeeDetailLabel.font = UIFont.boldSystemFontOfSize(14.0)
@@ -39,16 +38,15 @@ extension CourseTableViewCell {
         tapToSeeDetailLabel.snp_makeConstraints {
             make in
             make.right.equalTo(contentView).offset(-14)
-            make.centerY.equalTo(contentView.snp_top).offset(22)
+            make.centerY.equalTo(contentView)
         }
         
         contentView.addSubview(nameLabel)
         nameLabel.snp_makeConstraints {
             make in
             make.left.equalTo(contentView).offset(14)
-            make.centerY.equalTo(contentView.snp_top).offset(22)
+            make.centerY.equalTo(contentView)
             make.right.lessThanOrEqualTo(tapToSeeDetailLabel.snp_left).offset(-20)
         }
-       
     }
 }

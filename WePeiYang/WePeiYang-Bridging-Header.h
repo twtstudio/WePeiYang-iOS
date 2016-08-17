@@ -22,6 +22,7 @@
 #import "BicycleServiceViewController.h"
 #import "PartyScoreViewController.h"
 #import "PartyCoursesViewController.h"
+#import "WXWaveView.h"
 
 #import "twtSDK.h"
 #import "twtSecretKeys.h"

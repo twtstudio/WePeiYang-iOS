@@ -10,7 +10,7 @@ import UIKit
 
 class TwentyCourseDetailViewController: UITableViewController {
 
-    var detailList: [Courses.Study20.Study20Course.Detail?] = []
+    var detailList: [Courses.Study20.Detail?] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +128,7 @@ class TwentyCourseDetailViewController: UITableViewController {
 }
 
 extension TwentyCourseDetailViewController {
-    convenience init(details: [Courses.Study20.Study20Course.Detail?]) {
+    convenience init(details: [Courses.Study20.Detail?]) {
         
         self.init()
         self.detailList = details
