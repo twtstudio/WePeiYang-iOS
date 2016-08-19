@@ -102,6 +102,7 @@ class PartyPersonalStatusViewController: UIViewController {
         
         //MARK: 这样做不太好，用了奇怪的数，其实也不是很奇怪啦
         let strangeNumber = (932-(UIApplication.sharedApplication().keyWindow?.frame.size.width)!)/2.0
+        
 
         let scrollView1 = UIScrollView()
         scrollView1.contentSize = CGSize(width: 932, height: 164)
@@ -112,6 +113,21 @@ class PartyPersonalStatusViewController: UIViewController {
         scrollView2.setContentOffset(CGPointMake(strangeNumber, 0), animated: true)
         mainScrollView.addSubview(scrollView2)
         
+        /*let leftArrowView = UIImageView(imageName: "ic_chevron_left", desiredSize: CGSize(width: 30, height: 30))
+        mainScrollView.addSubview(leftArrowView!)
+        let rightArrowView = UIImageView(imageName: "ic_chevron_right", desiredSize: CGSize(width: 30, height: 30))
+        mainScrollView.addSubview(rightArrowView!)
+        
+        leftArrowView?.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(scrollView1.snp_centerY)
+            make.left.equalTo(mainScrollView).offset(8)
+        }
+        rightArrowView?.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(scrollView1.snp_centerY)
+            make.right.equalTo(mainScrollView).offset(-8)
+        }*/
         
         label1 = PersonalStatusLabel(title: "递交入党申请书", status: 0)
         mainScrollView.addSubview(label1)
