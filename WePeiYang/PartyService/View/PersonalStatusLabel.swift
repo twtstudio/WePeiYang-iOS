@@ -11,7 +11,7 @@ import Foundation
 class PersonalStatusLabel: UILabel{
     
     var status: Int? //0 for waiting, 1 for doing, 2 for done
-    var borderView: UIView?
+    var borderView: UIImageView?
     var cornerView: UIImageView?
     
     
@@ -55,16 +55,30 @@ class PersonalStatusLabel: UILabel{
         cornerView?.alpha = 0
         self.addSubview(cornerView!)
         
+        borderView = UIImageView(frame: self.bounds)
+        borderView?.alpha = 0
+        self.addSubview(borderView!)
+        
         if self.status == 0 {
+            borderView?.image = UIImage(named: "grayBorder")
+            
+            UIView.animateWithDuration(0.5, animations: {
+                self.borderView?.alpha = 1
+            })
             
         } else if self.status == 1 {
+            borderView?.image = UIImage(named: "redBorder")
+            
             UIView.animateWithDuration(0.5, animations: {
+                self.borderView?.alpha = 1
                 self.textColor = UIColor.redColor()
             })
         } else if self.status == 2 {
+            borderView?.image = UIImage(named: "greenBorder")
             
             UIView.animateWithDuration(0.5, animations: {
                 self.cornerView?.alpha = 1
+                self.borderView?.alpha = 1
                 self.textColor = UIColor.greenColor()
             })
         }

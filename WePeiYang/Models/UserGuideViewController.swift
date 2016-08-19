@@ -17,7 +17,7 @@ class UserGuideViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     private var scrollView: UIScrollView!
-    private let numberOfPages = 3
+    private let numberOfPages = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class UserGuideViewController: UIViewController {
 
         scrollView.delegate = self
         
-        for page in 0 ..< numberOfPages {
+        for page in 3 ..< numberOfPages {
             var imageView = UIImageView()
             imageView = UIImageView(image: UIImage(named: "guide\(page + 1)"))
             imageView.frame = CGRect(x: frame.size.width * CGFloat(page), y: 0, width: frame.size.width, height: frame.size.height)

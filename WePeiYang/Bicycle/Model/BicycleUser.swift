@@ -48,6 +48,8 @@ class BicycleUser: NSObject {
                 }
                 
                 MsgDisplay.dismiss()
+                
+                
                 let dict = dic?.objectForKey("data") as? NSDictionary
                 self.status = dict?.objectForKey("status") as? NSNumber
                 self.version = dict?.objectForKey("version") as? NSNumber
