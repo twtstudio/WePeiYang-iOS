@@ -27,10 +27,10 @@ class BicycleNotificationDetailViewController: UIViewController{
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
     
-        view.backgroundColor = UIColor(colorLiteralRed: 0.0/255.0, green: 174.0/255.0, blue: 101.0/255.0, alpha: 1.0)
-        self.view.addSubview(view)
+        bgView.backgroundColor = UIColor(colorLiteralRed: 0.0/255.0, green: 174.0/255.0, blue: 101.0/255.0, alpha: 1.0)
+        self.view.addSubview(bgView)
         
         //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)

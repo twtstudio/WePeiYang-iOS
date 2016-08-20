@@ -35,10 +35,10 @@ class GradeDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         
-        view.backgroundColor = partyRed
-        self.view.addSubview(view)
+        bgView.backgroundColor = partyRed
+        self.view.addSubview(bgView)
         
         //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)

@@ -138,7 +138,21 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //delegate of chartView
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt) {
-        self.infoLabel.text = "\(BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]):00  骑行时间：\(BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1])s"
+        let time = Int((BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1]))
+        let currentTime = Int((BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]))
+        var minute: Int
+        var second: Int
+        if time >= 60 {
+            minute = time / 60
+            second = time % 60
+            if second < 10 {
+                self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(minute):0\(second)"
+            } else {
+                self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(minute):\(second)"
+            }
+        } else {
+            self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(time)s"
+        }
     }
     
     //dataSource of tableView

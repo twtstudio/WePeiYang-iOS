@@ -33,7 +33,7 @@ class UserGuideViewController: UIViewController {
 
         scrollView.delegate = self
         
-        for page in 3 ..< numberOfPages {
+        for page in 0 ..< numberOfPages {
             var imageView = UIImageView()
             imageView = UIImageView(image: UIImage(named: "guide\(page + 1)"))
             imageView.frame = CGRect(x: frame.size.width * CGFloat(page), y: 0, width: frame.size.width, height: frame.size.height)
