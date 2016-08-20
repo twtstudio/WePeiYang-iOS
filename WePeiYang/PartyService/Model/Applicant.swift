@@ -44,6 +44,9 @@ class Applicant: NSObject {
             self.realName = dic?.objectForKey("realname") as? String
             self.studentNumber = dic?.objectForKey("studentid") as? String
             
+            NSUserDefaults.standardUserDefaults().setObject(self.studentNumber, forKey: "studentID")
+            NSUserDefaults.standardUserDefaults().setObject(self.realName, forKey: "studentName")
+            log.word("registered!")/
             success()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
