@@ -46,6 +46,18 @@ class TwentyCourseDetailViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        for foo in tableView.subviews {
+            if foo.isKindOfClass(CourseDetailReadingView) {
+                foo.removeFromSuperview()
+            }
+        }
+        
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

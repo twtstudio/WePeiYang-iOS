@@ -64,6 +64,9 @@
 		B13FE1511D59B96100B498B1 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE14E1D59B96100B498B1 /* Courses.swift */; };
 		B13FE15E1D59B9FA00B498B1 /* PartyMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */; };
 		B15C09E21D64ADB000A84B00 /* WXWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B15C09E11D64ADB000A84B00 /* WXWaveView.m */; };
+		B15C09E41D6581E900A84B00 /* PartySignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C09E31D6581E900A84B00 /* PartySignUpViewController.swift */; };
+		B15C09E61D65860F00A84B00 /* ApplicantTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C09E51D65860F00A84B00 /* ApplicantTest.swift */; };
+		B15C09EA1D66F08B00A84B00 /* SignUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C09E91D66F08B00A84B00 /* SignUpTableViewCell.swift */; };
 		B184BDCC1D6358E600E27971 /* TwentyCourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDCB1D6358E600E27971 /* TwentyCourseDetailViewController.swift */; };
 		B184BDCE1D635B5700E27971 /* CourseDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDCD1D635B5700E27971 /* CourseDetailTableViewCell.swift */; };
 		B184BDD21D6372EA00E27971 /* CourseDetailReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B184BDD11D6372EA00E27971 /* CourseDetailReadingView.swift */; };
@@ -316,6 +319,9 @@
 		B13FE15D1D59B9FA00B498B1 /* PartyMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyMainViewController.swift; sourceTree = "<group>"; };
 		B15C09E01D64ADB000A84B00 /* WXWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWaveView.h; sourceTree = "<group>"; };
 		B15C09E11D64ADB000A84B00 /* WXWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXWaveView.m; sourceTree = "<group>"; };
+		B15C09E31D6581E900A84B00 /* PartySignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartySignUpViewController.swift; sourceTree = "<group>"; };
+		B15C09E51D65860F00A84B00 /* ApplicantTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicantTest.swift; sourceTree = "<group>"; };
+		B15C09E91D66F08B00A84B00 /* SignUpTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTableViewCell.swift; sourceTree = "<group>"; };
 		B184BDCB1D6358E600E27971 /* TwentyCourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwentyCourseDetailViewController.swift; sourceTree = "<group>"; };
 		B184BDCD1D635B5700E27971 /* CourseDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailTableViewCell.swift; sourceTree = "<group>"; };
 		B184BDD11D6372EA00E27971 /* CourseDetailReadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailReadingView.swift; sourceTree = "<group>"; };
@@ -720,6 +726,7 @@
 			children = (
 				68AD41641D5E11F900695DF4 /* PartyAPI.swift */,
 				B13FE14D1D59B96100B498B1 /* Applicant.swift */,
+				B15C09E51D65860F00A84B00 /* ApplicantTest.swift */,
 				B13FE14E1D59B96100B498B1 /* Courses.swift */,
 			);
 			path = Model;
@@ -733,6 +740,7 @@
 				B1EF110E1D62F91000DFF681 /* PartyCoursesViewController.m */,
 				B184BDD31D6438AD00E27971 /* TwentyCourseViewController.swift */,
 				B184BDCB1D6358E600E27971 /* TwentyCourseDetailViewController.swift */,
+				B15C09E31D6581E900A84B00 /* PartySignUpViewController.swift */,
 				B1EF11121D62FBDD00DFF681 /* TheoryClassicsTableViewController.swift */,
 				686F71471D5F0A29006565BB /* PartyPersonalStatusViewController.swift */,
 				6873D6321D60BAEB004E6841 /* PartyScoreViewController.h */,
@@ -750,6 +758,7 @@
 			children = (
 				B15C09E01D64ADB000A84B00 /* WXWaveView.h */,
 				B15C09E11D64ADB000A84B00 /* WXWaveView.m */,
+				B15C09E91D66F08B00A84B00 /* SignUpTableViewCell.swift */,
 				B1EF11141D630A1700DFF681 /* CourseTableViewCell.swift */,
 				B184BDCD1D635B5700E27971 /* CourseDetailTableViewCell.swift */,
 				B184BDD51D64435B00E27971 /* TextTableViewCell.swift */,
@@ -1910,12 +1919,14 @@
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
 				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
 				B13FE1511D59B96100B498B1 /* Courses.swift in Sources */,
+				B15C09EA1D66F08B00A84B00 /* SignUpTableViewCell.swift in Sources */,
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
 				68127A651D60C7B5004EF43D /* TwentyCourseScoreViewController.swift in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */,
 				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
+				B15C09E61D65860F00A84B00 /* ApplicantTest.swift in Sources */,
 				B13FE1501D59B96100B498B1 /* Applicant.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,
@@ -1924,6 +1935,7 @@
 				E901055B1C3B994E002901AC /* NewsTableViewCell.m in Sources */,
 				B113C6EA1D57A2500072726F /* BicycleServiceNotificationController.swift in Sources */,
 				E90105581C3B994E002901AC /* NewsContentViewController.m in Sources */,
+				B15C09E41D6581E900A84B00 /* PartySignUpViewController.swift in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				68A78FEA1D5B26DF002BAFCF /* timeStampTransfer.swift in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
