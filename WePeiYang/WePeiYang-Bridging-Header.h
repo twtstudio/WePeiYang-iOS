@@ -19,6 +19,8 @@
 #import "WebAppViewController.h"
 #import "UIViewController+Utils.h"
 
+#import <pop/POP.h>
+
 #import "BicycleServiceViewController.h"
 #import "PartyScoreViewController.h"
 #import "PartyCoursesViewController.h"

@@ -127,14 +127,15 @@ extension BicycleServiceMapController: MKMapViewDelegate {
             let annotationIdentifier = "AnnotationIdentifier"
             if let dequeuedView = newMapView.dequeueReusableAnnotationViewWithIdentifier(annotationIdentifier) {
                 
-                log.word("Reused AnnotationView!")/
+                //log.word("Reused AnnotationView!")/
                 return dequeuedView
             } else {
                 
-                let fooAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-                fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
+                //let fooAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+                //fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "大点位")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
+                let fooAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
                 fooAnnotationView.canShowCallout = false
-                log.word("Created New AnnotationView")/
+                //log.word("Created New AnnotationView")/
                 return fooAnnotationView
             }
         } else {
@@ -142,14 +143,14 @@ extension BicycleServiceMapController: MKMapViewDelegate {
             let userPinIdentifier = "UserPinIdentifier"
             if let dequeuedView = newMapView.dequeueReusableAnnotationViewWithIdentifier(userPinIdentifier) {
 
-                log.word("Reused UserPinView!")/
+                //log.word("Reused UserPinView!")/
                 return dequeuedView
             } else {
                 
                 let fooAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: userPinIdentifier)
                 fooAnnotationView.image = UIImage.resizedImage(UIImage(named: "小箭头")!, scaledToSize: CGSize(width: 25.0, height: 25.0))
                 fooAnnotationView.canShowCallout = false
-                log.word("Created New UserPinView!")/
+                //log.word("Created New UserPinView!")/
                 return fooAnnotationView
             }
             

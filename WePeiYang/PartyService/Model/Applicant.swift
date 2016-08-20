@@ -204,7 +204,4 @@ class Applicant: NSObject {
     
     
     
-    
-    
-    
 }

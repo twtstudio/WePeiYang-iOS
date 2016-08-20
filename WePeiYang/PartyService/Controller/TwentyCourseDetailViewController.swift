@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import pop
 
 class TwentyCourseDetailViewController: UITableViewController {
 
@@ -15,6 +16,8 @@ class TwentyCourseDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Eliminate the empty cells
+        tableView.tableFooterView = UIView()
         
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
         
@@ -47,14 +50,13 @@ class TwentyCourseDetailViewController: UITableViewController {
     }
 
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        for foo in tableView.subviews {
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+        for foo in navigationController!.view.subviews {
             if foo.isKindOfClass(CourseDetailReadingView) {
                 foo.removeFromSuperview()
             }
         }
-        
     }
     
     
@@ -84,8 +86,12 @@ class TwentyCourseDetailViewController: UITableViewController {
 
         let readingView = CourseDetailReadingView(detail: detailList[indexPath.row]!)
         
-        //UIView.beginAnimations("", context: <#T##UnsafeMutablePointer<Void>#>)
+        self.navigationController?.view.addSubview(readingView)
+        animate(to: readingView)
         
+        
+        //UIView.beginAnimations("", context: UnsafeMutablePointer<Void>)
+        /*
         UIView.animateWithDuration(0.5, animations: {
             readingView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.bounds.height)
         }) { (_: Bool) in
@@ -98,7 +104,8 @@ class TwentyCourseDetailViewController: UITableViewController {
                     make.right.equalTo(self.view)
                 }
 
-        }
+        }*/
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
     
@@ -155,5 +162,18 @@ extension TwentyCourseDetailViewController {
         self.init()
         self.detailList = details
 
+    }
+}
+
+extension TwentyCourseDetailViewController {
+    func animate(to Who: UIView) {
+        
+        let anim = POPSpringAnimation(propertyNamed: kPOPViewBounds)
+        anim.fromValue = NSValue(CGRect: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width * 0.85, height: self.view.bounds.height))
+        anim.toValue = NSValue(CGRect: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        anim.velocity = NSValue(CGPoint: CGPointMake(8, 8))
+        anim.springBounciness = 20
+        Who.layer.pop_addAnimation(anim, forKey: "readingViewPopOut")
+        
     }
 }

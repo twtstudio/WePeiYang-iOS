@@ -23,7 +23,6 @@ class PartyMainViewController: UIViewController {
                         ["icon": "成绩查询", "desc": "成绩查询"]]
     */
     let titleLabel = UILabel(text: "党建生活", color: .whiteColor())
-    let aTable = UITableView()
     let headerView = UIView(color: partyRed)
     var headerWaveView = WXWaveView()
     
@@ -49,7 +48,7 @@ class PartyMainViewController: UIViewController {
         
         functionTableView.delegate = self
         functionTableView.dataSource = self
-        
+        functionTableView.tableFooterView = UIView()
         
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
         navigationItem.titleView = titleLabel
@@ -127,23 +126,24 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        //考试报名
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case 0:
+            //考试报名
             let signupVC = PartySignUpViewController()
             navigationController?.showViewController(signupVC, sender: nil)
-        }
-        
-        //党课学习
-        if indexPath.row == 1 {
+        case 1:
+            //党课学习
             let courseVC = PartyCoursesViewController()
             navigationController?.showViewController(courseVC, sender: nil)
-        }
-        
-        //成绩查询
-        if indexPath.row == 2 {
+        case 2:
+            //成绩查询
             let personalStatusVC = PartyScoreViewController()
             navigationController?.showViewController(personalStatusVC, sender: nil)
+        default:
+            break
         }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 
@@ -209,7 +209,7 @@ extension PartyMainViewController {
             make.top.equalTo(functionTableView.snp_top).offset(-10)
             make.height.equalTo(10)
         }
-        log.any(CGRectGetHeight(functionTableView.frame))/
+        //log.any(CGRectGetHeight(functionTableView.frame))/
         
     }
 }
