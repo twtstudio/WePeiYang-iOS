@@ -21,7 +21,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "图书馆", image: UIImage(named: "libBtn")!),
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "实验室", image: UIImage(named: "msBtn")!),
-        (title: "自行车", image: UIImage(named: "msBtn")!),
+        (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!)
     ]
     

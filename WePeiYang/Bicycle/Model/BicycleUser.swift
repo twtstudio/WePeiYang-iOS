@@ -41,13 +41,15 @@ class BicycleUser: NSObject {
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
                 let dic = responseObject as? NSDictionary
-                log.obj(dic!)/
+                //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return
                 }
                 
                 MsgDisplay.dismiss()
+                
+                
                 let dict = dic?.objectForKey("data") as? NSDictionary
                 self.status = dict?.objectForKey("status") as? NSNumber
                 self.version = dict?.objectForKey("version") as? NSNumber
@@ -73,7 +75,7 @@ class BicycleUser: NSObject {
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
             
                 let dic = responseObject as? NSDictionary
-                log.obj(dic!)/
+                //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return
@@ -107,7 +109,7 @@ class BicycleUser: NSObject {
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
                 let dic = responseObject as? NSDictionary
-                log.obj(dic!)/
+                //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return
@@ -135,7 +137,7 @@ class BicycleUser: NSObject {
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
                 let dic = responseObject as? NSDictionary
-                log.obj(dic!)/
+                //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return

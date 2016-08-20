@@ -23,10 +23,6 @@ class Applicant: NSObject {
     
     private override init(){}
     
-    func testFunc() {
-        print(self.personalStatus)
-    }
-    
     //TODO: 未完成
     func getStudentNumber(success: Void -> Void) {
         
@@ -133,7 +129,7 @@ class Applicant: NSObject {
     func getGrade(testType: String, doSomething: () -> ()) {
         
         let parameters = ["page": "api", "do": "\(testType)_gradecheck", "sno": studentNumber!]
-        
+
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
         

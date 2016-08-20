@@ -212,7 +212,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             return nil
         }
         
-        log.word("drawing header view")
+        //log.word("drawing header view")
         let view = UIView(frame: CGRect(x: 0, y: 0, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 250))
         
         //chartViewBackground

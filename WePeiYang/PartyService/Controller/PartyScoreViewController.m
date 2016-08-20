@@ -32,8 +32,8 @@
         
         // customization
         self.pageAnimatable = YES;
-        self.titleSizeSelected = 14.0;
-        self.titleSizeNormal = 13.0;
+        self.titleSizeSelected = 13.0;
+        self.titleSizeNormal = 12.0;
         self.menuViewStyle = WMMenuViewStyleLine;
         self.titleColorSelected = [UIColor whiteColor];
         self.titleColorNormal = [UIColor whiteColor];
@@ -63,6 +63,12 @@
     
     //NavigationBar 的文字
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    //titleLabel 设置
+    UILabel *titleLabel = [[UILabel alloc] initWithText:@"成绩查询" fontSize:17];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
     
     //NavigationBar 的背景，使用了View
     self.navigationController.jz_navigationBarBackgroundAlpha = 0;
