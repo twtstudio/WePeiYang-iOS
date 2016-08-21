@@ -79,16 +79,16 @@ extension PartySignUpViewController: UITableViewDelegate, UITableViewDataSource 
         
         switch indexPath.section {
         case 0:
-            let cell = SignUpTableViewCell(status: ApplicantTest.ApplicantEntry.status, message: ApplicantTest.ApplicantEntry.message, testIdentifier: 0)
+            let cell = SignUpTableViewCell(status: ApplicantTest.ApplicantEntry.status, message: ApplicantTest.ApplicantEntry.message, hasEntry: ApplicantTest.ApplicantEntry.testInfo?.hasEntry, testIdentifier: 0)
             cell.selectionStyle = .None
                 return cell
         case 1:
-            let cell = SignUpTableViewCell(status: ApplicantTest.AcademyEntry.status, message: ApplicantTest.AcademyEntry.message, testIdentifier: 1)
+            let cell = SignUpTableViewCell(status: ApplicantTest.AcademyEntry.status, message: ApplicantTest.AcademyEntry.message, hasEntry: ApplicantTest.AcademyEntry.testInfo?.hasEntry, testIdentifier: 1)
             cell.selectionStyle = .None
                 return cell
 
         case 2:
-            let cell = SignUpTableViewCell(status: ApplicantTest.ProbationaryEntry.status, message: ApplicantTest.ProbationaryEntry.message, testIdentifier: 2)
+            let cell = SignUpTableViewCell(status: ApplicantTest.ProbationaryEntry.status, message: ApplicantTest.ProbationaryEntry.message, hasEntry: ApplicantTest.ProbationaryEntry.testInfo?.hasEntry, testIdentifier: 2)
             cell.selectionStyle = .None
             //log.word((ApplicantTest.ProbationaryEntry.message)!)/
             return cell

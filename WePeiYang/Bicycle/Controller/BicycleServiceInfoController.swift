@@ -259,7 +259,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             make.top.equalTo(backgroundView.snp_bottom).offset(8)
         }
         
-        let bicycleIconView = UIImageView(imageName: "ic_motorcycle", desiredSize: CGSize(width: 30, height: 30))
+        let bicycleIconView = UIImageView(imageName: "ic_bike", desiredSize: CGSize(width: 30, height: 30))
         view.addSubview(bicycleIconView!)
         bicycleIconView?.snp_makeConstraints { make in
             make.centerY.equalTo(infoLabel)

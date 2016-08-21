@@ -90,9 +90,17 @@ class TwentyCourseDetailViewController: UITableViewController {
         //animate(to: readingView)
         
         
+        
+        readingView.frame = CGRect(x: 0, y: self.view.frame.height, width: 0, height: self.view.frame.height/4)
+        UIView.beginAnimations("readingViewPopUp", context: nil)
+        UIView.setAnimationDuration(0.6)
+        readingView.frame = self.view.frame
+        UIView.commitAnimations()
+        
+        
         //UIView.beginAnimations("", context: UnsafeMutablePointer<Void>)
         
-        UIView.animateWithDuration(0.5, animations: {
+        /*UIView.animateWithDuration(0.5, animations: {
             readingView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.bounds.height)
         }) { (_: Bool) in
                 self.navigationController?.view.addSubview(readingView)
@@ -104,7 +112,7 @@ class TwentyCourseDetailViewController: UITableViewController {
                     make.right.equalTo(self.view)
                 }
 
-        }
+        }*/
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
@@ -169,11 +177,11 @@ extension TwentyCourseDetailViewController {
     func animate(to Who: UIView) {
         
         let anim = POPSpringAnimation(propertyNamed: kPOPViewBounds)
-        anim.fromValue = NSValue(CGRect: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width * 0.85, height: self.view.bounds.height))
-        anim.toValue = NSValue(CGRect: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
-        anim.velocity = NSValue(CGPoint: CGPointMake(8, 8))
-        anim.springBounciness = 20
-        Who.layer.pop_addAnimation(anim, forKey: "readingViewPopOut")
+        anim.fromValue = NSValue(CGRect: CGRect(x: self.view.frame.width/2, y: self.view.frame.height, width: 0, height: self.view.frame.height/4))
+        anim.toValue = NSValue(CGRect: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
+        anim.springBounciness = 20
+        anim.delegate = self
+        Who.pop_addAnimation(anim, forKey: "readingViewPopup")
     }
 }

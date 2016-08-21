@@ -20,7 +20,7 @@ class CourseDetailReadingView: UIView, UIWebViewDelegate {
     func dismissAnimated() {
         //log.word("haha")/
         UIView.animateWithDuration(0.7, animations: {
-            self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width/4, height: self.frame.height/2)
+            self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
         }) { (_: Bool) in
 
                 self.removeFromSuperview()
@@ -35,11 +35,14 @@ extension CourseDetailReadingView {
         
         let blurEffect = UIBlurEffect(style: .Light)
         let frostView = UIVisualEffectView(effect: blurEffect)
+        let downArrow = UIButton(backgroundImageName: "ic_arrow_down", desiredSize: CGSize(width: 88, height: 24))
+        downArrow?.alpha = 0.25
+        
         self.init()
         //self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         assignGestureRecognizerToView()
-        
+        downArrow?.addTarget(self, action: #selector(self.dismissAnimated), forControlEvents: .TouchUpInside)
         
         self.addSubview(frostView)
         frostView.snp_makeConstraints {
@@ -47,6 +50,13 @@ extension CourseDetailReadingView {
             make.top.left.bottom.right.equalTo(self)
         }
         
+        frostView.addSubview(downArrow!)
+        downArrow!.snp_makeConstraints {
+            make in
+            make.top.equalTo(frostView).offset(28)
+            make.centerX.equalTo(frostView)
+            
+        }
         
         if detail.articleIsHidden == "1" {
             let bannedLabel = UILabel(text: "你暂时没有权限阅读这篇文章", fontSize: 24)
@@ -79,7 +89,7 @@ extension CourseDetailReadingView {
             nameLabel.snp_makeConstraints {
                 make in
                 make.left.equalTo(frostView).offset(24)
-                make.top.equalTo(frostView).offset(30)
+                make.top.equalTo(downArrow!).offset(26)
                 make.right.equalTo(frostView).offset(-28)
             }
             

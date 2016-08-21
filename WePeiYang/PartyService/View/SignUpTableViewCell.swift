@@ -51,9 +51,9 @@ class SignUpTableViewCell: UITableViewCell {
 
 
 extension SignUpTableViewCell {
-    convenience init(status: Int?, message: String?, testIdentifier: Int) {
+    convenience init(status: Int?, message: String?, hasEntry: Int?, testIdentifier: Int) {
         self.init()
-        signUpBtn = UIButton(status: status, identifier: testIdentifier)
+        signUpBtn = UIButton(status: status, hasEntry: hasEntry, identifier: testIdentifier)
         //signUpBtn.bindToFunc()
         
         if status == 1 {
@@ -99,16 +99,24 @@ extension SignUpTableViewCell {
 
 private extension UIButton {
     
-    convenience init(status: Int?, identifier: Int) {
+    convenience init(status: Int?, hasEntry: Int?, identifier: Int) {
         self.init()
+        
         if status != nil && status != 0 {
-            backgroundColor = .greenColor()
-            setTitle("报名", forState: .Normal)
+            if let _ = hasEntry {
+                if hasEntry == 0 {
+                    backgroundColor = .greenColor()
+                    setTitle("报名", forState: .Normal)
+                } else {
+                    backgroundColor = .lightGrayColor()
+                    setTitle("已报名", forState: .Normal)
+                    enabled = false
+                }
+            }
         } else {
             backgroundColor = .lightGrayColor()
             setTitle("报名", forState: .Normal)
             enabled = false
-            
         }
         
         layer.cornerRadius = 8
@@ -121,14 +129,18 @@ private extension UIButton {
     func refreshViewForState() {
         
         var status: Int? = nil
+        var hasEntry: Int? = nil
         
         switch self.tag {
         case 0:
             status = ApplicantTest.ApplicantEntry.status!
+            hasEntry = ApplicantTest.ApplicantEntry.testInfo?.hasEntry
         case 1:
             status = ApplicantTest.AcademyEntry.status!
+            hasEntry = ApplicantTest.AcademyEntry.testInfo?.hasEntry
         case 2:
             status = ApplicantTest.ProbationaryEntry.status!
+            hasEntry = ApplicantTest.ProbationaryEntry.testInfo?.hasEntry
             
         default:
             status = 0
@@ -136,9 +148,18 @@ private extension UIButton {
         }
         
         if status != nil && status != 0 {
-            backgroundColor = .greenColor()
+            if let _ = hasEntry {
+                if hasEntry == 0 {
+                    backgroundColor = .greenColor()
+                } else {
+                    backgroundColor = .lightGrayColor()
+                    setTitle("已报名", forState: .Normal)
+                    enabled = false
+                }
+            }
         } else {
             backgroundColor = .lightGrayColor()
+            enabled = false
         }
     }
     
