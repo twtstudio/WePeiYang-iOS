@@ -220,10 +220,29 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             let loginVC = LoginViewController(nibName: nil, bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         } else {
-        
-            //坑：让后面能自动弹出要求绑定
+            //坑：让后面能自动弹出要求绑定，但是做法不太科学，应改为 Notification
             BicycleUser.sharedInstance.bindCancel = false
-        
+            /*
+            if NSUserDefaults.standardUserDefaults().valueForKey("BicycleToken") != nil {
+                
+                let BicycleExpire = NSUserDefaults.standardUserDefaults().valueForKey("BicycleExpire") as? Int
+                let now = NSDate()
+                let timeInterval: NSTimeInterval = now.timeIntervalSince1970
+                let timeStamp = Int(timeInterval)
+                if timeStamp <= BicycleExpire {
+                    //隐藏tabbar
+                    bikeVC.hidesBottomBarWhenPushed = true;
+                    self.navigationController?.showViewController(bikeVC, sender: nil)
+                } else {
+                    BicycleUser.sharedInstance.auth({
+                        //隐藏tabbar
+                        bikeVC.hidesBottomBarWhenPushed = true;
+                        self.navigationController?.showViewController(bikeVC, sender: nil)
+                    })
+                }
+                
+            } else {
+            }*/
             BicycleUser.sharedInstance.auth({
                 //隐藏tabbar
                 bikeVC.hidesBottomBarWhenPushed = true;
