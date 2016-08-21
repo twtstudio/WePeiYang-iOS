@@ -87,11 +87,11 @@ class TwentyCourseDetailViewController: UITableViewController {
         let readingView = CourseDetailReadingView(detail: detailList[indexPath.row]!)
         
         self.navigationController?.view.addSubview(readingView)
-        animate(to: readingView)
+        //animate(to: readingView)
         
         
         //UIView.beginAnimations("", context: UnsafeMutablePointer<Void>)
-        /*
+        
         UIView.animateWithDuration(0.5, animations: {
             readingView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.bounds.height)
         }) { (_: Bool) in
@@ -104,7 +104,7 @@ class TwentyCourseDetailViewController: UITableViewController {
                     make.right.equalTo(self.view)
                 }
 
-        }*/
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }

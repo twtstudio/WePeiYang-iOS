@@ -56,7 +56,7 @@ class PartyMainViewController: UIViewController {
         anAvatar.layer.cornerRadius = 44
         anAvatar.backgroundColor = UIColor.yellowColor()
         
-        if let foo = Applicant.sharedInstance.realName {
+        if let foo = NSUserDefaults.standardUserDefaults().objectForKey("studentName") as? String {
             aNameLabel = UILabel(text: foo, color: .whiteColor())
         } else {
             aNameLabel = UILabel(text: "获取姓名失败", color: .whiteColor())

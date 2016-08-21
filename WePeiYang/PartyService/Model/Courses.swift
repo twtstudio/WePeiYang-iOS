@@ -103,7 +103,7 @@ struct Courses {
                             let courseIsHidden = dict["course_ishidden"] as? String,
                             let courseIsDeleted = dict["course_isdeleted"] as? String
                         else {
-                            log.word("ah oh")/
+                            //log.word("ah oh")/
                             return nil
                     }
                     //This let declaration is out of guard because `dict["course_detail"]` can be nil and it's OK

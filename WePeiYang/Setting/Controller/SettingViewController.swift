@@ -58,6 +58,8 @@ class SettingViewController: UITableViewController {
         if AccountManager.tokenExists() {
             let alert = UIAlertController(title: "注销", message: "确定要注销吗？", preferredStyle: .ActionSheet)
             let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Destructive, handler: {action in
+                //党建 学号 本地存储
+                NSUserDefaults.standardUserDefaults().removeObjectForKey("studentID")
                 AccountManager.removeToken()
                 wpyCacheManager.removeCacheDataForKey(GPA_CACHE)
                 wpyCacheManager.removeCacheDataForKey(GPA_USER_NAME_CACHE)

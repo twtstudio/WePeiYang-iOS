@@ -11,8 +11,8 @@ import Foundation
 class Applicant: NSObject {
     
     //FIXME: 还是需要保证数据的正确，再加载UI
-    var realName: String?
-    var studentNumber: String?
+    var realName: String? = NSUserDefaults.standardUserDefaults().objectForKey("studentName") as? String
+    var studentNumber: String? = NSUserDefaults.standardUserDefaults().objectForKey("studentID") as? String
     var personalStatus = [NSDictionary]()
     var scoreOf20Course = [NSDictionary]()
     var applicantGrade = [NSDictionary]()

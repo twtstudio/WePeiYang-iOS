@@ -20,6 +20,7 @@
 #import "UIViewController+Utils.h"
 
 #import <pop/POP.h>
+#import "SpecialEventsAnimator.h"
 
 #import "BicycleServiceViewController.h"
 #import "PartyScoreViewController.h"
