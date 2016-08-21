@@ -56,7 +56,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if app.specialEventsShouldShow == true {
                 
                 self.checkSpecialEvents()
-                log.word("fuckers")/
+                //log.word("fuckers")/
             }
 
         }
@@ -140,7 +140,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if app.specialEventsShouldShow == true {
             
             self.checkSpecialEvents()
-            log.word("fuckers")/
+            //log.word("fuckers")/
         }
     }
     
@@ -412,7 +412,7 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
     private func checkSpecialEvents() {
         
         guard NSUserDefaults.standardUserDefaults().objectForKey("eventsWatched") == nil else {
-            log.word("GODFUCKERS")/
+            //log.word("GODFUCKERS")/
             return
         }
         

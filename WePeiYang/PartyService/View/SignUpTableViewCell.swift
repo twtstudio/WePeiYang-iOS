@@ -43,7 +43,7 @@ class SignUpTableViewCell: UITableViewCell {
         default:
             break
         }
-        log.word("entered func")/
+       // log.word("entered func")/
     }
     
 

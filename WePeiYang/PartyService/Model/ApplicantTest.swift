@@ -37,7 +37,7 @@ struct ApplicantTest {
                     return
                 }
                 
-                log.word("fucking")/
+                //log.word("fucking")/
                 
                 guard responseObject?.objectForKey("status") as? Int == 1 else {
                     guard let msg = responseObject?.objectForKey("msg") as? String else {
@@ -97,7 +97,7 @@ struct ApplicantTest {
         }
         
         static func signUp(forID testID: String, and completion: () -> ()) {
-            log.word("entered signUp")/
+            //log.word("entered signUp")/
             let manager = AFHTTPSessionManager()
             manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
             

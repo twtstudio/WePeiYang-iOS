@@ -30,22 +30,22 @@ class ParkingSpot: NSObject, MKAnnotation {
         
         guard let jsonPath = NSBundle.mainBundle().pathForResource("ParkingSpotsLocs", ofType: "json") else {
             //Do fetch JSON file from the server
-            log.word("fuck1")/
+            //log.word("fuck1")/
             return nil
         }
         
         guard let jsonData = NSData(contentsOfFile: jsonPath) else {
-            log.word("fuck2")/
+            //log.word("fuck2")/
             return nil
         }
         
         guard let jsonObj = (try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers))! as? NSDictionary else {
-            log.word("fuck3")/
+            //log.word("fuck3")/
             return nil
         }
         
         guard let arr = jsonObj["data"] as? Array<NSDictionary> else {
-            log.word("fuck4")/
+            //log.word("fuck4")/
             return nil
         }
         
@@ -58,7 +58,7 @@ class ParkingSpot: NSObject, MKAnnotation {
          let latitude_c = dict["lat_c"] as? Double,
          let longtitude_c = dict["lng_c"] as? Double
          else {
-         log.word("fuck5")/
+         //log.word("fuck5")/
          return nil
          }
          let coordinate = CLLocationCoordinate2D(latitude: latitude_c, longitude: longtitude_c)

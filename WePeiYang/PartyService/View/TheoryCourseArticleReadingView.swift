@@ -18,7 +18,7 @@ class TheoryCourseArticleReadingView: UIView, UIWebViewDelegate {
      }
      */
     func dismissAnimated() {
-        log.word("haha")/
+        //log.word("haha")/
         UIView.animateWithDuration(0.7, animations: {
             self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width/4, height: self.frame.height/2)
         }) { (_: Bool) in

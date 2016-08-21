@@ -127,7 +127,7 @@ class BicycleUser: NSObject {
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
                 let dic = responseObject as? NSDictionary
-                log.obj(dic!)/
+                //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return

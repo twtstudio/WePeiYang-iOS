@@ -68,7 +68,7 @@ class TwentyCourseDetailViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        log.word("hi\(detailList.count)")
+        //log.word("hi\(detailList.count)")
         // #warning Incomplete implementation, return the number of rows
         return detailList.count
     }

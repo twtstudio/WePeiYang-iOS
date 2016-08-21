@@ -106,7 +106,7 @@ extension BicycleServiceMapController {
             make.bottom.equalTo(view)
         }
         
-        whereAmI.alpha = 0.8
+        whereAmI.alpha = 0.7
         newMapView.addSubview(whereAmI)
         whereAmI.snp_makeConstraints {
             make in
@@ -185,7 +185,7 @@ extension BicycleServiceMapController: MKMapViewDelegate {
         (view.annotation as! ParkingSpot).getCurrentStatus {
             let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: spot.calculateDistance(userLoc), status: spot.status)
 
-            log.any(spot.coordinate)/
+            //log.any(spot.coordinate)/
             mapView.addSubview(detailView)
             
         }

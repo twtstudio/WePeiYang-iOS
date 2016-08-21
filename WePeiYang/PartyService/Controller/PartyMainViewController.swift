@@ -102,7 +102,7 @@ class PartyMainViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
         guard Applicant.sharedInstance.realName != nil else {
-            log.word("not found")/
+            //log.word("not found")/
             return
         }
     }
