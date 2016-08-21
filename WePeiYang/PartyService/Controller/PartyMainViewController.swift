@@ -14,9 +14,9 @@ let partyRed = UIColor(colorLiteralRed: 240.0/255.0, green: 22.0/255.0, blue: 22
 
 class PartyMainViewController: UIViewController {
 
-    let personalStatusButton = UIButton(title: "查看个人进度")
+    //let personalStatusButton = UIButton(title: "查看个人进度")
     
-    let functionList = ["考试报名", "课程列表", "成绩查询"]
+    let functionList = ["查看个人状态", "考试报名", "课程列表", "成绩查询"]
     /*
     let functionList = [["icon": "考试报名", "desc": "考试报名"],
                         ["icon": "课程列表", "desc": "课程列表"],
@@ -26,7 +26,7 @@ class PartyMainViewController: UIViewController {
     let headerView = UIView(color: partyRed)
     var headerWaveView = WXWaveView()
     
-    let anAvatar = UIView()
+    let anAvatar = UIImageView()
     
     let functionTableView = UITableView()
     
@@ -44,7 +44,7 @@ class PartyMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        personalStatusButton.addTarget(self, action: #selector(PartyMainViewController.personalStatusButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        //personalStatusButton.addTarget(self, action: #selector(PartyMainViewController.personalStatusButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
         functionTableView.delegate = self
         functionTableView.dataSource = self
@@ -53,8 +53,19 @@ class PartyMainViewController: UIViewController {
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
         navigationItem.titleView = titleLabel
         
+        anAvatar.clipsToBounds = true
+        anAvatar.image = UIImage(named: "partyAvatar")
         anAvatar.layer.cornerRadius = 44
-        anAvatar.backgroundColor = UIColor.yellowColor()
+        for subview in anAvatar.subviews {
+            subview.layer.cornerRadius = 44
+        }
+        
+        let shadowPath = UIBezierPath(rect: anAvatar.bounds)
+        anAvatar.layer.shadowColor = UIColor.blackColor().CGColor
+        anAvatar.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        anAvatar.layer.shadowOpacity = 0.8
+        anAvatar.layer.shadowPath = shadowPath.CGPath
+        anAvatar.layer.shadowRadius = 4
         
         if let foo = NSUserDefaults.standardUserDefaults().objectForKey("studentName") as? String {
             aNameLabel = UILabel(text: foo, color: .whiteColor())
@@ -90,7 +101,7 @@ class PartyMainViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
-        guard let foo = Applicant.sharedInstance.realName else {
+        guard Applicant.sharedInstance.realName != nil else {
             log.word("not found")/
             return
         }
@@ -126,24 +137,42 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        switch indexPath.row {
-        case 0:
-            //考试报名
+        if indexPath.row == 0 {
+            let personalStatusVC = PartyPersonalStatusViewController()
+            navigationController?.showViewController(personalStatusVC, sender: nil)
+        }
+        
+        //考试报名
+        if indexPath.row == 1 {
             let signupVC = PartySignUpViewController()
             navigationController?.showViewController(signupVC, sender: nil)
-        case 1:
-            //党课学习
+        }
+        
+        //党课学习
+        if indexPath.row == 2 {
             let courseVC = PartyCoursesViewController()
             navigationController?.showViewController(courseVC, sender: nil)
-        case 2:
-            //成绩查询
+        }
+        
+        //成绩查询
+        if indexPath.row == 3 {
             let personalStatusVC = PartyScoreViewController()
             navigationController?.showViewController(personalStatusVC, sender: nil)
-        default:
-            break
+
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRectMake(0, 0, (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, 2))
+        
+        return footerView
     }
 }
 
@@ -170,12 +199,12 @@ extension PartyMainViewController {
         
         
         
-        headerView.addSubview(personalStatusButton)
-        personalStatusButton.snp_makeConstraints {
+        //headerView.addSubview(personalStatusButton)
+        /*personalStatusButton.snp_makeConstraints {
             make in
             make.centerY.equalTo(anAvatar)
             make.left.equalTo(anAvatar.snp_right).offset(5)
-        }
+        }*/
         
     
         
@@ -216,12 +245,12 @@ extension PartyMainViewController {
 
 //MARK: Button tapped functions
 extension PartyMainViewController {
-    func personalStatusButtonTapped(sender: UIButton!) {
+    /*func personalStatusButtonTapped(sender: UIButton!) {
 
         let personalStatusVC = PartyPersonalStatusViewController()
         navigationController?.showViewController(personalStatusVC, sender: nil)
 
-    }
+    }*/
     
     func wave() {
 
