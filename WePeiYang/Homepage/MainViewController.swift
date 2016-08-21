@@ -27,7 +27,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("eventsWatched")
+        
         self.checkGuide()
         //self.checkSpecialEvents()
         
@@ -52,6 +52,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             guard let app = UIApplication.sharedApplication().delegate as? AppDelegate else {
                 return
             }
+            
             if app.specialEventsShouldShow == true {
                 
                 self.checkSpecialEvents()
@@ -68,6 +69,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.guideDismissNotificationReceived), name: NOTIFICATION_GUIDE_DISMISSED, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.loginDismissedNotificationReceived), name: NOTIFICATION_LOGIN_DISMISSED, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -125,6 +127,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if !AccountManager.tokenExists() {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
+        }
+    }
+    
+    func loginDismissedNotificationReceived() {
+        guard let app = UIApplication.sharedApplication().delegate as? AppDelegate else {
+            return
+        }
+        
+        if app.specialEventsShouldShow == true {
+            
+            self.checkSpecialEvents()
+            log.word("fuckers")/
         }
     }
     
@@ -429,6 +443,8 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
         navigationController?.presentViewController(specialVC, animated: true, completion: nil)
     }
     
+    
+    //Animator Delegate
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PresentingAnimator()
     }

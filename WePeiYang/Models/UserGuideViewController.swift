@@ -11,6 +11,7 @@ import SnapKit
 
 let NOTIFICATION_GUIDE_DISMISSED = "NOTIFICATION_GUIDE_DISMISSED"
 
+
 class UserGuideViewController: UIViewController {
 
     @IBOutlet weak var pageControl: UIPageControl!

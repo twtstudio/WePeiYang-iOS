@@ -12,6 +12,7 @@ import pop
 
 let NOTIFICATION_LOGIN_CANCELLED = "NOTIFICATION_LOGIN_CANCELLED"
 let NOTIFICATION_LOGIN_SUCCESSED = "NOTIFICATION_LOGIN_SUCCESSED"
+let NOTIFICATION_LOGIN_DISMISSED = "NOTIFICATION_LOGIN_DISMISSED"
 
 class LoginViewController: UIViewController {
     
@@ -76,8 +77,9 @@ class LoginViewController: UIViewController {
                 }
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_SUCCESSED, object: nil)
+        
                 self.dismissViewControllerAnimated(true, completion: {
-                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_DISMISSED, object: nil)
                 })
             }, failure: {errorMsg in
                 MsgDisplay.showErrorMsg(errorMsg)
@@ -91,6 +93,7 @@ class LoginViewController: UIViewController {
     @IBAction func cancelLogin() {
         self.dismissViewControllerAnimated(true, completion: {
             NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_CANCELLED, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_DISMISSED, object: nil)
         })
     }
     
