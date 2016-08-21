@@ -16,11 +16,12 @@ class ParkingSpot: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     var numberOfBikes: Int
     var currentNumberOfBikes: Int?
-    var status: String?
+    var status: Status?
     
     enum Status: String {
         case online = "该点运行良好"
         case offline = "该停车位已掉线，数据可能不是最新"
+        case dunno = "该点运行状态未知"
     }
     
     static var parkingSpots: [ParkingSpot]? {
@@ -136,13 +137,16 @@ extension ParkingSpot {
             }
             
             guard let foo = fooStatus[0]["status"] as? String else {
-                self.status = "该点运行状态未知"
+                //self.statusMsg = "该点运行状态未知"
+                self.status = Status.dunno
                 return
             }
             if foo == "0" {
-                self.status = Status.offline.rawValue
+                //self.statusMsg = Status.offline.rawValue
+                self.status = Status.offline
             } else {
-                self.status = Status.online.rawValue
+                //self.statusMsg = Status.online.rawValue
+                self.status = Status.online
             }
             
             guard let numberOfBikes = fooStatus[0]["total"] as? String,

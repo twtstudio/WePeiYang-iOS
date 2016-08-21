@@ -27,7 +27,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //NSUserDefaults.standardUserDefaults().removeObjectForKey("eventsWatched")
         self.checkGuide()
         //self.checkSpecialEvents()
         

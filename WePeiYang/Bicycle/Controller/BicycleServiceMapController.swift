@@ -40,7 +40,7 @@ class BicycleServiceMapController: UIViewController {
     
     let regionRadius: CLLocationDistance = 100
     //let BeijingSpot = CLLocation(latitude: 39.903257, longitude: 116.301336)
-    let defaultCenterSpot = CLLocation(latitude: 38.994857, longitude: 117.314955)
+    let defaultCenterSpot = CLLocation(latitude: 38.998244, longitude: 117.312924)
     var locationManager = CLLocationManager()
 
     let spots = ParkingSpot.parkingSpots!
@@ -177,15 +177,18 @@ extension BicycleServiceMapController: MKMapViewDelegate {
         }
         guard let userLoc = newMapView.userLocation as? MKUserLocation else {
             (view.annotation as! ParkingSpot).getCurrentStatus {
-                let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: nil)
+                let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: nil, status: spot.status)
                 mapView.addSubview(detailView)
                 self.checkLocationAuthorizationStatus()
             }
         }
         
         (view.annotation as! ParkingSpot).getCurrentStatus {
-            let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: spot.calculateDistance(userLoc))
+            let detailView = SpotDetailsView(positionsAvailable: "\((spot.currentNumberOfBikes)!)/\(spot.numberOfBikes)", spotName: spot.title!, distanceFromUser: spot.calculateDistance(userLoc), status: spot.status)
+
+            log.any(spot.coordinate)/
             mapView.addSubview(detailView)
+            
         }
 
     }

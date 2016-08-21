@@ -25,6 +25,7 @@ struct ApplicantTest {
             let filePath: String?
             let status: String?
             let isDeleted: String?
+            let hasEntry: Int?
         }
         
         static func getStatus(and completion: () -> ()) {
@@ -35,6 +36,8 @@ struct ApplicantTest {
                     MsgDisplay.showErrorMsg("网络不好，请稍候再试")
                     return
                 }
+                
+                log.word("fucking")/
                 
                 guard responseObject?.objectForKey("status") as? Int == 1 else {
                     guard let msg = responseObject?.objectForKey("msg") as? String else {
@@ -60,7 +63,8 @@ struct ApplicantTest {
                 
                 guard let id = fooInfo["test_id"] as? String,
                       let name = fooInfo["test_name"] as? String,
-                      let beginTime = fooInfo["test_begintime"] as? String
+                      let beginTime = fooInfo["test_begintime"] as? String,
+                      let hasEntry = fooInfo["has_entry"] as? Int
                     else {
                         ApplicantEntry.status = 0
                         ApplicantEntry.message = "暂时无法报名"
@@ -74,10 +78,16 @@ struct ApplicantTest {
                 let status = fooInfo["test_status"] as? String
                 let isDeleted = fooInfo["test_isdeleted"] as? String
                 
-                AcademyEntry.status = 1
-                AcademyEntry.message = name
+                ApplicantEntry.status = 1
+                ApplicantEntry.message = name
                 
-                testInfo = TestInfo(id: id, name: name, beginTime: beginTime, attention: attention, fileName: fileName, filePath: filePath, status: status, isDeleted: isDeleted)
+                testInfo = TestInfo(id: id, name: name, beginTime: beginTime, attention: attention, fileName: fileName, filePath: filePath, status: status, isDeleted: isDeleted, hasEntry: hasEntry)
+                
+                if testInfo?.hasEntry == 1 {
+                    ApplicantEntry.message = "考试时间: " + (testInfo?.beginTime)!
+                } else {
+                    ApplicantEntry.message = testInfo?.name
+                }
                 
                 completion()
                 
@@ -142,12 +152,13 @@ struct ApplicantTest {
             let filePath: String?
             let status: String?
             let isDeleted: String?
+            let hasEntry: Int?
         }
     
         static func getStatus(and completion: () -> ()) {
             let manager = AFHTTPSessionManager()
             manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-            manager.GET(PartyAPI.rootURL, parameters: PartyAPI.applicantEntryParams, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+            manager.GET(PartyAPI.rootURL, parameters: PartyAPI.academyEntryParams, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 guard responseObject != nil else {
                     MsgDisplay.showErrorMsg("网络不好，请稍候再试")
                     return
@@ -176,8 +187,9 @@ struct ApplicantTest {
                 }
                 
                 guard let id = fooInfo["test_id"] as? String,
-                    let name = fooInfo["test_name"] as? String,
-                    let beginTime = fooInfo["test_begintime"] as? String
+                      let name = fooInfo["test_name"] as? String,
+                      let beginTime = fooInfo["test_begintime"] as? String,
+                      let hasEntry = fooInfo["has_entry"] as? Int
                     else {
                         AcademyEntry.status = 0
                         AcademyEntry.message = "暂时无法报名"
@@ -192,10 +204,12 @@ struct ApplicantTest {
                 let isDeleted = fooInfo["test_isdeleted"] as? String
                 
                 AcademyEntry.status = 1
-                AcademyEntry.message = name
-                
-                testInfo = TestInfo(id: id, name: name, beginTime: beginTime, attention: attention, fileName: fileName, filePath: filePath, status: status, isDeleted: isDeleted)
-                
+                testInfo = TestInfo(id: id, name: name, beginTime: beginTime, attention: attention, fileName: fileName, filePath: filePath, status: status, isDeleted: isDeleted, hasEntry: hasEntry)
+                if testInfo?.hasEntry == 1 {
+                    AcademyEntry.message = "考试时间: " + (testInfo?.beginTime)!
+                } else {
+                    AcademyEntry.message = testInfo?.name
+                }
                 completion()
                 
             }) { (_: NSURLSessionDataTask?, _: NSError) in
@@ -206,7 +220,7 @@ struct ApplicantTest {
         static func signUp(forID testID: String, and completion: () -> ()) {
             let manager = AFHTTPSessionManager()
             manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-            manager.GET(PartyAPI.rootURL, parameters: PartyAPI.applicantEntry2Params(of: testID), success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+            manager.GET(PartyAPI.rootURL, parameters: PartyAPI.academyEntry2Params(of: testID), success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
                 guard responseObject != nil else {
                     MsgDisplay.showErrorMsg("报名失败，请稍后重试")
@@ -259,6 +273,7 @@ struct ApplicantTest {
             //let filePath: String?
             //let status: String?
             //let isDeleted: String?
+            let hasEntry: Int?
         }
         
         static func getStatus(and completion: () -> ()) {
@@ -295,7 +310,8 @@ struct ApplicantTest {
                 
                 guard let id = fooInfo["train_id"] as? String,
                       let name = fooInfo["train_name"] as?  String,
-                      let beginTime = fooInfo["train_begintime"] as? String
+                      let beginTime = fooInfo["train_begintime"] as? String,
+                      let hasEntry = fooInfo["has_entry"] as? Int
                     else {
                         ProbationaryEntry.status = 0
                         ProbationaryEntry.message = "暂时无法报名"
@@ -306,7 +322,14 @@ struct ApplicantTest {
                 ProbationaryEntry.status = 1
                 ProbationaryEntry.message = name
                 
-                testInfo = TestInfo(id: id, name: name, beginTime: beginTime)
+                testInfo = TestInfo(id: id, name: name, beginTime: beginTime, hasEntry: hasEntry)
+                
+                if testInfo?.hasEntry == 1 {
+                    ProbationaryEntry.message = "考试时间: " + (testInfo?.beginTime)!
+                } else {
+                    ProbationaryEntry.message = testInfo?.name
+                }
+                
                 completion()
                 
             }) { (_: NSURLSessionDataTask?, err: NSError) in
@@ -318,7 +341,7 @@ struct ApplicantTest {
         static func singUp(forID trainID: String, and completion: () -> ()) {
             let manager = AFHTTPSessionManager()
             manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-            manager.GET(PartyAPI.rootURL, parameters: PartyAPI.academyEntry2Params(of: trainID), success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+            manager.GET(PartyAPI.rootURL, parameters: PartyAPI.probationaryEntry2Params(of: trainID), success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 guard responseObject != nil else {
                     MsgDisplay.showErrorMsg("报名失败，请稍后重试")
                     return
@@ -336,7 +359,7 @@ struct ApplicantTest {
                 
                 ProbationaryEntry.status = 0
                 guard let msg = responseObject?.objectForKey("msg") as? String else {
-                    AcademyEntry.message = "请稍候查看消息"
+                    ProbationaryEntry.message = "请稍候查看消息"
                     completion()
                     return
                 }
