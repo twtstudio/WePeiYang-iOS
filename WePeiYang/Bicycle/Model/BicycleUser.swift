@@ -15,12 +15,13 @@ class BicycleUser: NSObject {
     var status: NSNumber?
     var version: NSNumber?
     var bikeToken: String?
-    var cradList = [Card]()
+    var cardList = [Card]()
+    var expire: Int?
     
     //info
     var name: String?
     var balance: String?
-    var duration: NSNumber?
+    var duration: String?
     var recent: Array<Array<NSNumber>> = []
     var record: NSDictionary?
     
@@ -47,14 +48,31 @@ class BicycleUser: NSObject {
                     return
                 }
                 
-                MsgDisplay.dismiss()
-                
                 
                 let dict = dic?.objectForKey("data") as? NSDictionary
-                self.status = dict?.objectForKey("status") as? NSNumber
-                self.version = dict?.objectForKey("version") as? NSNumber
-                self.bikeToken = dict?.objectForKey("token") as? String
-            
+                print(dict)
+                guard let fooStatus = dict?.objectForKey("status") as? NSNumber,
+                    let fooVersion = dict?.objectForKey("version") as? NSNumber,
+                    let fooBikeToken = dict?.objectForKey("token") as? String,
+                    let fooExpire = dict?.objectForKey("expire") as? Int
+                    else {
+                        MsgDisplay.showErrorMsg("用户认证失败，请重新登陆试试")
+                        return
+                }
+                
+                MsgDisplay.dismiss()
+                self.status = fooStatus
+                self.version = fooVersion
+                self.bikeToken = fooBikeToken
+                self.expire = fooExpire
+                
+                /*
+                NSUserDefaults.standardUserDefaults().setValue(fooBikeToken, forKey: "BicycleToken")
+                NSUserDefaults.standardUserDefaults().setValue(fooStatus, forKey: "BicycleStatus")
+                NSUserDefaults.standardUserDefaults().setValue(fooVersion, forKey: "BicycleVersion")
+                NSUserDefaults.standardUserDefaults().setValue(fooExpire, forKey: "BicycleExpire")
+                */
+                
                 presentViewController()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
@@ -83,10 +101,11 @@ class BicycleUser: NSObject {
             
                 MsgDisplay.dismiss()
                 let list = dic?.objectForKey("data") as? NSArray
-                
+
+                self.cardList.removeAll()
                 for dict in list! {
                     let cardInfo = dict as? NSDictionary
-                    self.cradList.append(Card(dict: cardInfo!))
+                    self.cardList.append(Card(dict: cardInfo!))
                 }
                 doSomething()
             
@@ -96,7 +115,6 @@ class BicycleUser: NSObject {
         })
     }
     
-    //未测试
     func bindCard(id: String, sign: String, doSomething: () -> ()) {
         let parameters = ["auth_token": bikeToken!, "id": id, "sign": sign]
         
@@ -109,7 +127,7 @@ class BicycleUser: NSObject {
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 
                 let dic = responseObject as? NSDictionary
-                //log.obj(dic!)/
+                log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return
@@ -143,14 +161,35 @@ class BicycleUser: NSObject {
                     return
                 }
                 
+                let dict = dic?.objectForKey("data") as? NSDictionary
+                print(dict)
+                
+                
+                guard let fooName = dict?.objectForKey("name") as? String,
+                    let fooBalance = dict?.objectForKey("balance") as? String,
+                    let fooDuration = dict?.objectForKey("duration") as? String,
+                    let fooRecent = dict?.objectForKey("recent") as? Array<Array<NSNumber>>,
+                    let fooRecord = dict?.objectForKey("record") as? NSDictionary
+                    else {
+                        MsgDisplay.showErrorMsg("获取用户数据失败，请重新登陆试试")
+                        return
+                }
+ 
+                
+                /*print(fooName)
+                print(fooBalance)
+                print(fooDuration)
+                print(fooRecent)
+                print(fooRecord)*/
+                
+                
                 MsgDisplay.dismiss()
                 
-                let dict = dic?.objectForKey("data") as? NSDictionary
-                self.name = dict?.objectForKey("name") as? String
-                self.balance = dict?.objectForKey("balance") as? String
-                self.duration = dict?.objectForKey("duration") as? NSNumber
-                self.recent = dict?.objectForKey("recent") as! Array<Array<NSNumber>>
-                self.record = dict?.objectForKey("record") as? NSDictionary
+                self.name = fooName
+                self.balance = fooBalance
+                self.duration = fooDuration
+                self.recent = fooRecent
+                self.record = fooRecord
                 
                 doSomething()
                 

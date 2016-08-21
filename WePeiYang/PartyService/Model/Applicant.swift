@@ -41,8 +41,14 @@ class Applicant: NSObject {
             
             let dic = responseObject as? NSDictionary
             
-            self.realName = dic?.objectForKey("realname") as? String
-            self.studentNumber = dic?.objectForKey("studentid") as? String
+            guard let fooRealName = dic?.objectForKey("realname") as? String,
+                let fooStudentNumber = dic?.objectForKey("studentid") as? String else {
+                MsgDisplay.showErrorMsg("获取学号失败，请稍候再试")
+                    return
+            }
+            
+            self.realName = fooRealName
+            self.studentNumber = fooStudentNumber
             
             NSUserDefaults.standardUserDefaults().setObject(self.studentNumber, forKey: "studentID")
             NSUserDefaults.standardUserDefaults().setObject(self.realName, forKey: "studentName")
@@ -79,7 +85,13 @@ class Applicant: NSObject {
                             MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as? String)
                             return
                         }
-                        self.personalStatus = dic?.objectForKey("status_id") as! [NSDictionary]
+                        
+                        guard let fooPersonalStatus = dic?.objectForKey("status_id") as? [NSDictionary] else {
+                            MsgDisplay.showErrorMsg("获取个人状态失败，请稍后再试")
+                            return
+                        }
+                        
+                        self.personalStatus = fooPersonalStatus
                         MsgDisplay.dismiss()
                         doSomething()
                     },
@@ -152,12 +164,17 @@ class Applicant: NSObject {
             
                         let dict = dic?.objectForKey("data")
                 
+                        guard let fooGrade = dict as? [NSDictionary] else {
+                            MsgDisplay.showErrorMsg("获取成绩失败，请稍后再试")
+                            return
+                        }
+                        
                         if testType == "applicant" {
-                            self.applicantGrade = dict as! [NSDictionary]
+                            self.applicantGrade = fooGrade
                         } else if testType == "academy" {
-                            self.academyGrade = dict as! [NSDictionary]
+                            self.academyGrade = fooGrade
                         } else if testType == "probationary" {
-                            self.probationaryGrade = dict as! [NSDictionary]
+                            self.probationaryGrade = fooGrade
                         }
                 
                         MsgDisplay.dismiss()

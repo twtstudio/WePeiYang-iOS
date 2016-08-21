@@ -8,9 +8,17 @@
 
 import Foundation
 
-class PartyPersonalStatusViewController: UIViewController {
+class PartyPersonalStatusViewController: UIViewController, UIScrollViewDelegate {
     
-    @IBOutlet var mainScrollView: UIScrollView!
+    var mainScrollView = UIScrollView()
+    
+    var scrollView1 = UIScrollView()
+    var scrollView2 = UIScrollView()
+    
+    var leftArrowView1 = UIImageView()
+    var rightArrowView1 = UIImageView()
+    var leftArrowView2 = UIImageView()
+    var rightArrowView2 = UIImageView()
     
     var label1 = PersonalStatusLabel()
     var label2 = PersonalStatusLabel()
@@ -75,10 +83,10 @@ class PartyPersonalStatusViewController: UIViewController {
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         
-        view.backgroundColor = partyRed
-        self.view.addSubview(view)
+        bgView.backgroundColor = partyRed
+        self.view.addSubview(bgView)
         
         //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
@@ -91,9 +99,19 @@ class PartyPersonalStatusViewController: UIViewController {
     //TODO: 重构成数组,循环
     //疯狂烧性能 (?)
     func initUI() {
-    
-        mainScrollView.contentSize = CGSize(width:(UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 944)
+
         
+        self.view.addSubview(mainScrollView)
+        mainScrollView.snp_makeConstraints {
+            make in
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(view)
+            make.top.equalTo(view)
+        }
+        
+        mainScrollView.contentSize = CGSize(width:(UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 944)
+        print("aa\(mainScrollView.frame.size.width)")
         /*let scrollView1 = UIScrollView(frame: CGRectMake(-287.5, 48, 932, 164))
         mainScrollView.addSubview(scrollView1)
         let scrollView2 = UIScrollView(frame: CGRectMake(-287.5, 572, 932, 164))
@@ -104,30 +122,31 @@ class PartyPersonalStatusViewController: UIViewController {
         let strangeNumber = (932-(UIApplication.sharedApplication().keyWindow?.frame.size.width)!)/2.0
         
 
-        let scrollView1 = UIScrollView()
+        scrollView1 = UIScrollView()
         scrollView1.contentSize = CGSize(width: 932, height: 164)
         scrollView1.setContentOffset(CGPointMake(strangeNumber, 0), animated: true)
+        scrollView1.delegate = self
         mainScrollView.addSubview(scrollView1)
-        let scrollView2 = UIScrollView()
+        scrollView2 = UIScrollView()
         scrollView2.contentSize = CGSize(width: 932, height: 164)
         scrollView2.setContentOffset(CGPointMake(strangeNumber, 0), animated: true)
+        scrollView2.delegate = self
         mainScrollView.addSubview(scrollView2)
         
-        /*let leftArrowView = UIImageView(imageName: "ic_chevron_left", desiredSize: CGSize(width: 30, height: 30))
-        mainScrollView.addSubview(leftArrowView!)
-        let rightArrowView = UIImageView(imageName: "ic_chevron_right", desiredSize: CGSize(width: 30, height: 30))
-        mainScrollView.addSubview(rightArrowView!)
         
-        leftArrowView?.snp_makeConstraints {
-            make in
-            make.centerY.equalTo(scrollView1.snp_centerY)
-            make.left.equalTo(mainScrollView).offset(8)
-        }
-        rightArrowView?.snp_makeConstraints {
-            make in
-            make.centerY.equalTo(scrollView1.snp_centerY)
-            make.right.equalTo(mainScrollView).offset(-8)
-        }*/
+        leftArrowView1 = UIImageView(imageName: "ic_arrow_left", desiredSize: CGSize(width: 30, height: 30))!
+        leftArrowView1.alpha = 0.4
+        mainScrollView.addSubview(leftArrowView1)
+        rightArrowView1 = UIImageView(imageName: "ic_arrow_right", desiredSize: CGSize(width: 30, height: 30))!
+        rightArrowView1.alpha = 0.4
+        mainScrollView.addSubview(rightArrowView1)
+        leftArrowView2 = UIImageView(imageName: "ic_arrow_left", desiredSize: CGSize(width: 30, height: 30))!
+        leftArrowView2.alpha = 0.4
+        mainScrollView.addSubview(leftArrowView2)
+        rightArrowView2 = UIImageView(imageName: "ic_arrow_right", desiredSize: CGSize(width: 30, height: 30))!
+        rightArrowView2.alpha = 0.4
+        mainScrollView.addSubview(rightArrowView2)
+    
         
         label1 = PersonalStatusLabel(title: "递交入党申请书", status: 0)
         mainScrollView.addSubview(label1)
@@ -193,6 +212,32 @@ class PartyPersonalStatusViewController: UIViewController {
         mainScrollView.addSubview(label31)
         
         
+        leftArrowView1.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(scrollView1.snp_centerY)
+            //make.right.equalTo(mainScrollView)
+            make.left.equalTo(view).offset(8)
+        }
+        
+        rightArrowView1.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(scrollView1.snp_centerY)
+            make.right.equalTo(view).offset(-8)
+        }
+        
+        leftArrowView2.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(scrollView2.snp_centerY)
+            //make.right.equalTo(mainScrollView)
+            make.left.equalTo(view).offset(8)
+        }
+        
+        rightArrowView2.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(scrollView2.snp_centerY)
+            make.right.equalTo(view).offset(-8)
+        }
+        
         scrollView1.snp_makeConstraints {
             make in
             make.centerX.equalTo(mainScrollView)
@@ -207,7 +252,6 @@ class PartyPersonalStatusViewController: UIViewController {
             make.width.equalTo(mainScrollView)
             make.height.equalTo(164)
         }
-        
         
         
         label1.snp_makeConstraints {
@@ -553,6 +597,48 @@ class PartyPersonalStatusViewController: UIViewController {
         
         
         
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        guard scrollView == scrollView1 || scrollView == scrollView2 else {
+            return
+        }
+        
+        if scrollView == scrollView1 {
+            UIView.animateWithDuration(0.3, animations: {
+                self.leftArrowView1.alpha = 0
+                self.rightArrowView1.alpha = 0
+            })
+            if scrollView.contentOffset.x <= 0 {
+                UIView.animateWithDuration(0.3, animations: {
+                    self.rightArrowView1.alpha = 0.4
+                })
+            
+            }
+            if scrollView.contentOffset.x >= 557 {
+                UIView.animateWithDuration(0.3, animations: {
+                    self.leftArrowView1.alpha = 0.4
+                })
+            }
+        }
+        
+        if scrollView == scrollView2 {
+            UIView.animateWithDuration(0.3, animations: {
+                self.leftArrowView2.alpha = 0
+                self.rightArrowView2.alpha = 0
+            })
+            if scrollView.contentOffset.x <= 0 {
+                UIView.animateWithDuration(0.3, animations: {
+                    self.rightArrowView2.alpha = 0.4
+                })
+                
+            }
+            if scrollView.contentOffset.x >= 557 {
+                UIView.animateWithDuration(0.3, animations: {
+                    self.leftArrowView2.alpha = 0.4
+                })
+            }
+        }
     }
     
 }
