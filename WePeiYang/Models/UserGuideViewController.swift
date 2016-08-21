@@ -17,7 +17,7 @@ class UserGuideViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     private var scrollView: UIScrollView!
-    private let numberOfPages = 5
+    private let numberOfPages = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()

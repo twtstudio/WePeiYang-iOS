@@ -10,12 +10,19 @@ import Foundation
 
 class BicycleUserBindViewController: UIViewController {
     
+    @IBOutlet var hintLabel: UILabel!
     @IBOutlet var IDTextField: UITextField!
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = nil
         super.viewDidLoad()
         
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animateWithDuration(0.4, animations: {
+            self.hintLabel.alpha = 1
+        })
     }
     
     override func viewWillAppear(animated: Bool) {

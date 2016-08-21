@@ -203,10 +203,10 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
                 if Int(timeStampString) == 0 {
                     cell?.textLabel?.text = "最近记录：借车"
                     timeStampString = foo.objectForKey("dev_time") as! String
-                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: timeStampString))"
                 } else {
                     cell?.textLabel?.text = "最近记录：还车"
-                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: timeStampString))"
                 }
             }
             cell!.imageView?.image = UIImage(named: "ic_schedule")
