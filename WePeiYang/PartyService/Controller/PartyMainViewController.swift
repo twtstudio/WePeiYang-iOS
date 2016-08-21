@@ -127,11 +127,16 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //考试报名
+        if indexPath.row == 0 {
+            let signupVC = PartySignUpViewController()
+            navigationController?.showViewController(signupVC, sender: nil)
+        }
+        
+        //党课学习
         if indexPath.row == 1 {
             let courseVC = PartyCoursesViewController()
             navigationController?.showViewController(courseVC, sender: nil)
-            //let tempVC = TwentyCourseTableViewController()
-            //navigationController?.showViewController(tempVC, sender: nil)
         }
         
         //成绩查询
