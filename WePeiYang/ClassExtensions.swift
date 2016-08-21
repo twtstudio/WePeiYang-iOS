@@ -18,7 +18,7 @@ extension UILabel {
         self.sizeToFit()
     }
     
-    convenience init(text: String) {
+    convenience init(text: String?) {
         self.init()
         self.text = text
         self.sizeToFit()
