@@ -24,6 +24,12 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         
         self.tableView.bounces = false
         
+        if BicycleUser.sharedInstance.status == 1 {
+            BicycleUser.sharedInstance.getUserInfo({
+                self.updateUI()
+            })
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -138,7 +144,21 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //delegate of chartView
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt) {
-        self.infoLabel.text = "\(BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]):00  骑行时间：\(BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1])s"
+        let time = Int((BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1]))
+        let currentTime = Int((BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]))
+        var minute: Int
+        var second: Int
+        if time >= 60 {
+            minute = time / 60
+            second = time % 60
+            if second < 10 {
+                self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(minute):0\(second)"
+            } else {
+                self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(minute):\(second)"
+            }
+        } else {
+            self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(time)s"
+        }
     }
     
     //dataSource of tableView
@@ -183,10 +203,10 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
                 if Int(timeStampString) == 0 {
                     cell?.textLabel?.text = "最近记录：借车"
                     timeStampString = foo.objectForKey("dev_time") as! String
-                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: timeStampString))"
                 } else {
                     cell?.textLabel?.text = "最近记录：还车"
-                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                    cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: timeStampString))"
                 }
             }
             cell!.imageView?.image = UIImage(named: "ic_schedule")

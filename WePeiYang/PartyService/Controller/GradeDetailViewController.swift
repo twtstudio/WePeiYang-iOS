@@ -35,10 +35,10 @@ class GradeDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         
-        view.backgroundColor = partyRed
-        self.view.addSubview(view)
+        bgView.backgroundColor = partyRed
+        self.view.addSubview(bgView)
         
         //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
@@ -86,7 +86,7 @@ class GradeDetailViewController: UIViewController, UITableViewDataSource, UITabl
         } else if indexPath.row == 6 {
             cell?.textLabel?.text = "笔试成绩：暂无"
             if let foo = dict.objectForKey("entry_testgrade"){
-                cell?.textLabel?.text = "实践成绩：\(foo)"
+                cell?.textLabel?.text = "笔试成绩：\(foo)"
             }
         } else if indexPath.row == 7 {
             cell?.textLabel?.text = "成绩状态：\(entryStatus[Int(dict.objectForKey("entry_status") as! String)!])"

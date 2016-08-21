@@ -30,7 +30,7 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BicycleUser.sharedInstance.cradList.count;
+        return BicycleUser.sharedInstance.cardList.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -41,18 +41,20 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
         }
         
         cell?.contentView.frame.size.height = 64
-        cell!.textLabel?.text = "最近记录："
-        if let foo = BicycleUser.sharedInstance.cradList[indexPath.row].record {
-            var timeStampString = foo.objectForKey("arr_time") as! String
+        cell?.textLabel?.text = "卡号："
+        cell?.textLabel?.text = "最近记录：暂无"
+        if let foo = BicycleUser.sharedInstance.cardList[indexPath.row].record {
+            cell?.textLabel?.text = "卡号：\(BicycleUser.sharedInstance.cardList[indexPath.row].id!)"
+            if let timeStampString = foo.objectForKey("arr_time") as? String {
             
-            //借了车，没还车
-            if Int(timeStampString) == 0 {
-                cell?.textLabel?.text = "卡号：\(BicycleUser.sharedInstance.cradList[indexPath.row].id!)"
-                timeStampString = foo.objectForKey("dev_time") as! String
-                cell?.detailTextLabel?.text = "最近记录：借车        时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
-            } else {
-                cell?.textLabel?.text = "卡号：\(BicycleUser.sharedInstance.cradList[indexPath.row].id!)"
-                cell?.detailTextLabel?.text = "最近记录：还车        时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd hh:mm", timeStampString: timeStampString))"
+                //借了车，没还车
+                if Int(timeStampString) == 0 {
+                    if let devTimeStampString = foo.objectForKey("dev_time") as? String {
+                        cell?.detailTextLabel?.text = "最近记录：借车        时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: devTimeStampString))"
+                    }
+                } else {
+                    cell?.detailTextLabel?.text = "最近记录：还车        时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: timeStampString))"
+                }
             }
         }
         
@@ -60,7 +62,7 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 72
+        return 64
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -76,7 +78,7 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         
-        let choosenCard = BicycleUser.sharedInstance.cradList[choosenRow];
+        let choosenCard = BicycleUser.sharedInstance.cardList[choosenRow];
         
         //坑：应该要先判断是哪个 alertView
         guard buttonIndex != alertView.cancelButtonIndex else {
@@ -87,6 +89,7 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
             
             //pop 到BicycleServiceViewController
             BicycleUser.sharedInstance.status = 1;//坑：毕竟这样不太稳妥
+            NSUserDefaults.standardUserDefaults().setValue(1, forKey: "BicycleStatus")
             self.navigationController?.popViewControllerAnimated(true)
             self.navigationController?.popViewControllerAnimated(true)
         })
