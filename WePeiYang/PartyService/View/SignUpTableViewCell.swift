@@ -9,6 +9,9 @@
 import UIKit
 
 class SignUpTableViewCell: UITableViewCell {
+    
+    var signUpBtn: UIButton!
+    var msgLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,14 +30,18 @@ class SignUpTableViewCell: UITableViewCell {
             
         case 0:
             ApplicantTest.ApplicantEntry.signUp(forID: (ApplicantTest.ApplicantEntry.testInfo?.id)!) {
-                sender.refreshViewForState()
+                self.refreshUI()
             }
         case 1:
             ApplicantTest.AcademyEntry.signUp(forID: (ApplicantTest.AcademyEntry.testInfo?.id)!) {
-                sender.refreshViewForState()
+                self.refreshUI()
+            }
+        case 2:
+            ApplicantTest.ProbationaryEntry.singUp(forID: (ApplicantTest.ProbationaryEntry.testInfo?.id)!) {
+                self.refreshUI()
             }
         default:
-            log.word("cool")/
+            break
         }
         log.word("entered func")/
     }
@@ -46,13 +53,13 @@ class SignUpTableViewCell: UITableViewCell {
 extension SignUpTableViewCell {
     convenience init(status: Int?, message: String?, testIdentifier: Int) {
         self.init()
-        let signUpBtn = UIButton(status: status, identifier: testIdentifier)
+        signUpBtn = UIButton(status: status, identifier: testIdentifier)
         //signUpBtn.bindToFunc()
         
         if status == 1 {
             signUpBtn.addTarget(self, action: #selector(SignUpTableViewCell.signUp(_:)), forControlEvents: .TouchUpInside)
         }
-        let msgLabel = UILabel(text: message)
+        msgLabel = UILabel(text: message)
         msgLabel.numberOfLines = 0
         
         contentView.addSubview(signUpBtn)
@@ -70,7 +77,21 @@ extension SignUpTableViewCell {
             make.centerY.equalTo(signUpBtn)
             make.right.equalTo(contentView).offset(-16)
             make.left.equalTo(signUpBtn.snp_right).offset(50)
-            //make.width.equalTo(220)
+            
+        }
+    }
+    
+    func refreshUI() {
+        self.signUpBtn.refreshViewForState()
+        switch signUpBtn.tag {
+        case 0:
+            msgLabel.text = ApplicantTest.ApplicantEntry.message
+        case 1:
+            msgLabel.text = ApplicantTest.AcademyEntry.message
+        case 2:
+            msgLabel.text = ApplicantTest.ProbationaryEntry.message
+        default: break
+            
         }
     }
 }
@@ -82,12 +103,15 @@ private extension UIButton {
         self.init()
         if status != nil && status != 0 {
             backgroundColor = .greenColor()
+            setTitle("报名", forState: .Normal)
         } else {
             backgroundColor = .lightGrayColor()
+            setTitle("报名", forState: .Normal)
+            enabled = false
+            
         }
         
         layer.cornerRadius = 8
-        setTitle("报名", forState: .Normal)
         titleLabel?.textColor = .whiteColor()
         tag = identifier
         //titleLabel?.sizeToFit()
@@ -103,6 +127,8 @@ private extension UIButton {
             status = ApplicantTest.ApplicantEntry.status!
         case 1:
             status = ApplicantTest.AcademyEntry.status!
+        case 2:
+            status = ApplicantTest.ProbationaryEntry.status!
             
         default:
             status = 0

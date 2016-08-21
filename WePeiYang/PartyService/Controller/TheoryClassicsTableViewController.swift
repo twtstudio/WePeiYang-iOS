@@ -26,6 +26,9 @@ class TheoryClassicsTableViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        //Eliminate the empty cells
+        tableView.tableFooterView = UIView()
+        
         Courses.getTextList { 
             self.textList = Courses.texts
             self.tableView.reloadData()
@@ -68,6 +71,7 @@ extension TheoryClassicsTableViewController: UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        /*
         Courses.StudyText.getTextArticle(with: (textList[indexPath.row]?.fileID)!) { 
             let article = Courses.StudyText.textArticle
             
@@ -87,6 +91,7 @@ extension TheoryClassicsTableViewController: UITableViewDelegate, UITableViewDat
             }
 
             
-        }
+        }*/
+        MsgDisplay.showErrorMsg("客户端暂时还不能查看「理论经典」文章详情哦！敬请期待！")
     }
 }

@@ -67,6 +67,14 @@ class LoginViewController: UIViewController {
             MsgDisplay.showLoading()
             AccountManager.getTokenWithTwtUserName(unameField.text, password: passwdField.text, success: {
                 MsgDisplay.showSuccessMsg("登录成功！")
+                
+                //党建 学号 本地存储
+                Applicant.sharedInstance.getStudentNumber {
+                    NSUserDefaults.standardUserDefaults().setObject(Applicant.sharedInstance.studentNumber, forKey: "studentID")
+                    NSUserDefaults.standardUserDefaults().setObject(Applicant.sharedInstance.realName, forKey: "studentName")
+                    //log.word("fuckin awesome")/
+                }
+                
                 NSNotificationCenter.defaultCenter().postNotificationName(NOTIFICATION_LOGIN_SUCCESSED, object: nil)
                 self.dismissViewControllerAnimated(true, completion: {
                     

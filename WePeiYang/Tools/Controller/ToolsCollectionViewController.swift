@@ -238,10 +238,20 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         let partyVC = PartyMainViewController()
         partyVC.hidesBottomBarWhenPushed = true
         
+        guard NSUserDefaults.standardUserDefaults().objectForKey("studentID") != nil else {
+            Applicant.sharedInstance.getStudentNumber({
+                
+                self.navigationController?.showViewController(partyVC, sender: nil)
+            })
+            return
+        }
+        
+        self.navigationController?.showViewController(partyVC, sender: nil)
+        
         //FIXME: This takes an awful lot of time and makes the main thread laggggggg
-        Applicant.sharedInstance.getStudentNumber({
+        /*Applicant.sharedInstance.getStudentNumber({
             self.navigationController?.showViewController(partyVC, sender: nil)
-        })
+        })*/
         
     }
 }

@@ -11,8 +11,8 @@ import Foundation
 class Applicant: NSObject {
     
     //FIXME: 还是需要保证数据的正确，再加载UI
-    var realName: String?
-    var studentNumber: String?
+    var realName: String? = NSUserDefaults.standardUserDefaults().objectForKey("studentName") as? String
+    var studentNumber: String? = NSUserDefaults.standardUserDefaults().objectForKey("studentID") as? String
     var personalStatus = [NSDictionary]()
     var scoreOf20Course = [NSDictionary]()
     var applicantGrade = [NSDictionary]()
@@ -44,6 +44,9 @@ class Applicant: NSObject {
             self.realName = dic?.objectForKey("realname") as? String
             self.studentNumber = dic?.objectForKey("studentid") as? String
             
+            NSUserDefaults.standardUserDefaults().setObject(self.studentNumber, forKey: "studentID")
+            NSUserDefaults.standardUserDefaults().setObject(self.realName, forKey: "studentName")
+            log.word("registered!")/
             success()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
@@ -200,9 +203,6 @@ class Applicant: NSObject {
         
         
     }
-    
-    
-    
     
     
     

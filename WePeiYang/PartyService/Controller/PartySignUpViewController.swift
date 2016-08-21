@@ -34,18 +34,14 @@ class PartySignUpViewController: UIViewController {
         
         tableView = UITableView()
         
+        //Eliminate the empty cells
+        tableView.tableFooterView = UIView()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        ApplicantTest.ApplicantEntry.getStatus {
-            ApplicantTest.AcademyEntry.getStatus {
-                log.any(ApplicantTest.ApplicantEntry.status)/
-                log.any(ApplicantTest.ApplicantEntry.message)/
-                log.any(ApplicantTest.AcademyEntry.status)/
-                log.any(ApplicantTest.AcademyEntry.message)/
-                self.tableView.reloadData()
-            }
-        }
+        self.fetchData()
+        
         computeLayout()
         
         // Do any additional setup after loading the view.
@@ -84,17 +80,22 @@ extension PartySignUpViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.section {
         case 0:
             let cell = SignUpTableViewCell(status: ApplicantTest.ApplicantEntry.status, message: ApplicantTest.ApplicantEntry.message, testIdentifier: 0)
+            cell.selectionStyle = .None
                 return cell
         case 1:
             let cell = SignUpTableViewCell(status: ApplicantTest.AcademyEntry.status, message: ApplicantTest.AcademyEntry.message, testIdentifier: 1)
+            cell.selectionStyle = .None
                 return cell
 
         case 2:
-            let cell = UITableViewCell()
+            let cell = SignUpTableViewCell(status: ApplicantTest.ProbationaryEntry.status, message: ApplicantTest.ProbationaryEntry.message, testIdentifier: 2)
+            cell.selectionStyle = .None
+            //log.word((ApplicantTest.ProbationaryEntry.message)!)/
             return cell
             
         default:
             let cell = UITableViewCell()
+            cell.selectionStyle = .None
             return cell
             
         }
@@ -118,14 +119,14 @@ extension PartySignUpViewController: UITableViewDelegate, UITableViewDataSource 
     /*
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 5
-    }*/
+    }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 5))
         
         return footerView
         
-    }
+    }*/
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
@@ -137,6 +138,8 @@ extension PartySignUpViewController: UITableViewDelegate, UITableViewDataSource 
 
 }
 
+
+//MARK: SnapKit layout computation
 extension PartySignUpViewController {
     
     func computeLayout() {
@@ -161,9 +164,24 @@ extension PartySignUpViewController {
     }
 }
 
+
 extension PartySignUpViewController {
-    
-    func signUp(forTest identifier: String) {
-        log.word(identifier)/
+    func fetchData() {
+        ApplicantTest.ApplicantEntry.getStatus {
+            if ApplicantTest.ApplicantEntry.status == nil {
+                return
+            }
+            ApplicantTest.AcademyEntry.getStatus {
+                if ApplicantTest.AcademyEntry.status == nil {
+                    return
+                }
+                ApplicantTest.ProbationaryEntry.getStatus {
+                    if ApplicantTest.ProbationaryEntry.status == nil {
+                        return
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 }

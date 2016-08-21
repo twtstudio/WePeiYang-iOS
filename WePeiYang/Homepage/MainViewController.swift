@@ -27,8 +27,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("eventsWatched")
         self.checkGuide()
+        //self.checkSpecialEvents()
         
         if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {
             UIApplication.sharedApplication().keyWindow?.rootViewController = self.navigationController?.tabBarController
@@ -42,12 +43,29 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.mainTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.getData()
         })
-        self.mainTableView.mj_header.beginRefreshing()
+        
+        //原来这句话注释掉是因为这里消耗比较大，如果在下面操纵 main thread 任务会很卡
+        //self.mainTableView.mj_header.beginRefreshing()
+        //换成 withCompletionBlock 之后可以在 refresh 完成之后开始 checkSpecialEvents 这样消耗性能的任务
+        self.mainTableView.mj_header.beginRefreshingWithCompletionBlock {
+            
+            guard let app = UIApplication.sharedApplication().delegate as? AppDelegate else {
+                return
+            }
+            if app.specialEventsShouldShow == true {
+                
+                self.checkSpecialEvents()
+                log.word("fuckers")/
+            }
+
+        }
         
         if !AccountManager.tokenExists() && SolaFoundationKit.topViewController() == self {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         }
+        
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.guideDismissNotificationReceived), name: NOTIFICATION_GUIDE_DISMISSED, object: nil)
     }
@@ -372,3 +390,52 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     */
 
 }
+
+//MARK: Special Events Displaying
+extension MainViewController: UIViewControllerTransitioningDelegate {
+    private func checkSpecialEvents() {
+        
+        guard NSUserDefaults.standardUserDefaults().objectForKey("eventsWatched") == nil else {
+            log.word("GODFUCKERS")/
+            return
+        }
+        
+        let blurEffect = UIBlurEffect(style: .Light)
+        let frostedView = UIVisualEffectView(effect: blurEffect)
+        //self.navigationController?.view.addSubview(frostedView)
+        self.tabBarController?.view.addSubview(frostedView)
+        frostedView.snp_makeConstraints {
+            make in
+            make.top.equalTo((self.navigationController?.view)!).offset(-UIApplication.sharedApplication().statusBarFrame.height)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo((self.tabBarController?.view)!)
+            make.right.equalTo(self.view)
+        }
+        
+        let notInterestedLabel = UILabel(text: "不感兴趣？往上滑！", fontSize: 20)
+        notInterestedLabel.textColor = .grayColor()
+        frostedView.addSubview(notInterestedLabel)
+        notInterestedLabel.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(frostedView)
+            make.bottom.equalTo(frostedView).offset(-26)
+        }
+        
+        //Add Special Events View
+        let specialVC = SpecialEventsViewController(address: "http://coder.twtstudio.com/hr")
+        specialVC.transitioningDelegate = self
+        specialVC.modalPresentationStyle = .Custom
+
+        navigationController?.presentViewController(specialVC, animated: true, completion: nil)
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentingAnimator()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissingAnimator()
+    }
+    
+}
+

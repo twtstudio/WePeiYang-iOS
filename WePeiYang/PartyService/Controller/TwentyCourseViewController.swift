@@ -27,8 +27,12 @@ class TwentyCourseViewController: UIViewController {
             make.left.bottom.right.equalTo(self.view)
             make.left.top.equalTo(self.view).offset(92)
         }
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Eliminate the empty cells
+        tableView.tableFooterView = UIView()
         
         Courses.getCourseList {
             self.courseList = Courses.courses
@@ -90,6 +94,8 @@ extension TwentyCourseViewController: UITableViewDelegate, UITableViewDataSource
             let detailVC = TwentyCourseDetailViewController(details: details)
             
             self.navigationController?.showViewController(detailVC, sender: nil)
+            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             
         }
         
