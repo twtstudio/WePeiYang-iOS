@@ -50,9 +50,11 @@ class Applicant: NSObject {
             self.realName = fooRealName
             self.studentNumber = fooStudentNumber
             
+
             NSUserDefaults.standardUserDefaults().setObject(self.studentNumber, forKey: "studentID")
             NSUserDefaults.standardUserDefaults().setObject(self.realName, forKey: "studentName")
-            log.word("registered!")/
+            //log.word("registered!")/
+
             success()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
