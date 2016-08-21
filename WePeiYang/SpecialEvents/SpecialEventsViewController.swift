@@ -9,10 +9,13 @@
 import UIKit
 import pop
 
+
 class SpecialEventsViewController: WebAppViewController {
 
     var saveForLaterBtn: UIButton!
     var notInterestedBtn: UIButton!
+    
+    var diveIntoDetailBtn: UIButton!
     
     //下次再看
     func dismissAnimatedAndRemoveDefaults() {
@@ -63,6 +66,14 @@ class SpecialEventsViewController: WebAppViewController {
             }
         }
         
+        self.view.addSubview(saveForLaterBtn)
+        saveForLaterBtn.snp_makeConstraints {
+            make in
+            make.left.equalTo(self.view).offset(20)
+            make.bottom.equalTo(self.view).offset(-20)
+            make.width.equalTo(100)
+        }
+        
         let deRoundCornoerAnim = POPBasicAnimation(propertyNamed: kPOPLayerCornerRadius)
         let newCornerRadius: NSNumber = 0
         deRoundCornoerAnim.toValue = newCornerRadius
@@ -77,10 +88,8 @@ class SpecialEventsViewController: WebAppViewController {
             }
             
         }
-
         
-
-        //log.any(self.view)/
+        
         
         
     }
@@ -90,10 +99,15 @@ class SpecialEventsViewController: WebAppViewController {
         
         NSUserDefaults.standardUserDefaults().setObject("1", forKey: "eventsWatched")
         
-        saveForLaterBtn = UIButton(title: "下次再看", borderWidth: 2.0, borderColor: .grayColor())
+        diveIntoDetailBtn = UIButton(title: "我要报名", borderWidth: 2.0, borderColor: .whiteColor())
+        diveIntoDetailBtn.addTarget(self, action: #selector(self.expandView), forControlEvents: .TouchUpInside)
+        
+        
+        
+        saveForLaterBtn = UIButton(title: "下次再看", borderWidth: 2.0, borderColor: .whiteColor())
         saveForLaterBtn.addTarget(self, action: #selector(self.dismissAnimatedAndRemoveDefaults), forControlEvents: .TouchUpInside)
         
-        notInterestedBtn = UIButton(title: "不感兴趣", borderWidth: 2.0, borderColor: .grayColor())
+        notInterestedBtn = UIButton(title: "不再提醒", borderWidth: 2.0, borderColor: .whiteColor())
         notInterestedBtn.addTarget(self, action: #selector(self.dismissAnimated), forControlEvents: .TouchUpInside)
 
         view.layer.cornerRadius = 8
@@ -108,14 +122,6 @@ class SpecialEventsViewController: WebAppViewController {
         flyerView.image = flyerImg
         flyerView.contentMode = .ScaleAspectFill
         
-        
-        self.view.addSubview(saveForLaterBtn)
-        saveForLaterBtn.snp_makeConstraints {
-            make in
-            make.bottom.equalTo(self.view).offset(-20)
-            make.left.equalTo(self.view).offset(20)
-            make.width.equalTo(100)
-        }
         
         self.view.addSubview(notInterestedBtn)
         notInterestedBtn.snp_makeConstraints {
@@ -132,6 +138,22 @@ class SpecialEventsViewController: WebAppViewController {
             make.right.equalTo(view)
             make.top.equalTo(view)
             make.bottom.equalTo(view)
+        }
+        
+        flyerView.addSubview(diveIntoDetailBtn)
+        diveIntoDetailBtn.snp_makeConstraints {
+            make in
+            make.right.equalTo(flyerView).offset(-20)
+            make.bottom.equalTo(flyerView).offset(-40)
+            make.width.equalTo(100)
+        }
+        
+        self.view.addSubview(saveForLaterBtn)
+        saveForLaterBtn.snp_makeConstraints {
+            make in
+            make.bottom.equalTo(flyerView).offset(-40)
+            make.left.equalTo(flyerView).offset(20)
+            make.width.equalTo(100)
         }
         
         assignGestures(to: flyerView)
