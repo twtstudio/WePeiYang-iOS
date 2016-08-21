@@ -86,7 +86,7 @@ class GradeDetailViewController: UIViewController, UITableViewDataSource, UITabl
         } else if indexPath.row == 6 {
             cell?.textLabel?.text = "笔试成绩：暂无"
             if let foo = dict.objectForKey("entry_testgrade"){
-                cell?.textLabel?.text = "实践成绩：\(foo)"
+                cell?.textLabel?.text = "笔试成绩：\(foo)"
             }
         } else if indexPath.row == 7 {
             cell?.textLabel?.text = "成绩状态：\(entryStatus[Int(dict.objectForKey("entry_status") as! String)!])"

@@ -24,6 +24,12 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         
         self.tableView.bounces = false
         
+        if BicycleUser.sharedInstance.status == 1 {
+            BicycleUser.sharedInstance.getUserInfo({
+                self.updateUI()
+            })
+        }
+        
     }
     
     override func viewDidLoad() {
