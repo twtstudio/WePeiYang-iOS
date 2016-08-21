@@ -23,7 +23,7 @@ class BicycleServiceMapController: UIViewController {
      checkLocationAuthorizationStatus()
      }
      }*/
-    var whereAmI = UIButton(backgroundImageName: "回到定位", desiredSize: CGSize(width: 46.0, height: 46.0))!
+    var whereAmI = UIButton(backgroundImageName: "ic_location", desiredSize: CGSize(width: 32, height: 32))!
     
     func whereAmI(sender: UIButton!) {
         if let userLoc:MKUserLocation? = newMapView.userLocation {
@@ -106,13 +106,12 @@ extension BicycleServiceMapController {
             make.bottom.equalTo(view)
         }
         
-        
+        whereAmI.alpha = 0.8
         newMapView.addSubview(whereAmI)
         whereAmI.snp_makeConstraints {
             make in
-            make.left.equalTo(view).offset(20)
-            make.bottom.equalTo(view).offset(-46)
-            make.width.height.equalTo(46.0)
+            make.right.equalTo(view).offset(-24)
+            make.top.equalTo(view).offset(132)
         }
     }
 }

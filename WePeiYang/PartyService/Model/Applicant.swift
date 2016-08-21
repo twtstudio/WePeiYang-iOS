@@ -50,6 +50,9 @@ class Applicant: NSObject {
             self.realName = fooRealName
             self.studentNumber = fooStudentNumber
             
+            //Bug fix
+            NSUserDefaults.standardUserDefaults().setValue(fooStudentNumber, forKey: "studentID")
+            
             success()
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
