@@ -165,11 +165,11 @@ class BicycleUser: NSObject {
                 print(dict)
                 
                 
-                guard //let fooName = dict?.objectForKey("name") as? String,
-                    //let fooBalance = dict?.objectForKey("balance") as? String,
-                    //let fooDuration = dict?.objectForKey("duration") as? String,
-                    let fooRecent = dict?.objectForKey("recent") as? Array<Array<AnyObject>>
-                    //let fooRecord = dict?.objectForKey("record") as? NSDictionary
+                guard let fooName = dict?.objectForKey("name") as? String,
+                    let fooBalance = dict?.objectForKey("balance") as? String,
+                    let fooDuration = dict?.objectForKey("duration") as? String,
+                    let fooRecent = dict?.objectForKey("recent") as? Array<Array<AnyObject>>,
+                    let fooRecord = dict?.objectForKey("record") as? NSDictionary
                     else {
                         MsgDisplay.showErrorMsg("获取用户数据失败，请重新登陆试试")
                         return
@@ -185,11 +185,11 @@ class BicycleUser: NSObject {
                 
                 MsgDisplay.dismiss()
                 
-                //self.name = fooName
-                //self.balance = fooBalance
-                //self.duration = fooDuration
+                self.name = fooName
+                self.balance = fooBalance
+                self.duration = fooDuration
                 self.recent = fooRecent
-                //self.record = fooRecord
+                self.record = fooRecord
                 
                 doSomething()
                 
