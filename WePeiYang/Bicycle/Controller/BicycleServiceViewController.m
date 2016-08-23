@@ -125,7 +125,8 @@
     CGFloat x = self.view.frame.size.width/6 - iconWidth/2;
     CGFloat y = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height+self.menuHeight/2-iconHight/2;
     
-    self.mapIconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(x-(BIG_ICON_WIDTH-SMALL_ICON_WIDTH)/2, y-(BIG_ICON_WIDTH-SMALL_ICON_WIDTH)/2, BIG_ICON_WIDTH, BIG_ICON_WIDTH)];
+    //self.mapIconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(x-(BIG_ICON_WIDTH-SMALL_ICON_WIDTH)/2, y-(BIG_ICON_WIDTH-SMALL_ICON_WIDTH)/2, BIG_ICON_WIDTH, BIG_ICON_WIDTH)];
+    self.mapIconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, iconWidth, iconHight)];
     [self.mapIconImageView setImage:[UIImage imageNamed:@"地图"]];
     self.infoIconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(x+self.menuItemWidth, y, iconWidth, iconHight)];
     [self.infoIconImageView setImage:[UIImage imageNamed:@"信息"]];
@@ -164,17 +165,18 @@
     //更改 NavigationBar 标题, 调整图标大小
     if ([[info objectForKey:@"index"] integerValue] == 0) {
         self.titleLabel.text = @"地图";
-        [self changeIconImageView:self.mapIconImageView width:BIG_ICON_WIDTH];
+        /*[self changeIconImageView:self.mapIconImageView width:BIG_ICON_WIDTH];
         [self changeIconImageView:self.infoIconImageView width:SMALL_ICON_WIDTH];
         [self changeIconImageView:self.notificationIconImageView width:SMALL_ICON_WIDTH];
-        
+        */
         self.navigationItem.rightBarButtonItem = nil;
         
     } else if ([[info objectForKey:@"index"] integerValue] == 1){
         self.titleLabel.text = @"信息";
-        [self changeIconImageView:self.mapIconImageView width:SMALL_ICON_WIDTH];
+        /*[self changeIconImageView:self.mapIconImageView width:SMALL_ICON_WIDTH];
         [self changeIconImageView:self.infoIconImageView width:BIG_ICON_WIDTH];
         [self changeIconImageView:self.notificationIconImageView width:SMALL_ICON_WIDTH];
+         */
         
         //刷新按钮
         UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshUserInfo)];
@@ -189,9 +191,10 @@
         }
     } else {
         self.titleLabel.text = @"公告";
-        [self changeIconImageView:self.mapIconImageView width:SMALL_ICON_WIDTH];
+        /*[self changeIconImageView:self.mapIconImageView width:SMALL_ICON_WIDTH];
         [self changeIconImageView:self.infoIconImageView width:SMALL_ICON_WIDTH];
         [self changeIconImageView:self.notificationIconImageView width:BIG_ICON_WIDTH];
+         */
         
         self.navigationItem.rightBarButtonItem = nil;
         

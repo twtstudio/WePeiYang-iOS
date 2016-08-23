@@ -92,6 +92,12 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
             NSUserDefaults.standardUserDefaults().setValue(1, forKey: "BicycleStatus")
             self.navigationController?.popViewControllerAnimated(true)
             self.navigationController?.popViewControllerAnimated(true)
+            
+            for vc in (self.navigationController?.viewControllers)! {
+                if let currentVC = vc as? BicycleServiceInfoController {
+                    currentVC.refreshInfo()
+                }
+            }
         })
     }
     

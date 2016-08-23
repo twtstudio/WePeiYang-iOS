@@ -22,13 +22,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         self.view.frame.size.width = (UIApplication.sharedApplication().keyWindow?.frame.size.width)!
         
-        self.tableView.bounces = false
-        
-        if BicycleUser.sharedInstance.status == 1 {
-            BicycleUser.sharedInstance.getUserInfo({
-                self.updateUI()
-            })
-        }
+        //self.tableView.bounces = false
         
     }
     
@@ -114,8 +108,8 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         
         //let res = data[Int(horizontalIndex)]["dist"] as! CGFloat
-        let res = BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1] as CGFloat
-        return res
+        let res = BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1] as? CGFloat
+        return res!
     }
     
     func lineChartView(lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {
@@ -144,21 +138,32 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //delegate of chartView
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt) {
-        let time = Int((BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1]))
-        let currentTime = Int((BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]))
+        let date = BicycleUser.sharedInstance.recent[Int(horizontalIndex)][0]
+        var time = BicycleUser.sharedInstance.recent[Int(horizontalIndex)][1] as! Int
         var minute: Int
         var second: Int
-        if time >= 60 {
-            minute = time / 60
-            second = time % 60
-            if second < 10 {
-                self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(minute):0\(second)"
-            } else {
-                self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(minute):\(second)"
-            }
-        } else {
-            self.infoLabel.text = "\(currentTime):00-\((currentTime+1)%24):00  骑行时间：\(time)s"
+        var hour: Int
+        
+        hour = time / 3600
+        time %= 3600
+        minute = time / 60
+        time %= 60
+        second = time
+     
+        var hourString = String(hour)
+        if hour < 10 {
+            hourString = "0\(String(hour))"
         }
+        var minuteString = String(minute)
+        if minute < 10 {
+            minuteString = "0\(String(minute))"
+        }
+        var secondString = String(second)
+        if second < 10 {
+            secondString = "0\(String(second))"
+        }
+        
+        self.infoLabel.text = "\(date)  骑行时间：\(hourString):\(minuteString):\(secondString)"
     }
     
     //dataSource of tableView
@@ -202,7 +207,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
                 //借了车，没还车
                 if Int(timeStampString) == 0 {
                     cell?.textLabel?.text = "最近记录：借车"
-                    timeStampString = foo.objectForKey("dev_time") as! String
+                    timeStampString = foo.objectForKey("dep_time") as! String
                     cell?.detailTextLabel?.text = "时间：\(timeStampTransfer.stringFromTimeStampWithFormat("yyyy-MM-dd HH:mm", timeStampString: timeStampString))"
                 } else {
                     cell?.textLabel?.text = "最近记录：还车"
@@ -223,50 +228,95 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         if section == 0 {
             return 264
         }
-        return 0
+        return 4
     }
-    
+
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section != 0 {
-            return nil
+            let headerView = UIView(frame: CGRectMake(0, 0, (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, 4))
+            headerView.backgroundColor = UIColor.clearColor()
+            return headerView
         }
         
         //log.word("drawing header view")
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 250))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, height: 250))
         
-        //chartViewBackground
-        let background = UIImage(named: "BicyleChartBackgroundImage")
-        let backgroundView = UIView(frame: CGRect(x: 8, y: 8, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!-16, height: 220))
-        backgroundView.layer.cornerRadius = 8.0
-        backgroundView.backgroundColor = UIColor(patternImage: background!)
-        view.addSubview(backgroundView)
-        
-        //chartView
-        chartView = JBLineChartView(frame: self.calculateChartViewFrame())
-        chartView.delegate = self
-        chartView.dataSource = self
-        chartView.backgroundColor = UIColor.clearColor()
-        view.addSubview(chartView)
-        chartView.reloadData()
-        
+        //infoLabel
         infoLabel = UILabel()
-        view.addSubview(infoLabel)
-        infoLabel.text = "骑行时间：s"
+        headerView.addSubview(infoLabel)
+        infoLabel.text = "骑行时间："
         infoLabel.snp_makeConstraints {
             make in
-            make.centerX.equalTo(view)
-            make.top.equalTo(backgroundView.snp_bottom).offset(8)
+            make.centerX.equalTo(headerView)
+            make.top.equalTo(headerView).offset(8)
         }
-        
+    
         let bicycleIconView = UIImageView(imageName: "ic_bike", desiredSize: CGSize(width: 30, height: 30))
-        view.addSubview(bicycleIconView!)
+        headerView.addSubview(bicycleIconView!)
         bicycleIconView?.snp_makeConstraints { make in
             make.centerY.equalTo(infoLabel)
             make.right.equalTo(infoLabel.snp_left).offset(-8)
         }
         
-        return view
+        
+        //chartViewBackground
+        let chartBackground = UIImageView(imageName: "BicyleChartBackgroundImage", desiredSize: CGSize(width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!-16, height: 220))
+        headerView.addSubview(chartBackground!)
+        
+        chartBackground?.snp_makeConstraints {
+            make in
+            make.top.equalTo(infoLabel.snp_bottom).offset(8)
+            make.left.equalTo(headerView).offset(8)
+            make.right.equalTo(headerView).offset(-8)
+            make.bottom.equalTo(headerView).offset(-8)
+        }
+        
+        chartBackground!.clipsToBounds = true
+        chartBackground!.layer.cornerRadius = 8
+        for subview in chartBackground!.subviews {
+            subview.layer.cornerRadius = 8
+        }
+        
+        /*
+        let background = UIImage(named: "BicyleChartBackgroundImage")
+        let backgroundView = UIView(frame: CGRect(x: 8, y: 8, width: (UIApplication.sharedApplication().keyWindow?.frame.size.width)!-16, height: 220))
+        backgroundView.layer.cornerRadius = 8.0
+        backgroundView.backgroundColor = UIColor(patternImage: background!)
+        view.addSubview(backgroundView)*/
+ 
+        
+        //chartView
+        chartView = JBLineChartView(frame: CGRectMake(16, 53, (UIApplication.sharedApplication().keyWindow?.frame.size.width)!-32, 188))
+        //chartView = JBLineChartView(frame: CGRectMake(8, 8, 300, 220))
+        chartView.delegate = self
+        chartView.dataSource = self
+        chartView.backgroundColor = UIColor.clearColor()
+        headerView.addSubview(chartView)
+        chartView.reloadData()
+        
+        /*
+        chartView.snp_makeConstraints {
+            make in
+            make.left.equalTo(chartBackground!).offset(8)
+            make.right.equalTo(chartBackground!).offset(-8)
+            make.top.equalTo(chartBackground!).offset(8)
+            make.bottom.equalTo(chartBackground!).offset(-8)
+        }*/
+        
+        
+        return headerView
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
+        let footerView = UIView(frame: CGRectMake(0, 0, (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, 4))
+        footerView.backgroundColor = UIColor.clearColor()
+        return footerView
     }
     
     

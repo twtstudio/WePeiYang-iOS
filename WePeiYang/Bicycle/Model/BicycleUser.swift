@@ -22,7 +22,7 @@ class BicycleUser: NSObject {
     var name: String?
     var balance: String?
     var duration: String?
-    var recent: Array<Array<NSNumber>> = []
+    var recent: Array<Array<AnyObject>> = []
     var record: NSDictionary?
     
     //取消绑定时不重复要求绑定
@@ -168,7 +168,7 @@ class BicycleUser: NSObject {
                 guard let fooName = dict?.objectForKey("name") as? String,
                     let fooBalance = dict?.objectForKey("balance") as? String,
                     let fooDuration = dict?.objectForKey("duration") as? String,
-                    let fooRecent = dict?.objectForKey("recent") as? Array<Array<NSNumber>>,
+                    let fooRecent = dict?.objectForKey("recent") as? Array<Array<AnyObject>>,
                     let fooRecord = dict?.objectForKey("record") as? NSDictionary
                     else {
                         MsgDisplay.showErrorMsg("获取用户数据失败，请重新登陆试试")
