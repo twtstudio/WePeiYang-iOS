@@ -8,13 +8,30 @@
 
 import Foundation
 
-class BicycleUserBindViewController: UIViewController {
+class BicycleUserBindViewController: UIViewController, UIAlertViewDelegate {
     
     @IBOutlet var hintLabel: UILabel!
     @IBOutlet var IDTextField: UITextField!
+    
+    //iOS 8 fucking bug
+    /*
+    init(){
+        super.init(nibName: "BicycleUserBindViewController", bundle: nil)
+        print("haha")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+ */
+    
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = nil
         super.viewDidLoad()
+        
+        let alert = UIAlertView(title: "请绑定自行车卡", message: "提示：\n在您进行新办卡、修改卡信息、换卡等操作后，第二天才能正常使用本系统", delegate: self, cancelButtonTitle: "知道了")
+        
+        alert.show()
         
     }
     
