@@ -16,7 +16,7 @@ class PartyComplainViewController: UIViewController {
     var testType: String?
     
     convenience init(ID: String, type: String) {
-        self.init()
+        self.init(nibName: "PartyComplainViewController", bundle: nil)
         
         self.testID = ID
         self.testType = type

@@ -18,6 +18,17 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
 
     var user = timeStampTransfer()
     
+    //iOS 8 fucking bug
+    init(){
+        super.init(nibName: "BicycleServiceInfoController", bundle: nil)
+        print("haha")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.view.frame.size.width = (UIApplication.sharedApplication().keyWindow?.frame.size.width)!

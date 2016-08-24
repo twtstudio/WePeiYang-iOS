@@ -184,7 +184,6 @@
         
         //用户绑定
         if ([BicycleUser.sharedInstance.status isEqual:@0] && !BicycleUser.sharedInstance.bindCancel){
-            [MsgDisplay showErrorMsg:@"请先绑定您的自行车卡"];
             BicycleUserBindViewController *bindVC = [[BicycleUserBindViewController alloc] initWithNibName:@"BicycleUserBindViewController" bundle:nil];
             //bindVC.jz_wantsNavigationBarVisible = NO;
             [self.navigationController pushViewController:bindVC animated:YES];

@@ -20,6 +20,16 @@ class GradeCheckViewController: UIViewController, UITableViewDelegate, UITableVi
         testType = type
     }*/
     
+    //iOS 8 fucking bug
+    init(){
+        super.init(nibName: "GradeCheckViewController", bundle: nil)
+        //print("haha")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //print("didload")
@@ -120,7 +130,7 @@ class GradeCheckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //TableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detailVC = GradeDetailViewController()
+        let detailVC = GradeDetailViewController(nibName: "GradeDetailViewController", bundle: nil)
         detailVC.index = indexPath.row
         detailVC.testType = testType
         
