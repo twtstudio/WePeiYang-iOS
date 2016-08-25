@@ -9,6 +9,8 @@
 import UIKit
 import pop
 
+let smallPhoneWidth: CGFloat = 320
+let phoneWidth = UIApplication.sharedApplication().keyWindow?.frame.size.width
 
 class SpecialEventsViewController: WebAppViewController {
 
@@ -74,6 +76,14 @@ class SpecialEventsViewController: WebAppViewController {
             make.width.equalTo(100)
         }
         
+        self.view.addSubview(notInterestedBtn)
+         notInterestedBtn.snp_makeConstraints {
+         make in
+         make.bottom.equalTo(self.view).offset(-20)
+         make.right.equalTo(self.view).offset(-20)
+         make.width.equalTo(100)
+         }
+        
         let deRoundCornoerAnim = POPBasicAnimation(propertyNamed: kPOPLayerCornerRadius)
         let newCornerRadius: NSNumber = 0
         deRoundCornoerAnim.toValue = newCornerRadius
@@ -123,14 +133,6 @@ class SpecialEventsViewController: WebAppViewController {
         flyerView.contentMode = .ScaleAspectFill
         
         
-        self.view.addSubview(notInterestedBtn)
-        notInterestedBtn.snp_makeConstraints {
-            make in
-            make.bottom.equalTo(self.view).offset(-20)
-            make.right.equalTo(self.view).offset(-20)
-            make.width.equalTo(100)
-        }
-        
         self.view.addSubview(flyerView)
         flyerView.snp_makeConstraints {
             make in
@@ -140,21 +142,49 @@ class SpecialEventsViewController: WebAppViewController {
             make.bottom.equalTo(view)
         }
         
-        flyerView.addSubview(diveIntoDetailBtn)
-        diveIntoDetailBtn.snp_makeConstraints {
-            make in
-            make.right.equalTo(flyerView).offset(-20)
-            make.bottom.equalTo(flyerView).offset(-40)
-            make.width.equalTo(100)
+        if phoneWidth <= smallPhoneWidth {
+            
+            flyerView.addSubview(diveIntoDetailBtn)
+            diveIntoDetailBtn.snp_makeConstraints {
+                make in
+                make.bottom.equalTo(flyerView).offset(-40)
+                make.right.equalTo(flyerView).offset(-10)
+                make.width.equalTo(90)
+            }
+            
+            flyerView.addSubview(notInterestedBtn)
+            notInterestedBtn.snp_makeConstraints {
+                make in
+                make.bottom.equalTo(flyerView).offset(-40)
+                make.left.equalTo(flyerView).offset(10)
+                make.width.equalTo(90)
+            }
+            
+        } else {
+            flyerView.addSubview(diveIntoDetailBtn)
+            diveIntoDetailBtn.snp_makeConstraints {
+                make in
+                make.right.equalTo(flyerView).offset(-20)
+                make.bottom.equalTo(flyerView).offset(-40)
+                make.width.equalTo(100)
+            }
+            
+            /*self.view.addSubview(saveForLaterBtn)
+             saveForLaterBtn.snp_makeConstraints {
+             make in
+             make.bottom.equalTo(flyerView).offset(-40)
+             make.left.equalTo(flyerView).offset(20)
+             make.width.equalTo(100)
+             }*/
+            flyerView.addSubview(notInterestedBtn)
+            notInterestedBtn.snp_makeConstraints {
+                make in
+                make.bottom.equalTo(flyerView).offset(-40)
+                make.left.equalTo(flyerView).offset(20)
+                make.width.equalTo(100)
+            }
         }
-        
-        self.view.addSubview(saveForLaterBtn)
-        saveForLaterBtn.snp_makeConstraints {
-            make in
-            make.bottom.equalTo(flyerView).offset(-40)
-            make.left.equalTo(flyerView).offset(20)
-            make.width.equalTo(100)
-        }
+
         
         assignGestures(to: flyerView)
         //log.any(view.subviews)/
@@ -227,7 +257,7 @@ private extension SpecialEventsViewController {
         pinchGestureRecognizer.scale = 1.2
         whichView.addGestureRecognizer(pinchGestureRecognizer)
         
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.dismissAnimated))
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.dismissAnimatedAndRemoveDefaults))
         swipeUp.direction = .Up
         whichView.addGestureRecognizer(swipeUp)
         

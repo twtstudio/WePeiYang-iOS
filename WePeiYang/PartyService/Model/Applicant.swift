@@ -30,7 +30,7 @@ class Applicant: NSObject {
         //TODO:这样做还不够优雅，应该在登录完成之后自动重新加载
         guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
             MsgDisplay.showErrorMsg("你需要登录才能访问党建功能")
-            let loginVC = LoginViewController()
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
             return
         }
@@ -224,7 +224,45 @@ class Applicant: NSObject {
         
     }
     
+    func handIn(title: String, content: String, fileType: Int, doSomething: () -> ()) {
+        let parameters = ["message_title": title, "message_content": content, "submit": "", "file_type": fileType]
+        
+        let manager = AFHTTPSessionManager()
+        manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
+        
+        manager.POST(PartyAPI.handInURL,
+                    parameters: parameters,
+                    progress: { (progress: NSProgress) in
+                        MsgDisplay.showLoading()
+                    },
+                    success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+                        let dic = responseObject as? NSDictionary
+                        
+                        print(dic)
+                        
+                        guard dic?.objectForKey("status") as? NSNumber == 1 else {
+                            MsgDisplay.showErrorMsg(dic?.objectForKey("msg") as! String)
+                            return
+                        }
+                        
+                        if let msg = dic?.objectForKey("msg") as? String {
+                            MsgDisplay.showSuccessMsg(msg)
+                        } else {
+                            MsgDisplay.showSuccessMsg("递交成功")
+                        }
+                        
+                        doSomething()
+                    },
+                    failure: { (task: NSURLSessionDataTask?, error: NSError) in
+                        MsgDisplay.showErrorMsg("网络错误，请稍后再试")
+                        print("error: \(error)")
+            }
+        )
+        
+    }
+    
     func handlePersonalStatus(doSomething: () -> ()) {
+        
         for dict in personalStatus {
             guard dict.objectForKey("status") as? Int == 1 else {
                 continue

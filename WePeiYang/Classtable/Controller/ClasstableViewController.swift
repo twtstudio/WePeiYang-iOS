@@ -87,7 +87,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 }
             })
         } else {
-            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         }
     }

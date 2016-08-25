@@ -146,7 +146,7 @@
         }
     } else {
         [self clearTableContent];
-        LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+        LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
         [self presentViewController:loginVC animated:YES completion:nil];
     }
 }

@@ -20,9 +20,9 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
         (title: "图书馆", image: UIImage(named: "libBtn")!),
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
-        (title: "实验室", image: UIImage(named: "msBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
-        (title: "党建" , image: UIImage(named: "partyBtn")!)
+        (title: "党建" , image: UIImage(named: "partyBtn")!),
+        (title: "探索", image: UIImage(named: "msBtn")!)
     ]
     
     var microserviceController: STPopupController!
@@ -80,7 +80,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.bounds.width/3, 152)
+        return CGSizeMake(collectionView.bounds.width/4, 119)
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -109,11 +109,11 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         case 3:
             self.showLostFoundController()
         case 4:
-            self.showMicroservicesController()
-        case 5:
             self.showBicycleServiceController()
-        case 6:
+        case 5:
             self.showPartyServiceController()
+        case 6:
+            self.showMicroservicesController()
         default:
             return
         }
@@ -225,7 +225,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         //log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
         
         if NSUserDefaults.standardUserDefaults().objectForKey("twtToken") == nil {
-            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         } else {
             //坑：让后面能自动弹出要求绑定，但是做法不太科学，应改为 Notification

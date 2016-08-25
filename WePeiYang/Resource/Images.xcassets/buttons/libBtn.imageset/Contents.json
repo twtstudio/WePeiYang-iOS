@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "libBtn.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "library icon.png",
       "scale" : "2x"
     },
     {

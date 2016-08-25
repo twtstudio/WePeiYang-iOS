@@ -17,17 +17,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="aKV-Cn-uvY">
-                    <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="aKV-Cn-uvY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2Ok-5g-BUA"/>
                 <constraint firstAttribute="bottom" secondItem="aKV-Cn-uvY" secondAttribute="bottom" id="5zB-9i-FNZ"/>
-                <constraint firstItem="aKV-Cn-uvY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="LnK-RG-6UJ"/>
+                <constraint firstItem="aKV-Cn-uvY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="LnK-RG-6UJ"/>
                 <constraint firstAttribute="trailing" secondItem="aKV-Cn-uvY" secondAttribute="trailing" id="T1o-17-zfq"/>
                 <constraint firstItem="aKV-Cn-uvY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dva-h8-QMh"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="LnK-RG-6UJ"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="312" y="319"/>
         </view>
     </objects>

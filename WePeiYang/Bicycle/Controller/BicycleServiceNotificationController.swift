@@ -16,7 +16,7 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
     //iOS 8 fucking bug
     init(){
         super.init(nibName: "BicycleServiceNotificationController", bundle: nil)
-        print("haha")
+        //print("haha")
     }
     
     required init?(coder aDecoder: NSCoder) {

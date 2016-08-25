@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "msBtn.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "microservice.png",
       "scale" : "2x"
     },
     {

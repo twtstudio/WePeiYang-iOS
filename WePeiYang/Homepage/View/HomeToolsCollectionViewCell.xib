@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,23 +14,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="121" height="120"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mv-95-em4">
-                        <rect key="frame" x="8" y="91" width="105" height="21"/>
+                        <rect key="frame" x="8" y="93" width="105" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WDS-7L-adb">
-                        <rect key="frame" x="25" y="13" width="70" height="70"/>
+                        <rect key="frame" x="28" y="21" width="64" height="64"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="epN-3W-XC2"/>
-                            <constraint firstAttribute="width" constant="70" id="fIL-EY-x2g"/>
+                            <constraint firstAttribute="height" constant="64" id="epN-3W-XC2"/>
+                            <constraint firstAttribute="width" constant="64" id="fIL-EY-x2g"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="WDS-7L-adb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="13" id="7Me-S4-yYy"/>
+                <constraint firstItem="WDS-7L-adb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="21" id="7Me-S4-yYy"/>
                 <constraint firstItem="3mv-95-em4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="917-YX-mQA"/>
                 <constraint firstItem="3mv-95-em4" firstAttribute="top" secondItem="WDS-7L-adb" secondAttribute="bottom" constant="8" id="9XK-rP-c36"/>
                 <constraint firstItem="3mv-95-em4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="A3x-1N-nTB"/>

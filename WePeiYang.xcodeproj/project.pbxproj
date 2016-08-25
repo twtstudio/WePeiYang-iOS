@@ -76,6 +76,8 @@
 		68513F811D6F091200E96BEB /* BicycleServiceNotificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F691D6F091200E96BEB /* BicycleServiceNotificationController.xib */; };
 		68513F821D6F091200E96BEB /* BicycleUserBindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F6A1D6F091200E96BEB /* BicycleUserBindViewController.xib */; };
 		68513F831D6F091200E96BEB /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */; };
+		68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */; };
+		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
 		A243B7E395E1041DB9ED5D87 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AEA422A8EFB3C8A362BF43 /* Pods.framework */; };
 		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
@@ -334,6 +336,8 @@
 		68513F691D6F091200E96BEB /* BicycleServiceNotificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleServiceNotificationController.xib; sourceTree = "<group>"; };
 		68513F6A1D6F091200E96BEB /* BicycleUserBindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BicycleUserBindViewController.xib; sourceTree = "<group>"; };
 		68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
+		68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandInDetailViewController.xib; sourceTree = "<group>"; };
+		68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandInDetailViewController.swift; sourceTree = "<group>"; };
 		68AD41601D5E11B200695DF4 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -679,21 +683,22 @@
 		68513F081D6F08FF00E96BEB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				68513F091D6F08FF00E96BEB /* GradeCheckViewController.swift */,
-				68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */,
-				68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */,
-				68513F0C1D6F08FF00E96BEB /* PartyCoursesViewController.h */,
-				68513F0D1D6F08FF00E96BEB /* PartyCoursesViewController.m */,
-				68513F0E1D6F08FF00E96BEB /* PartyHandInViewController.swift */,
 				68513F0F1D6F08FF00E96BEB /* PartyMainViewController.swift */,
 				68513F101D6F08FF00E96BEB /* PartyPersonalStatusViewController.swift */,
-				68513F111D6F08FF00E96BEB /* PartyScoreViewController.h */,
-				68513F121D6F08FF00E96BEB /* PartyScoreViewController.m */,
+				68513F0E1D6F08FF00E96BEB /* PartyHandInViewController.swift */,
+				68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */,
+				68513F0C1D6F08FF00E96BEB /* PartyCoursesViewController.h */,
+				68513F0D1D6F08FF00E96BEB /* PartyCoursesViewController.m */,
 				68513F131D6F08FF00E96BEB /* PartySignUpViewController.swift */,
 				68513F141D6F08FF00E96BEB /* TheoryClassicsTableViewController.swift */,
 				68513F151D6F08FF00E96BEB /* TwentyCourseDetailViewController.swift */,
-				68513F161D6F08FF00E96BEB /* TwentyCourseScoreViewController.swift */,
 				68513F171D6F08FF00E96BEB /* TwentyCourseViewController.swift */,
+				68513F111D6F08FF00E96BEB /* PartyScoreViewController.h */,
+				68513F121D6F08FF00E96BEB /* PartyScoreViewController.m */,
+				68513F161D6F08FF00E96BEB /* TwentyCourseScoreViewController.swift */,
+				68513F091D6F08FF00E96BEB /* GradeCheckViewController.swift */,
+				68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */,
+				68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -712,22 +717,23 @@
 		68513F1D1D6F08FF00E96BEB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				68513F2C1D6F08FF00E96BEB /* WXWaveView.h */,
+				68513F2D1D6F08FF00E96BEB /* WXWaveView.m */,
 				68513F1E1D6F08FF00E96BEB /* CourseDetailReadingView.swift */,
 				68513F1F1D6F08FF00E96BEB /* CourseDetailTableViewCell.swift */,
 				68513F201D6F08FF00E96BEB /* CourseTableViewCell.swift */,
 				68513F211D6F08FF00E96BEB /* FunctionListTableViewCell.swift */,
 				68513F221D6F08FF00E96BEB /* GradeCheckViewController.xib */,
 				68513F231D6F08FF00E96BEB /* GradeDetailViewController.xib */,
-				68513F241D6F08FF00E96BEB /* PartyComplainViewController.xib */,
 				68513F251D6F08FF00E96BEB /* PartyHandInViewController.xib */,
+				68513F241D6F08FF00E96BEB /* PartyComplainViewController.xib */,
 				68513F261D6F08FF00E96BEB /* PersonalStatusLabel.swift */,
 				68513F271D6F08FF00E96BEB /* ScoreTableViewCell.swift */,
 				68513F281D6F08FF00E96BEB /* SignUpTableViewCell.swift */,
 				68513F291D6F08FF00E96BEB /* TextTableViewCell.swift */,
 				68513F2A1D6F08FF00E96BEB /* TheoryCourseArticleReadingView.swift */,
 				68513F2B1D6F08FF00E96BEB /* TwentyCourseScoreViewController.xib */,
-				68513F2C1D6F08FF00E96BEB /* WXWaveView.h */,
-				68513F2D1D6F08FF00E96BEB /* WXWaveView.m */,
+				68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1665,6 +1671,7 @@
 				E9941B411C15E30800626A56 /* jquery.min.js in Resources */,
 				E9AF6BD21A7CFCE2008B5214 /* bootstrap.min.js in Resources */,
 				B1C4F6551D543DD0000CD0D8 /* (null) in Resources */,
+				68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */,
 				E98DF6F71C5DF5BF003943A4 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				E928084D1D14696F00E4380D /* StudySearchViewController.xib in Resources */,
 				68513F7D1D6F091200E96BEB /* BicycleNotificationDetailViewController.xib in Resources */,
@@ -1953,6 +1960,7 @@
 				E9AF6BCF1A7CFCE2008B5214 /* data.m in Sources */,
 				68513F411D6F08FF00E96BEB /* CourseTableViewCell.swift in Sources */,
 				68513F711D6F091200E96BEB /* BicycleServiceNotificationController.swift in Sources */,
+				68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */,
 				68513F3A1D6F08FF00E96BEB /* TwentyCourseViewController.swift in Sources */,
 				68513F491D6F08FF00E96BEB /* SignUpTableViewCell.swift in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "lfBtn.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "lostFound.png",
       "scale" : "2x"
     },
     {

@@ -161,7 +161,7 @@ extension BicycleServiceMapController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
         for view in views {
             let endFrame = view.frame
-            view.frame = CGRectOffset(endFrame, 0, -1000)
+            view.frame = CGRectOffset(endFrame, 0, -250)
             UIView.animateWithDuration(1) {
                 view.frame = endFrame
             }

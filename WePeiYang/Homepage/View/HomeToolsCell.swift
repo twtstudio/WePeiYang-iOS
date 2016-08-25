@@ -23,7 +23,7 @@ class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
 //        (title: "失物招领", image: UIImage(named: "lfBtn")!)
-        (title: "实验室", image: UIImage(named: "msBtn")!)
+        (title: "探索", image: UIImage(named: "msBtn")!)
     ]
 
     override func awakeFromNib() {
@@ -52,6 +52,8 @@ class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        //smaller icon
         return CGSizeMake(collectionView.bounds.width/CGFloat(homeTools.count), collectionView.bounds.height)
     }
     
