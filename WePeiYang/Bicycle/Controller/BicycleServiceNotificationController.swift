@@ -61,10 +61,10 @@ class BicycleServiceNotificationController: UIViewController, UITableViewDelegat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
+        var cell = tableView.dequeueReusableCellWithIdentifier("BicycleNotificationCell")
         
         if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "identifier")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "BicycleNotificationCell")
         }
         
         cell?.textLabel?.text = NotificationList.sharedInstance.list[indexPath.row].title

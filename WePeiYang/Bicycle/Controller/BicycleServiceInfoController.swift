@@ -189,9 +189,9 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
+        var cell = tableView.dequeueReusableCellWithIdentifier("BicycleInfoCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "identifier")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "BicycleInfoCell")
         }
         
         if indexPath.section == 0 {

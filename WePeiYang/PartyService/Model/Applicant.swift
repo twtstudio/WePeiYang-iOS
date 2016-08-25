@@ -18,6 +18,7 @@ class Applicant: NSObject {
     var applicantGrade = [NSDictionary]()
     var academyGrade = [NSDictionary]()
     var probationaryGrade = [NSDictionary]()
+    var handInHandler: NSDictionary?
     
     static let sharedInstance = Applicant()
     
@@ -223,7 +224,25 @@ class Applicant: NSObject {
         
     }
     
-    
+    func handlePersonalStatus(doSomething: () -> ()) {
+        for dict in personalStatus {
+            guard dict.objectForKey("status") as? Int == 1 else {
+                continue
+            }
+            
+            guard dict.objectForKey("type") as? Int != nil else {
+                continue
+            }
+            
+            handInHandler = dict
+            doSomething()
+            return
+        }
+        
+        //Nothing to hand in
+        handInHandler = nil
+        doSomething()
+    }
     
     
 }

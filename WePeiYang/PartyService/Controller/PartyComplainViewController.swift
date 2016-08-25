@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PartyComplainViewController: UIViewController {
+class PartyComplainViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet var titleField: UITextField!
     @IBOutlet var contentField: UITextView!
@@ -69,4 +69,6 @@ class PartyComplainViewController: UIViewController {
             self.navigationController?.popViewControllerAnimated(true)
         })
     }
+    
+    
 }

@@ -53,9 +53,9 @@ class GradeCheckViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
+        var cell = tableView.dequeueReusableCellWithIdentifier("GradeCheckCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: "identifier")
+            cell = UITableViewCell(style: .Value1, reuseIdentifier: "GradeCheckCell")
         }
         
         let dict = gradeList[indexPath.row]

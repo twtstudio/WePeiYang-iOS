@@ -35,9 +35,9 @@ class BicycleCardListViewController: UITableViewController, UIAlertViewDelegate 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
+        var cell = tableView.dequeueReusableCellWithIdentifier("UserCardCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "identifier")
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "UserCardCell")
         }
         
         cell?.contentView.frame.size.height = 64

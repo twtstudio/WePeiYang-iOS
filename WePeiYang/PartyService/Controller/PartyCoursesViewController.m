@@ -25,7 +25,7 @@
     self = [super init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     if (self) {
-        NSLog(@"FUCK");
+        //NSLog(@"FUCK");
         self.viewControllerClasses = @[[TwentyCourseViewController class], [TheoryClassicsTableViewController class]];
         NSLog(@"FUCKagain");
         self.titles = @[@"20课", @"预备党员理论经典"];
