@@ -1,33 +1,37 @@
 //
-//  PartyComplainViewController.swift
+//  HandInDetailViewController.swift
 //  WePeiYang
 //
-//  Created by JinHongxu on 16/8/16.
+//  Created by JinHongxu on 16/8/25.
 //  Copyright © 2016年 Qin Yubo. All rights reserved.
 //
 
 import Foundation
 
-class PartyComplainViewController: UIViewController, UITextViewDelegate {
+class HandInDetailViewController: UIViewController {
     
-    @IBOutlet var titleField: UITextField!
-    @IBOutlet var contentField: UITextView!
-    var testID: String?
-    var testType: String?
     
-    convenience init(ID: String, type: String) {
-        self.init(nibName: "PartyComplainViewController", bundle: nil)
+    @IBOutlet var contentTextView: UITextView!
+    
+    @IBOutlet var titleTextField: UITextField!
+
+    var type: Int?
+    convenience init(type: Int) {
+        self.init(nibName: "HandInDetailViewController", bundle: nil)
         
-        self.testID = ID
-        self.testType = type
+        self.type = type
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(PartyComplainViewController.complain))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(HandInDetailViewController.submit))
         
         self.navigationItem.rightBarButtonItem = doneButton
+        
+        contentTextView.text = NSUserDefaults.standardUserDefaults().objectForKey("PartyHandInContentText") as? String
+        titleTextField.text = NSUserDefaults.standardUserDefaults().objectForKey("PartyHandInTitleText") as? String
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,22 +57,32 @@ class PartyComplainViewController: UIViewController, UITextViewDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
     }
     
-    func complain() {
+    func submit() {
         
-        guard !(titleField.text?.isEmpty)! else {
+        guard !(titleTextField.text?.isEmpty)! else {
             MsgDisplay.showErrorMsg("标题不能为空")
             return
         }
         
-        guard !(contentField.text?.isEmpty)! else {
+        guard !(contentTextView.text?.isEmpty)! else {
             MsgDisplay.showErrorMsg("内容不能为空")
             return
         }
         
-        Applicant.sharedInstance.complain(testID!, testType: testType!, title: titleField.text!, content: contentField.text!, doSomething: {
+        Applicant.sharedInstance.handIn(titleTextField.text!, content: contentTextView.text!, fileType: type!, doSomething: {
+            //print("dooooo!")
             self.navigationController?.popViewControllerAnimated(true)
         })
+        
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        
+        //FIXME: use database!
+        NSUserDefaults.standardUserDefaults().setObject(titleTextField.text, forKey: "PartyHandInTitleText")
+        NSUserDefaults.standardUserDefaults().setObject(contentTextView.text, forKey: "PartyHandInContentText")
+        super.viewWillDisappear(animated)
+    }
     
+
 }

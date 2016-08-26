@@ -409,7 +409,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
         
         if NSUserDefaults.standardUserDefaults().objectForKey("twtToken") == nil {
-            let loginVC = LoginViewController(nibName: nil, bundle: nil)
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         } else {
             //坑：让后面能自动弹出要求绑定，但是做法不太科学，应改为 Notification
@@ -477,7 +477,7 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
             make.right.equalTo(self.view)
         }
         
-        let notInterestedLabel = UILabel(text: "不感兴趣？往上滑！", fontSize: 20)
+        let notInterestedLabel = UILabel(text: "下次再看？往上滑！", fontSize: 20)
         notInterestedLabel.textColor = .grayColor()
         frostedView.addSubview(notInterestedLabel)
         notInterestedLabel.snp_makeConstraints {

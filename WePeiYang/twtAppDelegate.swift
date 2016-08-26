@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         let newAgent = oldAgent! + " WePeiYang_iOS"
         NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent": newAgent])
         
+        if NSUserDefaults.standardUserDefaults().objectForKey("eventsWatchedStatusCleared") == nil {
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("eventsWatched")
+            NSUserDefaults.standardUserDefaults().setObject(true, forKey: "eventsWatchedStatusCleared")
+        }
+        
         WXApi.registerApp(twtSecretKeys.getWechatAppId())
         
         twtSDK.setAppKey(twtSecretKeys.getTWTAppKey(), appSecret: twtSecretKeys.getTWTAppSecret())

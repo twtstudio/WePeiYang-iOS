@@ -16,7 +16,7 @@ class PartyMainViewController: UIViewController {
 
     //let personalStatusButton = UIButton(title: "查看个人进度")
     
-    let functionList = ["查看个人状态", "考试报名", "课程列表", "成绩查询"]
+    let functionList = ["查看个人状态", "考试报名", "课程列表", "成绩查询", "递交文件"]
     /*
     let functionList = [["icon": "考试报名", "desc": "考试报名"],
                         ["icon": "课程列表", "desc": "课程列表"],
@@ -159,6 +159,12 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
             let personalStatusVC = PartyScoreViewController()
             navigationController?.showViewController(personalStatusVC, sender: nil)
 
+        }
+        
+        //递交文件
+        if indexPath.row == 4 {
+            let partyHandInVC = PartyHandInViewController(nibName: "PartyHandInViewController", bundle: nil)
+            navigationController?.showViewController(partyHandInVC, sender: nil)
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

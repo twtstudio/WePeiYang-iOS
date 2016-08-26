@@ -50,7 +50,7 @@ class BicycleUser: NSObject {
                 
                 
                 let dict = dic?.objectForKey("data") as? NSDictionary
-                print(dict)
+                //print(dict)
                 guard let fooStatus = dict?.objectForKey("status") as? NSNumber,
                     let fooVersion = dict?.objectForKey("version") as? NSNumber,
                     let fooBikeToken = dict?.objectForKey("token") as? String,
