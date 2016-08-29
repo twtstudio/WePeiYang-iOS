@@ -54,7 +54,11 @@ struct Courses {
         let courseName: String
         
         static var courseDetails: [Study20.Detail?] = []
+        static var courseQuizes: [Quiz?] = []
+        static var finalMsgAfterSubmitting: String? = nil
+        
         var courseScore: Int?
+        
             
             
         //MARK: 20 课学习资料详情

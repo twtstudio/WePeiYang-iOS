@@ -12,6 +12,7 @@ import pop
 class TwentyCourseDetailViewController: UITableViewController {
 
     var detailList: [Courses.Study20.Detail?] = []
+    //var quizTakingBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,13 @@ class TwentyCourseDetailViewController: UITableViewController {
         let bgView = UIView(frame: CGRect(x: 0, y: -(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height), width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         //let bgView = UIView(color: partyRed)
         bgView.backgroundColor = partyRed
+        
+        let quizTakingBtn = UIBarButtonItem(title: "开始答题", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TwentyCourseDetailViewController.startQuiz))
+        
+        self.navigationItem.setRightBarButtonItem(quizTakingBtn, animated: true)
+        
+        
+        //navigationItem.titleView?.addSubview(bgView)
         tableView.addSubview(bgView)
         /*bgView.snp_makeConstraints {
             make in
@@ -183,5 +191,12 @@ extension TwentyCourseDetailViewController {
         anim.springBounciness = 20
         anim.delegate = self
         Who.pop_addAnimation(anim, forKey: "readingViewPopup")
+    }
+    
+    
+    func startQuiz() {
+        let courseID = self.detailList[0]?.courseID
+        let quizTakingVC = QuizTakingViewController(courseID: courseID!)
+        self.navigationController?.showViewController(quizTakingVC, sender: nil)
     }
 }
