@@ -16,7 +16,7 @@ class PartyMainViewController: UIViewController {
 
     //let personalStatusButton = UIButton(title: "查看个人进度")
     
-    let functionList = ["查看个人状态", "考试报名", "课程列表", "成绩查询", "递交文件"]
+    let functionList = ["查看个人状态", "考试报名", "课程列表", "成绩查询", "递交文件", "测试"]
     /*
     let functionList = [["icon": "考试报名", "desc": "考试报名"],
                         ["icon": "课程列表", "desc": "课程列表"],
@@ -66,6 +66,7 @@ class PartyMainViewController: UIViewController {
         anAvatar.layer.shadowOpacity = 0.8
         anAvatar.layer.shadowPath = shadowPath.CGPath
         anAvatar.layer.shadowRadius = 4
+        
         
         if let foo = NSUserDefaults.standardUserDefaults().objectForKey("studentName") as? String {
             aNameLabel = UILabel(text: foo, color: .whiteColor())
@@ -165,6 +166,10 @@ extension PartyMainViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 4 {
             let partyHandInVC = PartyHandInViewController(nibName: "PartyHandInViewController", bundle: nil)
             navigationController?.showViewController(partyHandInVC, sender: nil)
+        }
+        
+        if indexPath.row == 5 {
+            
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

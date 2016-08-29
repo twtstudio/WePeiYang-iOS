@@ -25,6 +25,7 @@ pod 'IDMPhotoBrowser'
 pod 'SlackTextViewController'
 pod 'STPopup'
 pod 'DateTools'
+pod 'IGIdenticon'
 
 target 'WePeiYang' do
 

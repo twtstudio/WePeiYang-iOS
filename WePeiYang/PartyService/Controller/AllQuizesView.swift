@@ -7,3 +7,29 @@
 //
 
 import Foundation
+
+
+class AllQuizesView: UIView {
+    
+    var QuizeList: Array<Quiz>
+    let Labels = [UILabel]()
+    
+    convenience init(Quizes: [Quiz]) {
+        self.init()
+        
+        self.QuizList = QuizList
+        
+        
+        
+    }
+    
+    func initUI() {
+        
+        for i in 0..<QuizeList.count {
+            Labels[i] =
+        }
+        
+    }
+    
+    
+}
