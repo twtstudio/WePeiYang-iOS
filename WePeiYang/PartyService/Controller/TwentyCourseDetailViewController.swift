@@ -195,8 +195,11 @@ extension TwentyCourseDetailViewController {
     
     
     func startQuiz() {
-        let courseID = self.detailList[0]?.courseID
-        let quizTakingVC = QuizTakingViewController(courseID: courseID!)
-        self.navigationController?.showViewController(quizTakingVC, sender: nil)
+        
+        let courseID = (self.detailList[0]?.courseID)!
+        Courses.Study20.getQuiz(of: courseID) {
+            let quizTakingVC = QuizTakingViewController(courseID: courseID)
+            self.navigationController?.showViewController(quizTakingVC, sender: nil)
+        }
     }
 }

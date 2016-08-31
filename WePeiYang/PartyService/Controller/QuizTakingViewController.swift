@@ -7,10 +7,17 @@
 //
 
 class QuizTakingViewController: UIViewController {
+    
+    typealias Quiz = Courses.Study20.Quiz
+    
     var courseID: String? = nil
-    var originalAnswer: [Int] = []
-    var userAnswer: [Int] = []
+    var currentQuizIndex = 0
+    //static var originalAnswer: [Int] = []
+    //static var userAnswer: [Int] = []
     let bottomTabBar = UIView(color: .whiteColor())
+    var bgView: UIView!
+    var quizView: QuizView!
+    
     /*
     let lastQuiz: UIButton = {
         let foo = UIButton(title: "上一题")
@@ -42,10 +49,11 @@ class QuizTakingViewController: UIViewController {
     let nextQuiz = UIButton(title: "下一题")
     let allQuizes = UIButton(title: "所有题目")
     
-    var quizList: [Courses.Study20.Quiz?] = []
+    var quizList: [Quiz?] = []
 
     
     override func viewWillAppear(animated: Bool) {
+        
         self.view.frame.size.width = (UIApplication.sharedApplication().keyWindow?.frame.size.width)!
         
         //NavigationBar 的文字
@@ -53,7 +61,7 @@ class QuizTakingViewController: UIViewController {
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         
         bgView.backgroundColor = partyRed
         self.view.addSubview(bgView)
@@ -65,7 +73,7 @@ class QuizTakingViewController: UIViewController {
         
         self.navigationItem.setRightBarButtonItem(quizSubmitBtn, animated: true)
         
-        
+ 
         
     }
     
@@ -87,6 +95,8 @@ class QuizTakingViewController: UIViewController {
         allQuizes.backgroundColor = .redColor()
         allQuizes.addTarget(QuizTakingViewController(), action: #selector(QuizTakingViewController.showAllQuizesList), forControlEvents: .TouchUpInside)
         
+        quizView = QuizView(quiz: Courses.Study20.courseQuizes[currentQuizIndex]!, at: currentQuizIndex)
+        
         computeLayout()
         
         let shadowPath = UIBezierPath(rect: bottomTabBar.bounds)
@@ -95,6 +105,7 @@ class QuizTakingViewController: UIViewController {
         bottomTabBar.layer.shadowOffset = CGSizeMake(0.0, 0.5)
         bottomTabBar.layer.shadowOpacity = 0.5
         bottomTabBar.layer.shadowPath = shadowPath.CGPath
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,6 +148,15 @@ extension QuizTakingViewController {
             make.bottom.equalTo(self.view)
             make.height.equalTo(60)
         }
+        
+        self.view.addSubview(quizView)
+        quizView.snp_makeConstraints {
+            make in
+            make.top.equalTo(self.view).offset(self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height + 18)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.bottom.equalTo(self.bottomTabBar.snp_top)
+        }
     }
 }
 
@@ -146,27 +166,146 @@ extension QuizTakingViewController {
         self.init()
         self.courseID = courseID
     }
+    
+    
 }
 
 
 //Logic Func
 extension QuizTakingViewController {
     func submitAnswer() {
-        Courses.Study20.submitAnswer(of: self.courseID!, answer: self.originalAnswer, userAnswer: self.userAnswer) {
-            log.word("fuckers")/
+        
+        //处理当前 quiz
+        for fooView in self.view.subviews {
+            if fooView.isKindOfClass(QuizView) {
+                Courses.Study20.courseQuizes[fooView.tag]?.userAnswer = (fooView as! QuizView).calculateUserAnswerWeight()
+                (fooView as! QuizView).saveChoiceStatus()
+            }
+        }
+        
+        let userAnswer = Courses.Study20.courseQuizes.flatMap { (quiz: Quiz?) -> Int? in
+            guard let foo = quiz?.userAnswer else {
+                MsgDisplay.showErrorMsg("你还没有完成答题，不能交卷")
+                return nil
+            }
+            return foo
+        }
+        
+        let originalAnswer = Courses.Study20.courseQuizes.flatMap { (quiz: Quiz?) -> Int? in
+            guard let foo = Int((quiz?.answer)!) else {
+                MsgDisplay.showErrorMsg("OOPS")
+                return nil
+            }
+            return foo
+        }
+        //log.any(originalAnswer)/
+    
+        //log.any(userAnswer)/
+        
+        guard originalAnswer.count == userAnswer.count else {
+            return
+        }
+        
+        Courses.Study20.submitAnswer(of: self.courseID!, originalAnswer: originalAnswer, userAnswer: userAnswer) {
+            let finishBtn = UIBarButtonItem(title: "完成", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(QuizTakingViewController.finishQuizTaking))
+            self.navigationItem.setRightBarButtonItem(finishBtn, animated: true)
+            
+            let finishView = FinalView(status: Courses.Study20.finalStatusAfterSubmitting!, msg: Courses.Study20.finalMsgAfterSubmitting!)
+            for fooView in self.view.subviews {
+                if fooView.isKindOfClass(QuizView) || fooView.isEqual(self.bottomTabBar) {
+                    fooView.removeFromSuperview()
+                }
+            }
+            self.view.addSubview(finishView)
+            finishView.snp_makeConstraints {
+                make in
+                make.top.equalTo(self.view).offset(self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height + 18)
+                make.left.equalTo(self.view)
+                make.right.equalTo(self.view)
+                make.bottom.equalTo(self.view)
+            }
         }
     }
     
     func swipeToNextQuiz() {
+        self.currentQuizIndex += 1
+        guard currentQuizIndex != Courses.Study20.courseQuizes.count else {
+            MsgDisplay.showErrorMsg("你已经在最后一道题啦")
+            self.currentQuizIndex -= 1
+            return
+        }
         
+        for fooView in self.view.subviews {
+            if fooView.isKindOfClass(QuizView) {
+                Courses.Study20.courseQuizes[fooView.tag]?.userAnswer = (fooView as! QuizView).calculateUserAnswerWeight()
+                (fooView as! QuizView).saveChoiceStatus()
+                fooView.removeFromSuperview()
+            }
+        }
+        
+        quizView = QuizView(quiz: Courses.Study20.courseQuizes[currentQuizIndex]!, at: currentQuizIndex)
+        
+        self.view.addSubview(quizView)
+        quizView.snp_makeConstraints {
+            make in
+            make.top.equalTo(self.view).offset(self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height + 18)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.bottom.equalTo(self.bottomTabBar.snp_top)
+        }
     }
     
     func swipeToLastQuiz() {
+        self.currentQuizIndex -= 1
+        guard currentQuizIndex >= 0 else {
+            MsgDisplay.showErrorMsg("你已经在第一题啦")
+            self.currentQuizIndex += 1
+            return
+        }
+        quizView = QuizView(quiz: Courses.Study20.courseQuizes[currentQuizIndex]!, at: currentQuizIndex)
         
+        for fooView in self.view.subviews {
+            if fooView.isKindOfClass(QuizView) {
+                Courses.Study20.courseQuizes[fooView.tag]?.userAnswer = (fooView as! QuizView).calculateUserAnswerWeight()
+                (fooView as! QuizView).saveChoiceStatus()
+                //log.any(Courses.Study20.courseQuizes[fooView.tag])/
+                fooView.removeFromSuperview()
+            }
+        }
+        
+        self.view.addSubview(quizView)
+        quizView.snp_makeConstraints {
+            make in
+            make.top.equalTo(self.view).offset(self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height + 18)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.bottom.equalTo(self.bottomTabBar.snp_top)
+        }
     }
     
     func showAllQuizesList() {
         
+    }
+    
+    func showQuizAtIndex(at index: Int) {
+        
+        for fooView in self.view.subviews {
+            if fooView.isKindOfClass(QuizView) {
+                Courses.Study20.courseQuizes[fooView.tag]?.userAnswer = (fooView as! QuizView).calculateUserAnswerWeight()
+                (fooView as! QuizView).saveChoiceStatus()
+                //log.any(Courses.Study20.courseQuizes[fooView.tag])/
+                fooView.removeFromSuperview()
+            }
+        }
+        
+        self.currentQuizIndex = index
+        
+        quizView = QuizView(quiz: Courses.Study20.courseQuizes[currentQuizIndex]!, at: currentQuizIndex)
+    }
+    
+    func finishQuizTaking() {
+        //self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
 }

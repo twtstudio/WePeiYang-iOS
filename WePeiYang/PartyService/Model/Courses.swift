@@ -56,6 +56,7 @@ struct Courses {
         static var courseDetails: [Study20.Detail?] = []
         static var courseQuizes: [Quiz?] = []
         static var finalMsgAfterSubmitting: String? = nil
+        static var finalStatusAfterSubmitting: Int? = nil
         
         var courseScore: Int?
         

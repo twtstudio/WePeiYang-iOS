@@ -8,11 +8,6 @@
 
 extension Courses.Study20 {
     
-    struct QuizOption {
-        let name: String
-        let weight: Int
-    }
-    
     struct Quiz {
         let id: String
         let belongTO: String
@@ -21,9 +16,16 @@ extension Courses.Study20 {
         let answer: String
         let isHidden: String
         let isDeleted: String
-        let options: [QuizOption]
+        var options: [Option]
         
         var userAnswer: Int?
+        var chosenOnesAtIndex: [Int]?
+        
+        struct Option {
+            let name: String
+            let weight: Int
+            var wasChosen: Bool
+        }
     }
     
     static func getQuiz(of CourseID: String, and completion: () -> ()) {
@@ -78,12 +80,12 @@ extension Courses.Study20 {
                             return nil
                     }
                     
-                    let options = fooOptions.flatMap({ (dict: NSDictionary) -> QuizOption? in
+                    let options = fooOptions.flatMap({ (dict: NSDictionary) -> Quiz.Option? in
                         guard let name = dict["name"] as? String,
                             let weight = dict["pos"] as? Int else {
                                 return nil
                         }
-                        return QuizOption(name: name, weight: weight)
+                        return Quiz.Option(name: name, weight: weight, wasChosen: false)
                     })
                     
                     guard options.count != 0 else {
@@ -92,7 +94,7 @@ extension Courses.Study20 {
                         return nil
                     }
                     
-                    return Quiz(id: id, belongTO: belongTo, type: type, content: content, answer: answer, isHidden: isHidden, isDeleted: isDeleted, options: options, userAnswer: nil)
+                    return Quiz(id: id, belongTO: belongTo, type: type, content: content, answer: answer, isHidden: isHidden, isDeleted: isDeleted, options: options, userAnswer: nil, chosenOnesAtIndex: nil)
                     
                 })
                 
@@ -100,14 +102,14 @@ extension Courses.Study20 {
                 
         }) { (_: NSURLSessionDataTask?, err: NSError) in
                 MsgDisplay.showErrorMsg("网络不好，请稍后重试")
-            log.any(err)/
+            //log.any(err)/
         }
     }
     
-    static func submitAnswer(of courseID: String, answer: [Int], userAnswer: [Int], and completion: () -> ()) {
+    static func submitAnswer(of courseID: String, originalAnswer: [Int], userAnswer: [Int], and completion: () -> ()) {
         let manager = AFHTTPSessionManager()
         manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
-        manager.POST(PartyAPI.courseQuizSubmitURL, parameters: PartyAPI.courseQuizSubmitParams(of: courseID, originalAnswer: answer, userAnswer: userAnswer), progress: { (_: NSProgress) in
+        manager.POST(PartyAPI.courseQuizSubmitURL, parameters: PartyAPI.courseQuizSubmitParams(of: courseID, originalAnswer: originalAnswer, userAnswer: userAnswer), progress: { (_: NSProgress) in
             MsgDisplay.showLoading()
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 MsgDisplay.dismiss()
@@ -117,19 +119,22 @@ extension Courses.Study20 {
                     log.word("fuck1")/
                     return
                 }
-                
+                log.any(PartyAPI.courseQuizSubmitParams(of: courseID, originalAnswer: originalAnswer, userAnswer: userAnswer))/
                 log.any(responseObject)/
                 
-                guard responseObject?.objectForKey("status") as? Int == 1 else {
+                guard let status = responseObject?.objectForKey("status") as? Int else {
                     guard let msg = responseObject?.objectForKey("msg") as? String else {
                         MsgDisplay.showErrorMsg("提交答案失败，别担心，等网络好了，我们会再次帮你提交一遍")
                         Courses.Study20.finalMsgAfterSubmitting = "提交答案失败，别担心，等网络好了，我们会再次帮你提交一遍"
-                        log.word("fuck2")/
+                        Courses.Study20.finalStatusAfterSubmitting = 0
+
+                        //log.word("fuck2")/
                         completion()
                         return
                     }
                     MsgDisplay.showErrorMsg(msg)
                     Courses.Study20.finalMsgAfterSubmitting = msg
+                    Courses.Study20.finalStatusAfterSubmitting = 0
                     log.word(msg)/
                     completion()
                     return
@@ -138,13 +143,15 @@ extension Courses.Study20 {
                 guard let msg = responseObject?.objectForKey("msg") as? String else {
                     MsgDisplay.showErrorMsg("网络出问题啦，别担心，等网络好了，我们会再次帮你提交一遍")
                     Courses.Study20.finalMsgAfterSubmitting = "网络出问题啦，别担心，等网络好了，我们会再次帮你提交一遍"
+                    Courses.Study20.finalStatusAfterSubmitting = status
                     log.word("fuck4")/
                     completion()
                     return
                 }
                 
                 Courses.Study20.finalMsgAfterSubmitting = msg
-                log.word("fuck5")/
+                Courses.Study20.finalStatusAfterSubmitting = status
+                
                 completion()
                 
         }) { (_: NSURLSessionDataTask?, err: NSError) in
