@@ -20,6 +20,9 @@
 		188842361846E6F4007B92CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188842341846E6F4007B92CB /* InfoPlist.strings */; };
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
+		683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 683072131D76CE1C008C04CB /* UIViewController+Utils.m */; };
+		683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */; };
+		683E2ECC1D75BEFE007F2D7A /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2ECB1D75BEFE007F2D7A /* QuizCell.swift */; };
 		68513F2E1D6F08FF00E96BEB /* GradeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F091D6F08FF00E96BEB /* GradeCheckViewController.swift */; };
 		68513F2F1D6F08FF00E96BEB /* GradeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */; };
 		68513F301D6F08FF00E96BEB /* PartyComplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */; };
@@ -280,6 +283,10 @@
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.release.xcconfig"; sourceTree = "<group>"; };
 		52AEA422A8EFB3C8A362BF43 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		683072121D76CE1C008C04CB /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		683072131D76CE1C008C04CB /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
+		683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllQuizViewController.swift; sourceTree = "<group>"; };
+		683E2ECB1D75BEFE007F2D7A /* QuizCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
 		68513F091D6F08FF00E96BEB /* GradeCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeCheckViewController.swift; sourceTree = "<group>"; };
 		68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeDetailViewController.swift; sourceTree = "<group>"; };
 		68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyComplainViewController.swift; sourceTree = "<group>"; };
@@ -710,6 +717,7 @@
 				68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */,
 				68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */,
 				B1063EB01D704E780084F379 /* QuizTakingViewController.swift */,
+				683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -730,6 +738,7 @@
 		68513F1D1D6F08FF00E96BEB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B1063EAE1D704E390084F379 /* QuizView.swift */,
 				68513F2C1D6F08FF00E96BEB /* WXWaveView.h */,
 				68513F2D1D6F08FF00E96BEB /* WXWaveView.m */,
 				68513F1E1D6F08FF00E96BEB /* CourseDetailReadingView.swift */,
@@ -749,6 +758,7 @@
 				68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */,
 				B1063EAE1D704E390084F379 /* QuizView.swift */,
 				B1572CF61D76D89D00A264D8 /* FinalView.swift */,
+				683E2ECB1D75BEFE007F2D7A /* QuizCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1072,6 +1082,8 @@
 		E94B1FDA1BF7AE8800520536 /* twtSDK */ = {
 			isa = PBXGroup;
 			children = (
+				683072121D76CE1C008C04CB /* UIViewController+Utils.h */,
+				683072131D76CE1C008C04CB /* UIViewController+Utils.m */,
 				E94B1FDB1BF7AE8800520536 /* NSString+Hashes.h */,
 				E94B1FDC1BF7AE8800520536 /* NSString+Hashes.m */,
 				E94B1FDD1BF7AE8800520536 /* SolaFoundationKit.h */,
@@ -1859,6 +1871,7 @@
 				68513F6C1D6F091200E96BEB /* BicycleCardListViewController.swift in Sources */,
 				68513F301D6F08FF00E96BEB /* PartyComplainViewController.swift in Sources */,
 				E90C139B1CAF74F700E1F353 /* HomeToolsCollectionViewCell.swift in Sources */,
+				683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */,
 				B1E497AD1D689A7C00E85DA8 /* DismissingAnimator.m in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
 				68513F371D6F08FF00E96BEB /* TheoryClassicsTableViewController.swift in Sources */,
@@ -1881,6 +1894,7 @@
 				68513F701D6F091200E96BEB /* BicycleServiceMapController.swift in Sources */,
 				E97336541C71EC9B00ACA06B /* LostFoundPostViewController.swift in Sources */,
 				E9AF6BD31A7CFCE2008B5214 /* FrontEndProcessor.m in Sources */,
+				683E2ECC1D75BEFE007F2D7A /* QuizCell.swift in Sources */,
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
 				B1C4F6511D543DD0000CD0D8 /* (null) in Sources */,
 				68513F471D6F08FF00E96BEB /* PersonalStatusLabel.swift in Sources */,
@@ -1966,6 +1980,7 @@
 				68513F731D6F091200E96BEB /* BicycleUserBindViewController.swift in Sources */,
 				68513F351D6F08FF00E96BEB /* PartyScoreViewController.m in Sources */,
 				B1C4F6521D543DD0000CD0D8 /* (null) in Sources */,
+				683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
 				68513F3F1D6F08FF00E96BEB /* CourseDetailReadingView.swift in Sources */,
 				E98DF6F01C5DF5BF003943A4 /* wpyModalWebViewController.m in Sources */,

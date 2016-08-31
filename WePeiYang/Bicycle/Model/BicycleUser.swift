@@ -40,7 +40,7 @@ class BicycleUser: NSObject {
             
             MsgDisplay.showLoading()
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-            
+                
                 let dic = responseObject as? NSDictionary
                 //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
@@ -67,14 +67,14 @@ class BicycleUser: NSObject {
                 self.expire = fooExpire
                 
                 /*
-                NSUserDefaults.standardUserDefaults().setValue(fooBikeToken, forKey: "BicycleToken")
-                NSUserDefaults.standardUserDefaults().setValue(fooStatus, forKey: "BicycleStatus")
-                NSUserDefaults.standardUserDefaults().setValue(fooVersion, forKey: "BicycleVersion")
-                NSUserDefaults.standardUserDefaults().setValue(fooExpire, forKey: "BicycleExpire")
-                */
+                 NSUserDefaults.standardUserDefaults().setValue(fooBikeToken, forKey: "BicycleToken")
+                 NSUserDefaults.standardUserDefaults().setValue(fooStatus, forKey: "BicycleStatus")
+                 NSUserDefaults.standardUserDefaults().setValue(fooVersion, forKey: "BicycleVersion")
+                 NSUserDefaults.standardUserDefaults().setValue(fooExpire, forKey: "BicycleExpire")
+                 */
                 
                 presentViewController()
-            
+                
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
                 MsgDisplay.showErrorMsg("网络错误，请稍后再试")
                 print("error: \(error)")
@@ -91,24 +91,24 @@ class BicycleUser: NSObject {
             MsgDisplay.showLoading()
             
             }, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-            
+                
                 let dic = responseObject as? NSDictionary
                 //log.obj(dic!)/
                 guard dic?.objectForKey("errno") as? NSNumber == 0 else {
                     MsgDisplay.showErrorMsg(dic?.objectForKey("errmsg") as? String)
                     return
                 }
-            
+                
                 MsgDisplay.dismiss()
                 let list = dic?.objectForKey("data") as? NSArray
-
+                
                 self.cardList.removeAll()
                 for dict in list! {
                     let cardInfo = dict as? NSDictionary
                     self.cardList.append(Card(dict: cardInfo!))
                 }
                 doSomething()
-            
+                
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) in
                 MsgDisplay.showErrorMsg("网络错误，请稍后再试")
                 print("error: \(error)")
@@ -174,13 +174,13 @@ class BicycleUser: NSObject {
                         MsgDisplay.showErrorMsg("获取用户数据失败，请重新登陆试试")
                         return
                 }
- 
+                
                 
                 /*print(fooName)
-                print(fooBalance)
-                print(fooDuration)
-                print(fooRecent)
-                print(fooRecord)*/
+                 print(fooBalance)
+                 print(fooDuration)
+                 print(fooRecent)
+                 print(fooRecord)*/
                 
                 
                 MsgDisplay.dismiss()
