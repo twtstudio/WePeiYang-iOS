@@ -20,9 +20,9 @@
 #import "UIViewController+Utils.h"
 
 #import <pop/POP.h>
-#import "IGIdenticon.h"
 #import "SpecialEventsAnimator.h"
-
+#import "IGIdenticon/IGIdenticon.h"
+#import "UIViewController+Utils.h"
 #import "BicycleServiceViewController.h"
 #import "PartyScoreViewController.h"
 #import "PartyCoursesViewController.h"
