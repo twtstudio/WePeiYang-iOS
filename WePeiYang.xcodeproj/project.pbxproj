@@ -86,6 +86,7 @@
 		B1063EB11D704E780084F379 /* QuizTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EB01D704E780084F379 /* QuizTakingViewController.swift */; };
 		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
 		B14000751D68862D00035357 /* SpecialEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14000731D68862D00035357 /* SpecialEventsViewController.swift */; };
+		B1572CF71D76D89D00A264D8 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1572CF61D76D89D00A264D8 /* FinalView.swift */; };
 		B194CBCF1D5E234C009615D7 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */; };
 		B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B1C4F64F1D543DD0000CD0D8 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -352,6 +353,7 @@
 		B1063EB01D704E780084F379 /* QuizTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTakingViewController.swift; sourceTree = "<group>"; };
 		B113C6FF1D57B5B80072726F /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
 		B14000731D68862D00035357 /* SpecialEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEventsViewController.swift; sourceTree = "<group>"; };
+		B1572CF61D76D89D00A264D8 /* FinalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
 		B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		B1E497A81D6896DF00E85DA8 /* PresentingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentingAnimator.h; sourceTree = "<group>"; };
 		B1E497A91D6896DF00E85DA8 /* PresentingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentingAnimator.m; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 				68513F2B1D6F08FF00E96BEB /* TwentyCourseScoreViewController.xib */,
 				68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */,
 				B1063EAE1D704E390084F379 /* QuizView.swift */,
+				B1572CF61D76D89D00A264D8 /* FinalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1933,6 +1936,7 @@
 				E97336521C71036F00ACA06B /* LostFoundDetailForm.swift in Sources */,
 				E961E6181CDF5FE4003E574F /* ClassData.swift in Sources */,
 				E99923AD1CC605E6008963C8 /* WeChatMomentsActivity.m in Sources */,
+				B1572CF71D76D89D00A264D8 /* FinalView.swift in Sources */,
 				B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */,
 				E90105701C3B9F4D002901AC /* MainViewController.swift in Sources */,
 				68513F751D6F091200E96BEB /* BicycleAPIs.swift in Sources */,
