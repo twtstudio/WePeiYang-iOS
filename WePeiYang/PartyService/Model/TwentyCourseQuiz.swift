@@ -22,7 +22,7 @@ extension Courses.Study20 {
         let isHidden: String
         let isDeleted: String
         let options: [QuizOption]
-        
+        var choosenOnesAtIndex: [Int]? = nil
         var userAnswer: Int?
     }
     
@@ -92,7 +92,7 @@ extension Courses.Study20 {
                         return nil
                     }
                     
-                    return Quiz(id: id, belongTO: belongTo, type: type, content: content, answer: answer, isHidden: isHidden, isDeleted: isDeleted, options: options, userAnswer: nil)
+                    return Quiz(id: id, belongTO: belongTo, type: type, content: content, answer: answer, isHidden: isHidden, isDeleted: isDeleted, options: options, choosenOnesAtIndex: nil, userAnswer: nil)
                     
                 })
                 

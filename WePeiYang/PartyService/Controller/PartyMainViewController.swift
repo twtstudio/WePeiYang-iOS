@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import IGIdenticon
 
 let partyRed = UIColor(colorLiteralRed: 240.0/255.0, green: 22.0/255.0, blue: 22.0/255.0, alpha: 1.0)
 
@@ -23,10 +24,12 @@ class PartyMainViewController: UIViewController {
                         ["icon": "成绩查询", "desc": "成绩查询"]]
     */
     let titleLabel = UILabel(text: "党建生活", color: .whiteColor())
+    //let headerView = UIView(color: partyRed)
     let headerView = UIView(color: partyRed)
     var headerWaveView = WXWaveView()
     
     let anAvatar = UIImageView()
+    let avatarBackGround = UIView()
     
     let functionTableView = UITableView()
     
@@ -53,19 +56,39 @@ class PartyMainViewController: UIViewController {
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
         navigationItem.titleView = titleLabel
         
+        
+        //随机头像
+        if let randomNumber = NSUserDefaults.standardUserDefaults().objectForKey("PartyAvatarNumber") as? Int {
+            let imageGenerator = IGImageGenerator(imageProducer: IGSimpleIdenticon(), hashFunction: IGJenkinsHashFromData)
+            anAvatar.image = imageGenerator.imageFromUInt32(UInt32(randomNumber), size: CGSize(width: 88, height: 88))
+        } else {
+            let imageGenerator = IGImageGenerator(imageProducer: IGSimpleIdenticon(), hashFunction: IGJenkinsHashFromData)
+            let fooNum = arc4random()
+            let foo = imageGenerator.imageFromUInt32(fooNum, size: CGSize(width: 88, height: 88))
+            anAvatar.image = foo
+            NSUserDefaults.standardUserDefaults().setObject(NSNumber(unsignedInt: fooNum), forKey: "PartyAvatarNumber")
+        }
+        
+        anAvatar.userInteractionEnabled = true
+        anAvatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PartyMainViewController.changeAvatar)))
+        
         anAvatar.clipsToBounds = true
-        anAvatar.image = UIImage(named: "partyAvatar")
         anAvatar.layer.cornerRadius = 44
         for subview in anAvatar.subviews {
             subview.layer.cornerRadius = 44
         }
         
-        let shadowPath = UIBezierPath(rect: anAvatar.bounds)
-        anAvatar.layer.shadowColor = UIColor.blackColor().CGColor
-        anAvatar.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        anAvatar.layer.shadowOpacity = 0.8
-        anAvatar.layer.shadowPath = shadowPath.CGPath
-        anAvatar.layer.shadowRadius = 4
+        avatarBackGround.layer.cornerRadius = 48
+        avatarBackGround.backgroundColor = UIColor.whiteColor()
+        
+        /*
+        let shadowPath = UIBezierPath(rect: avatarBackGround.bounds)
+        avatarBackGround.layer.masksToBounds = false
+        avatarBackGround.layer.shadowColor = UIColor.blackColor().CGColor
+        avatarBackGround.layer.shadowOffset = CGSizeMake(0.0, 5.0)
+        avatarBackGround.layer.shadowOpacity = 0.5
+        avatarBackGround.layer.shadowPath = shadowPath.CGPath
+        */
         
         if let foo = NSUserDefaults.standardUserDefaults().objectForKey("studentName") as? String {
             aNameLabel = UILabel(text: foo, color: .whiteColor())
@@ -187,14 +210,22 @@ extension PartyMainViewController {
     
     func computeLayout() {
         
+        
+        headerView.addSubview(avatarBackGround)
+        avatarBackGround.snp_makeConstraints {
+            make in
+            make.centerX.equalTo(headerView)
+            make.centerY.equalTo(headerView.snp_centerY).offset(16)
+            make.width.height.equalTo(96)
+        }
+        
         headerView.addSubview(anAvatar)
         anAvatar.snp_makeConstraints {
             make in
             make.centerX.equalTo(headerView)
-            make.centerY.equalTo(headerView.snp_centerY).offset(20)
+            make.centerY.equalTo(avatarBackGround)
             make.width.height.equalTo(88)
         }
-        
         
         headerView.addSubview(aNameLabel)
         aNameLabel.snp_makeConstraints {
@@ -249,7 +280,7 @@ extension PartyMainViewController {
     }
 }
 
-//MARK: Button tapped functions
+//MARK: Tapped functions
 extension PartyMainViewController {
     /*func personalStatusButtonTapped(sender: UIButton!) {
 
@@ -263,6 +294,21 @@ extension PartyMainViewController {
         self.headerWaveView.waveColor = .whiteColor()
         self.headerWaveView.waveTime = 0.0
         self.headerWaveView.wave()
+        
+    }
+    
+    func changeAvatar() {
+        
+        UIView.animateWithDuration(0.3, animations: {
+            self.anAvatar.alpha = 0
+            }, completion: { flag in
+                let imageGenerator = IGImageGenerator(imageProducer: IGSimpleIdenticon(), hashFunction: IGJenkinsHashFromData)
+                let fooNum = arc4random()
+                let foo = imageGenerator.imageFromUInt32(fooNum, size: CGSize(width: 88, height: 88))
+                self.anAvatar.image = foo
+                self.anAvatar.alpha = 1
+                NSUserDefaults.standardUserDefaults().setObject(NSNumber(unsignedInt: fooNum), forKey: "PartyAvatarNumber")
+        })
         
     }
 }
