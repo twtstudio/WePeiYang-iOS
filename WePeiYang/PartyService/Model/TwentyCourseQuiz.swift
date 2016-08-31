@@ -17,7 +17,7 @@ extension Courses.Study20 {
         let isHidden: String
         let isDeleted: String
         var options: [Option]
-        
+        var choosenOnesAtIndex: [Int]? = nil
         var userAnswer: Int?
         var chosenOnesAtIndex: [Int]?
         
