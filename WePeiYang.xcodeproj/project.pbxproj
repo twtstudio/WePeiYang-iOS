@@ -738,7 +738,6 @@
 		68513F1D1D6F08FF00E96BEB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B1063EAE1D704E390084F379 /* QuizView.swift */,
 				68513F2C1D6F08FF00E96BEB /* WXWaveView.h */,
 				68513F2D1D6F08FF00E96BEB /* WXWaveView.m */,
 				68513F1E1D6F08FF00E96BEB /* CourseDetailReadingView.swift */,

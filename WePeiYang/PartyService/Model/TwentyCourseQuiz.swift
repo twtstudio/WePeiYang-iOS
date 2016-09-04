@@ -17,7 +17,6 @@ extension Courses.Study20 {
         let isHidden: String
         let isDeleted: String
         var options: [Option]
-        var choosenOnesAtIndex: [Int]? = nil
         var userAnswer: Int?
         var chosenOnesAtIndex: [Int]?
         
@@ -124,8 +123,10 @@ extension Courses.Study20 {
                 
                 guard let status = responseObject?.objectForKey("status") as? Int else {
                     guard let msg = responseObject?.objectForKey("msg") as? String else {
-                        MsgDisplay.showErrorMsg("提交答案失败，别担心，等网络好了，我们会再次帮你提交一遍")
-                        Courses.Study20.finalMsgAfterSubmitting = "提交答案失败，别担心，等网络好了，我们会再次帮你提交一遍"
+                        //MsgDisplay.showErrorMsg("提交答案失败，别担心，等网络好了，我们会再次帮你提交一遍")
+                       // Courses.Study20.finalMsgAfterSubmitting = "提交答案失败，别担心，等网络好了，我们会再次帮你提交一遍"
+                        MsgDisplay.showErrorMsg("网络出问题啦😘")
+                        Courses.Study20.finalMsgAfterSubmitting = "网络出问题啦😘"
                         Courses.Study20.finalStatusAfterSubmitting = 0
 
                         //log.word("fuck2")/
@@ -141,8 +142,10 @@ extension Courses.Study20 {
                 }
                 
                 guard let msg = responseObject?.objectForKey("msg") as? String else {
-                    MsgDisplay.showErrorMsg("网络出问题啦，别担心，等网络好了，我们会再次帮你提交一遍")
-                    Courses.Study20.finalMsgAfterSubmitting = "网络出问题啦，别担心，等网络好了，我们会再次帮你提交一遍"
+                   // MsgDisplay.showErrorMsg("网络出问题啦，别担心，等网络好了，我们会再次帮你提交一遍")
+                    //Courses.Study20.finalMsgAfterSubmitting = "网络出问题啦，别担心，等网络好了，我们会再次帮你提交一遍"
+                    MsgDisplay.showErrorMsg("网络出问题啦😘")
+                    Courses.Study20.finalMsgAfterSubmitting = "网络出问题啦😘"
                     Courses.Study20.finalStatusAfterSubmitting = status
                     log.word("fuck4")/
                     completion()

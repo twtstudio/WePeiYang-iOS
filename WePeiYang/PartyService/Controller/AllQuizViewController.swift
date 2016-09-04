@@ -17,19 +17,8 @@ class AllQuizViewController: UIViewController,UICollectionViewDelegate,UICollect
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //NavigationBar 的文字
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        
-        //titleLabel设置
-        let titleLabel = UILabel(text: "所有题目", fontSize: 17)
-        titleLabel.backgroundColor = UIColor.clearColor()
-        titleLabel.textAlignment = .Center
-        titleLabel.textColor = UIColor.whiteColor()
-        self.navigationItem.titleView = titleLabel;
-        
         //NavigationBar 的背景，使用了View
-        self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 64 ))
         
         bgView.backgroundColor = partyRed
         self.view.addSubview(bgView)
@@ -37,6 +26,37 @@ class AllQuizViewController: UIViewController,UICollectionViewDelegate,UICollect
         //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
+        let downArrow = UIButton(backgroundImageName: "ic_arrow_down", desiredSize: CGSize(width: 88, height: 24))
+        downArrow?.tintColor = UIColor.whiteColor()
+        
+        view.addSubview(downArrow!)
+        downArrow!.snp_makeConstraints {
+            make in
+            make.top.equalTo(view).offset(28)
+            make.centerX.equalTo(view)
+            
+        }
+        
+        downArrow?.addTarget(self, action: #selector(AllQuizViewController.dismissAnimated), forControlEvents: .TouchUpInside)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.dismissAnimated))
+        swipeDown.direction = .Down
+        self.view.addGestureRecognizer(swipeDown)
+        /*
+        //titleLabel设置
+        let titleLabel = UILabel(text: "所有题目", fontSize: 17)
+        titleLabel.backgroundColor = UIColor.clearColor()
+        titleLabel.textAlignment = .Center
+        titleLabel.textColor = UIColor.whiteColor()
+        self.navigationItem.titleView = titleLabel;
+ */
+        
+       
+        
+    }
+
+    func dismissAnimated() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     convenience init(quizList: [Quiz?]) {
@@ -60,7 +80,7 @@ class AllQuizViewController: UIViewController,UICollectionViewDelegate,UICollect
         //layout.itemSize = CGSizeMake(screenWidth/4, 80)
         
         // 设置CollectionView
-        let collectionView : UICollectionView = UICollectionView(frame: (UIApplication.sharedApplication().keyWindow?.frame)!, collectionViewLayout: layout)
+        let collectionView : UICollectionView = UICollectionView(frame: CGRectMake(0, 64, (UIApplication.sharedApplication().keyWindow?.frame.size.width)!, (UIApplication.sharedApplication().keyWindow?.frame.size.height)!-64), collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.whiteColor()
@@ -87,7 +107,7 @@ class AllQuizViewController: UIViewController,UICollectionViewDelegate,UICollect
         cell.label.text = "\(indexPath.row+1)"
         
         let aQuiz = quizList[indexPath.row]
-        cell.imageView.image = aQuiz?.choosenOnesAtIndex == nil ? UIImage(named: "QuizNotDone") : UIImage(named: "QuizDone")
+        cell.imageView.image = aQuiz?.chosenOnesAtIndex == nil ? UIImage(named: "QuizNotDone") : UIImage(named: "QuizDone")
         
         return cell;
         
@@ -98,7 +118,7 @@ class AllQuizViewController: UIViewController,UICollectionViewDelegate,UICollect
         self.dismissViewControllerAnimated(true, completion: {
             if let quizTakingVC = UIViewController.currentViewController() as? QuizTakingViewController {
                 //show Quiz View
-                
+                quizTakingVC.showQuizAtIndex(at: indexPath.row)
                 
             }
         })
