@@ -146,7 +146,11 @@ extension QuizView {
             self.addSubview(optionLabels[i])
             optionButtons[i].snp_makeConstraints {
                 make in
-                make.top.equalTo(optionLabels[i-1].snp_bottom).offset(4)
+                if optionLabels[i-1].frame.origin.y+optionLabels[i-1].frame.size.height > optionButtons[i-1].frame.origin.y+optionButtons[i-1].frame.size.height {
+                    make.top.equalTo(optionLabels[i-1].snp_bottom).offset(4)
+                } else {
+                    make.top.equalTo(optionButtons[i-1].snp_bottom).offset(4)
+                }
                 make.left.equalTo(optionButtons[i-1])
                 make.right.equalTo(optionButtons[i-1])
                 make.height.equalTo(optionButtons[i-1])

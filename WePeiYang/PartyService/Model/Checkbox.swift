@@ -9,7 +9,9 @@
 import UIKit
 
 class Checkbox: UIButton {
-
+    
+    let partyGray = UIColor(colorLiteralRed: 149.0/255.0, green: 149.0/255.0, blue: 149.0/255.0, alpha: 1)
+    
     typealias Quiz = Courses.Study20.Quiz
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -58,7 +60,7 @@ class Checkbox: UIButton {
             self.backgroundColor = .greenColor()
             self.wasChosen = true
         } else {
-            self.backgroundColor = .grayColor()
+            self.backgroundColor = partyGray
         }
         /*
         self.addSubview(self.nameLabel)
@@ -87,7 +89,7 @@ class Checkbox: UIButton {
             self.backgroundColor = .greenColor()
             self.wasChosen = true
         } else {
-            self.backgroundColor = .grayColor()
+            self.backgroundColor = partyGray
         }
         
         /*
@@ -117,7 +119,7 @@ class Checkbox: UIButton {
         if self.wasChosen {
             self.backgroundColor = .greenColor()
         } else {
-            self.backgroundColor = .grayColor()
+            self.backgroundColor = partyGray
         }
     }
 
