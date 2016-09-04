@@ -285,6 +285,18 @@ extension QuizTakingViewController {
     
     func showAllQuizesList() {
         
+        //Handle current quiz
+        for fooView in self.view.subviews {
+            if fooView.isKindOfClass(QuizView) {
+                Courses.Study20.courseQuizes[fooView.tag]?.userAnswer = (fooView as! QuizView).calculateUserAnswerWeight()
+                (fooView as! QuizView).saveChoiceStatus()
+                //log.any(Courses.Study20.courseQuizes[fooView.tag])/
+            }
+        }
+        
+        let allVC = AllQuizViewController(quizList: Courses.Study20.courseQuizes)
+        
+        self.presentViewController(allVC, animated: true, completion: nil)
     }
     
     func showQuizAtIndex(at index: Int) {
@@ -301,6 +313,15 @@ extension QuizTakingViewController {
         self.currentQuizIndex = index
         
         quizView = QuizView(quiz: Courses.Study20.courseQuizes[currentQuizIndex]!, at: currentQuizIndex)
+        
+        self.view.addSubview(quizView)
+        quizView.snp_makeConstraints {
+            make in
+            make.top.equalTo(self.view).offset(self.navigationController!.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height + 18)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.bottom.equalTo(self.bottomTabBar.snp_top)
+        }
     }
     
     func finishQuizTaking() {
