@@ -29,7 +29,7 @@ class ClasstableDataManager: NSObject {
         }, failure: {(task, error) in
             if let errorResponse = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as? NSData {
                 let errorJSON = JSON(data: errorResponse)
-                if errorJSON["error_code"].int == 403 {
+                if errorJSON["error_code"].int == 20001 {
                     notBinded()
                 } else {
                     otherFailure(errorMsg: errorJSON["message"].stringValue)
