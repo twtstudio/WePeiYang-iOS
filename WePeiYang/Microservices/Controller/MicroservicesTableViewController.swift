@@ -42,7 +42,7 @@ class MicroservicesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.title = "实验室"
+        self.title = "探索"
         self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 65
         self.tableView.rowHeight = UITableViewAutomaticDimension
