@@ -39,10 +39,19 @@ class ClassData: NSObject, Mappable {
         credit <- map["credit"]
         teacher <- map["teacher"]
         arrange <- map["arrange"]
+        
+        //Test
+        /*
+        log.word(courseName)/
+        log.obj(courseId)/
+        */
         weekStart <- map["week.start"]
-        //log.any("fucking map thing \(courseName)")/
-        //log.any("fucking fucking map thing \(map["week.start"])")/
         weekEnd <- map["week.end"]
+        
+        /*
+        for ar in arrange {
+            log.word("From \(ar.start) to \(ar.end) on \(ar.day) in Room \(ar.room), from week \(weekStart) to week \(weekEnd)")/
+        }*/
         college <- map["college"]
         campus <- map["campus"]
         ext <- map["ext"]

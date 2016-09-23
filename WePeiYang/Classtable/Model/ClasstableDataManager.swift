@@ -14,16 +14,17 @@ class ClasstableDataManager: NSObject {
     
     class func getClasstableData(success: (data: AnyObject, termStartTime: Int) -> (), notBinded: () -> (), otherFailure: (errorMsg: String) -> ()) {
         twtSDK.getClasstableWithToken(NSUserDefaults.standardUserDefaults().stringForKey(TOKEN_SAVE_KEY), success: {(task, responseObject) in
+            //log.word(NSUserDefaults.standardUserDefaults().stringForKey(TOKEN_SAVE_KEY)!)/
             let dic = JSON(responseObject)
-            log.obj(responseObject)/
-            log.any(dic["data", "data"])/
+            log.any(dic)/
+            //log.any(dic["data", "data"])/
             //FIXME: Alert the BE guy to fix the term_start UNIX Timestamp
             if dic["error_code"].int == -1 {
                 //changed "if dic["data", "data"] != nil" to .count != 0
                 if dic["data", "data"].count != 0 && dic["data", "term_start"] != nil {
                     //MARK: the termStartTime was added temporily to fix the termStartTime deviation - Allen
                     //log.word("fuckin BackEnd bug")/
-                    success(data: dic["data", "data"].object, termStartTime: dic["data", "term_start"].intValue + 16012800)
+                    success(data: dic["data", "data"].object, termStartTime: dic["data", "term_start"].intValue)
                     
                 } else {
                     if dic["message"].stringValue != "" {
