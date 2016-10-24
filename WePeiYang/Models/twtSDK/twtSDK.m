@@ -128,6 +128,7 @@
 + (void)getClasstableWithToken:(NSString *)token success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     [SolaSessionManager solaSessionWithSessionType:SessionTypeGET URL:@"/classtable" token:token parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(task, responseObject);
+//        NSLog(@"data is %@", responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(task, error);
     }];

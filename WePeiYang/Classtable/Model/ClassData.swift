@@ -19,8 +19,9 @@ class ClassData: NSObject, Mappable {
     var credit = ""
     var teacher = ""
     var arrange: [ArrangeModel] = []
-    var weekStart = 0
-    var weekEnd = 0
+    //The weekStart and End were previously of type Int but the mapper can only map it into String -Allen on Sept-14-2016
+    var weekStart = ""
+    var weekEnd = ""
     var college = ""
     var campus = ""
     var ext = ""
@@ -38,8 +39,19 @@ class ClassData: NSObject, Mappable {
         credit <- map["credit"]
         teacher <- map["teacher"]
         arrange <- map["arrange"]
+        
+        //Test
+        /*
+        log.word(courseName)/
+        log.obj(courseId)/
+        */
         weekStart <- map["week.start"]
         weekEnd <- map["week.end"]
+        
+        /*
+        for ar in arrange {
+            log.word("From \(ar.start) to \(ar.end) on \(ar.day) in Room \(ar.room), from week \(weekStart) to week \(weekEnd)")/
+        }*/
         college <- map["college"]
         campus <- map["campus"]
         ext <- map["ext"]

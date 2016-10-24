@@ -11,6 +11,7 @@ import SnapKit
 import STPopup
 import DateTools
 import ObjectMapper
+import SwiftyJSON
 
 let CLASSTABLE_CACHE_KEY = "CLASSTABLE_CACHE"
 let CLASSTABLE_COLOR_CONFIG_KEY = "CLASSTABLE_COLOR_CONFIG"
@@ -24,6 +25,8 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     var dataArr: [ClassData] = []
     var detailController: STPopupController!
     var currentWeek = 0
+    var classCellsNotAround: [ClassCellView] = []
+    var classCellsAround: [ClassCellView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,17 +64,78 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         self.updateView(size)
     }
     
+    override func viewDidLayoutSubviews() {
+        
+        updateViewWithClassesNotAround(UIScreen.mainScreen().bounds.size)
+    }
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Private Methods
     
+    private func updateViewWithClassesNotAround(size: CGSize) {
+        let classSize = self.classCellSizeWithScreenSize(size)
+        
+        guard !classCellsNotAround.isEmpty else {
+            return
+        }
+        
+        
+        
+        
+
+        /*for classCellNotAround in classCellsNotAround {
+            var fooArr: [ClassCellView] = []
+            for classCellAround in classCellsAround {
+                
+                    for arrangeNotAround in (classCellNotAround.classData?.arrange)! {
+                        for arrangeAround in (classCellAround.classData?.arrange)! {
+                            if !(arrangeAround.day == arrangeNotAround.day && arrangeAround.start == arrangeNotAround.start) {
+                                classTableScrollView.addSubview(classCellNotAround)
+                                classCellNotAround.snp_makeConstraints {
+                                    make in
+                                    make.width.equalTo(classSize.width)
+                                    make.height.equalTo(CGFloat(arrangeNotAround.end - arrangeNotAround.start + 1) * classSize.height)
+                                    make.left.equalTo(CGFloat(arrangeNotAround.day) * classSize.width)
+                                    make.top.equalTo(CGFloat(arrangeNotAround.start - 1) * classSize.height)
+                                }
+                            }
+                        }
+                    }
+                
+            }
+            
+        }*/
+        /*for i in 0..<classCellsNotAround.count {
+            for j in 0..<classCellsAround.count {
+                for l in 0..<classCellsNotAround[i].classData!.arrange.count {
+                    for m in 0..<classCellsAround[j].classData!.arrange.count {
+                        let arrangeAround = classCellsAround[j].classData!.arrange[m]
+                        let arrangeNotAround = classCellsNotAround[i].classData!.arrange[l]
+                        if !(arrangeAround.day == arrangeNotAround.day && arrangeAround.start == arrangeNotAround.start) {
+                            classTableScrollView.addSubview(classCellsNotAround[i])
+                            classCellsNotAround[i].snp_makeConstraints {
+                                make in
+                                make.width.equalTo(classSize.width)
+                                make.height.equalTo(CGFloat(arrangeNotAround.end - arrangeNotAround.start + 1) * classSize.height)
+                                make.left.equalTo(CGFloat(arrangeNotAround.day) * classSize.width)
+                                make.top.equalTo(CGFloat(arrangeNotAround.start - 1) * classSize.height)
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
+    }
+    
     private func loadClassTable() {
         if AccountManager.tokenExists() {
             wpyCacheManager.loadGroupCacheDataWithKey(CLASSTABLE_TERM_START_KEY, andBlock: {termStart in
                 if termStart != nil {
                     let startDate = NSDate(timeIntervalSince1970: Double(termStart as! Int))
+                    //log.obj(startDate)/
                     self.currentWeek = NSDate().weeksFrom(startDate) + 1
                     self.title = "第 \(self.currentWeek) 周"
                 } else {
@@ -98,6 +162,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             MsgDisplay.dismiss()
             wpyCacheManager.removeCacheDataForKey(CLASSTABLE_COLOR_CONFIG_KEY)
             self.dataArr = Mapper<ClassData>().mapArray(data)!
+            //log.any(JSON(data))/
             self.updateView(self.view.bounds.size)
             wpyCacheManager.saveGroupCacheData(data, withKey: CLASSTABLE_CACHE_KEY)
             wpyCacheManager.saveGroupCacheData(termStart, withKey: CLASSTABLE_TERM_START_KEY)
@@ -146,21 +211,66 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         for tmpClass in dataArr {
             var classBgColor: UIColor!
             if wpyCacheManager.cacheDataExistsWithKey(CLASSTABLE_COLOR_CONFIG_KEY) {
+                //log.word("fuckin entered")/
                 if colorConfig[tmpClass.courseId] != nil {
                     classBgColor = colorConfig[tmpClass.courseId]
+                    //log.any("fucking entered if \(classBgColor)")/
                 } else {
                     classBgColor = UIColor.randomFlatColor()
+                    //log.any("fucking entered else \(classBgColor)")/
                 }
             } else {
                 if colorArray.count <= 0 {
                     colorArray = colorArr
                 }
                 classBgColor = colorArray.first
+
                 colorConfig[tmpClass.courseId] = classBgColor
                 colorArray.removeFirst()
             }
             
             for tmpArrange in tmpClass.arrange {
+                let classCell = ClassCellView()
+                classCell.classData = tmpClass
+                classCell.classLabel.text = "\(tmpClass.courseName)@\(tmpArrange.room)"
+                // 针对设备宽度控制字号
+                classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
+                classCell.delegate = self
+                
+                if Int(tmpClass.weekStart) <= currentWeek && Int(tmpClass.weekEnd) >= currentWeek {
+                    
+                    classCellsAround.append(classCell)
+                    
+                    classTableScrollView.addSubview(classCell)
+                    classCell.snp_makeConstraints {
+                        make in
+                        make.width.equalTo(classSize.width)
+                        make.height.equalTo(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
+                        make.left.equalTo(CGFloat(tmpArrange.day) * classSize.width)
+                        make.top.equalTo(CGFloat(tmpArrange.start - 1) * classSize.height)
+                    }
+                    if (tmpArrange.week == "单双周") || (currentWeek % 2 == 0 && tmpArrange.week == "双周") || (currentWeek % 2 == 1 && tmpArrange.week == "单周") {
+                        classCell.backgroundColor = classBgColor
+                    } else {
+                        classCell.removeFromSuperview()
+                    }
+                } else {
+                    
+                    classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
+                    classCell.delegate = self
+                    classCell.backgroundColor = .flatWhiteColor()
+                    classCell.classLabel.textColor = .flatGrayColorDark()
+                    classCellsNotAround.append(classCell)
+                    for foo in classTableScrollView.subviews {
+                        if foo.isKindOfClass(ClassCellView) {
+                            //log.any(foo.frame)/
+                        }
+                    }
+                }
+            }
+            
+            
+            /*for tmpArrange in tmpClass.arrange {
                 let classCell = ClassCellView()
                 classTableScrollView.addSubview(classCell)
                 classCell.classData = tmpClass
@@ -176,7 +286,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
                 classCell.delegate = self
                 // 考虑不在当前周数内的科目
-                if tmpClass.weekStart <= currentWeek && tmpClass.weekEnd >= currentWeek {
+                if Int(tmpClass.weekStart) <= currentWeek && Int(tmpClass.weekEnd) >= currentWeek {
                     // 单双周判断
                     // MARK: - WARNING 单双周可能有课不一样
                     if (tmpArrange.week == "单双周") || (currentWeek % 2 == 0 && tmpArrange.week == "双周") || (currentWeek % 2 == 1 && tmpArrange.week == "单周") {
@@ -190,7 +300,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                     classCell.backgroundColor = UIColor.flatWhiteColor()
                     classCell.classLabel.textColor = UIColor.flatGrayColorDark()
                 }
-            }
+            }*/
         }
         
         wpyCacheManager.saveCacheData(colorConfig, withKey: CLASSTABLE_COLOR_CONFIG_KEY)

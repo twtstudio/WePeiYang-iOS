@@ -8,6 +8,7 @@
 
 #import "NewsData.h"
 
+
 @implementation NewsData
 
 @end
