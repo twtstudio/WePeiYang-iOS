@@ -22,7 +22,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
-        (title: "探索", image: UIImage(named: "msBtn")!)
+        (title: "探索", image: UIImage(named: "msBtn")!),
+        (title: "阅北洋", image: UIImage(named: "msBtn")!)
     ]
     
     var microserviceController: STPopupController!
@@ -114,6 +115,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.showPartyServiceController()
         case 6:
             self.showMicroservicesController()
+        case 7:
+            self.showReadController()
         default:
             return
         }
@@ -288,5 +291,11 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.navigationController?.showViewController(partyVC, sender: nil)
         })*/
         
+    }
+    
+    func showReadController() {
+        let readVC = ReadViewController()
+        readVC.hidesBottomBarWhenPushed = true;
+        self.navigationController?.showViewController(readVC, sender: nil)
     }
 }

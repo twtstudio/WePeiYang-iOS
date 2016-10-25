@@ -82,6 +82,7 @@
 		68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */; };
 		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
+		68D65AB61DBF92DF00B44FD8 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D65AB51DBF92DF00B44FD8 /* ReadViewController.m */; };
 		B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAA1D704D5C0084F379 /* Checkbox.swift */; };
 		B1063EAD1D704DEA0084F379 /* TwentyCourseQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAC1D704DEA0084F379 /* TwentyCourseQuiz.swift */; };
 		B1063EAF1D704E390084F379 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAE1D704E390084F379 /* QuizView.swift */; };
@@ -350,6 +351,8 @@
 		68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandInDetailViewController.xib; sourceTree = "<group>"; };
 		68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandInDetailViewController.swift; sourceTree = "<group>"; };
 		68AD41601D5E11B200695DF4 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
+		68D65AB41DBF92DF00B44FD8 /* ReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadViewController.h; sourceTree = "<group>"; };
+		68D65AB51DBF92DF00B44FD8 /* ReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadViewController.m; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D625594C2CB3A80AC2395D /* Pods-WePeiYang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.release.xcconfig"; sourceTree = "<group>"; };
@@ -660,6 +663,7 @@
 				E98DF6951C5D03B6003943A4 /* Microservices */,
 				68513F4E1D6F091200E96BEB /* Bicycle */,
 				68513F071D6F08FF00E96BEB /* PartyService */,
+				68D65AB01DBF928900B44FD8 /* Read */,
 				E937017F1C5CA8A800C87E84 /* Library */,
 				E98DF6CF1C5DF5BF003943A4 /* WebViewController */,
 				E901054D1C3B994E002901AC /* Setting */,
@@ -815,6 +819,39 @@
 				68513F6A1D6F091200E96BEB /* BicycleUserBindViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		68D65AB01DBF928900B44FD8 /* Read */ = {
+			isa = PBXGroup;
+			children = (
+				68D65AB31DBF92A000B44FD8 /* Model */,
+				68D65AB21DBF929A00B44FD8 /* View */,
+				68D65AB11DBF929400B44FD8 /* Controller */,
+			);
+			name = Read;
+			sourceTree = "<group>";
+		};
+		68D65AB11DBF929400B44FD8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				68D65AB41DBF92DF00B44FD8 /* ReadViewController.h */,
+				68D65AB51DBF92DF00B44FD8 /* ReadViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		68D65AB21DBF929A00B44FD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		68D65AB31DBF92A000B44FD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		B14000711D68862D00035357 /* SpecialEvents */ = {
@@ -1811,6 +1848,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
+				68D65AB61DBF92DF00B44FD8 /* ReadViewController.m in Sources */,
 				68513F741D6F091200E96BEB /* WMScrollView+gesture.m in Sources */,
 				68513F481D6F08FF00E96BEB /* ScoreTableViewCell.swift in Sources */,
 				68513F2E1D6F08FF00E96BEB /* GradeCheckViewController.swift in Sources */,
