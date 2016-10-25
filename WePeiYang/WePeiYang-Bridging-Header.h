@@ -27,6 +27,7 @@
 #import "PartyScoreViewController.h"
 #import "PartyCoursesViewController.h"
 #import "WXWaveView.h"
+#import "ReadViewController.h"
 
 #import "twtSDK.h"
 #import "twtSecretKeys.h"
