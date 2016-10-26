@@ -21,7 +21,7 @@
     self = [super init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     if (self) {
-        self.viewControllerClasses = @[[UIViewController class], [UIViewController class]];
+        self.viewControllerClasses = @[[RecommendedViewController class], [UIViewController class]];
         self.titles = @[@"推荐", @"我的"];
         self.keys = [@[@"type"] mutableCopy];
         self.values = [@[@0] mutableCopy];

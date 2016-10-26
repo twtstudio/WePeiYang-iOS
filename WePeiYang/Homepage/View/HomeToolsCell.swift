@@ -23,7 +23,7 @@ class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
 //        (title: "失物招领", image: UIImage(named: "lfBtn")!)
-        (title: "探索", image: UIImage(named: "msBtn")!)
+        (title: "阅北洋", image: UIImage(named: "readBtn")!)
     ]
 
     override func awakeFromNib() {

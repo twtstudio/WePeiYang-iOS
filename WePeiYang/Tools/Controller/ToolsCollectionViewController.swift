@@ -23,7 +23,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
         (title: "探索", image: UIImage(named: "msBtn")!),
-        (title: "阅北洋", image: UIImage(named: "msBtn")!)
+        (title: "阅北洋", image: UIImage(named: "readBtn")!)
     ]
     
     var microserviceController: STPopupController!
