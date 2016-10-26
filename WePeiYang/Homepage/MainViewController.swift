@@ -304,7 +304,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 2:
             self.showClasstableController()
         case 3:
-            self.showMicroservicesController()
+            self.showReadController()
         default:
             break
         }
@@ -443,6 +443,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         
+    }
+    
+    func showReadController() {
+        let readVC = ReadViewController()
+        readVC.hidesBottomBarWhenPushed = true;
+        self.navigationController?.showViewController(readVC, sender: nil)
     }
     /*
     // MARK: - Navigation

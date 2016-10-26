@@ -26,10 +26,8 @@ class ReadStarCell: UITableViewCell {
         self.init()
         
         let width = contentView.frame.size.width
-        let height = contentView.frame.size.height
+        //let height = contentView.frame.size.height
         let avatarLength = 72
-        
-        print("\(width),\(height)")
         
         let avatar1 = UIImageView(imageName: "thumbAppIcon", desiredSize: CGSize(width: avatarLength, height: avatarLength))
         let avatar2 = UIImageView(imageName: "thumbAppIcon", desiredSize: CGSize(width: avatarLength, height: 72))

@@ -77,12 +77,12 @@ class SpecialEventsViewController: WebAppViewController {
         }
         
         self.view.addSubview(notInterestedBtn)
-         notInterestedBtn.snp_makeConstraints {
-         make in
-         make.bottom.equalTo(self.view).offset(-20)
-         make.right.equalTo(self.view).offset(-20)
-         make.width.equalTo(100)
-         }
+        notInterestedBtn.snp_makeConstraints {
+            make in
+            make.bottom.equalTo(self.view).offset(-20)
+            make.right.equalTo(self.view).offset(-20)
+            make.width.equalTo(100)
+        }
         
         let deRoundCornoerAnim = POPBasicAnimation(propertyNamed: kPOPLayerCornerRadius)
         let newCornerRadius: NSNumber = 0

@@ -93,15 +93,24 @@ class RecommendCell: UITableViewCell {
         for i in 0..<arr.count {
             imageViewArray.append(UIImageView())
             titleLabelArray.append(UILabel(text: "\(arr[i]["title"]!)"))
-            authorLabelArray.append(UILabel(text: "\(arr[i]["author"]!) 著", fontSize: 14))
+            authorLabelArray.append(UILabel(text: "\(arr[i]["author"]!) 著"))
             
             scrollView.addSubview(imageViewArray[i])
             scrollView.addSubview(titleLabelArray[i])
             scrollView.addSubview(authorLabelArray[i])
             
-            imageViewArray[i].setImageWithURL(NSURL(string: "\(arr[i]["cover"]!)")!)
-            imageViewArray[i].contentMode = .ScaleAspectFit
+            imageViewArray[i].userInteractionEnabled = true
+            imageViewArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+            titleLabelArray[i].userInteractionEnabled = true
+            titleLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+            authorLabelArray[i].userInteractionEnabled = true
+            authorLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+            authorLabelArray[i].font = UIFont(name: "Arial", size: 14)
+            authorLabelArray[i].textColor = UIColor.grayColor()
             
+            imageViewArray[i].contentMode = .ScaleAspectFit
+            imageViewArray[i].setImageWithURL(NSURL(string: "\(arr[i]["cover"]!)")!)
+             
             if i == 0 {
                 imageViewArray[i].snp_makeConstraints {
                     make in
@@ -135,6 +144,10 @@ class RecommendCell: UITableViewCell {
             
         }
         
+    }
+    
+    func pushBookDetailController() {
+        print("push Detail View Controller")
     }
     
 }
