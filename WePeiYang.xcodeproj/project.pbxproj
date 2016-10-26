@@ -83,6 +83,9 @@
 		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
 		68D65AB61DBF92DF00B44FD8 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D65AB51DBF92DF00B44FD8 /* ReadViewController.m */; };
+		68D65AB81DBF961100B44FD8 /* RecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D65AB71DBF961100B44FD8 /* RecommendedViewController.swift */; };
+		68D65ABA1DBF9CD200B44FD8 /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D65AB91DBF9CD200B44FD8 /* RecommendCell.swift */; };
+		68D65ABC1DC0ED3E00B44FD8 /* ReadStarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D65ABB1DC0ED3E00B44FD8 /* ReadStarCell.swift */; };
 		B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAA1D704D5C0084F379 /* Checkbox.swift */; };
 		B1063EAD1D704DEA0084F379 /* TwentyCourseQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAC1D704DEA0084F379 /* TwentyCourseQuiz.swift */; };
 		B1063EAF1D704E390084F379 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAE1D704E390084F379 /* QuizView.swift */; };
@@ -353,6 +356,9 @@
 		68AD41601D5E11B200695DF4 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		68D65AB41DBF92DF00B44FD8 /* ReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadViewController.h; sourceTree = "<group>"; };
 		68D65AB51DBF92DF00B44FD8 /* ReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadViewController.m; sourceTree = "<group>"; };
+		68D65AB71DBF961100B44FD8 /* RecommendedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedViewController.swift; sourceTree = "<group>"; };
+		68D65AB91DBF9CD200B44FD8 /* RecommendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCell.swift; sourceTree = "<group>"; };
+		68D65ABB1DC0ED3E00B44FD8 /* ReadStarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadStarCell.swift; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D625594C2CB3A80AC2395D /* Pods-WePeiYang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.release.xcconfig"; sourceTree = "<group>"; };
@@ -836,6 +842,9 @@
 			children = (
 				68D65AB41DBF92DF00B44FD8 /* ReadViewController.h */,
 				68D65AB51DBF92DF00B44FD8 /* ReadViewController.m */,
+				68D65AB71DBF961100B44FD8 /* RecommendedViewController.swift */,
+				68D65AB91DBF9CD200B44FD8 /* RecommendCell.swift */,
+				68D65ABB1DC0ED3E00B44FD8 /* ReadStarCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1953,6 +1962,7 @@
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
 				68513F3B1D6F08FF00E96BEB /* Applicant.swift in Sources */,
+				68D65AB81DBF961100B44FD8 /* RecommendedViewController.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */,
@@ -1986,6 +1996,7 @@
 				68513F3A1D6F08FF00E96BEB /* TwentyCourseViewController.swift in Sources */,
 				68513F491D6F08FF00E96BEB /* SignUpTableViewCell.swift in Sources */,
 				E94B1FE91BF7AE8800520536 /* twtSDK.m in Sources */,
+				68D65ABA1DBF9CD200B44FD8 /* RecommendCell.swift in Sources */,
 				E97336581C7213A200ACA06B /* LostFoundPostForm.swift in Sources */,
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				68513F401D6F08FF00E96BEB /* CourseDetailTableViewCell.swift in Sources */,
@@ -2008,6 +2019,7 @@
 				E90105581C3B994E002901AC /* NewsContentViewController.m in Sources */,
 				E91A26FF1ABAC21C0080CB6F /* wpyCacheManager.m in Sources */,
 				E973365A1C721E9600ACA06B /* LostFoundTypeTransformer.swift in Sources */,
+				68D65ABC1DC0ED3E00B44FD8 /* ReadStarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

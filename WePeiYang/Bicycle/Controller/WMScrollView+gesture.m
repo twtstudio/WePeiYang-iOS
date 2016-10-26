@@ -16,7 +16,7 @@
     
     //NSLog(@"class :%@", [touch.view class]);
     //touch.view.backgroundColor = [UIColor redColor];
-    if ([touch.view isKindOfClass: [JBLineChartDotView class]] || [touch.view isKindOfClass: [JBLineChartDotsView class]] || [touch.view isKindOfClass: [JBChartVerticalSelectionView class]]){
+    if ([touch.view isKindOfClass: [JBLineChartDotView class]] || [touch.view isKindOfClass: [JBLineChartDotsView class]] || [touch.view isKindOfClass: [JBChartVerticalSelectionView class]] || [touch.view isKindOfClass: [UIScrollView class]]){
         // NSLog(@"class :%@", [touch.view class]);
         
         return NO;
