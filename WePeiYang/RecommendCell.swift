@@ -11,52 +11,7 @@ import UIKit
 class RecommendCell: UITableViewCell {
     
     
-    let arr = [
-        [
-            "isbn": "sbsbsb",
-            "title": "从你的全世界路过",
-            "author": "张嘉佳",
-            "cover": "http://imgsrc.baidu.com/forum/w%3D580/sign=90a6b0a29f16fdfad86cc6e6848e8cea/fd1f4134970a304e1256eb73d3c8a786c8175cc6.jpg",
-            "rate": 5
-        ],
-        [
-            "isbn": "sbsbsb",
-            "title": "雷雨",
-            "author": "曹禺",
-            "cover": "http://pic9.997788.com/pic_auction/00/08/13/58/au8135818.jpg",
-            "rate": 5
-        ],
-        [
-            "isbn": "sbsbsb",
-            "title": "目送",
-            "author": "龙应台",
-            "cover": "http://shopimg.kongfz.com.cn/20110803/1228444/10445rxsker_b.jpg",
-            "rate": 5
-        ],
-        [
-            "isbn": "sbsbsb",
-            "title": "雷雨",
-            "author": "曹禺",
-            "cover": "http://pic9.997788.com/pic_auction/00/08/13/58/au8135818.jpg",
-            "rate": 5
-        ],
-        [
-            "isbn": "sbsbsb",
-            "title": "雷雨",
-            "author": "曹禺",
-            "cover": "http://pic9.997788.com/pic_auction/00/08/13/58/au8135818.jpg",
-            "rate": 5
-        ],
-        [
-            "isbn": "sbsbsb",
-            "title": "雷雨",
-            "author": "曹禺",
-            "cover": "http://pic9.997788.com/pic_auction/00/08/13/58/au8135818.jpg",
-            "rate": 5
-        ],
         
-    ]
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -68,7 +23,7 @@ class RecommendCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    convenience init(a: Int) {
+    convenience init(model: [Recommender.RecommendedBook]) {
         self.init()
         
         let scrollView = UIScrollView()
@@ -77,7 +32,7 @@ class RecommendCell: UITableViewCell {
         var authorLabelArray = [UILabel]()
         
         scrollView.backgroundColor = UIColor.whiteColor()
-        scrollView.contentSize = CGSize(width: 112*arr.count, height: 200)
+        scrollView.contentSize = CGSize(width: 128*model.count, height: 200)
         
         contentView.addSubview(scrollView)
         
@@ -90,10 +45,10 @@ class RecommendCell: UITableViewCell {
             make.right.equalTo(contentView)
         }
         
-        for i in 0..<arr.count {
+        for i in 0..<model.count {
             imageViewArray.append(UIImageView())
-            titleLabelArray.append(UILabel(text: "\(arr[i]["title"]!)"))
-            authorLabelArray.append(UILabel(text: "\(arr[i]["author"]!) 著"))
+            titleLabelArray.append(UILabel(text: "\(model[i].title)"))
+            authorLabelArray.append(UILabel(text: "\(model[i].author) 著"))
             
             scrollView.addSubview(imageViewArray[i])
             scrollView.addSubview(titleLabelArray[i])
@@ -109,13 +64,13 @@ class RecommendCell: UITableViewCell {
             authorLabelArray[i].textColor = UIColor.grayColor()
             
             imageViewArray[i].contentMode = .ScaleAspectFit
-            imageViewArray[i].setImageWithURL(NSURL(string: "\(arr[i]["cover"]!)")!)
-             
+            imageViewArray[i].setImageWithURL(NSURL(string: "\(model[i].cover)")!)
+            
             if i == 0 {
                 imageViewArray[i].snp_makeConstraints {
                     make in
                     make.top.equalTo(scrollView).offset(16)
-                    make.left.equalTo(scrollView).offset(16)
+                    make.left.equalTo(scrollView).offset(24)
                     make.width.equalTo(80)
                     make.height.equalTo(120)
                 }
@@ -123,7 +78,7 @@ class RecommendCell: UITableViewCell {
                 imageViewArray[i].snp_makeConstraints {
                     make in
                     make.top.equalTo(scrollView).offset(16)
-                    make.left.equalTo(imageViewArray[i-1].snp_right).offset(32)
+                    make.left.equalTo(imageViewArray[i-1].snp_right).offset(48)
                     make.width.equalTo(80)
                     make.height.equalTo(120)
                 }
@@ -138,8 +93,9 @@ class RecommendCell: UITableViewCell {
             
             authorLabelArray[i].snp_makeConstraints {
                 make in
-                make.top.equalTo(titleLabelArray[i].snp_bottom).offset(8)
+                make.top.equalTo(titleLabelArray[i].snp_bottom).offset(2 )
                 make.centerX.equalTo(imageViewArray[i])
+                make.width.lessThanOrEqualTo(120)
             }
             
         }
