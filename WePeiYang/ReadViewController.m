@@ -33,7 +33,7 @@
         self.menuViewStyle = WMMenuViewStyleLine;
         self.titleColorSelected = readRed;
         self.titleColorNormal = [UIColor grayColor];
-        self.menuItemWidth = self.view.frame.size.width/3;
+        self.menuItemWidth = self.view.frame.size.width/2;
         
         self.bounces = YES;
         self.menuHeight = 44;
