@@ -10,7 +10,10 @@
 #import "WePeiYang-Swift.h"
 #import "MsgDisplay.h"
 #define readRed [UIColor colorWithRed:234.0/255.0 green:74.0/255.0 blue:70/255.0 alpha:1.0]
-@interface ReadViewController()
+@interface ReadViewController() <SearchDelegate>
+{
+    Search *search;
+}
 @property (strong, nonatomic) UILabel *titleLabel;
 @end
 
@@ -21,7 +24,7 @@
     self = [super init];
     self.automaticallyAdjustsScrollViewInsets = NO;
     if (self) {
-        self.viewControllerClasses = @[[RecommendedViewController class], [UIViewController class]];
+        self.viewControllerClasses = @[[RecommendedViewController class], [InfoViewController class]];
         self.titles = @[@"推荐", @"我的"];
         self.keys = [@[@"type"] mutableCopy];
         self.values = [@[@0] mutableCopy];
@@ -76,7 +79,18 @@
 }
 
 - (void)pushSearchViewController {
-    NSLog(@"student");
+    search = [[Search alloc] initWithFrame: self.view.bounds];
+    search.delegate = self;
+    [[UIApplication sharedApplication].keyWindow addSubview:search];
+    [search animate];
+}
+
+
+- (void) hideSearchView:(BOOL)status
+{
+    if (status == YES){
+        [search removeFromSuperview];
+    }
 }
 
 - (void)viewDidLoad {
