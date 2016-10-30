@@ -16,29 +16,46 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     let sectionList = ["热门推荐", "热门书评", "阅读之星"]
     var headerScrollView = UIScrollView()
     let pageControl = UIPageControl()
+    var loadingView = UIView()
     
 //    let bannerList = ["http://www.twt.edu.cn/upload/banners/hheZnqd196Te76SDF9Ww.png", "http://www.twt.edu.cn/upload/banners/ZPQqmajzKOI3A6qE7gIR.png", "http://www.twt.edu.cn/upload/banners/gJjWSlAvkGjZmdbuFtXT.jpeg"]
     
     //var reviewList = [MyReview]()
-    
-    let recommender = Recommender()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.separatorStyle = .None
-        tableView.allowsSelection = false
         initUI()
-        recommender.getBannerList(tableView.reloadData)
-        recommender.getRecommendedList(tableView.reloadData)
-        recommender.getHotReviewList(tableView.reloadData)
-        recommender.getStarUserList(tableView.reloadData)
+        
+        if !Recommender.sharedInstance.dataDidRefresh {
+            initLoadingView()
+        }
+        Recommender.sharedInstance.getBannerList(refreshUI)
+        Recommender.sharedInstance.getRecommendedList(refreshUI)
+        Recommender.sharedInstance.getHotReviewList(refreshUI)
+        Recommender.sharedInstance.getStarUserList(refreshUI)
         
         //initReviews(tableView.reloadData)
     }
     
+    func initLoadingView() {
+        loadingView = UIView(frame: CGRect(x: 0, y: 108, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height-108))
+        loadingView.backgroundColor = UIColor.whiteColor()
+        view.addSubview(loadingView)
+        MsgDisplay.showLoading()
+    }
+    
+    func refreshUI() {
+        if Recommender.sharedInstance.finishFlag.isFinished() {
+            Recommender.sharedInstance.dataDidRefresh = true
+            Recommender.sharedInstance.finishFlag.reset()
+            loadingView.removeFromSuperview()
+            MsgDisplay.dismiss()
+        }
+        tableView.reloadData()
+    }
     
     func initReviews(success: () -> ()) {
         
@@ -69,13 +86,11 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.allowsSelection = false
-        
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
+        tableView.separatorStyle = .None
+        tableView.allowsSelection = false
     }
     
     
@@ -102,13 +117,13 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         
         switch indexPath.section {
         case 0:
-            let cell = RecommendCell(model: recommender.recommendedList)
+            let cell = RecommendCell(model: Recommender.sharedInstance.recommendedList)
             return cell
 //        case 1:
-//            let cell = ReviewCell(model: recommender.reviewList[indexPath.row])
+//            let cell = ReviewCell(model: Recommender.sharedInstance.reviewList[indexPath.row])
 //            return cell
         case 2:
-            let cell = ReadStarCell(model: recommender.starList)
+            let cell = ReadStarCell(model: Recommender.sharedInstance.starList)
             return cell
         default:
             let cell = UITableViewCell()
@@ -130,7 +145,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 168
+            return UIScreen.mainScreen().bounds.width*0.375+32
         }
         return 16
     }
@@ -163,7 +178,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
             //设置scrollView的内容总尺寸
-            headerScrollView.contentSize = CGSize(width: CGFloat(UIScreen.mainScreen().bounds.width)*CGFloat(recommender.bannerList.count), height: UIScreen.mainScreen().bounds.width*0.375)
+            headerScrollView.contentSize = CGSize(width: CGFloat(UIScreen.mainScreen().bounds.width)*CGFloat(Recommender.sharedInstance.bannerList.count), height: UIScreen.mainScreen().bounds.width*0.375)
             //关闭滚动条显示
             headerScrollView.showsHorizontalScrollIndicator = false
             headerScrollView.showsVerticalScrollIndicator = false
@@ -175,7 +190,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
             //滚动时只能停留到某一页
             headerScrollView.pagingEnabled = true
             //添加页面到滚动面板里
-            for (seq, banner) in recommender.bannerList.enumerate() {
+            for (seq, banner) in Recommender.sharedInstance.bannerList.enumerate() {
                 let imageView = UIImageView()
                 imageView.setImageWithURL(NSURL(string: banner.image)!);
                 imageView.frame = CGRect(x: CGFloat(seq)*UIScreen.mainScreen().bounds.width, y: 0,
@@ -187,7 +202,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
             
             //页控件属性
             pageControl.backgroundColor = UIColor.clearColor()
-            pageControl.numberOfPages = recommender.bannerList.count
+            pageControl.numberOfPages = Recommender.sharedInstance.bannerList.count
             pageControl.currentPage = 0
             //设置页控件点击事件
             pageControl.addTarget(self, action: #selector(pageChanged(_:)),
@@ -235,10 +250,10 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     
     func pushWebPage() {
         if #available(iOS 9.0, *) {
-            let safariController = SFSafariViewController(URL: NSURL(string: recommender.bannerList[pageControl.currentPage].url)!, entersReaderIfAvailable: true)
+            let safariController = SFSafariViewController(URL: NSURL(string: Recommender.sharedInstance.bannerList[pageControl.currentPage].url)!, entersReaderIfAvailable: true)
             presentViewController(safariController, animated: true, completion: nil)
         } else {
-            let webController = WebAppViewController(address: recommender.bannerList[pageControl.currentPage].url)
+            let webController = WebAppViewController(address: Recommender.sharedInstance.bannerList[pageControl.currentPage].url)
             self.navigationController?.pushViewController(webController, animated: true)
         }
     }

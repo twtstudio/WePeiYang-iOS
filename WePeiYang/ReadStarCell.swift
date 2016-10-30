@@ -55,7 +55,7 @@ class ReadStarCell: UITableViewCell {
             }
             
             //Badge
-            badge.append(UIImageView(imageName: "badge\(i+1)", desiredSize: CGSize(width: 11, height: 16))!)
+            badge.append(UIImageView(imageName: "badge\(i+1)", desiredSize: CGSize(width: 13.5, height: 20))!)
             contentView.addSubview(badge[i])
             badge[i].alpha = 1 - 0.2*CGFloat(i)
             badge[i].snp_makeConstraints {
