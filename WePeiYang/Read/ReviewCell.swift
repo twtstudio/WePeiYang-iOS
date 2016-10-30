@@ -23,16 +23,16 @@ class ReviewCell: UITableViewCell {
     private let bigiPhoneWidth: CGFloat = 414.0
     private let kAVATAR_HEIGHT = 45
     
-    convenience init(model: MyReview) {
+    convenience init(model: Review) {
         self.init()
         self.content.text = model.content
         // TODO: 头像
         self.like.text = String(format: "%02d", model.like)
         // TODO: TimeStamp
-        self.timestamp.text = model.timestamp
-        self.rateView.count = model.rate
+        self.timestamp.text = "16-10-14"
+        self.rateView.count = 5
         // TODO: 用户名
-        // self.username.text =
+        self.username.text = model.userName
         
         self.contentView.addSubview(avatar)
         self.contentView.addSubview(content)
@@ -185,6 +185,7 @@ class RateStarView: UIView {
         }
         
     }
+    
     func attributedString(title: String, content: String) -> NSMutableAttributedString {
         let fooString = "《\(title)》\(content)"
         let mutableAttributedString = NSMutableAttributedString(string: fooString)

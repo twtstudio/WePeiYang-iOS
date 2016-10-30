@@ -21,47 +21,24 @@
 
 import Foundation
 
-class MyReview {
-    var content: String!
-    var rate: Int!
-    var like: Int!
-    var timestamp: String!
-    var book: MyBook!
-    var avatar_url: String!
-    var username: String!
-    var id: Int!
+class Review {
+    let bookID: String
+    let title: String
+    let userName: String
+    let avatarURL: String
+    let rating: Double
+    let like: String
+    let content: String
+    let updateTime: String
     
-    convenience init(dic: NSDictionary)
-    {
-        self.init()
-        guard let content = dic["content"] as? String,
-        rate = dic["rate"] as? Int,
-        like = dic["like"] as? Int,
-        bdic = dic["book"] as? NSDictionary,
-        udic = dic["user"] as? NSDictionary,
-        timestamp = dic["timestamp"] as? String else {
-            // Msg
-            // TODO: 提示解析错误
-            return
-        }
-        
-        book = MyBook(dic: bdic)
-        self.content = content
-        self.rate = rate
+    init(bookID: String, title: String, userName: String, avatarURL: String, rating: Double, like: String, content: String, updateTime: String) {
+        self.bookID = bookID
+        self.title = title
+        self.userName = userName
+        self.avatarURL = avatarURL
+        self.rating = rating
         self.like = like
-        self.timestamp = timestamp
-
-        guard let username = udic["name"] as? String,
-        id = udic["id"] as? Int,
-            avatar = udic["avatar"] as? String else {
-                // TODO: 提示解析错误
-                return
-        }
-        self.username = username
-        self.id = id
-        self.avatar_url = avatar
-        // TODO: 头像
-        // 默认有头像
-        
+        self.content = content
+        self.updateTime = updateTime
     }
 }

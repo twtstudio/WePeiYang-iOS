@@ -199,3 +199,9 @@ class PartyHandInViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
 }
+
+extension UIViewController {
+    func initNaviagtionBar(title: String, color: UIColor) {
+        
+    }
+}
