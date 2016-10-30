@@ -33,6 +33,9 @@ class RecommendCell: UITableViewCell {
         
         scrollView.backgroundColor = UIColor.whiteColor()
         scrollView.contentSize = CGSize(width: 128*model.count, height: 200)
+        //关闭滚动条显示
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         
         contentView.addSubview(scrollView)
         
@@ -70,7 +73,7 @@ class RecommendCell: UITableViewCell {
                 imageViewArray[i].snp_makeConstraints {
                     make in
                     make.top.equalTo(scrollView).offset(16)
-                    make.left.equalTo(scrollView).offset(24)
+                    make.left.equalTo(scrollView).offset(16)
                     make.width.equalTo(80)
                     make.height.equalTo(120)
                 }
@@ -78,7 +81,7 @@ class RecommendCell: UITableViewCell {
                 imageViewArray[i].snp_makeConstraints {
                     make in
                     make.top.equalTo(scrollView).offset(16)
-                    make.left.equalTo(imageViewArray[i-1].snp_right).offset(48)
+                    make.left.equalTo(imageViewArray[i-1].snp_right).offset(32)
                     make.width.equalTo(80)
                     make.height.equalTo(120)
                 }
@@ -95,7 +98,7 @@ class RecommendCell: UITableViewCell {
                 make in
                 make.top.equalTo(titleLabelArray[i].snp_bottom).offset(2 )
                 make.centerX.equalTo(imageViewArray[i])
-                make.width.lessThanOrEqualTo(120)
+                make.width.lessThanOrEqualTo(100)
             }
             
         }

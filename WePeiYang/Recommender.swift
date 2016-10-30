@@ -12,6 +12,11 @@ class Recommender {
     var recommendedList: [RecommendedBook] = []
     var starList: [StarUser] = []
     var reviewList: [Review] = []
+    var finishFlag = FinishFlag()
+    var dataDidRefresh = false
+    
+    static let sharedInstance = Recommender()
+    private init() {}
     
     struct Banner {
         var image: String
@@ -34,12 +39,31 @@ class Recommender {
     }
     
     struct Review {
+        var bookName: String
         var bookId: String
         var username: String
         var avatar: String
         var score: Int
         var like: String
         var content: String
+    }
+    
+    struct FinishFlag {
+        var bannerFlag = false
+        var recommendedFlag = false
+        var hotReviewFlag = false
+        var starUserFlag = false
+        
+        func isFinished() -> Bool {
+            return bannerFlag && recommendedFlag && hotReviewFlag && starUserFlag
+        }
+        
+        mutating func reset() {
+            bannerFlag = false
+            recommendedFlag = false
+            hotReviewFlag = false
+            starUserFlag = false
+        }
     }
     
     func getBannerList(success: () -> ()) {
@@ -54,6 +78,7 @@ class Recommender {
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
         
+        var fooBannerList: [Banner] = []
         manager.GET(ReadAPI.bannerURL, parameters: nil, progress: nil, success: { (task, responseObject) in
             guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                 let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
@@ -62,6 +87,7 @@ class Recommender {
                 return
             }
             
+            print(dict)
             for dic in data {
                 guard let image = dic["img"] as? String,
                     let title = dic["title"] as? String,
@@ -69,12 +95,16 @@ class Recommender {
                 else {
                     continue
                 }
-                self.bannerList.append(Banner(image: image, title: title, url: url))
+                fooBannerList.append(Banner(image: image, title: title, url: url))
+                //self.bannerList.append(Banner(image: image, title: title, url: url))
             }
+            self.finishFlag.bannerFlag = true
+            self.bannerList = fooBannerList
             success()
             
             }) { (_, error) in
-                MsgDisplay.showErrorMsg("获取数据失败")
+                self.finishFlag.bannerFlag = true
+                MsgDisplay.showErrorMsg("获取 banner 数据失败")
                 print(error)
         }
     }
@@ -82,12 +112,12 @@ class Recommender {
     func getRecommendedList(success: () -> ()) {
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
-        
+        var fooRecommendedList: [RecommendedBook] = []
         manager.GET(ReadAPI.recomendedURL, parameters: nil, progress: nil, success: { (task, responseObject) in
             guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
             let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
             else {
-                MsgDisplay.showErrorMsg("获取数据失败")
+                MsgDisplay.showErrorMsg("获取热门推荐数据失败")
                 return
             }
             
@@ -99,12 +129,15 @@ class Recommender {
                 else {
                     continue
                 }
-                
-                self.recommendedList.append(RecommendedBook(id: id, title: title, author: author, cover: cover))
+                fooRecommendedList.append(RecommendedBook(id: id, title: title, author: author, cover: cover))
+                //self.recommendedList.append(RecommendedBook(id: id, title: title, author: author, cover: cover))
             }
+            self.finishFlag.recommendedFlag = true
+            self.recommendedList = fooRecommendedList
             success()
             }) { (_, error) in
-                MsgDisplay.showErrorMsg("获取数据失败")
+                self.finishFlag.recommendedFlag = true
+                MsgDisplay.showErrorMsg("获取热门推荐数据失败")
                 print(error)
         }
         
@@ -121,12 +154,12 @@ class Recommender {
         
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
-        
+        var fooStarList: [StarUser] = []
         manager.GET(ReadAPI.starUserURL, parameters: nil, progress: nil, success: { (task, responseObject) in
             guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                 let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                 else {
-                    MsgDisplay.showErrorMsg("获取数据失败")
+                    MsgDisplay.showErrorMsg("获取阅读之星数据失败")
                     return
             }
             
@@ -138,12 +171,15 @@ class Recommender {
                     else {
                         continue
                 }
-                
-                self.starList.append(StarUser(id: id, name: name, avatar: avatar, reviewCount: reviewCount))
+                fooStarList.append(StarUser(id: id, name: name, avatar: avatar, reviewCount: reviewCount))
+                //self.starList.append(StarUser(id: id, name: name, avatar: avatar, reviewCount: reviewCount))
             }
+            self.finishFlag.starUserFlag = true
+            self.starList = fooStarList
             success()
         }) { (_, error) in
-            MsgDisplay.showErrorMsg("获取数据失败")
+            self.finishFlag.starUserFlag = true
+            MsgDisplay.showErrorMsg("获取阅读之星数据失败")
             print(error)
         }
         
@@ -159,12 +195,12 @@ class Recommender {
         
         let manager = AFHTTPSessionManager()
         manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
-        
+        var fooReviewList: [Review] = []
         manager.GET(ReadAPI.hotReviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
             guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                 let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                 else {
-                    MsgDisplay.showErrorMsg("获取数据失败")
+                    MsgDisplay.showErrorMsg("获取热门评论数据失败")
                     return
             }
             
@@ -178,13 +214,15 @@ class Recommender {
                 else {
                         continue
                 }
-                
-                self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
+                fooReviewList.append(Review(bookName: "从你的全世界路过", bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
+                //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
             }
-            print(self.reviewList)
+            self.finishFlag.hotReviewFlag = true
+            self.reviewList = fooReviewList
             success()
         }) { (_, error) in
-            MsgDisplay.showErrorMsg("获取数据失败")
+            self.finishFlag.hotReviewFlag = true
+            MsgDisplay.showErrorMsg("获取热门评论数据失败")
             print(error)
         }
         
