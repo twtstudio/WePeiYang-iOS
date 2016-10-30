@@ -104,8 +104,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         case 0:
             return 1
         case 1:
-            //return reviewList.count
-            return 0
+            return Recommender.sharedInstance.reviewList.count
         case 2:
             return 1
         default:
@@ -119,9 +118,9 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         case 0:
             let cell = RecommendCell(model: Recommender.sharedInstance.recommendedList)
             return cell
-//        case 1:
-//            let cell = ReviewCell(model: Recommender.sharedInstance.reviewList[indexPath.row])
-//            return cell
+        case 1:
+            let cell = ReviewCell(model: Recommender.sharedInstance.reviewList[indexPath.row])
+            return cell
         case 2:
             let cell = ReadStarCell(model: Recommender.sharedInstance.starList)
             return cell

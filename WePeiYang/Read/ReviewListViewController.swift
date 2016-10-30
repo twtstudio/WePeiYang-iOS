@@ -10,7 +10,7 @@ import UIKit
 
 class ReviewListViewController: UITableViewController {
     
-    var reviewArr: [MyReview] = []
+    var reviewArr: [Review] = []
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

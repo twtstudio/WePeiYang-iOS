@@ -38,16 +38,6 @@ class Recommender {
         var reviewCount: String
     }
     
-    struct Review {
-        var bookName: String
-        var bookId: String
-        var username: String
-        var avatar: String
-        var score: Int
-        var like: String
-        var content: String
-    }
-    
     struct FinishFlag {
         var bannerFlag = false
         var recommendedFlag = false
@@ -87,7 +77,6 @@ class Recommender {
                 return
             }
             
-            print(dict)
             for dic in data {
                 guard let image = dic["img"] as? String,
                     let title = dic["title"] as? String,
@@ -204,21 +193,25 @@ class Recommender {
                     return
             }
             
+            print(dict)
             for dic in data {
                 guard let id = dic["book_id"] as? String,
+                    let title = dic["title"] as? String,
                     let username = dic["user_name"] as? String,
                     let avatar = dic["avatar"] as? String,
-                    //let score = dic["scores"] as? Int,
+                    let score = dic["scores"] as? Double,
                     let like = dic["like"] as? String,
-                    let content = dic["content"] as? String
+                    let content = dic["content"] as? String,
+                    let updateTime = dic["update_at"] as? String
                 else {
                         continue
                 }
-                fooReviewList.append(Review(bookName: "从你的全世界路过", bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
+                fooReviewList.append(Review(bookID: id, title: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
                 //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
             }
             self.finishFlag.hotReviewFlag = true
             self.reviewList = fooReviewList
+            print(self.reviewList)
             success()
         }) { (_, error) in
             self.finishFlag.hotReviewFlag = true
