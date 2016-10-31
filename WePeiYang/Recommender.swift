@@ -193,7 +193,6 @@ class Recommender {
                     return
             }
             
-            print(dict)
             for dic in data {
                 guard let id = dic["book_id"] as? String,
                     let title = dic["title"] as? String,
@@ -202,7 +201,7 @@ class Recommender {
                     let score = dic["scores"] as? Double,
                     let like = dic["like"] as? String,
                     let content = dic["content"] as? String,
-                    let updateTime = dic["update_at"] as? String
+                    let updateTime = dic["updated_at"] as? String
                 else {
                         continue
                 }
@@ -211,7 +210,6 @@ class Recommender {
             }
             self.finishFlag.hotReviewFlag = true
             self.reviewList = fooReviewList
-            print(self.reviewList)
             success()
         }) { (_, error) in
             self.finishFlag.hotReviewFlag = true

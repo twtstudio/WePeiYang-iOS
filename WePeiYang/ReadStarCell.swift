@@ -39,7 +39,7 @@ class ReadStarCell: UITableViewCell {
             
             //Avatar
             avatar.append(UIImageView())
-            avatar[i].setImageWithURL(NSURL(string: star.avatar)!, placeholderImage: UIImage(named: "defaultAvatar"))
+            avatar[i].setImageWithURL(NSURL(string: star.avatar)!, placeholderImage: UIImage(named: "readerAvatar\(i)"))
             contentView.addSubview(avatar[i])
             avatar[i].clipsToBounds = true
             avatar[i].layer.cornerRadius = CGFloat(avatarLength/2)

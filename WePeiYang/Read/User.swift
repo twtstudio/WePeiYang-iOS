@@ -64,88 +64,62 @@ class User: NSObject {
 //                        print("error: \(error)")
 //        })
         
-        let manager = AFHTTPSessionManager()
-        manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
-        var fooReviewList: [Review] = []
-        manager.GET(ReadAPI.hotReviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
-            guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
-                let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
-                else {
-                    MsgDisplay.showErrorMsg("获取热门评论数据失败")
-                    return
-            }
+        getToken({ token in
+//            let manager = AFHTTPSessionManager()
+//            manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "application/json")
+//            manager.GET(self.review_url, parameters: nil, progress: nil,
+//                success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+//                    
+//                    if let dict = responseObject as? NSDictionary{
+//                        let data = dict["data"] as! [NSDictionary]
+//                        self.reviewArr.removeAll()
+//                        for dic:NSDictionary in data{
+//                            // TODO: review initalize
+//                            let review = MyReview(dic: dic)
+//                            self.reviewArr.append(review)
+//                        }
+//                    }
+//                    success()
+//                },
+//                failure: { (task: NSURLSessionDataTask?, error: NSError) in
+//                    print("error: \(error)")
+//            })
             
-            print(dict)
-            for dic in data {
-                guard let id = dic["book_id"] as? String,
-                    let title = dic["title"] as? String,
-                    let username = dic["user_name"] as? String,
-                    let avatar = dic["avatar"] as? String,
-                    let score = dic["scores"] as? Double,
-                    let like = dic["like"] as? String,
-                    let content = dic["content"] as? String,
-                    let updateTime = dic["update_at"] as? String
-                    else {
-                        continue
-                }
-                fooReviewList.append(Review(bookID: id, title: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
-                //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
-            }
-            self.reviewArr = fooReviewList
-            success()
-        }) { (_, error) in
-            MsgDisplay.showErrorMsg("获取热门评论数据失败")
-            print(error)
-        }
-
-    }
-    
-    func getBookShelf(success: Void -> Void) {
-        //guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
-            // MsgDisplay.showErrorMsg("你需要登录才能访问党建功能")
-            // let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-            //  UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
-//            return
-//        }
-        
-      //  let parameters = ["token": token]
-        let manager = AFHTTPSessionManager()
-        
-        // 参数
-        manager.GET(bookshelf_url, parameters: nil, progress:  nil,
-                    success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-            // TODO: 判断
-            if let dict = responseObject as? NSDictionary{
-                let data = dict["data"] as! [NSDictionary]
-                self.bookShelf.removeAll()
-                for dic:NSDictionary in data{
-                    let book: MyBook = MyBook()
-                    book.initWithDict(dic)
-                    self.bookShelf.append(book)
-                }
-
-        getToken({ make in
             let manager = AFHTTPSessionManager()
-            manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "application/json")
-            manager.GET(self.review_url, parameters: nil, progress: nil,
-                success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-                    
-                    if let dict = responseObject as? NSDictionary{
-                        let data = dict["data"] as! [NSDictionary]
-                        self.reviewArr.removeAll()
-                        for dic:NSDictionary in data{
-                            // TODO: review initalize
-                            let review = MyReview(dic: dic)
-                            self.reviewArr.append(review)
-                        }
+            manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
+            var fooReviewList: [Review] = []
+            manager.GET(ReadAPI.hotReviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+                guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
+                    let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
+                    else {
+                        MsgDisplay.showErrorMsg("获取热门评论数据失败")
+                        return
+                }
+                
+                for dic in data {
+                    guard let id = dic["book_id"] as? String,
+                        let title = dic["title"] as? String,
+                        let username = dic["user_name"] as? String,
+                        let avatar = dic["avatar"] as? String,
+                        let score = dic["scores"] as? Double,
+                        let like = dic["like"] as? String,
+                        let content = dic["content"] as? String,
+                        let updateTime = dic["updated_at"] as? String
+                        else {
+                            continue
                     }
-                    success()
-                },
-                failure: { (task: NSURLSessionDataTask?, error: NSError) in
-                    print("error: \(error)")
-            })
+                    fooReviewList.append(Review(bookID: id, title: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
+                    //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
+                }
+                self.reviewArr = fooReviewList
+                success()
+            }) { (_, error) in
+                MsgDisplay.showErrorMsg("获取热门评论数据失败")
+                print(error)
+            }
             
         })
+
     }
     
     func getBookShelf(success: Void -> Void) {
@@ -171,6 +145,7 @@ class User: NSObject {
             
         })
     }
+
     
     func like(method: LikeBtnMethod, success: Void -> Void) {
         getToken({ token in
@@ -210,14 +185,14 @@ class User: NSObject {
         if NSUserDefaults.standardUserDefaults().objectForKey("readToken") == nil {
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
-            manager.GET("heiheihei", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+            manager.GET(ReadAPI.tokenURL, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 //
                 let readToken = ""
                 NSUserDefaults.standardUserDefaults().setObject(readToken, forKey: "readToken")
                 success(readToken)
                 }, failure: { (_, error) in
                     log.error(error)/
-                    MsgDisplay.showErrorMsg("There is something wrong with you")
+                    MsgDisplay.showErrorMsg("请求失败额")
             })
         }
         if let readToken = NSUserDefaults.standardUserDefaults().objectForKey("readToken") as? String {

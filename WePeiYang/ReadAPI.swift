@@ -14,4 +14,5 @@ struct ReadAPI {
     static let recomendedURL = baseURL + "recommended/6"
     static let hotReviewURL = baseURL + "hotreview/3"
     static let starUserURL = baseURL + "starreader/3"
+    static let tokenURL = baseURL + "auth/token/get"
 }
