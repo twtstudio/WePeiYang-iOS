@@ -15,7 +15,7 @@ class ReviewListViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let titleLabel = UILabel(text: "我的收藏", fontSize: 17)
+        let titleLabel = UILabel(text: "我的评论", fontSize: 17)
         titleLabel.backgroundColor = UIColor.clearColor()
         titleLabel.textAlignment = .Center
         titleLabel.textColor = UIColor.whiteColor()
@@ -23,7 +23,7 @@ class ReviewListViewController: UITableViewController {
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let bgView = UIView(frame: CGRect(x: 0, y: -64, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+        let bgView = UIView(frame: CGRect(x: 0, y: -664, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height+600))
         
         bgView.backgroundColor = UIColor(colorLiteralRed: 234.0/255.0, green: 74.0/255.0, blue: 70/255.0, alpha: 1.0)
         self.view.addSubview(bgView)

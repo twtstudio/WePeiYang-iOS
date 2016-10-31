@@ -17,7 +17,6 @@ class InfoViewController: UITableViewController {
     var bookShelf: [MyBook] = []
     var reviewArr: [Review] = []
 
-    
     override func viewDidAppear(animated: Bool) {
         tableView.reloadData()
     }
@@ -113,8 +112,8 @@ class InfoViewController: UITableViewController {
         case 1:
             let cell = ReviewCell(model: self.reviewArr[indexPath.row])
             // TODO: 用户名
-            cell.username.text = "这里是用户名"
-            cell.avatar.image = UIImage(named: "avatar")
+//            cell.username.text = "这里是用户名"
+//            cell.avatar.image = UIImage(named: "avatar")
             if indexPath.row == 1 {
                 cell.separator.removeFromSuperview()
             }

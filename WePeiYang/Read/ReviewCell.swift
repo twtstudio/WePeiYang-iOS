@@ -26,18 +26,20 @@ class ReviewCell: UITableViewCell {
     convenience init(model: Review) {
         self.init()
         // TODO: title
-        self.content.attributedText = attributedString("kong", content: model.content)
+        self.content.attributedText = attributedString(model.title, content: model.content)
         //self.content.text = attributedString(title: , content: String)
-        // TODO: 头像
-        self.like.text = String(format: "%02d", model.like)
+        //头像
+        self.avatar.setImageWithURL(NSURL(string: model.avatarURL)!, placeholderImage: UIImage(named: "readerAvatar1"))
+        //self.like.text = String(format: "%02d", model.like)
+        self.like.text = model.like
         // TODO: TimeStamp
-        self.timestamp.text = "16-10-14"
-        self.rateView.count = 5
+        self.timestamp.text = model.updateTime
+        self.rateView.count = Int(model.rating)
         // TODO: 用户名
         self.username.text = model.userName
         
         // 用like的tag存储点赞个数
-        like.tag = model.like
+        like.tag = Int(model.like)!
         
         // imgView tag
         imageView?.tag = 0
@@ -91,7 +93,7 @@ class ReviewCell: UITableViewCell {
         content.lineBreakMode = NSLineBreakMode.ByWordWrapping
         // content.font = UIFont.systemFontOfSize(16)
         content.numberOfLines = 0
-        content.textColor = UIColor(red:0, green:0, blue:0, alpha:0.8)
+        //content.textColor = UIColor(red:0, green:0, blue:0, alpha:0.8)
         content.sizeToFit()
         content.snp_makeConstraints { make in
             make.left.equalTo(contentView).offset(20)
@@ -235,17 +237,5 @@ class RateStarView: UIView {
         }
         
     }
-
-    
-    func attributedString(title: String, content: String) -> NSMutableAttributedString {
-        let fooString = "《\(title)》\(content)"
-        let mutableAttributedString = NSMutableAttributedString(string: fooString)
-        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(),range: NSRange(location:0, length: title.characters.count+2))
-        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayColor(), range: NSRange(location:title.characters.count+2, length: content.characters.count))
-        mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont(name: "Arial", size: 14.0)!, range: NSRange(location: 0, length: fooString.characters.count))
-        
-        return mutableAttributedString
-    }
-
 
 }

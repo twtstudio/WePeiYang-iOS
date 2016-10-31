@@ -15,10 +15,15 @@ class MyBook{
     var rate: Double!
     var publisher: String!
     var year: Int!
-    
-    func initWithDict(dic: NSDictionary) {
-        self.title = dic["title"] as! String
-        self.author = dic["author"] as! String
-        self.isbn = dic["isbn"] as! String
+    convenience init(dic: NSDictionary) {
+        self.init()
+        guard let title = dic["title"] as? String,
+            author = dic["author"] as? String,
+            isbn = dic["isbn"] as? String else {
+                return
+        }
+        self.title = title
+        self.author = author
+        self.isbn = isbn
     }
 }
