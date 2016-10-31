@@ -86,7 +86,7 @@ class User: NSObject {
 //            })
             
             let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzcyNjU1OCwiZXhwIjoxNDc4MzMxMzU4LCJuYmYiOjE0Nzc3MjY1NTgsImp0aSI6ImQwZDE0NTY3ZGUxNDk4OGI3YmVjNjRlNGI2Y2Y1ZjdlIn0.U1iM-nj4U-1r81gyI2gQgYi2R3B-0W-y5oUdSasD4o8}", forHTTPHeaderField: "Authorization")
+            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.hotReviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
@@ -184,15 +184,23 @@ class User: NSObject {
         }
         if NSUserDefaults.standardUserDefaults().objectForKey("readToken") == nil {
             let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
-            manager.GET(ReadAPI.tokenURL, parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
+//            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+            manager.GET(ReadAPI.tokenURL+"?wpy_token=\(token)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 //
-                let readToken = ""
+                print(responseObject)
+                guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
+                    let data = dict["data"] as? Dictionary<String, AnyObject>,
+                    let readToken = data["token"] as? String
+                    else {
+                        MsgDisplay.showErrorMsg("身份认证失败")
+                        return
+                }
+                
                 NSUserDefaults.standardUserDefaults().setObject(readToken, forKey: "readToken")
                 success(readToken)
                 }, failure: { (_, error) in
                     log.error(error)/
-                    MsgDisplay.showErrorMsg("请求失败额")
+                    MsgDisplay.showErrorMsg("身份认证失败")
             })
         }
         if let readToken = NSUserDefaults.standardUserDefaults().objectForKey("readToken") as? String {

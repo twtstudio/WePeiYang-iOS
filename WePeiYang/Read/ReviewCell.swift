@@ -44,14 +44,20 @@ class ReviewCell: UITableViewCell {
         // imgView tag
         imageView?.tag = 0
         
+        let fooView = UIView()
+        fooView.addSubview(heartView)
+        fooView.addSubview(like)
+        
         self.contentView.addSubview(avatar)
         self.contentView.addSubview(content)
         self.contentView.addSubview(username)
         self.contentView.addSubview(rateView)
         self.contentView.addSubview(timestamp)
-        self.contentView.addSubview(heartView)
-        self.contentView.addSubview(like)
+//        self.contentView.addSubview(heartView)
+//        self.contentView.addSubview(like)
         self.contentView.addSubview(separator)
+        self.contentView.addSubview(fooView)
+        
         
         self.contentView.backgroundColor = UIColor(red:0.99, green:0.99, blue:1.00, alpha:1.00)
         // let frame = avatar.frame
@@ -120,17 +126,31 @@ class ReviewCell: UITableViewCell {
             // Fallback on earlier versions
         }
         
-        like.userInteractionEnabled = true
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
-        like.addGestureRecognizer(tap1)
-        heartView.userInteractionEnabled = true
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
-        heartView.addGestureRecognizer(tap2)
+        
+        fooView.snp_makeConstraints {
+            make in
+            make.bottom.equalTo(contentView).offset(-12)
+            make.right.equalTo(contentView).offset(-12)
+            make.width.equalTo(50)
+            make.height.equalTo(30)
+        }
+        
+//        like.userInteractionEnabled = true
+//        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
+//        like.addGestureRecognizer(tap1)
+//        heartView.userInteractionEnabled = true
+//        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
+//        heartView.addGestureRecognizer(tap2)
+        fooView.userInteractionEnabled = true
+        fooView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.likeTapped)))
         like.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         like.snp_makeConstraints { make in
-            make.top.equalTo(content.snp_bottom).offset(4)
-            make.right.equalTo(contentView).offset(-30)
-            make.bottom.equalTo(contentView).offset(-20)
+//            make.top.equalTo(content.snp_bottom).offset(4)
+//            make.right.equalTo(contentView).offset(-30)
+//            make.bottom.equalTo(contentView).offset(-20)
+            make.top.equalTo(fooView).offset(8)
+            make.right.equalTo(fooView).offset(-8)
+            
         }
         
         heartView.image = UIImage(named: "grey_heart")
