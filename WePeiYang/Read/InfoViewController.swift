@@ -16,6 +16,7 @@ class InfoViewController: UITableViewController {
     var headerArr: [String] = ["我的收藏", "我的点评"]
     var bookShelf: [MyBook] = []
     var reviewArr: [Review] = []
+
     
     override func viewDidAppear(animated: Bool) {
         tableView.reloadData()
@@ -61,7 +62,8 @@ class InfoViewController: UITableViewController {
             self.navigationController?.pushViewController(bvc, animated: true)
         case 1:
             let rvc = ReviewListViewController()
-            rvc.reviewArr = self.reviewArr
+            // FIXME: arr
+            //rvc.reviewArr = self.reviewArr
             self.navigationController?.pushViewController(rvc, animated: true)
             break
         default:
@@ -138,18 +140,79 @@ class InfoViewController: UITableViewController {
         header.tag = section
         let tap = UITapGestureRecognizer(target: self, action: #selector(InfoViewController.sectionTapped(_:)))
         header.addGestureRecognizer(tap)
-        let separator = UIView()
-        header.addSubview(separator)
-        separator.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
-        separator.snp_makeConstraints { make in
+//        let separator = UIView()
+//        header.addSubview(separator)
+//        separator.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
+//        separator.snp_makeConstraints { make in
+//            make.height.equalTo(2)
+//            make.left.equalTo(header).offset(0)
+//            make.right.equalTo(header).offset(0)
+//            make.bottom.equalTo(header).offset(0)
+//        }
+        let 🌚 = UIView()
+        header.addSubview(🌚)
+        🌚.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
+        🌚.snp_makeConstraints { make in
             make.height.equalTo(2)
             make.left.equalTo(header).offset(0)
             make.right.equalTo(header).offset(0)
             make.bottom.equalTo(header).offset(0)
         }
         return header
-
-
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            if bookShelf.count == 0 {
+                // 🤓 stands for footer
+                let 🤓 = UITableViewCell(style: .Default, reuseIdentifier: "footer")
+                🤓.backgroundColor = UIColor.whiteColor()
+                🤓.textLabel?.text = "暂时还没有收藏，快去收藏吧！"
+                🤓.textLabel?.sizeToFit()
+                🤓.textLabel?.snp_makeConstraints { make in
+                    make.centerX.equalTo(🤓.contentView.snp_centerX)
+                    make.centerY.equalTo(🤓.contentView.snp_centerY)
+                }
+                // 🌚 stands for separator
+                let 🌚 = UIView()
+                🤓.addSubview(🌚)
+                🌚.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
+                🌚.snp_makeConstraints { make in
+                    make.height.equalTo(2)
+                    make.left.equalTo(🤓).offset(0)
+                    make.right.equalTo(🤓).offset(0)
+                    make.bottom.equalTo(🤓).offset(0)
+                }
+                return 🤓
+            }
+        case 1:
+            if reviewArr.count == 0 {
+                // 🤓 stands for footer
+                let 🤓 = UITableViewCell(style: .Default, reuseIdentifier: "footer")
+                🤓.backgroundColor = UIColor.whiteColor()
+                🤓.textLabel?.text = "暂时还没有评论，快去评论吧！"
+                🤓.textLabel?.sizeToFit()
+                🤓.textLabel?.snp_makeConstraints { make in
+                    make.centerX.equalTo(🤓.contentView.snp_centerX)
+                    make.centerY.equalTo(🤓.contentView.snp_centerY)
+                }
+//                // 🌚 stands for separator
+//                let 🌚 = UIView()
+//                🤓.addSubview(🌚)
+//                🌚.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
+//                🌚.snp_makeConstraints { make in
+//                    make.height.equalTo()
+//                    make.left.equalTo(🤓).offset(0)
+//                    make.right.equalTo(🤓).offset(0)
+//                    make.bottom.equalTo(🤓).offset(0)
+//                }
+                return 🤓
+            }
+        default:
+            break
+        }
+        return nil
     }
     
     
@@ -174,5 +237,8 @@ class InfoViewController: UITableViewController {
         return 50
     }
     
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 35
+    }
     
 }
