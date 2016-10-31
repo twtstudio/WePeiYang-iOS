@@ -25,7 +25,9 @@ class ReviewCell: UITableViewCell {
     
     convenience init(model: Review) {
         self.init()
-        self.content.text = model.content
+        // TODO: title
+        self.content.attributedText = attributedString("kong", content: model.content)
+        //self.content.text = attributedString(title: , content: String)
         // TODO: 头像
         self.like.text = String(format: "%02d", model.like)
         // TODO: TimeStamp
@@ -33,6 +35,12 @@ class ReviewCell: UITableViewCell {
         self.rateView.count = 5
         // TODO: 用户名
         self.username.text = model.userName
+        
+        // 用like的tag存储点赞个数
+        like.tag = model.like
+        
+        // imgView tag
+        imageView?.tag = 0
         
         self.contentView.addSubview(avatar)
         self.contentView.addSubview(content)
@@ -43,6 +51,7 @@ class ReviewCell: UITableViewCell {
         self.contentView.addSubview(like)
         self.contentView.addSubview(separator)
         
+        self.contentView.backgroundColor = UIColor(red:0.99, green:0.99, blue:1.00, alpha:1.00)
         // let frame = avatar.frame
         // avatar.frame = CGRectMake(frame.origin.x, frame.origin.y, 45, 45)
         avatar.snp_makeConstraints { make in
@@ -72,7 +81,7 @@ class ReviewCell: UITableViewCell {
         
         let width = UIScreen.mainScreen().bounds.size.width
         
-        if width > bigiPhoneWidth {
+        if width >= bigiPhoneWidth {
             content.font = UIFont.systemFontOfSize(16)
         } else {
             content.font = UIFont.systemFontOfSize(14)
@@ -108,8 +117,16 @@ class ReviewCell: UITableViewCell {
         } else {
             // Fallback on earlier versions
         }
+        
+        like.userInteractionEnabled = true
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
+        like.addGestureRecognizer(tap1)
+        heartView.userInteractionEnabled = true
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
+        heartView.addGestureRecognizer(tap2)
         like.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         like.snp_makeConstraints { make in
+            make.top.equalTo(content.snp_bottom).offset(4)
             make.right.equalTo(contentView).offset(-30)
             make.bottom.equalTo(contentView).offset(-20)
         }
@@ -136,7 +153,40 @@ class ReviewCell: UITableViewCell {
         
 
     }
+    
+    func likeTapped() {
+        if self.heartView.tag == 0 {
+        self.like.tag += 1
+        let frame = self.heartView.frame
+        let width = frame.size.width
+        let height = frame.size.height
+        self.heartView.frame = CGRect(x: self.heartView.frame.origin.x - width/2 , y: self.heartView.frame.origin.y - height/2, width: self.heartView.frame.size.width*2, height: self.heartView.frame.size.height*2)
+        UIView.animateWithDuration(0.25, animations: {
+            self.heartView.image = UIImage(named: "red_heart")
+            self.like.text = String(format: "%02d", self.like.tag)
+            self.heartView.frame = frame
+            self.heartView.tag = 1
+        })
+        } else {
+            self.like.tag -= 1
+            self.like.text = String(format: "%02d", self.like.tag)
+            self.heartView.image = UIImage(named: "grey_heart")
+            self.heartView.tag = 0
+        }
 
+    }
+    
+    func attributedString(title: String, content: String) -> NSMutableAttributedString {
+        let fooString = "《\(title)》\(content)"
+        let mutableAttributedString = NSMutableAttributedString(string: fooString)
+        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(),range: NSRange(location:0, length: title.characters.count+2))
+        mutableAttributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayColor(), range: NSRange(location:title.characters.count+2, length: content.characters.count))
+        mutableAttributedString.addAttribute(NSFontAttributeName, value: UIFont(name: "Arial", size: 14.0)!, range: NSRange(location: 0, length: fooString.characters.count))
+        
+        return mutableAttributedString
+    }
+
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -185,6 +235,7 @@ class RateStarView: UIView {
         }
         
     }
+
     
     func attributedString(title: String, content: String) -> NSMutableAttributedString {
         let fooString = "《\(title)》\(content)"
@@ -195,5 +246,6 @@ class RateStarView: UIView {
         
         return mutableAttributedString
     }
+
 
 }
