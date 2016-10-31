@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ReviewListViewController: UITableViewController {
+class ReviewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var reviewArr: [Review] = []
+    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height) , style: .Grouped)
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,7 +24,7 @@ class ReviewListViewController: UITableViewController {
         
         //NavigationBar 的背景，使用了View
         self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-        let bgView = UIView(frame: CGRect(x: 0, y: -664, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height+600))
+        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
         
         bgView.backgroundColor = UIColor(colorLiteralRed: 234.0/255.0, green: 74.0/255.0, blue: 70/255.0, alpha: 1.0)
         self.view.addSubview(bgView)
@@ -35,8 +36,12 @@ class ReviewListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "我的评论"
-        self.tableView.tableFooterView = UIView()
+        //Add TableView
+        view.addSubview(tableView)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        //self.tableView.tableFooterView = UIView()
         self.tableView.estimatedRowHeight = 130
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.separatorStyle = .None
@@ -44,26 +49,27 @@ class ReviewListViewController: UITableViewController {
     }
     
     // Mark: UITableViewDataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reviewArr.count
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return User.sharedInstance.reviewArr.count
+        //return reviewArr.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = ReviewCell(model: self.reviewArr[indexPath.row])
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = ReviewCell(model: User.sharedInstance.reviewArr[indexPath.row])
         // TODO: 头像
-        cell.username.text = "这里是用户名"
-        cell.avatar.image = UIImage(named: "avatar")
+//        cell.username.text = "这里是用户名"
+//        cell.avatar.image = UIImage(named: "avatar")
         if indexPath.row == reviewArr.count - 1 {
             cell.separator.removeFromSuperview()
         }
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO: 跳转到书籍详情页面
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

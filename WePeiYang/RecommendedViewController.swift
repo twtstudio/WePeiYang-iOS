@@ -86,11 +86,9 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelection = false
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .None
-        tableView.allowsSelection = false
     }
     
     
@@ -227,6 +225,8 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     //Table View Delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        print("Push Detail View Controller")
     }
     
     //UIScrollViewDelegate方法，每次滚动结束后调用

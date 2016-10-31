@@ -32,7 +32,7 @@ class RecommendCell: UITableViewCell {
         var authorLabelArray = [UILabel]()
         
         scrollView.backgroundColor = UIColor.whiteColor()
-        scrollView.contentSize = CGSize(width: 128*model.count, height: 200)
+        scrollView.contentSize = CGSize(width: 112*model.count, height: 200)
         //关闭滚动条显示
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
