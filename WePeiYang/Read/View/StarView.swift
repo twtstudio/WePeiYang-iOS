@@ -43,10 +43,10 @@ class StarView: UIView {
         }
     }
     
-//    override func drawRect(rect: CGRect) {
-//        super.drawRect(rect)
-//        refresh()
-//    }
+    //    override func drawRect(rect: CGRect) {
+    //        super.drawRect(rect)
+    //        refresh()
+    //    }
     
     convenience init(rating: Double, height: CGFloat, tappable: Bool) {
         self.init()
@@ -56,7 +56,7 @@ class StarView: UIView {
         
         //OH MY GOODNESS THIS IS A GIANT BUG OR SOMETHING? LIKE 5 POINTERS POINTED TO THE SAME OBJECT
         //stars = [UIImageView](count: 5, repeatedValue: UIImageView(imageName: star_grey, desiredSize: CGSize(width: height, height: height))!)
-
+        
         for _ in 0..<5 {
             stars.append(UIButton(backgroundImageName: star_grey, desiredSize: CGSize(width: height, height: height))!)
         }
@@ -100,13 +100,13 @@ extension StarView {
         self.rating = Double(sender.tag) + 1
         
         //TODO: Chained Animation of the stars
-//        let foo = self.stars[sender.tag].frame
-//        UIView.animateWithDuration(0.7, animations: {
-//            self.stars[sender.tag].frame = CGRect(x: foo.origin.x - 10, y: foo.origin.y - 10, width: foo.size.width * 2, height: foo.size.height * 2)
-//            }) { (_) in
-//                self.stars[sender.tag].frame = foo
-//                self.stars[sender.tag-1].frame = CGRect(x: foo.origin.x - 10, y: foo.origin.y - 10, width: foo.size.width * 2, height: foo.size.height * 2)
-//        }
+        //        let foo = self.stars[sender.tag].frame
+        //        UIView.animateWithDuration(0.7, animations: {
+        //            self.stars[sender.tag].frame = CGRect(x: foo.origin.x - 10, y: foo.origin.y - 10, width: foo.size.width * 2, height: foo.size.height * 2)
+        //            }) { (_) in
+        //                self.stars[sender.tag].frame = foo
+        //                self.stars[sender.tag-1].frame = CGRect(x: foo.origin.x - 10, y: foo.origin.y - 10, width: foo.size.width * 2, height: foo.size.height * 2)
+        //        }
         
         for i in 0...sender.tag {
             //stars[i] = UIButton(backgroundImageName: star_red, desiredSize: CGSize(width: tappedStar.bounds.width, height: tappedStar.bounds.height))!
@@ -124,7 +124,7 @@ extension StarView {
         //let tap = UITapGestureRecognizer(target: self, action: #selector(self.starGetsTapped))
         for star in stars {
             star.addTarget(self, action: #selector(self.starGetsTapped(_:)), forControlEvents: .TouchUpInside)
-//            log.word("gestures assigned")/
+            //            log.word("gestures assigned")/
         }
     }
     

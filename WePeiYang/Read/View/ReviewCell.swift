@@ -14,11 +14,13 @@ class ReviewCell: UITableViewCell {
     var avatar: UIImageView = UIImageView()
     var content: UILabel = UILabel()
     var username: UILabel = UILabel()
-    var starView: StarView!
+    var rateView: StarView! = nil
     var timestamp: UILabel = UILabel()
     var heartView: UIImageView = UIImageView()
     var like: UILabel = UILabel()
     let separator = UIView()
+    let fooView = UIView()
+
     
     private let bigiPhoneWidth: CGFloat = 414.0
     private let kAVATAR_HEIGHT = 45
@@ -34,26 +36,28 @@ class ReviewCell: UITableViewCell {
         self.like.text = model.like
         // TODO: TimeStamp
         self.timestamp.text = model.updateTime
-        
-        //Determine the look of the starView
-        self.starView = StarView(rating: model.rating, height: 17, tappable: false)
+
+        self.rateView = StarView(rating: model.rating, height: 15, tappable: false)
+
         // TODO: 用户名
         self.username.text = model.userName
         
         // 用like的tag存储点赞个数
         like.tag = Int(model.like)!
+        contentView.tag = Int(model.reviewID)!
+        heartView.tag = model.liked ? 1 : 0
         
         // imgView tag
         imageView?.tag = 0
         
-        let fooView = UIView()
+        
         fooView.addSubview(heartView)
         fooView.addSubview(like)
         
         self.contentView.addSubview(avatar)
         self.contentView.addSubview(content)
         self.contentView.addSubview(username)
-        self.contentView.addSubview(starView)
+        self.contentView.addSubview(rateView)
         self.contentView.addSubview(timestamp)
         //        self.contentView.addSubview(heartView)
         //        self.contentView.addSubview(like)
@@ -82,7 +86,7 @@ class ReviewCell: UITableViewCell {
             make.top.equalTo(contentView).offset(15)
         }
         
-        starView.snp_makeConstraints { make in
+        rateView.snp_makeConstraints { make in
             //  make.width.equalTo(120)
             //  make.height.equalTo(20)
             make.top.equalTo(username.snp_bottom).offset(3)
@@ -143,7 +147,7 @@ class ReviewCell: UITableViewCell {
         //        heartView.userInteractionEnabled = true
         //        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
         //        heartView.addGestureRecognizer(tap2)
-        fooView.userInteractionEnabled = true
+        fooView.userInteractionEnabled = model.liked ? false : true
         fooView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.likeTapped)))
         like.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         like.snp_makeConstraints { make in
@@ -155,7 +159,7 @@ class ReviewCell: UITableViewCell {
             
         }
         
-        heartView.image = UIImage(named: "grey_heart")
+        heartView.image = UIImage(named: model.liked ? "red_heart" : "grey_heart")
         heartView.snp_makeConstraints { make in
             make.right.equalTo(like.snp_left).offset(-3)
             // make.top.equalTo(contentView).offset(16)
@@ -179,6 +183,8 @@ class ReviewCell: UITableViewCell {
     }
     
     func likeTapped() {
+        
+        
         if self.heartView.tag == 0 {
             self.like.tag += 1
             let frame = self.heartView.frame
@@ -191,6 +197,8 @@ class ReviewCell: UITableViewCell {
                 self.heartView.frame = frame
                 self.heartView.tag = 1
             })
+            User.sharedInstance.like(.Like, reviewID: "\(contentView.tag)")
+            fooView.userInteractionEnabled = false
         } else {
             self.like.tag -= 1
             self.like.text = String(format: "%02d", self.like.tag)
