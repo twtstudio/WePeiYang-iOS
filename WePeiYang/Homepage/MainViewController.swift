@@ -31,6 +31,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.checkGuide()
         //self.checkSpecialEvents()
         
+        
+        //YuePeiYang
+        Librarian.getBookDetail(ofID: "747522") { (book) in
+            log.obj(book)/
+            log.word("sdfsd")/
+        }
+        
+        
         if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {
             UIApplication.sharedApplication().keyWindow?.rootViewController = self.navigationController?.tabBarController
         }

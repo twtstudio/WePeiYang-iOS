@@ -72,13 +72,19 @@ class StarView: UIView {
         
         if Int(rating) > 0 {
             for i in 0..<Int(rating) {
-                stars[i].setBackgroundImage(UIImage(named: star_red), forState: UIControlState.Normal)
+                var foo = UIImage(named: star_red)
+                foo = UIImage.resizedImage(foo!, scaledToSize: CGSize(width: height, height: height))
+                stars[i].setBackgroundImage(foo, forState: UIControlState.Normal)
             }
             if rating.rounded() - Double(Int(rating)) > 0 {
-                stars[Int(rating)].setBackgroundImage(UIImage(named: star_half), forState: UIControlState.Normal)
+                var foo = UIImage(named: star_half)
+                foo = UIImage.resizedImage(foo!, scaledToSize: CGSize(width: height, height: height))
+                stars[Int(rating)].setBackgroundImage(foo, forState: UIControlState.Normal)
             }
         } else if rating.rounded() == 0.5 {
-            stars[0].setBackgroundImage(UIImage(named: star_half), forState: UIControlState.Normal)
+            var foo = UIImage(named: star_half)
+            foo = UIImage.resizedImage(foo!, scaledToSize: CGSize(width: height, height: height))
+            stars[0].setBackgroundImage(foo, forState: UIControlState.Normal)
         }
         
         loadStars()
