@@ -97,18 +97,20 @@ class User: NSObject {
                 }
                 
                 for dic in data {
-                    guard let id = dic["book_id"] as? String,
+                    guard let reviewID = dic["review_id"] as? String,
+                        let bookID = dic["book_id"] as? String,
                         let title = dic["title"] as? String,
                         let username = dic["user_name"] as? String,
                         let avatar = dic["avatar"] as? String,
                         let score = dic["scores"] as? Double,
-                        let like = dic["like"] as? String,
+                        let like = dic["like_count"] as? String,
                         let content = dic["content"] as? String,
-                        let updateTime = dic["updated_at"] as? String
+                        let updateTime = dic["updated_at"] as? String,
+                        let liked = dic["liked"] as? Bool
                         else {
                             continue
                     }
-                    fooReviewList.append(Review(bookID: id, bookName: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
+                    fooReviewList.append(Review(reviewID: reviewID, bookID: bookID, bookName: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime, liked: liked))
                     //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
                 }
                 self.reviewArr = fooReviewList

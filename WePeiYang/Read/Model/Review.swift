@@ -9,6 +9,7 @@
 import Foundation
 
 class Review {
+    let reviewID: String
     let bookID: String
     let bookName: String
     let userName: String
@@ -17,8 +18,10 @@ class Review {
     let like: String
     let content: String
     let updateTime: String
+    let liked: Bool
     
-    init(bookID: String, bookName: String, userName: String, avatarURL: String, rating: Double, like: String, content: String, updateTime: String) {
+    init(reviewID: String, bookID: String, bookName: String, userName: String, avatarURL: String, rating: Double, like: String, content: String, updateTime: String, liked: Bool) {
+        self.reviewID = reviewID
         self.bookID = bookID
         self.bookName = bookName
         self.userName = userName
@@ -27,6 +30,7 @@ class Review {
         self.like = like
         self.content = content
         self.updateTime = updateTime
+        self.liked = liked
     }
 }
 

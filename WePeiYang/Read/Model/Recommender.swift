@@ -109,7 +109,7 @@ class Recommender {
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             var fooRecommendedList: [RecommendedBook] = []
-            manager.GET(ReadAPI.recomendedURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+            manager.GET(ReadAPI.recommendedURL, parameters: nil, progress: nil, success: { (task, responseObject) in
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
@@ -205,24 +205,28 @@ class Recommender {
                         MsgDisplay.showErrorMsg("获取热门评论数据失败")
                         return
                 }
+                print(data)
                 
                 for dic in data {
-                    guard let id = dic["book_id"] as? String,
+                    guard let reviewID = dic["review_id"] as? String,
+                        let bookID = dic["book_id"] as? String,
                         let title = dic["title"] as? String,
                         let username = dic["user_name"] as? String,
                         let avatar = dic["avatar"] as? String,
                         let score = dic["scores"] as? Double,
-                        let like = dic["like"] as? String,
+                        let like = dic["like_count"] as? String,
                         let content = dic["content"] as? String,
-                        let updateTime = dic["updated_at"] as? String
+                        let updateTime = dic["updated_at"] as? String,
+                        let liked = dic["liked"] as? Bool
                         else {
                             continue
                     }
-                    fooReviewList.append(Review(bookID: id, bookName: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
+                    fooReviewList.append(Review(reviewID: reviewID, bookID: bookID, bookName: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime, liked: liked))
                     //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
                 }
                 self.finishFlag.hotReviewFlag = true
                 self.reviewList = fooReviewList
+                print(self.reviewList)
                 success()
             }) { (_, error) in
                 self.finishFlag.hotReviewFlag = true

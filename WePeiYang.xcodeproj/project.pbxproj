@@ -81,6 +81,7 @@
 		68513F831D6F091200E96BEB /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */; };
 		68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */; };
 		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
+		687084CB1DC8A40F00A3784C /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687084CA1DC8A40F00A3784C /* ReadAPI.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
 		B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAA1D704D5C0084F379 /* Checkbox.swift */; };
 		B1063EAD1D704DEA0084F379 /* TwentyCourseQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAC1D704DEA0084F379 /* TwentyCourseQuiz.swift */; };
@@ -88,7 +89,6 @@
 		B1063EB11D704E780084F379 /* QuizTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EB01D704E780084F379 /* QuizTakingViewController.swift */; };
 		B10A9E601DC8466C00A395E9 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E5A1DC8466C00A395E9 /* Book.swift */; };
 		B10A9E611DC8466C00A395E9 /* Librarian.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E5B1DC8466C00A395E9 /* Librarian.swift */; };
-		B10A9E621DC8466C00A395E9 /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E5C1DC8466C00A395E9 /* ReadAPI.swift */; };
 		B10A9E631DC8466C00A395E9 /* Recommender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E5D1DC8466C00A395E9 /* Recommender.swift */; };
 		B10A9E641DC8466C00A395E9 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E5E1DC8466C00A395E9 /* Review.swift */; };
 		B10A9E651DC8466C00A395E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E5F1DC8466C00A395E9 /* User.swift */; };
@@ -368,6 +368,7 @@
 		68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
 		68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandInDetailViewController.xib; sourceTree = "<group>"; };
 		68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandInDetailViewController.swift; sourceTree = "<group>"; };
+		687084CA1DC8A40F00A3784C /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		68AD41601D5E11B200695DF4 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -378,7 +379,6 @@
 		B1063EB01D704E780084F379 /* QuizTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTakingViewController.swift; sourceTree = "<group>"; };
 		B10A9E5A1DC8466C00A395E9 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B10A9E5B1DC8466C00A395E9 /* Librarian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Librarian.swift; sourceTree = "<group>"; };
-		B10A9E5C1DC8466C00A395E9 /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		B10A9E5D1DC8466C00A395E9 /* Recommender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommender.swift; sourceTree = "<group>"; };
 		B10A9E5E1DC8466C00A395E9 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		B10A9E5F1DC8466C00A395E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -872,10 +872,10 @@
 			children = (
 				B10A9E5A1DC8466C00A395E9 /* Book.swift */,
 				B10A9E5B1DC8466C00A395E9 /* Librarian.swift */,
-				B10A9E5C1DC8466C00A395E9 /* ReadAPI.swift */,
 				B10A9E5D1DC8466C00A395E9 /* Recommender.swift */,
 				B10A9E5E1DC8466C00A395E9 /* Review.swift */,
 				B10A9E5F1DC8466C00A395E9 /* User.swift */,
+				687084CA1DC8A40F00A3784C /* ReadAPI.swift */,
 			);
 			name = Model;
 			path = Read/Model;
@@ -2013,7 +2013,6 @@
 				E945C64F1CCFE1AE005B85CE /* LibraryFavoriteTableViewController.swift in Sources */,
 				B1C4F6591D543EB9000CD0D8 /* (null) in Sources */,
 				68513F7C1D6F091200E96BEB /* timeStampTransfer.swift in Sources */,
-				B10A9E621DC8466C00A395E9 /* ReadAPI.swift in Sources */,
 				B1C4F65F1D548E62000CD0D8 /* (null) in Sources */,
 				68513F4A1D6F08FF00E96BEB /* TextTableViewCell.swift in Sources */,
 				B10A9E711DC8467600A395E9 /* ReadStarCell.swift in Sources */,
@@ -2022,6 +2021,7 @@
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				68513F421D6F08FF00E96BEB /* FunctionListTableViewCell.swift in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
+				687084CB1DC8A40F00A3784C /* ReadAPI.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
 				68513F3B1D6F08FF00E96BEB /* Applicant.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,

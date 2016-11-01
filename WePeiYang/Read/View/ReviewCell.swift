@@ -14,7 +14,7 @@ class ReviewCell: UITableViewCell {
     var avatar: UIImageView = UIImageView()
     var content: UILabel = UILabel()
     var username: UILabel = UILabel()
-    var rateView: RateStarView = RateStarView()
+    var rateView: StarView! = nil
     var timestamp: UILabel = UILabel()
     var heartView: UIImageView = UIImageView()
     var like: UILabel = UILabel()
@@ -34,7 +34,7 @@ class ReviewCell: UITableViewCell {
         self.like.text = model.like
         // TODO: TimeStamp
         self.timestamp.text = model.updateTime
-        self.rateView.count = Int(model.rating)
+        self.rateView = StarView(rating: model.rating, height: 15, tappable: false)
         // TODO: 用户名
         self.username.text = model.userName
         

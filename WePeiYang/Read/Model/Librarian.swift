@@ -168,7 +168,7 @@ class Librarian {
                             MsgDisplay.showErrorMsg("未知错误5")
                             return nil
                     }
-                    return Review(bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: rating, like: like, content: content, updateTime: updateTime)
+                    return Review(reviewID: "1", bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: rating, like: like, content: content, updateTime: updateTime, liked: false)
                 })
                 
                 
