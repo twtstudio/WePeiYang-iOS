@@ -36,7 +36,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     }()
     lazy var backButton: UIButton = {
        let bb = UIButton.init(frame: CGRect.init(x: 0, y: 20, width: 48, height: 48))
-        bb.setBackgroundImage(UIImage.init(named: "cancel"), forState: [])
+        bb.setBackgroundImage(UIImage.init(named: "back"), forState: [])
         bb.addTarget(self, action: #selector(Search.dismiss), forControlEvents: .TouchUpInside)
         return bb
     }()
