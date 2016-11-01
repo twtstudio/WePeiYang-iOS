@@ -13,7 +13,7 @@
 import UIKit
 
 class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    var result: [MyBook] = []
+    var result: [Book] = []
     //MARK: Properties
     let statusView: UIView = {
         let st = UIView.init(frame: UIApplication.sharedApplication().statusBarFrame)
@@ -36,7 +36,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     }()
     lazy var backButton: UIButton = {
        let bb = UIButton.init(frame: CGRect.init(x: 0, y: 20, width: 48, height: 48))
-        bb.setBackgroundImage(UIImage.init(named: "cancel"), forState: [])
+        bb.setBackgroundImage(UIImage.init(named: "back"), forState: [])
         bb.addTarget(self, action: #selector(Search.dismiss), forControlEvents: .TouchUpInside)
         return bb
     }()
@@ -135,12 +135,13 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let book = MyBook()
-        book.author = "郑渊洁"
-        book.publisher = "什么出版社"
-        book.rate = 9.0
-        book.year = 1990
-        book.title = "舒克与贝塔"
+        //let book = Book()
+        let book = Book(ISBN: "dsf")
+//        book.author = "郑渊洁"
+//        book.publisher = "什么出版社"
+//        book.rate = 9.0
+//        book.year = 1990
+//        book.title = "舒克与贝塔"
         let cell = SearchResultCell(model: book)
         cell.cover.setImageWithURL(NSURL(string: "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=379841942,1689731392&fm=58")!)
         return cell

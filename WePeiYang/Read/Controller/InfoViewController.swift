@@ -14,7 +14,7 @@ class InfoViewController: UITableViewController {
     let review_url = "http://162.243.136.96/review.json"
     let bookshelf_url = "http://162.243.136.96/bookshelf.json"
     var headerArr: [String] = ["我的收藏", "我的点评"]
-    var bookShelf: [MyBook] = []
+    var bookShelf: [Book] = []
     var reviewArr: [Review] = []
 
     override func viewDidAppear(animated: Bool) {
