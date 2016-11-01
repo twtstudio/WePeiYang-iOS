@@ -71,6 +71,7 @@ class ReviewListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO: 跳转到书籍详情页面
+        
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

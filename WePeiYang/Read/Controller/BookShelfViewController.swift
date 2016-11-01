@@ -11,7 +11,7 @@ import UIKit
 
 class BookShelfViewController: UITableViewController {
     
-    var bookShelf: [MyBook] = []
+    var bookShelf: [Book] = []
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

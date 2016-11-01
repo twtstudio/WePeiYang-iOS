@@ -218,7 +218,7 @@ class Recommender {
                         else {
                             continue
                     }
-                    fooReviewList.append(Review(bookID: id, title: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
+                    fooReviewList.append(Review(bookID: id, bookName: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
                     //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
                 }
                 self.finishFlag.hotReviewFlag = true

@@ -20,7 +20,7 @@ enum LikeBtnMethod {
 
 class User: NSObject {
     var username: String!
-    var bookShelf = [MyBook]() // 我的收藏
+    var bookShelf = [Book]() // 我的收藏
     var reviewArr = [Review]() // 我的点评
     var avatar: String! // 头像url
     var id: Int!
@@ -108,7 +108,7 @@ class User: NSObject {
                         else {
                             continue
                     }
-                    fooReviewList.append(Review(bookID: id, title: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
+                    fooReviewList.append(Review(bookID: id, bookName: title, userName: username, avatarURL: avatar, rating: score, like: like, content: content, updateTime: updateTime))
                     //self.reviewList.append(Review(bookId: id, username: username, avatar: avatar, score: 5, like: like, content: content))
                 }
                 self.reviewArr = fooReviewList
@@ -133,7 +133,7 @@ class User: NSObject {
                         let data = dict["data"] as! [NSDictionary]
                         self.bookShelf.removeAll()
                         for dic:NSDictionary in data{
-                            let book: MyBook = MyBook(dic: dic)
+                            let book: Book = Book(ISBN: "fsfd")
                             self.bookShelf.append(book)
                         }
                     }

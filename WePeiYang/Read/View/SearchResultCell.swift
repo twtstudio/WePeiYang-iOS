@@ -18,11 +18,11 @@ class SearchResultCell: UITableViewCell {
     let bigiPhoneWidth: CGFloat = 414.0
 
     // TODO: replaced with Book
-    convenience init(model: MyBook) {
+    convenience init(model: Book) {
         self.init()
         // TODO: Cover的图片获取
         title.text = "\(model.title)"
-        rate.text = "\(model.rate)分"
+        rate.text = "\(model.rating)分"
         author.text = "著者: \(model.author)"
         publisher.text = "出版社: \(model.publisher)"
         year.text = "出版日期: \(model.year)"
