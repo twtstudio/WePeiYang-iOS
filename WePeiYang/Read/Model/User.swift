@@ -84,18 +84,19 @@ class User: NSObject {
 //                failure: { (task: NSURLSessionDataTask?, error: NSError) in
 //                    print("error: \(error)")
 //            })
-            
+            print(token)
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             var fooReviewList: [Review] = []
-            manager.GET(ReadAPI.hotReviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+            manager.GET(ReadAPI.reviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
                         MsgDisplay.showErrorMsg("获取热门评论数据失败")
                         return
                 }
-                
+                print("data\(data)")
                 for dic in data {
                     guard let reviewID = dic["review_id"] as? String,
                         let bookID = dic["book_id"] as? String,
@@ -134,7 +135,7 @@ class User: NSObject {
                     if let dict = responseObject as? NSDictionary{
                         let data = dict["data"] as! [NSDictionary]
                         self.bookShelf.removeAll()
-                        for dic:NSDictionary in data{
+                        for dic: NSDictionary in data{
                             let book: Book = Book(ISBN: "fsfd")
                             self.bookShelf.append(book)
                         }
@@ -149,18 +150,41 @@ class User: NSObject {
     }
 
     
-    func like(method: LikeBtnMethod, success: Void -> Void) {
-        getToken({ token in
-            let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
-            
-            switch method {
-            case .Like:
-                break
-            case .CancelLike:
-                break
-            }
-        })
+    func like(method: LikeBtnMethod, reviewID: String) {
+//        getToken({ token in
+//            let manager = AFHTTPSessionManager()
+//            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+//            
+//            switch method {
+//            case .Like:
+//                break
+//            case .CancelLike:
+//                break
+//            }
+//        })
+        switch method {
+        case .Like:
+            getToken({
+                token in
+                let manager = AFHTTPSessionManager()
+                manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+                manager.GET(ReadAPI.addLikeURL+reviewID, parameters: nil, progress: nil, success: { (task, responseObject) in
+                    guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1
+                        else {
+                            MsgDisplay.showErrorMsg("点赞失败")
+                            return
+                    }
+                    print(dict["message"])
+                }) { (_, error) in
+                    //MsgDisplay.showErrorMsg("网络开小差啦")
+                    print(error)
+                }
+                
+            })
+        case .CancelLike:
+            break
+        }
+        
         
     }
     
@@ -178,6 +202,7 @@ class User: NSObject {
     
     
     func getToken(success: String -> Void){
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
         guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
             MsgDisplay.showErrorMsg("你需要登录才能访问")
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
@@ -208,6 +233,7 @@ class User: NSObject {
         if let readToken = NSUserDefaults.standardUserDefaults().objectForKey("readToken") as? String {
             success(readToken)
         }
+        
     }
     
 }
