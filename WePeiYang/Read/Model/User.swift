@@ -84,19 +84,16 @@ class User: NSObject {
 //                failure: { (task: NSURLSessionDataTask?, error: NSError) in
 //                    print("error: \(error)")
 //            })
-            print(token)
             let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+            manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzY2MjA4MywiZXhwIjoxNDc4MjY2ODgzLCJuYmYiOjE0Nzc2NjIwODMsImp0aSI6IjUzNTY5MTQ2MDhhOWE4YTBlYjdkYzJlNjllNWY4NWRkIn0.AS-dEMVQ909-L02f6syeUrsYiWWtoA_apOPemhZoOaQ}", forHTTPHeaderField: "Authorization")
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.reviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
-                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
                         MsgDisplay.showErrorMsg("获取热门评论数据失败")
                         return
                 }
-                print("data\(data)")
                 for dic in data {
                     guard let reviewID = dic["review_id"] as? String,
                         let bookID = dic["book_id"] as? String,
@@ -201,8 +198,8 @@ class User: NSObject {
     }
     
     
-    func getToken(success: String -> Void){
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
+    func getToken(success: String -> Void) {
+//        NSUserDefaults.standardUserDefaults().setObject("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMSIsImlzcyI6Imh0dHA6XC9cL3Rha29vY3RvcHVzLmNvbVwveXVlcGVpeWFuZ1wvcHVibGljXC9hcGlcL2F1dGhcL3Rva2VuXC9nZXQiLCJpYXQiOjE0NzgwNjU1NzcsImV4cCI6MTQ3ODY3MDM3NywibmJmIjoxNDc4MDY1NTc3LCJqdGkiOiIwMzg3OGQxZWYxMWE4NWUyNjgyMjAwNWUxMTM5NzhhZCJ9.ukkYKKW5RX2Bs6ewrT-M7E8UUQ2IHP9j4FBuRRqjdsY", forKey: "readToken")
         guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
             MsgDisplay.showErrorMsg("你需要登录才能访问")
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
@@ -214,7 +211,6 @@ class User: NSObject {
 //            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             manager.GET(ReadAPI.tokenURL+"?wpy_token=\(token)", parameters: nil, progress: nil, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                 //
-                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Dictionary<String, AnyObject>,
                     let readToken = data["token"] as? String

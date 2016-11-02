@@ -68,7 +68,7 @@ class Book {
         self.rating = 1
         self.summary = "有时候你需要修改已经存在的约束为了移动或者移除、代替约束。\n 在SnapKit 有一些不同的方法更新约束引用（References）你可以通过将约束的结果赋值给一个局部变量或一个类属性来保持一个特定的约束的引用。您还可以将多个约束引用存储在数组中。"
         
-        self.reviews = [Review(bookID: "sdf", bookName: "孤本", userName: "sdf", avatarURL: "sdfsdf", rating: 2.0, like: "2", content: "sdfsdf", updateTime: "dfsdf")]
+        self.reviews = [Review(reviewID: "1", bookID: "sdf", bookName: "孤本", userName: "sdf", avatarURL: "sdfsdf", rating: 2.0, like: "2", content: "sdfsdf", updateTime: "dfsdf", liked: false)]
 
         self.starReviews = [StarReview(name: "sdfs", content: "dfsdf")]
     }
