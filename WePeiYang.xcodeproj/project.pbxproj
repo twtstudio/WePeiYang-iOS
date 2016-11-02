@@ -20,6 +20,8 @@
 		188842361846E6F4007B92CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 188842341846E6F4007B92CB /* InfoPlist.strings */; };
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
+		363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D343F1DC8DBB600D13DA0 /* MyBook.swift */; };
+		36B21D3B1DCA155B00CEA50C /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */; };
 		683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 683072131D76CE1C008C04CB /* UIViewController+Utils.m */; };
 		683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */; };
 		683E2ECC1D75BEFE007F2D7A /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2ECB1D75BEFE007F2D7A /* QuizCell.swift */; };
@@ -81,7 +83,6 @@
 		68513F831D6F091200E96BEB /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */; };
 		68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */; };
 		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
-		687084CB1DC8A40F00A3784C /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687084CA1DC8A40F00A3784C /* ReadAPI.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
 		B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAA1D704D5C0084F379 /* Checkbox.swift */; };
 		B1063EAD1D704DEA0084F379 /* TwentyCourseQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAC1D704DEA0084F379 /* TwentyCourseQuiz.swift */; };
@@ -300,6 +301,8 @@
 		188842371846E6F4007B92CB /* WePeiYangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WePeiYangTests.m; sourceTree = "<group>"; };
 		188842421846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		363D343F1DC8DBB600D13DA0 /* MyBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
+		36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.release.xcconfig"; sourceTree = "<group>"; };
 		52AEA422A8EFB3C8A362BF43 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,7 +373,6 @@
 		68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
 		68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandInDetailViewController.xib; sourceTree = "<group>"; };
 		68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandInDetailViewController.swift; sourceTree = "<group>"; };
-		687084CA1DC8A40F00A3784C /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		68AD41601D5E11B200695DF4 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -874,12 +876,13 @@
 		B10A9E591DC8466C00A395E9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */,
 				B10A9E5A1DC8466C00A395E9 /* Book.swift */,
 				B10A9E5B1DC8466C00A395E9 /* Librarian.swift */,
+				363D343F1DC8DBB600D13DA0 /* MyBook.swift */,
 				B10A9E5D1DC8466C00A395E9 /* Recommender.swift */,
 				B10A9E5E1DC8466C00A395E9 /* Review.swift */,
 				B10A9E5F1DC8466C00A395E9 /* User.swift */,
-				687084CA1DC8A40F00A3784C /* ReadAPI.swift */,
 			);
 			name = Model;
 			path = Read/Model;
@@ -2022,6 +2025,7 @@
 				B1C4F6591D543EB9000CD0D8 /* (null) in Sources */,
 				68513F7C1D6F091200E96BEB /* timeStampTransfer.swift in Sources */,
 				B1C4F65F1D548E62000CD0D8 /* (null) in Sources */,
+				36B21D3B1DCA155B00CEA50C /* ReadAPI.swift in Sources */,
 				68513F4A1D6F08FF00E96BEB /* TextTableViewCell.swift in Sources */,
 				B10A9E711DC8467600A395E9 /* ReadStarCell.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
@@ -2029,9 +2033,9 @@
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
 				68513F421D6F08FF00E96BEB /* FunctionListTableViewCell.swift in Sources */,
 				E973364E1C70F9CB00ACA06B /* LostFoundDetailViewController.swift in Sources */,
-				687084CB1DC8A40F00A3784C /* ReadAPI.swift in Sources */,
 				E9325F511CC5EB57005FAD8B /* twtAppDelegate.swift in Sources */,
 				68513F3B1D6F08FF00E96BEB /* Applicant.swift in Sources */,
+				363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
 				B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */,

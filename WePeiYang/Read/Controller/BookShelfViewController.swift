@@ -11,7 +11,7 @@ import UIKit
 
 class BookShelfViewController: UITableViewController {
     
-    var bookShelf: [Book] = []
+    var bookShelf: [MyBook] = []
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,7 +43,14 @@ class BookShelfViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.separatorStyle = .None
         
-        
+        if self.bookShelf.count == 0 {
+            let label = UILabel(text: "你还没有收藏哦，快去添加收藏吧！")
+            label.sizeToFit()
+            self.view.addSubview(label)
+            label.snp_makeConstraints { make in
+                make.center.equalTo(self.view.snp_center)
+            }
+        }
     }
     
     // Mark: UITableViewDataSource
@@ -82,13 +89,15 @@ class BookShelfViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
+
+            User.sharedInstance.delFromFavourite(with: self.bookShelf[indexPath.row].id) {
             self.bookShelf.removeAtIndex(indexPath.row)
             User.sharedInstance.bookShelf = self.bookShelf
-            // TODO: 删除收藏
-            let vc = self.navigationController?.viewControllers[1] as? ReadViewController
-            let vcc = vc?.currentViewController as? InfoViewController
-            vcc!.bookShelf = self.bookShelf
+//            let vc = self.navigationController?.viewControllers[1] as? ReadViewController
+//            let vcc = vc?.currentViewController as? InfoViewController
+//            vcc!.bookShelf = self.bookShelf
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
         }
     }
     
@@ -98,6 +107,8 @@ class BookShelfViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO: 跳转到书籍详情页面
+        let vc = BookDetailViewController(bookID: self.bookShelf[indexPath.row].id)
+        self.navigationController?.showViewController(vc, sender: nil)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

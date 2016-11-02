@@ -15,18 +15,20 @@ class SearchResultCell: UITableViewCell {
     var author = UILabel()
     var publisher = UILabel()
     var year = UILabel()
+    var star: StarView!
     let bigiPhoneWidth: CGFloat = 414.0
 
-    // TODO: replaced with Book
-    convenience init(model: Book) {
+    convenience init(model: Librarian.SearchResult) {
         self.init()
-        // TODO: Cover的图片获取
+        cover.setImageWithURL(NSURL(string: model.coverURL)!, placeholderImage: UIImage(named: ""))
         title.text = "\(model.title)"
         rate.text = "\(model.rating)分"
         author.text = "著者: \(model.author)"
         publisher.text = "出版社: \(model.publisher)"
         year.text = "出版日期: \(model.year)"
+        star = StarView(rating: model.rating, height: 15, tappable: false)
         
+        contentView.addSubview(star)
         contentView.addSubview(cover)
         contentView.addSubview(title)
         contentView.addSubview(rate)
@@ -57,7 +59,7 @@ class SearchResultCell: UITableViewCell {
         }
         
         title.sizeToFit()
-        title.numberOfLines = 0
+        title.numberOfLines = 1
         let width = UIScreen.mainScreen().bounds.size.width
         title.preferredMaxLayoutWidth = width - 40;
         title.snp_makeConstraints { make in
@@ -70,33 +72,43 @@ class SearchResultCell: UITableViewCell {
         year.sizeToFit()
         year.font = UIFont.systemFontOfSize(13)
         year.snp_makeConstraints { make in
-            make.bottom.baseline.equalTo(cover.snp_bottom)
+            make.bottom.equalTo(cover.snp_bottom)
             make.left.equalTo(cover.snp_right).offset(10)
             make.bottom.equalTo(contentView).offset(-20)
         }
         
         publisher.textColor = UIColor(red:0.58, green:0.58, blue:0.59, alpha:1.00)
         publisher.sizeToFit()
+        publisher.numberOfLines = 1
         publisher.font = UIFont.systemFontOfSize(13)
         publisher.snp_makeConstraints { make in
             make.bottom.equalTo(year.snp_top).offset(-2)
             make.left.equalTo(cover.snp_right).offset(10)
+            make.right.lessThanOrEqualTo(rate.snp_right)
         }
         
         author.textColor = UIColor(red:0.58, green:0.58, blue:0.59, alpha:1.00)
         author.sizeToFit()
+        author.numberOfLines = 1
         author.font = UIFont.systemFontOfSize(13)
         author.snp_makeConstraints { make in
             make.bottom.equalTo(publisher.snp_top).offset(-2)
             make.left.equalTo(cover.snp_right).offset(10)
+            make.right.lessThanOrEqualTo(rate.snp_right)
         }
         
         rate.sizeToFit()
         rate.textColor = UIColor(red:0.91, green:0.20, blue:0.20, alpha:1.00)
         rate.snp_makeConstraints { make in
             make.right.equalTo(contentView).offset(-30)
-            make.top.equalTo(contentView).offset(30)
+            make.top.equalTo(contentView).offset(35)
         }
+        
+        star.snp_makeConstraints { make in
+            make.centerY.equalTo(rate.snp_centerY)
+            make.left.equalTo(cover.snp_right).offset(10)
+        }
+        
 
     }
 }

@@ -31,7 +31,17 @@ class ReviewListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //        //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-
+        
+        if self.reviewArr.count == 0 {
+            let label = UILabel(text: "你还没有点评哦，去评论吧！")
+            label.sizeToFit()
+            self.view.addSubview(label)
+            label.snp_makeConstraints { make in
+                make.center.equalTo(self.view.snp_center)
+            }
+        }
+        
+        
     }
     
     override func viewDidLoad() {
@@ -54,12 +64,11 @@ class ReviewListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return User.sharedInstance.reviewArr.count
-        //return reviewArr.count
+        return reviewArr.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = ReviewCell(model: User.sharedInstance.reviewArr[indexPath.row])
+        let cell = ReviewCell(model: self.reviewArr[indexPath.row])
         // TODO: 头像
 //        cell.username.text = "这里是用户名"
 //        cell.avatar.image = UIImage(named: "avatar")
@@ -70,7 +79,8 @@ class ReviewListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO: 跳转到书籍详情页面
+        let vc = BookDetailViewController(bookID: reviewArr[indexPath.row].bookID)
+        self.navigationController?.pushViewController(vc, animated: true)
         print("Push Detail View Controller, bookID: \(reviewArr[indexPath.row].bookID)")
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

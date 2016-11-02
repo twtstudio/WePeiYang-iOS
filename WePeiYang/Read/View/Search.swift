@@ -12,9 +12,19 @@
 
 import UIKit
 
+enum LabelContent: String {
+    case NotFound = "没有找到相关书籍👀"
+    case Morning = "早上好~ (｡･∀･)ﾉﾞ"
+    case Afternoon = "下午好~ (๑•̀ㅂ•́)و✧"
+    case Evening = "晚上好~ <( ￣^￣)"
+}
+
 class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    var result: [Book] = []
+    var result: [Librarian.SearchResult] = []
     //MARK: Properties
+    let label = UILabel()
+    var notFoundView:UIView!
+    
     let statusView: UIView = {
         let st = UIView.init(frame: UIApplication.sharedApplication().statusBarFrame)
         st.backgroundColor = UIColor.blackColor()
@@ -44,6 +54,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         let sf = UITextField.init(frame: CGRect.init(x: 48, y: 20, width: self.frame.width - 50, height: 48))
         sf.placeholder = "查询书籍在馆记录"
         sf.autocapitalizationType = .None
+        sf.clearsOnBeginEditing = true
         // sf.keyboardAppearance = UIKeyboardAppearance.Dark
         return sf
     }()
@@ -71,6 +82,37 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         self.addSubview(self.tableView)
         self.tableView.estimatedRowHeight = 80
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        notFoundView = UIView(frame: CGRect.init(x: 0, y: 68, width: self.frame.width, height: 50))
+        notFoundView.backgroundColor = UIColor.whiteColor()
+        notFoundView.addSubview(self.label)
+        self.addSubview(notFoundView)
+        self.label.sizeToFit()
+        self.label.snp_makeConstraints { make in
+            make.center.equalTo(notFoundView)
+        }
+        self.refreshLabel()
+    }
+    
+    func refreshLabel() {
+        
+        let date = NSDate()
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH"
+        let strNowTime = timeFormatter.stringFromDate(date) as String
+        let hour = Int(strNowTime)!
+        var str: LabelContent = .Morning
+        switch hour {
+        case 5...11:
+            str = .Morning
+        case 12...18:
+            str = .Afternoon
+        case 19...24, 0...4:
+            str = .Evening
+        default:
+            break;
+        }
+        label.text = str.rawValue
     }
     
     func animate()  {
@@ -94,56 +136,40 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         })
     }
     
-    //MARK: TextField Delegates
-//    func textField(textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if (self.searchField.text == "" || self.searchField.text == nil) {
-//            self.items = []
-//            self.tableView.removeFromSuperview()
-//        } else{
-//         //   let _  = URLSession.shared.dataTask(with: requestSuggestionsURL(text: self.searchField.text!), completionHandler: { (data, response, error) in
-//                if error == nil {
-//                    do {
-//                        let json  = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! NSArray
-//                        self.items = json[1] as! [String]
-//                        DispatchQueue.main.async(execute: {
-//                            if self.items.count > 0  {
-//                                self.addSubview(self.tableView)
-//                            } else {
-//                                self.tableView.removeFromSuperview()
-//                            }
-//                            self.tableView.reloadData()
-//                        })
-//                    } catch _ {
-//                        print("Something wrong happened")
-//                    }
-//                } else {
-//                    print("error downloading suggestions")
-//                }
-//            }).resume()
-//        }
-//        return true
-//    }
-//    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        dismiss()
-//        return true
-//    }
+    //MARK: 搜索
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        guard let str = textField.text else {
+            return true
+        }
+        result.removeAll()
+        self.tableView.reloadData()
+        Librarian.searchBook(withString: str) { searchResult in
+            self.result = searchResult
+            if self.result.count == 0 {
+                self.tableView.tableHeaderView = self.notFoundView
+                self.label.text = LabelContent.NotFound.rawValue
+            }
+            self.tableView.reloadData()
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        self.result.removeAll()
+        self.tableView.reloadData()
+        self.notFoundView.removeFromSuperview()
+        return true
+    }
     
     //MARK: TableView Delegates and Datasources
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+       // 
+        return result.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let book = Book()
-        let book = Book(ISBN: "dsf")
-//        book.author = "郑渊洁"
-//        book.publisher = "什么出版社"
-//        book.rate = 9.0
-//        book.year = 1990
-//        book.title = "舒克与贝塔"
-        let cell = SearchResultCell(model: book)
-        cell.cover.setImageWithURL(NSURL(string: "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=379841942,1689731392&fm=58")!)
+        let cell = SearchResultCell(model: result[indexPath.row])
         return cell
     }
 
@@ -153,7 +179,11 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let vc = BookDetailViewController(bookID: result[indexPath.row].bookID)
+        self.removeFromSuperview()
+        UIViewController.currentViewController().navigationController?.showViewController(vc, sender: nil)
     }
+    
     
     //MARK: Inits
    override init(frame: CGRect) {

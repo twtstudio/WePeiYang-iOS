@@ -13,7 +13,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let detailTableView = UITableView()
     var currentBook: Book? = nil
-    
+    var tmpSearchView: Search? = nil
 
     
     override func viewDidLoad() {
@@ -21,7 +21,8 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         detailTableView.delegate = self
         detailTableView.dataSource = self
-
+        detailTableView.estimatedRowHeight = 50
+        detailTableView.rowHeight = UITableViewAutomaticDimension
         self.view.addSubview(detailTableView)
         self.detailTableView.snp_makeConstraints {
             make in
@@ -112,16 +113,16 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 0
-        case 1:
-            return 50
-        default:
-            return 100
-        }
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
+//        switch indexPath.section {
+//        case 0:
+//            return 0
+//        case 1:
+//            return 50
+//        default:
+//            return 100
+//        }
+//    }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -260,6 +261,18 @@ extension BookDetailViewController {
         Librarian.getBookDetail(ofID: bookID) {
             book in
             self.currentBook = book
+            self.navigationController?.navigationBarHidden = false
+            self.detailTableView.reloadData()
+        }
+    }
+    
+    convenience init(bookID: String, tmpSearchView: Search) {
+        self.init()
+        //TODO: FIX THE CRASH WHEN NO DATA WAS FETCHED
+        Librarian.getBookDetail(ofID: bookID) {
+            book in
+            self.currentBook = book
+            self.tmpSearchView = tmpSearchView
             self.navigationController?.navigationBarHidden = false
             self.detailTableView.reloadData()
         }

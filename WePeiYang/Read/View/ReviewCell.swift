@@ -27,23 +27,18 @@ class ReviewCell: UITableViewCell {
     
     convenience init(model: Review) {
         self.init()
-        // TODO: title
         self.content.attributedText = attributedString(model.bookName, content: model.content)
-        //self.content.text = attributedString(title: , content: String)
-        //头像
         self.avatar.setImageWithURL(NSURL(string: model.avatarURL)!, placeholderImage: UIImage(named: "readerAvatar1"))
-        //self.like.text = String(format: "%02d", model.like)
-        self.like.text = model.like
-        // TODO: TimeStamp
+        //self.like.text = model.like
         self.timestamp.text = model.updateTime
 
         self.rateView = StarView(rating: model.rating, height: 15, tappable: false)
 
-        // TODO: 用户名
         self.username.text = model.userName
         
         // 用like的tag存储点赞个数
         like.tag = Int(model.like)!
+        self.like.text = String(format: "%02d", self.like.tag)
         contentView.tag = Int(model.reviewID)!
         heartView.tag = model.liked ? 1 : 0
         
@@ -87,8 +82,6 @@ class ReviewCell: UITableViewCell {
         }
         
         rateView.snp_makeConstraints { make in
-            //  make.width.equalTo(120)
-            //  make.height.equalTo(20)
             make.top.equalTo(username.snp_bottom).offset(3)
             make.left.equalTo(avatar.snp_right).offset(10)
         }
@@ -133,27 +126,17 @@ class ReviewCell: UITableViewCell {
         }
         
         
-        fooView.snp_makeConstraints {
-            make in
-            make.bottom.equalTo(contentView).offset(-12)
+        fooView.snp_makeConstraints { make in
+            make.centerY.equalTo(timestamp.snp_centerY)
             make.right.equalTo(contentView).offset(-12)
             make.width.equalTo(50)
             make.height.equalTo(30)
         }
         
-        //        like.userInteractionEnabled = true
-        //        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
-        //        like.addGestureRecognizer(tap1)
-        //        heartView.userInteractionEnabled = true
-        //        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.likeTapped))
-        //        heartView.addGestureRecognizer(tap2)
         fooView.userInteractionEnabled = model.liked ? false : true
         fooView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.likeTapped)))
         like.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         like.snp_makeConstraints { make in
-            //            make.top.equalTo(content.snp_bottom).offset(4)
-            //            make.right.equalTo(contentView).offset(-30)
-            //            make.bottom.equalTo(contentView).offset(-20)
             make.top.equalTo(fooView).offset(8)
             make.right.equalTo(fooView).offset(-8)
             
@@ -227,45 +210,3 @@ class ReviewCell: UITableViewCell {
     
 }
 
-//class RateStarView: UIView {
-//    var imgArr: [UIImageView] = []
-//    var count = 3{
-//        didSet{
-//            refreshView()
-//        }
-//    }
-//
-//    override func drawRect(rect: CGRect) {
-//        super.drawRect(rect)
-//        refreshView()
-//    }
-//
-//    func refreshView() {
-//        let width = 17
-//        let height = 15
-//        if imgArr.count == 0 {
-//            for i in 0..<count{
-//                let imgView = UIImageView(image: UIImage(named: "red_star"))
-//              imgView.frame = CGRectMake(CGFloat(i*width), 0, CGFloat(width), CGFloat(height))
-//                self.imgArr.append(imgView)
-//                self.addSubview(imgView)
-//            }
-//            for i in count..<5 {
-//                let imgView = UIImageView(image: UIImage(named: "grey_star"))
-//                imgView.frame = CGRectMake(CGFloat(i*width), 0, CGFloat(width), CGFloat(height))
-//                self.imgArr.append(imgView)
-//                self.addSubview(imgView)
-//            }
-//        }
-//        else{
-//            for i in 0..<count{
-//                imgArr[i].image = UIImage(named: "red_star")
-//            }
-//            for i in count..<5 {
-//                imgArr[i].image = UIImage(named: "grey_star")
-//            }
-//        }
-//        
-//    }
-//
-//}
