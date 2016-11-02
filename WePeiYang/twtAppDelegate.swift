@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         let oldAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
         let newAgent = oldAgent! + " WePeiYang_iOS"
         NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent": newAgent])
-        
         if NSUserDefaults.standardUserDefaults().objectForKey("eventsWatchedStatusCleared") == nil {
             NSUserDefaults.standardUserDefaults().removeObjectForKey("eventsWatched")
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "eventsWatchedStatusCleared")

@@ -11,22 +11,40 @@ import UIKit
 
 class BookDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let detailTableView = UITableView()
+    let detailTableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height))
     var currentBook: Book? = nil
+    var dataLoaded: Bool = false
+    let placeHolderView = UIImageView(image: UIImage(named: "bookDetailPlaceholder"))
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        detailTableView.delegate = self
-        detailTableView.dataSource = self
-
-        self.view.addSubview(detailTableView)
-        self.detailTableView.snp_makeConstraints {
-            make in
-            make.left.bottom.right.equalTo(self.view)
-            make.top.equalTo(self.view)
+        if dataLoaded {
+            detailTableView.delegate = self
+            detailTableView.dataSource = self
+            detailTableView.rowHeight = UITableViewAutomaticDimension
+            detailTableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        }
+        
+        
+        if dataLoaded {
+            //self.navigationController?.navigationBarHidden = false
+            //log.any(view.frame)/
+            //log.any(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height)/
+            self.view.addSubview(detailTableView)
+//            self.detailTableView.snp_makeConstraints {
+//                make in
+//                make.left.bottom.right.equalTo(self.view)
+//                //make.top.equalTo(self.view).offset(self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height)
+//                make.top.equalTo(self.view)
+//            }
+            placeHolderView.removeFromSuperview()
+        } else {
+            placeHolderView.frame = self.view.frame
+            placeHolderView.contentMode = .ScaleAspectFit
+            self.view.addSubview(placeHolderView)
         }
         
     }
@@ -36,35 +54,48 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.jz_navigationBarBackgroundAlpha = 0
-        self.jz_navigationBarBackgroundHidden = true
+        //self.jz_navigationBarBackgroundHidden = true
+        //self.navigationController?.navigationBarHidden = true
+        self.navigationController?.jz_navigationBarBackgroundAlpha = 0
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        if dataLoaded {
+            return 3
+        }
+        return 0
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 0
-        case 1: return {
-            guard self.currentBook != nil else {
+        if dataLoaded {
+            switch section {
+            case 0:
+                return 0
+            case 1: return {
+                guard self.currentBook != nil else {
+                    return 0
+                }
+                return self.currentBook!.status.count
+                }()
+                
+            case 2: return {
+                guard self.currentBook != nil else {
+                    return 0
+                }
+                return self.currentBook!.reviews.count
+                }()
+            default:
                 return 0
             }
-            return self.currentBook!.status.count
-        }()
-            
-        case 2: return {
-            guard self.currentBook != nil else {
-                return 0
-            }
-            return self.currentBook!.reviews.count
-        }()
-        default:
-            return 0
         }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -95,6 +126,11 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             return UITableViewCell()
     }
     
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         //        if section == 0 {
         //            return 47
@@ -112,15 +148,19 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 0
-        case 1:
-            return 50
-        default:
-            return 100
-        }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
+//        switch indexPath.section {
+//        case 0:
+//            return 0
+//        case 1:
+//            return 50
+//        default:
+//            return 100
+//        }
+//    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -129,13 +169,12 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0: return {
             guard self.currentBook != nil else {
                 let foo = UIImageView(image: UIImage(named: "bookDetailPlaceholder"))
-                foo.frame = CGRect(x: 0, y: -64, width: self.view.frame.width, height: self.view.frame.height)
+                foo.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
                 foo.contentMode = .ScaleAspectFit
                 return foo
             }
+            
             let headerView = CoverView(book: self.currentBook!)
-            //改变 statusBar 颜色
-            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
             return headerView
             }()
         case 1: return {
@@ -260,7 +299,8 @@ extension BookDetailViewController {
         Librarian.getBookDetail(ofID: bookID) {
             book in
             self.currentBook = book
-            self.navigationController?.navigationBarHidden = false
+            self.dataLoaded = true
+            self.viewDidLoad()
             self.detailTableView.reloadData()
         }
     }
@@ -269,4 +309,23 @@ extension BookDetailViewController {
         self.init()
         self.currentBook = book
     }
+}
+
+extension BookDetailViewController {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let y = scrollView.contentOffset.y
+        self.navigationController?.jz_navigationBarBackgroundAlpha = y / (UIScreen.mainScreen().bounds.height * 0.52)
+        if y > (UIScreen.mainScreen().bounds.height * 0.52) {
+            //改变 statusBar 颜色
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+            self.navigationController!.navigationBar.tintColor = nil
+
+        } else {
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+            self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        }
+    }
+
+    
 }

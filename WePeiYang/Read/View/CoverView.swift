@@ -119,14 +119,14 @@ class CoverView: UIView {
             
             let fooRGB = self.coverView.image?.smartAvgRGB()
             self.computedBGView.backgroundColor = UIColor(red: (fooRGB?.red)!, green: (fooRGB?.green)!, blue: (fooRGB?.blue)!, alpha: (fooRGB?.alpha)!)
-            //NavigationBar 的背景，使用了View
-            UIViewController.currentViewController().navigationController!.jz_navigationBarBackgroundAlpha = 0;
-            let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
-            UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
-            bgView.backgroundColor = self.computedBGView.backgroundColor
-            log.any(self.computedBGView.backgroundColor)/
-            log.any(bgView.backgroundColor)/
-            UIViewController.currentViewController().view.addSubview(bgView)
+//            //NavigationBar 的背景，使用了View
+//            UIViewController.currentViewController().navigationController!.jz_navigationBarBackgroundAlpha = 0;
+//            let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+//            UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
+//            bgView.backgroundColor = self.computedBGView.backgroundColor
+////            log.any(self.computedBGView.backgroundColor)/
+////            log.any(bgView.backgroundColor)/
+//            UIViewController.currentViewController().view.addSubview(bgView)
         }) { (_, _, _) in
             guard let img = UIImage(named: "placeHolderImageForBookCover") else {
                 self.coverView.backgroundColor = .grayColor()
@@ -137,8 +137,8 @@ class CoverView: UIView {
                 let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
                 UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
                 bgView.backgroundColor = self.computedBGView.backgroundColor
-                log.any(self.computedBGView.backgroundColor)/
-                log.any(bgView.backgroundColor)/
+//                log.any(self.computedBGView.backgroundColor)/
+//                log.any(bgView.backgroundColor)/
                 UIViewController.currentViewController().view.addSubview(bgView)
                 
                 return
@@ -302,7 +302,10 @@ extension CoverView: UIWebViewDelegate {
         //        }
         
         //        UIViewController.currentViewController().navigationview.addSubview(rateView)
-        UIViewController.currentViewController().navigationController?.view.addSubview(rateView)
+        //UIViewController.currentViewController().navigationController?.view.addSubview(rateView)
+        UIViewController.currentViewController().view.addSubview(rateView)
+        //rateView.superview!.bringSubviewToFront(rateView)
+        UIViewController.currentViewController().navigationItem.setHidesBackButton(true, animated: true)
         rateView.frame = CGRect(x: 0, y: self.frame.height, width: 0, height: self.frame.height/4)
         UIView.beginAnimations("ratingViewPopUp", context: nil)
         UIView.setAnimationDuration(0.6)
@@ -311,6 +314,9 @@ extension CoverView: UIWebViewDelegate {
         
     }
     
+    override func willRemoveSubview(subview: UIView) {
+        UIViewController.currentViewController().navigationItem.setHidesBackButton(false, animated: true)
+    }
     
     func favourite() {
         //Call `favourite` method of a user
@@ -327,23 +333,23 @@ extension CoverView: UIWebViewDelegate {
             return $0
         }(UIButton(title: "完成"))
         
+        
+        UIViewController.currentViewController().navigationItem.setHidesBackButton(true, animated: true)
+        frostView.frame = self.frame
         frostView.addSubview(doneBtn)
         doneBtn.snp_makeConstraints {
             make in
             make.left.equalTo(frostView).offset(20)
-            make.top.equalTo(frostView).offset(30)
+            make.top.equalTo(frostView).offset(100)
         }
-        
-        
-        
-        UIViewController.currentViewController().navigationController?.view.addSubview(frostView)
-        frostView.snp_makeConstraints {
-            make in
-            make.left.equalTo(UIViewController.currentViewController().view)
-            make.right.equalTo(UIViewController.currentViewController().view)
-            make.top.equalTo(UIViewController.currentViewController().view)
-            make.bottom.equalTo(UIViewController.currentViewController().view)
-        }
+        UIViewController.currentViewController().view.addSubview(frostView)
+//        frostView.snp_makeConstraints {
+//            make in
+//            make.left.equalTo(UIViewController.currentViewController().view)
+//            make.right.equalTo(UIViewController.currentViewController().view)
+//            make.top.equalTo(UIViewController.currentViewController().view)
+//            make.bottom.equalTo(UIViewController.currentViewController().view)
+//        }
         
         let summaryDetailView = UIWebView(htmlString: book.summary)
         frostView.addSubview(summaryDetailView)
@@ -366,11 +372,12 @@ extension CoverView: UIWebViewDelegate {
     }
     
     func tapAgainToDismiss() {
-        for fooView in (UIViewController.currentViewController().navigationController?.view.subviews)! {
+        for fooView in (UIViewController.currentViewController().view.subviews) {
             if fooView.isKindOfClass(UIVisualEffectView) {
                 UIView.animateWithDuration(0.7, animations: {
                     fooView.alpha = 0
                     }, completion: { (_) in
+                        UIViewController.currentViewController().navigationItem.setHidesBackButton(false, animated: true)
                         fooView.removeFromSuperview()
                 })
             }
