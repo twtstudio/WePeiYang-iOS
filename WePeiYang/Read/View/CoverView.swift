@@ -311,19 +311,6 @@ extension CoverView: UIWebViewDelegate {
         
     }
     
-    func assignGestures(to whichView: UIView) {
-        whichView.userInteractionEnabled = true
-        //
-        //        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(self.expandView))
-        //        pinchGestureRecognizer.scale = 1.2
-        //        whichView.addGestureRecognizer(pinchGestureRecognizer)
-        //
-        //        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.dismissAnimatedAndRemoveDefaults))
-        //        swipeUp.direction = .Up
-        //
-        //        whichView.addGestureRecognizer(swipeUp)
-        
-    }
     
     func favourite() {
         //Call `favourite` method of a user

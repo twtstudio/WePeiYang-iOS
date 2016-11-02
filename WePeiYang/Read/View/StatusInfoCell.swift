@@ -23,7 +23,7 @@ class StatusInfoCell: UITableViewCell {
         let barcodeLabel:UILabel = {
             let barcodeLabel = UILabel()
             barcodeLabel.text = barcode
-            barcodeLabel.textColor = UIColor.blackColor()
+            barcodeLabel.textColor = UIColor.darkGrayColor()
             barcodeLabel.textAlignment = .Center
             barcodeLabel.font = UIFont.systemFontOfSize(13)
             barcodeLabel.sizeToFit()
@@ -33,7 +33,7 @@ class StatusInfoCell: UITableViewCell {
         let locationLabel:UILabel = {
             let locationLabel = UILabel()
             locationLabel.text = location
-            locationLabel.textColor = UIColor.blackColor()
+            locationLabel.textColor = UIColor.darkGrayColor()
             locationLabel.textAlignment = .Center
             locationLabel.font = UIFont.systemFontOfSize(13)
             locationLabel.sizeToFit()
@@ -87,7 +87,7 @@ class StatusInfoCell: UITableViewCell {
                 let dueTimeLabel = UILabel()
                 // dueTimeLabel.text = "应还时间：\(dueTimeForMatter.stringFromDate(duetime))"
                 dueTimeLabel.text = "应还时间：\(duetime)"
-                dueTimeLabel.textColor = UIColor.darkGrayColor()
+                dueTimeLabel.textColor = UIColor.grayColor()
                 dueTimeLabel.textAlignment = .Center
                 dueTimeLabel.font = UIFont.systemFontOfSize(10)
                 return dueTimeLabel

@@ -21,7 +21,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         detailTableView.delegate = self
         detailTableView.dataSource = self
-        
+
         self.view.addSubview(detailTableView)
         self.detailTableView.snp_makeConstraints {
             make in
@@ -36,7 +36,8 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        self.jz_navigationBarBackgroundAlpha = 0
+        self.jz_navigationBarBackgroundHidden = true
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -127,7 +128,10 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         switch section {
         case 0: return {
             guard self.currentBook != nil else {
-                return UIView()
+                let foo = UIImageView(image: UIImage(named: "bookDetailPlaceholder"))
+                foo.frame = CGRect(x: 0, y: -64, width: self.view.frame.width, height: self.view.frame.height)
+                foo.contentMode = .ScaleAspectFit
+                return foo
             }
             let headerView = CoverView(book: self.currentBook!)
             //改变 statusBar 颜色
@@ -256,6 +260,7 @@ extension BookDetailViewController {
         Librarian.getBookDetail(ofID: bookID) {
             book in
             self.currentBook = book
+            self.navigationController?.navigationBarHidden = false
             self.detailTableView.reloadData()
         }
     }
