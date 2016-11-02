@@ -80,6 +80,7 @@ class User: NSObject {
     func getBookShelf(success: Void -> Void) {
         getToken({ token in
             let manager = AFHTTPSessionManager()
+            //manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
 
             manager.GET(ReadAPI.bookshelfURL, parameters: nil, progress:  nil,

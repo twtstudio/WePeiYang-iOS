@@ -259,7 +259,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     func pushDetailViewController(bookID: String) {
         let detailVC = BookDetailViewController(bookID: bookID)
         self.navigationController?.showViewController(detailVC, sender: nil)
-        self.navigationController?.navigationBarHidden = true
+//        self.navigationController?.navigationBarHidden = true
         print("Push Detail View Controller, bookID: \(bookID)")
     }
     
@@ -273,5 +273,6 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
             self.jz_navigationBarBackgroundAlpha = 0
         }
     }
+
     
 }

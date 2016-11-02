@@ -104,6 +104,7 @@ class ReviewCell: UITableViewCell {
             make.left.equalTo(contentView).offset(20)
             make.top.equalTo(avatar.snp_bottom).offset(10)
             make.right.equalTo(contentView).offset(-20)
+            //make.bottom.equalTo(contentView).offset(-40)
         }
         
         timestamp.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)

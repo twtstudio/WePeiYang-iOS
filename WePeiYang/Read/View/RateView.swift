@@ -88,12 +88,34 @@ extension RateView {
         textView.backgroundColor = .clearColor()
         textView.userInteractionEnabled = true
         textView.scrollEnabled = true
+
+        
+        let cancelBtn = UIButton(backgroundImageName: "cancelBtn", desiredSize: CGSize(width: 30, height: 30))
+        cancelBtn?.tintColor = readRed
+        cancelBtn?.addTarget(self, action: #selector(self.dismissAnimated), forControlEvents: .TouchUpInside)
+        self.addSubview(cancelBtn!)
+        cancelBtn?.snp_makeConstraints {
+            make in
+            make.left.equalTo(self).offset(30)
+            make.top.equalTo(self).offset(100)
+        }
+        
+        let submitBtn = UIButton(title: "提交")
+        submitBtn.setTitleColor(readRed, forState: .Normal)
+        submitBtn.tintColor = .grayColor()
+        submitBtn.addTarget(self, action: #selector(self.submitRating), forControlEvents: .TouchUpInside)
+        self.addSubview(submitBtn)
+        submitBtn.snp_makeConstraints {
+            make in
+            make.top.equalTo(cancelBtn!)
+            make.right.equalTo(self).offset(-30)
+        }
         
         self.addSubview(starView)
         starView.snp_makeConstraints {
             make in
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(100)
+            make.top.equalTo((cancelBtn?.snp_bottom)!).offset(20)
             
         }
         
@@ -114,27 +136,6 @@ extension RateView {
             make.centerX.equalTo(self)
             make.bottom.equalTo(self)
         }
-        
-        let cancelBtn = UIButton(backgroundImageName: "cancelBtn", desiredSize: CGSize(width: 30, height: 30))
-        cancelBtn?.tintColor = readRed
-        cancelBtn?.addTarget(self, action: #selector(self.dismissAnimated), forControlEvents: .TouchUpInside)
-        self.addSubview(cancelBtn!)
-        cancelBtn?.snp_makeConstraints {
-            make in
-            make.left.equalTo(self).offset(30)
-            make.top.equalTo(self).offset(30)
-        }
-        
-        let submitBtn = UIButton(title: "提交")
-        submitBtn.setTitleColor(readRed, forState: .Normal)
-        submitBtn.tintColor = .grayColor()
-        submitBtn.addTarget(self, action: #selector(self.submitRating), forControlEvents: .TouchUpInside)
-        self.addSubview(submitBtn)
-        submitBtn.snp_makeConstraints {
-            make in
-            make.top.equalTo(cancelBtn!)
-            make.right.equalTo(self).offset(-30)
-        }
         assignGestureRecognizerToView()
     }
     
@@ -148,6 +149,7 @@ private extension RateView {
         swipeDown.direction = .Down
         addGestureRecognizer(swipeDown)
     }
+    
 }
 
 
@@ -155,4 +157,6 @@ extension UITextView {
     func shouldMoveUpWithKeyboard(flag: Bool) {
         //let moveDistance =
     }
+    
+    
 }
