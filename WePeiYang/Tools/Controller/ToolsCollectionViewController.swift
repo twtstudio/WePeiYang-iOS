@@ -294,6 +294,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func showReadController() {
+
         guard let _ = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
             MsgDisplay.showErrorMsg("你需要登录才能访问")
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
@@ -301,6 +302,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             return
         }
         let readVC = ReadViewController()
+        
         readVC.hidesBottomBarWhenPushed = true;
         self.navigationController?.showViewController(readVC, sender: nil)
     }

@@ -105,6 +105,8 @@
 		B10A9E801DC8468C00A395E9 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E7B1DC8468C00A395E9 /* ReadViewController.m */; };
 		B10A9E811DC8468C00A395E9 /* RecommendedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E7C1DC8468C00A395E9 /* RecommendedViewController.swift */; };
 		B10A9E821DC8468C00A395E9 /* ReviewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E7D1DC8468C00A395E9 /* ReviewListViewController.swift */; };
+		B10A9E841DC9889200A395E9 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E831DC9889200A395E9 /* BookDetailViewController.swift */; };
+		B10A9E861DC988A100A395E9 /* StatusInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */; };
 		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
 		B14000751D68862D00035357 /* SpecialEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14000731D68862D00035357 /* SpecialEventsViewController.swift */; };
 		B1572CF71D76D89D00A264D8 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1572CF61D76D89D00A264D8 /* FinalView.swift */; };
@@ -396,6 +398,8 @@
 		B10A9E7B1DC8468C00A395E9 /* ReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadViewController.m; sourceTree = "<group>"; };
 		B10A9E7C1DC8468C00A395E9 /* RecommendedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedViewController.swift; sourceTree = "<group>"; };
 		B10A9E7D1DC8468C00A395E9 /* ReviewListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewListViewController.swift; sourceTree = "<group>"; };
+		B10A9E831DC9889200A395E9 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusInfoCell.swift; sourceTree = "<group>"; };
 		B113C6FF1D57B5B80072726F /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
 		B14000731D68862D00035357 /* SpecialEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEventsViewController.swift; sourceTree = "<group>"; };
 		B1572CF61D76D89D00A264D8 /* FinalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
@@ -884,6 +888,7 @@
 		B10A9E661DC8467600A395E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */,
 				B10A9E671DC8467600A395E9 /* CoverView.swift */,
 				B10A9E681DC8467600A395E9 /* RateView.swift */,
 				B10A9E691DC8467600A395E9 /* ReadStarCell.swift */,
@@ -906,6 +911,7 @@
 				B10A9E7B1DC8468C00A395E9 /* ReadViewController.m */,
 				B10A9E7C1DC8468C00A395E9 /* RecommendedViewController.swift */,
 				B10A9E7D1DC8468C00A395E9 /* ReviewListViewController.swift */,
+				B10A9E831DC9889200A395E9 /* BookDetailViewController.swift */,
 			);
 			name = Controller;
 			path = Read/Controller;
@@ -1918,6 +1924,7 @@
 				683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */,
 				B1E497AD1D689A7C00E85DA8 /* DismissingAnimator.m in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
+				B10A9E841DC9889200A395E9 /* BookDetailViewController.swift in Sources */,
 				68513F371D6F08FF00E96BEB /* TheoryClassicsTableViewController.swift in Sources */,
 				E95BDA851C4BF17E00EFC107 /* FeedbackForm.swift in Sources */,
 				E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */,
@@ -1992,6 +1999,7 @@
 				B1063EAF1D704E390084F379 /* QuizView.swift in Sources */,
 				68513F6F1D6F091200E96BEB /* BicycleServiceInfoController.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
+				B10A9E861DC988A100A395E9 /* StatusInfoCell.swift in Sources */,
 				E98ACE1A1C4026780012C762 /* HomeNewsTableViewCell.swift in Sources */,
 				E91E515D1CFF498500A5BED7 /* DevSessionRecord.swift in Sources */,
 				B1063EAD1D704DEA0084F379 /* TwentyCourseQuiz.swift in Sources */,
