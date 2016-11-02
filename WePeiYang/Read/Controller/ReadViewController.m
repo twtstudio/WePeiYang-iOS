@@ -71,7 +71,7 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = self.titleLabel;
-    self.titleLabel.text = @"阅北洋";
+    self.titleLabel.text = @"阅读";
     [self.titleLabel sizeToFit];
     
     //search button
