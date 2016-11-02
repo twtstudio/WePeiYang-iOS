@@ -319,11 +319,16 @@ extension BookDetailViewController {
         if y > (UIScreen.mainScreen().bounds.height * 0.52) {
             //改变 statusBar 颜色
             UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
-            self.navigationController!.navigationBar.tintColor = nil
+            if let _ = self.navigationController {
+                self.navigationController!.navigationBar.tintColor = nil
+            }
 
         } else {
             UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-            self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+            if let _ = self.navigationController {
+                self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+            }
+            
         }
     }
 

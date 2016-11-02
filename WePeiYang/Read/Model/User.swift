@@ -85,7 +85,8 @@ class User: NSObject {
 //                    print("error: \(error)")
 //            })
             let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wveXVlcGVpeWFuZy5hcHA6ODAwMFwvYXBpXC9hdXRoXC90b2tlblwvZ2V0IiwiaWF0IjoxNDc3NzM2NDQwLCJleHAiOjE0NzgzNDEyNDAsIm5iZiI6MTQ3NzczNjQ0MCwianRpIjoiOWZkZDhmOTM0OTc2MjJmYWE4M2I5N2M2MDI3ZDJjYWIifQ.f_1aFjOpZ0BEbmzlYWHS7ePHtvyWo60zBZbitYYXiss}", forHTTPHeaderField: "Authorization")
+            manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.reviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
