@@ -15,9 +15,9 @@ class BookShelfViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
-//        self.navigationController?.navigationBar.backgroundColor = UIColor(colorLiteralRed: 234.0/255.0, green: 74.0/255.0, blue: 70/255.0, alpha: 1.0)
-//        //titleLabel设置
+        
+        //        self.navigationController?.navigationBar.backgroundColor = UIColor(colorLiteralRed: 234.0/255.0, green: 74.0/255.0, blue: 70/255.0, alpha: 1.0)
+        //        //titleLabel设置
         let titleLabel = UILabel(text: "我的收藏", fontSize: 17)
         titleLabel.backgroundColor = UIColor.clearColor()
         titleLabel.textAlignment = .Center
@@ -31,10 +31,10 @@ class BookShelfViewController: UITableViewController {
         bgView.backgroundColor = UIColor(colorLiteralRed: 234.0/255.0, green: 74.0/255.0, blue: 70/255.0, alpha: 1.0)
         self.view.addSubview(bgView)
         
-//        //改变 statusBar 颜色
+        //        //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
-
+        
     }
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class BookShelfViewController: UITableViewController {
         
     }
     
-// Mark: UITableViewDataSource
+    // Mark: UITableViewDataSource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -67,16 +67,16 @@ class BookShelfViewController: UITableViewController {
         if indexPath.row == self.bookShelf.count - 1 {
             separatorMargin = 0
         }
-            let separator = UIView()
-            separator.backgroundColor = UIColor.init(red: 227/255, green: 227/255, blue: 229/255, alpha: 1)
-            cell.addSubview(separator)
-            
-            separator.snp_makeConstraints { make in
-                make.height.equalTo(1)
-                make.left.equalTo(cell).offset(separatorMargin)
-                make.right.equalTo(cell).offset(-separatorMargin)
-                make.bottom.equalTo(cell).offset(0)
-            }
+        let separator = UIView()
+        separator.backgroundColor = UIColor.init(red: 227/255, green: 227/255, blue: 229/255, alpha: 1)
+        cell.addSubview(separator)
+        
+        separator.snp_makeConstraints { make in
+            make.height.equalTo(1)
+            make.left.equalTo(cell).offset(separatorMargin)
+            make.right.equalTo(cell).offset(-separatorMargin)
+            make.bottom.equalTo(cell).offset(0)
+        }
         return cell
     }
     
@@ -98,8 +98,8 @@ class BookShelfViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // TODO: 跳转到书籍详情页面
-    self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
+    
 }
 

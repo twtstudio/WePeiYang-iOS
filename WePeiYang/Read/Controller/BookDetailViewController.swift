@@ -12,7 +12,7 @@ import UIKit
 class BookDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let detailTableView = UITableView()
-    var currentBook: Book!
+    var currentBook: Book? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +49,19 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         switch section {
         case 0:
             return 0
-        case 1:
-            return self.currentBook.status.count
-        case 2:
-            return self.currentBook.reviews.count
+        case 1: return {
+            guard self.currentBook != nil else {
+                return 0
+            }
+            return self.currentBook!.status.count
+        }()
+            
+        case 2: return {
+            guard self.currentBook != nil else {
+                return 0
+            }
+            return self.currentBook!.reviews.count
+        }()
         default:
             return 0
         }
@@ -65,7 +74,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 //        }
         
         if indexPath.section == 1{
-            if self.currentBook.status.count != 0 {
+            if self.currentBook!.status.count != 0 {
                 if let cell = tableView.dequeueReusableCellWithIdentifier("StatusInfoCell") {
                     return cell
                 }
@@ -74,11 +83,11 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 
         } else if indexPath.section == 2 {
             //书评
-            if self.currentBook.reviews.count != 0 {
+            if self.currentBook!.reviews.count != 0 {
                 if let cell = tableView.dequeueReusableCellWithIdentifier("ReviewCell") {
                     return cell
                 }
-                let cell = ReviewCell(model: self.currentBook.reviews[indexPath.row])
+                let cell = ReviewCell(model: self.currentBook!.reviews[indexPath.row])
                 return cell
             }
         }
@@ -118,7 +127,10 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         switch section {
         case 0: return {
-            let headerView = CoverView(book: self.currentBook)
+            guard self.currentBook != nil else {
+                return UIView()
+            }
+            let headerView = CoverView(book: self.currentBook!)
             //NavigationBar 的背景，使用了View
             self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
             let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
@@ -247,6 +259,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 extension BookDetailViewController {
     convenience init(bookID: String) {
         self.init()
+        //TODO: FIX THE CRASH WHEN NO DATA WAS FETCHED
         Librarian.getBookDetail(ofID: bookID) {
             book in
             self.currentBook = book

@@ -206,7 +206,7 @@ class Librarian {
                     
             }) { (_, err) in
                 MsgDisplay.showErrorMsg("网络不好，请稍后重试")
-                log.any(err)/
+                log.any("fucker")/
             }
         }
         
