@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol RecommendBookViewDelegate {
+    func pushDetailViewController(bookID: String)
+}
+
 class RecommendCell: UITableViewCell {
     
+    var fooView: [RecommendBookView] = []
     
-        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -49,42 +53,78 @@ class RecommendCell: UITableViewCell {
         }
         
         for i in 0..<model.count {
+            
+            fooView.append(RecommendBookView(bookID: model[i].id))
             imageViewArray.append(UIImageView())
             titleLabelArray.append(UILabel(text: "\(model[i].title)"))
             authorLabelArray.append(UILabel(text: "\(model[i].author) 著"))
             
-            scrollView.addSubview(imageViewArray[i])
-            scrollView.addSubview(titleLabelArray[i])
-            scrollView.addSubview(authorLabelArray[i])
+//            scrollView.addSubview(imageViewArray[i])
+//            scrollView.addSubview(titleLabelArray[i])
+//            scrollView.addSubview(authorLabelArray[i])
             
-            imageViewArray[i].userInteractionEnabled = true
-            imageViewArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
-            titleLabelArray[i].userInteractionEnabled = true
-            titleLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
-            authorLabelArray[i].userInteractionEnabled = true
-            authorLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+//            imageViewArray[i].userInteractionEnabled = true
+//            imageViewArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+//            titleLabelArray[i].userInteractionEnabled = true
+//            titleLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+//            authorLabelArray[i].userInteractionEnabled = true
+//            authorLabelArray[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RecommendCell.pushBookDetailController)))
+            
+            scrollView.addSubview(fooView[i])
+            fooView[i].addSubview(imageViewArray[i])
+            fooView[i].addSubview(titleLabelArray[i])
+            fooView[i].addSubview(authorLabelArray[i])
+            
             authorLabelArray[i].font = UIFont(name: "Arial", size: 14)
             authorLabelArray[i].textColor = UIColor.grayColor()
             
             imageViewArray[i].contentMode = .ScaleAspectFit
             imageViewArray[i].setImageWithURL(NSURL(string: "\(model[i].cover)")!)
             
+//            if i == 0 {
+//                imageViewArray[i].snp_makeConstraints {
+//                    make in
+//                    make.top.equalTo(scrollView).offset(16)
+//                    make.left.equalTo(scrollView).offset(16)
+//                    make.width.equalTo(80)
+//                    make.height.equalTo(120)
+//                }
+//            } else {
+//                imageViewArray[i].snp_makeConstraints {
+//                    make in
+//                    make.top.equalTo(scrollView).offset(16)
+//                    make.left.equalTo(imageViewArray[i-1].snp_right).offset(32)
+//                    make.width.equalTo(80)
+//                    make.height.equalTo(120)
+//                }
+//            }
+
+            fooView[i].tag = Int(model[i].id)!
             if i == 0 {
-                imageViewArray[i].snp_makeConstraints {
+                fooView[i].snp_makeConstraints {
                     make in
-                    make.top.equalTo(scrollView).offset(16)
-                    make.left.equalTo(scrollView).offset(16)
-                    make.width.equalTo(80)
-                    make.height.equalTo(120)
+                    make.top.equalTo(scrollView).offset(8)
+                    make.left.equalTo(scrollView).offset(8)
+                    make.width.equalTo(112)
+                    make.height.equalTo(186)
                 }
             } else {
-                imageViewArray[i].snp_makeConstraints {
+                fooView[i].snp_makeConstraints {
                     make in
-                    make.top.equalTo(scrollView).offset(16)
-                    make.left.equalTo(imageViewArray[i-1].snp_right).offset(32)
-                    make.width.equalTo(80)
-                    make.height.equalTo(120)
+                    make.top.equalTo(scrollView).offset(8)
+                    make.left.equalTo(fooView[i-1].snp_right).offset(0)
+                    make.width.equalTo(112)
+                    make.height.equalTo(186)
                 }
+            }
+
+            
+            imageViewArray[i].snp_makeConstraints {
+                make in
+                make.top.equalTo(fooView[i]).offset(8)
+                make.left.equalTo(fooView[i]).offset(8)
+                make.width.equalTo(80)
+                make.height.equalTo(120)
             }
             
             titleLabelArray[i].snp_makeConstraints {
@@ -104,9 +144,19 @@ class RecommendCell: UITableViewCell {
         }
         
     }
-    
-    func pushBookDetailController() {
-        print("push Detail View Controller")
+}
+
+class RecommendBookView: UIView {
+    var delegate: RecommendBookViewDelegate?
+    convenience init(bookID: String) {
+        self.init()
+        self.tag = Int(bookID)!
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailViewController)))
     }
     
+    func pushDetailViewController() {
+        print("fafa")
+        delegate?.pushDetailViewController("\(self.tag)")
+    }
 }
+

@@ -62,7 +62,7 @@ class InfoViewController: UITableViewController {
         case 1:
             let rvc = ReviewListViewController()
             // FIXME: arr
-            //rvc.reviewArr = self.reviewArr
+            rvc.reviewArr = self.reviewArr
             self.navigationController?.pushViewController(rvc, animated: true)
             break
         default:
@@ -95,7 +95,8 @@ class InfoViewController: UITableViewController {
             cell.textLabel?.font = UIFont.systemFontOfSize(16)
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
             cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
-            //cell.tag = self.bookShelf[indexPath.row].isbn
+            print(self.bookShelf[indexPath.row].id)
+            //cell.tag = Int(self.bookShelf[indexPath.row].id)!
             if indexPath.row != 1 {
                 let separator = UIView()
                 separator.backgroundColor = UIColor.init(red: 227/255, green: 227/255, blue: 229/255, alpha: 1)
@@ -225,7 +226,7 @@ class InfoViewController: UITableViewController {
 //    self.navigationController?.pushViewController(vc, animated: true)
             break
         case 1:
-            break
+            print("Push Detail View Controller, bookID: \(reviewArr[indexPath.row].bookID)")
         default:
             break
         }

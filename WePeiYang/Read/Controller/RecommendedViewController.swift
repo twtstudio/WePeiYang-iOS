@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class RecommendedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class RecommendedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, RecommendBookViewDelegate {
     
     
     let tableView = UITableView(frame: CGRect(x: 0, y: 108, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height-108) , style: .Grouped)
@@ -115,6 +115,9 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         switch indexPath.section {
         case 0:
             let cell = RecommendCell(model: Recommender.sharedInstance.recommendedList)
+            for fooView in cell.fooView {
+                fooView.delegate = self
+            }
             return cell
         case 1:
             let cell = ReviewCell(model: Recommender.sharedInstance.reviewList[indexPath.row])
@@ -226,7 +229,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        print("Push Detail View Controller")
+        print("Push Detail View Controller, bookID: \(Recommender.sharedInstance.reviewList[indexPath.row].bookID)")
     }
     
     //UIScrollViewDelegate方法，每次滚动结束后调用
@@ -245,6 +248,10 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         frame.origin.y = 0
         //展现当前页面内容
         headerScrollView.scrollRectToVisible(frame, animated:true)
+    }
+    
+    func pushDetailViewController(bookID: String) {
+        print("Push Detail View Controller, bookID: \(bookID)")
     }
     
     func pushWebPage() {
