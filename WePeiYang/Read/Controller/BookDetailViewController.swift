@@ -131,12 +131,6 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 return UIView()
             }
             let headerView = CoverView(book: self.currentBook!)
-            //NavigationBar 的背景，使用了View
-            self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
-            let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
-            
-            bgView.backgroundColor = headerView.computedBGView.backgroundColor
-            self.view.addSubview(bgView)
             //改变 statusBar 颜色
             UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
             return headerView
@@ -264,5 +258,10 @@ extension BookDetailViewController {
             book in
             self.currentBook = book
         }
+    }
+    
+    convenience init(book: Book) {
+        self.init()
+        self.currentBook = book
     }
 }
