@@ -208,10 +208,10 @@ class Librarian {
                         fooReviews = reviews.flatMap({ (dict: NSDictionary) -> Review? in
                             guard let reviewID = dict["review_id"] as? String,
                                 let bookID = dict["book_id"] as? String,
-                                let bookName = dict["book_name"] as? String,
+                                let bookName = dict["title"] as? String,
                                 let userName = dict["user_name"] as? String,
                                 let avatarURL = dict["avatar"] as? String,
-                                let rating = dict["scores"] as? Double,
+                                let rating = dict["scores"] as? Int,
                                 let like = dict["like"] as? String,
                                 let content = dict["content"] as? String,
                                 let updateTime = dict["updated_time"] as? String,
@@ -221,7 +221,7 @@ class Librarian {
                                     log.word("Unknown Error5")/
                                     return nil
                             }
-                            return Review(reviewID: reviewID, bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: rating, like: like, content: content, updateTime: updateTime, liked: liked)
+                            return Review(reviewID: reviewID, bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: Double(rating), like: like, content: content, updateTime: updateTime, liked: liked)
                         })
                     }
                     
@@ -238,6 +238,7 @@ class Librarian {
                         })
                     }
                     let foo = Book(id: id, title: title, ISBN: ISBN, author: author, publisher: publisher, year: year, coverURL: coverURL, rating: rating, summary: summary, status: fooHoldingStatus, reviews: fooReviews, starReviews: fooStarReviews)
+                    log.obj(foo)/
                     completion(foo)
                     
             }) { (_, err) in
