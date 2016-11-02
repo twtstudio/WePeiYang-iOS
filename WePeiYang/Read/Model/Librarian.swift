@@ -211,17 +211,18 @@ class Librarian {
                                 let bookName = dict["title"] as? String,
                                 let userName = dict["user_name"] as? String,
                                 let avatarURL = dict["avatar"] as? String,
-                                let rating = dict["scores"] as? Int,
-                                let like = dict["like"] as? String,
+                                let rating = dict["scores"] as? Double,
+                                let like = dict["like_count"] as? String,
                                 let content = dict["content"] as? String,
-                                let updateTime = dict["updated_time"] as? String,
+                                let updateTime = dict["updated_at"] as? String,
                                 //TODO: liked as Bool may fail
                                 let liked = dict["liked"] as? Bool else {
                                     MsgDisplay.showErrorMsg("未知错误5")
                                     log.word("Unknown Error5")/
                                     return nil
                             }
-                            return Review(reviewID: reviewID, bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: Double(rating), like: like, content: content, updateTime: updateTime, liked: liked)
+                            log.word(content)/
+                            return Review(reviewID: reviewID, bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: rating, like: like, content: content, updateTime: updateTime, liked: liked)
                         })
                     }
                     
