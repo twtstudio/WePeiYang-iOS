@@ -37,7 +37,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            log.obj(book)/
 //            log.word("sdfsd")/
 //        }
-        
+//        
+//        Librarian.searchBook(withString: "swift") {
+//            reviews in
+//            log.any(reviews)/
+//        }
         
         if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {
             UIApplication.sharedApplication().keyWindow?.rootViewController = self.navigationController?.tabBarController

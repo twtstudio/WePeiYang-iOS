@@ -16,7 +16,7 @@ import Foundation
 class Book {
     
     struct Status {
-        let id: String
+        let id: Int
         let barcode: String
         let callno: String
         let stateCode: Int
@@ -74,7 +74,7 @@ class Book {
         self.id = "fe"
         self.ISBN = ISBN
         
-        self.status = [Status(id: "dfs", barcode: "sdf", callno: "sdf", stateCode: 1, statusInLibrary: "sdf", libCode: "sdf", localCode: "sdf", dueTime: "sdf", library: "sdf")]
+        self.status = [Status(id: 23322, barcode: "sdf", callno: "sdf", stateCode: 1, statusInLibrary: "sdf", libCode: "1", localCode: "sdf", dueTime: "sdf", library: "sdf")]
         self.title = "孤本"
         self.coverURL = "https://images-na.ssl-images-amazon.com/images/I/51w6QuPzCLL._SX319_BO1,204,203,200_.jpg"
         self.author = "鲍 一心"
