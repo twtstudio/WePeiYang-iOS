@@ -72,7 +72,7 @@ class CoverView: UIView {
         scoreLabel = {
             $0.font = UIFont(name: "Menlo-BoldItalic", size: 60)
             return $0
-        }(UILabel(text: "\(book.rating)", color: .yellowColor()))
+        }(UILabel(text: "\(book.rating)", color: readRed))
         
         favBtn = UIButton(title: "收藏", borderWidth: 1.5, borderColor: readRed)
         favBtn.addTarget(self, action: #selector(self.favourite), forControlEvents: .TouchUpInside)
@@ -118,16 +118,41 @@ class CoverView: UIView {
             
             let fooRGB = self.coverView.image?.smartAvgRGB()
             self.computedBGView.backgroundColor = UIColor(red: (fooRGB?.red)!, green: (fooRGB?.green)!, blue: (fooRGB?.blue)!, alpha: (fooRGB?.alpha)!)
+            //NavigationBar 的背景，使用了View
+            UIViewController.currentViewController().navigationController!.jz_navigationBarBackgroundAlpha = 0;
+            let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+            UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
+            bgView.backgroundColor = self.computedBGView.backgroundColor
+            log.any(self.computedBGView.backgroundColor)/
+            log.any(bgView.backgroundColor)/
+            UIViewController.currentViewController().view.addSubview(bgView)
         }) { (_, _, _) in
             guard let img = UIImage(named: "placeHolderImageForBookCover") else {
                 self.coverView.backgroundColor = .grayColor()
-                let fooRGB = self.coverView.image?.smartAvgRGB()
-                self.computedBGView.backgroundColor = UIColor(red: (fooRGB?.red)!, green: (fooRGB?.green)!, blue: (fooRGB?.blue)!, alpha: (fooRGB?.alpha)!)
+                self.computedBGView.backgroundColor = .grayColor()
+                
+                //NavigationBar 的背景，使用了View
+                UIViewController.currentViewController().navigationController!.jz_navigationBarBackgroundAlpha = 0;
+                let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+                UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
+                bgView.backgroundColor = self.computedBGView.backgroundColor
+                log.any(self.computedBGView.backgroundColor)/
+                log.any(bgView.backgroundColor)/
+                UIViewController.currentViewController().view.addSubview(bgView)
+                
                 return
             }
             self.coverView.image = img
             let fooRGB = self.coverView.image?.smartAvgRGB()
             self.computedBGView.backgroundColor = UIColor(red: (fooRGB?.red)!, green: (fooRGB?.green)!, blue: (fooRGB?.blue)!, alpha: (fooRGB?.alpha)!)
+            //NavigationBar 的背景，使用了View
+            UIViewController.currentViewController().navigationController!.jz_navigationBarBackgroundAlpha = 0;
+            let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+            UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
+            bgView.backgroundColor = self.computedBGView.backgroundColor
+            log.any(self.computedBGView.backgroundColor)/
+            log.any(bgView.backgroundColor)/
+            UIViewController.currentViewController().view.addSubview(bgView)
         }
         
         
@@ -217,6 +242,13 @@ class CoverView: UIView {
             make.top.equalTo(summaryTitleLabel.snp_bottom).offset(20)
             make.left.equalTo(summaryTitleLabel)
             make.right.equalTo(reviewBtn)
+        }
+        
+        self.addSubview(tapToSeeMoreBtn)
+        tapToSeeMoreBtn.snp_makeConstraints {
+            make in
+            make.top.equalTo(summaryLabel.snp_bottom).offset(4)
+            make.left.equalTo(summaryLabel)
         }
         
         self.snp_makeConstraints {
@@ -320,5 +352,6 @@ extension CoverView: UIWebViewDelegate {
                 UIView.commitAnimations()
             }
         }
+        log.word("fuckkkk")/
     }
 }

@@ -295,7 +295,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     
     func showReadController() {
 //        let readVC = ReadViewController()
-        let readVC = BookDetailViewController(bookID: "323")
+        let readVC = BookDetailViewController(book: Book(ISBN: "sdf"))
         readVC.hidesBottomBarWhenPushed = true;
         self.navigationController?.showViewController(readVC, sender: nil)
     }
