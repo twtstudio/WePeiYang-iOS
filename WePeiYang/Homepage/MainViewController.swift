@@ -33,10 +33,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         //YuePeiYang
-        Librarian.getBookDetail(ofID: "747522") { (book) in
-            log.obj(book)/
-            log.word("sdfsd")/
-        }
+//        Librarian.getBookDetail(ofID: "747522") { (book) in
+//            log.obj(book)/
+//            log.word("sdfsd")/
+//        }
         
         
         if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {

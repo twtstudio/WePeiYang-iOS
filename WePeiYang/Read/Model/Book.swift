@@ -40,6 +40,21 @@ class Book {
     let reviews: [Review]
     let starReviews: [StarReview]
     
+//    init() {
+//        self.id = id
+//        self.title = title
+//        self.ISBN = ISBN
+//        self.author = author
+//        self.publisher = publisher
+//        self.year = year
+//        self.coverURL = coverURL
+//        self.rating = rating
+//        self.summary = summary
+//        self.status = status
+//        self.reviews = reviews
+//        self.starReviews = starReviews
+//    }
+    
     init(id: String, title: String, ISBN: String, author: String, publisher: String, year: String, coverURL: String, rating: Double, summary: String, status: [Status], reviews: [Review], starReviews: [StarReview]) {
         self.id = id
         self.title = title
