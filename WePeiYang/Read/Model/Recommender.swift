@@ -72,7 +72,7 @@ class Recommender {
             
             var fooBannerList: [Banner] = []
             manager.GET(ReadAPI.bannerURL, parameters: nil, progress: nil, success: { (task, responseObject) in
-                
+                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {

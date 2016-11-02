@@ -86,6 +86,7 @@ class User: NSObject {
 //            })
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.reviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
@@ -125,6 +126,7 @@ class User: NSObject {
     func getBookShelf(success: Void -> Void) {
         getToken({ token in
             let manager = AFHTTPSessionManager()
+            //manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             manager.GET(self.bookshelf_url, parameters: nil, progress:  nil,
                 success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
