@@ -145,7 +145,7 @@ class Librarian {
                             return
                     }
                     
-                    var fooHoldingStatus: [Book.Status]? = nil
+                    var fooHoldingStatus: [Book.Status] = []
                     if let holdingStatus = holdingStatusData["data"] as? Array<NSDictionary> {
                         fooHoldingStatus = holdingStatus.flatMap({ (dict: NSDictionary) -> Book.Status? in
                             guard let id = dict["id"] as? String,
@@ -166,27 +166,30 @@ class Librarian {
 
                     }
                     
-                    var fooReviews: [Review]? = nil
+                    var fooReviews: [Review] = []
                     if let reviews = reviewData["data"] as? Array<NSDictionary> {
                         
                         fooReviews = reviews.flatMap({ (dict: NSDictionary) -> Review? in
-                            guard let bookID = dict["book_id"] as? String,
-                            let bookName = dict["book_name"] as? String,
-                            let userName = dict["user_name"] as? String,
-                            let avatarURL = dict["avatar"] as? String,
-                            let rating = dict["scores"] as? Double,
-                            let like = dict["like"] as? String,
-                            let content = dict["content"] as? String,
-                            let updateTime = dict["updated_time"] as? String else {
-                                MsgDisplay.showErrorMsg("未知错误5")
-                                return nil
+                            guard let reviewID = dict["review_id"] as? String,
+                                let bookID = dict["book_id"] as? String,
+                                let bookName = dict["book_name"] as? String,
+                                let userName = dict["user_name"] as? String,
+                                let avatarURL = dict["avatar"] as? String,
+                                let rating = dict["scores"] as? Double,
+                                let like = dict["like"] as? String,
+                                let content = dict["content"] as? String,
+                                let updateTime = dict["updated_time"] as? String,
+                                //TODO: liked as Bool may fail
+                                let liked = dict["liked"] as? Bool else {
+                                    MsgDisplay.showErrorMsg("未知错误5")
+                                    return nil
                             }
-                            return Review(bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: rating, like: like, content: content, updateTime: updateTime)
+                            return Review(reviewID: reviewID, bookID: bookID, bookName: bookName, userName: userName, avatarURL: avatarURL, rating: rating, like: like, content: content, updateTime: updateTime, liked: liked)
                         })
                     }
                     
                     
-                    var fooStarReviews: [StarReview]? = nil
+                    var fooStarReviews: [StarReview] = []
                     
                     if let star_reviews = starReviewData["data"] as? Array<NSDictionary> {
                         fooStarReviews = star_reviews.flatMap({ (dict: NSDictionary) -> StarReview? in
