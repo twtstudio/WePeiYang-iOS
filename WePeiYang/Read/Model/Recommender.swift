@@ -72,9 +72,14 @@ class Recommender {
             
             var fooBannerList: [Banner] = []
             manager.GET(ReadAPI.bannerURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+                
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
+                        if let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == 10000 {
+                            print("removed read token")
+                            NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
+                        }
                         MsgDisplay.showErrorMsg("获取数据失败")
                         return
                 }
@@ -113,6 +118,10 @@ class Recommender {
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
+                        if let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == 10000 {
+                            print("removed read token")
+                            NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
+                        }
                         MsgDisplay.showErrorMsg("获取热门推荐数据失败")
                         return
                 }
@@ -158,6 +167,10 @@ class Recommender {
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
+                        if let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == 10000 {
+                            print("removed read token")
+                            NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
+                        }
                         MsgDisplay.showErrorMsg("获取阅读之星数据失败")
                         return
                 }
@@ -202,10 +215,13 @@ class Recommender {
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
+                        if let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == 10000 {
+                            print("removed read token")
+                            NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
+                        }
                         MsgDisplay.showErrorMsg("获取热门评论数据失败")
                         return
                 }
-                print(data)
                 
                 for dic in data {
                     guard let reviewID = dic["review_id"] as? String,
@@ -226,7 +242,7 @@ class Recommender {
                 }
                 self.finishFlag.hotReviewFlag = true
                 self.reviewList = fooReviewList
-                print(self.reviewList)
+                //print(self.reviewList)
                 success()
             }) { (_, error) in
                 self.finishFlag.hotReviewFlag = true

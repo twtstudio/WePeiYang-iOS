@@ -453,6 +453,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func showReadController() {
+        guard let _ = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
+            MsgDisplay.showErrorMsg("你需要登录才能访问")
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
+            return
+        }
         let readVC = ReadViewController()
         readVC.hidesBottomBarWhenPushed = true;
         self.navigationController?.showViewController(readVC, sender: nil)
