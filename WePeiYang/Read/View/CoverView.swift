@@ -151,8 +151,8 @@ class CoverView: UIView {
             let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
             UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
             bgView.backgroundColor = self.computedBGView.backgroundColor
-            log.any(self.computedBGView.backgroundColor)/
-            log.any(bgView.backgroundColor)/
+//            log.any(self.computedBGView.backgroundColor)/
+//            log.any(bgView.backgroundColor)/
             UIViewController.currentViewController().view.addSubview(bgView)
         }
         
@@ -191,11 +191,20 @@ class CoverView: UIView {
             make.top.equalTo(titleLabel.snp_bottom).offset(14)
         }
         
+        self.addSubview(scoreLabel)
+        scoreLabel.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(authorLabel)
+            make.right.equalTo(self).offset(-20)
+        }
+        
         self.addSubview(publisherLabel)
         publisherLabel.snp_makeConstraints {
             make in
             make.left.equalTo(titleLabel)
             make.top.equalTo(authorLabel.snp_bottom).offset(4)
+            make.right.lessThanOrEqualTo(scoreLabel.snp_left).offset(-10)
+            
         }
         
         self.addSubview(yearLabel)
@@ -223,12 +232,6 @@ class CoverView: UIView {
             make.height.equalTo(36)
         }
         
-        self.addSubview(scoreLabel)
-        scoreLabel.snp_makeConstraints {
-            make in
-            make.centerY.equalTo(authorLabel)
-            make.centerX.equalTo(reviewBtn)
-        }
         
         self.addSubview(summaryTitleLabel)
         summaryTitleLabel.snp_makeConstraints {

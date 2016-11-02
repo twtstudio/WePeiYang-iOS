@@ -155,7 +155,7 @@ class RecommendBookView: UIView {
     }
     
     func pushDetailViewController() {
-        print("fafa")
+//        print("fafa")
         delegate?.pushDetailViewController("\(self.tag)")
     }
 }

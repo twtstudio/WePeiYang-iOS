@@ -42,7 +42,7 @@ class RateView: UIView, UITextViewDelegate {
         //Do The Uploading Shit
         print(content)
         print(rating)
-        User.sharedInstance.commitReview(<#T##review: Review##Review#>, success: <#T##Void -> Void#>)
+        //User.sharedInstance.commitReview(<#T##review: Review##Review#>, success: <#T##Void -> Void#>)
     }
     
     
