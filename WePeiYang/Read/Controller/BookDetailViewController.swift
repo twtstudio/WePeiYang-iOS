@@ -14,12 +14,14 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     let detailTableView = UITableView()
     var currentBook: Book? = nil
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         detailTableView.delegate = self
         detailTableView.dataSource = self
-        
+
         self.view.addSubview(detailTableView)
         self.detailTableView.snp_makeConstraints {
             make in
@@ -34,7 +36,8 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        self.jz_navigationBarBackgroundAlpha = 0
+        self.jz_navigationBarBackgroundHidden = true
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,9 +46,6 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 0
-        }
         switch section {
         case 0:
             return 0
@@ -78,7 +78,8 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 if let cell = tableView.dequeueReusableCellWithIdentifier("StatusInfoCell") {
                     return cell
                 }
-                //let cell = StatusInfoCell(status: self.currentBook.status., library: <#T##String#>, location: <#T##String#>)
+                let cell = StatusInfoCell(status: self.currentBook!.status[indexPath.row].statusInLibrary , barcode: self.currentBook!.status[indexPath.row].barcode , location: self.currentBook!.status[indexPath.row].library, duetime: self.currentBook!.status[indexPath.row].dueTime)
+                return cell
             }
 
         } else if indexPath.section == 2 {
@@ -91,8 +92,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 return cell
             }
         }
-        
-        return UITableViewCell()
+            return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -128,7 +128,10 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         switch section {
         case 0: return {
             guard self.currentBook != nil else {
-                return UIView()
+                let foo = UIImageView(image: UIImage(named: "bookDetailPlaceholder"))
+                foo.frame = CGRect(x: 0, y: -64, width: self.view.frame.width, height: self.view.frame.height)
+                foo.contentMode = .ScaleAspectFit
+                return foo
             }
             let headerView = CoverView(book: self.currentBook!)
             //改变 statusBar 颜色
@@ -257,6 +260,8 @@ extension BookDetailViewController {
         Librarian.getBookDetail(ofID: bookID) {
             book in
             self.currentBook = book
+            self.navigationController?.navigationBarHidden = false
+            self.detailTableView.reloadData()
         }
     }
     

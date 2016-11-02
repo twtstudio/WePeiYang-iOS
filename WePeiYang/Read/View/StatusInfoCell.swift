@@ -17,13 +17,13 @@ class StatusInfoCell: UITableViewCell {
     }
     
     
-    convenience init(status: Bool, library: String, location: String) {
+    convenience init(status: String, barcode: String, location: String, duetime: String) {
         self.init()
         
         let barcodeLabel:UILabel = {
             let barcodeLabel = UILabel()
-            barcodeLabel.text = "索书号"
-            barcodeLabel.textColor = UIColor.blackColor()
+            barcodeLabel.text = barcode
+            barcodeLabel.textColor = UIColor.darkGrayColor()
             barcodeLabel.textAlignment = .Center
             barcodeLabel.font = UIFont.systemFontOfSize(13)
             barcodeLabel.sizeToFit()
@@ -32,8 +32,8 @@ class StatusInfoCell: UITableViewCell {
         
         let locationLabel:UILabel = {
             let locationLabel = UILabel()
-            locationLabel.text = "所在馆藏地点"
-            locationLabel.textColor = UIColor.blackColor()
+            locationLabel.text = location
+            locationLabel.textColor = UIColor.darkGrayColor()
             locationLabel.textAlignment = .Center
             locationLabel.font = UIFont.systemFontOfSize(13)
             locationLabel.sizeToFit()
@@ -43,7 +43,7 @@ class StatusInfoCell: UITableViewCell {
         let statusLabel:UILabel = {
             let statusLabel = UILabel()
             
-            if status == true {
+            if status == "在馆" {
                 statusLabel.text = "在馆"
                 statusLabel.textColor = UIColor.redColor()
             } else {
@@ -79,15 +79,15 @@ class StatusInfoCell: UITableViewCell {
             make.centerY.equalTo(barcodeLabel.snp_centerY)
         }
         
-        if status == false {
-            let dueTimeForMatter = NSDateFormatter()
-            dueTimeForMatter.dateFormat = "yyyy-MM-dd HH:mm"
+        if status == "借出" {
+           // let dueTimeForMatter = NSDateFormatter()
+           // dueTimeForMatter.dateFormat = "yyyy-MM-dd HH:mm"
             
             let dueTimeLabel:UILabel = {
                 let dueTimeLabel = UILabel()
                 // dueTimeLabel.text = "应还时间：\(dueTimeForMatter.stringFromDate(duetime))"
-                dueTimeLabel.text = "应还时间：2016-10-28 04:09"
-                dueTimeLabel.textColor = UIColor.darkGrayColor()
+                dueTimeLabel.text = "应还时间：\(duetime)"
+                dueTimeLabel.textColor = UIColor.grayColor()
                 dueTimeLabel.textAlignment = .Center
                 dueTimeLabel.font = UIFont.systemFontOfSize(10)
                 return dueTimeLabel

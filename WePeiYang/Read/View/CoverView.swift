@@ -93,14 +93,15 @@ class CoverView: UIView {
         
         summaryLabel = {
             //TODO: DO OTHER UI MODIFICATIONS & Click to read more
-            $0.numberOfLines = 4
+            $0.numberOfLines = 7
             $0.font = UIFont.systemFontOfSize(15)
             return $0
         }(UILabel(text: book.summary, color: .grayColor()))
         
         tapToSeeMoreBtn = {
             $0.addTarget(self, action: #selector(self.tapToSeeMore), forControlEvents: .TouchUpInside)
-            $0.titleLabel?.textColor = readRed
+            $0.setTitleColor(readRed, forState: .Normal)
+            $0.titleLabel!.font = UIFont.systemFontOfSize(15)
             return $0
         }(UIButton(title: "点击查看更多"))
         
@@ -150,8 +151,8 @@ class CoverView: UIView {
             let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIViewController.currentViewController().view.frame.size.width, height: UIViewController.currentViewController().navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
             UIViewController.currentViewController().navigationController?.navigationBar.tintColor = .whiteColor()
             bgView.backgroundColor = self.computedBGView.backgroundColor
-            log.any(self.computedBGView.backgroundColor)/
-            log.any(bgView.backgroundColor)/
+//            log.any(self.computedBGView.backgroundColor)/
+//            log.any(bgView.backgroundColor)/
             UIViewController.currentViewController().view.addSubview(bgView)
         }
         
@@ -190,11 +191,20 @@ class CoverView: UIView {
             make.top.equalTo(titleLabel.snp_bottom).offset(14)
         }
         
+        self.addSubview(scoreLabel)
+        scoreLabel.snp_makeConstraints {
+            make in
+            make.centerY.equalTo(authorLabel)
+            make.right.equalTo(self).offset(-20)
+        }
+        
         self.addSubview(publisherLabel)
         publisherLabel.snp_makeConstraints {
             make in
             make.left.equalTo(titleLabel)
             make.top.equalTo(authorLabel.snp_bottom).offset(4)
+            make.right.lessThanOrEqualTo(scoreLabel.snp_left).offset(-10)
+            
         }
         
         self.addSubview(yearLabel)
@@ -222,12 +232,6 @@ class CoverView: UIView {
             make.height.equalTo(36)
         }
         
-        self.addSubview(scoreLabel)
-        scoreLabel.snp_makeConstraints {
-            make in
-            make.centerY.equalTo(authorLabel)
-            make.centerX.equalTo(reviewBtn)
-        }
         
         self.addSubview(summaryTitleLabel)
         summaryTitleLabel.snp_makeConstraints {
@@ -255,7 +259,7 @@ class CoverView: UIView {
             make in
             make.width.equalTo(UIScreen.mainScreen().bounds.width)
             //make.height.equalTo(UIScreen.mainScreen().bounds.height + 100)
-            make.bottom.equalTo(summaryLabel.snp_bottom).offset(18)
+            make.bottom.equalTo(tapToSeeMoreBtn.snp_bottom).offset(18)
         }
     }
 }
@@ -307,51 +311,81 @@ extension CoverView: UIWebViewDelegate {
         
     }
     
-    func assignGestures(to whichView: UIView) {
-        whichView.userInteractionEnabled = true
-        //
-        //        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(self.expandView))
-        //        pinchGestureRecognizer.scale = 1.2
-        //        whichView.addGestureRecognizer(pinchGestureRecognizer)
-        //
-        //        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.dismissAnimatedAndRemoveDefaults))
-        //        swipeUp.direction = .Up
-        //
-        //        whichView.addGestureRecognizer(swipeUp)
-        
-    }
     
     func favourite() {
         //Call `favourite` method of a user
     }
     
     func tapToSeeMore() {
-        let summaryDetailView = UIWebView()
-        summaryDetailView.delegate = self
-        summaryDetailView.userInteractionEnabled = true
-        summaryDetailView.loadHTMLString(book.summary, baseURL: nil)
-        UIViewController.currentViewController().navigationController?.view.addSubview(summaryDetailView)
-        summaryDetailView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        
+        let blurEffect = UIBlurEffect(style: .Light)
+        let frostView = UIVisualEffectView(effect: blurEffect)
+        
+        let doneBtn: UIButton = {
+            $0.addTarget(self, action: #selector(self.tapAgainToDismiss), forControlEvents: .TouchUpInside)
+            $0.setTitleColor(readRed, forState: .Normal)
+            return $0
+        }(UIButton(title: "完成"))
+        
+        frostView.addSubview(doneBtn)
+        doneBtn.snp_makeConstraints {
+            make in
+            make.left.equalTo(frostView).offset(20)
+            make.top.equalTo(frostView).offset(30)
+        }
+        
+        
+        
+        UIViewController.currentViewController().navigationController?.view.addSubview(frostView)
+        frostView.snp_makeConstraints {
+            make in
+            make.left.equalTo(UIViewController.currentViewController().view)
+            make.right.equalTo(UIViewController.currentViewController().view)
+            make.top.equalTo(UIViewController.currentViewController().view)
+            make.bottom.equalTo(UIViewController.currentViewController().view)
+        }
+        
+        let summaryDetailView = UIWebView(htmlString: book.summary)
+        frostView.addSubview(summaryDetailView)
+        //summaryDetailView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        summaryDetailView.snp_makeConstraints {
+            make in
+            make.top.equalTo(doneBtn.snp_bottom).offset(20)
+            make.left.equalTo(frostView).offset(20)
+            make.right.equalTo(frostView).offset(-20)
+            make.bottom.equalTo(frostView)
+        }
         summaryDetailView.alpha = 0
         UIView.beginAnimations("summaryDetailViewFadeIn", context: nil)
         UIView.setAnimationDuration(0.6)
         summaryDetailView.alpha = 1
         UIView.commitAnimations()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapAgainToDismiss))
-        summaryDetailView.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapAgainToDismiss))
+//        summaryDetailView.addGestureRecognizer(tap)
     }
     
     func tapAgainToDismiss() {
         for fooView in (UIViewController.currentViewController().navigationController?.view.subviews)! {
-            if fooView.isKindOfClass(UIWebView) {
-                UIView.beginAnimations("summaryDetailViewFadeIn", context: nil)
-                UIView.setAnimationDuration(0.6)
-                fooView.alpha = 0
-                fooView.removeFromSuperview()
-                UIView.commitAnimations()
+            if fooView.isKindOfClass(UIVisualEffectView) {
+                UIView.animateWithDuration(0.7, animations: {
+                    fooView.alpha = 0
+                    }, completion: { (_) in
+                        fooView.removeFromSuperview()
+                })
             }
         }
-        log.word("fuckkkk")/
+    }
+}
+
+
+private extension UIWebView {
+    convenience init(htmlString: String) {
+        self.init()
+        backgroundColor = .clearColor()
+        opaque = false
+        userInteractionEnabled = true
+        scrollView.scrollEnabled = true
+        loadHTMLString(htmlString, baseURL: nil)
     }
 }

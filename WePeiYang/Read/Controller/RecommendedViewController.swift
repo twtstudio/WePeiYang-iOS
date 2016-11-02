@@ -23,6 +23,11 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     //var reviewList = [MyReview]()
     
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBarHidden = false
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -228,7 +233,8 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     //Table View Delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        let detailVC = BookDetailViewController(bookID: Recommender.sharedInstance.reviewList[indexPath.row].bookID)
+        self.navigationController?.showViewController(detailVC, sender: nil)
         print("Push Detail View Controller, bookID: \(Recommender.sharedInstance.reviewList[indexPath.row].bookID)")
     }
     
@@ -251,6 +257,9 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func pushDetailViewController(bookID: String) {
+        let detailVC = BookDetailViewController(bookID: bookID)
+        self.navigationController?.showViewController(detailVC, sender: nil)
+        self.navigationController?.navigationBarHidden = true
         print("Push Detail View Controller, bookID: \(bookID)")
     }
     
@@ -261,6 +270,7 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             let webController = WebAppViewController(address: Recommender.sharedInstance.bannerList[pageControl.currentPage].url)
             self.navigationController?.pushViewController(webController, animated: true)
+            self.jz_navigationBarBackgroundAlpha = 0
         }
     }
     
