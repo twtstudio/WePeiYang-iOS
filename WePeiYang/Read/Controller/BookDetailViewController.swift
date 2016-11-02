@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BookDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let detailTableView = UITableView()
-    
+    var currentBook: Book!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +20,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         detailTableView.delegate = self
         detailTableView.dataSource = self
         
-        detailTableView.frame = view.frame
-        
         self.view.addSubview(detailTableView)
+        self.detailTableView.snp_makeConstraints {
+            make in
+            make.left.bottom.right.equalTo(self.view)
+            make.top.equalTo(self.view)
+        }
         
     }
     
@@ -35,56 +38,102 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("DetailInfoCell")
-        if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "DetailInfoCell")
-        }
-        
-        if indexPath.section == 0{
-            let statusInfoCell = StatusInfoCell(status: false, library: "beiyangyuan", location: "beiyangyuan")
-            cell = statusInfoCell
-        } else if indexPath.section == 1 {
-            //书评
-            cell?.textLabel?.text = "用户名：小韦"
-            cell?.detailTextLabel?.text = "谢邀。 这本书还行吧，一般作家的水平。"
-        }
-        
-        return cell!
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 47
+            return 0
         }
-        return 30
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
-        switch indexPath.section {
+        switch section {
         case 0:
-            return 70
+            return 0
         case 1:
-            return 100
+            return self.currentBook.status.count
+        case 2:
+            return self.currentBook.reviews.count
         default:
             return 0
         }
     }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        var cell = tableView.dequeueReusableCellWithIdentifier("DetailInfoCell")
+//        if cell == nil {
+//            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "DetailInfoCell")
+//        }
+        
+        if indexPath.section == 1{
+            if self.currentBook.status.count != 0 {
+                if let cell = tableView.dequeueReusableCellWithIdentifier("StatusInfoCell") {
+                    return cell
+                }
+                //let cell = StatusInfoCell(status: self.currentBook.status., library: <#T##String#>, location: <#T##String#>)
+            }
+
+        } else if indexPath.section == 2 {
+            //书评
+            if self.currentBook.reviews.count != 0 {
+                if let cell = tableView.dequeueReusableCellWithIdentifier("ReviewCell") {
+                    return cell
+                }
+                let cell = ReviewCell(model: self.currentBook.reviews[indexPath.row])
+                return cell
+            }
+        }
+        
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        //        if section == 0 {
+        //            return 47
+        //        }
+        //        return 30
+        switch section {
+        case 0:
+            return UIScreen.mainScreen().bounds.height + 100
+        case 1:
+            return 47
+        case 2:
+            return 30
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) ->CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 0
+        case 1:
+            return 50
+        default:
+            return 100
+        }
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if section == 0 {
+        switch section {
+        case 0: return {
+            let headerView = CoverView(book: self.currentBook)
+            //NavigationBar 的背景，使用了View
+            self.navigationController!.jz_navigationBarBackgroundAlpha = 0;
+            let bgView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.navigationController!.navigationBar.frame.size.height+UIApplication.sharedApplication().statusBarFrame.size.height))
+            
+            bgView.backgroundColor = headerView.computedBGView.backgroundColor
+            self.view.addSubview(bgView)
+            //改变 statusBar 颜色
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+            return headerView
+            }()
+        case 1: return {
             let headerView = UIView()
             headerView.backgroundColor = UIColor(red: 247/255.0, green:247/255.0, blue:247/255.0, alpha:1.0)
-            
+            let viewOfLabels = UIView()
+            viewOfLabels.backgroundColor = .whiteColor()
             
             let headerLabel = UILabel()
             headerLabel.text = "在馆信息"
@@ -103,27 +152,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             barcode.font = UIFont(name: "Futura", size: 14)
             barcode.textAlignment = .Center
             barcode.textColor = UIColor.lightGrayColor()
-            barcode.backgroundColor = UIColor.whiteColor()
-            headerView.addSubview(barcode)
-            barcode.snp_makeConstraints{
+            //            headerView.addSubview(barcode)
+            //            barcode.snp_makeConstraints{
+            //                make in
+            //                make.left.equalTo(headerView)
+            //                make.right.equalTo(headerView).offset((-self.view.frame.size.width / 3) * 2)
+            //                make.bottom.equalTo(headerView)
+            //            }
+            viewOfLabels.addSubview(barcode)
+            barcode.snp_makeConstraints {
                 make in
-                make.left.equalTo(headerView)
-                make.right.equalTo(headerView).offset((-self.view.frame.size.width / 3) * 2)
-                make.bottom.equalTo(headerView)
+                make.top.equalTo(viewOfLabels.snp_top)
+                make.bottom.equalTo(viewOfLabels.snp_bottom)
+                make.left.equalTo(viewOfLabels).offset(16)
             }
-    
+            
             let locationLabel = UILabel()
             locationLabel.text = "所在馆藏地点"
             locationLabel.textAlignment = .Center
             locationLabel.font = UIFont(name: "Futura", size: 14)
             locationLabel.textColor = UIColor.lightGrayColor()
             locationLabel.backgroundColor = UIColor.whiteColor()
-            headerView.addSubview(locationLabel)
-            locationLabel.snp_makeConstraints{
+            //            headerView.addSubview(locationLabel)
+            //            locationLabel.snp_makeConstraints{
+            //                make in
+            //                make.left.equalTo(barcode.snp_right)
+            //                make.right.equalTo(headerView).offset(-self.view.frame.size.width / 3)
+            //                make.centerY.equalTo(barcode.snp_centerY)
+            //            }
+            viewOfLabels.addSubview(locationLabel)
+            locationLabel.snp_makeConstraints {
                 make in
-                make.left.equalTo(barcode.snp_right)
-                make.right.equalTo(headerView).offset(-self.view.frame.size.width / 3)
-                make.centerY.equalTo(barcode.snp_centerY)
+                make.top.equalTo(viewOfLabels.snp_top)
+                make.bottom.equalTo(viewOfLabels.snp_bottom)
+                make.centerX.equalTo(viewOfLabels.snp_centerX)
             }
             
             let statusLabel = UILabel()
@@ -132,18 +194,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             statusLabel.font = UIFont(name: "Futura", size: 14)
             statusLabel.textColor = UIColor.lightGrayColor()
             statusLabel.backgroundColor = UIColor.whiteColor()
-            headerView.addSubview(statusLabel)
-            statusLabel.snp_makeConstraints{
+            //            headerView.addSubview(statusLabel)
+            //            statusLabel.snp_makeConstraints{
+            //                make in
+            //                make.left.equalTo(locationLabel.snp_right)
+            //                make.right.equalTo(headerView)
+            //                make.centerY.equalTo(barcode.snp_centerY)
+            //            }
+            viewOfLabels.addSubview(statusLabel)
+            statusLabel.snp_makeConstraints {
                 make in
-                make.left.equalTo(locationLabel.snp_right)
-                make.right.equalTo(headerView)
-                make.centerY.equalTo(barcode.snp_centerY)
+                make.top.equalTo(viewOfLabels.snp_top)
+                make.bottom.equalTo(viewOfLabels.snp_bottom)
+                make.right.equalTo(viewOfLabels.snp_right).offset(-16)
+            }
+            
+            headerView.addSubview(viewOfLabels)
+            viewOfLabels.snp_makeConstraints {
+                make in
+                make.left.right.equalTo(headerView)
+                make.top.equalTo(headerLabel.snp_bottom).offset(8)
+                
             }
             
             return headerView
             
-        } else {
-            let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 50))
+            }()
+        case 2: return {
+            let headerView = UIView()
             headerView.backgroundColor = UIColor(red: 247/255.0, green:247/255.0, blue:247/255.0, alpha:1.0)
             
             let headerLabel2 = UILabel()
@@ -157,9 +235,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 make.top.equalTo(headerView).offset(5)
             }
             return headerView
+            }()
+        default:
+            return nil
         }
-        
     }
-  
     
+    
+}
+
+extension BookDetailViewController {
+    convenience init(bookID: String) {
+        self.init()
+        Librarian.getBookDetail(ofID: bookID) {
+            book in
+            self.currentBook = book
+        }
+    }
 }
