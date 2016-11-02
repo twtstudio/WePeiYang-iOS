@@ -85,7 +85,7 @@ class User: NSObject {
 //                    print("error: \(error)")
 //            })
             let manager = AFHTTPSessionManager()
-            manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wvdGFrb29jdG9wdXMuY29tXC95dWVwZWl5YW5nXC9wdWJsaWNcL2FwaVwvYXV0aFwvdG9rZW5cL2dldCIsImlhdCI6MTQ3NzY2MjA4MywiZXhwIjoxNDc4MjY2ODgzLCJuYmYiOjE0Nzc2NjIwODMsImp0aSI6IjUzNTY5MTQ2MDhhOWE4YTBlYjdkYzJlNjllNWY4NWRkIn0.AS-dEMVQ909-L02f6syeUrsYiWWtoA_apOPemhZoOaQ}", forHTTPHeaderField: "Authorization")
+            manager.requestSerializer.setValue("Bearer {eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiaXNzIjoiaHR0cDpcL1wveXVlcGVpeWFuZy5hcHA6ODAwMFwvYXBpXC9hdXRoXC90b2tlblwvZ2V0IiwiaWF0IjoxNDc3NzM2NDQwLCJleHAiOjE0NzgzNDEyNDAsIm5iZiI6MTQ3NzczNjQ0MCwianRpIjoiOWZkZDhmOTM0OTc2MjJmYWE4M2I5N2M2MDI3ZDJjYWIifQ.f_1aFjOpZ0BEbmzlYWHS7ePHtvyWo60zBZbitYYXiss}", forHTTPHeaderField: "Authorization")
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.reviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
@@ -125,6 +125,7 @@ class User: NSObject {
     func getBookShelf(success: Void -> Void) {
         getToken({ token in
             let manager = AFHTTPSessionManager()
+            //manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             manager.GET(self.bookshelf_url, parameters: nil, progress:  nil,
                 success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
