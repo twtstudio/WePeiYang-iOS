@@ -9,18 +9,18 @@
 import Foundation
 
 class Review {
-    let reviewID: String
-    let bookID: String
+    let reviewID: Int
+    let bookID: Int
     let bookName: String
     let userName: String
     let avatarURL: String
     let rating: Double
-    let like: String
+    let like: Int
     let content: String
     let updateTime: String
     let liked: Bool
     
-    init(reviewID: String, bookID: String, bookName: String, userName: String, avatarURL: String, rating: Double, like: String, content: String, updateTime: String, liked: Bool) {
+    init(reviewID: Int, bookID: Int, bookName: String, userName: String, avatarURL: String, rating: Double, like: Int, content: String, updateTime: String, liked: Bool) {
         self.reviewID = reviewID
         self.bookID = bookID
         self.bookName = bookName

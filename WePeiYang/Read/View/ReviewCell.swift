@@ -37,9 +37,9 @@ class ReviewCell: UITableViewCell {
         self.username.text = model.userName
         
         // 用like的tag存储点赞个数
-        like.tag = Int(model.like)!
+        like.tag = model.like
         self.like.text = String(format: "%02d", self.like.tag)
-        contentView.tag = Int(model.reviewID)!
+        contentView.tag = model.reviewID
         heartView.tag = model.liked ? 1 : 0
         
         // imgView tag

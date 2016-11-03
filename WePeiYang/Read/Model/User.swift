@@ -41,6 +41,7 @@ class User: NSObject {
 
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.reviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+                print(responseObject)
                 guard let dict = responseObject as? NSDictionary where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<NSDictionary>
                     else {
@@ -49,13 +50,13 @@ class User: NSObject {
                 }
                 // print(dict)
                 for dic in data {
-                    guard let reviewID = dic["review_id"] as? String,
-                        let bookID = dic["book_id"] as? String,
+                    guard let reviewID = dic["review_id"] as? Int,
+                        let bookID = dic["book_id"] as? Int,
                         let title = dic["title"] as? String,
                         let username = dic["user_name"] as? String,
                         let avatar = dic["avatar"] as? String,
-                        let score = dic["scores"] as? Double,
-                        let like = dic["like_count"] as? String,
+                        let score = dic["score"] as? Double,
+                        let like = dic["like_count"] as? Int,
                         let content = dic["content"] as? String,
                         let updateTime = dic["updated_at"] as? String,
                         let liked = dic["liked"] as? Bool
@@ -86,6 +87,7 @@ class User: NSObject {
             manager.GET(ReadAPI.bookshelfURL, parameters: nil, progress:  nil,
                 success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
                     // TODO: 判断
+                    print(responseObject)
                     guard let dict = responseObject as? NSDictionary where dict["error_code"] as! Int == -1,
                         let data = dict["data"] as? Array<NSDictionary>
                         else {
@@ -94,7 +96,7 @@ class User: NSObject {
                         }
                         self.bookShelf.removeAll()
                         for dic in data{
-                            guard let book_id = dic["book_id"] as? String,
+                            guard let book_id = dic["book_id"] as? Int,
                             title = dic["title"] as? String,
                             author = dic["author"] as? String
                             else {
@@ -141,6 +143,7 @@ class User: NSObject {
     }
     
     func commitReview(with content: String?, bookid: String, rating: Double, success: Void -> Void) {
+        print("committing")
         getToken { token in
             
             if let content = content {
@@ -148,6 +151,7 @@ class User: NSObject {
                 let manager = AFHTTPSessionManager()
                 manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
                 manager.POST(ReadAPI.commitReviewURL, parameters: dic, progress: nil, success: { (task, responseObject) in
+                    print(responseObject)
                     guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1
                         else {
                             MsgDisplay.showErrorMsg("评论提交失败")
@@ -228,6 +232,7 @@ class User: NSObject {
     
     func getToken(success: String -> Void) {
 //        NSUserDefaults.standardUserDefaults().setObject("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMSIsImlzcyI6Imh0dHA6XC9cL3Rha29vY3RvcHVzLmNvbVwveXVlcGVpeWFuZ1wvcHVibGljXC9hcGlcL2F1dGhcL3Rva2VuXC9nZXQiLCJpYXQiOjE0NzgwNjU1NzcsImV4cCI6MTQ3ODY3MDM3NywibmJmIjoxNDc4MDY1NTc3LCJqdGkiOiIwMzg3OGQxZWYxMWE4NWUyNjgyMjAwNWUxMTM5NzhhZCJ9.ukkYKKW5RX2Bs6ewrT-M7E8UUQ2IHP9j4FBuRRqjdsY", forKey: "readToken")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
         guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
             MsgDisplay.showErrorMsg("你需要登录才能访问")
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
