@@ -63,8 +63,8 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        //UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        //self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

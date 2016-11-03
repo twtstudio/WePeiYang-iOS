@@ -18,7 +18,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     private let toolsData: [ToolCell] = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
-        (title: "图书馆", image: UIImage(named: "libBtn")!),
+        //(title: "图书馆", image: UIImage(named: "libBtn")!),
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
@@ -105,17 +105,17 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.showGPAController()
         case 1:
             self.showClasstableController()
+//        case 2:
+//            self.showLibraryController()
         case 2:
-            self.showLibraryController()
-        case 3:
             self.showLostFoundController()
-        case 4:
+        case 3:
             self.showBicycleServiceController()
-        case 5:
+        case 4:
             self.showPartyServiceController()
-        case 6:
+        case 5:
             self.showMicroservicesController()
-        case 7:
+        case 6:
             self.showReadController()
         default:
             return

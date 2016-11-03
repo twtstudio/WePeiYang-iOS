@@ -79,7 +79,7 @@ class ReviewListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = BookDetailViewController(bookID: reviewArr[indexPath.row].bookID)
+        let vc = BookDetailViewController(bookID: "\(reviewArr[indexPath.row].bookID)")
         self.navigationController?.pushViewController(vc, animated: true)
         print("Push Detail View Controller, bookID: \(reviewArr[indexPath.row].bookID)")
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)

@@ -11,9 +11,9 @@ import Foundation
 struct MyBook {
     let title: String
     let author: String
-    let id: String
+    let id: Int
     
-    init(title: String, author: String, id: String){
+    init(title: String, author: String, id: Int){
         self.title = title
         self.author = author
         self.id = id
