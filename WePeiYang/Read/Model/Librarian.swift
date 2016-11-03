@@ -33,13 +33,14 @@ class Librarian {
 //            log.word(token)/
             let manager = AFHTTPSessionManager()
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
-            let searchURL = ReadAPI.bookSearchURL + str
-//            log.word(searchURL)/
-            manager.GET(searchURL, parameters: nil, progress: { (_) in
-                MsgDisplay.showLoading()
-                }, success: { (task, responseObject) in
-                    
-                    MsgDisplay.dismiss()
+            var searchURL = ReadAPI.bookSearchURL + str
+            searchURL = searchURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+            log.word(searchURL)/
+//            manager.GET(searchURL, parameters: nil, progress: { (_) in
+//                MsgDisplay.showLoading()
+//                }, success: { (task, responseObject) in
+            MsgDisplay.showLoading()
+            manager.GET(searchURL, parameters: nil, progress: nil, success: { (task, responseObject) in
                     guard responseObject != nil else {
                         MsgDisplay.showErrorMsg("哎呀，出错啦")
                         //log.word("fuck1")/
@@ -59,8 +60,7 @@ class Librarian {
                     }
                     
                     guard let fooBooksResults = responseObject?.objectForKey("data") as? Array<NSDictionary> else {
-                        MsgDisplay.showErrorMsg("服务器开小差啦")
-                        //log.word("fuck3")/
+                        completion([SearchResult]())
                         return
                     }
                     
@@ -91,11 +91,12 @@ class Librarian {
                         
                         return SearchResult(title: title, coverURL: coverURL, author: author, publisher: publisher, year: year, rating: rating, bookID: bookID, ISBN: ISBN)
                     })
+                    MsgDisplay.dismiss()
                     completion(foo)
                     
             }) { (_, err) in
                 MsgDisplay.showErrorMsg("网络不好，请稍后重试")
-                //log.any(err)/
+                log.any(err)/
             }
         }
         
@@ -104,8 +105,7 @@ class Librarian {
     
     static func getBookDetail(ofID id: String, and completion: Book -> ()) {
         
-        User.sharedInstance.getToken {
-            token in
+        User.sharedInstance.getToken { token in
             let manager = AFHTTPSessionManager()
             //manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
@@ -217,7 +217,7 @@ class Librarian {
                                 let updateTime = dict["updated_at"] as? String,
                                 //TODO: liked as Bool may fail
                                 let liked = dict["liked"] as? Bool else {
-                                    MsgDisplay.showErrorMsg("未知错误5")
+                                    MsgDisplay.showErrorMsg("未知错误")
                                     log.word("Unknown Error5")/
                                     return nil
                             }

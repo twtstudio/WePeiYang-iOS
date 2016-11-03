@@ -11,7 +11,7 @@
 
 
 class RateView: UIView, UITextViewDelegate {
-    
+    var id: String = ""
     
     
     //var rating: Double
@@ -42,7 +42,9 @@ class RateView: UIView, UITextViewDelegate {
         //Do The Uploading Shit
         print(content)
         print(rating)
-        //User.sharedInstance.commitReview(<#T##review: Review##Review#>, success: <#T##Void -> Void#>)
+        User.sharedInstance.commitReview(with: content, bookid: id, rating: rating) {
+            self.dismissAnimated()
+        }
     }
     
     
@@ -63,9 +65,9 @@ class RateView: UIView, UITextViewDelegate {
 }
 
 extension RateView {
-    convenience init(rating: Double) {
+    convenience init(rating: Double, id: String) {
         self.init()
-        
+        self.id = id
         let blurEffect = UIBlurEffect(style: .Light)
         let frostView = UIVisualEffectView(effect: blurEffect)
         

@@ -13,6 +13,8 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let detailTableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height))
     var currentBook: Book? = nil
+
+    var tmpSearchView: Search? = nil
     var dataLoaded: Bool = false
     let placeHolderView = UIImageView(image: UIImage(named: "bookDetailPlaceholder"))
     
@@ -158,10 +160,12 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 //            return 100
 //        }
 //    }
+
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
+
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -305,6 +309,18 @@ extension BookDetailViewController {
         }
     }
     
+    convenience init(bookID: String, tmpSearchView: Search) {
+        self.init()
+        //TODO: FIX THE CRASH WHEN NO DATA WAS FETCHED
+        Librarian.getBookDetail(ofID: bookID) {
+            book in
+            self.currentBook = book
+            self.tmpSearchView = tmpSearchView
+            self.navigationController?.navigationBarHidden = false
+            self.detailTableView.reloadData()
+        }
+    }
+    
     convenience init(book: Book) {
         self.init()
         self.currentBook = book
@@ -319,11 +335,16 @@ extension BookDetailViewController {
         if y > (UIScreen.mainScreen().bounds.height * 0.52) {
             //改变 statusBar 颜色
             UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
-            self.navigationController!.navigationBar.tintColor = nil
+            if let _ = self.navigationController {
+                self.navigationController!.navigationBar.tintColor = nil
+            }
 
         } else {
             UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-            self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+            if let _ = self.navigationController {
+                self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+            }
+            
         }
     }
 

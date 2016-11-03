@@ -14,7 +14,7 @@ class InfoViewController: UITableViewController {
     let review_url = "http://162.243.136.96/review.json"
     let bookshelf_url = "http://162.243.136.96/bookshelf.json"
     var headerArr: [String] = ["我的收藏", "我的点评"]
-    var bookShelf: [Book] = []
+    var bookShelf: [MyBook] = []
     var reviewArr: [Review] = []
 
     override func viewDidAppear(animated: Bool) {
@@ -24,6 +24,14 @@ class InfoViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.frame = CGRect(x: self.tableView.frame.origin.x, y: 108, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height-108)
+        User.sharedInstance.getBookShelf({
+            self.bookShelf = User.sharedInstance.bookShelf
+            self.tableView.reloadData()
+        })
+        User.sharedInstance.getReviewArr({
+            self.reviewArr = User.sharedInstance.reviewArr
+            self.tableView.reloadData()
+        })
 
     }
     
@@ -35,16 +43,6 @@ class InfoViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.separatorStyle = .None
-        
-
-        User.sharedInstance.getBookShelf({
-            self.bookShelf = User.sharedInstance.bookShelf
-            self.tableView.reloadData()
-        })
-        User.sharedInstance.getReviewArr({
-            self.reviewArr = User.sharedInstance.reviewArr
-                    self.tableView.reloadData()
-        })
     }
     
 // MARK: push to viewcontroller
@@ -61,7 +59,6 @@ class InfoViewController: UITableViewController {
             self.navigationController?.pushViewController(bvc, animated: true)
         case 1:
             let rvc = ReviewListViewController()
-            // FIXME: arr
             rvc.reviewArr = self.reviewArr
             self.navigationController?.pushViewController(rvc, animated: true)
             break
@@ -96,12 +93,10 @@ class InfoViewController: UITableViewController {
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
             cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
             print(self.bookShelf[indexPath.row].id)
-            //cell.tag = Int(self.bookShelf[indexPath.row].id)!
             if indexPath.row != 1 {
                 let separator = UIView()
                 separator.backgroundColor = UIColor.init(red: 227/255, green: 227/255, blue: 229/255, alpha: 1)
                 cell.addSubview(separator)
-                
                 separator.snp_makeConstraints { make in
                     make.height.equalTo(1)
                     make.left.equalTo(cell).offset(20)
@@ -112,9 +107,6 @@ class InfoViewController: UITableViewController {
             return cell
         case 1:
             let cell = ReviewCell(model: self.reviewArr[indexPath.row])
-            // TODO: 用户名
-//            cell.username.text = "这里是用户名"
-//            cell.avatar.image = UIImage(named: "avatar")
             if indexPath.row == 1 {
                 cell.separator.removeFromSuperview()
             }
@@ -220,13 +212,14 @@ class InfoViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            print("isbn: \(cell!.tag)")
-//            let vc = ViewController()
-//    self.navigationController?.pushViewController(vc, animated: true)
+            let vc = BookDetailViewController(bookID: self.bookShelf[indexPath.row].id)
+            self.navigationController?.showViewController(vc, sender: nil)
             break
         case 1:
             print("Push Detail View Controller, bookID: \(reviewArr[indexPath.row].bookID)")
+            let vc = BookDetailViewController(bookID: self.reviewArr[indexPath.row].bookID)
+            self.navigationController?.showViewController(vc, sender: nil)
+
         default:
             break
         }
@@ -238,7 +231,15 @@ class InfoViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 35
+        switch section {
+        case 0:
+            if bookShelf.count == 0 {
+                return 70
+            }
+        default:
+            return 70
+        }
+        return 15
     }
     
 }
