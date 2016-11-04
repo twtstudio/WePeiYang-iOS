@@ -179,7 +179,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let vc = BookDetailViewController(bookID: result[indexPath.row].bookID)
+        let vc = BookDetailViewController(bookID: "\(result[indexPath.row].bookID)")
         self.removeFromSuperview()
         UIViewController.currentViewController().navigationController?.showViewController(vc, sender: nil)
     }

@@ -99,7 +99,7 @@ class RecommendCell: UITableViewCell {
 //                }
 //            }
 
-            fooView[i].tag = Int(model[i].id)!
+            fooView[i].tag = model[i].id
             if i == 0 {
                 fooView[i].snp_makeConstraints {
                     make in
@@ -148,9 +148,9 @@ class RecommendCell: UITableViewCell {
 
 class RecommendBookView: UIView {
     var delegate: RecommendBookViewDelegate?
-    convenience init(bookID: String) {
+    convenience init(bookID: Int) {
         self.init()
-        self.tag = Int(bookID)!
+        self.tag = bookID
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.pushDetailViewController)))
     }
     

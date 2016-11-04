@@ -212,12 +212,12 @@ class InfoViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
-            let vc = BookDetailViewController(bookID: self.bookShelf[indexPath.row].id)
+            let vc = BookDetailViewController(bookID: "\(self.bookShelf[indexPath.row].id)")
             self.navigationController?.showViewController(vc, sender: nil)
             break
         case 1:
             print("Push Detail View Controller, bookID: \(reviewArr[indexPath.row].bookID)")
-            let vc = BookDetailViewController(bookID: self.reviewArr[indexPath.row].bookID)
+            let vc = BookDetailViewController(bookID: "\(self.reviewArr[indexPath.row].bookID)")
             self.navigationController?.showViewController(vc, sender: nil)
 
         default:

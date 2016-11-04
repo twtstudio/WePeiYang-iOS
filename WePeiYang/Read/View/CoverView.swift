@@ -288,7 +288,7 @@ private extension UIButton {
 
 extension CoverView: UIWebViewDelegate {
     func presentRateView() {
-        let rateView = RateView(rating: 3.0, id: book.id)
+        let rateView = RateView(rating: 3.0, id: "\(book.id)")
         //self.addSubview(rateView)
         
         
@@ -319,7 +319,7 @@ extension CoverView: UIWebViewDelegate {
     }
     
     func favourite() {
-        User.sharedInstance.addToFavourite(with: self.book.id) {
+        User.sharedInstance.addToFavourite(with: "\(self.book.id)") {
             MsgDisplay.showSuccessMsg("添加成功")
         }
         //Call `favourite` method of a user

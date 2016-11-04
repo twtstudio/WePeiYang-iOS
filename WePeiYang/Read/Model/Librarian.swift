@@ -17,7 +17,7 @@ class Librarian {
         let publisher: String
         let year: String
         let rating: Double
-        let bookID: String
+        let bookID: Int
         let ISBN: String
     }
     
@@ -41,8 +41,9 @@ class Librarian {
 //                }, success: { (task, responseObject) in
             MsgDisplay.showLoading()
             manager.GET(searchURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+                print(responseObject)
                     guard responseObject != nil else {
-                        MsgDisplay.showErrorMsg("哎呀，出错啦")
+                        MsgDisplay.showErrorMsg("哎呀，    出错啦")
                         //log.word("fuck1")/
                         return
                     }
@@ -71,7 +72,7 @@ class Librarian {
                             let publisher = dict["publisher"] as? String,
                             let year = dict["year"] as? String,
                             //let rating = dict["rating"] as? Double,
-                            let bookID = dict["index"] as? String,
+                            let bookID = dict["index"] as? Int,
                             let ISBN = dict["isbn"] as? String
                             else {
                                 MsgDisplay.showErrorMsg("未知错误2")
@@ -114,7 +115,7 @@ class Librarian {
             manager.GET(bookDetailURL, parameters: nil, progress: { (_) in
                 MsgDisplay.showLoading()
                 }, success: { (task, responseObject) in
-                    
+                    print(responseObject)
                     MsgDisplay.dismiss()
                     guard responseObject != nil else {
                         MsgDisplay.showErrorMsg("哎呀，出错啦")
@@ -148,7 +149,7 @@ class Librarian {
 //                        return
 //                    }
                     
-                    guard let id = fooDetail["id"] as? String,
+                    guard let id = fooDetail["id"] as? Int,
                         let title = fooDetail["title"] as? String,
                         let ISBN = fooDetail["isbn"] as? String,
                         let author = fooDetail["author"] as? String,
@@ -206,13 +207,13 @@ class Librarian {
                     if let reviews = reviewData["data"] as? Array<NSDictionary> {
                         
                         fooReviews = reviews.flatMap({ (dict: NSDictionary) -> Review? in
-                            guard let reviewID = dict["review_id"] as? String,
-                                let bookID = dict["book_id"] as? String,
+                            guard let reviewID = dict["review_id"] as? Int,
+                                let bookID = dict["book_id"] as? Int,
                                 let bookName = dict["title"] as? String,
                                 let userName = dict["user_name"] as? String,
                                 let avatarURL = dict["avatar"] as? String,
-                                let rating = dict["scores"] as? Double,
-                                let like = dict["like_count"] as? String,
+                                let rating = dict["score"] as? Double,
+                                let like = dict["like_count"] as? Int,
                                 let content = dict["content"] as? String,
                                 let updateTime = dict["updated_at"] as? String,
                                 //TODO: liked as Bool may fail

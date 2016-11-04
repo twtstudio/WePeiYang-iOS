@@ -25,14 +25,14 @@ class Recommender {
     }
     
     struct RecommendedBook {
-        var id: String
+        var id: Int
         var title: String
         var author: String
         var cover: String
     }
     
     struct StarUser {
-        var id: String
+        var id: Int
         var name: String
         var avatar: String
         var reviewCount: String
@@ -72,7 +72,8 @@ class Recommender {
             
             var fooBannerList: [Banner] = []
             manager.GET(ReadAPI.bannerURL, parameters: nil, progress: nil, success: { (task, responseObject) in
-                print(responseObject)
+//                print("banner")
+//                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
@@ -115,6 +116,8 @@ class Recommender {
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             var fooRecommendedList: [RecommendedBook] = []
             manager.GET(ReadAPI.recommendedURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+//                print("recommended")
+//                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
@@ -127,7 +130,7 @@ class Recommender {
                 }
                 
                 for dic in data {
-                    guard let id = dic["id"] as? String,
+                    guard let id = dic["id"] as? Int,
                         let title = dic["title"] as? String,
                         let author = dic["author"] as? String,
                         let cover = dic["cover_url"] as? String
@@ -164,6 +167,8 @@ class Recommender {
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             var fooStarList: [StarUser] = []
             manager.GET(ReadAPI.starUserURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+//                print("staruser")
+//                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
@@ -176,7 +181,7 @@ class Recommender {
                 }
                 
                 for dic in data {
-                    guard let id = dic["twtid"] as? String,
+                    guard let id = dic["twtid"] as? Int,
                         let name = dic["twtuname"] as? String,
                         let avatar = dic["avatar"] as? String,
                         let reviewCount = dic["review_count"] as? String
@@ -185,6 +190,7 @@ class Recommender {
                     }
                     fooStarList.append(StarUser(id: id, name: name, avatar: avatar, reviewCount: reviewCount))
                     //self.starList.append(StarUser(id: id, name: name, avatar: avatar, reviewCount: reviewCount))
+                    
                 }
                 self.finishFlag.starUserFlag = true
                 self.starList = fooStarList
@@ -212,6 +218,8 @@ class Recommender {
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             var fooReviewList: [Review] = []
             manager.GET(ReadAPI.hotReviewURL, parameters: nil, progress: nil, success: { (task, responseObject) in
+//                print("hotreview")
+//                print(responseObject)
                 guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1,
                     let data = dict["data"] as? Array<Dictionary<String, AnyObject>>
                     else {
@@ -224,13 +232,13 @@ class Recommender {
                 }
                 
                 for dic in data {
-                    guard let reviewID = dic["review_id"] as? String,
-                        let bookID = dic["book_id"] as? String,
+                    guard let reviewID = dic["review_id"] as? Int,
+                        let bookID = dic["book_id"] as? Int,
                         let title = dic["title"] as? String,
                         let username = dic["user_name"] as? String,
                         let avatar = dic["avatar"] as? String,
-                        let score = dic["scores"] as? Double,
-                        let like = dic["like_count"] as? String,
+                        let score = dic["score"] as? Double,
+                        let like = dic["like_count"] as? Int,
                         let content = dic["content"] as? String,
                         let updateTime = dic["updated_at"] as? String,
                         let liked = dic["liked"] as? Bool
