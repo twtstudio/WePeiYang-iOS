@@ -293,6 +293,13 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func reloadReview() {
+        Librarian.getBookDetail(ofID: "\(currentBook!.id)") {
+            book in
+            self.currentBook?.reviews = book.reviews
+            self.detailTableView.reloadData()
+        }
+    }
     
 }
 

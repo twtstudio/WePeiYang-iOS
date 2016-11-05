@@ -19,7 +19,7 @@ class RateView: UIView, UITextViewDelegate {
         UIView.animateWithDuration(0.7, animations: {
             self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
         }) { (_: Bool) in
-            
+             UIViewController.currentViewController().navigationItem.setHidesBackButton(false, animated: true)
             self.removeFromSuperview()
         }
     }
@@ -44,6 +44,8 @@ class RateView: UIView, UITextViewDelegate {
         print(rating)
         User.sharedInstance.commitReview(with: content, bookid: id, rating: rating) {
             self.dismissAnimated()
+            let vc = UIViewController.currentViewController() as! BookDetailViewController
+            vc.reloadReview()
         }
     }
     
@@ -88,8 +90,8 @@ extension RateView {
         textView.backgroundColor = .clearColor()
         textView.userInteractionEnabled = true
         textView.scrollEnabled = true
-
-        
+        textView.font = UIFont.systemFontOfSize(18)
+        textView.textColor = .grayColor()
         let cancelBtn = UIButton(backgroundImageName: "cancelBtn", desiredSize: CGSize(width: 30, height: 30))
         cancelBtn?.tintColor = readRed
         cancelBtn?.addTarget(self, action: #selector(self.dismissAnimated), forControlEvents: .TouchUpInside)

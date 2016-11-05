@@ -21,7 +21,11 @@ class SearchResultCell: UITableViewCell {
     convenience init(model: Librarian.SearchResult) {
         self.init()
         // FIXME: PlaceHolder
-        cover.setImageWithURL(NSURL(string: model.coverURL)!, placeholderImage: UIImage(named: ""))
+        let fuckUrl = model.coverURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        if let url = NSURL(string: fuckUrl) {
+            cover.setImageWithURL(url, placeholderImage: UIImage(named: "placeHolderImageForBookCover"))
+            print(fuckUrl)
+        }
         title.text = "\(model.title)"
         rate.text = "\(model.rating)分"
         author.text = "著者: \(model.author)"

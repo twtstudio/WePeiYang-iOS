@@ -46,7 +46,8 @@ class CoverView: UIView {
         
         //coverView.setImageWithURL(NSURL(string: book.coverURL))
         titleLabel = {
-            $0.font = UIFont.boldSystemFontOfSize(28)
+            $0.font = UIFont.boldSystemFontOfSize(24)
+            $0.numberOfLines = 1
             return $0
         }(UILabel(text: book.title, color: .blackColor()))
         
@@ -107,8 +108,10 @@ class CoverView: UIView {
         
         //let img = UIImage(named: "cover4")
         
-        let imageURL = NSURL(string: book.coverURL)
-        let imageRequest = NSURLRequest(URL: imageURL!)
+      //  let imageURL = NSURL(string: book.coverURL)
+        let fuckStr = book.coverURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let fuckURL = NSURL(string: fuckStr)
+        let imageRequest = NSURLRequest(URL: fuckURL!)
         
         coverView.setImageWithURLRequest(imageRequest, placeholderImage: nil, success: { (_, _, img) in
             if img.size.height > img.size.width {
@@ -181,6 +184,7 @@ class CoverView: UIView {
         titleLabel.snp_makeConstraints {
             make in
             make.left.equalTo(self).offset(20)
+            make.width.lessThanOrEqualTo(248)
             make.top.equalTo(computedBGView.snp_bottom).offset(20)
         }
         

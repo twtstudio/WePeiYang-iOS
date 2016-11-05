@@ -32,6 +32,7 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
     }
     
     func hideSearchView(status: Bool) {

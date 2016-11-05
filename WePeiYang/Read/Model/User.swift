@@ -115,7 +115,7 @@ class User: NSObject {
     }
 
     
-    func like(method: LikeBtnMethod, reviewID: String) {
+    func like(method: LikeBtnMethod, reviewID: String, success: Void -> Void) {
         switch method {
         case .Like:
             getToken{
@@ -136,6 +136,7 @@ class User: NSObject {
                             review.liked = true
                         }
                     }
+                    success()
                     print("点赞成功")
                     // print(dict["message"])
                 }) { (_, error) in
@@ -241,7 +242,7 @@ class User: NSObject {
     
     func getToken(success: String -> Void) {
 //        NSUserDefaults.standardUserDefaults().setObject("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMSIsImlzcyI6Imh0dHA6XC9cL3Rha29vY3RvcHVzLmNvbVwveXVlcGVpeWFuZ1wvcHVibGljXC9hcGlcL2F1dGhcL3Rva2VuXC9nZXQiLCJpYXQiOjE0NzgwNjU1NzcsImV4cCI6MTQ3ODY3MDM3NywibmJmIjoxNDc4MDY1NTc3LCJqdGkiOiIwMzg3OGQxZWYxMWE4NWUyNjgyMjAwNWUxMTM5NzhhZCJ9.ukkYKKW5RX2Bs6ewrT-M7E8UUQ2IHP9j4FBuRRqjdsY", forKey: "readToken")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
+       // NSUserDefaults.standardUserDefaults().removeObjectForKey("readToken")
         guard let token = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
             MsgDisplay.showErrorMsg("你需要登录才能访问")
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
