@@ -55,6 +55,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         sf.placeholder = "查询书籍在馆记录"
         sf.autocapitalizationType = .None
         sf.clearsOnBeginEditing = true
+        sf.returnKeyType = .Go
         // sf.keyboardAppearance = UIKeyboardAppearance.Dark
         return sf
     }()

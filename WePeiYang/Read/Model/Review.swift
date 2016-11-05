@@ -15,10 +15,10 @@ class Review {
     let userName: String
     let avatarURL: String
     let rating: Double
-    let like: Int
+    var like: Int
     let content: String
     let updateTime: String
-    let liked: Bool
+    var liked: Bool
     
     init(reviewID: Int, bookID: Int, bookName: String, userName: String, avatarURL: String, rating: Double, like: Int, content: String, updateTime: String, liked: Bool) {
         self.reviewID = reviewID

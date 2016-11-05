@@ -232,10 +232,12 @@ class RecommendedViewController: UIViewController, UITableViewDelegate, UITableV
     
     //Table View Delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            let detailVC = BookDetailViewController(bookID: "\(Recommender.sharedInstance.reviewList[indexPath.row].bookID)")
+            self.navigationController?.showViewController(detailVC, sender: nil)
+            print("Push Detail View Controller, bookID: \(Recommender.sharedInstance.reviewList[indexPath.row].bookID)")
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let detailVC = BookDetailViewController(bookID: "\(Recommender.sharedInstance.reviewList[indexPath.row].bookID)")
-        self.navigationController?.showViewController(detailVC, sender: nil)
-        print("Push Detail View Controller, bookID: \(Recommender.sharedInstance.reviewList[indexPath.row].bookID)")
     }
     
     //UIScrollViewDelegate方法，每次滚动结束后调用

@@ -50,7 +50,7 @@ class User: NSObject {
                 }
                 // print(dict)
                 for dic in data {
-                    guard let reviewID = dic["review_id"] as? Int,
+                     guard let reviewID = dic["review_id"] as? Int,
                         let bookID = dic["book_id"] as? Int,
                         let title = dic["title"] as? String,
                         let username = dic["user_name"] as? String,
@@ -128,7 +128,16 @@ class User: NSObject {
                             MsgDisplay.showErrorMsg("点赞失败")
                             return
                     }
-                    print(dict["message"])
+                    
+                    // 为了解决从”我的“界面点赞之后进入我的评论列表不刷新的问题
+                    for review in self.reviewArr {
+                        if "\(review.reviewID)" == reviewID {
+                            review.like += 1
+                            review.liked = true
+                        }
+                    }
+                    print("点赞成功")
+                    // print(dict["message"])
                 }) { (_, error) in
                     //MsgDisplay.showErrorMsg("网络开小差啦")
                     print(error)
