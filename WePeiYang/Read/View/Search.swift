@@ -6,8 +6,9 @@
 //  Copyright © 2016 Haik Aslanyan. All rights reserved.
 //
 
-@objc protocol SearchDelegate {
+protocol SearchDelegate {
     func hideSearchView(status : Bool)
+    func saveResult(result: [Librarian.SearchResult])
 }
 
 import UIKit
@@ -24,6 +25,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     //MARK: Properties
     let label = UILabel()
     var notFoundView:UIView!
+    
     
     let statusView: UIView = {
         let st = UIView.init(frame: UIApplication.sharedApplication().statusBarFrame)
@@ -88,6 +90,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         notFoundView.backgroundColor = UIColor.whiteColor()
         notFoundView.addSubview(self.label)
         self.addSubview(notFoundView)
+        //UIApplication.sharedApplication().keyWindow?.addSubview(notFoundView)
         self.label.sizeToFit()
         self.label.snp_makeConstraints { make in
             make.center.equalTo(notFoundView)
@@ -120,21 +123,25 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         UIView.animateWithDuration(0.2, animations: {
             self.backgroundView.alpha = 0.5
             self.searchView.alpha = 1
-            self.searchField.becomeFirstResponder()
+           // self.searchField.becomeFirstResponder()
         })
     }
     
-    func  dismiss()  {
+    func dismiss()  {
         self.searchField.text = ""
         self.items.removeAll()
         self.tableView.removeFromSuperview()
-        UIView.animateWithDuration(0.2, animations: {
-            self.backgroundView.alpha = 0
-            self.searchView.alpha = 0
+      //  self.notFoundView.removeFromSuperview()
+        // 没有动画
+      //  UIView.animateWithDuration(0.0, animations: {
+          //  self.backgroundView.alpha = 0
+          //  self.searchView.alpha = 0
             self.searchField.resignFirstResponder()
-            }, completion: {(Bool) in
+            self.searchView.removeFromSuperview()
+            self.removeFromSuperview()
+      //      }, completion: {(Bool) in
                 self.delegate?.hideSearchView(true)
-        })
+     //   })
     }
     
     //MARK: 搜索
@@ -142,14 +149,21 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         guard let str = textField.text else {
             return true
         }
+        //self.notFoundView.removeFromSuperview()
         result.removeAll()
         self.tableView.reloadData()
         Librarian.searchBook(withString: str) { searchResult in
             self.result = searchResult
+            self.delegate?.saveResult(self.result)
             if self.result.count == 0 {
                 self.tableView.tableHeaderView = self.notFoundView
                 self.label.text = LabelContent.NotFound.rawValue
+                self.notFoundView.frame = CGRectMake(0, 68, self.frame.width, 50)
+                //self.addSubview(self.notFoundView)
             }
+            self.searchField.resignFirstResponder()
+            //UIApplication.sharedApplication().keyWindow?.addSubview(self.notFoundView)
+
             self.tableView.reloadData()
         }
         
@@ -159,7 +173,8 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         self.result.removeAll()
         self.tableView.reloadData()
-        self.notFoundView.removeFromSuperview()
+        self.notFoundView.frame = CGRectMake(0, 0, 0, 0)
+        label.text = ""
         return true
     }
     
@@ -182,6 +197,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = BookDetailViewController(bookID: "\(result[indexPath.row].bookID)")
         self.removeFromSuperview()
+        //print(self.tableView.contentOffset)
         UIViewController.currentViewController().navigationController?.showViewController(vc, sender: nil)
     }
     

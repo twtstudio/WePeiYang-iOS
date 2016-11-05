@@ -21,6 +21,7 @@
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D343F1DC8DBB600D13DA0 /* MyBook.swift */; };
+		36632E651DCDC539006B872F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36632E641DCDC539006B872F /* SearchViewController.swift */; };
 		36B21D3B1DCA155B00CEA50C /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */; };
 		683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 683072131D76CE1C008C04CB /* UIViewController+Utils.m */; };
 		683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */; };
@@ -303,6 +304,7 @@
 		188842421846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		363D343F1DC8DBB600D13DA0 /* MyBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
+		36632E641DCDC539006B872F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 				B10A9E791DC8468C00A395E9 /* InfoViewController.swift */,
 				B10A9E7A1DC8468C00A395E9 /* ReadViewController.h */,
 				B10A9E7B1DC8468C00A395E9 /* ReadViewController.m */,
+				36632E641DCDC539006B872F /* SearchViewController.swift */,
 				B10A9E7C1DC8468C00A395E9 /* RecommendedViewController.swift */,
 				B10A9E7D1DC8468C00A395E9 /* ReviewListViewController.swift */,
 				B10A9E831DC9889200A395E9 /* BookDetailViewController.swift */,
@@ -1916,6 +1919,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36632E651DCDC539006B872F /* SearchViewController.swift in Sources */,
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
 				68513F741D6F091200E96BEB /* WMScrollView+gesture.m in Sources */,
 				68513F481D6F08FF00E96BEB /* ScoreTableViewCell.swift in Sources */,
