@@ -19,8 +19,9 @@ class RateView: UIView, UITextViewDelegate {
         UIView.animateWithDuration(0.7, animations: {
             self.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
         }) { (_: Bool) in
-            
+            UIViewController.currentViewController().navigationItem.setHidesBackButton(false, animated: true)
             self.removeFromSuperview()
+            
         }
     }
     
@@ -88,6 +89,8 @@ extension RateView {
         textView.backgroundColor = .clearColor()
         textView.userInteractionEnabled = true
         textView.scrollEnabled = true
+        textView.font = UIFont.systemFontOfSize(18)
+        textView.textColor = .grayColor()
 
         
         let cancelBtn = UIButton(backgroundImageName: "cancelBtn", desiredSize: CGSize(width: 30, height: 30))

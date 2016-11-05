@@ -46,7 +46,8 @@ class CoverView: UIView {
         
         //coverView.setImageWithURL(NSURL(string: book.coverURL))
         titleLabel = {
-            $0.font = UIFont.boldSystemFontOfSize(28)
+            $0.numberOfLines = 1
+            $0.font = UIFont.boldSystemFontOfSize(24)
             return $0
         }(UILabel(text: book.title, color: .blackColor()))
         
@@ -181,6 +182,7 @@ class CoverView: UIView {
         titleLabel.snp_makeConstraints {
             make in
             make.left.equalTo(self).offset(20)
+            make.width.lessThanOrEqualTo(248)
             make.top.equalTo(computedBGView.snp_bottom).offset(20)
         }
         

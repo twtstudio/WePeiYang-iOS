@@ -35,7 +35,7 @@ class Recommender {
         var id: Int
         var name: String
         var avatar: String
-        var reviewCount: String
+        var reviewCount: Int
     }
     
     struct FinishFlag {
@@ -184,7 +184,7 @@ class Recommender {
                     guard let id = dic["twtid"] as? Int,
                         let name = dic["twtuname"] as? String,
                         let avatar = dic["avatar"] as? String,
-                        let reviewCount = dic["review_count"] as? String
+                        let reviewCount = dic["review_count"] as? Int
                         else {
                             continue
                     }
