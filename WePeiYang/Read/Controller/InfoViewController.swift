@@ -55,7 +55,7 @@ class InfoViewController: UITableViewController {
         case 0:
             let bvc = BookShelfViewController()
             // TODO: only push once
-            bvc.bookShelf = self.bookShelf
+            // bvc.bookShelf = self.bookShelf
             self.navigationController?.pushViewController(bvc, animated: true)
         case 1:
             let rvc = ReviewListViewController()
@@ -93,7 +93,7 @@ class InfoViewController: UITableViewController {
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
             cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
             print(self.bookShelf[indexPath.row].id)
-            if indexPath.row != 1 {
+            if indexPath.row != self.bookShelf.count - 1 && indexPath.row != 2 - 1 {
                 let separator = UIView()
                 separator.backgroundColor = UIColor.init(red: 227/255, green: 227/255, blue: 229/255, alpha: 1)
                 cell.addSubview(separator)
@@ -236,10 +236,15 @@ class InfoViewController: UITableViewController {
             if bookShelf.count == 0 {
                 return 70
             }
+            return 10;
+        case 1:
+            if reviewArr.count == 0 {
+                return 70
+            }
         default:
-            return 70
+            return 0;
         }
-        return 15
+        return 0;
     }
     
 }

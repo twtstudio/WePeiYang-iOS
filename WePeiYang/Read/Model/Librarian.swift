@@ -72,7 +72,7 @@ class Librarian {
                             let publisher = dict["publisher"] as? String,
                             let year = dict["year"] as? String,
                             //let rating = dict["rating"] as? Double,
-                            let bookID = dict["index"] as? Int,
+                            let bookID = dict["index"] as? String,
                             let ISBN = dict["isbn"] as? String
                             else {
                                 MsgDisplay.showErrorMsg("未知错误2")
@@ -89,8 +89,8 @@ class Librarian {
                         if let foo = dict["rating"] as? Double {
                             rating = foo
                         }
-                        
-                        return SearchResult(title: title, coverURL: coverURL, author: author, publisher: publisher, year: year, rating: rating, bookID: bookID, ISBN: ISBN)
+                        // FIXME: bookID到底是String还是Int
+                        return SearchResult(title: title, coverURL: coverURL, author: author, publisher: publisher, year: year, rating: rating, bookID: Int(bookID)!, ISBN: ISBN)
                     })
                     MsgDisplay.dismiss()
                     completion(foo)
