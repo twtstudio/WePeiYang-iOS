@@ -20,6 +20,7 @@ class SearchResultCell: UITableViewCell {
 
     convenience init(model: Librarian.SearchResult) {
         self.init()
+        // FIXME: PlaceHolder
         cover.setImageWithURL(NSURL(string: model.coverURL)!, placeholderImage: UIImage(named: ""))
         title.text = "\(model.title)"
         rate.text = "\(model.rating)分"
