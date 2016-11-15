@@ -40,6 +40,7 @@ class ReviewCell: UITableViewCell {
         like.tag = model.like
         self.like.text = String(format: "%02d", self.like.tag)
         contentView.tag = model.reviewID
+        // 如果点过赞 记录之
         heartView.tag = model.liked ? 1 : 0
         
         // imgView tag

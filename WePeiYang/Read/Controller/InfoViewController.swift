@@ -91,7 +91,7 @@ class InfoViewController: UITableViewController {
             cell.textLabel?.text = self.bookShelf[indexPath.row].title
             cell.textLabel?.font = UIFont.systemFontOfSize(16)
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-            cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
+            cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author
             print(self.bookShelf[indexPath.row].id)
             if indexPath.row != self.bookShelf.count - 1 && indexPath.row != 2 - 1 {
                 let separator = UIView()
@@ -116,10 +116,28 @@ class InfoViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.section {
+        case 0:
+            // TODO: 删除的时候section也会动
+            if editingStyle == .Delete {
+                User.sharedInstance.delFromFavourite(with: "\(self.bookShelf[indexPath.row].id)") {
+                    self.bookShelf.removeAtIndex(indexPath.row)
+                    User.sharedInstance.bookShelf = self.bookShelf
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    self.tableView.reloadData()
+                }
+            }
+            break
+        default:
+            return
+        }
+    }
+
     
 // MARK: HeaderView delegate
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UITableViewCell(style: .Value1, reuseIdentifier: "Header")
+        let header = UITableViewCell()
         header.contentView.backgroundColor = UIColor.init(red: 254/255, green: 255/255, blue: 255/255, alpha: 1)
         header.textLabel?.textColor = UIColor.init(red: 136/255, green: 137/255, blue: 138/255, alpha: 1)
         header.detailTextLabel?.textColor = UIColor.init(red: 163/255, green: 163/255, blue: 163/255, alpha: 1)
@@ -132,15 +150,6 @@ class InfoViewController: UITableViewController {
         header.tag = section
         let tap = UITapGestureRecognizer(target: self, action: #selector(InfoViewController.sectionTapped(_:)))
         header.addGestureRecognizer(tap)
-//        let separator = UIView()
-//        header.addSubview(separator)
-//        separator.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
-//        separator.snp_makeConstraints { make in
-//            make.height.equalTo(2)
-//            make.left.equalTo(header).offset(0)
-//            make.right.equalTo(header).offset(0)
-//            make.bottom.equalTo(header).offset(0)
-//        }
         let 🌚 = UIView()
         header.addSubview(🌚)
         🌚.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)

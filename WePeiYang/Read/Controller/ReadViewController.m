@@ -87,7 +87,6 @@
     
     SearchViewController *svc = [[SearchViewController alloc] init];
     svc.view.bounds = self.view.bounds;
-    // TODO: 收回键盘
     // [self presentViewController:svc animated:NO completion: nil];
     [self.navigationController pushViewController:svc animated:NO];
 

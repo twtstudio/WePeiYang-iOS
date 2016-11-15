@@ -94,13 +94,9 @@ class BookShelfViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-
             User.sharedInstance.delFromFavourite(with: "\(self.bookShelf[indexPath.row].id)") {
             self.bookShelf.removeAtIndex(indexPath.row)
             User.sharedInstance.bookShelf = self.bookShelf
-//            let vc = self.navigationController?.viewControllers[1] as? ReadViewController
-//            let vcc = vc?.currentViewController as? InfoViewController
-//            vcc!.bookShelf = self.bookShelf
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             self.addNoBookLabel()
             }
@@ -112,7 +108,6 @@ class BookShelfViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO: 跳转到书籍详情页面
         let vc = BookDetailViewController(bookID: "\(self.bookShelf[indexPath.row].id)")
         self.navigationController?.showViewController(vc, sender: nil)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)

@@ -123,7 +123,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         UIView.animateWithDuration(0.2, animations: {
             self.backgroundView.alpha = 0.5
             self.searchView.alpha = 1
-           // self.searchField.becomeFirstResponder()
+        //    self.searchField.becomeFirstResponder()
         })
     }
     
@@ -199,6 +199,7 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         self.removeFromSuperview()
         //print(self.tableView.contentOffset)
         UIViewController.currentViewController().navigationController?.showViewController(vc, sender: nil)
+        UIViewController.currentViewController().navigationController?.pushViewController(vc, animated: true)
     }
     
     

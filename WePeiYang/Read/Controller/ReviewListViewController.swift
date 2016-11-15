@@ -69,9 +69,6 @@ class ReviewListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = ReviewCell(model: self.reviewArr[indexPath.row])
-        // TODO: 头像
-//        cell.username.text = "这里是用户名"
-//        cell.avatar.image = UIImage(named: "avatar")
         if indexPath.row == reviewArr.count - 1 {
             cell.separator.removeFromSuperview()
         }

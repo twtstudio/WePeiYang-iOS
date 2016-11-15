@@ -86,7 +86,6 @@ class User: NSObject {
 
             manager.GET(ReadAPI.bookshelfURL, parameters: nil, progress:  nil,
                 success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) in
-                    // TODO: 判断
                     print(responseObject)
                     guard let dict = responseObject as? NSDictionary where dict["error_code"] as! Int == -1,
                         let data = dict["data"] as? Array<NSDictionary>

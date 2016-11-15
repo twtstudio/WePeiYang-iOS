@@ -32,6 +32,7 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchView.searchField.becomeFirstResponder()
         self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
     }
     
