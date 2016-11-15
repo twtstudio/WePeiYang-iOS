@@ -109,6 +109,7 @@ class Librarian {
         User.sharedInstance.getToken { token in
             let manager = AFHTTPSessionManager()
             //manager.responseSerializer.acceptableContentTypes = Set(arrayLiteral: "text/html")
+            log.word(token)/
             manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
             let bookDetailURL = ReadAPI.bookDetailURL + "\(id)?include=review,starreview,holding"
 //            log.word(bookDetailURL)/
