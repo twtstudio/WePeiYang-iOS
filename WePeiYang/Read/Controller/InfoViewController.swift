@@ -11,8 +11,7 @@ import AFNetworking
 
 class InfoViewController: UITableViewController {
 
-    let review_url = "http://162.243.136.96/review.json"
-    let bookshelf_url = "http://162.243.136.96/bookshelf.json"
+    private let bigiPhoneWidth: CGFloat = 414.0
     var headerArr: [String] = ["我的收藏", "我的点评"]
     var bookShelf: [MyBook] = []
     var reviewArr: [Review] = []
@@ -54,13 +53,18 @@ class InfoViewController: UITableViewController {
         switch tag {
         case 0:
             let bvc = BookShelfViewController()
-            // TODO: only push once
+            // only push once
             // bvc.bookShelf = self.bookShelf
-            self.navigationController?.pushViewController(bvc, animated: true)
+            if !(self.navigationController?.topViewController is BookDetailViewController){
+                self.navigationController?.pushViewController(bvc, animated: true)
+            }
         case 1:
             let rvc = ReviewListViewController()
             rvc.reviewArr = self.reviewArr
-            self.navigationController?.pushViewController(rvc, animated: true)
+            if !(self.navigationController?.topViewController is ReviewListViewController){
+                self.navigationController?.pushViewController(rvc, animated: true)
+            }
+
             break
         default:
             break
@@ -89,8 +93,14 @@ class InfoViewController: UITableViewController {
         case 0:
             let cell = UITableViewCell(style: .Value1, reuseIdentifier: "cell1")
             cell.textLabel?.text = self.bookShelf[indexPath.row].title
-            cell.textLabel?.font = UIFont.systemFontOfSize(16)
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+            let width = UIScreen.mainScreen().bounds.size.width
+            if width >= bigiPhoneWidth {
+                cell.textLabel?.font = UIFont.systemFontOfSize(16)
+                cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+            } else {
+                cell.textLabel?.font = UIFont.systemFontOfSize(14)
+                cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
+            }
             cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author
             print(self.bookShelf[indexPath.row].id)
             if indexPath.row != self.bookShelf.count - 1 && indexPath.row != 2 - 1 {
@@ -119,15 +129,15 @@ class InfoViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
-            // TODO: 删除的时候section也会动
-            if editingStyle == .Delete {
-                User.sharedInstance.delFromFavourite(with: "\(self.bookShelf[indexPath.row].id)") {
-                    self.bookShelf.removeAtIndex(indexPath.row)
-                    User.sharedInstance.bookShelf = self.bookShelf
-                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                    self.tableView.reloadData()
-                }
-            }
+            // FIXME: 删除的时候section也会动
+//            if editingStyle == .Delete {
+//                User.sharedInstance.delFromFavourite(with: "\(self.bookShelf[indexPath.row].id)") {
+//                    self.bookShelf.removeAtIndex(indexPath.row)
+//                    User.sharedInstance.bookShelf = self.bookShelf
+//                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                    self.tableView.reloadData()
+//                }
+//            }
             break
         default:
             return

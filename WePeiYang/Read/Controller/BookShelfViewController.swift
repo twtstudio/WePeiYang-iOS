@@ -70,9 +70,17 @@ class BookShelfViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Value1, reuseIdentifier: "cell1")
         cell.textLabel?.text = self.bookShelf[indexPath.row].title
-        cell.textLabel?.font = UIFont.systemFontOfSize(13)
-        cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-        cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
+//        cell.textLabel?.font = UIFont.systemFontOfSize(13)
+//        cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+        let width = UIScreen.mainScreen().bounds.size.width
+        if width >= bigiPhoneWidth {
+            cell.textLabel?.font = UIFont.systemFontOfSize(16)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+        } else {
+            cell.textLabel?.font = UIFont.systemFontOfSize(14)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
+        }
+        cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author
         //cell.tag = self.bookShelf[indexPath.row].isbn
         var separatorMargin = 20
         // MARK: 这个效果看起来很奇怪

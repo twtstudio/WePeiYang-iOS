@@ -198,8 +198,11 @@ class Search: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDel
         let vc = BookDetailViewController(bookID: "\(result[indexPath.row].bookID)")
         self.removeFromSuperview()
         //print(self.tableView.contentOffset)
-        UIViewController.currentViewController().navigationController?.showViewController(vc, sender: nil)
-        UIViewController.currentViewController().navigationController?.pushViewController(vc, animated: true)
+        // only push once
+        if !(UIViewController.currentViewController().navigationController?.topViewController is BookDetailViewController){
+            UIViewController.currentViewController().navigationController?.showViewController(vc, sender: nil)
+        }
+      //  UIViewController.currentViewController().navigationController?.pushViewController(vc, animated: true)
     }
     
     
