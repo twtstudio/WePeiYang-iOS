@@ -31,6 +31,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.checkGuide()
         //self.checkSpecialEvents()
         
+        
+        //YuePeiYang
+//        Librarian.getBookDetail(ofID: "747522") { (book) in
+//            log.obj(book)/
+//            log.word("sdfsd")/
+//        }
+//        
+//        Librarian.searchBook(withString: "swift") {
+//            reviews in
+//            log.any(reviews)/
+//        }
+        
         if UIApplication.sharedApplication().keyWindow?.rootViewController != self.navigationController?.tabBarController {
             UIApplication.sharedApplication().keyWindow?.rootViewController = self.navigationController?.tabBarController
         }
@@ -56,7 +68,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if app.specialEventsShouldShow == true {
                 
                 self.checkSpecialEvents()
-                //log.word("fuckers")/
             }
 
         }
@@ -304,7 +315,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 2:
             self.showClasstableController()
         case 3:
-            self.showMicroservicesController()
+            self.showReadController()
         default:
             break
         }
@@ -443,6 +454,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         
+    }
+    
+    func showReadController() {
+        guard let _ = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
+            MsgDisplay.showErrorMsg("你需要登录才能访问")
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
+            return
+        }
+        let readVC = ReadViewController()
+        readVC.hidesBottomBarWhenPushed = true;
+        self.navigationController?.showViewController(readVC, sender: nil)
     }
     /*
     // MARK: - Navigation

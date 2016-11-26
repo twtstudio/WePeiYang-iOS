@@ -18,11 +18,12 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     private let toolsData: [ToolCell] = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
-        (title: "图书馆", image: UIImage(named: "libBtn")!),
+        //(title: "图书馆", image: UIImage(named: "libBtn")!),
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
-        (title: "探索", image: UIImage(named: "msBtn")!)
+        (title: "探索", image: UIImage(named: "msBtn")!),
+        (title: "阅读", image: UIImage(named: "readBtn")!)
     ]
     
     var microserviceController: STPopupController!
@@ -104,16 +105,18 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.showGPAController()
         case 1:
             self.showClasstableController()
+//        case 2:
+//            self.showLibraryController()
         case 2:
-            self.showLibraryController()
-        case 3:
             self.showLostFoundController()
-        case 4:
+        case 3:
             self.showBicycleServiceController()
-        case 5:
+        case 4:
             self.showPartyServiceController()
-        case 6:
+        case 5:
             self.showMicroservicesController()
+        case 6:
+            self.showReadController()
         default:
             return
         }
@@ -288,5 +291,19 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.navigationController?.showViewController(partyVC, sender: nil)
         })*/
         
+    }
+    
+    func showReadController() {
+
+        guard let _ = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
+            MsgDisplay.showErrorMsg("你需要登录才能访问")
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
+            return
+        }
+        let readVC = ReadViewController()
+        
+        readVC.hidesBottomBarWhenPushed = true;
+        self.navigationController?.showViewController(readVC, sender: nil)
     }
 }
