@@ -145,9 +145,35 @@ class User: NSObject {
                 
             }
         case .CancelLike:
-            break
+            // 取消点赞
+            getToken{
+                token in
+                let manager = AFHTTPSessionManager()
+                manager.requestSerializer.setValue("Bearer {\(token)}", forHTTPHeaderField: "Authorization")
+                manager.GET(ReadAPI.resLikeURL+reviewID, parameters: nil, progress: nil, success: { (task, responseObject) in
+                    guard let dict = responseObject as? Dictionary<String, AnyObject> where dict["error_code"] as! Int == -1
+                        else {
+                           // MsgDisplay.showErrorMsg("点赞失败")
+                            return
+                    }
+                    
+                    // 为了解决从”我的“界面取消赞之后进入我的评论列表不刷新的问题
+                    for review in self.reviewArr {
+                        if "\(review.reviewID)" == reviewID {
+                            review.like -= 1
+                            review.liked = false
+                        }
+                    }
+                    success()
+                    //print("点赞成功")
+                    // print(dict["message"])
+                }) { (_, error) in
+                    //MsgDisplay.showErrorMsg("网络开小差啦")
+                    print(error)
+                }
+                
+            }
         }
-        
         
     }
     
