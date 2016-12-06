@@ -35,6 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
             }
         })
 
+        var performAdditioinalHandling = true
+        if #available(iOS 9.0, *) {
+            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+                performAdditioinalHandling = false
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
         return true
     }
     
@@ -71,6 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
                 break
             }
         }
+    }
+    
+    
+    //3D Touch on iPhone 6s or later
+    @available(iOS 9.0, *)
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
     }
     
     func applicationWillTerminate(application: UIApplication) {

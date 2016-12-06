@@ -21,11 +21,11 @@
 
 @implementation NewsTableViewController {
     NSUInteger currentPage;
-    NSMutableArray *dataArr;
+    //NSMutableArray *dataArr;
 }
 
 //@synthesize delegate;
-@synthesize type;
+@synthesize type, dataArr;
 
 - (instancetype)init {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -44,6 +44,10 @@
     
     currentPage = 1;
     dataArr = [[NSMutableArray alloc] init];
+    
+    if ([[self traitCollection] forceTouchCapability] == UIForceTouchCapabilityAvailable) {
+        [self registerForPreviewingWithDelegate:self sourceView:[self tableView]];
+    }
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;

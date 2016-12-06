@@ -70,9 +70,17 @@ class BookShelfViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Value1, reuseIdentifier: "cell1")
         cell.textLabel?.text = self.bookShelf[indexPath.row].title
-        cell.textLabel?.font = UIFont.systemFontOfSize(13)
-        cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-        cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
+//        cell.textLabel?.font = UIFont.systemFontOfSize(13)
+//        cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+        let width = UIScreen.mainScreen().bounds.size.width
+        if width >= bigiPhoneWidth {
+            cell.textLabel?.font = UIFont.systemFontOfSize(16)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+        } else {
+            cell.textLabel?.font = UIFont.systemFontOfSize(14)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
+        }
+        cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author
         //cell.tag = self.bookShelf[indexPath.row].isbn
         var separatorMargin = 20
         // MARK: 这个效果看起来很奇怪
@@ -94,13 +102,9 @@ class BookShelfViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-
             User.sharedInstance.delFromFavourite(with: "\(self.bookShelf[indexPath.row].id)") {
             self.bookShelf.removeAtIndex(indexPath.row)
             User.sharedInstance.bookShelf = self.bookShelf
-//            let vc = self.navigationController?.viewControllers[1] as? ReadViewController
-//            let vcc = vc?.currentViewController as? InfoViewController
-//            vcc!.bookShelf = self.bookShelf
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             self.addNoBookLabel()
             }
@@ -112,7 +116,6 @@ class BookShelfViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // TODO: 跳转到书籍详情页面
         let vc = BookDetailViewController(bookID: "\(self.bookShelf[indexPath.row].id)")
         self.navigationController?.showViewController(vc, sender: nil)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)

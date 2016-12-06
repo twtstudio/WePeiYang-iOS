@@ -11,8 +11,7 @@ import AFNetworking
 
 class InfoViewController: UITableViewController {
 
-    let review_url = "http://162.243.136.96/review.json"
-    let bookshelf_url = "http://162.243.136.96/bookshelf.json"
+    private let bigiPhoneWidth: CGFloat = 414.0
     var headerArr: [String] = ["我的收藏", "我的点评"]
     var bookShelf: [MyBook] = []
     var reviewArr: [Review] = []
@@ -54,13 +53,18 @@ class InfoViewController: UITableViewController {
         switch tag {
         case 0:
             let bvc = BookShelfViewController()
-            // TODO: only push once
+            // only push once
             // bvc.bookShelf = self.bookShelf
-            self.navigationController?.pushViewController(bvc, animated: true)
+            if !(self.navigationController?.topViewController is BookDetailViewController){
+                self.navigationController?.pushViewController(bvc, animated: true)
+            }
         case 1:
             let rvc = ReviewListViewController()
             rvc.reviewArr = self.reviewArr
-            self.navigationController?.pushViewController(rvc, animated: true)
+            if !(self.navigationController?.topViewController is ReviewListViewController){
+                self.navigationController?.pushViewController(rvc, animated: true)
+            }
+
             break
         default:
             break
@@ -89,9 +93,15 @@ class InfoViewController: UITableViewController {
         case 0:
             let cell = UITableViewCell(style: .Value1, reuseIdentifier: "cell1")
             cell.textLabel?.text = self.bookShelf[indexPath.row].title
-            cell.textLabel?.font = UIFont.systemFontOfSize(16)
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-            cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author + "著"
+            let width = UIScreen.mainScreen().bounds.size.width
+            if width >= bigiPhoneWidth {
+                cell.textLabel?.font = UIFont.systemFontOfSize(16)
+                cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+            } else {
+                cell.textLabel?.font = UIFont.systemFontOfSize(14)
+                cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
+            }
+            cell.detailTextLabel?.text = self.bookShelf[indexPath.row].author
             print(self.bookShelf[indexPath.row].id)
             if indexPath.row != self.bookShelf.count - 1 && indexPath.row != 2 - 1 {
                 let separator = UIView()
@@ -116,10 +126,28 @@ class InfoViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.section {
+        case 0:
+            // FIXME: 删除的时候section也会动
+//            if editingStyle == .Delete {
+//                User.sharedInstance.delFromFavourite(with: "\(self.bookShelf[indexPath.row].id)") {
+//                    self.bookShelf.removeAtIndex(indexPath.row)
+//                    User.sharedInstance.bookShelf = self.bookShelf
+//                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//                    self.tableView.reloadData()
+//                }
+//            }
+            break
+        default:
+            return
+        }
+    }
+
     
 // MARK: HeaderView delegate
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UITableViewCell(style: .Value1, reuseIdentifier: "Header")
+        let header = UITableViewCell()
         header.contentView.backgroundColor = UIColor.init(red: 254/255, green: 255/255, blue: 255/255, alpha: 1)
         header.textLabel?.textColor = UIColor.init(red: 136/255, green: 137/255, blue: 138/255, alpha: 1)
         header.detailTextLabel?.textColor = UIColor.init(red: 163/255, green: 163/255, blue: 163/255, alpha: 1)
@@ -132,15 +160,6 @@ class InfoViewController: UITableViewController {
         header.tag = section
         let tap = UITapGestureRecognizer(target: self, action: #selector(InfoViewController.sectionTapped(_:)))
         header.addGestureRecognizer(tap)
-//        let separator = UIView()
-//        header.addSubview(separator)
-//        separator.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)
-//        separator.snp_makeConstraints { make in
-//            make.height.equalTo(2)
-//            make.left.equalTo(header).offset(0)
-//            make.right.equalTo(header).offset(0)
-//            make.bottom.equalTo(header).offset(0)
-//        }
         let 🌚 = UIView()
         header.addSubview(🌚)
         🌚.backgroundColor = UIColor.init(red: 245/255, green: 246/255, blue: 247/255, alpha: 1)

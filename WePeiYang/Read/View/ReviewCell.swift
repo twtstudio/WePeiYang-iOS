@@ -40,6 +40,7 @@ class ReviewCell: UITableViewCell {
         like.tag = model.like
         self.like.text = String(format: "%02d", self.like.tag)
         contentView.tag = model.reviewID
+        // 如果点过赞 记录之
         heartView.tag = model.liked ? 1 : 0
         
         // imgView tag
@@ -170,19 +171,21 @@ class ReviewCell: UITableViewCell {
         
         
         if self.heartView.tag == 0 {
-            self.like.tag += 1
-            let frame = self.heartView.frame
-            let width = frame.size.width
-            let height = frame.size.height
-            self.heartView.frame = CGRect(x: self.heartView.frame.origin.x - width/2 , y: self.heartView.frame.origin.y - height/2, width: self.heartView.frame.size.width*2, height: self.heartView.frame.size.height*2)
-            UIView.animateWithDuration(0.25, animations: {
+
+            User.sharedInstance.like(.Like, reviewID: "\(contentView.tag)") {
+                self.like.tag += 1
+                let frame = self.heartView.frame
+                let width = frame.size.width
+                let height = frame.size.height
+                self.heartView.frame = CGRect(x: self.heartView.frame.origin.x - width/2 , y: self.heartView.frame.origin.y - height/2, width: self.heartView.frame.size.width*2, height: self.heartView.frame.size.height*2)
+                UIView.animateWithDuration(0.25, animations: {
                 self.heartView.image = UIImage(named: "red_heart")
                 self.like.text = String(format: "%02d", self.like.tag)
                 self.heartView.frame = frame
                 self.heartView.tag = 1
-            })
-            User.sharedInstance.like(.Like, reviewID: "\(contentView.tag)")
-            fooView.userInteractionEnabled = false
+                self.fooView.userInteractionEnabled = false
+                })
+            }
         } else {
             self.like.tag -= 1
             self.like.text = String(format: "%02d", self.like.tag)

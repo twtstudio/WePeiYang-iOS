@@ -10,7 +10,7 @@
 #import "WePeiYang-Swift.h"
 #import "MsgDisplay.h"
 #define readRed [UIColor colorWithRed:234.0/255.0 green:74.0/255.0 blue:70/255.0 alpha:1.0]
-@interface ReadViewController() <SearchDelegate>
+@interface ReadViewController() //<SearchDelegate>
 {
     Search *search;
 }
@@ -79,10 +79,17 @@
 }
 
 - (void)pushSearchViewController {
-    search = [[Search alloc] initWithFrame: self.view.bounds];
-    search.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:search];
-    [search animate];
+//    search = [[Search alloc] initWithFrame: self.view.bounds];
+//   // search.delegate = self;
+//    // [self.view addSubview:search];
+//    [[UIApplication sharedApplication].keyWindow addSubview:search];
+//    [search animate];
+    
+    SearchViewController *svc = [[SearchViewController alloc] init];
+    svc.view.bounds = self.view.bounds;
+    // [self presentViewController:svc animated:NO completion: nil];
+    [self.navigationController pushViewController:svc animated:NO];
+
 }
 
 

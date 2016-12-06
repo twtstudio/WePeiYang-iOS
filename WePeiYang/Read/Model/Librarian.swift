@@ -41,7 +41,7 @@ class Librarian {
 //                }, success: { (task, responseObject) in
             MsgDisplay.showLoading()
             manager.GET(searchURL, parameters: nil, progress: nil, success: { (task, responseObject) in
-                print(responseObject)
+               // print(responseObject)
                     guard responseObject != nil else {
                         MsgDisplay.showErrorMsg("哎呀，    出错啦")
                         //log.word("fuck1")/
@@ -116,7 +116,7 @@ class Librarian {
             manager.GET(bookDetailURL, parameters: nil, progress: { (_) in
                 MsgDisplay.showLoading()
                 }, success: { (task, responseObject) in
-                    print(responseObject)
+                 //   print(responseObject)
                     MsgDisplay.dismiss()
                     guard responseObject != nil else {
                         MsgDisplay.showErrorMsg("哎呀，出错啦")
@@ -240,8 +240,9 @@ class Librarian {
                             return StarReview(name: name, content: content)
                         })
                     }
-                    let foo = Book(id: id, title: title, ISBN: ISBN, author: author, publisher: publisher, year: year, coverURL: coverURL, rating: rating, summary: summary, status: fooHoldingStatus, reviews: fooReviews, starReviews: fooStarReviews)
-                    log.obj(foo)/
+                    // 评论按时间倒序
+                    let reviewReversed: [Review] = fooReviews.reverse()
+                    let foo = Book(id: id, title: title, ISBN: ISBN, author: author, publisher: publisher, year: year, coverURL: coverURL, rating: rating, summary: summary, status: fooHoldingStatus, reviews: reviewReversed, starReviews: fooStarReviews)
                     completion(foo)
                     
             }) { (_, err) in

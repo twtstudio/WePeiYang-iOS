@@ -37,7 +37,7 @@ class Book {
     let rating: Double
     let summary: String
     let status: [Status]
-    let reviews: [Review]
+    var reviews: [Review]
     let starReviews: [StarReview]
     
 //    init() {

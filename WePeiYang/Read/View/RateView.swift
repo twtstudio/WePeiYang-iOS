@@ -45,6 +45,8 @@ class RateView: UIView, UITextViewDelegate {
         print(rating)
         User.sharedInstance.commitReview(with: content, bookid: id, rating: rating) {
             self.dismissAnimated()
+            let vc = UIViewController.currentViewController() as! BookDetailViewController
+            vc.reloadReview()
         }
     }
     
@@ -92,7 +94,6 @@ extension RateView {
         textView.font = UIFont.systemFontOfSize(18)
         textView.textColor = .grayColor()
 
-        
         let cancelBtn = UIButton(backgroundImageName: "cancelBtn", desiredSize: CGSize(width: 30, height: 30))
         cancelBtn?.tintColor = readRed
         cancelBtn?.addTarget(self, action: #selector(self.dismissAnimated), forControlEvents: .TouchUpInside)
