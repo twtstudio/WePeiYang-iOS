@@ -5,6 +5,7 @@
 #import "twtSDK.h"
 #import "GPATableViewController.h"
 #import "NewsViewController.h"
+#import "NewsTableViewController.h"
 #import "NewsContentViewController.h"
 #import "wpyDeviceStatus.h"
 #import "wpyCacheManager.h"

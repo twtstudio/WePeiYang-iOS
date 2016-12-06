@@ -85,6 +85,7 @@
 		68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */; };
 		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
+		B105394F1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105394E1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift */; };
 		B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAA1D704D5C0084F379 /* Checkbox.swift */; };
 		B1063EAD1D704DEA0084F379 /* TwentyCourseQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAC1D704DEA0084F379 /* TwentyCourseQuiz.swift */; };
 		B1063EAF1D704E390084F379 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAE1D704E390084F379 /* QuizView.swift */; };
@@ -111,6 +112,7 @@
 		B10A9E861DC988A100A395E9 /* StatusInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */; };
 		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
 		B14000751D68862D00035357 /* SpecialEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14000731D68862D00035357 /* SpecialEventsViewController.swift */; };
+		B153426A1DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15342691DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift */; };
 		B1572CF71D76D89D00A264D8 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1572CF61D76D89D00A264D8 /* FinalView.swift */; };
 		B194CBCF1D5E234C009615D7 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */; };
 		B1C4F64E1D543DD0000CD0D8 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -380,6 +382,7 @@
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7D625594C2CB3A80AC2395D /* Pods-WePeiYang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.release.xcconfig"; sourceTree = "<group>"; };
+		B105394E1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NewsViewTableViewController+UIViewControllerPreviewing.swift"; sourceTree = "<group>"; };
 		B1063EAA1D704D5C0084F379 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		B1063EAC1D704DEA0084F379 /* TwentyCourseQuiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwentyCourseQuiz.swift; sourceTree = "<group>"; };
 		B1063EAE1D704E390084F379 /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
@@ -407,6 +410,7 @@
 		B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusInfoCell.swift; sourceTree = "<group>"; };
 		B113C6FF1D57B5B80072726F /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
 		B14000731D68862D00035357 /* SpecialEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEventsViewController.swift; sourceTree = "<group>"; };
+		B15342691DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToolsCollectionViewController+UIViewControllerPreviewing.swift"; sourceTree = "<group>"; };
 		B1572CF61D76D89D00A264D8 /* FinalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
 		B194CBCE1D5E234C009615D7 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		B1E068521DCA640700C443D6 /* BookDetailViewControllerTempView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewControllerTempView.swift; sourceTree = "<group>"; };
@@ -1013,6 +1017,7 @@
 			children = (
 				E90105471C3B994E002901AC /* NewsViewController.h */,
 				E90105481C3B994E002901AC /* NewsViewController.m */,
+				B105394E1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift */,
 				E90105451C3B994E002901AC /* NewsTableViewController.h */,
 				E90105461C3B994E002901AC /* NewsTableViewController.m */,
 				E90105431C3B994E002901AC /* NewsContentViewController.h */,
@@ -1581,6 +1586,7 @@
 			isa = PBXGroup;
 			children = (
 				E925971C1CA62AD600D4E812 /* ToolsCollectionViewController.swift */,
+				B15342691DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1964,6 +1970,7 @@
 				B1C4F6511D543DD0000CD0D8 /* (null) in Sources */,
 				68513F471D6F08FF00E96BEB /* PersonalStatusLabel.swift in Sources */,
 				68513F381D6F08FF00E96BEB /* TwentyCourseDetailViewController.swift in Sources */,
+				B153426A1DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
 				68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */,
 				68513F781D6F091200E96BEB /* NotificationItem.swift in Sources */,
@@ -2058,6 +2065,7 @@
 				68513F731D6F091200E96BEB /* BicycleUserBindViewController.swift in Sources */,
 				68513F351D6F08FF00E96BEB /* PartyScoreViewController.m in Sources */,
 				B1C4F6521D543DD0000CD0D8 /* (null) in Sources */,
+				B105394F1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift in Sources */,
 				683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */,
 				E901055A1C3B994E002901AC /* NewsViewController.m in Sources */,
 				68513F3F1D6F08FF00E96BEB /* CourseDetailReadingView.swift in Sources */,

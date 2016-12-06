@@ -111,7 +111,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 if let cell = tableView.dequeueReusableCellWithIdentifier("StatusInfoCell") {
                     return cell
                 }
-                let cell = StatusInfoCell(status: self.currentBook!.status[indexPath.row].statusInLibrary , barcode: self.currentBook!.status[indexPath.row].barcode , location: self.currentBook!.status[indexPath.row].library, duetime: self.currentBook!.status[indexPath.row].dueTime)
+                let cell = StatusInfoCell(status: self.currentBook!.status[indexPath.row].statusInLibrary , callno: self.currentBook!.status[indexPath.row].callno , location: self.currentBook!.status[indexPath.row].library, duetime: self.currentBook!.status[indexPath.row].dueTime)
                 return cell
             }
 
@@ -199,20 +199,20 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 make.top.equalTo(headerView).offset(5)
             }
             
-            let barcode = UILabel()
-            barcode.text = "索书号"
-            barcode.font = UIFont(name: "Futura", size: 14)
-            barcode.textAlignment = .Center
-            barcode.textColor = UIColor.lightGrayColor()
-            //            headerView.addSubview(barcode)
-            //            barcode.snp_makeConstraints{
+            let callno = UILabel()
+            callno.text = "索书号"
+            callno.font = UIFont(name: "Futura", size: 14)
+            callno.textAlignment = .Center
+            callno.textColor = UIColor.lightGrayColor()
+            //            headerView.addSubview(callno)
+            //            callno.snp_makeConstraints{
             //                make in
             //                make.left.equalTo(headerView)
             //                make.right.equalTo(headerView).offset((-self.view.frame.size.width / 3) * 2)
             //                make.bottom.equalTo(headerView)
             //            }
-            viewOfLabels.addSubview(barcode)
-            barcode.snp_makeConstraints {
+            viewOfLabels.addSubview(callno)
+            callno.snp_makeConstraints {
                 make in
                 make.top.equalTo(viewOfLabels.snp_top)
                 make.bottom.equalTo(viewOfLabels.snp_bottom)
@@ -228,9 +228,9 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             //            headerView.addSubview(locationLabel)
             //            locationLabel.snp_makeConstraints{
             //                make in
-            //                make.left.equalTo(barcode.snp_right)
+            //                make.left.equalTo(callno.snp_right)
             //                make.right.equalTo(headerView).offset(-self.view.frame.size.width / 3)
-            //                make.centerY.equalTo(barcode.snp_centerY)
+            //                make.centerY.equalTo(callno.snp_centerY)
             //            }
             viewOfLabels.addSubview(locationLabel)
             locationLabel.snp_makeConstraints {
@@ -251,7 +251,7 @@ class BookDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             //                make in
             //                make.left.equalTo(locationLabel.snp_right)
             //                make.right.equalTo(headerView)
-            //                make.centerY.equalTo(barcode.snp_centerY)
+            //                make.centerY.equalTo(callno.snp_centerY)
             //            }
             viewOfLabels.addSubview(statusLabel)
             statusLabel.snp_makeConstraints {

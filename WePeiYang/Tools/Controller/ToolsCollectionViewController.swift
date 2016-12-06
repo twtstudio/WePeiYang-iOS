@@ -30,6 +30,16 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //3D Touch
+        if #available(iOS 9.0, *) {
+            if traitCollection.forceTouchCapability == .Available {
+                registerForPreviewingWithDelegate(self, sourceView: self.collectionView!)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.alwaysBounceVertical = true
@@ -256,7 +266,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             }*/
             BicycleUser.sharedInstance.auth({
                 //隐藏tabbar
-                bikeVC.hidesBottomBarWhenPushed = true;
+                bikeVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.showViewController(bikeVC, sender: nil)
             })
         }
@@ -303,7 +313,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         }
         let readVC = ReadViewController()
         
-        readVC.hidesBottomBarWhenPushed = true;
+        readVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(readVC, sender: nil)
     }
 }

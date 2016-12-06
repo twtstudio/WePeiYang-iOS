@@ -19,6 +19,7 @@
 @interface NewsTableViewController : UITableViewController
 
 @property (nonatomic) NSInteger type;
+@property (nonatomic) NSMutableArray *dataArr;
 //@property (assign, nonatomic) id<NewsTableViewControllerDelegate> delegate;
 
 @end

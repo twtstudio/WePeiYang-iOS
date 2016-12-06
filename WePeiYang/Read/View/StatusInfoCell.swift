@@ -17,17 +17,17 @@ class StatusInfoCell: UITableViewCell {
     }
     
     
-    convenience init(status: String, barcode: String, location: String, duetime: String) {
+    convenience init(status: String, callno: String, location: String, duetime: String) {
         self.init()
         
-        let barcodeLabel:UILabel = {
-            let barcodeLabel = UILabel()
-            barcodeLabel.text = barcode
-            barcodeLabel.textColor = UIColor.darkGrayColor()
-            barcodeLabel.textAlignment = .Center
-            barcodeLabel.font = UIFont.systemFontOfSize(13)
-            barcodeLabel.sizeToFit()
-            return barcodeLabel
+        let callnoLabel:UILabel = {
+            let callnoLabel = UILabel()
+            callnoLabel.text = callno
+            callnoLabel.textColor = UIColor.darkGrayColor()
+            callnoLabel.textAlignment = .Center
+            callnoLabel.font = UIFont.systemFontOfSize(13)
+            callnoLabel.sizeToFit()
+            return callnoLabel
         }()
         
         let locationLabel:UILabel = {
@@ -56,8 +56,8 @@ class StatusInfoCell: UITableViewCell {
             return statusLabel
         }()
         
-        contentView.addSubview(barcodeLabel)
-        barcodeLabel.snp_makeConstraints {
+        contentView.addSubview(callnoLabel)
+        callnoLabel.snp_makeConstraints {
             make in
             make.left.equalTo(contentView).offset(16)
             make.centerY.equalTo(contentView.snp_centerY)
@@ -67,16 +67,16 @@ class StatusInfoCell: UITableViewCell {
         statusLabel.snp_makeConstraints{
             make in
             make.right.equalTo(contentView.snp_right).offset(-16)
-            make.centerY.equalTo(barcodeLabel.snp_centerY)
+            make.centerY.equalTo(callnoLabel.snp_centerY)
         }
         
         contentView.addSubview(locationLabel)
         locationLabel.snp_makeConstraints {
             make in
-            make.left.greaterThanOrEqualTo(barcodeLabel.snp_left).offset(10)
+            make.left.greaterThanOrEqualTo(callnoLabel.snp_left).offset(10)
             make.right.lessThanOrEqualTo(statusLabel.snp_right).offset(-10)
             make.centerX.equalTo(contentView)
-            make.centerY.equalTo(barcodeLabel.snp_centerY)
+            make.centerY.equalTo(callnoLabel.snp_centerY)
         }
         
         if status == "借出" {

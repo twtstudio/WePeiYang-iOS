@@ -409,13 +409,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func showBicycleServiceController() {
         
-        /*
-        guard #available(iOS 9.0, *) else {
-            MsgDisplay.showErrorMsg("你需要 iOS 9 或以上系统才能使用该功能，请更新系统")
-            return
-        }
- */
-        
         let bikeVC = BicycleServiceViewController()
         //log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
         

@@ -243,7 +243,6 @@ class Librarian {
                     // 评论按时间倒序
                     let reviewReversed: [Review] = fooReviews.reverse()
                     let foo = Book(id: id, title: title, ISBN: ISBN, author: author, publisher: publisher, year: year, coverURL: coverURL, rating: rating, summary: summary, status: fooHoldingStatus, reviews: reviewReversed, starReviews: fooStarReviews)
-                    log.obj(foo)/
                     completion(foo)
                     
             }) { (_, err) in
