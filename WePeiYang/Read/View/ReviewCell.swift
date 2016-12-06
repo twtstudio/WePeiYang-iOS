@@ -135,12 +135,12 @@ class ReviewCell: UITableViewCell {
             make.height.equalTo(30)
         }
         
-        fooView.userInteractionEnabled = model.liked ? false : true
+       // fooView.userInteractionEnabled = model.liked ? false : true
         fooView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.likeTapped)))
         like.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         like.snp_makeConstraints { make in
             make.top.equalTo(fooView).offset(8)
-            make.right.equalTo(fooView).offset(-8)
+            make.left.equalTo(fooView).offset(12)
             
         }
         
@@ -183,14 +183,16 @@ class ReviewCell: UITableViewCell {
                 self.like.text = String(format: "%02d", self.like.tag)
                 self.heartView.frame = frame
                 self.heartView.tag = 1
-                self.fooView.userInteractionEnabled = false
+                // self.fooView.userInteractionEnabled = false
                 })
             }
-        } else {
-            self.like.tag -= 1
-            self.like.text = String(format: "%02d", self.like.tag)
-            self.heartView.image = UIImage(named: "grey_heart")
-            self.heartView.tag = 0
+        } else if self.heartView.tag == 1 {
+            User.sharedInstance.like(.CancelLike, reviewID: "\(contentView.tag)") {
+                self.like.tag -= 1
+                self.like.text = String(format: "%02d", self.like.tag)
+                self.heartView.image = UIImage(named: "grey_heart")
+                self.heartView.tag = 0
+            }
         }
         
     }
