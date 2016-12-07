@@ -133,6 +133,7 @@
 		B1E497AA1D6896DF00E85DA8 /* PresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E497A91D6896DF00E85DA8 /* PresentingAnimator.m */; };
 		B1E497AD1D689A7C00E85DA8 /* DismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E497AC1D689A7C00E85DA8 /* DismissingAnimator.m */; };
 		B1FD93501DF7FA3A00E35112 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FD934F1DF7FA3A00E35112 /* HealthKit.framework */; };
+		B1FD93761DF889D000E35112 /* BicycleFitnessTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FD93751DF889D000E35112 /* BicycleFitnessTrackerViewController.swift */; };
 		E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */; };
 		E90105541C3B994E002901AC /* GPATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90105381C3B994E002901AC /* GPATableViewController.m */; };
 		E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E901053C1C3B994E002901AC /* GPATableViewCell.m */; };
@@ -421,6 +422,7 @@
 		B1E497AC1D689A7C00E85DA8 /* DismissingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingAnimator.m; sourceTree = "<group>"; };
 		B1E497AE1D689AEF00E85DA8 /* SpecialEventsAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialEventsAnimator.h; sourceTree = "<group>"; };
 		B1FD934F1DF7FA3A00E35112 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		B1FD93751DF889D000E35112 /* BicycleFitnessTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BicycleFitnessTrackerViewController.swift; sourceTree = "<group>"; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				68513F541D6F091200E96BEB /* BicycleServiceMapController.swift */,
 				68513F531D6F091200E96BEB /* BicycleServiceInfoController.swift */,
 				68513F551D6F091200E96BEB /* BicycleServiceNotificationController.swift */,
+				B1FD93751DF889D000E35112 /* BicycleFitnessTrackerViewController.swift */,
 				68513F511D6F091200E96BEB /* BicycleNotificationDetailViewController.swift */,
 				68513F561D6F091200E96BEB /* BicycleServiceViewController.h */,
 				68513F571D6F091200E96BEB /* BicycleServiceViewController.m */,
@@ -1995,6 +1998,7 @@
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
 				E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */,
+				B1FD93761DF889D000E35112 /* BicycleFitnessTrackerViewController.swift in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
 				68513F721D6F091200E96BEB /* BicycleServiceViewController.m in Sources */,
 				E928084C1D14696F00E4380D /* StudySearchViewController.swift in Sources */,
