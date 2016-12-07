@@ -214,7 +214,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var toolsCell = tableView.dequeueReusableCellWithIdentifier("toolidentifier") as? HomeToolsCell
             if toolsCell == nil {
                 let nib = NSBundle.mainBundle().loadNibNamed("HomeToolsCell", owner: self, options: nil)
-                toolsCell = nib[0] as? HomeToolsCell
+                toolsCell = nib![0] as? HomeToolsCell
             }
             toolsCell?.selectionStyle = .None
             toolsCell?.delegate = self
@@ -223,7 +223,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var weatherCell = tableView.dequeueReusableCellWithIdentifier("weatheridentifier") as? HomeWeatherCell
             if weatherCell == nil {
                 let nib = NSBundle.mainBundle().loadNibNamed("HomeWeatherCell", owner: self, options: nil)
-                weatherCell = nib[0] as? HomeWeatherCell
+                weatherCell = nib![0] as? HomeWeatherCell
             }
             weatherCell?.selectionStyle = .None
             return weatherCell!
@@ -231,7 +231,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var newsCell = tableView.dequeueReusableCellWithIdentifier("identifier") as? HomeNewsTableViewCell
             if newsCell == nil {
                 let nib = NSBundle.mainBundle().loadNibNamed("HomeNewsTableViewCell", owner: self, options: nil)
-                newsCell = nib[0] as? HomeNewsTableViewCell
+                newsCell = nib![0] as? HomeNewsTableViewCell
             }
             if section == 3 {
                 if campusArr.count > 0 {
@@ -248,7 +248,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var lfCell = tableView.dequeueReusableCellWithIdentifier("lfIdentifier") as? LostFoundTableViewCell
             if lfCell == nil {
                 let nib = NSBundle.mainBundle().loadNibNamed("LostFoundTableViewCell", owner: self, options: nil)
-                lfCell = nib[0] as? LostFoundTableViewCell
+                lfCell = nib![0] as? LostFoundTableViewCell
             }
             if section == 5 {
                 lfCell?.setLostFoundItem(lostArr[row], type: 0)

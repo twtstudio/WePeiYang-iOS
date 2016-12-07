@@ -31,7 +31,7 @@ class LibraryDataManager: NSObject {
     class func addLibraryItemToFavorite(item: LibraryDataItem) {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
         let fileURL = documents.URLByAppendingPathComponent(LIBRARY_FAVORITE_DB_NAME)
-        let database = FMDatabase(path: fileURL.path)
+        let database = FMDatabase(path: fileURL!.path)
         
         if !database.open() {
             return
@@ -55,7 +55,7 @@ class LibraryDataManager: NSObject {
     class func favoriteLibraryItems() -> [LibraryDataItem] {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
         let fileURL = documents.URLByAppendingPathComponent(LIBRARY_FAVORITE_DB_NAME)
-        let database = FMDatabase(path: fileURL.path)
+        let database = FMDatabase(path: fileURL!.path)
         
         if !database.open() {
             return []
@@ -79,7 +79,7 @@ class LibraryDataManager: NSObject {
     class func removeLibraryItem(item: LibraryDataItem) {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
         let fileURL = documents.URLByAppendingPathComponent(LIBRARY_FAVORITE_DB_NAME)
-        let database = FMDatabase(path: fileURL.path)
+        let database = FMDatabase(path: fileURL!.path)
         
         if !database.open() {
             return

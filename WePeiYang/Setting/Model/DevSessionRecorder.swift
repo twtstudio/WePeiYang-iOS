@@ -16,7 +16,7 @@ class DevSessionRecorder: NSObject {
     class func recordSession(url: String, type: Int, parameters: [String: String], response: AnyObject) {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
         let fileURL = documents.URLByAppendingPathComponent(SESSION_RECORD_DATABASE)
-        let database = FMDatabase(path: fileURL.path)
+        let database = FMDatabase(path: fileURL!.path)
         
         if !database.open() {
             return
@@ -40,7 +40,7 @@ class DevSessionRecorder: NSObject {
     class func allSessionRecords() -> [DevSessionRecord] {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
         let fileURL = documents.URLByAppendingPathComponent(SESSION_RECORD_DATABASE)
-        let database = FMDatabase(path: fileURL.path)
+        let database = FMDatabase(path: fileURL!.path)
         
         if !database.open() {
             return []
@@ -64,7 +64,7 @@ class DevSessionRecorder: NSObject {
     class func removeSessionRecord(record: DevSessionRecord) {
         let documents = try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
         let fileURL = documents.URLByAppendingPathComponent(SESSION_RECORD_DATABASE)
-        let database = FMDatabase(path: fileURL.path)
+        let database = FMDatabase(path: fileURL!.path)
         
         if !database.open() {
             return
