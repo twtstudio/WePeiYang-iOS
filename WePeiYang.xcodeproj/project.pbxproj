@@ -132,6 +132,7 @@
 		B1E068531DCA640700C443D6 /* BookDetailViewControllerTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E068521DCA640700C443D6 /* BookDetailViewControllerTempView.swift */; };
 		B1E497AA1D6896DF00E85DA8 /* PresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E497A91D6896DF00E85DA8 /* PresentingAnimator.m */; };
 		B1E497AD1D689A7C00E85DA8 /* DismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E497AC1D689A7C00E85DA8 /* DismissingAnimator.m */; };
+		B1FD93501DF7FA3A00E35112 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FD934F1DF7FA3A00E35112 /* HealthKit.framework */; };
 		E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */; };
 		E90105541C3B994E002901AC /* GPATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90105381C3B994E002901AC /* GPATableViewController.m */; };
 		E90105551C3B994E002901AC /* GPATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E901053C1C3B994E002901AC /* GPATableViewCell.m */; };
@@ -419,6 +420,7 @@
 		B1E497AB1D689A7C00E85DA8 /* DismissingAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissingAnimator.h; sourceTree = "<group>"; };
 		B1E497AC1D689A7C00E85DA8 /* DismissingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissingAnimator.m; sourceTree = "<group>"; };
 		B1E497AE1D689AEF00E85DA8 /* SpecialEventsAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialEventsAnimator.h; sourceTree = "<group>"; };
+		B1FD934F1DF7FA3A00E35112 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D1FCAABA95955FF177696657 /* Pods-WePeiYang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYang.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYang/Pods-WePeiYang.debug.xcconfig"; sourceTree = "<group>"; };
 		E90105371C3B994E002901AC /* GPATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPATableViewController.h; sourceTree = "<group>"; };
 		E90105381C3B994E002901AC /* GPATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPATableViewController.m; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				180F1CAA185D4DF500F76085 /* MessageUI.framework in Frameworks */,
 				180F1C92185D4D3200F76085 /* QuartzCore.framework in Frameworks */,
 				180F1C90185D4D2B00F76085 /* SystemConfiguration.framework in Frameworks */,
+				B1FD93501DF7FA3A00E35112 /* HealthKit.framework in Frameworks */,
 				188842A81846FBEB007B92CB /* Social.framework in Frameworks */,
 				188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */,
 				188842171846E6F4007B92CB /* UIKit.framework in Frameworks */,
@@ -663,6 +666,7 @@
 		188842111846E6F4007B92CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1FD934F1DF7FA3A00E35112 /* HealthKit.framework */,
 				E9C8B7B21C462AE5007D4EE7 /* CoreSpotlight.framework */,
 				E90105741C3BA44F002901AC /* MK.framework */,
 				E90105721C3BA02E002901AC /* libc++.tbd */,
@@ -1727,6 +1731,9 @@
 						DevelopmentTeam = TYRRVX7RWJ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
 								enabled = 1;
 							};
 						};
