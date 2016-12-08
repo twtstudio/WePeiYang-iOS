@@ -77,7 +77,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aV-i0-mgr">
-                    <rect key="frame" x="275" y="302" width="54" height="28"/>
+                    <rect key="frame" x="275" y="347" width="54" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="暂不登录">
                         <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,7 +97,7 @@
                 <constraint firstItem="wU7-Os-lKS" firstAttribute="top" secondItem="Wao-4Q-7O6" secondAttribute="bottom" constant="16" id="Fjn-VX-AX4"/>
                 <constraint firstItem="Wao-4Q-7O6" firstAttribute="trailing" secondItem="ORv-q2-pcb" secondAttribute="trailing" id="GPm-3A-NFU"/>
                 <constraint firstItem="V6P-Z3-Lsq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HPp-VT-Ttu"/>
-                <constraint firstItem="8aV-i0-mgr" firstAttribute="top" secondItem="V6P-Z3-Lsq" secondAttribute="bottom" constant="-37" id="K3C-I3-KdL"/>
+                <constraint firstItem="8aV-i0-mgr" firstAttribute="top" secondItem="V6P-Z3-Lsq" secondAttribute="bottom" constant="8" id="K3C-I3-KdL"/>
                 <constraint firstItem="Wao-4Q-7O6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="20.5" id="Yoz-hq-7II"/>
                 <constraint firstItem="Bio-2D-zmL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ah5-82-BWs"/>
                 <constraint firstItem="wU7-Os-lKS" firstAttribute="top" secondItem="ORv-q2-pcb" secondAttribute="bottom" constant="8" id="bJF-oA-pnl"/>
