@@ -86,6 +86,8 @@
     }];
 }
 
+
+
 - (void)viewDidLoad {
     
     //MenuBar设置
@@ -113,8 +115,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     //BicycleUser.sharedInstance.bindCancel = NO;
-    
 }
+
 
 
 - (void)addIcons {
