@@ -10,9 +10,9 @@ import Foundation
 import Charts
 
 enum TrackerCellType {
-    case Move
-    case Exercise
-    case Stand
+    case Move(text: String, color: UIColor)
+    case Exercise(text: String, color: UIColor)
+    case Stand(text: String, color: UIColor)
 }
 
 class BicycleFitnessTrackerViewCell: UITableViewCell, ChartViewDelegate {
@@ -21,15 +21,42 @@ class BicycleFitnessTrackerViewCell: UITableViewCell, ChartViewDelegate {
     
     convenience init(cellType: TrackerCellType) {
         self.init()
-        
+        self.contentView.backgroundColor = .blackColor()
+        self.selectionStyle = .None
         switch cellType {
-        case .Move:
-            self.textLabel?.text = "Move"
-        case .Exercise:
-            self.textLabel?.text = "Exercise"
-        case .Stand:
-            self.textLabel?.text = "Stand"
+        case .Move(let text, let color):
+            self.textLabel?.text = text
+            self.textLabel?.textColor = color
+            let label = UILabel(text: "450/400 calories", color: .whiteColor())
+            self.contentView.addSubview(label)
+            label.snp_makeConstraints {
+                make in
+                make.left.equalTo(self.textLabel!)
+                make.top.equalTo((self.textLabel?.snp_bottom)!).offset(1)
+            }
+        case .Exercise(let text, let color):
+            self.textLabel?.text = text
+            self.textLabel?.textColor = color
+            let label = UILabel(text: "45/55 minutes", color: .whiteColor())
+            self.contentView.addSubview(label)
+            label.snp_makeConstraints {
+                make in
+                make.left.equalTo(self.textLabel!)
+                make.top.equalTo((self.textLabel?.snp_bottom)!).offset(1)
+            }
+        case .Stand(let text, let color):
+            self.textLabel?.text = text
+            self.textLabel?.textColor = color
+            let label = UILabel(text: "10/12 hours", color: .whiteColor())
+            self.contentView.addSubview(label)
+            label.snp_makeConstraints {
+                make in
+                make.left.equalTo(self.textLabel!)
+                make.top.equalTo((self.textLabel?.snp_bottom)!).offset(1)
+            }
         }
+        
+        
         
     }
     
