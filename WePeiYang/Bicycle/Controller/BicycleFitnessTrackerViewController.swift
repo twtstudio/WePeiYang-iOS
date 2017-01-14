@@ -91,7 +91,7 @@ class BicycleFitnessTrackerViewController: UIViewController {
         
         //Should create a query to access Health Store
         
-        healthSummary.activeEnergyBurned = HKQuantity(unit: HKUnit.calorieUnit(), doubleValue: 300.0)
+        healthSummary.activeEnergyBurned = HKQuantity(unit: HKUnit.calorieUnit(), doubleValue: 450.0)
         healthSummary.activeEnergyBurnedGoal = HKQuantity(unit: HKUnit.calorieUnit(), doubleValue: 400.0)
         healthSummary.appleStandHours = HKQuantity(unit: HKUnit.countUnit(), doubleValue: 10)
         healthSummary.appleStandHoursGoal = HKQuantity(unit: HKUnit.countUnit(), doubleValue: 12)
@@ -136,24 +136,17 @@ extension BicycleFitnessTrackerViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+
         switch indexPath.section {
         case 0:
-            cell.textLabel?.text = "Move"
-            cell.textLabel?.textColor = MoveColor
+            return BicycleFitnessTrackerViewCell(cellType: .Move(text: "Move", color: MoveColor))
         case 1:
-            cell.textLabel?.text = "Exercise"
-            cell.textLabel?.textColor = ExerciseColor
+            return BicycleFitnessTrackerViewCell(cellType: .Exercise(text: "Exercise", color: ExerciseColor))
         case 2:
-            cell.textLabel?.text = "Stand"
-            cell.textLabel?.textColor = StandColor
+            return BicycleFitnessTrackerViewCell(cellType: .Stand(text: "Stand", color: StandColor))
         default:
-            break
+            return UITableViewCell()
         }
-        cell.contentView.backgroundColor = .blackColor()
-        cell.selectionStyle = .None
-        
-        return cell
     }
     
     

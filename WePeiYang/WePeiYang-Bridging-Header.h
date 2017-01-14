@@ -19,6 +19,8 @@
 #import "SolaFoundationKit.h"
 #import "WebAppViewController.h"
 #import "UIViewController+Utils.h"
+#import "GPAClassData.h"
+#import "GPAData.h"
 
 #import <pop/POP.h>
 #import "SpecialEventsAnimator.h"
