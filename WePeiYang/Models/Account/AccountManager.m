@@ -36,7 +36,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TOKEN_SAVE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:ID_SAVE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"readToken"];
-    NSLog(@"fuck");
+    //NSLog(@"fuck");
     [wpyCacheManager removeCacheDataForKey:GPA_CACHE];
     [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_TERM_START_KEY];
     [wpyCacheManager removeGroupCacheDataForKey:CLASSTABLE_CACHE_KEY];

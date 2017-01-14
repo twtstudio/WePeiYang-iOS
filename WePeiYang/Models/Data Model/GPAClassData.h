@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NSString *reset;
 @property (strong, nonatomic) NSString *score;
 @property (strong, nonatomic) NSString *type;
+@property (strong, nonatomic) NSDictionary *evaluate;
 
 @end

@@ -15,7 +15,7 @@ class StarView: UIView {
     private let star_half = "star_half"
     var starSize: CGFloat = 0
     
-    var rating: Double = 0
+    dynamic var rating: Double = 0
     var stars: [UIButton] = []
     
     func loadStars() {

@@ -44,8 +44,12 @@
     
     NSString *userName;
     NSString *userPasswd;
+    NSString *GPASession;
     
     BOOL isRequestingData;
+    
+    //test
+    NSDictionary *fuckingDict;
 }
 
 @synthesize headerView;
@@ -59,7 +63,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.jz_navigationBarBackgroundAlpha = 0.0;
@@ -110,7 +114,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.navigationController.navigationBar.tintColor = self.view.tintColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
 //    self.jz_navigationBarBackgroundAlpha = 1.0;
@@ -179,6 +183,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [wpyCacheManager loadCacheDataWithKey:GPA_CACHE andBlock:^(id cacheData) {
         dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(cacheData[@"data"])[@"data"]];
+        GPASession = (cacheData[@"data"])[@"session"];
         stat = [GPAStat mj_objectWithKeyValues:(cacheData[@"data"])[@"stat"]];
         for (GPAData *tmpData in dataArr) {
             for (GPAClassData *tmpClass in tmpData.data) {
@@ -189,10 +194,12 @@
         [self updateView];
     } failed:nil];
     [twtSDK getGpaWithToken:[[NSUserDefaults standardUserDefaults] stringForKey:TOKEN_SAVE_KEY] success:^(NSURLSessionTask *task, id responseObject) {
+        //fuckingDict = (NSDictionary *)responseObject;
         if ([responseObject[@"error_code"] isEqual: @-1]) {
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             [wpyCacheManager saveCacheData:responseObject withKey:GPA_CACHE];
             dataArr = [GPAData mj_objectArrayWithKeyValuesArray:(responseObject[@"data"])[@"data"]];
+            GPASession = (responseObject[@"data"])[@"session"];
             stat = [GPAStat mj_objectWithKeyValues:(responseObject[@"data"])[@"stat"]];
             [self updateView];
             if ([wpyDeviceStatus getOSVersionFloat] >= 9.0) {
@@ -481,9 +488,18 @@
     GPATableViewCell *cell = (GPATableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"simpleIdentifier"];
     GPAData *gpa = (GPAData *)dataArr[currentTerm];
     GPAClassData *tmp = gpa.data[indexPath.row];
+    //NSLog(@"%@", tmp);
     cell.nameLabel.text = tmp.name;
     cell.creditLabel.text = tmp.credit;
-    cell.scoreLabel.text = tmp.score;
+    //if need to evaluate course to get score
+    if ([tmp.score  isEqual: @"-1"]) {
+        cell.scoreLabel.text = @"点这里去评价";
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.userInteractionEnabled = YES;
+    } else {
+        cell.scoreLabel.text = tmp.score;
+        cell.userInteractionEnabled = NO;
+    }
     cell.dotView.hidden = ([oldClassNamesSet containsObject:tmp.name] || oldClassNamesSet.count == 0) ? YES : NO;
     return cell;
 }
@@ -492,7 +508,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    CourseAppraiseViewController *CourseAppraiseVC = [[CourseAppraiseViewController alloc] init];
+    GPAData *gpa = (GPAData *)dataArr[currentTerm];
+    GPAClassData *tmp = gpa.data[indexPath.row];
+    CourseAppraiseVC.data = tmp;
+    CourseAppraiseVC.GPASession = GPASession;
+    [self.navigationController pushViewController:CourseAppraiseVC animated:YES];
 }
+
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    GPATableViewCell *cell = (GPATableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    if ([cell.scoreLabel.text isEqualToString:@"点这里去评价"]) {
+//        return indexPath;
+//    }
+//    return nil;
+//}
+
 
 #pragma mark - UIScrollView
 
