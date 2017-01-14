@@ -179,7 +179,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //dataSource of tableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -200,7 +200,8 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             if let name = BicycleUser.sharedInstance.name {
                 cell!.textLabel?.text = "用户：\(name)"
             }
-            
+            //For demo
+            //cell!.textLabel?.text = "用户：鲍一心"
             cell!.imageView?.image = UIImage(named: "ic_account_circle")
             cell!.selectionStyle = .None
         } else if indexPath.section == 1 {
@@ -232,7 +233,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             cell!.textLabel?.text = "查询记录"
         } else if indexPath.section == 4 {
             cell!.imageView?.image = UIImage(named: "ic_history")
-            cell!.textLabel?.text = "运动记录"
+            cell!.textLabel?.text = "数据分析"
         }
         
         return cell!

@@ -26,6 +26,8 @@
 		683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 683072131D76CE1C008C04CB /* UIViewController+Utils.m */; };
 		683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */; };
 		683E2ECC1D75BEFE007F2D7A /* QuizCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2ECB1D75BEFE007F2D7A /* QuizCell.swift */; };
+		684F1D5A1E28DABA00F280D9 /* CourseAppraiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F1D591E28DABA00F280D9 /* CourseAppraiseViewController.swift */; };
+		684F1D5C1E28DF0700F280D9 /* CourseAppraiseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684F1D5B1E28DF0700F280D9 /* CourseAppraiseCell.swift */; };
 		68513F2E1D6F08FF00E96BEB /* GradeCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F091D6F08FF00E96BEB /* GradeCheckViewController.swift */; };
 		68513F2F1D6F08FF00E96BEB /* GradeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */; };
 		68513F301D6F08FF00E96BEB /* PartyComplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */; };
@@ -84,6 +86,7 @@
 		68513F831D6F091200E96BEB /* SpotDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */; };
 		68513F851D6F1A9400E96BEB /* HandInDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */; };
 		68513F871D6F1AB800E96BEB /* HandInDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */; };
+		6862BB611E2A3ADB007701C5 /* CourseAppraiseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862BB601E2A3ADB007701C5 /* CourseAppraiseManager.swift */; };
 		68AD41611D5E11B200695DF4 /* twtSecretKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AD41601D5E11B200695DF4 /* twtSecretKeys.m */; };
 		B105394F1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105394E1DF72F1000054569 /* NewsViewTableViewController+UIViewControllerPreviewing.swift */; };
 		B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1063EAA1D704D5C0084F379 /* Checkbox.swift */; };
@@ -318,6 +321,8 @@
 		683072131D76CE1C008C04CB /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
 		683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllQuizViewController.swift; sourceTree = "<group>"; };
 		683E2ECB1D75BEFE007F2D7A /* QuizCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCell.swift; sourceTree = "<group>"; };
+		684F1D591E28DABA00F280D9 /* CourseAppraiseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseAppraiseViewController.swift; sourceTree = "<group>"; };
+		684F1D5B1E28DF0700F280D9 /* CourseAppraiseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseAppraiseCell.swift; sourceTree = "<group>"; };
 		68513F091D6F08FF00E96BEB /* GradeCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeCheckViewController.swift; sourceTree = "<group>"; };
 		68513F0A1D6F08FF00E96BEB /* GradeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeDetailViewController.swift; sourceTree = "<group>"; };
 		68513F0B1D6F08FF00E96BEB /* PartyComplainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyComplainViewController.swift; sourceTree = "<group>"; };
@@ -381,6 +386,7 @@
 		68513F6B1D6F091200E96BEB /* SpotDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotDetailsView.swift; sourceTree = "<group>"; };
 		68513F841D6F1A9400E96BEB /* HandInDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandInDetailViewController.xib; sourceTree = "<group>"; };
 		68513F861D6F1AB800E96BEB /* HandInDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandInDetailViewController.swift; sourceTree = "<group>"; };
+		6862BB601E2A3ADB007701C5 /* CourseAppraiseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CourseAppraiseManager.swift; path = WePeiYang/GPA/View/CourseAppraiseManager.swift; sourceTree = SOURCE_ROOT; };
 		68AD41601D5E11B200695DF4 /* twtSecretKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twtSecretKeys.m; sourceTree = "<group>"; };
 		69BD443D9F35722874748E77 /* Pods_WePeiYangTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYangTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -976,6 +982,7 @@
 			children = (
 				E90105371C3B994E002901AC /* GPATableViewController.h */,
 				E90105381C3B994E002901AC /* GPATableViewController.m */,
+				684F1D591E28DABA00F280D9 /* CourseAppraiseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -989,6 +996,7 @@
 				E94B1FD11BF79BF900520536 /* GPAClassData.m */,
 				E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */,
 				E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */,
+				6862BB601E2A3ADB007701C5 /* CourseAppraiseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -998,6 +1006,7 @@
 			children = (
 				E901053B1C3B994E002901AC /* GPATableViewCell.h */,
 				E901053C1C3B994E002901AC /* GPATableViewCell.m */,
+				684F1D5B1E28DF0700F280D9 /* CourseAppraiseCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1945,6 +1954,8 @@
 				68513F2E1D6F08FF00E96BEB /* GradeCheckViewController.swift in Sources */,
 				E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */,
 				E97704D01CD0A4DD0017A1CB /* WebAppViewController.m in Sources */,
+				684F1D5A1E28DABA00F280D9 /* CourseAppraiseViewController.swift in Sources */,
+				6862BB611E2A3ADB007701C5 /* CourseAppraiseManager.swift in Sources */,
 				E98DF6F91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m in Sources */,
 				68513F6C1D6F091200E96BEB /* BicycleCardListViewController.swift in Sources */,
 				B10A9E701DC8467600A395E9 /* RateView.swift in Sources */,
@@ -2116,6 +2127,7 @@
 				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
 				68513F7A1D6F091200E96BEB /* ParkingSpots.swift in Sources */,
+				684F1D5C1E28DF0700F280D9 /* CourseAppraiseCell.swift in Sources */,
 				68513F4B1D6F08FF00E96BEB /* TheoryCourseArticleReadingView.swift in Sources */,
 				68513F791D6F091200E96BEB /* NotificationList.swift in Sources */,
 				E98DF6A01C5D211A003943A4 /* WebAppTableViewCell.swift in Sources */,

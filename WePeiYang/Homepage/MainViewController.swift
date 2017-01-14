@@ -324,6 +324,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // PRESENT VIEW CONTROLLERS
     
     func showGPAController() {
+        print("Prepare to enter")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
         gpaVC.hidesBottomBarWhenPushed = true
