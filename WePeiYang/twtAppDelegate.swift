@@ -12,14 +12,13 @@
 class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     var window: UIWindow?
-    var specialEventsShouldShow = true
+    var specialEventsShouldShow = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let oldAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")
         let newAgent = oldAgent! + " WePeiYang_iOS"
         NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent": newAgent])
-        
         if NSUserDefaults.standardUserDefaults().objectForKey("eventsWatchedStatusCleared") == nil {
             NSUserDefaults.standardUserDefaults().removeObjectForKey("eventsWatched")
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "eventsWatchedStatusCleared")
@@ -36,6 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
             }
         })
 
+        var performAdditioinalHandling = true
+        if #available(iOS 9.0, *) {
+            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+                performAdditioinalHandling = false
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
         return true
     }
     
@@ -72,6 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
                 break
             }
         }
+    }
+    
+    
+    //3D Touch on iPhone 6s or later
+    @available(iOS 9.0, *)
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
     }
     
     func applicationWillTerminate(application: UIApplication) {

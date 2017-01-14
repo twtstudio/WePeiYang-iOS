@@ -5,6 +5,7 @@
 #import "twtSDK.h"
 #import "GPATableViewController.h"
 #import "NewsViewController.h"
+#import "NewsTableViewController.h"
 #import "NewsContentViewController.h"
 #import "wpyDeviceStatus.h"
 #import "wpyCacheManager.h"
@@ -18,6 +19,8 @@
 #import "SolaFoundationKit.h"
 #import "WebAppViewController.h"
 #import "UIViewController+Utils.h"
+#import "GPAClassData.h"
+#import "GPAData.h"
 
 #import <pop/POP.h>
 #import "SpecialEventsAnimator.h"

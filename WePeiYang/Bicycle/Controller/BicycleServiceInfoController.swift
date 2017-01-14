@@ -200,7 +200,8 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             if let name = BicycleUser.sharedInstance.name {
                 cell!.textLabel?.text = "用户：\(name)"
             }
-            
+            //For demo
+            //cell!.textLabel?.text = "用户：鲍一心"
             cell!.imageView?.image = UIImage(named: "ic_account_circle")
             cell!.selectionStyle = .None
         } else if indexPath.section == 1 {
@@ -230,6 +231,9 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
         } else if indexPath.section == 3 {
             cell!.imageView?.image = UIImage(named: "ic_history")
             cell!.textLabel?.text = "查询记录"
+        } else if indexPath.section == 4 {
+            cell!.imageView?.image = UIImage(named: "ic_history")
+            cell!.textLabel?.text = "数据分析"
         }
         
         return cell!
@@ -335,6 +339,17 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 3 {
             MsgDisplay.showErrorMsg("暂时没有这个功能哦")
+        }
+        
+        if indexPath.section == 4 {
+            if #available(iOS 9.3, *) {
+                let fitnessVC = BicycleFitnessTrackerViewController()
+                self.navigationController?.pushViewController(fitnessVC, animated: true)
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            } else {
+                // Fallback on earlier versions
+            }
+            
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

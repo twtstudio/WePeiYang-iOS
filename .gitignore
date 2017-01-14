@@ -4,4 +4,6 @@ WePeiYang/Models/Security/twtSecretKeys.m
 WePeiYang/Models/Security/twtAPIs.m
 WePeiYang/PartyService/Model/PartyAPI.swift
 WePeiYang/Bicycle/Model/BicycleAPIs.swift
+WePeiYang/Read/Model/ReadAPI.swift
 .idea/
+WePeiYang.xcworkspace/xcuserdata/

@@ -12,7 +12,7 @@ WePeiYang is under a complete refactory work. The additional content would be ad
 
 # Build
 
-Requirements: Xcode 7, CocoaPods, iOS 8.0+
+Requirements: Xcode 8, CocoaPods, iOS 8.0+
 
 # Acknowledgements
 

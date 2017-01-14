@@ -18,7 +18,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     private let toolsData: [ToolCell] = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
-        (title: "图书馆", image: UIImage(named: "libBtn")!),
+        //(title: "图书馆", image: UIImage(named: "libBtn")!),
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
@@ -30,6 +30,16 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //3D Touch
+        if #available(iOS 9.0, *) {
+            if traitCollection.forceTouchCapability == .Available {
+                registerForPreviewingWithDelegate(self, sourceView: self.collectionView!)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
         self.navigationController?.view.backgroundColor = UIColor.whiteColor()
         self.collectionView?.backgroundColor = UIColor.whiteColor()
         self.collectionView?.alwaysBounceVertical = true
@@ -105,17 +115,17 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.showGPAController()
         case 1:
             self.showClasstableController()
+//        case 2:
+//            self.showLibraryController()
         case 2:
-            self.showLibraryController()
-        case 3:
             self.showLostFoundController()
-        case 4:
+        case 3:
             self.showBicycleServiceController()
-        case 5:
+        case 4:
             self.showPartyServiceController()
-        case 6:
+        case 5:
             self.showMicroservicesController()
-        case 7:
+        case 6:
             self.showReadController()
         default:
             return
@@ -256,7 +266,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             }*/
             BicycleUser.sharedInstance.auth({
                 //隐藏tabbar
-                bikeVC.hidesBottomBarWhenPushed = true;
+                bikeVC.hidesBottomBarWhenPushed = true
                 self.navigationController?.showViewController(bikeVC, sender: nil)
             })
         }
@@ -294,8 +304,16 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func showReadController() {
+
+        guard let _ = NSUserDefaults.standardUserDefaults().objectForKey("twtToken") else {
+            MsgDisplay.showErrorMsg("你需要登录才能访问")
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            UIViewController.currentViewController().presentViewController(loginVC, animated: true, completion: nil)
+            return
+        }
         let readVC = ReadViewController()
-        readVC.hidesBottomBarWhenPushed = true;
+        
+        readVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(readVC, sender: nil)
     }
 }

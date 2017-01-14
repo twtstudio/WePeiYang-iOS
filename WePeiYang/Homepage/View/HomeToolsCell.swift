@@ -22,7 +22,6 @@ class HomeToolsCell: UITableViewCell, UICollectionViewDataSource, UICollectionVi
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
-//        (title: "失物招领", image: UIImage(named: "lfBtn")!)
         (title: "阅读", image: UIImage(named: "readBtn")!)
     ]
 
