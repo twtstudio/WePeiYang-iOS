@@ -20,9 +20,9 @@ class CourseAppraiseManager {
     static let shared = CourseAppraiseManager()
     private init() {}
     
-    func submit() {
+    func submit(successHandler: ()->()) {
         
-        let manager = AFHTTPSessionManager()
+        // let manager = AFHTTPSessionManager()
         let parameters = ["lesson_id": lesson_id!,
                          "union_id": union_id!,
                          "course_id": course_id!,
@@ -50,6 +50,7 @@ class CourseAppraiseManager {
         SolaSessionManager.solaSessionWithSessionType(.DUO, URL: url, token: GPASession!, parameters: parameters, success: { (_, responseObject) in
             log.obj(responseObject)/
             MsgDisplay.showSuccessMsg("评论成功!")
+            successHandler()
             }) { (_, error) in
                 log.error(error)/
                 MsgDisplay.showErrorMsg("评论失败")

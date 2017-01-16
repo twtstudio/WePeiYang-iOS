@@ -49,6 +49,9 @@
     [manager.requestSerializer setValue:[SolaFoundationKit userAgentString] forHTTPHeaderField:@"User-Agent"];
     if (token != nil && token.length > 0 && type != SessionTypeDUO) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", token] forHTTPHeaderField:@"Authorization"];
+    } else if (token != nil && token.length > 0 && type == SessionTypeDUO) {
+        NSString *twtToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"twtToken"];
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", twtToken] forHTTPHeaderField:@"Authorization"];
     }
 
     if (type == SessionTypeGET) {
