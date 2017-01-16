@@ -67,7 +67,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             if app.specialEventsShouldShow == true {
                 
-                self.checkSpecialEvents()
+                // self.checkSpecialEvents()
             }
 
         }
@@ -150,7 +150,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if app.specialEventsShouldShow == true {
             
-            self.checkSpecialEvents()
+            // self.checkSpecialEvents()
             //log.word("fuckers")/
         }
     }
