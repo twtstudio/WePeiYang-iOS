@@ -38,7 +38,7 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
                 return
         }
         print("yay")
-        CourseAppraiseManager.shared.setInfo(lesson_id, union_id: union_id, course_id: course_id, term: term, GPASession: GPASession!)
+         CourseAppraiseManager.shared.setInfo(lesson_id, union_id: union_id, course_id: course_id, term: term, GPASession: GPASession!)
         
         //View
         self.navigationItem.title = "评价";
@@ -151,7 +151,11 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func finishEvaluate() {
-        CourseAppraiseManager.shared.submit()
+        CourseAppraiseManager.shared.submit({
+            self.navigationController?.popViewControllerAnimated(true)
+            // fetch data and refresh chartView
+            NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_APPRAISE_SUCCESSED", object: nil)
+        })
     }
         
     func keyboardWillShow(notification: NSNotification) {
