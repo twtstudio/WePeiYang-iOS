@@ -83,7 +83,7 @@ extension RateView {
         
         
         let starView = StarView(rating: rating, height: 36, tappable: true)
-        let 😑 = UIView(color: readRed)
+        let splitLine = UIView(color: readRed)
         let textView = UITextView()
         textView.delegate = self
         textView.text = "写一点评论吧！"
@@ -123,8 +123,8 @@ extension RateView {
             
         }
         
-        self.addSubview(😑)
-        😑.snp_makeConstraints {
+        self.addSubview(splitLine)
+        splitLine.snp_makeConstraints {
             make in
             make.width.equalTo(UIScreen.mainScreen().bounds.width * 0.88)
             make.top.equalTo(starView.snp_bottom).offset(10)

@@ -1744,6 +1744,7 @@
 				TargetAttributes = {
 					1888420E1846E6F4007B92CB = {
 						DevelopmentTeam = TYRRVX7RWJ;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1754,6 +1755,7 @@
 						};
 					};
 					188842291846E6F4007B92CB = {
+						DevelopmentTeam = TYRRVX7RWJ;
 						TestTargetID = 1888420E1846E6F4007B92CB;
 					};
 				};
@@ -2232,6 +2234,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = TYRRVX7RWJ;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2249,6 +2252,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "11335bf0-c606-4693-b661-fafad3f9f20c";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 2.3;
 			};
@@ -2273,6 +2277,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = TYRRVX7RWJ;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -2283,6 +2288,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "11335bf0-c606-4693-b661-fafad3f9f20c";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
@@ -2298,6 +2304,7 @@
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = TYRRVX7RWJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -2334,7 +2341,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WePeiYang/WePeiYang.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = TYRRVX7RWJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -2367,6 +2375,7 @@
 			baseConfigurationReference = 8C2F1FF99AD3975DD8C2F52D /* Pods-WePeiYangTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WePeiYang.app/WePeiYang";
+				DEVELOPMENT_TEAM = TYRRVX7RWJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2391,6 +2400,7 @@
 			baseConfigurationReference = 49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WePeiYang.app/WePeiYang";
+				DEVELOPMENT_TEAM = TYRRVX7RWJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

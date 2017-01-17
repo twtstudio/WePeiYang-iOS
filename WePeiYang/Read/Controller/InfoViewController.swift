@@ -37,7 +37,6 @@ class InfoViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "我的"
-        self.tableView.style
         self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         self.tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
