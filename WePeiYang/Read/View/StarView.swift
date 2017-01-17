@@ -62,10 +62,6 @@ class StarView: UIView {
         }
         
         
-        if tappable {
-            assignGestures()
-        }
-        
         for index in 0..<5 {
             stars[index].tag = index
         }
@@ -88,6 +84,11 @@ class StarView: UIView {
         }
         
         loadStars()
+        if tappable {
+            assignGestures()
+            //Below is a line of code which solves a crappy and weird bug.
+            stars[Int(rating)-1].sendActionsForControlEvents(.TouchUpInside)
+        }
     }
     
 }
@@ -110,7 +111,9 @@ extension StarView {
         
         for i in 0...sender.tag {
             //stars[i] = UIButton(backgroundImageName: star_red, desiredSize: CGSize(width: tappedStar.bounds.width, height: tappedStar.bounds.height))!
+            //log.any(stars[i].frame)/
             stars[i].setBackgroundImage(UIImage(named: star_red), forState: UIControlState.Normal)
+            //log.any(stars[i].frame)/
         }
         if sender.tag < 4 {
             for i in (sender.tag+1)...4 {

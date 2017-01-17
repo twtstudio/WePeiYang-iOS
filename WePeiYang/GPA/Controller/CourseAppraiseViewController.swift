@@ -38,7 +38,7 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
                 return
         }
         print("yay")
-        CourseAppraiseManager.shared.setInfo(lesson_id, union_id: union_id, course_id: course_id, term: term, GPASession: GPASession!)
+         CourseAppraiseManager.shared.setInfo(lesson_id, union_id: union_id, course_id: course_id, term: term, GPASession: GPASession!)
         
         //View
         self.navigationItem.title = "评价";
@@ -57,6 +57,9 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
         tableView.dataSource = self
         tableView.allowsSelection = false
         
+        tableView.estimatedRowHeight = 180
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         registerForKeyboardNotifications()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("handleTap:")))
         
@@ -113,7 +116,7 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
     }
-    
+ /*
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 150
@@ -128,6 +131,7 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
     }
+    */
     
     //MARK: tableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -141,6 +145,11 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
             shouldLoadDetail = true
             CourseAppraiseManager.shared.detailAppraiseEnabled = true
             tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Middle)
+        } else { // shouldLoadDetail == true
+            // fold
+            shouldLoadDetail = false
+            CourseAppraiseManager.shared.detailAppraiseEnabled = false
+            tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Middle)
         }
     }
     
@@ -151,7 +160,11 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func finishEvaluate() {
-        CourseAppraiseManager.shared.submit()
+        CourseAppraiseManager.shared.submit({
+            self.navigationController?.popViewControllerAnimated(true)
+            // fetch data and refresh chartView
+            NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_APPRAISE_SUCCESSED", object: nil)
+        })
     }
         
     func keyboardWillShow(notification: NSNotification) {
