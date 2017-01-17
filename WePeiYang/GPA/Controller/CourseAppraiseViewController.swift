@@ -57,6 +57,9 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
         tableView.dataSource = self
         tableView.allowsSelection = false
         
+        tableView.estimatedRowHeight = 180
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         registerForKeyboardNotifications()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("handleTap:")))
         
@@ -113,7 +116,7 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
     }
-    
+ /*
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 150
@@ -128,6 +131,7 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
     }
+    */
     
     //MARK: tableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -140,6 +144,11 @@ class CourseAppraiseViewController: UIViewController, UITableViewDataSource, UIT
         if shouldLoadDetail == false {
             shouldLoadDetail = true
             CourseAppraiseManager.shared.detailAppraiseEnabled = true
+            tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Middle)
+        } else { // shouldLoadDetail == true
+            // fold
+            shouldLoadDetail = false
+            CourseAppraiseManager.shared.detailAppraiseEnabled = false
             tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Middle)
         }
     }

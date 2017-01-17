@@ -52,9 +52,10 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
                 make in
                 make.top.equalTo(titleLabel.snp_bottom).offset(8)
                 make.centerX.equalTo(contentView)
+                make.bottom.equalTo(contentView).offset(-8) //
             }
-            let score = CourseAppraiseManager.shared.scoreArray[id]
-            starView.stars[score-1].sendActionsForControlEvents(.TouchUpInside)
+           // let score = CourseAppraiseManager.shared.scoreArray[id]
+           // starView.stars[score-1].sendActionsForControlEvents(.TouchUpInside)
             starView.addObserver(self, forKeyPath: "rating", options: .New, context: &context)
             
         }
@@ -77,6 +78,7 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
                 make in
                 make.top.equalTo(titleLabel.snp_bottom).offset(8)
                 make.centerX.equalTo(contentView)
+                // make.bottom.equalTo(detailButton).offset(-8) //
             }
             let score = CourseAppraiseManager.shared.scoreArray[id]
             starView.stars[score-1].sendActionsForControlEvents(.TouchUpInside)
@@ -85,6 +87,7 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
             contentView.addSubview(detailImageButton)
             detailImageButton.snp_makeConstraints {
                 make in
+                make.top.equalTo(starView.snp_bottom).offset(8) //
                 make.left.equalTo(contentView).offset(16)
                 make.bottom.equalTo(contentView).offset(-8)
                 make.height.equalTo(30)
@@ -97,8 +100,10 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
             contentView.addSubview(detailButton)
             detailButton.snp_makeConstraints {
                 make in
+                make.top.equalTo(starView.snp_bottom).offset(8) //
                 make.left.equalTo(detailImageButton.snp_right)
                 make.centerY.equalTo(detailImageButton)
+                make.bottom.equalTo(contentView).offset(-8) //
             }
             detailButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
             detailButton.addTarget(self, action: #selector(detailButtonTapped), forControlEvents: .TouchUpInside)

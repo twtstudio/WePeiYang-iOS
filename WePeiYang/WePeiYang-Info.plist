@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20170116</string>
+	<string>20170118</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -54,8 +54,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>微北洋需要访问你的日历</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>自行车模块需要获取你储存在手机里的健康信息</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>自行车模块需要将你的骑行数据储存进你的健康信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>只有开启定位功能才能正常使用自行车功能</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>微北洋需要访问你的图库</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -79,10 +87,6 @@
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
