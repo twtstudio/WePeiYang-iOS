@@ -54,8 +54,8 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
                 make.centerX.equalTo(contentView)
                 make.bottom.equalTo(contentView).offset(-8) //
             }
-           // let score = CourseAppraiseManager.shared.scoreArray[id]
-           // starView.stars[score-1].sendActionsForControlEvents(.TouchUpInside)
+            let score = CourseAppraiseManager.shared.scoreArray[id]
+            starView.stars[score-1].sendActionsForControlEvents(.TouchUpInside)
             starView.addObserver(self, forKeyPath: "rating", options: .New, context: &context)
             
         }
@@ -93,7 +93,11 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
                 make.height.equalTo(30)
                 make.width.equalTo(30)
             }
-            detailImageButton.setImage(UIImage(named: "ic_arrow_down"), forState: .Normal)
+            if CourseAppraiseManager.shared.detailAppraiseEnabled == true {
+                detailImageButton.setImage(UIImage(named: "ic_arrow_up"), forState: .Normal)
+            } else {
+                detailImageButton.setImage(UIImage(named: "ic_arrow_down"), forState: .Normal)
+            }
             detailImageButton.tintColor = UIColor.grayColor()
             detailImageButton.addTarget(self, action: #selector(detailButtonTapped), forControlEvents: .TouchUpInside)
             
@@ -129,6 +133,7 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
                 make.left.equalTo(contentView).offset(16)
                 make.top.equalTo(titleLabel.snp_bottom).offset(8)
                 make.right.equalTo(contentView).offset(-16)
+                make.height.equalTo(100)
                 make.bottom.equalTo(contentView).offset(-8)
             }
             textView.delegate = self
@@ -145,6 +150,11 @@ class CourseAppraiseCell: UITableViewCell, UITextViewDelegate {
     
     func detailButtonTapped() {
         delegate?.loadDetail()
+        if CourseAppraiseManager.shared.detailAppraiseEnabled == true {
+            detailImageButton.setImage(UIImage(named: "ic_arrow_up"), forState: .Normal)
+        } else {
+            detailImageButton.setImage(UIImage(named: "ic_arrow_down"), forState: .Normal)
+        }
     }
     
     deinit{
