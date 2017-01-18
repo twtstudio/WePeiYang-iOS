@@ -99,6 +99,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_BINDTJU_CANCELLED" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotificationReceived) name:@"NOTIFICATION_LOGIN_SUCCESSED" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backNotificationReceived) name:@"NOTIFICATION_LOGIN_CANCELLED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getGPAData) name:@"NOTIFICATION_APPRAISE_SUCCESSED" object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

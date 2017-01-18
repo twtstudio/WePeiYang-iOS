@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSInteger, SessionType) {
     SessionTypeGET = 0,
     SessionTypePOST = 1,
+    SessionTypeDUO = 2,
 };
 
 @interface SolaSessionManager : NSObject

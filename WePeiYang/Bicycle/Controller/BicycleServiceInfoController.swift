@@ -200,7 +200,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
             if let name = BicycleUser.sharedInstance.name {
                 cell!.textLabel?.text = "用户：\(name)"
             }
-            
+
             cell!.imageView?.image = UIImage(named: "ic_account_circle")
             cell!.selectionStyle = .None
         } else if indexPath.section == 1 {

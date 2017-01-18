@@ -20,9 +20,9 @@ class CourseAppraiseManager {
     static let shared = CourseAppraiseManager()
     private init() {}
     
-    func submit() {
+    func submit(successHandler: ()->()) {
         
-        let manager = AFHTTPSessionManager()
+        // let manager = AFHTTPSessionManager()
         let parameters = ["lesson_id": lesson_id!,
                          "union_id": union_id!,
                          "course_id": course_id!,
@@ -36,14 +36,24 @@ class CourseAppraiseManager {
         print(parameters)
         
         
-        let url = "http://open.twtstudio.com/api/v1/gpa/evaluate?token={\(GPASession!)}"
-        print(url)
-        manager.requestSerializer = AFHTTPRequestSerializer()
-        manager.POST(url, parameters: parameters, success: { (_, responseObject) in
-            print(responseObject)
-            MsgDisplay.showSuccessMsg("评价成功")
-        }) { (_, error) in
-            MsgDisplay.showErrorMsg("评价失败")
+//        let url = "http://open.twtstudio.com/api/v1/gpa/evaluate?token={\(GPASession!)}"
+//        print(url)
+//        manager.requestSerializer = AFHTTPRequestSerializer()
+//        manager.POST(url, parameters: parameters, success: { (_, responseObject) in
+//            print(responseObject)
+//            MsgDisplay.showSuccessMsg("评价成功")
+//        }) { (_, error) in
+//            MsgDisplay.showErrorMsg("评价失败")
+//        }
+        
+        let url = "/gpa/evaluate?token=\(GPASession!)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        SolaSessionManager.solaSessionWithSessionType(.DUO, URL: url, token: GPASession!, parameters: parameters, success: { (_, responseObject) in
+            log.obj(responseObject)/
+            MsgDisplay.showSuccessMsg("评论成功!")
+            successHandler()
+            }) { (_, error) in
+                log.error(error)/
+                MsgDisplay.showErrorMsg("评论失败")
         }
     }
     

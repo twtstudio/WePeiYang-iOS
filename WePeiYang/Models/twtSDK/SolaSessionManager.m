@@ -23,17 +23,21 @@
     NSString *timeStamp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
     NSMutableDictionary *para = [NSMutableDictionary dictionaryWithDictionary:parameters];
     [para setObject:timeStamp forKey:@"t"];
+    NSMutableDictionary *fooPara = [NSMutableDictionary dictionaryWithDictionary:para];
     
+    if (type == SessionTypeDUO && token != nil && token.length > 0) {
+        [fooPara setObject:token forKey:@"token"];
+    }
     // 字典升序排列
     // obj1 从最后的数组元素开始
-    NSArray *keys = [para allKeys];
+    NSArray *keys = [fooPara allKeys];
     keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         return [obj1 compare:obj2] == NSOrderedDescending;
     }];
     // 字符串连接 & SHA-1
     NSString *sign = @"";
     for (NSString *tmpKey in keys) {
-        sign = [sign stringByAppendingString:[NSString stringWithFormat:@"%@%@", tmpKey, para[tmpKey]]];
+        sign = [sign stringByAppendingString:[NSString stringWithFormat:@"%@%@", tmpKey, fooPara[tmpKey]]];
     }
     sign = [NSString stringWithFormat:@"%@%@%@", [SolaInstance shareInstance].appKey, sign, [SolaInstance shareInstance].appSecret];
     sign = [[sign sha1] uppercaseString];
@@ -43,8 +47,11 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.requestSerializer setValue:[SolaFoundationKit userAgentString] forHTTPHeaderField:@"User-Agent"];
-    if (token != nil && token.length > 0) {
+    if (token != nil && token.length > 0 && type != SessionTypeDUO) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", token] forHTTPHeaderField:@"Authorization"];
+    } else if (token != nil && token.length > 0 && type == SessionTypeDUO) {
+        NSString *twtToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"twtToken"];
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", twtToken] forHTTPHeaderField:@"Authorization"];
     }
 
     if (type == SessionTypeGET) {
@@ -63,6 +70,21 @@
             failure(task, error);
         }];
     } else if (type == SessionTypePOST) {
+        [manager POST:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
+                [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
+            }
+            success(task, responseObject);
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
+                if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] != nil) {
+                    id responseObject = [NSJSONSerialization JSONObjectWithData:error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] options:NSJSONReadingMutableLeaves error:nil];
+                    [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
+                }
+            }
+            failure(task, error);
+        }];
+    } else if (type == SessionTypeDUO) {
         [manager POST:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {
                 [DevSessionRecorder recordSession:fullURL type:type parameters:para response:responseObject];
