@@ -23,7 +23,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
         (title: "探索", image: UIImage(named: "msBtn")!),
-        (title: "阅读", image: UIImage(named: "readBtn")!)
+        (title: "阅读", image: UIImage(named: "readBtn")!),
+        (title: "黄页", image: UIImage(named: "YellowPageBtn")!)
     ]
     
     var microserviceController: STPopupController!
@@ -127,6 +128,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.showMicroservicesController()
         case 6:
             self.showReadController()
+        case 7:
+            self.showYellowPageController()
         default:
             return
         }
@@ -316,4 +319,10 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
         readVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(readVC, sender: nil)
     }
+    
+    func showYellowPageController() {
+        let ypVC = YellowPageMainViewController()
+        self.navigationController?.showViewController(ypVC, sender: nil)
+    }
+    
 }

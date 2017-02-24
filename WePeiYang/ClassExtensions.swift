@@ -145,3 +145,26 @@ extension UIButton {
         setBackgroundImage(foo, forState: .Normal)
     }
 }
+
+
+extension UIFont {
+    static func flexibleFont(with baseSize: CGFloat) -> UIFont {
+        let bigiPhoneWidth: CGFloat = 414.0
+        let middleiPhoneWidth: CGFloat = 375.0
+        let smalliPhoneWidth: CGFloat = 320.0
+        
+        var font: UIFont! = nil
+        let width = UIScreen.mainScreen().bounds.size.width
+        
+        // default base size is 14
+        
+        if width >= bigiPhoneWidth { // 414 iPhone 6/7 Plus
+            font = UIFont.systemFontOfSize(baseSize+1)
+        } else if width >= middleiPhoneWidth { // 375 iPhone 6(S) 7
+            font = UIFont.systemFontOfSize(baseSize)
+        } else if width <= smalliPhoneWidth { // 320 iPhone 5(S)
+            font = UIFont.systemFontOfSize(baseSize-1)
+        }
+        return font
+    }
+}

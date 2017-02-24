@@ -21,6 +21,18 @@
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D343F1DC8DBB600D13DA0 /* MyBook.swift */; };
+		365F44D61E603DDF009CB20C /* ClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C51E603DDF009CB20C /* ClientItem.swift */; };
+		365F44D71E603DDF009CB20C /* CommonClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C61E603DDF009CB20C /* CommonClientCell.swift */; };
+		365F44D81E603DDF009CB20C /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C71E603DDF009CB20C /* CommonView.swift */; };
+		365F44DA1E603DDF009CB20C /* PhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C91E603DDF009CB20C /* PhoneBook.swift */; };
+		365F44DB1E603DDF009CB20C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CA1E603DDF009CB20C /* SearchView.swift */; };
+		365F44DC1E603DDF009CB20C /* TapableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CB1E603DDF009CB20C /* TapableImageView.swift */; };
+		365F44DD1E603DDF009CB20C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CC1E603DDF009CB20C /* ViewController.swift */; };
+		365F44DE1E603DDF009CB20C /* YellowPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CD1E603DDF009CB20C /* YellowPageCell.swift */; };
+		365F44DF1E603DDF009CB20C /* YellowPageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */; };
+		365F44E01E603DDF009CB20C /* YellowPageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */; };
+		365F44E11E603DDF009CB20C /* YellowPageSearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44D01E603DDF009CB20C /* YellowPageSearchHistoryCell.swift */; };
+		365F44E21E603DDF009CB20C /* YellowPageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */; };
 		36632E651DCDC539006B872F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36632E641DCDC539006B872F /* SearchViewController.swift */; };
 		36B21D3B1DCA155B00CEA50C /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */; };
 		683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 683072131D76CE1C008C04CB /* UIViewController+Utils.m */; };
@@ -312,6 +324,18 @@
 		188842421846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		363D343F1DC8DBB600D13DA0 /* MyBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
+		365F44C51E603DDF009CB20C /* ClientItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientItem.swift; sourceTree = "<group>"; };
+		365F44C61E603DDF009CB20C /* CommonClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonClientCell.swift; sourceTree = "<group>"; };
+		365F44C71E603DDF009CB20C /* CommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
+		365F44C91E603DDF009CB20C /* PhoneBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneBook.swift; sourceTree = "<group>"; };
+		365F44CA1E603DDF009CB20C /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		365F44CB1E603DDF009CB20C /* TapableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapableImageView.swift; sourceTree = "<group>"; };
+		365F44CC1E603DDF009CB20C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		365F44CD1E603DDF009CB20C /* YellowPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageCell.swift; sourceTree = "<group>"; };
+		365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageDetailViewController.swift; sourceTree = "<group>"; };
+		365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageMainViewController.swift; sourceTree = "<group>"; };
+		365F44D01E603DDF009CB20C /* YellowPageSearchHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageSearchHistoryCell.swift; sourceTree = "<group>"; };
+		365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageSearchViewController.swift; sourceTree = "<group>"; };
 		36632E641DCDC539006B872F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -730,6 +754,7 @@
 				68D65AB01DBF928900B44FD8 /* Read */,
 				E937017F1C5CA8A800C87E84 /* Library */,
 				E98DF6CF1C5DF5BF003943A4 /* WebViewController */,
+				365F44BE1E603DDF009CB20C /* YellowPage */,
 				E901054D1C3B994E002901AC /* Setting */,
 			);
 			path = WePeiYang;
@@ -751,6 +776,50 @@
 				188842341846E6F4007B92CB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		365F44BE1E603DDF009CB20C /* YellowPage */ = {
+			isa = PBXGroup;
+			children = (
+				365F44E51E603E26009CB20C /* View */,
+				365F44E41E603E0D009CB20C /* Controller */,
+				365F44E31E603E01009CB20C /* Model */,
+			);
+			name = YellowPage;
+			path = Setting/YellowPage;
+			sourceTree = "<group>";
+		};
+		365F44E31E603E01009CB20C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				365F44C51E603DDF009CB20C /* ClientItem.swift */,
+				365F44C91E603DDF009CB20C /* PhoneBook.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		365F44E41E603E0D009CB20C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				365F44CC1E603DDF009CB20C /* ViewController.swift */,
+				365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */,
+				365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */,
+				365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		365F44E51E603E26009CB20C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				365F44CB1E603DDF009CB20C /* TapableImageView.swift */,
+				365F44CA1E603DDF009CB20C /* SearchView.swift */,
+				365F44C71E603DDF009CB20C /* CommonView.swift */,
+				365F44C61E603DDF009CB20C /* CommonClientCell.swift */,
+				365F44CD1E603DDF009CB20C /* YellowPageCell.swift */,
+				365F44D01E603DDF009CB20C /* YellowPageSearchHistoryCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		68513F071D6F08FF00E96BEB /* PartyService */ = {
@@ -1767,6 +1836,7 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = 188842061846E6F4007B92CB;
 			productRefGroup = 188842101846E6F4007B92CB /* Products */;
@@ -1976,6 +2046,7 @@
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
 				E99923A01CC5FA65008963C8 /* SchemeManager.swift in Sources */,
 				B10A9E801DC8468C00A395E9 /* ReadViewController.m in Sources */,
+				365F44D61E603DDF009CB20C /* ClientItem.swift in Sources */,
 				B10A9E721DC8467600A395E9 /* RecommendCell.swift in Sources */,
 				E91E51621D00529400A5BED7 /* DevSessionViewController.swift in Sources */,
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
@@ -1995,6 +2066,7 @@
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
 				B1C4F6511D543DD0000CD0D8 /* (null) in Sources */,
 				68513F471D6F08FF00E96BEB /* PersonalStatusLabel.swift in Sources */,
+				365F44D71E603DDF009CB20C /* CommonClientCell.swift in Sources */,
 				68513F381D6F08FF00E96BEB /* TwentyCourseDetailViewController.swift in Sources */,
 				B153426A1DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
@@ -2009,11 +2081,15 @@
 				68513F6E1D6F091200E96BEB /* BicycleRecordViewController.swift in Sources */,
 				E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */,
 				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
+				365F44E01E603DDF009CB20C /* YellowPageMainViewController.swift in Sources */,
+				365F44D81E603DDF009CB20C /* CommonView.swift in Sources */,
 				B10A9E641DC8466C00A395E9 /* Review.swift in Sources */,
 				E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
+				365F44DA1E603DDF009CB20C /* PhoneBook.swift in Sources */,
 				E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */,
+				365F44E11E603DDF009CB20C /* YellowPageSearchHistoryCell.swift in Sources */,
 				B1FD93761DF889D000E35112 /* BicycleFitnessTrackerViewController.swift in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
 				68513F721D6F091200E96BEB /* BicycleServiceViewController.m in Sources */,
@@ -2032,7 +2108,9 @@
 				B1C4F6501D543DD0000CD0D8 /* (null) in Sources */,
 				E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */,
 				B113C7001D57B5B80072726F /* log.swift in Sources */,
+				365F44E21E603DDF009CB20C /* YellowPageSearchViewController.swift in Sources */,
 				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
+				365F44DC1E603DDF009CB20C /* TapableImageView.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
 				B10A9E7F1DC8468C00A395E9 /* InfoViewController.swift in Sources */,
@@ -2040,6 +2118,8 @@
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
 				E98DF6F51C5DF5BF003943A4 /* SVWebViewControllerActivityChrome.m in Sources */,
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
+				365F44DB1E603DDF009CB20C /* SearchView.swift in Sources */,
+				365F44DD1E603DDF009CB20C /* ViewController.swift in Sources */,
 				B1063EAF1D704E390084F379 /* QuizView.swift in Sources */,
 				68513F6F1D6F091200E96BEB /* BicycleServiceInfoController.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
@@ -2070,6 +2150,7 @@
 				B1FD93781DF904D000E35112 /* BicycleFitnessTrackerViewCell.swift in Sources */,
 				68513F4A1D6F08FF00E96BEB /* TextTableViewCell.swift in Sources */,
 				B10A9E711DC8467600A395E9 /* ReadStarCell.swift in Sources */,
+				365F44DE1E603DDF009CB20C /* YellowPageCell.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				B10A9E601DC8466C00A395E9 /* Book.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
@@ -2080,6 +2161,7 @@
 				363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
 				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
+				365F44DF1E603DDF009CB20C /* YellowPageDetailViewController.swift in Sources */,
 				B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */,
 				68513F3E1D6F08FF00E96BEB /* PartyAPI.swift in Sources */,
 				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,
