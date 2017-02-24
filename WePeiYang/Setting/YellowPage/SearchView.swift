@@ -11,7 +11,8 @@ import UIKit
 import SnapKit
 
 class SearchView: UIView {
-    let backBtn = UIButton()
+    //let backBtn = UIButton()
+    let backBtn = TappableImageView(with: CGRect.zero, imageSize: CGSize(width: 20, height: 20), image: UIImage(named: "ypback"))
     let textField = UITextField()
     /*
     // Only override draw() if you perform custom drawing.
@@ -30,16 +31,14 @@ class SearchView: UIView {
 
         bgdView.backgroundColor = UIColor(red: 0.1059, green: 0.6352, blue: 0.9019, alpha: 1)
         
-        backBtn.setImage(UIImage(named: "back"), forState: .Normal)
-        backBtn.adjustsImageWhenHighlighted = false
         bgdView.addSubview(backBtn)
         backBtn.snp_makeConstraints { make in
-            make.width.equalTo(20)
-            make.height.equalTo(20)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
             make.centerY.equalTo(self).offset(7)
             make.left.equalTo(self).offset(20)
         }
-        
+
         let separator = UIView()
         separator.backgroundColor = UIColor(red: 0.074, green: 0.466, blue: 0.662, alpha: 1)
         bgdView.addSubview(separator)

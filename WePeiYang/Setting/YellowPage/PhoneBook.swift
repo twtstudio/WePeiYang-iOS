@@ -14,6 +14,7 @@ class PhoneBook: NSObject {
     
     var favorite: [ClientItem] = []
     
+    // given a name, return its phone number
     func getPhoneNumber(with string: String) -> String? {
         
         return ""
@@ -40,7 +41,30 @@ class PhoneBook: NSObject {
         models.append(ClientItem(with: "学工部宿舍管理科", phone: "27407032"))
         models.append(ClientItem(with: "学工部研究生教育管理科", phone: "27407011"))
         models.append(ClientItem(with: "学工部学生档案室", phone: "27407023"))
+        // return favorite
         return models
+    }
+    
+    func addToFavorite(with model: ClientItem, success: ()->()) {
+        for m in favorite {
+            if m.phone == model.phone && m.name == model.name {
+                return
+            }
+        }
+        var m = model
+        // help? right?
+        m.isFavorite = true
+        favorite.append(m)
+        success()
+    }
+    
+    func removeFromFavorite(with model: ClientItem, success: ()->()) {
+        for (index, m) in favorite.enumerate() {
+            if m.phone == model.phone && m.name == model.name {
+                favorite.removeAtIndex(index)
+            }
+        }
+        success()
     }
     
     // get models with member name
@@ -50,19 +74,23 @@ class PhoneBook: NSObject {
         models.append(ClientItem(with: "学工部宿舍管理科", phone: "27407032"))
         models.append(ClientItem(with: "学工部研究生教育管理科", phone: "27407011"))
         models.append(ClientItem(with: "学工部学生档案室", phone: "27407023"))
+        models[1].isFavorite = true
         return models
     }
     
-    func getItems(with string: String) -> [ClientItem] {
+    // seach result
+    func getResult(with string: String, success: ([ClientItem])->()) {
         if string == "" {
-            return []
+            return
         }
         var models: [ClientItem] = []
         models.append(ClientItem(with: "学工部本科生教育科", phone: "27407083"))
         models.append(ClientItem(with: "学工部宿舍管理科", phone: "27407032"))
         models.append(ClientItem(with: "学工部研究生教育管理科", phone: "27407011"))
         models.append(ClientItem(with: "学工部学生档案室", phone: "27407023"))
-        return models
+        models[1].isFavorite = true
+        success(models)
+        //return models
     }
     
 }

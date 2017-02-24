@@ -18,7 +18,9 @@ class YellowPageSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        searchView.backBtn.addTarget(self, action: #selector(YellowPageSearchViewController.backToggled), forControlEvents: .TouchUpInside)
+        //searchView.backBtn.addTarget(self, action: #selector(YellowPageSearchViewController.backToggled), forControlEvents: .TouchUpInside)
+        let backTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.backToggled))
+        searchView.backBtn.addGestureRecognizer(backTapGesture)
         self.view.addSubview(searchView)
         searchView.textField.becomeFirstResponder()
         self.view.addSubview(tableView)
@@ -52,6 +54,9 @@ class YellowPageSearchViewController: UIViewController {
             make.centerY.equalTo(footerView)
         }
         
+        let clearTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.clearTapped))
+        footerView.addGestureRecognizer(clearTapGesture)
+        
         // FIXME: all?
         searchView.textField.addTarget(self, action: #selector(YellowPageSearchViewController.textFieldTextChanged(_:)), forControlEvents: .EditingChanged)
         //searchView.textField.addTarget(self, action: #selector(textFieldTextChanged(sender:)), for: .allEditingEvents)
@@ -61,6 +66,12 @@ class YellowPageSearchViewController: UIViewController {
     
     func hideKeyboard() {
         self.searchView.textField.resignFirstResponder()
+        if let text = searchView.textField.text {
+            // FIXME: Write to model singleton
+            if text != "" {
+                self.history.append(text)
+            }
+        }
     }
     
     func backToggled() {
@@ -68,11 +79,20 @@ class YellowPageSearchViewController: UIViewController {
         // self.dismiss(animated: true, completion: nil)
     }
     
+    func clearTapped() {
+        // FIXME: Write to model singleton
+        self.history.removeAll()
+    }
+    
     func textFieldTextChanged(sender : AnyObject) {
         // got what you want
-        self.result = PhoneBook.shared.getItems(with: searchView.textField.text!)
+        PhoneBook.shared.getResult(with: searchView.textField.text!) { result in
+            self.result = result
+//            dispatch_sync(dispatch_get_main_queue(), {
+//                self.tableView.reloadData() // 更新tableView
+//            })
+        }
         // and refresh the table
-        self.tableView.reloadData() // 更新tableView
         
         // TODO: if not found, display not-found-view
     }

@@ -25,13 +25,26 @@ class YellowPageMainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationItem.title = "黄页";
+        //self.navigationItem.title = "黄页";
+        let titleLabel = UILabel(text: "黄页")
+        titleLabel.backgroundColor = UIColor.clearColor()
+        titleLabel.font = UIFont.boldSystemFontOfSize(18.0)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
+
+        
         // TODO: right button search
         let rightButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(YellowPageMainViewController.searchToggle))
         self.navigationItem.rightBarButtonItem = rightButton
        // TODO: color of navigation bar
         // self.navigationController?.navigationBar.tintColor = UIColor(red: 0.1059, green: 0.6352, blue: 0.9019, alpha: 1)
-
+//        self.jz_navigationBarTintColor = UIColor(red: 0.1568, green: 0.6392, blue: 0.8901, alpha: 1)
+        self.jz_navigationBarTintColor = UIColor(red: 0.02, green: 0.585, blue: 0.8901, alpha: 1)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationItem
+        //改变 statusBar 颜色
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -195,7 +208,6 @@ extension YellowPageMainViewController: UITableViewDelegate {
             } else {
                 // toggle phone call
                 
-                UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(favorite[indexPath.row-1].phone)")!)
             }
             
         case let section where section > 1 && section < 2+sections.count: //  section
@@ -244,5 +256,11 @@ extension YellowPageMainViewController: UITableViewDelegate {
         } else {
             return 0.001
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+
     }
 }

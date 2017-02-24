@@ -26,7 +26,6 @@ class YellowPageDetailViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.view.addSubview(tableView)
-        
         tableView.snp_makeConstraints { make in
             make.top.equalTo(view)
             make.bottom.equalTo(view)
@@ -49,6 +48,7 @@ extension YellowPageDetailViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = YellowPageCell(with: .detailed, model: models[indexPath.row])
+        //cell.
         return cell
     }
 }
@@ -56,5 +56,14 @@ extension YellowPageDetailViewController: UITableViewDataSource {
 extension YellowPageDetailViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let separator = UIView()
+        separator.backgroundColor = UIColor.lightGrayColor()
+        return separator
+    }
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.5
     }
 }

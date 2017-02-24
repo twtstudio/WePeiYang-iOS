@@ -37,6 +37,7 @@ class YellowPageCell: UITableViewCell {
     var style: YellowPageCellStyle = .header
     var detailedModel: ClientItem! = nil
     var commonView: CommonView! = nil
+    var likeView: TappableImageView! = nil
     
     convenience init(with style: YellowPageCellStyle, name: String) {
         self.init(style: .Default, reuseIdentifier: style.rawValue)
@@ -118,7 +119,7 @@ class YellowPageCell: UITableViewCell {
         guard style == .detailed else {
             return
         }
-        
+        self.detailedModel = model
         let nameLabel = UILabel()
         nameLabel.text = model.name
         nameLabel.font = UIFont.flexibleFont(with: 14)
@@ -142,45 +143,59 @@ class YellowPageCell: UITableViewCell {
             make.bottom.equalTo(contentView).offset(-6)
         }
         
-        let likeView = UIImageView()
-            likeView.image = UIImage(named: model.isFavorite ? "like" : "dislike")
+//        let likeView = UIImageView()
+        likeView = TappableImageView(with: CGRect.zero, imageSize: CGSize(width: 18, height: 18), image: UIImage(named: model.isFavorite ? "like" : "dislike"))
+        //likeView.image = UIImage(named: model.isFavorite ? "like" : "dislike")
         self.contentView.addSubview(likeView)
         likeView.snp_makeConstraints { make in
-            make.width.equalTo(18)
-            make.height.equalTo(18)
-            make.right.equalTo(contentView).offset(-20)
-            make.bottom.equalTo(contentView).offset(-6)
+//            make.width.equalTo(18)
+//            make.height.equalTo(18)
+            make.width.equalTo(24)
+            make.height.equalTo(24)
+            make.right.equalTo(contentView).offset(-14)
+            //make.bottom.equalTo(contentView)//.offset(4)
+            make.centerY.equalTo(phoneLabel.snp_centerY)
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageCell.likeTapped))
-        likeView.addGestureRecognizer(tapGesture)
+        likeView.userInteractionEnabled = true
+        let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageCell.likeTapped))
+        likeView.addGestureRecognizer(likeTapGesture)
         
-        let phoneView = UIImageView()
-        phoneView.image = UIImage(named: "phone")
-
+//        let phoneView = UIImageView()
+//        phoneView.image = UIImage(named: "phone")
+        let phoneView = TappableImageView(with: CGRect.zero, imageSize: CGSize(width: 18, height: 18), image: UIImage(named: "phone"))
+        let phoneTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageCell.phoneTapped))
+        phoneView.addGestureRecognizer(phoneTapGesture)
+        
         self.contentView.addSubview(phoneView)
         phoneView.snp_makeConstraints { make in
-            make.width.equalTo(18)
-            make.height.equalTo(18)
-            make.right.equalTo(likeView.snp_left).offset(-30)
-            make.bottom.equalTo(contentView).offset(-6)
+            make.width.equalTo(24)
+            make.height.equalTo(24)
+            make.right.equalTo(likeView.snp_left).offset(-24)
+            //make.bottom.equalTo(contentView)//.offset(4)
+            make.centerY.equalTo(phoneLabel.snp_centerY)
         }
         
     }
     
     func likeTapped() {
         if detailedModel.isFavorite {
-           PhoneBook.shared.favorite = PhoneBook.shared.favorite.filter { model in
-                return !(model.isFavorite == detailedModel.isFavorite &&
-                    model.name == detailedModel.name &&
-                    model.phone == detailedModel.phone)
+            PhoneBook.shared.removeFromFavorite(with: self.detailedModel) {
+                self.likeView.imgView.image = UIImage(named: "dislike")
             }
             detailedModel.isFavorite = false
             // TODO: animation
         } else {
             detailedModel.isFavorite = true
-            PhoneBook.shared.favorite.append(detailedModel)
+            PhoneBook.shared.addToFavorite(with: self.detailedModel) {
+                self.likeView.imgView.image = UIImage(named: "like")
+            }
             // TODO: animation
+            // refresh data
         }
+    }
+    
+    func phoneTapped() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(self.detailedModel.phone)")!)
     }
     
 }

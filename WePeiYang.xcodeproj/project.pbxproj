@@ -26,8 +26,7 @@
 		365F44D81E603DDF009CB20C /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C71E603DDF009CB20C /* CommonView.swift */; };
 		365F44DA1E603DDF009CB20C /* PhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C91E603DDF009CB20C /* PhoneBook.swift */; };
 		365F44DB1E603DDF009CB20C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CA1E603DDF009CB20C /* SearchView.swift */; };
-		365F44DC1E603DDF009CB20C /* TapableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CB1E603DDF009CB20C /* TapableImageView.swift */; };
-		365F44DD1E603DDF009CB20C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CC1E603DDF009CB20C /* ViewController.swift */; };
+		365F44DC1E603DDF009CB20C /* TappableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CB1E603DDF009CB20C /* TappableImageView.swift */; };
 		365F44DE1E603DDF009CB20C /* YellowPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CD1E603DDF009CB20C /* YellowPageCell.swift */; };
 		365F44DF1E603DDF009CB20C /* YellowPageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */; };
 		365F44E01E603DDF009CB20C /* YellowPageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */; };
@@ -329,8 +328,7 @@
 		365F44C71E603DDF009CB20C /* CommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		365F44C91E603DDF009CB20C /* PhoneBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneBook.swift; sourceTree = "<group>"; };
 		365F44CA1E603DDF009CB20C /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		365F44CB1E603DDF009CB20C /* TapableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapableImageView.swift; sourceTree = "<group>"; };
-		365F44CC1E603DDF009CB20C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		365F44CB1E603DDF009CB20C /* TappableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableImageView.swift; sourceTree = "<group>"; };
 		365F44CD1E603DDF009CB20C /* YellowPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageCell.swift; sourceTree = "<group>"; };
 		365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageDetailViewController.swift; sourceTree = "<group>"; };
 		365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageMainViewController.swift; sourceTree = "<group>"; };
@@ -781,8 +779,8 @@
 		365F44BE1E603DDF009CB20C /* YellowPage */ = {
 			isa = PBXGroup;
 			children = (
-				365F44E51E603E26009CB20C /* View */,
 				365F44E41E603E0D009CB20C /* Controller */,
+				365F44E51E603E26009CB20C /* View */,
 				365F44E31E603E01009CB20C /* Model */,
 			);
 			name = YellowPage;
@@ -801,7 +799,6 @@
 		365F44E41E603E0D009CB20C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				365F44CC1E603DDF009CB20C /* ViewController.swift */,
 				365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */,
 				365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */,
 				365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */,
@@ -812,7 +809,7 @@
 		365F44E51E603E26009CB20C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				365F44CB1E603DDF009CB20C /* TapableImageView.swift */,
+				365F44CB1E603DDF009CB20C /* TappableImageView.swift */,
 				365F44CA1E603DDF009CB20C /* SearchView.swift */,
 				365F44C71E603DDF009CB20C /* CommonView.swift */,
 				365F44C61E603DDF009CB20C /* CommonClientCell.swift */,
@@ -2110,7 +2107,7 @@
 				B113C7001D57B5B80072726F /* log.swift in Sources */,
 				365F44E21E603DDF009CB20C /* YellowPageSearchViewController.swift in Sources */,
 				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
-				365F44DC1E603DDF009CB20C /* TapableImageView.swift in Sources */,
+				365F44DC1E603DDF009CB20C /* TappableImageView.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
 				B10A9E7F1DC8468C00A395E9 /* InfoViewController.swift in Sources */,
@@ -2119,7 +2116,6 @@
 				E98DF6F51C5DF5BF003943A4 /* SVWebViewControllerActivityChrome.m in Sources */,
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
 				365F44DB1E603DDF009CB20C /* SearchView.swift in Sources */,
-				365F44DD1E603DDF009CB20C /* ViewController.swift in Sources */,
 				B1063EAF1D704E390084F379 /* QuizView.swift in Sources */,
 				68513F6F1D6F091200E96BEB /* BicycleServiceInfoController.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,

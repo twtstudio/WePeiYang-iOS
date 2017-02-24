@@ -10,10 +10,7 @@
 #import "WePeiYang-Swift.h"
 #import "MsgDisplay.h"
 #define readRed [UIColor colorWithRed:234.0/255.0 green:74.0/255.0 blue:70/255.0 alpha:1.0]
-@interface ReadViewController() //<SearchDelegate>
-{
-    Search *search;
-}
+@interface ReadViewController()
 @property (strong, nonatomic) UILabel *titleLabel;
 @end
 
@@ -92,13 +89,6 @@
 
 }
 
-
-- (void) hideSearchView:(BOOL)status
-{
-    if (status == YES){
-        [search removeFromSuperview];
-    }
-}
 
 - (void)viewDidLoad {
     
