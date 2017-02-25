@@ -124,12 +124,18 @@ class YellowPageCell: UITableViewCell {
         nameLabel.text = model.name
         nameLabel.font = UIFont.flexibleFont(with: 14)
         nameLabel.sizeToFit()
+       
+        // paste
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(YellowPageCell.longPressed))
+        self.addGestureRecognizer(longPress)
+        
         self.contentView.addSubview(nameLabel)
         nameLabel.snp_makeConstraints { make in
             make.top.equalTo(contentView).offset(10)
             make.left.equalTo(contentView).offset(15)
             //make.bottom.equalTo(nameLabel).offset(-12)
         }
+        
         
         let phoneLabel = UILabel()
         phoneLabel.text = model.phone
@@ -196,6 +202,17 @@ class YellowPageCell: UITableViewCell {
     
     func phoneTapped() {
         UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(self.detailedModel.phone)")!)
+    }
+    
+    func longPressed() {
+        if let text = UIPasteboard.generalPasteboard().string {
+            if text == self.detailedModel.phone {
+                MsgDisplay.showSuccessMsg("已经复制到剪切板")
+                return
+            }
+        }
+        UIPasteboard.generalPasteboard().string = self.detailedModel.phone
+        MsgDisplay.showSuccessMsg("已经复制到剪切板")
     }
     
 }

@@ -44,8 +44,8 @@ class YellowPageSearchHistoryCell: UITableViewCell {
         deleteView.image = UIImage(named: "delete")
         self.addSubview(deleteView)
         deleteView.snp_makeConstraints { make in
-            make.width.equalTo(15)
-            make.height.equalTo(15)
+            make.width.equalTo(13)
+            make.height.equalTo(13)
             make.right.equalTo(self).offset(-20)
             make.centerY.equalTo(self)
         }

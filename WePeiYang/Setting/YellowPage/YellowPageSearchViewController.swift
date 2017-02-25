@@ -14,6 +14,7 @@ class YellowPageSearchViewController: UIViewController {
 
     var history: [String] = ["记录"]
     var result: [ClientItem] = []
+    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,23 +43,21 @@ class YellowPageSearchViewController: UIViewController {
         
         searchView.textField.delegate = self
         
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
-        let label = UILabel()
-        label.text = "清除搜索记录"
-        label.font = UIFont.boldSystemFontOfSize(16)
-        label.textColor = UIColor.magentaColor()
-        label.sizeToFit()
-        footerView.addSubview(label)
-        label.snp_makeConstraints { make in
-            make.centerX.equalTo(footerView)
-            make.centerY.equalTo(footerView)
-        }
+//        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+//        let label = UILabel()
+//        label.text = "清除搜索记录"
+//        label.font = UIFont.boldSystemFontOfSize(16)
+//        label.textColor = UIColor.magentaColor()
+//        label.sizeToFit()
+//        footerView.addSubview(label)
+//        label.snp_makeConstraints { make in
+//            make.centerX.equalTo(footerView)
+//            make.centerY.equalTo(footerView)
+//        }
         
-        let clearTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.clearTapped))
-        footerView.addGestureRecognizer(clearTapGesture)
         
         // FIXME: all?
-        searchView.textField.addTarget(self, action: #selector(YellowPageSearchViewController.textFieldTextChanged(_:)), forControlEvents: .EditingChanged)
+        searchView.textField.addTarget(self, action: #selector(YellowPageSearchViewController.textFieldTextChanged(_:)), forControlEvents: .AllEditingEvents)
         //searchView.textField.addTarget(self, action: #selector(textFieldTextChanged(sender:)), for: .allEditingEvents)
         tableView.sectionFooterHeight = 30
 
@@ -82,12 +81,21 @@ class YellowPageSearchViewController: UIViewController {
     func clearTapped() {
         // FIXME: Write to model singleton
         self.history.removeAll()
+        tableView.reloadData()
     }
     
     func textFieldTextChanged(sender : AnyObject) {
         // got what you want
+        guard searchView.textField.text! != "" else {
+            isSearching = false
+            tableView.reloadData()
+            return
+        }
+        
         PhoneBook.shared.getResult(with: searchView.textField.text!) { result in
             self.result = result
+            self.isSearching = true
+            self.tableView.reloadData()
 //            dispatch_sync(dispatch_get_main_queue(), {
 //                self.tableView.reloadData() // 更新tableView
 //            })
@@ -120,6 +128,7 @@ extension YellowPageSearchViewController: UITableViewDataSource {
             return result.count
         }
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if result.count == 0 {
             let cell = YellowPageSearchHistoryCell(with: history[indexPath.row])
@@ -136,7 +145,7 @@ extension YellowPageSearchViewController: UITableViewDataSource {
 extension YellowPageSearchViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
-        guard history.count != 0 else {
+        guard history.count != 0 && !self.isSearching else {
             return footerView
         }
         let label = UILabel()
@@ -149,6 +158,8 @@ extension YellowPageSearchViewController: UITableViewDelegate {
             make.centerX.equalTo(footerView)
             make.centerY.equalTo(footerView)
         }
+        let clearTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.clearTapped))
+        footerView.addGestureRecognizer(clearTapGesture)
         return footerView
     }
 }
@@ -156,11 +167,11 @@ extension YellowPageSearchViewController: UITableViewDelegate {
 // MARK: UITextFieldDelegate
 extension YellowPageSearchViewController: UITextFieldDelegate {
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else {
-            return
-        }
-        
-        tableView.reloadData()
-    }
+  //  func textFieldDidEndEditing(_ textField: UITextField) {
+        //guard let text = textField.text else {
+        //    return
+        //}
+    //
+    //    tableView.reloadData()
+    //}
 }
