@@ -8,9 +8,8 @@
 
 import Foundation
 
-struct ClientItem {
+class ClientItem: NSObject {
     var name = ""
-    var iconName = ""
     var phone = ""
     var isFavorite = false
     

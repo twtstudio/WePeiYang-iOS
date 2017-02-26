@@ -93,4 +93,12 @@ class PhoneBook: NSObject {
         //return models
     }
     
+    func saveToLocal() {
+        NSUserDefaults.standardUserDefaults().setObject(self.favorite, forKey: "YellowPageFavorite")
+    }
+    
+    func readFromLocal() {
+        self.favorite = NSUserDefaults.standardUserDefaults().objectForKey("YellowPageFavorite") as! [ClientItem]
+    }
+    
 }

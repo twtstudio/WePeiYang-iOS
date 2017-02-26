@@ -77,6 +77,8 @@ class SearchView: UIView {
             make.bottom.equalTo(baseLine.snp_top).offset(-3)
             make.height.equalTo(20)
         }
+        textField.clearButtonMode = .UnlessEditing
+        textField.textColor = UIColor.whiteColor()
     }
 
 

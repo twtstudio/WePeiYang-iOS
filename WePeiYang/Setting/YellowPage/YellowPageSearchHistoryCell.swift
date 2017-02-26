@@ -11,7 +11,7 @@ import SnapKit
 
 class YellowPageSearchHistoryCell: UITableViewCell {
 
-    let deleteView = UIImageView()
+    let deleteView = TappableImageView(with: CGRect.zero, imageSize: CGSize(width: 13, height: 13), image: UIImage(named: "delete"))
     let label = UILabel()
     
     override func awakeFromNib() {
@@ -41,12 +41,12 @@ class YellowPageSearchHistoryCell: UITableViewCell {
             make.centerY.equalTo(self)
         }
         
-        deleteView.image = UIImage(named: "delete")
+        //deleteView.image = UIImage(named: "delete")
         self.addSubview(deleteView)
         deleteView.snp_makeConstraints { make in
-            make.width.equalTo(13)
-            make.height.equalTo(13)
-            make.right.equalTo(self).offset(-20)
+            make.width.equalTo(23)
+            make.height.equalTo(23)
+            make.right.equalTo(self).offset(-10)
             make.centerY.equalTo(self)
         }
         
