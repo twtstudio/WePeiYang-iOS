@@ -23,15 +23,19 @@ class YellowPageSearchViewController: UIViewController {
         } else {
             self.history = []
         }
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         //searchView.backBtn.addTarget(self, action: #selector(YellowPageSearchViewController.backToggled), forControlEvents: .TouchUpInside)
+        //改变 statusBar 颜色
+
         let backTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.backToggled))
         searchView.backBtn.addGestureRecognizer(backTapGesture)
         self.view.addSubview(searchView)
+        searchView.textField.delegate = self
         searchView.textField.becomeFirstResponder()
         self.view.addSubview(tableView)
         tableView.snp_makeConstraints { make in
@@ -50,26 +54,19 @@ class YellowPageSearchViewController: UIViewController {
         //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.hideKeyboard))
         //tableView.addGestureRecognizer(tapGesture)
         
-        // searchView.textField.delegate = self
         
         
-        // FIXME: all?
         searchView.textField.addTarget(self, action: #selector(YellowPageSearchViewController.textFieldTextChanged(_:)), forControlEvents: .AllEditingEvents)
-        //searchView.textField.addTarget(self, action: #selector(textFieldTextChanged(sender:)), for: .allEditingEvents)
         tableView.sectionFooterHeight = 30
 
     }
     
     func hideKeyboard() {
         self.searchView.textField.resignFirstResponder()
-//        if let text = searchView.textField.text {
-//            // FIXME: Write to model singleton
-//            if text != "" {
-//            }
-//        }
     }
     
     func backToggled() {
+        searchView.backBtn.tapped()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -104,9 +101,6 @@ class YellowPageSearchViewController: UIViewController {
 //            })
         }
         // and refresh the table
-        if !history.contains(searchView.textField.text!) {
-            self.history.append(searchView.textField.text!)
-        }
         // TODO: if not found, display not-found-view
     }
 
@@ -217,13 +211,18 @@ extension YellowPageSearchViewController: UITableViewDelegate {
 
 
 // MARK: UITextFieldDelegate
-//extension YellowPageSearchViewController: UITextFieldDelegate {
-//    
-//  //  func textFieldDidEndEditing(_ textField: UITextField) {
-//        //guard let text = textField.text else {
-//        //    return
-//        //}
-//    //
-//    //    tableView.reloadData()
-//    //}
-//}
+extension YellowPageSearchViewController: UITextFieldDelegate {
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        if !history.contains(searchView.textField.text!) && searchView.textField.text! != ""{
+            self.history.append(searchView.textField.text!)
+        }
+    }
+  //  func textFieldDidEndEditing(_ textField: UITextField) {
+        //guard let text = textField.text else {
+        //    return
+        //}
+    //
+    //    tableView.reloadData()
+    //}
+}

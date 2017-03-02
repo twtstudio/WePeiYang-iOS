@@ -16,8 +16,18 @@ class YellowPageDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
-        //self.navigationItem.title = "黄页";
-        // TODO: right button search
+        
+        let titleLabel = UILabel(text: self.navigationItem.title!)
+        titleLabel.backgroundColor = UIColor.clearColor()
+        titleLabel.font = UIFont.boldSystemFontOfSize(18.0)
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
+
+        
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        //改变 statusBar 颜色
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
         tableView.delegate = self
         tableView.dataSource = self

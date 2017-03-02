@@ -31,5 +31,13 @@ class TappableImageView: UIView {
             make.center.equalTo(self.snp_center)
         }
     }
+    
+    // FIXME: bug here
+    func tapped() {
+        UIView.animateWithDuration(0.5) {
+            self.imgView.frame.size = CGSize(width: self.imgSize.width-10, height: self.imgSize.width-10)
+        }
+        //self.frame.size = CGSize(width: self.frame.width-10, height: self.frame.height-10)
+    }
 
 }

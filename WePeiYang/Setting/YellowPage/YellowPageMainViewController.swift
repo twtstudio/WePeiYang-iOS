@@ -42,7 +42,6 @@ class YellowPageMainViewController: UIViewController {
 //        self.jz_navigationBarTintColor = UIColor(red: 0.1568, green: 0.6392, blue: 0.8901, alpha: 1)
         self.jz_navigationBarTintColor = UIColor(red: 0.02, green: 0.585, blue: 0.8901, alpha: 1)
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationItem
         //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
@@ -261,6 +260,5 @@ extension YellowPageMainViewController: UITableViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
-
     }
 }
