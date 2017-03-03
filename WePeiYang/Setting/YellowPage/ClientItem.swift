@@ -13,8 +13,9 @@ class ClientItem: NSObject {
     var phone = ""
     var isFavorite = false
     
-    init(with name: String, phone: String) {
+    init(with name: String, phone: String, isFavorite: Bool) {
         self.name = name
         self.phone = phone
+        self.isFavorite = isFavorite
     }
 }
