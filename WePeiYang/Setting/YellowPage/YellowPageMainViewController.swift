@@ -21,6 +21,7 @@ class YellowPageMainViewController: UIViewController {
     var shouldLoadSections: [Int] = [] // contains each section which should be loaded
     var shouldLoadFavorite = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -260,5 +261,6 @@ extension YellowPageMainViewController: UITableViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        self.jz_navigationBarTintColor = nil
     }
 }

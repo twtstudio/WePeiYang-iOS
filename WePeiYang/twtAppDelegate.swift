@@ -85,8 +85,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     //3D Touch on iPhone 6s or later
     @available(iOS 9.0, *)
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-        
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {        
+        // TODO: Check Login
+        switch shortcutItem.type {
+        case "showYellowPage":
+            if let tabVC = window?.rootViewController as? UITabBarController {
+                let navVC = tabVC.viewControllers![0] as? UINavigationController
+                let ypVC = YellowPageMainViewController()
+                navVC?.pushViewController(ypVC, animated: true)
+            }
+        default:
+            return
+        }
     }
     
     func applicationWillTerminate(application: UIApplication) {

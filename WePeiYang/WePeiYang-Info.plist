@@ -82,6 +82,14 @@
 			<key>UIApplicatonShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeMessage</string>
 		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>黄页</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>showYellowPage</string>
+			<key>UIApplicatonShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMessage</string>
+		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
