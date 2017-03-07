@@ -115,6 +115,9 @@
 		B10A9E841DC9889200A395E9 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E831DC9889200A395E9 /* BookDetailViewController.swift */; };
 		B10A9E861DC988A100A395E9 /* StatusInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */; };
 		B113C7001D57B5B80072726F /* log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113C6FF1D57B5B80072726F /* log.swift */; };
+		B118664B1E6C2D65004516C2 /* Classroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B118664A1E6C2D65004516C2 /* Classroom.swift */; };
+		B118664D1E6C3924004516C2 /* ClassroomMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B118664C1E6C3924004516C2 /* ClassroomMetaData.swift */; };
+		B118664F1E6C3E2C004516C2 /* ClassroomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B118664E1E6C3E2C004516C2 /* ClassroomAPI.swift */; };
 		B14000751D68862D00035357 /* SpecialEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14000731D68862D00035357 /* SpecialEventsViewController.swift */; };
 		B153426A1DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15342691DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift */; };
 		B1572CF71D76D89D00A264D8 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1572CF61D76D89D00A264D8 /* FinalView.swift */; };
@@ -420,6 +423,9 @@
 		B10A9E831DC9889200A395E9 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		B10A9E851DC988A100A395E9 /* StatusInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusInfoCell.swift; sourceTree = "<group>"; };
 		B113C6FF1D57B5B80072726F /* log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = log.swift; sourceTree = "<group>"; };
+		B118664A1E6C2D65004516C2 /* Classroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Classroom.swift; path = Classroom/Model/Classroom.swift; sourceTree = "<group>"; };
+		B118664C1E6C3924004516C2 /* ClassroomMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassroomMetaData.swift; path = Classroom/View/ClassroomMetaData.swift; sourceTree = "<group>"; };
+		B118664E1E6C3E2C004516C2 /* ClassroomAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassroomAPI.swift; path = Classroom/Model/ClassroomAPI.swift; sourceTree = "<group>"; };
 		B14000731D68862D00035357 /* SpecialEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialEventsViewController.swift; sourceTree = "<group>"; };
 		B15342691DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToolsCollectionViewController+UIViewControllerPreviewing.swift"; sourceTree = "<group>"; };
 		B1572CF61D76D89D00A264D8 /* FinalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
@@ -903,6 +909,7 @@
 		68973ED71E6AA92500C3A012 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B118664C1E6C3924004516C2 /* ClassroomMetaData.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -910,6 +917,8 @@
 		68973ED81E6AA92A00C3A012 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B118664A1E6C2D65004516C2 /* Classroom.swift */,
+				B118664E1E6C3E2C004516C2 /* ClassroomAPI.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1998,6 +2007,7 @@
 				B10A9E701DC8467600A395E9 /* RateView.swift in Sources */,
 				68513F301D6F08FF00E96BEB /* PartyComplainViewController.swift in Sources */,
 				E90C139B1CAF74F700E1F353 /* HomeToolsCollectionViewCell.swift in Sources */,
+				B118664B1E6C2D65004516C2 /* Classroom.swift in Sources */,
 				683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */,
 				B1E497AD1D689A7C00E85DA8 /* DismissingAnimator.m in Sources */,
 				E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */,
@@ -2056,6 +2066,7 @@
 				68513F771D6F091200E96BEB /* Card.swift in Sources */,
 				B1C4F6561D543DD0000CD0D8 /* (null) in Sources */,
 				E9480D601CC7E98700AA707A /* WebAppItem.swift in Sources */,
+				B118664F1E6C3E2C004516C2 /* ClassroomAPI.swift in Sources */,
 				E98ACE241C4039BC0012C762 /* HomeToolsCell.swift in Sources */,
 				B10A9E761DC8467600A395E9 /* StarView.swift in Sources */,
 				E942BC7A1CACCCDE007A956C /* LostFoundTableViewCell.swift in Sources */,
@@ -2164,6 +2175,7 @@
 				E961E61A1CDF5FF8003E574F /* ArrangeModel.swift in Sources */,
 				E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */,
 				E9480D5E1CC7D79200AA707A /* LibraryDataItem.swift in Sources */,
+				B118664D1E6C3924004516C2 /* ClassroomMetaData.swift in Sources */,
 				68513F7A1D6F091200E96BEB /* ParkingSpots.swift in Sources */,
 				684F1D5C1E28DF0700F280D9 /* CourseAppraiseCell.swift in Sources */,
 				68513F4B1D6F08FF00E96BEB /* TheoryCourseArticleReadingView.swift in Sources */,
