@@ -188,7 +188,8 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
         
         for i in 0...11 {
             let classNumberCell = ClassCellView()
-            classNumberCell.classLabel.text = "第\(i+1)节"
+            classNumberCell.classLabel.text = " \(i+1) "
+            classNumberCell.classLabel.sizeToFit()
             classNumberCell.backgroundColor = UIColor.clearColor()
             classNumberCell.classLabel.textColor = UIColor.lightGrayColor()
             classNumberCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
@@ -196,7 +197,7 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
             classNumberCell.snp_makeConstraints(closure: { make in
                 make.top.equalTo(CGFloat(i) * classSize.height)
                 make.left.equalTo(0)
-                make.width.equalTo(classSize.width)
+                //make.width.equalTo(classSize.width)
                 make.height.equalTo(classSize.height)
             })
         }
@@ -237,21 +238,27 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
                 classCell.classLabel.font = UIFont.systemFontOfSize(UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 16 : (size.width > 320) ? 12 : 10)
                 classCell.delegate = self
                 
+                classCell.alpha = 0.7
+                let gap: CGFloat = 2
+                classCell.layer.cornerRadius = gap+2
+                
                 if Int(tmpClass.weekStart) <= currentWeek && Int(tmpClass.weekEnd) >= currentWeek {
-                    
                     classCellsAround.append(classCell)
                     
                     classTableScrollView.addSubview(classCell)
                     classCell.snp_makeConstraints {
                         make in
-                        make.width.equalTo(classSize.width)
-                        make.height.equalTo(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height)
-                        make.left.equalTo(CGFloat(tmpArrange.day) * classSize.width)
+                        make.width.equalTo(classSize.width-gap)
+                        make.height.equalTo(CGFloat(tmpArrange.end - tmpArrange.start + 1) * classSize.height-gap)
+                        make.left.equalTo(CGFloat(tmpArrange.day-1) * classSize.width+22.5)
                         make.top.equalTo(CGFloat(tmpArrange.start - 1) * classSize.height)
                     }
                     if (tmpArrange.week == "单双周") || (currentWeek % 2 == 0 && tmpArrange.week == "双周") || (currentWeek % 2 == 1 && tmpArrange.week == "单周") {
                         classCell.backgroundColor = classBgColor
                     } else {
+//                        classCell.alpha = 0.3
+//                        classCell.backgroundColor = UIColor.flatGrayColor()
+//                        classCell.classLabel.textColor = UIColor.darkGrayColor()
                         classCell.removeFromSuperview()
                     }
                 } else {
@@ -307,23 +314,23 @@ class ClasstableViewController: UIViewController, ClassCellViewDelegate {
     }
     
     private func classCellSizeWithScreenSize(screenSize: CGSize) -> CGSize {
-        let width = screenSize.width / 8
+        let width = (screenSize.width - 22.5)/7
         // 高度的参数需要针对不同设备进行不同的控制，甚至对不同屏幕方向也要有所适配
         var height: CGFloat = 0
         if screenSize.width <= 320 {
-            height = width * 1.5
+            height = width * 1.4
         } else if screenSize.width <= 414 {
-            height = width * 1.3
+            height = width * 1.1
         } else if screenSize.width <= 768 {
             if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-                height = width * 0.45
+                height = width * 0.35
             } else {
-                height = width * 0.8
+                height = width * 0.7
             }
         } else if screenSize.width <= 1024 {
-            height = width * 0.6
+            height = width * 0.5
         } else {
-            height = width * 0.4
+            height = width * 0.3
         }
         return CGSizeMake(width, height)
     }

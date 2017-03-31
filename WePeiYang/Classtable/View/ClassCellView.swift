@@ -25,10 +25,10 @@ class ClassCellView: UIView {
         classLabel = UILabel()
         self.addSubview(classLabel)
         classLabel.snp_makeConstraints(closure: { make in
-            make.left.equalTo(4)
-            make.right.equalTo(-4)
-            make.top.equalTo(4)
-            make.bottom.equalTo(-4)
+            make.left.equalTo(2)
+            make.right.equalTo(-2)
+            make.top.equalTo(2)
+            make.bottom.equalTo(-2)
         })
         classLabel.numberOfLines = 0
         classLabel.textColor = UIColor.whiteColor()
