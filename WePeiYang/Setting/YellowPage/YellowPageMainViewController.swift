@@ -15,8 +15,12 @@ class YellowPageMainViewController: UIViewController {
 
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .Grouped)
 
-    let sections = PhoneBook.shared.getSections()
-    let favorite = PhoneBook.shared.getFavorite()
+    var sections: [String] {
+        return PhoneBook.shared.getSections()
+    }
+    var favorite: [ClientItem] {
+        return PhoneBook.shared.getFavorite()
+    }
     
     var shouldLoadSections: [Int] = [] // contains each section which should be loaded
     var shouldLoadFavorite = false
@@ -60,6 +64,20 @@ class YellowPageMainViewController: UIViewController {
             make.left.equalTo(view)
             make.right.equalTo(view)
         }
+        MsgDisplay.showLoading()
+        PhoneBook.shared.load({
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+                MsgDisplay.dismiss()
+            })
+            }, failure: {
+                PhoneBook.checkVersion({
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                        MsgDisplay.dismiss()
+                    })
+                })
+        })
 
     }
     
@@ -261,6 +279,6 @@ extension YellowPageMainViewController: UITableViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
-        self.jz_navigationBarTintColor = nil
+       // self.jz_navigationBarTintColor = nil
     }
 }

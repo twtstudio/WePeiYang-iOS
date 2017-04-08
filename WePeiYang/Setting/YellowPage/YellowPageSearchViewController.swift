@@ -28,6 +28,7 @@ class YellowPageSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // FIXME: keyboard
         self.view.backgroundColor = UIColor.whiteColor()
         //searchView.backBtn.addTarget(self, action: #selector(YellowPageSearchViewController.backToggled), forControlEvents: .TouchUpInside)
         //改变 statusBar 颜色
@@ -92,14 +93,15 @@ class YellowPageSearchViewController: UIViewController {
             return
         }
         
-        PhoneBook.shared.getResult(with: searchView.textField.text!) { result in
-            self.result = result
+        self.result = PhoneBook.shared.getResult(with: searchView.textField.text!)
+//        { result in
+//            self.result = result
             self.isSearching = true
             self.tableView.reloadData()
 //            dispatch_sync(dispatch_get_main_queue(), {
 //                self.tableView.reloadData() // 更新tableView
 //            })
-        }
+//        }
         // and refresh the table
         // TODO: if not found, display not-found-view
     }
@@ -195,14 +197,12 @@ extension YellowPageSearchViewController: UITableViewDelegate {
         if !isSearching {
             let text = history[indexPath.row]
             searchView.textField.text = text
-            PhoneBook.shared.getResult(with: text) { result in
-            self.result = result
+            self.result = PhoneBook.shared.getResult(with: text)
             self.isSearching = true
             self.tableView.reloadData()
             //            dispatch_sync(dispatch_get_main_queue(), {
             //                self.tableView.reloadData() // 更新tableView
             //            })
-            }
         }
     }
     
