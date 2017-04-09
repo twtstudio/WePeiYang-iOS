@@ -12,7 +12,7 @@ class YellowPageSearchViewController: UIViewController {
     let searchView = SearchView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 60))
     let tableView = UITableView(frame: CGRect.zero, style: .Plain)
 
-    var history: [String]! = nil
+    var history: [String] = []
     var result: [ClientItem] = []
     var isSearching = false
     
@@ -54,11 +54,13 @@ class YellowPageSearchViewController: UIViewController {
         
         //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.hideKeyboard))
         //tableView.addGestureRecognizer(tapGesture)
-        
+    
         
         
         searchView.textField.addTarget(self, action: #selector(YellowPageSearchViewController.textFieldTextChanged(_:)), forControlEvents: .AllEditingEvents)
         tableView.sectionFooterHeight = 30
+        
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 200))
 
     }
     
@@ -124,7 +126,7 @@ extension YellowPageSearchViewController: UITableViewDataSource {
         guard let text = searchView.textField.text else {
             return 0
         }
-        if text == "" {
+        if text == "" && !isSearching {
             return history.count
         } else {
             return result.count
@@ -132,18 +134,17 @@ extension YellowPageSearchViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if searchView.textField.text == "" {
+        if searchView.textField.text == "" && !isSearching {
             let cell = YellowPageSearchHistoryCell(with: history[indexPath.row])
             let deleteTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.deleteTapped(_:)))
             cell.deleteView.addGestureRecognizer(deleteTapGesture)
             return cell
-        } else if self.result.count != 0 {
+        } else if self.result.count > 0 {
             let cell = YellowPageCell(with: .detailed, model: result[indexPath.row])
             return cell
         } else { // if self.result.count == 0 {
-            
+            return UITableViewCell()
             // FIXME: not found view
-            return YellowPageCell(with: .section, model: result[indexPath.row])
         }
     }
 }
@@ -199,10 +200,10 @@ extension YellowPageSearchViewController: UITableViewDelegate {
             searchView.textField.text = text
             self.result = PhoneBook.shared.getResult(with: text)
             self.isSearching = true
-            self.tableView.reloadData()
-            //            dispatch_sync(dispatch_get_main_queue(), {
-            //                self.tableView.reloadData() // 更新tableView
-            //            })
+//            self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue(), {
+                 self.tableView.reloadData() // 更新tableView
+            })
         }
     }
     
@@ -218,11 +219,4 @@ extension YellowPageSearchViewController: UITextFieldDelegate {
             self.history.append(searchView.textField.text!)
         }
     }
-  //  func textFieldDidEndEditing(_ textField: UITextField) {
-        //guard let text = textField.text else {
-        //    return
-        //}
-    //
-    //    tableView.reloadData()
-    //}
 }

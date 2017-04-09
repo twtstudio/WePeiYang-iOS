@@ -185,16 +185,16 @@ class YellowPageCell: UITableViewCell {
     
     func likeTapped() {
         if detailedModel.isFavorite {
-            PhoneBook.shared.removeFromFavorite(with: self.detailedModel) {
+            PhoneBook.shared.removeFromFavorite(with: self.detailedModel.name) {
                 self.likeView.imgView.image = UIImage(named: "dislike")
             }
             detailedModel.isFavorite = false
             // TODO: animation
         } else {
-            detailedModel.isFavorite = true
-            PhoneBook.shared.addToFavorite(with: self.detailedModel) {
+            PhoneBook.shared.addToFavorite(with: self.detailedModel.name) {
                 self.likeView.imgView.image = UIImage(named: "like")
             }
+            detailedModel.isFavorite = true
             // TODO: animation
             // refresh data
         }

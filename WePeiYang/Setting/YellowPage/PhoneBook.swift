@@ -37,36 +37,29 @@ class PhoneBook: NSObject {
         }
         return dict
     }
-    
-    // get sections
-    func getSections() -> [String] {
-        return sections
-    }
-    
-    // get favorite
-    func getFavorite() -> [ClientItem] {
-        let models: [ClientItem] = []
-        return models
-    }
-    
-    func addToFavorite(with model: ClientItem, success: ()->()) {
-        for m in favorite {
-            if m.phone == model.phone && m.name == model.name {
+
+    func addToFavorite(with name: String, success: ()->()) {
+        for item in items {
+            if item.name == name {
+                item.isFavorite = true
+                favorite.append(item)
+                success()
                 return
             }
         }
-        let m = model
-        // help? right?
-        m.isFavorite = true
-        favorite.append(m)
-        success()
+        
     }
     
-    func removeFromFavorite(with model: ClientItem, success: ()->()) {
-        for (index, m) in favorite.enumerate() {
-            if m.phone == model.phone && m.name == model.name {
-                //favorite.remove(at: index)
+    func removeFromFavorite(with name: String, success: ()->()) {
+        for item in items {
+            if item.name == name {
+                item.isFavorite = false
+                break
             }
+        }
+
+        favorite = favorite.filter { item in
+            return name != item.name
         }
         success()
     }
@@ -83,14 +76,6 @@ class PhoneBook: NSObject {
         return items.filter { item in
             return item.name.containsString(string)
         }
-    }
-    
-    func saveToLocal() {
-//        UserDefaults.standard.set(self.favorite, forKey: "YellowPageFavorite")
-    }
-    
-    func readFromLocal() {
-//        self.favorite = NsUserDefaults.standard.object(forKey: "YellowPageFavorite") as! [ClientItem]
     }
     
     static func checkVersion(success: ()->()) {
@@ -145,12 +130,14 @@ extension PhoneBook {
         let path = self.dataFilePath()
         //声明文件管理器
         let defaultManager = NSFileManager()
-        try? defaultManager.removeItemAtPath(path)
+        if defaultManager.fileExistsAtPath(path) {
+            try! defaultManager.removeItemAtPath(path)
+        }
+
         let data = NSMutableData()
         //申明一个归档处理对象
         let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
         //将lists以对应Checklist关键字进行编码
-        
         archiver.encodeObject(PhoneBook.shared.items, forKey: YELLOWPAGE_SAVE_KEY)
         archiver.encodeObject(PhoneBook.shared.members, forKey: "yp_member_key")
         archiver.encodeObject(PhoneBook.shared.sections, forKey: "yp_section_key")
@@ -189,7 +176,6 @@ extension PhoneBook {
                 return
             }
             //结束解码
-            failure()
         }
         failure()
     }

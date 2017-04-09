@@ -10,16 +10,16 @@ import UIKit
 
 class YellowPageMainViewController: UIViewController {
     
-    let titles = ["1895服务大厅", "图书馆", "维修服务中心", "智能自行车", "学生宿舍管理中心", "校医院"]
+    let titles = ["1895综合服务大厅", "图书馆", "维修服务中心", "校园自行车", "学生宿舍管理中心", "天大医院"]
     let icons = ["icon-1895", "icon-library", "icon-repair", "icon-bike", "icon-building", "icon-hospital"]
 
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .Grouped)
 
     var sections: [String] {
-        return PhoneBook.shared.getSections()
+        return PhoneBook.shared.sections
     }
     var favorite: [ClientItem] {
-        return PhoneBook.shared.getFavorite()
+        return PhoneBook.shared.favorite
     }
     
     var shouldLoadSections: [Int] = [] // contains each section which should be loaded
@@ -32,6 +32,7 @@ class YellowPageMainViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         //self.navigationItem.title = "黄页";
         let titleLabel = UILabel(text: "黄页")
+        self.title = "黄页"
         titleLabel.backgroundColor = UIColor.clearColor()
         titleLabel.font = UIFont.boldSystemFontOfSize(18.0)
         titleLabel.textColor = UIColor.whiteColor()
@@ -39,15 +40,11 @@ class YellowPageMainViewController: UIViewController {
         self.navigationItem.titleView = titleLabel
 
         
-        // TODO: right button search
         let rightButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(YellowPageMainViewController.searchToggle))
         self.navigationItem.rightBarButtonItem = rightButton
-       // TODO: color of navigation bar
-        // self.navigationController?.navigationBar.tintColor = UIColor(red: 0.1059, green: 0.6352, blue: 0.9019, alpha: 1)
-//        self.jz_navigationBarTintColor = UIColor(red: 0.1568, green: 0.6392, blue: 0.8901, alpha: 1)
-        self.jz_navigationBarTintColor = UIColor(red: 0.02, green: 0.585, blue: 0.8901, alpha: 1)
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.1059, green: 0.6352, blue: 0.9019, alpha: 1)
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        //改变 statusBar 颜色
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
         tableView.delegate = self
@@ -79,6 +76,11 @@ class YellowPageMainViewController: UIViewController {
                 })
         })
 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     func searchToggle() {
@@ -280,5 +282,10 @@ extension YellowPageMainViewController: UITableViewDelegate {
         super.viewWillDisappear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
        // self.jz_navigationBarTintColor = nil
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        PhoneBook.shared.save()
     }
 }
