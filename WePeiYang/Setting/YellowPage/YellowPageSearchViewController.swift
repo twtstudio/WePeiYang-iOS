@@ -11,7 +11,7 @@ import UIKit
 class YellowPageSearchViewController: UIViewController {
     let searchView = SearchView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 60))
     let tableView = UITableView(frame: CGRect.zero, style: .Plain)
-
+    
     var history: [String] = []
     var result: [ClientItem] = []
     var isSearching = false
@@ -24,44 +24,43 @@ class YellowPageSearchViewController: UIViewController {
             self.history = []
         }
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        let y = searchView.frame.size.height
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = view.frame.size.height - y
+        tableView.frame = CGRect(x: 0, y: y, width: width, height: height)
+    }
+    
+    func keyboardWillChangeFrame(notification: NSNotification) {
+        if let  endValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] {
+            let endRect = endValue.CGRectValue()
+            let y = view.frame.size.height - searchView.frame.size.height
+            let height = y - endRect.size.height
+            tableView.frame = CGRect(x: 0, y: searchView.frame.size.height, width: tableView.frame.size.width, height: height)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // FIXME: keyboard
         self.view.backgroundColor = UIColor.whiteColor()
-        //searchView.backBtn.addTarget(self, action: #selector(YellowPageSearchViewController.backToggled), forControlEvents: .TouchUpInside)
         //改变 statusBar 颜色
-
+        
         let backTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.backToggled))
         searchView.backBtn.addGestureRecognizer(backTapGesture)
         self.view.addSubview(searchView)
         searchView.textField.delegate = self
         searchView.textField.becomeFirstResponder()
         self.view.addSubview(tableView)
-        tableView.snp_makeConstraints { make in
-            make.top.equalTo(searchView.snp_bottom)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-        }
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-
-        
-        //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.hideKeyboard))
-        //tableView.addGestureRecognizer(tapGesture)
-    
-        
         
         searchView.textField.addTarget(self, action: #selector(YellowPageSearchViewController.textFieldTextChanged(_:)), forControlEvents: .AllEditingEvents)
         tableView.sectionFooterHeight = 30
-        
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 200))
-
     }
     
     func hideKeyboard() {
@@ -96,23 +95,19 @@ class YellowPageSearchViewController: UIViewController {
         }
         
         self.result = PhoneBook.shared.getResult(with: searchView.textField.text!)
-//        { result in
-//            self.result = result
+        dispatch_async(dispatch_get_main_queue()) {
             self.isSearching = true
-            self.tableView.reloadData()
-//            dispatch_sync(dispatch_get_main_queue(), {
-//                self.tableView.reloadData() // 更新tableView
-//            })
-//        }
-        // and refresh the table
+            self.tableView.reloadData() // 更新tableView
+        }
         // TODO: if not found, display not-found-view
     }
-
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSUserDefaults.standardUserDefaults().setObject(self.history, forKey: "YellowPageHistory")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         searchView.textField.resignFirstResponder()
-
+        
     }
 }
 
@@ -158,7 +153,7 @@ extension YellowPageSearchViewController: UITableViewDelegate {
         if history.count != 0 && result.count == 0 && isSearching {
             let label = UILabel()
             // FIXME: replace hint
-            label.text = "找不到啊大兄弟"
+            label.text = "找不到呢😐"
             label.font = UIFont.boldSystemFontOfSize(16)
             label.textColor = UIColor.magentaColor()
             label.sizeToFit()
@@ -173,9 +168,6 @@ extension YellowPageSearchViewController: UITableViewDelegate {
         if history.count == 0 || self.isSearching {
             return footerView
         }
-//        guard history.count != 0 && !self.isSearching else {
-//            return footerView
-//        }
         let label = UILabel()
         label.text = "清除搜索记录"
         label.font = UIFont.boldSystemFontOfSize(16)
@@ -199,11 +191,11 @@ extension YellowPageSearchViewController: UITableViewDelegate {
             let text = history[indexPath.row]
             searchView.textField.text = text
             self.result = PhoneBook.shared.getResult(with: text)
-            self.isSearching = true
-//            self.tableView.reloadData()
-            dispatch_async(dispatch_get_main_queue(), {
-                 self.tableView.reloadData() // 更新tableView
-            })
+            //            self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.isSearching = true
+                self.tableView.reloadData() // 更新tableView
+            }
         }
     }
     
@@ -213,7 +205,7 @@ extension YellowPageSearchViewController: UITableViewDelegate {
 
 // MARK: UITextFieldDelegate
 extension YellowPageSearchViewController: UITextFieldDelegate {
-
+    
     func textFieldDidEndEditing(textField: UITextField) {
         if !history.contains(searchView.textField.text!) && searchView.textField.text! != ""{
             self.history.append(searchView.textField.text!)
