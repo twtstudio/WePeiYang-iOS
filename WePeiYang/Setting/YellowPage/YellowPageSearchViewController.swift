@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YellowPageSearchViewController: UIViewController {
+class YellowPageSearchViewController: UIViewController, YellowPageCellDelegate {
     let searchView = SearchView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 60))
     let tableView = UITableView(frame: CGRect.zero, style: .Plain)
     
@@ -64,9 +64,12 @@ class YellowPageSearchViewController: UIViewController {
     }
     
     func hideKeyboard() {
+        let height = view.frame.size.height - searchView.frame.size.height
+        tableView.frame = CGRect(x: 0, y: searchView.frame.size.height, width: tableView.frame.size.width, height: height)
+        tableView.endUpdates()
         self.searchView.textField.resignFirstResponder()
     }
-    
+
     func backToggled() {
         searchView.backBtn.tapped()
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -136,6 +139,7 @@ extension YellowPageSearchViewController: UITableViewDataSource {
             return cell
         } else if self.result.count > 0 {
             let cell = YellowPageCell(with: .detailed, model: result[indexPath.row])
+            cell.delegate = self
             return cell
         } else { // if self.result.count == 0 {
             return UITableViewCell()

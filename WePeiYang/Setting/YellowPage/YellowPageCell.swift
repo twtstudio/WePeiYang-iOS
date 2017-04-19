@@ -9,6 +9,10 @@
 import UIKit
 import SnapKit
 
+protocol YellowPageCellDelegate: NSObjectProtocol {
+    func showViewController(vc: UIViewController, sender: AnyObject?)
+}
+
 // haeder: the view on top
 // section: which can be fold and unfold
 // item: for each item in section
@@ -21,7 +25,7 @@ enum YellowPageCellStyle: String {
 }
 
 class YellowPageCell: UITableViewCell {
-    
+    weak var delegate: YellowPageCellDelegate?
     var canUnfold = true {
         didSet {
             if self.canUnfold && style == .section {
@@ -92,15 +96,7 @@ class YellowPageCell: UITableViewCell {
             
         case .item:
             self.textLabel?.text = name
-//            if width >= bigiPhoneWidth { // 414 iPhone 6/7 Plus
-//                font = UIFont.systemFont(ofSize: 15)
-//            } else if width >= middleiPhoneWidth { // 375 iPhone 6(S) 7
-//                font = UIFont.systemFont(ofSize: 14)
-//            } else if width <= smalliPhoneWidth { // 320 iPhone 5(S)
-//                font = UIFont.systemFont(ofSize: 14)
-//            }
             textLabel?.font = UIFont.flexibleFont(with: 14)
-            
             textLabel?.sizeToFit()
             textLabel?.snp_makeConstraints { make in
                 make.top.equalTo(contentView).offset(12)
@@ -109,7 +105,7 @@ class YellowPageCell: UITableViewCell {
                 make.bottom.equalTo(contentView).offset(-12)
             }
         case .detailed:
-            break
+            fatalError("这个方法请调用func init(with style: YellowPageCellStyle, model: ClientItem)")
         }
         
     }
@@ -138,8 +134,9 @@ class YellowPageCell: UITableViewCell {
         
         
         let phoneLabel = UILabel()
-        phoneLabel.text = model.phone
-        phoneLabel.textColor = UIColor.grayColor()
+        let str = NSMutableAttributedString(string: model.phone, attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue, NSForegroundColorAttributeName: UIColor.flatBlueColor()])
+        
+        phoneLabel.attributedText = str
         phoneLabel.font = UIFont.flexibleFont(with: 14)
         phoneLabel.sizeToFit()
         self.contentView.addSubview(phoneLabel)
@@ -148,26 +145,23 @@ class YellowPageCell: UITableViewCell {
             make.left.equalTo(contentView).offset(15)
             make.bottom.equalTo(contentView).offset(-6)
         }
+        phoneLabel.userInteractionEnabled = true
+        let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageCell.labelTapped(_:)))
+        phoneLabel.addGestureRecognizer(labelTapGesture)
+
         
-//        let likeView = UIImageView()
         likeView = TappableImageView(with: CGRect.zero, imageSize: CGSize(width: 18, height: 18), image: UIImage(named: model.isFavorite ? "like" : "dislike"))
-        //likeView.image = UIImage(named: model.isFavorite ? "like" : "dislike")
         self.contentView.addSubview(likeView)
         likeView.snp_makeConstraints { make in
-//            make.width.equalTo(18)
-//            make.height.equalTo(18)
             make.width.equalTo(24)
             make.height.equalTo(24)
             make.right.equalTo(contentView).offset(-14)
-            //make.bottom.equalTo(contentView)//.offset(4)
             make.centerY.equalTo(phoneLabel.snp_centerY)
         }
         likeView.userInteractionEnabled = true
         let likeTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageCell.likeTapped))
         likeView.addGestureRecognizer(likeTapGesture)
         
-//        let phoneView = UIImageView()
-//        phoneView.image = UIImage(named: "phone")
         let phoneView = TappableImageView(with: CGRect.zero, imageSize: CGSize(width: 18, height: 18), image: UIImage(named: "phone"))
         let phoneTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageCell.phoneTapped))
         phoneView.addGestureRecognizer(phoneTapGesture)
@@ -177,7 +171,6 @@ class YellowPageCell: UITableViewCell {
             make.width.equalTo(24)
             make.height.equalTo(24)
             make.right.equalTo(likeView.snp_left).offset(-24)
-            //make.bottom.equalTo(contentView)//.offset(4)
             make.centerY.equalTo(phoneLabel.snp_centerY)
         }
         
@@ -200,6 +193,22 @@ class YellowPageCell: UITableViewCell {
         }
     }
     
+    func labelTapped(model: ClientItem) {
+//        delegate?.cellDetailTapped(model)
+        let alertVC = UIAlertController(title: "详情", message: "您想要做什么？", preferredStyle: .ActionSheet)
+        let copyAction = UIAlertAction(title: "复制到剪切板", style: .Default) { action in
+            self.longPressed()
+        }
+        //        let savePhoneBook
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { action in
+        }
+        alertVC.addAction(copyAction)
+        alertVC.addAction(cancelAction)
+        if let vc = delegate as? UIViewController {
+            vc.presentViewController(alertVC, animated: true, completion: nil)
+        }
+    }
+    
     func phoneTapped() {
         UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://\(self.detailedModel.phone)")!)
     }
@@ -214,5 +223,4 @@ class YellowPageCell: UITableViewCell {
         UIPasteboard.generalPasteboard().string = self.detailedModel.phone
         MsgDisplay.showSuccessMsg("已经复制到剪切板")
     }
-    
 }

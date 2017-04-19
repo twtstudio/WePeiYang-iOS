@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YellowPageMainViewController: UIViewController {
+class YellowPageMainViewController: UIViewController, YellowPageCellDelegate {
     
     let titles = ["1895综合服务大厅", "图书馆", "维修服务中心", "校园自行车", "学生宿舍管理中心", "天大医院"]
     let icons = ["icon-1895", "icon-library", "icon-repair", "icon-bike", "icon-building", "icon-hospital"]
@@ -110,10 +110,6 @@ extension YellowPageMainViewController: UICollectionViewDataSource, UICollection
         return 1
     }
     
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 1
-//    }
-
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CommonClientCell", forIndexPath: indexPath) as! CommonClientCell
         // load data
@@ -177,12 +173,10 @@ extension YellowPageMainViewController: UITableViewDataSource {
                 return cell
             } else { // detailed item
                 let cell = YellowPageCell(with: .detailed, model: favorite[indexPath.row-1])
+                cell.delegate = self
                 return cell
             }
         case let section where section > 1 && section < 2+sections.count:
-            // FIXME: dataSource
-            // index in sections: [String]
-            
             let n = indexPath.section - 2
             let members = PhoneBook.shared.getMembers(with: sections[n])
             

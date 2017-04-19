@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AddressBook
 
 class YellowPageDetailViewController: UIViewController {
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .Plain)
@@ -58,6 +59,7 @@ extension YellowPageDetailViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = YellowPageCell(with: .detailed, model: models[indexPath.row])
+        cell.delegate = self
         //cell.
         return cell
     }
@@ -75,5 +77,22 @@ extension YellowPageDetailViewController: UITableViewDelegate {
     }
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.5
+    }
+}
+
+extension YellowPageDetailViewController: YellowPageCellDelegate {
+    func cellDetailTapped(model: ClientItem, cell: YellowPageCell) {
+        let vc = UIAlertController(title: "详情", message: "您想要做什么？", preferredStyle: .ActionSheet)
+        let copyAction = UIAlertAction(title: "复制到剪切板", style: .Default) { action in
+            cell.longPressed()
+        }
+//        let savePhoneBook
+        let cancelAction = UIAlertAction(title: "取消", style: .Cancel) { action in
+            }
+        vc.addAction(copyAction)
+        vc.addAction(cancelAction)
+        self.showViewController(vc, sender: nil)
+//        let record = ABRecord
+//        ABRecordSetValue
     }
 }
