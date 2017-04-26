@@ -25,20 +25,27 @@ class YellowPageSearchViewController: UIViewController, YellowPageCellDelegate {
         }
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         let y = searchView.frame.size.height
         let width = UIScreen.mainScreen().bounds.size.width
         let height = view.frame.size.height - y
         tableView.frame = CGRect(x: 0, y: y, width: width, height: height)
     }
     
-    func keyboardWillChangeFrame(notification: NSNotification) {
-        if let  endValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] {
-            let endRect = endValue.CGRectValue()
-            let y = view.frame.size.height - searchView.frame.size.height
-            let height = y - endRect.size.height
-            tableView.frame = CGRect(x: 0, y: searchView.frame.size.height, width: tableView.frame.size.width, height: height)
+    func keyboardWillHide(notification: NSNotification) {
+        let height = view.frame.size.height - searchView.frame.size.height
+        tableView.frame = CGRect(x: 0, y: searchView.frame.size.height, width: tableView.frame.size.width, height: height)
+        tableView.setNeedsLayout()
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let endRect = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue(), let beginRect = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue() {
+            
+            if(beginRect.size.height > 0 && (beginRect.origin.y - endRect.origin.y > 0)){
+                let height = view.frame.size.height - searchView.frame.size.height - endRect.size.height
+                tableView.frame = CGRect(x: 0, y: searchView.frame.size.height, width: tableView.frame.size.width, height: height)
+            }
         }
     }
     
