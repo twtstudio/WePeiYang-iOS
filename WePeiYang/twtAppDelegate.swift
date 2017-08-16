@@ -6,8 +6,10 @@
 //  Copyright © 2016年 Qin Yubo. All rights reserved.
 //
 
+import LocalAuthentication
 
 @UIApplicationMain
+
 
 class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
@@ -85,8 +87,86 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     
     //3D Touch on iPhone 6s or later
     @available(iOS 9.0, *)
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-        
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {        
+        // TODO: Check Login
+        let navVC = (window?.rootViewController as? UITabBarController)?.viewControllers?.first as? UINavigationController
+        switch shortcutItem.type {
+        case "showYellowPage":
+//            if let tabVC = window?.rootViewController as? UITabBarController {
+//                let navVC = tabVC.viewControllers![0] as? UINavigationController
+                let ypVC = YellowPageMainViewController()
+                navVC?.pushViewController(ypVC, animated: true)
+//            }
+        case "showGPA":
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let gpaVC = storyboard.instantiateViewControllerWithIdentifier("GPATableViewController") as! GPATableViewController
+            gpaVC.hidesBottomBarWhenPushed = true
+            
+            if NSUserDefaults.standardUserDefaults().objectForKey("twtToken") == nil {
+                let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                navVC?.presentViewController(loginVC, animated: true, completion: nil)
+            }
+
+            let userDefaults = NSUserDefaults()
+            let touchIdEnabled = userDefaults.boolForKey("touchIdEnabled")
+            if (touchIdEnabled) {
+                let authContext = LAContext()
+                var error: NSError?
+                guard authContext.canEvaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, error: &error) else {
+                    return
+                }
+                authContext.evaluatePolicy(.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "GPA这种东西才不给你看", reply: {(success, error) in
+                    if success {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            navVC?.showViewController(gpaVC, sender: nil)
+                        })
+                    } else {
+                        MsgDisplay.showErrorMsg("指纹验证失败")
+                    }
+                })
+            } else {
+                navVC?.showViewController(gpaVC, sender: nil)
+            }
+        case "showBike":
+            let bikeVC = BicycleServiceViewController()
+            //log.word(NSUserDefaults.standardUserDefaults().objectForKey("twtToken") as! String)/
+            
+            if NSUserDefaults.standardUserDefaults().objectForKey("twtToken") == nil {
+                let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                navVC?.presentViewController(loginVC, animated: true, completion: nil)
+            } else {
+                //坑：让后面能自动弹出要求绑定，但是做法不太科学，应改为 Notification
+                BicycleUser.sharedInstance.bindCancel = false
+                /*
+                 if NSUserDefaults.standardUserDefaults().valueForKey("BicycleToken") != nil {
+                 
+                 let BicycleExpire = NSUserDefaults.standardUserDefaults().valueForKey("BicycleExpire") as? Int
+                 let now = NSDate()
+                 let timeInterval: NSTimeInterval = now.timeIntervalSince1970
+                 let timeStamp = Int(timeInterval)
+                 if timeStamp <= BicycleExpire {
+                 //隐藏tabbar
+                 bikeVC.hidesBottomBarWhenPushed = true;
+                 self.navigationController?.showViewController(bikeVC, sender: nil)
+                 } else {
+                 BicycleUser.sharedInstance.auth({
+                 //隐藏tabbar
+                 bikeVC.hidesBottomBarWhenPushed = true;
+                 self.navigationController?.showViewController(bikeVC, sender: nil)
+                 })
+                 }
+                 
+                 } else {
+                 }*/
+                BicycleUser.sharedInstance.auth({
+                    //隐藏tabbar
+                    bikeVC.hidesBottomBarWhenPushed = true;
+                    navVC?.showViewController(bikeVC, sender: nil)
+                })
+            }
+        default:
+            return
+        }
     }
     
     func applicationWillTerminate(application: UIApplication) {
