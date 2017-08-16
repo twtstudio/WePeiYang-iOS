@@ -179,7 +179,7 @@ class BicycleServiceInfoController: UIViewController, UITableViewDelegate, UITab
     
     //dataSource of tableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

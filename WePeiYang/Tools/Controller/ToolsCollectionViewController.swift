@@ -18,13 +18,14 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     private let toolsData: [ToolCell] = [
         (title: "成绩", image: UIImage(named: "gpaBtn")!),
         (title: "课程表", image: UIImage(named: "classtableBtn")!),
-        //(title: "图书馆", image: UIImage(named: "libBtn")!),
+//        (title: "图书馆", image: UIImage(named: "libBtn")!),
         (title: "失物招领", image: UIImage(named: "lfBtn")!),
         (title: "自行车", image: UIImage(named: "bicycleBtn")!),
         (title: "党建" , image: UIImage(named: "partyBtn")!),
         (title: "探索", image: UIImage(named: "msBtn")!),
         (title: "阅读", image: UIImage(named: "readBtn")!),
-        (title: "黄页", image: UIImage(named: "YellowPageBtn")!)
+        (title: "黄页", image: UIImage(named: "YellowPageBtn")!),
+//        (title: "图书馆", image: UIImage(named: "libBtn")!)
     ]
     
     var microserviceController: STPopupController!
@@ -130,6 +131,8 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
             self.showReadController()
         case 7:
             self.showYellowPageController()
+//        case 8:
+//            self.showLibraryController()
         default:
             return
         }
@@ -322,6 +325,7 @@ class ToolsCollectionViewController: UICollectionViewController, UICollectionVie
     
     func showYellowPageController() {
         let ypVC = YellowPageMainViewController()
+        ypVC.hidesBottomBarWhenPushed = true
         self.navigationController?.showViewController(ypVC, sender: nil)
     }
     

@@ -46,8 +46,15 @@ extension UIView {
 extension UIImage {
     
     static func resizedImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.drawInRect(CGRect(x: 0.0, y: 0, width: newSize.width, height: newSize.height))
+        var fooNewSize = newSize
+        // if nan
+        if newSize.width.isNaN {
+            fooNewSize.width = UIScreen.mainScreen().bounds.width / 2
+        } else if newSize.height.isNaN {
+            fooNewSize.height = UIScreen.mainScreen().bounds.height * 0.52 * 0.6
+        }
+        UIGraphicsBeginImageContextWithOptions(fooNewSize, false, 0.0);
+        image.drawInRect(CGRect(x: 0.0, y: 0, width: fooNewSize.width, height: fooNewSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return newImage

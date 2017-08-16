@@ -106,6 +106,12 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     //BicycleUser.sharedInstance.bindCancel = NO;
+    for (UIView* v in self.view.subviews) {
+        if (v.tag == 1) {
+            [v removeFromSuperview];
+            return;
+        }
+    }
     
 }
 

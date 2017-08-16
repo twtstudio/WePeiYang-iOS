@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AddressBook
 
 class YellowPageDetailViewController: UIViewController {
     let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .Plain)

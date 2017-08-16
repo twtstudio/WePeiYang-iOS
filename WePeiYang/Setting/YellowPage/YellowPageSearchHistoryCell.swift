@@ -19,8 +19,7 @@ class YellowPageSearchHistoryCell: UITableViewCell {
         
     }
 
-    
-    convenience init(with name: String) {
+    convenience init(name: String) {
         self.init(style: .Default, reuseIdentifier: "YellowPageSearchHistoryCell")
         let imgView = UIImageView()
         imgView.image = UIImage(named: "history")

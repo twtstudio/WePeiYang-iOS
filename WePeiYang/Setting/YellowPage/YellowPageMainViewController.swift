@@ -24,7 +24,7 @@ class YellowPageMainViewController: UIViewController, YellowPageCellDelegate {
     
     var shouldLoadSections: [Int] = [] // contains each section which should be loaded
     var shouldLoadFavorite = false
-    
+    var shouldPop = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +42,7 @@ class YellowPageMainViewController: UIViewController, YellowPageCellDelegate {
         
         let rightButton = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(YellowPageMainViewController.searchToggle))
         self.navigationItem.rightBarButtonItem = rightButton
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.1059, green: 0.6352, blue: 0.9019, alpha: 1)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -80,7 +76,12 @@ class YellowPageMainViewController: UIViewController, YellowPageCellDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.1059, green: 0.6352, blue: 0.9019, alpha: 1)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        shouldPop = true
     }
     
     func searchToggle() {
@@ -99,8 +100,8 @@ extension YellowPageMainViewController: UICollectionViewDelegate {
         let detailedVC = YellowPageDetailViewController()
         detailedVC.navigationItem.title = cell.label.text
         detailedVC.models = PhoneBook.shared.getModels(with: cell.label.text!)
+        shouldPop = false
         self.navigationController?.pushViewController(detailedVC, animated: true)
-
     }
 }
 
@@ -245,6 +246,7 @@ extension YellowPageMainViewController: UITableViewDelegate {
                 let members = PhoneBook.shared.getMembers(with: sections[n])
                 detailedVC.navigationItem.title = members[indexPath.row-1]
                 detailedVC.models = PhoneBook.shared.getModels(with: members[indexPath.row-1])
+                shouldPop = false
                 self.navigationController?.pushViewController(detailedVC, animated: true)
             }
         default:
@@ -274,8 +276,12 @@ extension YellowPageMainViewController: UITableViewDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
-       // self.jz_navigationBarTintColor = nil
+        if shouldPop {
+            self.navigationController?.navigationBar.translucent = true
+            self.navigationController?.navigationBar.barTintColor = nil
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+            // self.jz_navigationBarTintColor = nil
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

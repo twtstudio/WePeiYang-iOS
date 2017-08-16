@@ -140,7 +140,7 @@ extension YellowPageSearchViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if searchView.textField.text == "" && !isSearching {
-            let cell = YellowPageSearchHistoryCell(with: history[indexPath.row])
+            let cell = YellowPageSearchHistoryCell(name: history[indexPath.row])
             let deleteTapGesture = UITapGestureRecognizer(target: self, action: #selector(YellowPageSearchViewController.deleteTapped(_:)))
             cell.deleteView.addGestureRecognizer(deleteTapGesture)
             return cell

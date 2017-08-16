@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3.1</string>
+	<string>2.4.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20170118</string>
+	<string>20170815</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -56,10 +56,6 @@
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>微北洋需要访问你的日历</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>自行车模块需要获取你储存在手机里的健康信息</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>自行车模块需要将你的骑行数据储存进你的健康信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>只有开启定位功能才能正常使用自行车功能</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -67,28 +63,28 @@
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeLocation</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>自行车</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>showBike</string>
-			<key>UIApplicatonShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeSearch</string>
 		</dict>
 		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeBookmark</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>查看 GPA</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>showGPA</string>
-			<key>UIApplicatonShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeMessage</string>
 		</dict>
 		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeSearch</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>黄页</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>showYellowPage</string>
-			<key>UIApplicatonShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeMessage</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>
