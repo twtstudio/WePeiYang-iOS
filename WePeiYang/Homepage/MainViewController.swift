@@ -139,7 +139,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.presentViewController(loginVC, animated: true, completion: nil)
         } else {
-            self.checkSpecialEvents()
+//            self.checkSpecialEvents()
         }
     }
     

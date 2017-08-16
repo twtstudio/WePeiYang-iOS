@@ -46,8 +46,15 @@ extension UIView {
 extension UIImage {
     
     static func resizedImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.drawInRect(CGRect(x: 0.0, y: 0, width: newSize.width, height: newSize.height))
+        var fooNewSize = newSize
+        // if nan
+        if newSize.width.isNaN {
+            fooNewSize.width = UIScreen.mainScreen().bounds.width / 2
+        } else if newSize.height.isNaN {
+            fooNewSize.height = UIScreen.mainScreen().bounds.height * 0.52 * 0.6
+        }
+        UIGraphicsBeginImageContextWithOptions(fooNewSize, false, 0.0);
+        image.drawInRect(CGRect(x: 0.0, y: 0, width: fooNewSize.width, height: fooNewSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return newImage
@@ -143,5 +150,28 @@ extension UIButton {
         foo = UIImage.resizedImage(foo, scaledToSize: desiredSize)
         self.init()
         setBackgroundImage(foo, forState: .Normal)
+    }
+}
+
+
+extension UIFont {
+    static func flexibleFont(with baseSize: CGFloat) -> UIFont {
+        let bigiPhoneWidth: CGFloat = 414.0
+        let middleiPhoneWidth: CGFloat = 375.0
+        let smalliPhoneWidth: CGFloat = 320.0
+        
+        var font: UIFont! = nil
+        let width = UIScreen.mainScreen().bounds.size.width
+        
+        // default base size is 14
+        
+        if width >= bigiPhoneWidth { // 414 iPhone 6/7 Plus
+            font = UIFont.systemFontOfSize(baseSize+1)
+        } else if width >= middleiPhoneWidth { // 375 iPhone 6(S) 7
+            font = UIFont.systemFontOfSize(baseSize)
+        } else if width <= smalliPhoneWidth { // 320 iPhone 5(S)
+            font = UIFont.systemFontOfSize(baseSize-1)
+        }
+        return font
     }
 }

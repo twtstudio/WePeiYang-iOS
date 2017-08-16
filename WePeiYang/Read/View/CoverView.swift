@@ -109,7 +109,8 @@ class CoverView: UIView {
         //let img = UIImage(named: "cover4")
         
       //  let imageURL = NSURL(string: book.coverURL)
-        let fuckStr = book.coverURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+//        let fuckStr = book.coverURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let fuckStr = book.coverURL.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         let fuckURL = NSURL(string: fuckStr)
         let imageRequest = NSURLRequest(URL: fuckURL!)
         

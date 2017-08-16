@@ -21,7 +21,21 @@
 		188842381846E6F4007B92CB /* WePeiYangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188842371846E6F4007B92CB /* WePeiYangTests.m */; };
 		188842A81846FBEB007B92CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188842A71846FBEB007B92CB /* Social.framework */; };
 		363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D343F1DC8DBB600D13DA0 /* MyBook.swift */; };
+		365F44D61E603DDF009CB20C /* ClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C51E603DDF009CB20C /* ClientItem.swift */; };
+		365F44D71E603DDF009CB20C /* CommonClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C61E603DDF009CB20C /* CommonClientCell.swift */; };
+		365F44D81E603DDF009CB20C /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C71E603DDF009CB20C /* CommonView.swift */; };
+		365F44DA1E603DDF009CB20C /* PhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44C91E603DDF009CB20C /* PhoneBook.swift */; };
+		365F44DB1E603DDF009CB20C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CA1E603DDF009CB20C /* SearchView.swift */; };
+		365F44DC1E603DDF009CB20C /* TappableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CB1E603DDF009CB20C /* TappableImageView.swift */; };
+		365F44DE1E603DDF009CB20C /* YellowPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CD1E603DDF009CB20C /* YellowPageCell.swift */; };
+		365F44DF1E603DDF009CB20C /* YellowPageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */; };
+		365F44E01E603DDF009CB20C /* YellowPageMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */; };
+		365F44E11E603DDF009CB20C /* YellowPageSearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44D01E603DDF009CB20C /* YellowPageSearchHistoryCell.swift */; };
+		365F44E21E603DDF009CB20C /* YellowPageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */; };
 		36632E651DCDC539006B872F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36632E641DCDC539006B872F /* SearchViewController.swift */; };
+		3679DFD11F14C57F002687CD /* GPAClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679DFCC1F14C57F002687CD /* GPAClassData.m */; };
+		3679DFD21F14C57F002687CD /* GPAData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679DFCE1F14C57F002687CD /* GPAData.m */; };
+		3679DFD31F14C57F002687CD /* GPAStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3679DFD01F14C57F002687CD /* GPAStat.m */; };
 		36B21D3B1DCA155B00CEA50C /* ReadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */; };
 		683072141D76CE1C008C04CB /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 683072131D76CE1C008C04CB /* UIViewController+Utils.m */; };
 		683E2EC81D75B9DD007F2D7A /* AllQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683E2EC71D75B9DD007F2D7A /* AllQuizViewController.swift */; };
@@ -135,7 +149,6 @@
 		B1E068531DCA640700C443D6 /* BookDetailViewControllerTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E068521DCA640700C443D6 /* BookDetailViewControllerTempView.swift */; };
 		B1E497AA1D6896DF00E85DA8 /* PresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E497A91D6896DF00E85DA8 /* PresentingAnimator.m */; };
 		B1E497AD1D689A7C00E85DA8 /* DismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E497AC1D689A7C00E85DA8 /* DismissingAnimator.m */; };
-		B1FD93501DF7FA3A00E35112 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FD934F1DF7FA3A00E35112 /* HealthKit.framework */; };
 		B1FD93761DF889D000E35112 /* BicycleFitnessTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FD93751DF889D000E35112 /* BicycleFitnessTrackerViewController.swift */; };
 		B1FD93781DF904D000E35112 /* BicycleFitnessTrackerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FD93771DF904D000E35112 /* BicycleFitnessTrackerViewCell.swift */; };
 		E5AB166EFF8F3492EAB60C4F /* Pods_WePeiYang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */; };
@@ -187,8 +200,6 @@
 		E9480D601CC7E98700AA707A /* WebAppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9480D5F1CC7E98700AA707A /* WebAppItem.swift */; };
 		E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949E3DF1C43F3A900A5212B /* SettingViewController.swift */; };
 		E94AC15F1C737B6300C82C4E /* ClassCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94AC15E1C737B6300C82C4E /* ClassCellView.swift */; };
-		E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FCE1BF79A5000520536 /* GPAData.m */; };
-		E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FD11BF79BF900520536 /* GPAClassData.m */; };
 		E94B1FE51BF7AE8800520536 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FDC1BF7AE8800520536 /* NSString+Hashes.m */; };
 		E94B1FE61BF7AE8800520536 /* SolaFoundationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FDE1BF7AE8800520536 /* SolaFoundationKit.m */; };
 		E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E94B1FE01BF7AE8800520536 /* SolaInstance.m */; };
@@ -268,7 +279,6 @@
 		E9D744071BF9AE38005F2EF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D743FD1BF9AE38005F2EF9 /* Localizable.strings */; };
 		E9E42A441C74558B00C871D6 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E42A421C74558B00C871D6 /* ClassDetailViewController.swift */; };
 		E9E42A451C74558B00C871D6 /* ClassDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E42A431C74558B00C871D6 /* ClassDetailViewController.xib */; };
-		E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */; };
 		E9F1F8631CD6561000C4F2AA /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */; };
 		E9F1F8661CD6563900C4F2AA /* UserGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */; };
 		E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FBD13E1C6EEE760060BF21 /* NewsComment.m */; };
@@ -312,7 +322,24 @@
 		188842421846E706007B92CB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188842A71846FBEB007B92CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		363D343F1DC8DBB600D13DA0 /* MyBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
+		365F44C51E603DDF009CB20C /* ClientItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientItem.swift; sourceTree = "<group>"; };
+		365F44C61E603DDF009CB20C /* CommonClientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonClientCell.swift; sourceTree = "<group>"; };
+		365F44C71E603DDF009CB20C /* CommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
+		365F44C91E603DDF009CB20C /* PhoneBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneBook.swift; sourceTree = "<group>"; };
+		365F44CA1E603DDF009CB20C /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		365F44CB1E603DDF009CB20C /* TappableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TappableImageView.swift; sourceTree = "<group>"; };
+		365F44CD1E603DDF009CB20C /* YellowPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageCell.swift; sourceTree = "<group>"; };
+		365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageDetailViewController.swift; sourceTree = "<group>"; };
+		365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageMainViewController.swift; sourceTree = "<group>"; };
+		365F44D01E603DDF009CB20C /* YellowPageSearchHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageSearchHistoryCell.swift; sourceTree = "<group>"; };
+		365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YellowPageSearchViewController.swift; sourceTree = "<group>"; };
 		36632E641DCDC539006B872F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		3679DFCB1F14C57F002687CD /* GPAClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAClassData.h; path = "WePeiYang/Models/Data Model/GPAClassData.h"; sourceTree = SOURCE_ROOT; };
+		3679DFCC1F14C57F002687CD /* GPAClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAClassData.m; path = "WePeiYang/Models/Data Model/GPAClassData.m"; sourceTree = SOURCE_ROOT; };
+		3679DFCD1F14C57F002687CD /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "WePeiYang/Models/Data Model/GPAData.h"; sourceTree = SOURCE_ROOT; };
+		3679DFCE1F14C57F002687CD /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "WePeiYang/Models/Data Model/GPAData.m"; sourceTree = SOURCE_ROOT; };
+		3679DFCF1F14C57F002687CD /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "WePeiYang/Models/Data Model/GPAStat.h"; sourceTree = SOURCE_ROOT; };
+		3679DFD01F14C57F002687CD /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "WePeiYang/Models/Data Model/GPAStat.m"; sourceTree = SOURCE_ROOT; };
 		36B21D3A1DCA155B00CEA50C /* ReadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadAPI.swift; sourceTree = "<group>"; };
 		48C30F0568A6ECD0AA3C5CD6 /* Pods_WePeiYang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WePeiYang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B13C6569D55CB91CA491E2 /* Pods-WePeiYangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WePeiYangTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WePeiYangTests/Pods-WePeiYangTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -492,10 +519,6 @@
 		E9480D5F1CC7E98700AA707A /* WebAppItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebAppItem.swift; path = Microservices/Model/WebAppItem.swift; sourceTree = "<group>"; };
 		E949E3DF1C43F3A900A5212B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E94AC15E1C737B6300C82C4E /* ClassCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassCellView.swift; path = Classtable/View/ClassCellView.swift; sourceTree = "<group>"; };
-		E94B1FCD1BF79A5000520536 /* GPAData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAData.h; path = "../../Models/Data Model/GPAData.h"; sourceTree = "<group>"; };
-		E94B1FCE1BF79A5000520536 /* GPAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAData.m; path = "../../Models/Data Model/GPAData.m"; sourceTree = "<group>"; };
-		E94B1FD01BF79BF900520536 /* GPAClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAClassData.h; path = "../../Models/Data Model/GPAClassData.h"; sourceTree = "<group>"; };
-		E94B1FD11BF79BF900520536 /* GPAClassData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAClassData.m; path = "../../Models/Data Model/GPAClassData.m"; sourceTree = "<group>"; };
 		E94B1FDB1BF7AE8800520536 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		E94B1FDC1BF7AE8800520536 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		E94B1FDD1BF7AE8800520536 /* SolaFoundationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolaFoundationKit.h; sourceTree = "<group>"; };
@@ -603,8 +626,6 @@
 		E9D743FE1BF9AE38005F2EF9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		E9E42A421C74558B00C871D6 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassDetailViewController.swift; path = Classtable/Controller/ClassDetailViewController.swift; sourceTree = "<group>"; };
 		E9E42A431C74558B00C871D6 /* ClassDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClassDetailViewController.xib; path = Classtable/Controller/ClassDetailViewController.xib; sourceTree = "<group>"; };
-		E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPAStat.h; path = "../../Models/Data Model/GPAStat.h"; sourceTree = "<group>"; };
-		E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPAStat.m; path = "../../Models/Data Model/GPAStat.m"; sourceTree = "<group>"; };
 		E9F1F8611CD6560F00C4F2AA /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Utils.h"; path = "Utilities/UIViewController+Utils.h"; sourceTree = "<group>"; };
 		E9F1F8621CD6561000C4F2AA /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Utils.m"; path = "Utilities/UIViewController+Utils.m"; sourceTree = "<group>"; };
 		E9F1F8651CD6563900C4F2AA /* UserGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGuideViewController.swift; sourceTree = "<group>"; };
@@ -629,7 +650,6 @@
 				180F1CAA185D4DF500F76085 /* MessageUI.framework in Frameworks */,
 				180F1C92185D4D3200F76085 /* QuartzCore.framework in Frameworks */,
 				180F1C90185D4D2B00F76085 /* SystemConfiguration.framework in Frameworks */,
-				B1FD93501DF7FA3A00E35112 /* HealthKit.framework in Frameworks */,
 				188842A81846FBEB007B92CB /* Social.framework in Frameworks */,
 				188842151846E6F4007B92CB /* CoreGraphics.framework in Frameworks */,
 				188842171846E6F4007B92CB /* UIKit.framework in Frameworks */,
@@ -730,6 +750,7 @@
 				68D65AB01DBF928900B44FD8 /* Read */,
 				E937017F1C5CA8A800C87E84 /* Library */,
 				E98DF6CF1C5DF5BF003943A4 /* WebViewController */,
+				365F44BE1E603DDF009CB20C /* YellowPage */,
 				E901054D1C3B994E002901AC /* Setting */,
 			);
 			path = WePeiYang;
@@ -751,6 +772,49 @@
 				188842341846E6F4007B92CB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		365F44BE1E603DDF009CB20C /* YellowPage */ = {
+			isa = PBXGroup;
+			children = (
+				365F44E41E603E0D009CB20C /* Controller */,
+				365F44E51E603E26009CB20C /* View */,
+				365F44E31E603E01009CB20C /* Model */,
+			);
+			name = YellowPage;
+			path = Setting/YellowPage;
+			sourceTree = "<group>";
+		};
+		365F44E31E603E01009CB20C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				365F44C51E603DDF009CB20C /* ClientItem.swift */,
+				365F44C91E603DDF009CB20C /* PhoneBook.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		365F44E41E603E0D009CB20C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				365F44CE1E603DDF009CB20C /* YellowPageDetailViewController.swift */,
+				365F44D11E603DDF009CB20C /* YellowPageSearchViewController.swift */,
+				365F44CF1E603DDF009CB20C /* YellowPageMainViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		365F44E51E603E26009CB20C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				365F44CB1E603DDF009CB20C /* TappableImageView.swift */,
+				365F44CA1E603DDF009CB20C /* SearchView.swift */,
+				365F44C71E603DDF009CB20C /* CommonView.swift */,
+				365F44C61E603DDF009CB20C /* CommonClientCell.swift */,
+				365F44CD1E603DDF009CB20C /* YellowPageCell.swift */,
+				365F44D01E603DDF009CB20C /* YellowPageSearchHistoryCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		68513F071D6F08FF00E96BEB /* PartyService */ = {
@@ -990,12 +1054,12 @@
 		E90105391C3B994E002901AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E94B1FCD1BF79A5000520536 /* GPAData.h */,
-				E94B1FCE1BF79A5000520536 /* GPAData.m */,
-				E94B1FD01BF79BF900520536 /* GPAClassData.h */,
-				E94B1FD11BF79BF900520536 /* GPAClassData.m */,
-				E9E8B7A21BF9CC46001F7FA8 /* GPAStat.h */,
-				E9E8B7A31BF9CC46001F7FA8 /* GPAStat.m */,
+				3679DFCB1F14C57F002687CD /* GPAClassData.h */,
+				3679DFCC1F14C57F002687CD /* GPAClassData.m */,
+				3679DFCD1F14C57F002687CD /* GPAData.h */,
+				3679DFCE1F14C57F002687CD /* GPAData.m */,
+				3679DFCF1F14C57F002687CD /* GPAStat.h */,
+				3679DFD01F14C57F002687CD /* GPAStat.m */,
 				6862BB601E2A3ADB007701C5 /* CourseAppraiseManager.swift */,
 			);
 			path = Model;
@@ -1750,7 +1814,7 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1767,6 +1831,7 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = 188842061846E6F4007B92CB;
 			productRefGroup = 188842101846E6F4007B92CB /* Products */;
@@ -1951,12 +2016,14 @@
 			files = (
 				36632E651DCDC539006B872F /* SearchViewController.swift in Sources */,
 				E9B972CB1C565290001E480E /* LoginViewController.swift in Sources */,
+				3679DFD21F14C57F002687CD /* GPAData.m in Sources */,
 				68513F741D6F091200E96BEB /* WMScrollView+gesture.m in Sources */,
 				68513F481D6F08FF00E96BEB /* ScoreTableViewCell.swift in Sources */,
 				68513F2E1D6F08FF00E96BEB /* GradeCheckViewController.swift in Sources */,
 				E925971D1CA62AD600D4E812 /* ToolsCollectionViewController.swift in Sources */,
 				E97704D01CD0A4DD0017A1CB /* WebAppViewController.m in Sources */,
 				684F1D5A1E28DABA00F280D9 /* CourseAppraiseViewController.swift in Sources */,
+				3679DFD31F14C57F002687CD /* GPAStat.m in Sources */,
 				6862BB611E2A3ADB007701C5 /* CourseAppraiseManager.swift in Sources */,
 				E98DF6F91C5DF5BF003943A4 /* SVWebViewControllerActivitySafari.m in Sources */,
 				68513F6C1D6F091200E96BEB /* BicycleCardListViewController.swift in Sources */,
@@ -1976,6 +2043,7 @@
 				E95BDA871C4BF18C00EFC107 /* FeedbackViewController.swift in Sources */,
 				E99923A01CC5FA65008963C8 /* SchemeManager.swift in Sources */,
 				B10A9E801DC8468C00A395E9 /* ReadViewController.m in Sources */,
+				365F44D61E603DDF009CB20C /* ClientItem.swift in Sources */,
 				B10A9E721DC8467600A395E9 /* RecommendCell.swift in Sources */,
 				E91E51621D00529400A5BED7 /* DevSessionViewController.swift in Sources */,
 				E92C7F3E1C6EF1E80022857A /* NewsCommentTextView.m in Sources */,
@@ -1995,6 +2063,7 @@
 				E98F86901CCA223400252DA8 /* LostFoundItem.swift in Sources */,
 				B1C4F6511D543DD0000CD0D8 /* (null) in Sources */,
 				68513F471D6F08FF00E96BEB /* PersonalStatusLabel.swift in Sources */,
+				365F44D71E603DDF009CB20C /* CommonClientCell.swift in Sources */,
 				68513F381D6F08FF00E96BEB /* TwentyCourseDetailViewController.swift in Sources */,
 				B153426A1DF7390400409A23 /* ToolsCollectionViewController+UIViewControllerPreviewing.swift in Sources */,
 				E90105541C3B994E002901AC /* GPATableViewController.m in Sources */,
@@ -2008,12 +2077,15 @@
 				E91E515F1CFF4F5000A5BED7 /* DevSessionRecordTableViewController.swift in Sources */,
 				68513F6E1D6F091200E96BEB /* BicycleRecordViewController.swift in Sources */,
 				E91A9B251C4040E300ADABA0 /* HomeWeatherCell.swift in Sources */,
-				E94B1FD21BF79BF900520536 /* GPAClassData.m in Sources */,
+				365F44E01E603DDF009CB20C /* YellowPageMainViewController.swift in Sources */,
+				365F44D81E603DDF009CB20C /* CommonView.swift in Sources */,
 				B10A9E641DC8466C00A395E9 /* Review.swift in Sources */,
 				E98DF69A1C5D044B003943A4 /* MicroservicesTableViewController.swift in Sources */,
 				E94B1FE81BF7AE8800520536 /* SolaSessionManager.m in Sources */,
 				E98DF6921C5CEDE0003943A4 /* BindTjuViewController.swift in Sources */,
+				365F44DA1E603DDF009CB20C /* PhoneBook.swift in Sources */,
 				E9480D5C1CC7D76A00AA707A /* LibraryDataManager.swift in Sources */,
+				365F44E11E603DDF009CB20C /* YellowPageSearchHistoryCell.swift in Sources */,
 				B1FD93761DF889D000E35112 /* BicycleFitnessTrackerViewController.swift in Sources */,
 				E9472BEC1C14879D00EC229C /* NewsContent.m in Sources */,
 				68513F721D6F091200E96BEB /* BicycleServiceViewController.m in Sources */,
@@ -2032,7 +2104,9 @@
 				B1C4F6501D543DD0000CD0D8 /* (null) in Sources */,
 				E91E515B1CFF421C00A5BED7 /* DevSessionRecorder.swift in Sources */,
 				B113C7001D57B5B80072726F /* log.swift in Sources */,
+				365F44E21E603DDF009CB20C /* YellowPageSearchViewController.swift in Sources */,
 				E961E61D1CDF6C2E003E574F /* DevControlViewController.swift in Sources */,
+				365F44DC1E603DDF009CB20C /* TappableImageView.swift in Sources */,
 				E93701851C5CA97800C87E84 /* LibraryViewController.swift in Sources */,
 				E92C7F421C6EF4590022857A /* NewsCommentTableViewCell.m in Sources */,
 				B10A9E7F1DC8468C00A395E9 /* InfoViewController.swift in Sources */,
@@ -2040,6 +2114,7 @@
 				E958E78A1A9384EE0055B7C4 /* MsgDisplay.m in Sources */,
 				E98DF6F51C5DF5BF003943A4 /* SVWebViewControllerActivityChrome.m in Sources */,
 				E98ACE111C3FFA350012C762 /* HomeDataManager.swift in Sources */,
+				365F44DB1E603DDF009CB20C /* SearchView.swift in Sources */,
 				B1063EAF1D704E390084F379 /* QuizView.swift in Sources */,
 				68513F6F1D6F091200E96BEB /* BicycleServiceInfoController.swift in Sources */,
 				E9472BE91C14872900EC229C /* NewsData.m in Sources */,
@@ -2070,6 +2145,7 @@
 				B1FD93781DF904D000E35112 /* BicycleFitnessTrackerViewCell.swift in Sources */,
 				68513F4A1D6F08FF00E96BEB /* TextTableViewCell.swift in Sources */,
 				B10A9E711DC8467600A395E9 /* ReadStarCell.swift in Sources */,
+				365F44DE1E603DDF009CB20C /* YellowPageCell.swift in Sources */,
 				E98ACE151C3FFA8F0012C762 /* HomeCarouselCell.swift in Sources */,
 				B10A9E601DC8466C00A395E9 /* Book.swift in Sources */,
 				E9FBD13F1C6EEE760060BF21 /* NewsComment.m in Sources */,
@@ -2079,7 +2155,7 @@
 				68513F3B1D6F08FF00E96BEB /* Applicant.swift in Sources */,
 				363D34401DC8DBB600D13DA0 /* MyBook.swift in Sources */,
 				E98ACE171C4002610012C762 /* HomeImageTitleView.swift in Sources */,
-				E94B1FCF1BF79A5000520536 /* GPAData.m in Sources */,
+				365F44DF1E603DDF009CB20C /* YellowPageDetailViewController.swift in Sources */,
 				B1063EAB1D704D5C0084F379 /* Checkbox.swift in Sources */,
 				68513F3E1D6F08FF00E96BEB /* PartyAPI.swift in Sources */,
 				E9FBD1441C6EF0870060BF21 /* NewsCommentViewController.m in Sources */,
@@ -2119,9 +2195,9 @@
 				E9A48CDB1A6FE9E2001D8420 /* OpenInSafariActivity.m in Sources */,
 				68513F401D6F08FF00E96BEB /* CourseDetailTableViewCell.swift in Sources */,
 				E949E3E01C43F3A900A5212B /* SettingViewController.swift in Sources */,
-				E9E8B7A41BF9CC46001F7FA8 /* GPAStat.m in Sources */,
 				68513F311D6F08FF00E96BEB /* PartyCoursesViewController.m in Sources */,
 				E96D1F5E1CAB738A00BC07D8 /* LostFoundTableViewController.swift in Sources */,
+				3679DFD11F14C57F002687CD /* GPAClassData.m in Sources */,
 				E94B1FE71BF7AE8800520536 /* SolaInstance.m in Sources */,
 				E95B11301A8BA9FE00ACF69A /* CalendarEventActivity.m in Sources */,
 				B10A9E731DC8467600A395E9 /* ReviewCell.swift in Sources */,
