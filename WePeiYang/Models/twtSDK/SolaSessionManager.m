@@ -49,11 +49,28 @@
     [manager.requestSerializer setValue:[SolaFoundationKit userAgentString] forHTTPHeaderField:@"User-Agent"];
     if (token != nil && token.length > 0 && type != SessionTypeDUO) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", token] forHTTPHeaderField:@"Authorization"];
+        
+        [manager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest * _Nonnull(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, NSURLResponse * _Nonnull response, NSURLRequest * _Nonnull request) {
+            NSLog(@"redirect %@", request.URL);
+            NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:request.URL];
+            [newRequest setValue:[NSString stringWithFormat:@"Bearer {%@}", token] forHTTPHeaderField:@"Authorization"];
+            return newRequest;
+        }];
     } else if (token != nil && token.length > 0 && type == SessionTypeDUO) {
         NSString *twtToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"twtToken"];
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer {%@}", twtToken] forHTTPHeaderField:@"Authorization"];
+        
+        [manager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest * _Nonnull(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, NSURLResponse * _Nonnull response, NSURLRequest * _Nonnull request) {
+            NSLog(@"redirect %@", request.URL);
+            NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:request.URL];
+            [newRequest setValue:[NSString stringWithFormat:@"Bearer {%@}", twtToken] forHTTPHeaderField:@"Authorization"];
+            return newRequest;
+        }];
     }
 
+    
+
+    
     if (type == SessionTypeGET) {
         [manager GET:fullURL parameters:para progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([[NSUserDefaults standardUserDefaults] boolForKey:DEV_RECORD_SESSION_INFO] == YES) {

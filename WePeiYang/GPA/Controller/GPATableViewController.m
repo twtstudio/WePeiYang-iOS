@@ -50,6 +50,7 @@
     
     //test
     NSDictionary *fuckingDict;
+    
 }
 
 @synthesize headerView;
@@ -68,7 +69,8 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.jz_navigationBarBackgroundAlpha = 0.0;
     self.clearsSelectionOnViewWillAppear = YES;
-    headerView.backgroundColor = [UIColor flatPinkColorDark];
+//    headerView.backgroundColor = [UIColor flatPinkColorDark];
+    headerView.backgroundColor = [UIColor colorWithRed:0.98 green:0.66 blue:0.61 alpha:1.00];
     
     dataArr = [[NSArray alloc] init];
     chartDataArr = [[NSMutableArray alloc] init];
@@ -82,7 +84,8 @@
     [headerView addSubview:({
         CGFloat biggerValue = (self.view.frame.size.height > self.view.frame.size.width) ? self.view.frame.size.height : self.view.frame.size.width;
         UIView *barBgView = [[UIView alloc] initWithFrame:CGRectMake(0, -biggerValue, biggerValue, biggerValue)];
-        barBgView.backgroundColor = [UIColor flatPinkColorDark];
+        barBgView.backgroundColor = [UIColor colorWithRed:0.98 green:0.66 blue:0.61 alpha:1.00];
+//        barBgView.backgroundColor = [UIColor flatPinkColorDark];
         barBgView;
     })];
     
@@ -442,13 +445,14 @@
     self.tableView.scrollEnabled = NO;
     // 不该每次执行都更新，但是第一次要更新
     GPAData *tmp = dataArr[horizontalIndex];
-    if (graphIsTouched == NO) {
-        //NSLog(@"terms update");
-        gpaLabel.text = tmp.gpa;
-        scoreLabel.text = tmp.score;
-        graphIsTouched = YES;
-    }
+//    if (graphIsTouched == NO) {
+//        //NSLog(@"terms update");
+//        gpaLabel.text = tmp.gpa;
+//        scoreLabel.text = tmp.score;
+//        graphIsTouched = YES;
+//    }
     
+    self.title = ((GPAData *)dataArr[horizontalIndex]).name;
     if (horizontalIndex != lastSelected) {
         if (horizontalIndex > lastSelected) {
             [self selectPointForIndex:horizontalIndex withRowAnimation:UITableViewRowAnimationLeft];
@@ -458,17 +462,21 @@
         gpaLabel.text = tmp.gpa;
         scoreLabel.text = tmp.score;
         lastSelected = horizontalIndex;
+    } else {
+        lastSelected = horizontalIndex;
+        gpaLabel.text = stat.gpa;
+        scoreLabel.text = stat.score;
+        self.title = @"成绩";
     }
-    self.title = ((GPAData *)dataArr[horizontalIndex]).name;
 }
 
 - (void)didDeselectLineInLineChartView:(JBLineChartView *)lineChartView {
     // Update view
     self.tableView.scrollEnabled = YES;
     graphIsTouched = NO;
-    gpaLabel.text = stat.gpa;
-    scoreLabel.text = stat.score;
-    self.title = @"成绩";
+//    gpaLabel.text = stat.gpa;
+//    scoreLabel.text = stat.score;
+//    self.title = @"成绩";
 }
 
 #pragma mark - Table view data source
